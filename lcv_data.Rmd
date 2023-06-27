@@ -1,0 +1,86 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+# Set Up
+
+```{r, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(tseries)
+
+```
+
+
+# Import LCV Score Data
+
+```{r, include=FALSE}
+setwd("~/R/BA thesis")
+
+lcv_data <- read_csv("lcv_scores_sample.csv")
+view(lcv_data)
+```
+
+
+# Inspect Data
+```{r}
+str(lcv_data)
+head(lcv_data)
+```
+
+# Boxplot 
+```{r}
+boxplot(lcv_data$lcv_score)
+```
+
+# Party and LCV Score 
+```{r}
+party_lcv <- lm(lcv_score ~ party, data = lcv_data)
+  
+summary(party_lcv)  
+
+```
+
+# GGplot 
+
+```{r}
+plot_lcv_party <- lcv_data %>% group_by(party) %>% ggplot(aes(x = party, y= lcv_score)) + geom_boxplot()
+
+plot_lcv_party
+```
+
+```{r}
+
+plot_lcv_party <- lcv_data %>% group_by(party) %>% ggplot(aes(x = party, y= lcv_score)) + geom_violin()
+
+plot_lcv_party
+```
+## Analysis based on year of birth 
+
+```{r}
+# include only congresspeople in the dataset which have a birthyear, not the entire birthdate 
+
+lcv_data_new <- cbind(lcv_data, birth_year = as.numeric(lcv_data$birthDate)) %>% filter(nchar(birth_year) == 4) 
+
+# view(lcv_data_new)
+str(lcv_data_new)
+```
+
+```{r}
+plot_lcv_birth <- lcv_data_new %>% ggplot(aes(x = birth_year, y = lcv_score)) + geom_point() + geom_smooth()
+plot_lcv_birth
+```
+
+Not entirely clear from the analysis, whether young congresspeople have a higher LCV score than older people, due to the lack of data...
+
+
+
+# Import Data from the top contributers to political campaigns
+
+```{r}
+setwd("~/R/BA thesis")
+data_campaign <- read_csv("Top Recipients of Contributions from Lobbyists, 2022 Cycle.csv")
+view(data_campaign)
+```
+
