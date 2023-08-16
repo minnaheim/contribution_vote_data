@@ -37,14 +37,16 @@ view(data_2454)
 ```{r}
 # merge both roll call votes to include only the house members who voted on both bills
 
-data <- data_2454 %>%
+combined_rollcall_data <- data_2454 %>%
   inner_join(data_9, by = c('REPRESENTATIVE' = 'REPRESENTATIVE', 'STATE' = 'STATE', 'PARTY' = 'PARTY'))
 
-data <- data %>%
+combined_rollcall_data <- combined_rollcall_data %>%
   rename("VOTE_2019" = "VOTE.y") %>%
   rename("VOTE_2009" = "VOTE.x")
 
-view(data)
+# view(combined_rollcall_data)
+
+write.csv(combined_rollcall_data, "~/R/BA_thesis/combined_rollcall_data.csv", row.names=FALSE)
 ```
 
 ### Include Contribution Amount in USD of Congress People
@@ -197,37 +199,23 @@ view(house_members_2008)
 # Merging Data on House Members & their contribution
 
 ```{r}
-
 # 116th Congress
-
-# inner join to merge, because we only want to include membrs of congress who got contributions which were members of house
-
-# house_contribution_116 <- clean_contributions_2018 %>% inner_join(house_members_2018, by = c("surname"))
-# view(house_contribution_116)
-#
-#
-# house_contribution_116_new <- house_contribution_116[house_contribution_116$name.x == house_contribution_116$name.y, ]
-# view(house_contribution_116_new)
-
-view(clean_contributions_2018)
-view(house_members_2018)
 
 # convert house_members_2018 to data.frame
 house_members_2018 <- as.data.frame(house_members_2018)
 
-str(house_members_2018)
-str(clean_contributions_2018)
+# remove trailing whitespace (including NBSP) from character vectors
+trim.trailing <- function (x) sub(" |\\s+$", "", x)
+house_members_2018$name <- trim.trailing(house_members_2018$name)
 
-# Merge clean contribution and house member dataframes based on name and surname columns
-test <- merge(
-  clean_contributions_2018,
-  house_members_2018,
-  by = c("name", "surname"),
-  all.x = TRUE
-)
-# view(house_contribution_116)
+view(clean_contributions_2018)
+view(house_members_2018)
 
-head(test)
-view(test)
+# inner join clean contribution and house member dataframes based on name and surname columns
+
+combined <- inner_join(clean_contributions_2018,
+                                     house_members_2018, by = c("name", "surname"))
+
+view(combined)
 ```
 
