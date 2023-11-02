@@ -15,7 +15,7 @@ Based on the LCV Website: https://scorecard.lcv.org/scorecard?year=2022 which pr
 
 ## Import Data
 ```{r}
-setwd("~/R/BA_thesis/data")
+setwd("~/Desktop/HSG/Economics/BA_Thesis/code/data")
 clean_energy_bills <- read.csv("scorecard-export.csv", header = TRUE, sep = ",")
 view(clean_energy_bills)
 ```
@@ -34,6 +34,13 @@ view(investment_funding)
 # create a new dataset out of investment_funding where only the Rows are kept, if Vote.Name doees not contain the words "Investment", "Funds", "Fund" or "Funding"
 not_investment_funding <- clean_energy_bills %>% filter(!grepl(pattern, Vote.Name, ignore.case = TRUE))
 view(not_investment_funding)
+
+
+#filtering investment and funding, and then which of these bills also has the issues climate change and clean energy
+pattern <- "Climate Change"
+cl_en <- investment_funding %>% filter(grepl(pattern, Issues, ignore.case = TRUE))
+view(cl_en)
+
 
 ```
 
@@ -65,5 +72,27 @@ view(tax_credits)
 
 not_tax_credits <- clean_energy_bills %>% filter(!grepl(pattern, Vote.Name, ignore.case = TRUE))
 view(not_tax_credits)
+
+```
+
+
+
+4. Dirty Energy
+```{r}
+dirtyenergy <- read.csv("dirty_energy.csv")
+view(dirtyenergy)
+
+
+# pattern <- "Drilling"
+# dirtyenergy2 <- dirtyenergy %>% filter(grepl(pattern, Issues, ignore.case = TRUE))
+# view(dirtyenergy2)
+
+pattern2 <- "Offshore"
+dirtyenergy3 <- dirtyenergy %>% filter(grepl(pattern2, Vote.Name, ignore.case = TRUE))
+view(dirtyenergy3)
+
+pattern3 <- "Subsid"
+dirtyenergy4 <- dirtyenergy %>% filter(grepl(pattern3, Vote.Name, ignore.case = TRUE))
+view(dirtyenergy4)
 
 ```
