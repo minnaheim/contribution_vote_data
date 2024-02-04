@@ -26,4 +26,3 @@ view(bills)
 # import new dataset with contribution data from dime in 2010
 contributions <- read.csv("contribDB_2010.csv")
 head(contributions)
-
