@@ -16,7 +16,6 @@ This is an R Markdown format used for publishing markdown documents to GitHub. W
 ```{r, include=FALSE}
 library(tidyverse)
 library(ggplot2)
-
 ```
 
 
@@ -24,16 +23,28 @@ library(ggplot2)
 
 Importing the cleaned roll call data
 ```{r echo=FALSE}
-df <- 
-
+df <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_full_rollcall_votes.csv")
+head(df)
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
+## Simple Data Analytics (Financial Data)
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+```{r}
+# amount contributed by fossil fuel firms
+
+# group by Party
+
+# group by District
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+## Mind changers 
+
+determine which representatives changed their votes over the course of the three sessioncs (114,115 and 116th congress)
+
+```{r mind changers, echo=FALSE}
+# create a function that looks at each row and its Vote_count. If 3, then compares 3 observations (Vote.114, Vote.115 and Vote.116) -> do the values change? if yes, where? -> if 2 ->
+```
+
+
