@@ -87,13 +87,13 @@ count_votes <- function(dataset) {
 }
 
 repeated_votes <- count_votes(repeated_votes)
-# view(repeated_votes)
-
+view(repeated_votes)
+# -> why only 424 people?
 
 # create dataset for analysis (with at least two votes)
 # str(repeated_votes)
 df <- repeated_votes %>% dplyr::filter(repeated_votes$Vote_count >= 2)
-# view(df)
+#  view(df)
 
 
 # write df as csv
