@@ -23,21 +23,28 @@ library(ggplot2)
 
 Importing the cleaned roll call data
 ```{r echo=FALSE}
-df <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_full_rollcall_votes.csv")
-head(df)
+rollcall <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_full_rollcall_votes.csv")
+head(rollcall)
 ```
 
 
 ## Simple Data Analytics (Financial Data)
 
 ```{r}
-# amount contributed by fossil fuel firms
+# amount contributed by fossil fuel firms (group by different sectors, and group by dirty, clean)
+
+
 
 # group by Party
 
 # group by District
 ```
 
+## Data Analytics, simple linear Regressions
+
+```{r}
+
+```
 
 ## Mind changers 
 

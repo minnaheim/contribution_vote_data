@@ -466,18 +466,22 @@ master_df_116[amount_cols][is.na(master_df_116[amount_cols])] <- 0
 # view(master_df_116)
 # THIS IS THE FINAL FINANCIAL CONTRIBUTION DATASET FOR THE 116TH CONGRESSIONAL TERM
 
+write.csv(master_df_114, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/master_df_114.csv")
 
+write.csv(master_df_115, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/master_df_115.csv")
+
+write.csv(master_df_115, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/master_df_116.csv")
 
 # in the above dataset, "master_df_116" only those house reps. are shown, which have received contributions, i.e. we need to add in non-listed members, and their amounts = 0
 
 
-# merge sample dataset
-sample_rep_114 <- rep_114[309:310, ]
-sample_rep_115 <- rep_115[1:10, ]
-sample_dataset <- dataset[7:8, ]
+# # merge sample dataset
+# sample_rep_114 <- rep_114[309:310, ]
+# sample_rep_115 <- rep_115[1:10, ]
+# sample_dataset <- dataset[7:8, ]
 
 
-merged_sample_rep_114 <- full_join(sample_dataset, sample_rep_114, by = c("LastName" = "Last"))
+# merged_sample_rep_114 <- full_join(sample_dataset, sample_rep_114, by = c("LastName" = "Last"))
 
 
 # create merge function, that merges based on LastName, and only keeps if FirstName = first.
@@ -519,5 +523,3 @@ master_contribution_1 <- master_contribution_1 %>%
 # in total, the master dataset has 552 rows. aka 435 per Session = 1305 persons (since we only have 552 though, this means that most overlap)
 
 # create a column called count_contribution
-
-#
