@@ -15,15 +15,15 @@ methane_116 <- read_csv("data/methane-pollution-safeguards-116.csv",
 
 # create merged dataset - merge based on representative (votes)
 
-# try with sample dataset
-sample_114 <- methane_114[1:10, ]
-sample_115 <- methane_115[1:10, ]
-sample_116 <- methane_116[1:10, ]
+# # try with sample dataset
+# sample_114 <- methane_114[1:10, ]
+# sample_115 <- methane_115[1:10, ]
+# sample_116 <- methane_116[1:10, ]
 
-# full join sample dataset
-sample_merge_full <- full_join(sample_114, sample_115, by = "Representative", suffix = c(".114", ".115"))
-# inner join sample dataset
-sample_merge_inner <- inner_join(sample_114, sample_115, by = "Representative", suffix = c(".114", ".115"))
+# # full join sample dataset
+# sample_merge_full <- full_join(sample_114, sample_115, by = "Representative", suffix = c(".114", ".115"))
+# # inner join sample dataset
+# sample_merge_inner <- inner_join(sample_114, sample_115, by = "Representative", suffix = c(".114", ".115"))
 
 
 # full dataset:
@@ -40,6 +40,13 @@ roll_call_114_115_116_full <- roll_call_114_115_116_full %>%
     rename(Party.116 = Party, District.116 = District, Vote.116 = Vote)
 
 
+# split Representative Column into LastName and FirstName
+
+roll_call_114_115_116_full <- extract(roll_call_114_115_116_full, Representative, c("LastName", "FirstName"), "([^,]+), *(.+)")
+# view(roll_call_114_115_116_full)
+
+# create dataset for analysis (with at least two votes)
+
 # dataset which includes representatives who voted on at least 2 of the 3 bills
 repeated_votes <- roll_call_114_115_116_full %>%
     dplyr::filter(!is.na(Vote.114) & !is.na(Vote.115) | !is.na(Vote.115) & !is.na(Vote.116) | !is.na(Vote.114) & !is.na(Vote.116))
@@ -51,10 +58,7 @@ repeated_votes$ID <- 1:nrow(repeated_votes)
 repeated_votes <- repeated_votes %>%
     relocate(ID)
 
-
 # dataset which includes representatives who voted on >2 occasions and no n/a, ? or E
-sample_dataset <- repeated_votes[8:9, ]
-# view(sample_dataset)
 
 count_votes <- function(dataset) {
     dataset["Vote_count"] <- 0
@@ -86,15 +90,20 @@ count_votes <- function(dataset) {
     return(dataset)
 }
 
-repeated_votes <- count_votes(repeated_votes)
-view(repeated_votes)
+roll_call_votes <- count_votes(repeated_votes)
+roll_call_114_115_116_full <- count_votes(roll_call_114_115_116_full)
+view(roll_call_114_115_116_full)
+# view(repeated_votes)
 # -> why only 424 people?
 
-# create dataset for analysis (with at least two votes)
-# str(repeated_votes)
-df <- repeated_votes %>% dplyr::filter(repeated_votes$Vote_count >= 2)
-#  view(df)
+# remove second index column
+roll_call_votes <- subset(roll_call_votes, select = -ID)
 
+# str(repeated_votes)
+# roll_call_votes <- roll_call_votes  %>% dplyr::filter(repeated_votes$Vote_count >= 2)
+view(roll_call_votes)
+view(repeated_votes)
 
 # write df as csv
-write.csv(df, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_full_rollcall_votes.csv")
+write.csv(roll_call_114_115_116_full, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_full_rollcall_votes.csv")
+# THIS IS THE FINAL DATASET, above are JUST THOSE WITH > 2 VOTES.

@@ -1,6 +1,5 @@
 # SET UP
 library(tidyverse)
-library(ggplot2)
 
 # IMPORT DATASETS
 # fossil fuel oriented
@@ -100,7 +99,9 @@ contribution_clean <- function(dataset) {
 
 # DIRTY
 # oil & gas contributions
+view(oil_114)
 oil_114 <- contribution_clean(oil_114)
+view(oil_114)
 oil_115 <- contribution_clean(oil_115)
 oil_116 <- contribution_clean(oil_116)
 

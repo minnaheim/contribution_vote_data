@@ -1,3 +1,4 @@
+# this dataset serves to clean the list of all representatives in the house sessions 114, 115 and 116, so that we have a complete list of financial contributions (also with members who did not receive fin. contributions)
 # setup
 
 library(tidyverse)
@@ -20,9 +21,9 @@ colnames(rep_116) <- c("LastName", "FirstName", "State", "Party", "Chamber")
 # view(rep_114)
 
 # remove senate members
-rep_114 <- rep_114 %>% filter(Chamber != "Senate")
-rep_115 <- rep_115 %>% filter(Chamber != "Senate")
-rep_116 <- rep_116 %>% filter(Chamber != "Senate")
+rep_114 <- rep_114 %>% dplyr::filter(Chamber != "Senate")
+rep_115 <- rep_115 %>% dplyr::filter(Chamber != "Senate")
+rep_116 <- rep_116 %>% dplyr::filter(Chamber != "Senate")
 
 # find number of rows for rep_114
 print(nrow(rep_114))
@@ -75,4 +76,4 @@ duplicated_first_names <- duplicated(all_reps_contributions$FirstName) | duplica
 # Subset the dataset to extract both original and duplicated rows based on first names
 duplicated_rows_first_name <- all_reps_contributions[duplicated_first_names, ]
 
-# view(duplicated_rows_last_name)
+view(duplicated_rows_last_name)
