@@ -84,7 +84,7 @@ contribution_clean <- function(dataset) {
 
     dataset$Representative <- gsub("\\s*\\(.*?\\)\\s*", "", dataset$Representative)
 
-    # split the representatives column of contribution _144 into the columns LastName and FirstName.
+    # split the representatives column of contribution _114 into the columns LastName and FirstName.
     dataset <- extract(dataset, Representative, c("LastName", "FirstName"), "([^ ]+) (.*)")
 
     # split Party and state-abbreviation into separate columns.

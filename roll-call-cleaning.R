@@ -13,6 +13,7 @@ methane_116 <- read_csv("data/methane-pollution-safeguards-116.csv",
     show_col_types = FALSE
 )
 
+view(methane_116)
 # create merged dataset - merge based on representative (votes)
 
 # # try with sample dataset

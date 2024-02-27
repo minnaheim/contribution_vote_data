@@ -34,6 +34,7 @@ write.csv(rep_114, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/clean
 write.csv(rep_115, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_representatives_115.csv")
 write.csv(rep_116, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_representatives_1146.csv")
 
+# view(rep_116)
 
 # import datasets master_df_114, etc.
 master_df_114 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/master_df_114.csv", show_col_types = FALSE)
@@ -76,4 +77,4 @@ duplicated_first_names <- duplicated(all_reps_contributions$FirstName) | duplica
 # Subset the dataset to extract both original and duplicated rows based on first names
 duplicated_rows_first_name <- all_reps_contributions[duplicated_first_names, ]
 
-view(duplicated_rows_last_name)
+# view(duplicated_rows_last_name)
