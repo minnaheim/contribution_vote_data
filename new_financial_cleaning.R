@@ -71,7 +71,8 @@ contribution_clean <- function(dataset) {
     dataset$Representative <- gsub("\\s*\\(.*?\\)\\s*", "", dataset$Representative)
 
     # split the representatives column of contribution _144 into the columns LastName and FirstName.
-    dataset <- extract(dataset, Representative, c("LastName", "FirstName"), "([^ ]+) (.*)")
+
+    dataset <- dataset %>% separate(Representative, c("LastName", "FirstName"), sep = "([^ ]+) (.*)")
 
     # split Party and state-abbreviation into separate columns.
     dataset <- separate(dataset, Party, into = c("Party", "StateAbbreviation"), sep = "-")
@@ -115,7 +116,7 @@ alt_en_candidates_116 <- contribution_clean(alt_en_candidates_116)
 
 #  MERGE ALL DIFFERENT FINANCIAL CONTRIBUTIONS TOGETHER
 # 114
-master_df_candidates_114 <- full_join(oil_candidates_114, coal_candidates_114[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName"), suffix = c(".oil", ".coal"))
+master_df_candidates_114 <- full_join(oil_candidates_114, coal_candidates_114[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName"), suffix = c(".oil", ".coal"), multiple = "all")
 
 # If Party and StateAbbreviation are missing in oil_candidates_114, use values from coal_candidates_114
 master_df_candidates_114$Party <- ifelse(is.na(master_df_candidates_114$Party.oil), master_df_candidates_114$Party.coal, master_df_candidates_114$Party.oil)
@@ -133,7 +134,7 @@ master_df_candidates_114 <- master_df_candidates_114 %>%
 # view(master_df_candidates_114)
 # works until here
 
-master_df_candidates_114 <- full_join(master_df_candidates_114, mining_candidates_114[, c("LastName", "FirstName", "Amount", "StateAbbreviation", "Party")], by = c("LastName", "FirstName")) %>%
+master_df_candidates_114 <- full_join(master_df_candidates_114, mining_candidates_114[, c("LastName", "FirstName", "Amount", "StateAbbreviation", "Party")], by = c("LastName", "FirstName"), multiple = "all") %>%
     rename("Amount.mining" = "Amount") %>%
     rename("Party.mining" = "Party.y") %>%
     rename("StateAbbreviation.mining" = "StateAbbreviation.y")
@@ -153,7 +154,7 @@ master_df_candidates_114 <- master_df_candidates_114 %>%
 
 # view(master_df_candidates_114)
 
-master_df_candidates_114 <- full_join(master_df_candidates_114, gas_candidates_114[, c("LastName", "FirstName", "Amount", "StateAbbreviation", "Party")], by = c("LastName", "FirstName")) %>%
+master_df_candidates_114 <- full_join(master_df_candidates_114, gas_candidates_114[, c("LastName", "FirstName", "Amount", "StateAbbreviation", "Party")], by = c("LastName", "FirstName"), multiple = "all") %>%
     rename("Amount.gas" = "Amount") %>%
     rename("Party.gas" = "Party") %>%
     rename("StateAbbreviation.gas" = "StateAbbreviation")
@@ -173,7 +174,7 @@ master_df_candidates_114 <- master_df_candidates_114 %>%
 
 # view(master_df_candidates_114)
 
-master_df_candidates_114 <- full_join(master_df_candidates_114, env_candidates_114[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName")) %>%
+master_df_candidates_114 <- full_join(master_df_candidates_114, env_candidates_114[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName"), multiple = "all") %>%
     rename("Amount.env" = "Amount") %>%
     rename("Party.env" = "Party") %>%
     rename("StateAbbreviation.env" = "StateAbbreviation")
@@ -193,7 +194,7 @@ master_df_candidates_114 <- master_df_candidates_114 %>%
 
 # view(master_df_candidates_114)
 
-master_df_candidates_114 <- full_join(master_df_candidates_114, alt_en_candidates_114[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName")) %>%
+master_df_candidates_114 <- full_join(master_df_candidates_114, alt_en_candidates_114[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName"), multiple = "all") %>%
     rename("Amount.alt_en" = "Amount") %>%
     rename("Party.alt_en" = "Party") %>%
     rename("StateAbbreviation.alt_en" = "StateAbbreviation")
@@ -675,8 +676,9 @@ all_reps_contributions <- all_reps_contributions %>%
     relocate(StateAbbreviation.x.114, .after = FirstName) %>%
     relocate(Party.x.114, .after = StateAbbreviation.x.114)
 
-# view(all_reps_contributions)
+view(all_reps_contributions)
 # final version
+
 
 # write csv, clean reps
 write_csv(all_reps_contributions, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/all_reps_contribution.csv")
