@@ -249,7 +249,7 @@ master_dataset <- master_dataset %>%
 # # Assuming df is your dataframe containing representatives and their votes
 # master_dataset <- merge_representatives(master_dataset)
 
-# view(master_dataset)
+view(master_dataset)
 
 
 # check if dataset is complete, by checking if amount....116 and vote.116 both not NA...

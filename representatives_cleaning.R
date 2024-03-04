@@ -26,7 +26,7 @@ rep_115 <- rep_115 %>% dplyr::filter(Chamber != "Senate")
 rep_116 <- rep_116 %>% dplyr::filter(Chamber != "Senate")
 
 # find number of rows for rep_114
-print(nrow(rep_114))
+# print(nrow(rep_114))
 # [1] 437 -> that incl. header...
 
 # write csv
@@ -78,3 +78,18 @@ duplicated_first_names <- duplicated(all_reps_contributions$FirstName) | duplica
 duplicated_rows_first_name <- all_reps_contributions[duplicated_first_names, ]
 
 # view(duplicated_rows_last_name)
+
+# import and clean unique identifiers of representatives
+# import data
+rep_u_id <- read_csv("data/unique_id_reps.csv", show_col_types = FALSE)
+
+trimws(rep_u_id)
+# view(rep_u_id)
+
+# most of the Party data is actually Party, but if not R,D, Independent or Libretarian, then add those rename col into Alias and put values R,D,I into new party col.
+# create new column
+rep_u_id["Alias"] <- NA
+
+alias_finder <- function(dataset) {
+
+}
