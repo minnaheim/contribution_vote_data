@@ -1,0 +1,598 @@
+"","LastName","FirstName","Party","District","State","Vote.114","Vote.115","Vote.116","Vote_count","Vote_change","member_id","Alias"
+"1","Byrne","Bradley","R","AL-01","AL","-","-","-",3,0,"B001289",NA
+"2","Roby","Martha","R","AL-02","AL","-","-","-",3,0,"R000591",NA
+"3","Rogers","Mike D.","R","AL-03","AL","-","-","-",3,0,"R000575",NA
+"4","Aderholt","Robert B.","R","AL-04","AL","-","-","-",3,0,"A000055",NA
+"5","Brooks","Mo","R","AL-05","AL","-","-","-",3,0,"B001274",NA
+"6","Palmer","Gary","R","AL-06","AL","-","-","-",3,0,"P000609",NA
+"7","Sewell","Terri","D","AL-07","AL","+","+","+",3,0,"S001185",NA
+"8","Young","Don","R","AK-AL","AK","-","-","-",3,0,"Y000033",NA
+"9","Kirkpatrick","Ann","D","AZ-01","AZ","+",NA,NA,1,0,"K000368",NA
+"10","McSally","Martha","R","AZ-02","AZ","-","-",NA,2,0,"M001197",NA
+"11","Grijalva","Raul","D","AZ-03","AZ","+","+","+",3,0,"G000551",NA
+"12","Gosar","Paul","R","AZ-04","AZ","-","-","-",3,0,"G000565",NA
+"13","Salmon","Matt","R","AZ-05","AZ","-",NA,NA,1,0,"S000018",NA
+"14","Schweikert","David","R","AZ-06","AZ","-","-","-",3,0,"S001183",NA
+"15","Gallego","Ruben","D","AZ-07","AZ","+","+","+",3,0,"G000574",NA
+"16","Franks","Trent","R","AZ-08","AZ","-","-",NA,2,0,"F000448",NA
+"17","Sinema","Kyrsten","I","AZ-09","AZ","+","+",NA,2,0,"S001191",NA
+"18","Crawford","Rick","R","AR-01","AR","-","-","-",3,0,"C001087",NA
+"19","Hill","French","R","AR-02","AR","-","-","-",3,0,"H001072",NA
+"20","Womack","Steve","R","AR-03","AR","-","-","-",3,0,"W000809",NA
+"21","Westerman","Bruce","R","AR-04","AR","-","-","-",3,0,"W000821",NA
+"22","LaMalfa","Doug","R","CA-01","CA","-","-","-",3,0,"L000578",NA
+"23","Huffman","Jared","D","CA-02","CA","+","+","+",3,0,"H001068",NA
+"24","Garamendi","John","D","CA-03","CA","+","+","+",3,0,"G000559",NA
+"25","McClintock","Tom","R","CA-04","CA","-","-","-",3,0,"M001177",NA
+"26","Thompson","Mike","D","CA-05","CA","+","+","+",3,0,"T000460",NA
+"27","Matsui","Doris O.","D","CA-06","CA","+","+","+",3,0,"M001163",NA
+"28","Bera","Ami","D","CA-07","CA","+","+","+",3,0,"B001287",NA
+"29","Cook","Paul","R","CA-08","CA","-","-","-",3,0,"C001094",NA
+"30","McNerney","Jerry","D","CA-09","CA","+","+","+",3,0,"M001166",NA
+"31","Denham","Jeff","R","CA-10","CA","-","-",NA,2,0,"D000612",NA
+"32","DeSaulnier","Mark","D","CA-11","CA","+","+","+",3,0,"D000623",NA
+"33","Pelosi","Nancy","D","CA-12","CA","+","+",NA,2,0,"P000197",NA
+"34","Lee","Barbara J.","D","CA-13","CA","+","+","+",3,0,"L000551",NA
+"35","Speier","Jackie","D","CA-14","CA","+","+","+",3,0,"S001175",NA
+"36","Swalwell","Eric","D","CA-15","CA","+","+",NA,2,0,"S001193",NA
+"37","Costa","Jim","D","CA-16","CA","+",NA,"-",2,1,"C001059",NA
+"38","Honda","Mike","D","CA-17","CA","+",NA,NA,1,0,"H001034",NA
+"39","Eshoo","Anna G.","D","CA-18","CA",NA,"+","+",2,0,"E000215",NA
+"40","Lofgren","Zoe","D","CA-19","CA","+","+","+",3,0,"L000397",NA
+"41","Farr","Sam","D","CA-20","CA","+",NA,NA,1,0,"F000030",NA
+"42","Valadao","David G.","R","CA-21","CA","-","-",NA,2,0,"V000129",NA
+"43","Nunes","Devin G.","R","CA-22","CA","-","-","-",3,0,"N000181",NA
+"44","McCarthy","Kevin","R","CA-23","CA","-","-","-",3,0,"M001165",NA
+"45","Capps","Lois","D","CA-24","CA","+",NA,NA,1,0,"C001036",NA
+"46","Knight","Steve","R","CA-25","CA","-","+",NA,2,1,"K000387",NA
+"47","Brownley","Julia","D","CA-26","CA","+","+","+",3,0,"B001285",NA
+"48","Chu","Judy M.","D","CA-27","CA","+","+","+",3,0,"C001080",NA
+"49","Schiff","Adam B.","D","CA-28","CA","+","+","+",3,0,"S001150",NA
+"50","Cárdenas","Tony","D","CA-29","CA","+","+","+",3,0,"C001097",NA
+"51","Sherman","Brad J.","D","CA-30","CA","+","+","+",3,0,"S000344",NA
+"52","Aguilar","Pete","D","CA-31","CA","+","+","+",3,0,"A000371",NA
+"53","Napolitano","Grace","D","CA-32","CA","+","+","+",3,0,"N000179",NA
+"54","Lieu","Ted","D","CA-33","CA","+","+","+",3,0,"L000582",NA
+"55","Becerra","Xavier","D","CA-34","CA","+",NA,NA,1,0,"B000287",NA
+"56","Torres","Norma","D","CA-35","CA","+","+","+",3,0,"T000474",NA
+"57","Ruiz","Raul","D","CA-36","CA","+","+","+",3,0,"R000599",NA
+"58","Bass","Karen","D","CA-37","CA","+","+","+",3,0,"B001270",NA
+"59","Sanchez","Linda","D","CA-38","CA","+","+","+",3,0,"S001156",NA
+"60","Royce","Ed","R","CA-39","CA","-","-",NA,2,0,"R000487",NA
+"61","Roybal-Allard","Lucille","D","CA-40","CA","+","+","+",3,0,"R000486",NA
+"62","Takano","Mark","D","CA-41","CA","+","+","+",3,0,"T000472",NA
+"63","Calvert","Ken S.","R","CA-42","CA","-","-","-",3,0,"C000059",NA
+"64","Waters","Maxine","D","CA-43","CA","+","+","+",3,0,"W000187",NA
+"65","Hahn","Janice","D","CA-44","CA","+",NA,NA,1,0,"H001063",NA
+"66","Walters","Mimi","R","CA-45","CA","-","-",NA,2,0,"W000820",NA
+"67","Sanchez","Loretta L.","D","CA-46","CA","+",NA,NA,1,0,"S000030",NA
+"68","Lowenthal","Alan S.","D","CA-47","CA","+","+","+",3,0,"L000579",NA
+"69","Rohrabacher","Dana T.","R","CA-48","CA","-","-",NA,2,0,"R000409",NA
+"70","Issa","Darrell","R","CA-49","CA","-","-",NA,2,0,"I000056",NA
+"71","Hunter","Duncan D.","R","CA-50","CA","-","-","-",3,0,"H001048",NA
+"72","Vargas","Juan","D","CA-51","CA","+","+","+",3,0,"V000130",NA
+"73","Peters","Scott H.","D","CA-52","CA","+","+","+",3,0,"P000608",NA
+"74","Davis","Susan A.","D","CA-53","CA","+","+","+",3,0,"D000598",NA
+"75","DeGette","Diana L.","D","CO-01","CO","+","+","+",3,0,"D000197",NA
+"76","Polis","Jared","D","CO-02","CO","+","+",NA,2,0,"P000598",NA
+"77","Tipton","Scott","R","CO-03","CO","-","-","-",3,0,"T000470",NA
+"78","Buck","Ken","R","CO-04","CO","-","-","-",3,0,"B001297",NA
+"79","Lamborn","Doug","R","CO-05","CO","-","-","-",3,0,"L000564",NA
+"80","Coffman","Mike","R","CO-06","CO","-","-",NA,2,0,"C001077",NA
+"81","Perlmutter","Ed","D","CO-07","CO","+","+","+",3,0,"P000593",NA
+"82","Larson","John B.","D","CT-01","CT","+","+","+",3,0,"L000557",NA
+"83","Courtney","Joe","D","CT-02","CT","+","+","+",3,0,"C001069",NA
+"84","DeLauro","Rosa L.","D","CT-03","CT","+",NA,"+",2,0,"D000216",NA
+"85","Himes","Jim","D","CT-04","CT","+","+","+",3,0,"H001047",NA
+"86","Esty","Elizabeth H.","D","CT-05","CT","+","+",NA,2,0,"E000293",NA
+"87","Carney","John","D","DE-AL","DE","+",NA,NA,1,0,"C001083","Jr."
+"88","Miller","Jeff","R","FL-01","FL","-",NA,NA,1,0,"M001144",NA
+"89","Graham","Gwen","D","FL-02","FL","+",NA,NA,1,0,"G000575",NA
+"90","Yoho","Ted S.","R","FL-03","FL","-","-","-",3,0,"Y000065",NA
+"91","Crenshaw","Ander","R","FL-04","FL","-",NA,NA,1,0,"C001045",NA
+"92","Brown","Corrine","D","FL-05","FL","+",NA,NA,1,0,"B000911",NA
+"93","DeSantis","Ron","R","FL-06","FL","-","-",NA,2,0,"D000621",NA
+"94","Mica","John L.","R","FL-07","FL","-",NA,NA,1,0,"M000689",NA
+"95","Posey","Bill","R","FL-08","FL","-",NA,"-",2,0,"P000599",NA
+"96","Grayson","Alan","D","FL-09","FL","+",NA,NA,1,0,"G000556",NA
+"97","Webster","Daniel","R","FL-10","FL","-","-","-",3,0,"W000806",NA
+"98","Nugent","Rich","R","FL-11","FL","-",NA,NA,1,0,"N000185",NA
+"99","Bilirakis","Gus","R","FL-12","FL","-","-","-",3,0,"B001257",NA
+"100","Jolly","David W.","R","FL-13","FL","+",NA,NA,1,0,"J000296",NA
+"101","Castor","Kathy","D","FL-14","FL","+",NA,"+",2,0,"C001066",NA
+"102","Ross","Dennis","R","FL-15","FL","-",NA,NA,1,0,"R000593",NA
+"103","Buchanan","Vern","R","FL-16","FL","-","-","-",3,0,"B001260",NA
+"104","Rooney","Tom","R","FL-17","FL","-","-",NA,2,0,"R000583",NA
+"105","Murphy","Patrick","D","FL-18","FL","+",NA,NA,1,0,"M001191",NA
+"106","Clawson","Curtis","R","FL-19","FL","-",NA,NA,1,0,"C001102",NA
+"107","Hastings","Alcee L.","D","FL-20","FL",NA,"+",NA,1,0,"H000324",NA
+"108","Deutch","Ted","D","FL-21","FL","+","+","+",3,0,"D000610",NA
+"109","Frankel","Lois","D","FL-22","FL","+","+","+",3,0,"F000462",NA
+"110","Wasserman Schultz","Debbie","D","FL-23","FL","+","+","+",3,0,"W000797",NA
+"111","Wilson","Frederica","D","FL-24","FL","+","+","+",3,0,"W000808",NA
+"112","Díaz-Balart","Mario","R","FL-25","FL","-",NA,"-",2,0,"D000600",NA
+"113","Curbelo","Carlos","R","FL-26","FL","+",NA,NA,1,0,"C001107",NA
+"114","Ros-Lehtinen","Ileana","R","FL-27","FL","+",NA,NA,1,0,"R000435",NA
+"115","Carter","Buddy","R","GA-01","GA","-","-","-",3,0,"C001103",NA
+"116","Bishop","Sanford D.","D","GA-02","GA","-","+","+",3,1,"B000490",NA
+"117","Westmoreland","Lynn A.","R","GA-03","GA","-",NA,NA,1,0,"W000796",NA
+"118","Johnson","Hank","D","GA-04","GA","+","+","+",3,0,"J000288",NA
+"119","Lewis","John R.","D","GA-05","GA","+","+","+",3,0,"L000287",NA
+"120","Price","Tom","R","GA-06","GA","-",NA,NA,1,0,"P000591",NA
+"121","Woodall","Rob","R","GA-07","GA","-","-","-",3,0,"W000810",NA
+"122","Scott","Austin","R","GA-08","GA","-","-","-",3,0,"S001189",NA
+"123","Collins","Doug","R","GA-09","GA","-","-","-",3,0,"C001093",NA
+"124","Hice","Jody","R","GA-10","GA","-","-","-",3,0,"H001071",NA
+"125","Loudermilk","Barry","R","GA-11","GA","-",NA,"-",2,0,"L000583",NA
+"126","Allen","Rick","R","GA-12","GA","-","-","-",3,0,"A000372",NA
+"127","Scott","David","D","GA-13","GA","+","+","+",3,0,"S001157",NA
+"128","Graves","Tom","R","GA-14","GA","-","-","-",3,0,"G000560",NA
+"129","Takai","Mark","D","HI-01","HI",NA,NA,NA,0,0,"T000473",NA
+"130","Gabbard","Tulsi","D","HI-02","HI","+","+","+",3,0,"G000571",NA
+"131","Labrador","Raul","R","ID-01","ID","-","-",NA,2,0,"L000573",NA
+"132","Simpson","Mike","R","ID-02","ID","-","-","-",3,0,"S001148",NA
+"133","Rush","Bobby L.","D","IL-01","IL","+","+","+",3,0,"R000515",NA
+"134","Kelly","Robin","D","IL-02","IL","+","+","+",3,0,"K000385",NA
+"135","Lipinski","Dan","D","IL-03","IL","+","+","+",3,0,"L000563",NA
+"136","Gutierrez","Luis V.","D","IL-04","IL","+","+",NA,2,0,"G000535",NA
+"137","Quigley","Mike","D","IL-05","IL","+","+","+",3,0,"Q000023",NA
+"138","Roskam","Peter J.","R","IL-06","IL","-","-",NA,2,0,"R000580",NA
+"139","Davis","Danny K.","D","IL-07","IL","+","+","+",3,0,"D000096",NA
+"140","Duckworth","Tammy","D","IL-08","IL","+",NA,NA,1,0,"D000622",NA
+"141","Schakowsky","Jan","D","IL-09","IL","+","+","+",3,0,"S001145",NA
+"142","Dold","Robert","R","IL-10","IL","+",NA,NA,1,0,"D000613",NA
+"143","Foster","Bill","D","IL-11","IL","+","+","+",3,0,"F000454",NA
+"144","Bost","Mike","R","IL-12","IL","-","-","-",3,0,"B001295",NA
+"145","Davis","Rodney","R","IL-13","IL","-","-","-",3,0,"D000619",NA
+"146","Hultgren","Randy","R","IL-14","IL","-","-",NA,2,0,"H001059",NA
+"147","Shimkus","John M.","R","IL-15","IL","-","-","-",3,0,"S000364",NA
+"148","Kinzinger","Adam","R","IL-16","IL","-","-","-",3,0,"K000378",NA
+"149","Bustos","Cheri","D","IL-17","IL","+","+","+",3,0,"B001286",NA
+"150","LaHood","Darin","R","IL-18","IL","-","-","-",3,0,"L000585",NA
+"151","Visclosky","Peter J.","D","IN-01","IN","+","+","+",3,0,"V000108",NA
+"152","Walorski","Jackie","R","IN-02","IN","-","-","-",3,0,"W000813",NA
+"153","Stutzman","Marlin","R","IN-03","IN","-",NA,NA,1,0,"S001188",NA
+"154","Rokita","Todd","R","IN-04","IN","-","-",NA,2,0,"R000592",NA
+"155","Brooks","Susan W.","R","IN-05","IN","-","-","-",3,0,"B001284",NA
+"156","Messer","Luke","R","IN-06","IN","-","-",NA,2,0,"M001189",NA
+"157","Carson","Andre","D","IN-07","IN","+","+","+",3,0,"C001072",NA
+"158","Bucshon","Larry","R","IN-08","IN","-","-","-",3,0,"B001275",NA
+"159","Young","Todd","R","IN-09","IN","-",NA,NA,1,0,"Y000064",NA
+"160","Blum","Rod","R","IA-01","IA","-","-",NA,2,0,"B001294",NA
+"161","Loebsack","Dave W.","D","IA-02","IA","+","+","+",3,0,"L000565",NA
+"162","Young","David","R","IA-03","IA","-","-",NA,2,0,"Y000066",NA
+"163","King","Steve A.","R","IA-04","IA","-","-","-",3,0,"K000362",NA
+"164","Huelskamp","Tim","R","KS-01","KS","-",NA,NA,1,0,"H001057",NA
+"165","Jenkins","Lynn M.","R","KS-02","KS","-","-",NA,2,0,"J000290",NA
+"166","Yoder","Kevin","R","KS-03","KS","-","-",NA,2,0,"Y000063",NA
+"167","Pompeo","Mike","R","KS-04","KS","-",NA,NA,1,0,"P000602",NA
+"168","Whitfield","Ed","R","KY-01","KY","-",NA,NA,1,0,"W000413",NA
+"169","Guthrie","Brett","R","KY-02","KY","-","-","-",3,0,"G000558",NA
+"170","Yarmuth","John","D","KY-03","KY","+","+","+",3,0,"Y000062",NA
+"171","Massie","Thomas","R","KY-04","KY","-","-","-",3,0,"M001184",NA
+"172","Rogers","Harold","R","KY-05","KY","-","-","-",3,0,"R000395",NA
+"173","Barr","Garland","R","KY-06","KY","-","-","-",3,0,"B001282",NA
+"174","Scalise","Steve","R","LA-01","LA","-",NA,"-",2,0,"S001176",NA
+"175","Richmond","Cedric L","D","LA-02","LA","+","+","+",3,0,"R000588",NA
+"176","Boustany","Charles","R","LA-03","LA","-",NA,NA,1,0,"B001255","Jr."
+"177","Fleming","John","R","LA-04","LA","-",NA,NA,1,0,"F000456",NA
+"178","Abraham","Ralph","R","LA-05","LA","-","-","-",3,0,"A000374",NA
+"179","Graves","Garret","R","LA-06","LA","-","-","-",3,0,"G000577",NA
+"180","Pingree","Chellie M.","D","ME-01","ME","+","+","+",3,0,"P000597",NA
+"181","Poliquin","Bruce","R","ME-02","ME","-","-",NA,2,0,"P000611",NA
+"182","Harris","Andy","R","MD-01","MD","-","-","-",3,0,"H001052",NA
+"183","Ruppersberger","C.A. Dutch","D","MD-02","MD","+","+","+",3,0,"R000576",NA
+"184","Sarbanes","John P.","D","MD-03","MD","+","+","+",3,0,"S001168",NA
+"185","Edwards","Donna","D","MD-04","MD","+",NA,NA,1,0,"E000290",NA
+"186","Hoyer","Steny H.","D","MD-05","MD","+","+","+",3,0,"H000874",NA
+"187","Delaney","John K.","D","MD-06","MD","+","+",NA,2,0,"D000620",NA
+"188","Cummings","Elijah E.","D","MD-07","MD","+","+","+",3,0,"C000984",NA
+"189","Van Hollen","Chris","D","MD-08","MD","+",NA,NA,1,0,"V000128",NA
+"190","Neal","Richard E.","D","MA-01","MA","+","+","+",3,0,"N000015",NA
+"191","McGovern","Jim","D","MA-02","MA","+","+","+",3,0,"M000312",NA
+"192","Tsongas","Niki","D","MA-03","MA","+","+",NA,2,0,"T000465",NA
+"193","Kennedy","Joseph P.","D","MA-04","MA","+","+","+",3,0,"K000379","III"
+"194","Clark","Katherine M.","D","MA-05","MA","+","+","+",3,0,"C001101",NA
+"195","Moulton","Seth","D","MA-06","MA","+","+","+",3,0,"M001196",NA
+"196","Capuano","Michael E.","D","MA-07","MA","+","+",NA,2,0,"C001037",NA
+"197","Lynch","Stephen F.","D","MA-08","MA","+","+","+",3,0,"L000562",NA
+"198","Keating","Bill","D","MA-09","MA","+","+","+",3,0,"K000375",NA
+"199","Benishek","Dan","R","MI-01","MI","-",NA,NA,1,0,"B001271",NA
+"200","Huizenga","Bill","R","MI-02","MI","-","-","-",3,0,"H001058",NA
+"201","Amash","Justin","R","MI-03","MI","-","-","-",3,0,"A000367",NA
+"202","Moolenaar","John","R","MI-04","MI","-","-","-",3,0,"M001194",NA
+"203","Kildee","Daniel T.","D","MI-05","MI","+","+","+",3,0,"K000380",NA
+"204","Upton","Fred","R","MI-06","MI","-","-","+",3,1,"U000031",NA
+"205","Walberg","Tim","R","MI-07","MI","-","-","-",3,0,"W000798",NA
+"206","Bishop","Mike","R","MI-08","MI","-","-",NA,2,0,"B001293",NA
+"207","Levin","Sander M.","D","MI-09","MI","+","+",NA,2,0,"L000263",NA
+"208","Miller","Candice S.","R","MI-10","MI","-",NA,NA,1,0,"M001150",NA
+"209","Trott","Dave","R","MI-11","MI","-","-",NA,2,0,"T000475",NA
+"210","Dingell","Debbie","D","MI-12","MI","+","+","+",3,0,"D000624",NA
+"211","Conyers","John","D","MI-13","MI","+","+",NA,2,0,"C000714","Jr."
+"212","Lawrence","Brenda","D","MI-14","MI","+","+","+",3,0,"L000581",NA
+"213","Walz","Tim","D","MN-01","MN","+","+",NA,2,0,"W000799",NA
+"214","Kline","John P.","R","MN-02","MN","-",NA,NA,1,0,"K000363",NA
+"215","Paulsen","Erik","R","MN-03","MN","-","-",NA,2,0,"P000594",NA
+"216","McCollum","Betty","D","MN-04","MN","+","+","+",3,0,"M001143",NA
+"217","Ellison","Keith M.","D","MN-05","MN","+","+",NA,2,0,"E000288",NA
+"218","Emmer","Tom","R","MN-06","MN","-","-",NA,2,0,"E000294",NA
+"219","Peterson","Collin C.","D","MN-07","MN","-","-","+",3,1,"P000258",NA
+"220","Nolan","Rick","D","MN-08","MN","+","+",NA,2,0,"N000127",NA
+"221","Kelly","Trent","R","MS-01","MS","-","-","-",3,0,"K000388",NA
+"222","Thompson","Bennie G.","D","MS-02","MS","+","+","+",3,0,"T000193",NA
+"223","Harper","Gregg","R","MS-03","MS","-","-",NA,2,0,"H001045",NA
+"224","Palazzo","Steven","R","MS-04","MS","-","-","-",3,0,"P000601",NA
+"225","Clay","William Lacy","D","MO-01","MO","+","+","+",3,0,"C001049",NA
+"226","Wagner","Ann","R","MO-02","MO","-","-","-",3,0,"W000812",NA
+"227","Luetkemeyer","Blaine","R","MO-03","MO","-","-","-",3,0,"L000569",NA
+"228","Hartzler","Vicky","R","MO-04","MO","-","-","-",3,0,"H001053",NA
+"229","Cleaver","Emanuel","D","MO-05","MO","+","+","+",3,0,"C001061",NA
+"230","Graves","Sam","R","MO-06","MO","-",NA,"-",2,0,"G000546",NA
+"231","Long","Billy","R","MO-07","MO","-","-","-",3,0,"L000576",NA
+"232","Smith","Jason T.","R","MO-08","MO","-","-","-",3,0,"S001195",NA
+"233","Zinke","Ryan","R","MT-AL","MT","-",NA,NA,1,0,"Z000018",NA
+"234","Fortenberry","Jeff","R","NE-01","NE","-","-","-",3,0,"F000449",NA
+"235","Ashford","Brad","D","NE-02","NE","-",NA,NA,1,0,"A000373",NA
+"236","Smith","Adrian M.","R","NE-03","NE","-","-","-",3,0,"S001172",NA
+"237","Titus","Dina","D","NV-01","NV","+","+","+",3,0,"T000468",NA
+"238","Amodei","Mark E.","R","NV-02","NV","-","-","-",3,0,"A000369",NA
+"239","Heck","Joe","R","NV-03","NV","-",NA,NA,1,0,"H001055",NA
+"240","Hardy","Cresent","R","NV-04","NV","-",NA,NA,1,0,"H001070",NA
+"241","Guinta","Frank","R","NH-01","NH","-",NA,NA,1,0,"G000570",NA
+"242","Kuster","Ann M.","D","NH-02","NH","+","+","+",3,0,"K000382",NA
+"243","Norcross","Donald W.","D","NJ-01","NJ","+","+","+",3,0,"N000188",NA
+"244","LoBiondo","Frank A.","R","NJ-02","NJ","-","-",NA,2,0,"L000554",NA
+"245","MacArthur","Tom","R","NJ-03","NJ","-","-",NA,2,0,"M001193",NA
+"246","Smith","Christopher H.","R","NJ-04","NJ","-","+","+",3,1,"S000522",NA
+"247","Garrett","E. Scott","R","NJ-05","NJ","-",NA,NA,1,0,"G000548",NA
+"248","Pallone","Frank J.","D","NJ-06","NJ","+","+","+",3,0,"P000034",NA
+"249","Lance","Leonard","R","NJ-07","NJ","-","-",NA,2,0,"L000567",NA
+"250","Sires","Albio","D","NJ-08","NJ","+","+","+",3,0,"S001165",NA
+"251","Pascrell","Bill","D","NJ-09","NJ","+","+","+",3,0,"P000096",NA
+"252","Payne","Donald M.","D","NJ-10","NJ","+","+","+",3,0,"P000604",NA
+"253","Frelinghuysen","Rodney P.","R","NJ-11","NJ","-","-",NA,2,0,"F000372",NA
+"254","Watson Coleman","Bonnie","D","NJ-12","NJ","+",NA,"+",2,0,"W000822",NA
+"255","Lujan Grisham","Michelle","D","NM-01","NM","+","+",NA,2,0,"L000580",NA
+"256","Pearce","Steve","R","NM-02","NM",NA,"-",NA,1,0,"P000588",NA
+"257","Luján","Ben Ray","D","NM-03","NM","+","+","+",3,0,"L000570",NA
+"258","Zeldin","Lee","R","NY-01","NY","-","-","-",3,0,"Z000017",NA
+"259","King","Peter T.","R","NY-02","NY","-","-","-",3,0,"K000210",NA
+"260","Israel","Steve J.","D","NY-03","NY","+",NA,NA,1,0,"I000057",NA
+"261","Rice","Kathleen","D","NY-04","NY","+","+","+",3,0,"R000602",NA
+"262","Meeks","Gregory W.","D","NY-05","NY","+","+","+",3,0,"M001137",NA
+"263","Meng","Grace","D","NY-06","NY","+","+","+",3,0,"M001188",NA
+"264","Velázquez ","Nydia","D","NY-07","NY","+","+","+",3,0,"V000081",NA
+"265","Jeffries","Hakeem S.","D","NY-08","NY","+","+","+",3,0,"J000294",NA
+"266","Clarke","Yvette D.","D","NY-09","NY","+","+","+",3,0,"C001067",NA
+"267","Nadler","Jerrold L.","D","NY-10","NY","+","+","+",3,0,"N000002",NA
+"268","Donovan","Daniel M.","R","NY-11","NY","-","-",NA,2,0,"D000625","Jr."
+"269","Maloney","Carolyn B.","D","NY-12","NY","+","+","+",3,0,"M000087",NA
+"270","Rangel","Charles","D","NY-13","NY","+",NA,NA,1,0,"R000053",NA
+"271","Crowley","Joseph","D","NY-14","NY","+","+",NA,2,0,"C001038",NA
+"272","Serrano","Jose","D","NY-15","NY","+","+","+",3,0,"S000248",NA
+"273","Engel","Eliot L.","D","NY-16","NY","+","+","+",3,0,"E000179",NA
+"274","Lowey","Nita M.","D","NY-17","NY","+","+","+",3,0,"L000480",NA
+"275","Maloney","Sean Patrick","D","NY-18","NY","+","+","+",3,0,"M001185",NA
+"276","Gibson","Chris","R","NY-19","NY","+",NA,NA,1,0,"G000564",NA
+"277","Tonko","Paul D.","D","NY-20","NY","+","+","+",3,0,"T000469",NA
+"278","Stefanik","Elise","R","NY-21","NY","+","+","+",3,0,"S001196",NA
+"279","Hanna","Richard","R","NY-22","NY","+",NA,NA,1,0,"H001051",NA
+"280","Reed","Tom","R","NY-23","NY","-","-","-",3,0,"R000585",NA
+"281","Katko","John","R","NY-24","NY","+","+","+",3,0,"K000386",NA
+"282","Slaughter","Louise","D","NY-25","NY","+","+",NA,2,0,"S000480",NA
+"283","Higgins","Brian M.","D","NY-26","NY","+","+","+",3,0,"H001038",NA
+"284","Collins","Chris","R","NY-27","NY","-","-","-",3,0,"C001092",NA
+"285","Butterfield","G.K.","D","NC-01","NC","+","+","+",3,0,"B001251",NA
+"286","Ellmers","Renee","R","NC-02","NC","-",NA,NA,1,0,"E000291",NA
+"287","Jones","Jr.","D","NC-03","NC","-","-",NA,2,0,"J000256",NA
+"288","Price","David","D","NC-04","NC","+","+","+",3,0,"P000523",NA
+"289","Foxx","Virginia","R","NC-05","NC","-","-","-",3,0,"F000450",NA
+"290","Walker","Bradley Mark","R","NC-06","NC","-","-","-",3,0,"W000819",NA
+"291","Rouzer","David","R","NC-07","NC","-","-","-",3,0,"R000603",NA
+"292","Hudson","Richard","R","NC-08","NC","-","-","-",3,0,"H001067",NA
+"293","Pittenger","Robert","R","NC-09","NC","-","-",NA,2,0,"P000606",NA
+"294","McHenry","Patrick T.","R","NC-10","NC","-","-","-",3,0,"M001156",NA
+"295","Meadows","Mark","R","NC-11","NC","-","-","-",3,0,"M001187",NA
+"296","Adams","Alma","D","NC-12","NC","+","+","+",3,0,"A000370",NA
+"297","Holding","George","R","NC-13","NC","-","-","-",3,0,"H001065",NA
+"298","Cramer","Kevin","R","ND-AL","ND","-","-",NA,2,0,"C001096",NA
+"299","Chabot","Steve","R","OH-01","OH","-","-","-",3,0,"C000266",NA
+"300","Wenstrup","Brad R.","R","OH-02","OH","-","-","-",3,0,"W000815",NA
+"301","Beatty","Joyce","D","OH-03","OH","+","+","+",3,0,"B001281",NA
+"302","Jordan","Jim","R","OH-04","OH","-","-","-",3,0,"J000289",NA
+"303","Latta","Bob","R","OH-05","OH","-","-","-",3,0,"L000566",NA
+"304","Johnson","Bill","R","OH-06","OH","-","-","-",3,0,"J000292",NA
+"305","Gibbs","Bob","R","OH-07","OH","-","-","-",3,0,"G000563",NA
+"306","Davidson","Warren","R","OH-08","OH","-","-","-",3,0,"D000626",NA
+"307","Kaptur","Marcy","D","OH-09","OH","+","+","+",3,0,"K000009",NA
+"308","Turner","Michael R.","R","OH-10","OH","-","-","-",3,0,"T000463",NA
+"309","Fudge","Marcia L.","D","OH-11","OH","+","+","+",3,0,"F000455",NA
+"310","Tiberi","Pat","R","OH-12","OH","-",NA,NA,1,0,"T000462",NA
+"311","Ryan","Tim","D","OH-13","OH","+","+",NA,2,0,"R000577",NA
+"312","Joyce","David P.","R","OH-14","OH","-","-","-",3,0,"J000295",NA
+"313","Stivers","Steve","R","OH-15","OH","-","-","-",3,0,"S001187",NA
+"314","Renacci","Jim","R","OH-16","OH","-","-",NA,2,0,"R000586",NA
+"315","Bridenstine","Jim","R","OK-01","OK","-",NA,NA,1,0,"B001283",NA
+"316","Mullin","Markwayne","R","OK-02","OK","-","-","-",3,0,"M001190",NA
+"317","Lucas","Frank D.","R","OK-03","OK","-","-","-",3,0,"L000491",NA
+"318","Cole","Tom","R","OK-04","OK","-","-","-",3,0,"C001053",NA
+"319","Russell","Steve","R","OK-05","OK","-","-",NA,2,0,"R000604",NA
+"320","Bonamici","Suzanne","D","OR-01","OR","+","+","+",3,0,"B001278",NA
+"321","Walden","Greg P.","R","OR-02","OR","-","-","-",3,0,"W000791",NA
+"322","Blumenauer","Earl","D","OR-03","OR","+","+","+",3,0,"B000574",NA
+"323","DeFazio","Peter A.","D","OR-04","OR","+","+","+",3,0,"D000191",NA
+"324","Schrader","Kurt","D","OR-05","OR","+","+","+",3,0,"S001180",NA
+"325","Brady","Robert A.","D","PA-01","PA","+","+",NA,2,0,"B001227",NA
+"326","Kelly","Mike","R","PA-03","PA","-","-","-",3,0,"K000376",NA
+"327","Perry","Scott","R","PA-04","PA","-","-","-",3,0,"P000605",NA
+"328","Thompson","Glenn W.","R","PA-05","PA","-","-","-",3,0,"T000467",NA
+"329","Costello","Ryan","R","PA-06","PA","-","+",NA,2,1,"C001106",NA
+"330","Meehan","Patrick","R","PA-07","PA","-","+",NA,2,1,"M001181",NA
+"331","Fitzpatrick","Michael","R","PA-08","PA","-",NA,NA,1,0,"F000451",NA
+"332","Shuster","Bill","R","PA-09","PA","-","-",NA,2,0,"S000394",NA
+"333","Marino","Tom","R","PA-10","PA","-","-",NA,2,0,"M001179",NA
+"334","Barletta","Lou","R","PA-11","PA","-","-",NA,2,0,"B001269",NA
+"335","Rothfus","Keith J.","R","PA-12","PA","-","-",NA,2,0,"R000598",NA
+"336","Boyle","Brendan","D","PA-13","PA","+","+","+",3,0,"B001296",NA
+"337","Doyle","Mike","D","PA-14","PA","+","+","+",3,0,"D000482",NA
+"338","Dent","Charlie","R","PA-15","PA","-","-",NA,2,0,"D000604",NA
+"339","Pitts","Joe","R","PA-16","PA","-",NA,NA,1,0,"P000373",NA
+"340","Cartwright","Matt A.","D","PA-17","PA","+","+","+",3,0,"C001090",NA
+"341","Murphy","Tim","R","PA-18","PA","-","-",NA,2,0,"M001151",NA
+"342","Cicilline","David","D","RI-01","RI","+","+","+",3,0,"C001084",NA
+"343","Langevin","Jim","D","RI-02","RI","+","+","+",3,0,"L000559",NA
+"344","Sanford","Mark","R","SC-01","SC","-","+",NA,2,1,"S000051",NA
+"345","Wilson","Joe","R","SC-02","SC","-","-","-",3,0,"W000795",NA
+"346","Duncan","Jeff","R","SC-03","SC","-","-","-",3,0,"D000615",NA
+"347","Gowdy","Trey","R","SC-04","SC","-","-",NA,2,0,"G000566",NA
+"348","Mulvaney","Mick","R","SC-05","SC","-",NA,NA,1,0,"M001182",NA
+"349","Clyburn","James E.","D","SC-06","SC","+",NA,"+",2,0,"C000537",NA
+"350","Rice","Tom","R","SC-07","SC","-","-","-",3,0,"R000597",NA
+"351","Noem","Kristi","R","SD-AL","SD","-","-",NA,2,0,"N000184",NA
+"352","Roe","Phil","R","TN-01","TN","-","-","-",3,0,"R000582",NA
+"353","Duncan","Jr.","R","TN-02","TN","-","-",NA,2,0,"D000533","Jr."
+"354","Fleischmann","Chuck","R","TN-03","TN","-","-","-",3,0,"F000459",NA
+"355","DesJarlais","Scott","R","TN-04","TN","-","-","-",3,0,"D000616",NA
+"356","Cooper","Jim","D","TN-05","TN","+","+","+",3,0,"C000754",NA
+"357","Black","Diane","R","TN-06","TN","-","-",NA,2,0,"B001273",NA
+"358","Blackburn","Marsha","R","TN-07","TN","-","-",NA,2,0,"B001243",NA
+"359","Fincher","Stephen","R","TN-08","TN","-",NA,NA,1,0,"F000458",NA
+"360","Cohen","Steve","D","TN-09","TN","+","+","+",3,0,"C001068",NA
+"361","Gohmert","Louie","R","TX-01","TX","-","-","-",3,0,"G000552",NA
+"362","Poe","Ted","R","TX-02","TX",NA,NA,NA,0,0,"P000592",NA
+"363","Johnson","Sam","R","TX-03","TX","-","-",NA,2,0,"J000174",NA
+"364","Ratcliffe","John","R","TX-04","TX","-","-","-",3,0,"R000601",NA
+"365","Hensarling","Jeb","R","TX-05","TX","-","-",NA,2,0,"H001036",NA
+"366","Barton","Joe","R","TX-06","TX","-","-",NA,2,0,"B000213",NA
+"367","Culberson","John A.","R","TX-07","TX","-","-",NA,2,0,"C001048",NA
+"368","Brady","Kevin P.","R","TX-08","TX",NA,"-","-",2,0,"B000755",NA
+"369","Green","Al","D","TX-09","TX","+","+","+",3,0,"G000553",NA
+"370","McCaul","Michael T.","R","TX-10","TX","-","-","-",3,0,"M001157",NA
+"371","Conaway","K. Michael","R","TX-11","TX","-","-","-",3,0,"C001062",NA
+"372","Granger","Kay","R","TX-12","TX","-","-","-",3,0,"G000377",NA
+"373","Thornberry","Mac","R","TX-13","TX","-","-","-",3,0,"T000238",NA
+"374","Weber","Randy K.","R","TX-14","TX","-","-","-",3,0,"W000814",NA
+"375","Hinojosa","Ruben","D","TX-15","TX","+",NA,NA,1,0,"H000636",NA
+"376","O'Rourke","Beto","D","TX-16","TX","+","+",NA,2,0,"O000170",NA
+"377","Flores","Bill","R","TX-17","TX","-","-","-",3,0,"F000461",NA
+"378","Jackson Lee","Sheila","D","TX-18","TX","+","+","+",3,0,"J000032",NA
+"379","Neugebauer","Randy","R","TX-19","TX","-",NA,NA,1,0,"N000182",NA
+"380","Castro","Joaquin","D","TX-20","TX","+","+","+",3,0,"C001091",NA
+"381","Smith","Lamar S.","R","TX-21","TX","-","-",NA,2,0,"S000583",NA
+"382","Olson","Pete","R","TX-22","TX","-","-","-",3,0,"O000168",NA
+"383","Hurd","Will","R","TX-23","TX","-","-","-",3,0,"H001073",NA
+"384","Marchant","Kenny E.","R","TX-24","TX","-","-","-",3,0,"M001158",NA
+"385","Williams","Roger","R","TX-25","TX","-","-","-",3,0,"W000816",NA
+"386","Burgess","Michael C.","R","TX-26","TX","-","-","-",3,0,"B001248",NA
+"387","Farenthold","Blake","R","TX-27","TX","-","-",NA,2,0,"F000460",NA
+"388","Cuellar","Henry","D","TX-28","TX","-","-","+",3,1,"C001063",NA
+"389","Green","Gene","D","TX-29","TX","+","+",NA,2,0,"G000410",NA
+"390","Johnson","Eddie Bernice","D","TX-30","TX","+","+","+",3,0,"J000126",NA
+"391","Carter","John R.","R","TX-31","TX","-","-","-",3,0,"C001051",NA
+"392","Sessions","Pete","R","TX-32","TX","-","-",NA,2,0,"S000250",NA
+"393","Veasey","Marc A.","D","TX-33","TX","-","+","+",3,1,"V000131",NA
+"394","Vela","Filemon","D","TX-34","TX","+","+","+",3,0,"V000132",NA
+"395","Doggett","Lloyd A.","D","TX-35","TX","+","+","+",3,0,"D000399",NA
+"396","Babin","Brian","R","TX-36","TX","-","-","-",3,0,"B001291",NA
+"397","Bishop","Rob","R","UT-01","UT","-","-","-",3,0,"B001250",NA
+"398","Stewart","Chris","R","UT-02","UT","-","-","-",3,0,"S001192",NA
+"399","Chaffetz","Jason","R","UT-03","UT","-",NA,NA,1,0,"C001076",NA
+"400","Love","Mia","R","UT-04","UT","-","-",NA,2,0,"L000584",NA
+"401","Welch","Peter F.","D","VT-AL","VT","+","+","+",3,0,"W000800",NA
+"402","Wittman","Rob","R","VA-01","VA","-","-","-",3,0,"W000804",NA
+"403","Rigell","Scott","R","VA-02","VA","-",NA,NA,1,0,"R000589",NA
+"404","Scott","Robert C.","D","VA-03","VA","+","+","+",3,0,"S000185",NA
+"405","Forbes","J. Randy","R","VA-04","VA","-",NA,NA,1,0,"F000445",NA
+"406","Hurt","Robert","R","VA-05","VA","-",NA,NA,1,0,"H001060",NA
+"407","Goodlatte","Bob","R","VA-06","VA","-","-",NA,2,0,"G000289",NA
+"408","Brat","David Alan","R","VA-07","VA","-","-",NA,2,0,"B001290",NA
+"409","Beyer","Donald","D","VA-08","VA","+","+","+",3,0,"B001292",NA
+"410","Griffith","Morgan","R","VA-09","VA","-","-","-",3,0,"G000568",NA
+"411","Comstock","Barbara","R","VA-10","VA","-","-",NA,2,0,"C001105",NA
+"412","Connolly","Gerald E.","D","VA-11","VA","+","+","+",3,0,"C001078",NA
+"413","DelBene","Suzan K.","D","WA-01","WA","+","+","+",3,0,"D000617",NA
+"414","Larsen","Rick","D","WA-02","WA","+","+","+",3,0,"L000560",NA
+"415","Herrera-Beutler","Jaime","R","WA-03","WA","-","-",NA,2,0,"H001056",NA
+"416","Newhouse","Dan","R","WA-04","WA","-","-","-",3,0,"N000189",NA
+"417","McMorris Rodgers","Cathy","R","WA-05","WA","-","-","-",3,0,"M001159",NA
+"418","Kilmer","Derek","D","WA-06","WA","+","+","+",3,0,"K000381",NA
+"419","McDermott","Jim","D","WA-07","WA","+",NA,NA,1,0,"M000404",NA
+"420","Reichert","Dave","R","WA-08","WA","-","+",NA,2,1,"R000578",NA
+"421","Smith","Adam","D","WA-09","WA","+","+","+",3,0,"S000510",NA
+"422","Heck","Denny","D","WA-10","WA","+","+","+",3,0,"H001064",NA
+"423","McKinley","David","R","WV-01","WV","-","-","-",3,0,"M001180",NA
+"424","Mooney","Alex","R","WV-02","WV","-","-","-",3,0,"M001195",NA
+"425","Jenkins","Evan","R","WV-03","WV","-","-",NA,2,0,"J000297",NA
+"426","Ryan","Paul","R","WI-01","WI",NA,NA,NA,0,0,"R000570",NA
+"427","Pocan","Mark","D","WI-02","WI","+","+","+",3,0,"P000607",NA
+"428","Kind","Ron","D","WI-03","WI","+","+","+",3,0,"K000188",NA
+"429","Moore","Gwen","D","WI-04","WI","+","+","+",3,0,"M001160",NA
+"430","Sensenbrenner","James F.","R","WI-05","WI","-","-","-",3,0,"S000244","Jr."
+"431","Grothman","Glenn","R","WI-06","WI","-","-","-",3,0,"G000576",NA
+"432","Duffy","Sean","R","WI-07","WI","-","-","-",3,0,"D000614",NA
+"433","Ribble","Reid","R","WI-08","WI","-",NA,NA,1,0,"R000587",NA
+"434","Lummis","Cynthia M.","R","WY-AL","WY","-",NA,NA,1,0,"L000571",NA
+"435","O'Halleran","Tom","D","AZ-01","AZ",NA,"+","+",2,0,"O000171",NA
+"436","Biggs","Andy","R","AZ-05","AZ",NA,"-","-",2,0,"B001302",NA
+"437","Khanna","Ro","D","CA-17","CA",NA,"+","+",2,0,"K000389",NA
+"438","Panetta","Jimmy","D","CA-20","CA",NA,"+","+",2,0,"P000613",NA
+"439","Carbajal","Salud","D","CA-24","CA",NA,"+","+",2,0,"C001112",NA
+"440","Gomez","Jimmy","D","CA-34","CA",NA,"+","+",2,0,"G000585",NA
+"441","Barragán","Nanette","D","CA-44","CA",NA,"+","+",2,0,"B001300",NA
+"442","Correa","J.","D","CA-46","CA",NA,"+","+",2,0,"C001110",NA
+"443","Blunt Rochester","Lisa","D","DE-AL","DE",NA,"+","+",2,0,"B001303",NA
+"444","Gaetz","Matt","R","FL-01","FL",NA,"-","-",2,0,"G000578",NA
+"445","Dunn","Neal","R","FL-02","FL",NA,"-","-",2,0,"D000628",NA
+"446","Rutherford","John","R","FL-04","FL",NA,"-","-",2,0,"R000609",NA
+"447","Lawson","Al","D","FL-05","FL",NA,NA,"+",1,0,"L000586","Jr."
+"448","Murphy","Stephanie","D","FL-07","FL",NA,"+","+",2,0,"M001202",NA
+"449","Soto","Darren","D","FL-09","FL",NA,"+","+",2,0,"S001200",NA
+"450","Demings","Val","D","FL-10","FL",NA,"+","+",2,0,"D000627",NA
+"451","Crist","Charlie","D","FL-13","FL",NA,"+","+",2,0,"C001111",NA
+"452","Mast","Brian","R","FL-18","FL",NA,"+","+",2,0,"M001199",NA
+"453","Rooney","Francis","R","FL-19","FL",NA,NA,"+",1,0,"R000607",NA
+"454","Ferguson","A. Drew","R","GA-03","GA",NA,"-","-",2,0,"F000465",NA
+"455","Handel","Karen","R","GA-06","GA",NA,"-",NA,1,0,"H001078",NA
+"456","Hanabusa","Colleen","D","HI-01","HI",NA,"+",NA,1,0,"H001050",NA
+"457","Krishnamoorthi","Raja","D","IL-08","IL",NA,"+","+",2,0,"K000391",NA
+"458","Schneider","Brad","D","IL-10","IL",NA,"+","+",2,0,"S001190",NA
+"459","Banks","Jim","R","IN-03","IN",NA,"-","-",2,0,"B001299",NA
+"460","Hollingsworth","Trey","R","IN-09","IN",NA,"-","-",2,0,"H001074",NA
+"461","Marshall","Roger","R","KS-01","KS",NA,"-","-",2,0,"M001198",NA
+"462","Estes","Ron","R","KS-04","KS",NA,"-","-",2,0,"E000298",NA
+"463","Comer","James","R","KY-01","KY",NA,"-","-",2,0,"C001108",NA
+"464","Higgins","Clay","R","LA-03","LA",NA,"-","-",2,0,"H001077",NA
+"465","Johnson","Mike","R","LA-04","LA",NA,"-","-",2,0,"J000299",NA
+"466","Brown","Anthony","D","MD-04","MD",NA,"+","+",2,0,"B001304",NA
+"467","Raskin","Jamie","D","MD-08","MD",NA,"+","+",2,0,"R000606",NA
+"468","Bergman","Jack","R","MI-01","MI",NA,"-","-",2,0,"B001301",NA
+"469","Mitchell","Paul","R","MI-10","MI",NA,"-","-",2,0,"M001201",NA
+"470","Lewis","Jason","R","MN-02","MN",NA,"-",NA,1,0,"L000587",NA
+"471","Gianforte","Greg","R","MT-AL","MT",NA,"-","-",2,0,"G000584",NA
+"472","Bacon","Don","R","NE-02","NE",NA,"-","-",2,0,"B001298",NA
+"473","Rosen","Jacky","D","NV-03","NV",NA,"+",NA,1,0,"R000608",NA
+"474","Kihuen","Ruben","D","NV-04","NV",NA,"+",NA,1,0,"K000390",NA
+"475","Shea-Porter","Carol","D","NH-01","NH",NA,"+",NA,1,0,"S001170",NA
+"476","Gottheimer","Josh","D","NJ-05","NJ",NA,"+","+",2,0,"G000583",NA
+"477","Suozzi","Thomas","D","NY-03","NY",NA,"+","+",2,0,"S001201",NA
+"478","Espaillat","Adriano","D","NY-13","NY",NA,"+","+",2,0,"E000297",NA
+"479","Faso","John","R","NY-19","NY",NA,"+",NA,1,0,"F000464",NA
+"480","Tenney","Claudia","R","NY-22","NY",NA,"-",NA,1,0,"T000478",NA
+"481","Budd","Ted","R","NC-13","NC",NA,"-","-",2,0,"B001305",NA
+"482","Evans","Dwight","D","PA-02","PA",NA,"+","+",2,0,"E000296",NA
+"483","Fitzpatrick","Brian","R","PA-08","PA",NA,"+","+",2,0,"F000466",NA
+"484","Smucker","Lloyd","R","PA-16","PA",NA,"-","-",2,0,"S001199",NA
+"485","Norman","Ralph","R","SC-05","SC",NA,"-","-",2,0,"N000190",NA
+"486","Kustoff","David","R","TN-08","TN",NA,"-","-",2,0,"K000392",NA
+"487","Gonzalez","Vicente","D","TX-15","TX",NA,"-","+",2,1,"G000581",NA
+"488","Arrington","Jodey","R","TX-19","TX",NA,"-","-",2,0,"A000375",NA
+"489","Taylor","Scott","R","VA-02","VA",NA,"-",NA,1,0,"T000477",NA
+"490","McEachin","A. Donald","D","VA-04","VA",NA,NA,"+",1,0,"M001200",NA
+"491","Garrett","Thomas","R","VA-05","VA",NA,NA,NA,0,0,"G000580","Jr."
+"492","Jayapal","Pramila","D","WA-07","WA",NA,"+","+",2,0,"J000298",NA
+"493","Gallagher","Mike","R","WI-08","WI",NA,"-","-",2,0,"G000579",NA
+"494","Cheney","Liz","R","WY-AL","WY",NA,"-","-",2,0,"C001109",NA
+"495","Radewagen","Amata Coleman","R","AS-AL","AS",NA,NA,"-",1,0,"R000600",NA
+"496","Lesko","Debbie","R","AZ-08","AZ",NA,NA,"-",1,0,"L000589",NA
+"497","Stanton","Greg","D","AZ-09","AZ",NA,NA,"+",1,0,"S001211",NA
+"498","Harder","Josh","D","CA-10","CA",NA,NA,"+",1,0,"H001090",NA
+"499","Cox","TJ","D","CA-21","CA",NA,NA,"+",1,0,"C001124",NA
+"500","Hill","Katie","D","CA-25","CA",NA,NA,"+",1,0,"H001087",NA
+"501","Cisneros","Gilbert","D","CA-39","CA",NA,NA,"+",1,0,"C001123","Jr."
+"502","Porter","Katie","D","CA-45","CA",NA,NA,"+",1,0,"P000618",NA
+"503","Rouda","Harley","D","CA-48","CA",NA,NA,"+",1,0,"R000616",NA
+"504","Levin","Mike","D","CA-49","CA",NA,NA,"+",1,0,"L000593",NA
+"505","Neguse","Joe","D","CO-02","CO",NA,NA,"+",1,0,"N000191",NA
+"506","Crow","Jason","D","CO-06","CO",NA,NA,"+",1,0,"C001121",NA
+"507","Hayes","Jahana","D","CT-05","CT",NA,NA,"+",1,0,"H001081",NA
+"508","Norton","Eleanor Holmes","D","DC-AL","DC",NA,NA,"+",1,0,"N000147",NA
+"509","Waltz","Michael","R","FL-06","FL",NA,NA,"+",1,0,"W000823",NA
+"510","Spano","Ross","R","FL-15","FL",NA,NA,"-",1,0,"S001210",NA
+"511","Steube","Greg","R","FL-17","FL",NA,NA,"-",1,0,"S001214",NA
+"512","Mucarsel-Powell","Debbie","D","FL-26","FL",NA,NA,"+",1,0,"M001207","Debbie"
+"513","Shalala","Donna","D","FL-27","FL",NA,NA,"+",1,0,"S001206",NA
+"514","McBath","Lucy","D","GA-06","GA",NA,NA,"+",1,0,"M001208",NA
+"515","San Nicolas","Michael","D","GU-AL","GU",NA,NA,"+",1,0,"S001204",NA
+"516","Case","Ed","D","HI-01","HI",NA,NA,"+",1,0,"C001055",NA
+"517","Fulcher","Russ","R","ID-01","ID",NA,NA,"-",1,0,"F000469",NA
+"518","García","Jesús","D","IL-04","IL",NA,NA,"+",1,0,"G000586",NA
+"519","Casten","Sean","D","IL-06","IL",NA,NA,"+",1,0,"C001117",NA
+"520","Underwood","Lauren","D","IL-14","IL",NA,NA,"+",1,0,"U000040",NA
+"521","Baird","James","R","IN-04","IN",NA,NA,"-",1,0,"B001307",NA
+"522","Pence","Greg","R","IN-06","IN",NA,NA,"-",1,0,"P000615",NA
+"523","Finkenauer","Abby","D","IA-01","IA",NA,NA,"+",1,0,"F000467",NA
+"524","Axne","Cynthia","D","IA-03","IA",NA,NA,"+",1,0,"A000378",NA
+"525","Watkins","Steven","R","KS-02","KS",NA,NA,"-",1,0,"W000824",NA
+"526","Davids","Sharice","D","KS-03","KS",NA,NA,"+",1,0,"D000629",NA
+"527","Golden","Jared","D","ME-02","ME",NA,NA,"+",1,0,"G000592",NA
+"528","Trone","David","D","MD-06","MD",NA,NA,"+",1,0,"T000483",NA
+"529","Trahan","Lori","D","MA-03","MA",NA,NA,"+",1,0,"T000482",NA
+"530","Pressley","Ayanna","D","MA-07","MA",NA,NA,"+",1,0,"P000617",NA
+"531","Slotkin","Elissa","D","MI-08","MI",NA,NA,"+",1,0,"S001208",NA
+"532","Levin","Andy","D","MI-09","MI",NA,NA,"+",1,0,"L000592",NA
+"533","Stevens","Haley","D","MI-11","MI",NA,NA,"+",1,0,"S001215",NA
+"534","Tlaib","Rashida","D","MI-13","MI",NA,NA,"+",1,0,"T000481",NA
+"535","Hagedorn","Jim","R","MN-01","MN",NA,NA,"-",1,0,"H001088",NA
+"536","Craig","Angie","D","MN-02","MN",NA,NA,"+",1,0,"C001119",NA
+"537","Phillips","Dean","D","MN-03","MN",NA,NA,"+",1,0,"P000616",NA
+"538","Omar","Ilhan","D","MN-05","MN",NA,NA,"+",1,0,"O000173",NA
+"539","Stauber","Pete","R","MN-08","MN",NA,NA,"-",1,0,"S001212",NA
+"540","Guest","Michael","R","MS-03","MS",NA,NA,"-",1,0,"G000591",NA
+"541","Lee","Susie","D","NV-03","NV",NA,NA,"+",1,0,"L000590",NA
+"542","Horsford","Steven A.","D","NV-04","NV",NA,NA,"+",1,0,"H001066",NA
+"543","Pappas","Chris","D","NH-01","NH",NA,NA,"+",1,0,"P000614",NA
+"544","Van Drew","Jefferson","R","NJ-02","NJ",NA,NA,"+",1,0,"V000133",NA
+"545","Kim","Andy","D","NJ-03","NJ",NA,NA,"+",1,0,"K000394",NA
+"546","Malinowski","Tom","D","NJ-07","NJ",NA,NA,"+",1,0,"M001203",NA
+"547","Sherrill","Mikie","D","NJ-11","NJ",NA,NA,"+",1,0,"S001207",NA
+"548","Haaland","Debra","D","NM-01","NM",NA,NA,"+",1,0,"H001080",NA
+"549","Torres Small","Xochitl","D","NM-02","NM",NA,NA,"+",1,0,"T000484",NA
+"550","Rose","Max","D","NY-11","NY",NA,NA,"+",1,0,"R000613",NA
+"551","Ocasio-Cortez","Alexandria","D","NY-14","NY",NA,NA,"+",1,0,"O000172","Alexandria"
+"552","Delgado","Antonio","D","NY-19","NY",NA,NA,"+",1,0,"D000630",NA
+"553","Brindisi","Anthony","D","NY-22","NY",NA,NA,"+",1,0,"B001308",NA
+"554","Morelle","Joe","D","NY-25","NY",NA,NA,"+",1,0,"M001206",NA
+"555","Armstrong","Kelly","R","ND-AL","ND",NA,NA,"-",1,0,"A000377",NA
+"556","Sablan","Gregorio Kilili Camacho","D","MP-AL","MP",NA,NA,"+",1,0,"S001177",NA
+"557","Balderson","Troy","R","OH-12","OH",NA,NA,"-",1,0,"B001306",NA
+"558","Gonzalez","Anthony","R","OH-16","OH",NA,NA,"-",1,0,"G000588",NA
+"559","Hern","Kevin","R","OK-01","OK",NA,NA,"-",1,0,"H001082",NA
+"560","Horn","Kendra","D","OK-05","OK",NA,NA,"+",1,0,"H001083",NA
+"561","Dean","Madeleine","D","PA-04","PA",NA,NA,"+",1,0,"D000631",NA
+"562","Scanlon","Mary Gay","D","PA-05","PA",NA,NA,"+",1,0,"S001205",NA
+"563","Houlahan","Chrissy","D","PA-06","PA",NA,NA,"+",1,0,"H001085",NA
+"564","Wild","Susan","D","PA-07","PA",NA,NA,"+",1,0,"W000826",NA
+"565","Meuser","Daniel","R","PA-09","PA",NA,NA,"-",1,0,"M001204",NA
+"566","Keller","Fred","R","PA-12","PA",NA,NA,"-",1,0,"K000395",NA
+"567","Joyce","John","R","PA-13","PA",NA,NA,"-",1,0,"J000302",NA
+"568","Reschenthaler","Guy","R","PA-14","PA",NA,NA,"-",1,0,"R000610",NA
+"569","Lamb","Conor","D","PA-17","PA",NA,NA,"+",1,0,"L000588",NA
+"570","González-Colón","Jenniffer","R","PR-AL","PR",NA,NA,"-",1,0,"G000582",NA
+"571","Cunningham","Joe","D","SC-01","SC",NA,NA,"+",1,0,"C001122",NA
+"572","Timmons","William","R","SC-04","SC",NA,NA,"-",1,0,"T000480",NA
+"573","Johnson","Dusty","R","SD-AL","SD",NA,NA,"-",1,0,"J000301",NA
+"574","Burchett","Tim","R","TN-02","TN",NA,NA,"-",1,0,"B001309",NA
+"575","Rose","John","R","TN-06","TN",NA,NA,"-",1,0,"R000612",NA
+"576","Green","Mark","R","TN-07","TN",NA,NA,"-",1,0,"G000590",NA
+"577","Crenshaw","Dan","R","TX-02","TX",NA,NA,"-",1,0,"C001120",NA
+"578","Taylor","Van","R","TX-03","TX",NA,NA,"-",1,0,"T000479",NA
+"579","Gooden","Lance","R","TX-05","TX",NA,NA,"-",1,0,"G000589",NA
+"580","Wright","Ron","R","TX-06","TX",NA,NA,"-",1,0,"W000827",NA
+"581","Fletcher","Lizzie","D","TX-07","TX",NA,NA,"+",1,0,"F000468",NA
+"582","Escobar","Veronica","D","TX-16","TX",NA,NA,"+",1,0,"E000299",NA
+"583","Roy","Chip","R","TX-21","TX",NA,NA,"-",1,0,"R000614",NA
+"584","Cloud","Michael","R","TX-27","TX",NA,NA,"-",1,0,"C001115",NA
+"585","Garcia","Sylvia","D","TX-29","TX",NA,NA,"+",1,0,"G000587",NA
+"586","Allred","Colin","D","TX-32","TX",NA,NA,"+",1,0,"A000376",NA
+"587","Curtis","John","R","UT-03","UT",NA,NA,"-",1,0,"C001114",NA
+"588","McAdams","Ben","D","UT-04","UT",NA,NA,"+",1,0,"M001209",NA
+"589","Plaskett","Stacey","D","VI-AL","VI",NA,NA,"+",1,0,"P000610",NA
+"590","Luria","Elaine","D","VA-02","VA",NA,NA,"+",1,0,"L000591",NA
+"591","Riggleman","Denver","R","VA-05","VA",NA,NA,"-",1,0,"R000611",NA
+"592","Cline","Ben","R","VA-06","VA",NA,NA,"-",1,0,"C001118",NA
+"593","Spanberger","Abigail","D","VA-07","VA",NA,NA,"+",1,0,"S001209",NA
+"594","Wexton","Jennifer","D","VA-10","VA",NA,NA,"+",1,0,"W000825",NA
+"595","Schrier","Kim","D","WA-08","WA",NA,NA,"+",1,0,"S001216",NA
+"596","Miller","Carol","R","WV-03","WV",NA,NA,"-",1,0,"M001205",NA
+"597","Steil","Bryan","R","WI-01","WI",NA,NA,"-",1,0,"S001213",NA
