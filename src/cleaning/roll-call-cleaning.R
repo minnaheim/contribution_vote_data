@@ -5,72 +5,189 @@ library(fuzzyjoin)
 library(conflicted)
 
 # import roll call data of the 3 "offshore drilling subsidies" bills:
+methane_113 <- read_csv("data/methane-emissions-113.csv",
+    show_col_types = FALSE
+)
 methane_114 <- read_csv("data/methane-pollution-safeguards-114.csv",
     show_col_types = FALSE
 )
 methane_115 <- read_csv("data/methane-pollution-safeguards-115.csv",
     show_col_types = FALSE
 )
+methane_115_2 <- read_csv("data/methane-pollution-safeguards-115-2.csv",
+    show_col_types = FALSE
+)
 methane_116 <- read_csv("data/methane-pollution-safeguards-116.csv",
     show_col_types = FALSE
 )
+methane_117 <- read_csv("data/repealing-assault_methane_pollution_safeguards-117.csv",
+    show_col_types = FALSE
+)
 
-# view(methane_116)
-# create merged dataset - merge based on representative (votes)
+# view(methane_113)
 
-# # try with sample dataset
-# sample_114 <- methane_114[1:10, ]
-# sample_115 <- methane_115[1:10, ]
-# sample_116 <- methane_116[1:10, ]
+# try merge function
+merge_roll_calls <- function(suffixes, datasets) {
+    if (missing(suffixes) || length(datasets) == 0) {
+        stop("Suffixes or datasets missing for merging.")
+    }
 
-# # full join sample dataset
-# sample_merge_full <- full_join(sample_114, sample_115, by = "Representative", suffix = c(".114", ".115"))
-# # inner join sample dataset
-# sample_merge_inner <- inner_join(sample_114, sample_115, by = "Representative", suffix = c(".114", ".115"))
+    # Full join all datasets
+    merged_data <- Reduce(function(x, y) full_join(x, y, by = "Representative", suffix = suffixes), datasets)
+
+
+    # Split Representative column
+    merged_data <- separate(merged_data, "Representative", c("LastName", "FirstName"), sep = ", ")
+
+
+    # # Merge Party and District columns for each suffix
+    # for (i in 1:(length(suffixes) - 1)) {
+    #     current_suffix <- suffixes[i]
+    #     next_suffix <- suffixes[i + 1]
+    #     current_party_col <- paste0("Party", current_suffix)
+    #     next_party_col <- paste0("Party", next_suffix)
+
+    #     # Iterate through each row
+    #     for (row_index in 1:nrow(merged_data)) {
+    #         current_party <- merged_data[row_index, paste0("Party", suffixes[1])]
+    #         # Check if Party value for the first suffix is missing
+    #         if (is.na(current_party)) {
+    #             # Find the first non-missing Party value among the suffixes
+    #             for (suffix in suffixes[-1]) {
+    #                 next_party <- merged_data[row_index, paste0("Party", suffix)]
+    #                 if (!is.na(next_party)) {
+    #                     merged_data[row_index, "Party"] <- next_party
+    #                     break
+    #                 }
+    #             }
+    #         }
+    #     }
+    # }
+
+    view(merged_data)
+
+    # Remove obsolete columns
+    obsolete_cols <- paste0(c("Party_", "District_"), suffixes[-length(suffixes)])
+    merged_data <- merged_data[, !names(merged_data) %in% obsolete_cols]
+
+    # Rename Party and District columns
+    names(merged_data) <- gsub("_.*", "", names(merged_data))
+
+    # Create State column
+    merged_data$State <- substr(merged_data$District, 1, 2)
+    merged_data <- relocate(merged_data, State, .after = District)
+
+    return(merged_data)
+}
+
+
+# Merge all roll calls
+roll_call_full <- merge_roll_calls(c("3", "4"), list(methane_113, methane_114))
+
+
+view(roll_call_full)
 
 
 # full dataset:
 
 # full join dataset
-roll_call_114_115_full <- full_join(methane_114, methane_115, by = "Representative", suffix = c(".114", ".115"))
-roll_call_114_115_116_full <- full_join(roll_call_114_115_full, methane_116, by = "Representative", suffix = c(".114.115", ".116"))
+# roll_call_114_115_full <- full_join(methane_114, methane_115, by = "Representative", suffix = c(".114", ".115"))
+# roll_call_114_115_116_full <- full_join(roll_call_114_115_full, methane_116, by = "Representative", suffix = c(".114.115", ".116"))
 
-# rename columns of Party, District and Vote, add suffix .116
-roll_call_114_115_116_full <- roll_call_114_115_116_full %>%
-    rename(Party.116 = Party, District.116 = District, Vote.116 = Vote)
+# # rename columns of Party, District and Vote, add suffix .116
+# roll_call_114_115_116_full <- roll_call_114_115_116_full %>%
+#     rename(Party.116 = Party, District.116 = District, Vote.116 = Vote)
 
 
-# split Representative Column into LastName and FirstName
+# # split Representative Column into LastName and FirstName
 
-roll_call_114_115_116_full <- separate(roll_call_114_115_116_full, Representative, c("LastName", "FirstName"), sep = ", ")
-# view(roll_call_114_115_116_full)
+# roll_call_114_115_116_full <- separate(roll_call_114_115_116_full, Representative, c("LastName", "FirstName"), sep = ", ")
+# # view(roll_call_114_115_116_full)
 
-# 115
-roll_call_114_115_116_full$Party.114 <- ifelse(is.na(roll_call_114_115_116_full$Party.114), roll_call_114_115_116_full$Party.115, roll_call_114_115_116_full$Party.114)
+# # 115
+# roll_call_114_115_116_full$Party.114 <- ifelse(is.na(roll_call_114_115_116_full$Party.114), roll_call_114_115_116_full$Party.115, roll_call_114_115_116_full$Party.114)
 
-roll_call_114_115_116_full$District.114 <- ifelse(is.na(roll_call_114_115_116_full$District.114), roll_call_114_115_116_full$District.115, roll_call_114_115_116_full$District.114)
+# roll_call_114_115_116_full$District.114 <- ifelse(is.na(roll_call_114_115_116_full$District.114), roll_call_114_115_116_full$District.115, roll_call_114_115_116_full$District.114)
 
-# 116
-roll_call_114_115_116_full$Party.114 <- ifelse(is.na(roll_call_114_115_116_full$Party.114), roll_call_114_115_116_full$Party.116, roll_call_114_115_116_full$Party.114)
+# # 116
+# roll_call_114_115_116_full$Party.114 <- ifelse(is.na(roll_call_114_115_116_full$Party.114), roll_call_114_115_116_full$Party.116, roll_call_114_115_116_full$Party.114)
 
-roll_call_114_115_116_full$District.114 <- ifelse(is.na(roll_call_114_115_116_full$District.114), roll_call_114_115_116_full$District.116, roll_call_114_115_116_full$District.114)
+# roll_call_114_115_116_full$District.114 <- ifelse(is.na(roll_call_114_115_116_full$District.114), roll_call_114_115_116_full$District.116, roll_call_114_115_116_full$District.114)
 
-# remove obsolete columns
-roll_call_114_115_116_full <- select(roll_call_114_115_116_full, -c("Party.115", "District.115", "Party.116", "District.116"))
+# # remove obsolete columns
+# roll_call_114_115_116_full <- select(roll_call_114_115_116_full, -c("Party.115", "District.115", "Party.116", "District.116"))
 
-# rename Party and District columns
-roll_call_114_115_116_full <- roll_call_114_115_116_full %>%
-    rename(Party = Party.114) %>%
-    rename(District = District.114)
+# # rename Party and District columns
+# roll_call_114_115_116_full <- roll_call_114_115_116_full %>%
+#     rename(Party = Party.114) %>%
+#     rename(District = District.114)
 
-# create a new column state, which includes State, not district
-roll_call_114_115_116_full$State <- substr(roll_call_114_115_116_full$District, 1, 2)
+# # create a new column state, which includes State, not district
+# roll_call_114_115_116_full$State <- substr(roll_call_114_115_116_full$District, 1, 2)
 
-roll_call_114_115_116_full <- relocate(roll_call_114_115_116_full, State, .after = District)
+# roll_call_114_115_116_full <- relocate(roll_call_114_115_116_full, State, .after = District)
 
-# rename df
-roll_call_full <- roll_call_114_115_116_full
+# # rename df
+# roll_call_full <- roll_call_114_115_116_full
 # view(roll_call_full)
+
+
+# add 113, 115_2 and 117 to the dataset
+# roll_call_full <- full_join(roll_call_full, methane_113, by = "Representative", suffix = c(".114.115.116", ".113"))
+# roll_call_full <- full_join(roll_call_full, methane_115_2, by = "Representative", suffix = c(".113.114.115.116", ".115_2"))
+# roll_call_full <- full_join(roll_call_full, methane_117, by = "Representative", suffix = c(".113.114.115.115_2.116.", ".117"))
+
+# # rename columns of Party, District and Vote, add suffix .113
+# roll_call_full <- roll_call_full %>%
+#     rename(Party.113 = Party, District.113 = District, Vote.113 = Vote)
+
+# # rename columns of Party, District and Vote, add suffix .115_2
+# roll_call_full <- roll_call_full %>%
+#     rename(Party.115_2 = Party, District.115_2 = District, Vote.115_2 = Vote)
+
+# # rename columns of Party, District and Vote, add suffix .117
+# roll_call_full <- roll_call_full %>%
+#     rename(Party.117 = Party, District.117 = District, Vote.117 = Vote)
+
+
+
+# # rename columns of Party, District and Vote, add suffix .116
+# roll_call_114_115_116_full <- roll_call_114_115_116_full %>%
+#     rename(Party.116 = Party, District.116 = District, Vote.116 = Vote)
+
+
+# # split Representative Column into LastName and FirstName
+
+# roll_call_114_115_116_full <- separate(roll_call_114_115_116_full, Representative, c("LastName", "FirstName"), sep = ", ")
+# # view(roll_call_114_115_116_full)
+
+# # 115
+# roll_call_114_115_116_full$Party.114 <- ifelse(is.na(roll_call_114_115_116_full$Party.114), roll_call_114_115_116_full$Party.115, roll_call_114_115_116_full$Party.114)
+
+# roll_call_114_115_116_full$District.114 <- ifelse(is.na(roll_call_114_115_116_full$District.114), roll_call_114_115_116_full$District.115, roll_call_114_115_116_full$District.114)
+
+# # 116
+# roll_call_114_115_116_full$Party.114 <- ifelse(is.na(roll_call_114_115_116_full$Party.114), roll_call_114_115_116_full$Party.116, roll_call_114_115_116_full$Party.114)
+
+# roll_call_114_115_116_full$District.114 <- ifelse(is.na(roll_call_114_115_116_full$District.114), roll_call_114_115_116_full$District.116, roll_call_114_115_116_full$District.114)
+
+# # remove obsolete columns
+# roll_call_114_115_116_full <- select(roll_call_114_115_116_full, -c("Party.115", "District.115", "Party.116", "District.116"))
+
+# # rename Party and District columns
+# roll_call_114_115_116_full <- roll_call_114_115_116_full %>%
+#     rename(Party = Party.114) %>%
+#     rename(District = District.114)
+
+# # create a new column state, which includes State, not district
+# roll_call_114_115_116_full$State <- substr(roll_call_114_115_116_full$District, 1, 2)
+
+# roll_call_114_115_116_full <- relocate(roll_call_114_115_116_full, State, .after = District)
+
+
+
+
+
 
 # create dataset for analysis (with at least two votes)
 
