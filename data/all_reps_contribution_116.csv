@@ -1,8 +1,8 @@
 LastName,FirstName,StateAbbreviation.x,Party.x,Amount.oil,Amount.coal,Amount.mining,Amount.gas,Amount.env,Amount.alt_en
 Adams,Alma,NC,D,3,0,0,0,2263,0
-Aderholt,Robert B,AL,R,16053,3600,5600,0,0,2500
+Aderholt,Robert B,AL,R,0,0,0,0,0,0
 Aguilar,Pete,CA,D,4983,0,0,646,8075,1528
-Allen,Richard W,GA,R,9800,0,1500,2500,0,0
+Allen,Richard W,GA,R,0,0,0,0,0,0
 Allred,Colin,TX,D,53385,0,5,508,11947,3435
 Amash,Justin,MI,R,19900,0,0,0,0,0
 Amodei,Mark,NV,R,26000,1000,45700,6000,0,0
@@ -10,7 +10,7 @@ Armstrong,Kelly,ND,R,240501,22100,35150,18500,0,10500
 Arrington,Jodey,TX,R,70750,0,0,1500,0,24200
 Axne,Cindy,IA,D,5086,0,17,2723,20467,6483
 Babin,Brian,TX,R,81357,0,5400,11400,0,0
-Bacon,Donald John,NE,R,79640,0,2000,18402,0,25000
+Bacon,Donald John,NE,R,0,0,0,0,0,0
 Baird,Jim,IN,R,0,0,1000,0,0,1000
 Balderson,Troy,OH,R,127598,10200,12200,5500,0,2700
 Banks,Jim,IN,R,15000,0,1000,0,0,0
@@ -20,7 +20,7 @@ Bass,Karen,CA,D,3500,0,1000,0,1100,1000
 Beatty,Joyce,OH,D,1000,0,0,0,0,0
 Bera,Ami,CA,D,10,0,0,10,13880,2625
 Bergman,John,MI,R,37345,0,10000,0,350,0
-Beutler,Jaime Herrera,WA,R,31350,2700,4950,3100,0,250
+Beutler,Jaime Herrera,WA,R,0,0,0,0,0,0
 Beyer,Don,VA,D,15902,0,2500,8900,5380,11900
 Biggs,Andy,AZ,R,17000,0,7500,3000,0,0
 Bilirakis,Gus,FL,R,53600,0,0,7000,0,7600
@@ -44,7 +44,7 @@ Budd,Ted,NC,R,37700,0,2000,0,0,0
 Burchett,Tim,TN,R,11050,250,250,0,0,0
 Burgess,Michael,TX,R,35250,0,0,4000,0,5200
 Bustos,Cheri,IL,D,7870,3,3,1020,5929,19258
-Butterfield,G K,NC,D,11500,0,0,0,1763,2000
+Butterfield,G K,NC,D,0,0,0,0,0,0
 Byrne,Bradley,AL,R,19200,0,2000,1000,2700,0
 Calvert,Ken,CA,R,33500,0,2000,0,0,6400
 Carbajal,Salud,CA,D,2950,0,0,0,27701,6000
@@ -64,14 +64,14 @@ Cicilline,David,RI,D,500,0,0,0,2000,0
 Cisneros,Gil,CA,D,4287,0,0,1002,10934,4532
 Clark,Katherine,MA,D,8206,0,0,0,5913,1000
 Clarke,Yvette,NY,D,1250,0,0,1000,2000,0
-Clay,William L Jr,MO,D,0,2500,2500,0,1500,0
+Clay,William L Jr,MO,D,0,0,0,0,0,0
 Cleaver,Emanuel,MO,D,0,0,0,0,2500,0
 Cline,Ben,VA,R,9950,1000,1000,3200,0,0
 Cloud,Michael,TX,R,23200,0,0,2000,0,0
-Clyburn,James E,SC,D,20006,0,0,5500,4750,2500
+Clyburn,James E,SC,D,0,0,0,0,0,0
 Cohen,Steve,TN,D,3000,0,0,0,4500,0
 Cole,Tom,OK,R,119250,0,1000,35400,0,7493
-Coleman,Bonnie Watson,NJ,D,2,0,0,0,5504,0
+Coleman,Bonnie Watson,NJ,D,0,0,0,0,0,0
 Collins,Doug,GA,R,35000,0,500,2500,0,0
 Comer,James,KY,R,11250,2000,3000,1000,0,11000
 Conaway,Mike,TX,R,150500,0,0,1000,4750,1793
@@ -92,7 +92,7 @@ Cunningham,Joe,SC,D,23,0,0,0,914,154
 Curtis,John,UT,R,30900,3700,6700,0,0,0
 Davids,Sharice,KS,D,6970,0,1263,2757,20416,9614
 Davidson,Warren,OH,R,10500,0,0,0,0,0
-Davis,Danny K,IL,D,3000,0,0,0,0,0
+Davis,Danny K,IL,D,0,0,0,0,0,0
 Davis,Rodney,IL,R,73500,12600,16600,14500,0,31500
 Davis,Susan,CA,D,0,0,0,0,1500,1000
 Dean,Madeleine,PA,D,502,0,0,501,4787,0
@@ -140,7 +140,7 @@ Garcia,Mike,CA,R,0,0,0,0,0,0
 Garcia,Sylvia,TX,D,23508,0,0,3001,7834,350
 Gianforte,Greg,MT,R,219640,28225,32225,3500,0,350
 Gibbs,Bob,OH,R,36250,14500,20500,6500,500,1000
-Gohmert,Louis B Jr,TX,R,45300,0,0,250,0,0
+Gohmert,Louis B Jr,TX,R,0,0,0,0,0,0
 Golden,Jared,ME,D,6078,0,7,5425,18520,6312
 Gomez,Jimmy,CA,D,3250,0,0,3250,18459,2550
 Gonzalez,Anthony,OH,R,27550,22600,30850,1500,0,3500
@@ -154,7 +154,7 @@ Graves,Sam,MO,R,39300,0,2000,7000,0,8500
 Green,Al,TX,D,4956,0,0,2700,0,1000
 Green,Mark,TN,R,49400,0,0,0,25,0
 Griffith,Morgan,VA,R,36350,31300,33300,5500,0,250
-Grijalva,Raul M,AZ,D,238,0,0,0,23210,50
+Grijalva,Raul M,AZ,D,0,0,0,0,0,0
 Grothman,Glenn,WI,R,34950,0,0,0,0,1000
 Guest,Michael,MS,R,35150,0,0,2500,0,0
 Guthrie,Brett,KY,R,48050,2500,8500,4500,0,0
@@ -168,7 +168,7 @@ Hayes,Jahana,CT,D,271,0,0,252,2588,273
 Heck,Dennis,WA,D,4000,0,0,0,7250,250
 Hern,Kevin,OK,R,119761,6500,6500,7000,0,0
 Hice,Jody,GA,R,7000,0,15967,0,0,6900
-Higgins,Brian M,NY,D,13100,0,0,10100,0,1000
+Higgins,Brian M,NY,D,0,0,0,0,0,0
 Higgins,Clay,LA,R,69150,0,0,18650,0,0
 Hill,French,AR,R,45900,0,0,2000,500,0
 Himes,Jim,CT,D,2001,0,2000,1000,7456,0
@@ -177,7 +177,7 @@ Hollingsworth,Trey,IN,R,29450,11000,11000,0,0,17000
 Horn,Kendra,OK,D,18557,0,0,2425,275,1500
 Horsford,Steven,NV,D,6044,0,11000,2502,11662,1312
 Houlahan,Chrissy,PA,D,2023,0,0,15,18329,6012
-Hoyer,Steny H,MD,D,43750,0,0,9500,4500,2000
+Hoyer,Steny H,MD,D,0,0,0,0,0,0
 Hudson,Richard,NC,R,85700,0,7000,5500,0,1000
 Huffman,Jared,CA,D,3500,0,0,2500,37033,1000
 Huizenga,Bill,MI,R,46175,0,0,0,0,0
@@ -188,11 +188,11 @@ Jayapal,Pramila,WA,D,1011,900,910,0,17231,515
 Jeffries,Hakeem,NY,D,0,0,0,0,2250,25
 Johnson,Bill,OH,R,124050,53140,90870,25200,0,2500
 Johnson,Dusty,SD,R,29850,0,1000,0,0,13400
-Johnson,Eddie Bernice,TX,D,3756,0,0,0,2000,0
+Johnson,Eddie Bernice,TX,D,0,0,0,0,0,0
 Johnson,Hank,GA,D,0,0,0,0,500,0
 Johnson,Mike,LA,R,78350,0,7400,19400,0,0
 Jordan,Jim,OH,R,16000,0,1000,0,0,0
-Joyce,David P,OH,R,40600,22200,36875,7000,3000,6400
+Joyce,David P,OH,R,0,0,0,0,0,0
 Joyce,John,PA,R,10500,0,0,5000,0,0
 Kaptur,Marcy,OH,D,4500,0,7500,3500,1000,0
 Katko,John,NY,R,122590,0,0,18552,0,0
@@ -201,14 +201,14 @@ Keller,Fred,PA,R,0,0,0,0,0,0
 Kelly,Mike,PA,R,85100,27500,34550,24000,0,1500
 Kelly,Robin,IL,D,3000,0,0,0,0,0
 Kelly,Trent,MS,R,29087,350,350,1000,0,0
-Kennedy,Joe III,MA,D,13875,0,15,1015,21485,6655
+Kennedy,Joe III,MA,D,0,0,0,0,0,0
 Khanna,Ro,CA,D,11311,0,0,0,0,5641
 Kildee,Dan,MI,D,0,0,0,0,4000,0
 Kilmer,Derek,WA,D,12375,0,0,0,25613,0
 Kim,Andy,NJ,D,8142,0,0,99,35904,806
 Kind,Ron,WI,D,7500,0,0,3000,1800,12375
 King,Pete,NY,R,12900,0,0,2500,0,0
-King,Steven A,IA,R,7750,1000,1000,0,0,27418
+King,Steven A,IA,R,0,0,0,0,0,0
 Kinzinger,Adam,IL,R,45500,0,12500,15500,0,12500
 Kirkpatrick,Ann,AZ,D,3746,0,5,22,15743,3022
 Krishnamoorthi,Raja,IL,D,21925,500,500,250,4408,12100
@@ -236,15 +236,15 @@ Lofgren,Zoe,CA,D,5000,0,0,0,9000,21600
 Long,Billy,MO,R,55000,2000,4000,8000,0,3500
 Loudermilk,Barry,GA,R,24000,0,500,1000,0,0
 Lowenthal,Alan,CA,D,7000,0,2500,0,5100,0
-Lowey,Nita M,NY,D,500,0,0,0,6903,0
-Lucas,Frank D,OK,R,64600,0,0,10000,0,5000
+Lowey,Nita M,NY,D,0,0,0,0,0,0
+Lucas,Frank D,OK,R,0,0,0,0,0,0
 Luetkemeyer,Blaine,MO,R,11000,0,1750,2000,0,6000
-Lujan,Ben Ray,NM,D,22651,1000,6000,7000,5967,500
+Lujan,Ben Ray,NM,D,0,0,0,0,0,0
 Luria,Elaine,VA,D,5656,0,0,5457,15541,9195
 Lynch,Stephen,MA,D,1000,0,2500,0,0,2500
 Malinowski,Tom,NJ,D,27303,0,3,22,44966,7599
 Maloney,Carolyn,NY,D,11400,0,2000,0,3550,1500
-Maloney,Sean Patrick,NY,D,1055,0,0,0,7470,50
+Maloney,Sean Patrick,NY,D,0,0,0,0,0,0
 Marchant,Kenny,TX,R,71650,1000,2000,16000,0,0
 Marshall,Roger,KS,R,25082,0,0,1000,0,48693
 Massie,Thomas,KY,R,10200,1000,2000,0,0,0
@@ -257,7 +257,7 @@ McCaul,Michael,TX,R,126700,0,0,12200,0,1250
 McClintock,Tom,CA,R,14750,0,5500,2000,0,1000
 McCollum,Betty,MN,D,1,0,0,0,6250,261
 McEachin,Donald,VA,D,4550,0,0,2500,19855,9750
-McGovern,James P,MA,D,3505,0,0,0,2433,782
+McGovern,James P,MA,D,0,0,0,0,0,0
 McHenry,Patrick,NC,R,79000,0,0,10000,0,20200
 McKinley,David,WV,R,85175,23000,30500,15000,0,0
 McNerney,Jerry,CA,D,6900,0,0,3500,9950,12700
@@ -270,7 +270,7 @@ Mitchell,Paul,MI,R,6000,0,0,1000,0,10000
 Moolenaar,John,MI,R,12750,0,0,1000,0,0
 Mooney,Alex,WV,R,25850,15800,17800,4500,0,250
 Moore,Gwen,WI,D,0,0,0,0,2000,0
-Morelle,Joseph D,NY,D,7503,0,0,7002,3250,2500
+Morelle,Joseph D,NY,D,0,0,0,0,0,0
 Moulton,Seth,MA,D,4100,0,0,4000,1300,0
 Mucarsel-Powell,Debbie,FL,D,10053,0,3,2700,16814,657
 Mullin,Markwayne,OK,R,183350,2700,4700,36000,0,1500
@@ -278,7 +278,7 @@ Murphy,Greg,NC,R,0,0,0,0,0,0
 Murphy,Stephanie,FL,D,700,0,0,250,18491,1255
 Nadler,Jerrold,NY,D,5400,0,0,0,1510,0
 Napolitano,Grace,CA,D,3500,0,0,3500,3000,2500
-Neal,Richard E,MA,D,39900,0,0,13500,1500,7500
+Neal,Richard E,MA,D,0,0,0,0,0,0
 Neguse,Joseph,CO,D,555,0,0,2,11374,1795
 Newhouse,Dan,WA,R,20000,0,1000,1500,0,0
 Norcross,Don,NJ,D,26210,0,0,7500,500,0
@@ -290,12 +290,12 @@ Ocasio-Cortez,Alexandria,NY,D,859,0,0,39,7436,282
 Olson,Pete,TX,R,206328,0,6000,44500,0,0
 Omar,Ilhan,MN,D,6466,0,0,2,4890,2670
 Palazzo,Steven,MS,R,29450,0,1000,3000,0,0
-Pallone,Frank Jr,NJ,D,30950,0,0,17450,2000,22500
+Pallone,Frank Jr,NJ,D,0,0,0,0,0,0
 Palmer,Gary,AL,R,17500,6000,6000,0,0,0
 Panetta,Jimmy,CA,D,16500,0,0,14000,7400,0
 Pappas,Chris,NH,D,255,0,0,0,8753,1057
-Pascrell,Bill Jr,NJ,D,0,0,0,0,1000,0
-Payne,Donald M Jr,NJ,D,10000,0,0,0,0,10000
+Pascrell,Bill Jr,NJ,D,0,0,0,0,0,0
+Payne,Donald M Jr,NJ,D,0,0,0,0,0,0
 Pelosi,Nancy,CA,D,6233,0,75,1260,23626,19095
 Pence,Greg,IN,R,68150,38700,90806,0,0,20800
 Perlmutter,Ed,CO,D,8111,0,3000,0,1250,0
@@ -311,7 +311,7 @@ Posey,Bill,FL,R,11400,0,0,0,0,0
 Pressley,Ayanna,MA,D,3,0,0,0,6918,2106
 Price,David,NC,D,2000,0,0,1000,6763,0
 Quigley,Mike,IL,D,0,0,0,0,6525,0
-Radewagen,Amata Coleman,American Samoa,R,0,0,0,0,0,0
+Radewagen,Amata Coleman,AS,R,0,0,0,0,0,0
 Raskin,Jamie,MD,D,0,0,0,0,5665,0
 Reed,Tom,NY,R,122475,0,500,21400,0,40225
 Reschenthaler,Guy,PA,R,53550,17400,20400,14750,0,0
@@ -320,11 +320,11 @@ Rice,Tom,SC,R,29950,0,250,0,0,2000
 Richmond,Cedric,LA,D,79200,0,0,15000,1000,0
 Riggleman,Denver,VA,R,18400,3700,3700,0,0,2700
 Roby,Martha,AL,R,28100,2000,2000,2500,0,0
-Rochester,Lisa Blunt,DE,D,7029,0,0,3025,6223,0
-Rodgers,Cathy McMorris,WA,R,129550,0,50704,10000,0,5820
+Rochester,Lisa Blunt,DE,D,0,0,0,0,0,0
+Rodgers,Cathy McMorris,WA,R,0,0,0,0,0,0
 Roe,Phil,TN,R,2700,1000,1000,0,0,0
 Rogers,Hal,KY,R,40996,8000,12500,5000,0,0
-Rogers,Mike D,AL,R,7000,7000,7000,0,0,0
+Rogers,Mike D,AL,R,0,0,0,0,0,0
 Rooney,Francis,FL,R,2700,0,0,0,0,0
 Rose,John,TN,R,25000,0,0,0,0,0
 Rose,Max,NY,D,2581,0,0,0,12518,87
@@ -341,19 +341,19 @@ San Nicolas,Michael,GU,D,0,0,0,0,0,0
 Sanchez,Linda,CA,D,7000,0,0,2500,2503,2500
 Sarbanes,John,MD,D,1003,0,0,0,0,2700
 Scalise,Steve,LA,R,383665,0,13225,22700,0,1435
-Scanlon,Mary Gay,PA,D,6451,0,0,0,6997,0
+Scanlon,Mary Gay,PA,D,0,0,0,0,0,0
 Schakowsky,Jan,IL,D,171,0,0,0,2456,1500
 Schiff,Adam,CA,D,2638,0,100,525,16523,3859
 Schneider,Brad,IL,D,3559,0,0,15,17209,385
 Schrader,Kurt,OR,D,75250,1000,3500,14250,500,1000
 Schrier,Kim,WA,D,6255,0,100,2716,58130,6917
-Schultz,Debbie Wasserman,FL,D,3000,0,0,0,6537,0
+Schultz,Debbie Wasserman,FL,D,0,0,0,0,0,0
 Schweikert,David,AZ,R,40950,0,6000,1500,0,5400
 Scott,Austin,GA,R,3500,0,500,0,0,0
 Scott,Bobby,VA,D,0,0,0,0,1500,0
 Scott,David,GA,D,1000,0,0,0,0,0
 Sensenbrenner,Jim,WI,R,10500,0,0,0,0,0
-Serrano,Jose E,NY,D,0,0,0,0,1750,0
+Serrano,Jose E,NY,D,0,0,0,0,0,0
 Sewell,Terri,AL,D,16750,2500,2500,1000,0,0
 Shalala,Donna,FL,D,40,0,0,0,7773,5202
 Sherman,Brad,CA,D,0,0,0,0,1000,500
@@ -362,7 +362,7 @@ Shimkus,John,IL,R,148250,14000,29000,30000,0,24400
 Simpson,Mike,ID,R,47500,1000,13500,5000,3500,3200
 Sires,Albio,NJ,D,1000,0,0,1000,500,2500
 Slotkin,Elissa,MI,D,13517,0,0,5900,56414,3839
-Small,Xochitl Torres,NM,D,7761,0,19,9,62425,2068
+Small,Xochitl Torres,NM,D,0,0,0,0,0,0
 Smith,Adam,WA,D,0,0,0,0,4500,1700
 Smith,Adrian,NE,R,19000,1500,1500,0,0,23000
 Smith,Chris,NJ,R,18956,0,0,0,0,0
@@ -384,7 +384,7 @@ Suozzi,Tom,NY,D,2701,0,0,0,17850,0
 Swalwell,Eric,CA,D,25558,0,0,3000,3965,3361
 Takano,Mark,CA,D,0,0,0,0,1604,0
 Taylor,Van,TX,R,121769,0,3700,0,0,0
-Thompson,Bennie G,MS,D,9500,0,0,4500,2000,0
+Thompson,Bennie G,MS,D,0,0,0,0,0,0
 Thompson,Glenn,PA,R,80100,9216,14916,15000,0,0
 Thompson,Mike,CA,D,22000,0,0,1000,3025,8000
 Thornberry,Mac,TX,R,48925,0,1000,0,0,4000
@@ -397,8 +397,8 @@ Tonko,Paul,NY,D,24475,0,0,8000,4153,22290
 Torres,Norma,CA,D,4000,0,0,6000,600,2500
 Trahan,Lori,MA,D,2600,0,5400,0,5260,6029
 Trone,David,MD,D,0,0,0,0,0,2700
-Turner,Michael R,OH,R,15200,0,1000,0,0,0
-Underwood,Lauren A,IL,D,5266,0,0,51,23011,2680
+Turner,Michael R,OH,R,0,0,0,0,0,0
+Underwood,Lauren A,IL,D,0,0,0,0,0,0
 Upton,Fred,MI,R,151250,2500,7500,49300,0,0
 Van Drew,Jeff,NJ,R,0,0,0,0,0,0
 Vargas,Juan,CA,D,2000,0,0,0,500,3500

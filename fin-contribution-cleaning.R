@@ -99,9 +99,8 @@ contribution_clean <- function(dataset) {
 
 # DIRTY
 # oil & gas contributions
-view(oil_114)
+# view(oil_114)
 oil_114 <- contribution_clean(oil_114)
-view(oil_114)
 oil_115 <- contribution_clean(oil_115)
 oil_116 <- contribution_clean(oil_116)
 
@@ -154,317 +153,64 @@ rep_116[c("First", "Last")] <- str_split_fixed(rep_116$sort_name, ",", 2)
 rep_116 <- rep_116 %>% select(Last, First, group_id, area_id, )
 
 # merge all financial contribution datasets, per term
-# 114
-master_df_114 <- full_join(oil_114, coal_114[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName"), suffix = c(".oil", ".coal"))
 
-# If Party and StateAbbreviation are missing in oil_115, use values from coal_115
-master_df_114$Party <- ifelse(is.na(master_df_114$Party.oil), master_df_114$Party.coal, master_df_114$Party.oil)
-master_df_114$StateAbbreviation <- ifelse(is.na(master_df_114$StateAbbreviation.oil), master_df_114$StateAbbreviation.coal, master_df_114$StateAbbreviation.oil)
+# Function to process financial contribution datasets for a given term
+process_financial_data <- function(oil, coal, mining, gas, env, alternative_en) {
+    # Merge datasets
+    master_df <- full_join(oil, coal[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName"), suffix = c(".oil", ".coal"))
 
-# Remove redundant columns
-master_df_114 <- master_df_114[, !(names(master_df_114) %in% c("Party.oil", "Party.coal", "StateAbbreviation.oil", "StateAbbreviation.coal"))]
+    # Handle missing Party and StateAbbreviation
+    master_df$Party <- ifelse(is.na(master_df$Party.oil), master_df$Party.coal, master_df$Party.oil)
+    master_df$StateAbbreviation <- ifelse(is.na(master_df$StateAbbreviation.oil), master_df$StateAbbreviation.coal, master_df$StateAbbreviation.oil)
 
-# move columns before Amounts
-master_df_114 <- master_df_114 %>%
-    relocate(StateAbbreviation, .after = FirstName) %>%
-    relocate(Party, .after = StateAbbreviation)
+    # Remove redundant columns
+    master_df <- master_df[, !(names(master_df) %in% c("Party.oil", "Party.coal", "StateAbbreviation.oil", "StateAbbreviation.coal"))]
 
-# view(master_df_114)
+    # Move columns before Amounts
+    master_df <- master_df %>%
+        relocate(StateAbbreviation, .after = FirstName) %>%
+        relocate(Party, .after = StateAbbreviation)
 
-master_df_114 <- full_join(master_df_114, mining_114[, c("LastName", "FirstName", "Amount", "StateAbbreviation", "Party")], by = c("LastName", "FirstName")) %>%
-    rename("Amount.mining" = "Amount") %>%
-    rename("Party.mining" = "Party.y") %>%
-    rename("StateAbbreviation.mining" = "StateAbbreviation.y")
+    # Iterate over each contribution dataset
+    for (dataset in list(mining, gas, env, alternative_en)) {
+        master_df <- full_join(master_df, dataset[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName"))
+    }
 
-# Update Party and StateAbbreviation columns if missing
-master_df_114$Party.x <- ifelse(is.na(master_df_114$Party.x), master_df_114$Party.mining, master_df_114$Party.x)
+    # Rename columns
+    colnames(master_df) <- gsub("\\..*", "", colnames(master_df)) # remove suffixes
+    colnames(master_df) <- gsub("\\.x$", "", colnames(master_df)) # remove .x suffixes
 
-master_df_114$StateAbbreviation.x <- ifelse(is.na(master_df_114$StateAbbreviation.x), master_df_114$StateAbbreviation.mining, master_df_114$StateAbbreviation.x)
+    # Update missing Party and StateAbbreviation columns
+    for (col in c("Party", "StateAbbreviation")) {
+        master_df[[paste0(col, ".x")]] <- ifelse(is.na(master_df[[paste0(col, ".x")]]), master_df[[paste0(col, ".y")]], master_df[[paste0(col, ".x")]])
+    }
 
-# Remove redundant columns
-master_df_114 <- master_df_114[, !(names(master_df_114) %in% c("Party.mining", "StateAbbreviation.mining"))]
+    # Remove redundant columns
+    master_df <- master_df[, !(names(master_df) %in% c("Party.y", "StateAbbreviation.y"))]
 
-# Move columns before Amounts
-master_df_114 <- master_df_114 %>%
-    relocate(StateAbbreviation.x, .after = FirstName) %>%
-    relocate(Party.x, .after = StateAbbreviation.x)
+    # Move columns before Amounts
+    master_df <- master_df %>%
+        relocate(StateAbbreviation.x, .after = FirstName) %>%
+        relocate(Party.x, .after = StateAbbreviation.x)
 
-# view(master_df_114)
-# continue here
+    # Turn "invalid number" or NA into 0
+    amount_cols <- grep("^Amount", names(master_df), value = TRUE)
+    master_df[amount_cols][is.na(master_df[amount_cols])] <- 0
 
-master_df_114 <- full_join(master_df_114, gas_114[, c("LastName", "FirstName", "Amount", "StateAbbreviation", "Party")], by = c("LastName", "FirstName")) %>%
-    rename("Amount.gas" = "Amount") %>%
-    rename("Party.gas" = "Party") %>%
-    rename("StateAbbreviation.gas" = "StateAbbreviation")
+    return(master_df)
+}
 
-# Update Party and StateAbbreviation columns if missing
-master_df_114$Party.x <- ifelse(is.na(master_df_114$Party.x), master_df_114$Party.gas, master_df_114$Party.x)
+# Process datasets for each congressional term
+master_df_114 <- process_financial_data(oil_114, coal_114, mining_114, gas_114, env_114, alternative_en_114)
+master_df_115 <- process_financial_data(oil_115, coal_115, mining_115, gas_115, env_115, alternative_en_115)
+master_df_116 <- process_financial_data(oil_116, coal_116, mining_116, gas_116, env_116, alternative_en_116)
 
-master_df_114$StateAbbreviation.x <- ifelse(is.na(master_df_114$StateAbbreviation.x), master_df_114$StateAbbreviation.gas, master_df_114$StateAbbreviation.x)
+# View final datasets
+view(master_df_114)
+view(master_df_115)
+view(master_df_116)
 
-# Remove redundant columns
-master_df_114 <- master_df_114[, !(names(master_df_114) %in% c("Party.gas", "StateAbbreviation.gas"))]
 
-# Move columns before Amounts
-master_df_114 <- master_df_114 %>%
-    relocate(StateAbbreviation.x, .after = FirstName) %>%
-    relocate(Party.x, .after = StateAbbreviation.x)
-
-# view(master_df_114)
-
-master_df_114 <- full_join(master_df_114, env_114[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName")) %>%
-    rename("Amount.env" = "Amount") %>%
-    rename("Party.env" = "Party") %>%
-    rename("StateAbbreviation.env" = "StateAbbreviation")
-
-# Update Party and StateAbbreviation columns if missing
-master_df_114$Party.x <- ifelse(is.na(master_df_114$Party.x), master_df_114$Party.env, master_df_114$Party.x)
-
-master_df_114$StateAbbreviation.x <- ifelse(is.na(master_df_114$StateAbbreviation.x), master_df_114$StateAbbreviation.env, master_df_114$StateAbbreviation.x)
-
-# Remove redundant columns
-master_df_114 <- master_df_114[, !(names(master_df_114) %in% c("Party.env", "StateAbbreviation.env"))]
-
-# Move columns before Amounts
-master_df_114 <- master_df_114 %>%
-    relocate(StateAbbreviation.x, .after = FirstName) %>%
-    relocate(Party.x, .after = StateAbbreviation.x)
-
-# view(master_df_114)
-
-master_df_114 <- full_join(master_df_114, alternative_en_114[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName")) %>%
-    rename("Amount.alt_en" = "Amount") %>%
-    rename("Party.alt_en" = "Party") %>%
-    rename("StateAbbreviation.alt_en" = "StateAbbreviation")
-
-# Update Party and StateAbbreviation columns if missing
-master_df_114$Party.x <- ifelse(is.na(master_df_114$Party.x), master_df_114$Party.alt_en, master_df_114$Party.x)
-
-master_df_114$StateAbbreviation.x <- ifelse(is.na(master_df_114$StateAbbreviation.x), master_df_114$StateAbbreviation.alt_en, master_df_114$StateAbbreviation.x)
-
-# Remove redundant columns
-master_df_114 <- master_df_114[, !(names(master_df_114) %in% c("Party.alt_en", "StateAbbreviation.alt_en"))]
-
-# Move columns before Amounts
-master_df_114 <- master_df_114 %>%
-    relocate(StateAbbreviation.x, .after = FirstName) %>%
-    relocate(Party.x, .after = StateAbbreviation.x)
-
-# view(master_df_114)
-
-# turn "invalid number" or NA into 0
-amount_cols <- grep("^Amount", names(master_df_114), value = TRUE)
-master_df_114[amount_cols][is.na(master_df_114[amount_cols])] <- 0
-# view(master_df_114)
-# THIS IS THE FINAL FINANCIAL CONTRIBUTION DATASET FOR THE 114TH CONGRESSIONAL TERM
-
-
-# 115
-master_df_115 <- full_join(oil_115, coal_115[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName"), suffix = c(".oil", ".coal"))
-
-# If Party and StateAbbreviation are missing in oil_115, use values from coal_115
-master_df_115$Party <- ifelse(is.na(master_df_115$Party.oil), master_df_115$Party.coal, master_df_115$Party.oil)
-master_df_115$StateAbbreviation <- ifelse(is.na(master_df_115$StateAbbreviation.oil), master_df_115$StateAbbreviation.coal, master_df_115$StateAbbreviation.oil)
-
-# Remove redundant columns
-master_df_115 <- master_df_115[, !(names(master_df_115) %in% c("Party.oil", "Party.coal", "StateAbbreviation.oil", "StateAbbreviation.coal"))]
-
-# move columns before Amounts
-master_df_115 <- master_df_115 %>%
-    relocate(StateAbbreviation, .after = FirstName) %>%
-    relocate(Party, .after = StateAbbreviation)
-
-# view(master_df_115)
-
-master_df_115 <- full_join(master_df_115, mining_115[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName")) %>%
-    rename("Amount.mining" = "Amount") %>%
-    rename("Party.mining" = "Party.y") %>%
-    rename("StateAbbreviation.mining" = "StateAbbreviation.y")
-
-# Update Party and StateAbbreviation columns if missing
-master_df_115$Party.x <- ifelse(is.na(master_df_115$Party.x), master_df_115$Party.mining, master_df_115$Party.x)
-
-master_df_115$StateAbbreviation.x <- ifelse(is.na(master_df_115$StateAbbreviation.x), master_df_115$StateAbbreviation.mining, master_df_115$StateAbbreviation.x)
-
-# Remove redundant columns
-master_df_115 <- master_df_115[, !(names(master_df_115) %in% c("Party.mining", "StateAbbreviation.mining"))]
-
-# Move columns before Amounts
-master_df_115 <- master_df_115 %>%
-    relocate(StateAbbreviation.x, .after = FirstName) %>%
-    relocate(Party.x, .after = StateAbbreviation.x)
-
-# view(master_df_115)
-
-master_df_115 <- full_join(master_df_115, gas_115[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName")) %>%
-    rename("Amount.gas" = "Amount") %>%
-    rename("Party.gas" = "Party") %>%
-    rename("StateAbbreviation.gas" = "StateAbbreviation")
-
-# Update Party and StateAbbreviation columns if missing
-master_df_115$Party.x <- ifelse(is.na(master_df_115$Party.x), master_df_115$Party.gas, master_df_115$Party.x)
-
-master_df_115$StateAbbreviation.x <- ifelse(is.na(master_df_115$StateAbbreviation.x), master_df_115$StateAbbreviation.gas, master_df_115$StateAbbreviation.x)
-
-# Remove redundant columns
-master_df_115 <- master_df_115[, !(names(master_df_115) %in% c("Party.gas", "StateAbbreviation.gas"))]
-
-# Move columns before Amounts
-master_df_115 <- master_df_115 %>%
-    relocate(StateAbbreviation.x, .after = FirstName) %>%
-    relocate(Party.x, .after = StateAbbreviation.x)
-
-# view(master_df_115)
-
-master_df_115 <- full_join(master_df_115, env_115[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName")) %>%
-    rename("Amount.env" = "Amount") %>%
-    rename("Party.env" = "Party") %>%
-    rename("StateAbbreviation.env" = "StateAbbreviation")
-
-# Update Party and StateAbbreviation columns if missing
-master_df_115$Party.x <- ifelse(is.na(master_df_115$Party.x), master_df_115$Party.env, master_df_115$Party.x)
-
-master_df_115$StateAbbreviation.x <- ifelse(is.na(master_df_115$StateAbbreviation.x), master_df_115$StateAbbreviation.env, master_df_115$StateAbbreviation.x)
-
-# Remove redundant columns
-master_df_115 <- master_df_115[, !(names(master_df_115) %in% c("Party.env", "StateAbbreviation.env"))]
-
-# Move columns before Amounts
-master_df_115 <- master_df_115 %>%
-    relocate(StateAbbreviation.x, .after = FirstName) %>%
-    relocate(Party.x, .after = StateAbbreviation.x)
-
-# view(master_df_115)
-
-master_df_115 <- full_join(master_df_115, alternative_en_115[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName")) %>%
-    rename("Amount.alt_en" = "Amount") %>%
-    rename("Party.alt_en" = "Party") %>%
-    rename("StateAbbreviation.alt_en" = "StateAbbreviation")
-
-# Update Party and StateAbbreviation columns if missing
-master_df_115$Party.x <- ifelse(is.na(master_df_115$Party.x), master_df_115$Party.alt_en, master_df_115$Party.x)
-
-master_df_115$StateAbbreviation.x <- ifelse(is.na(master_df_115$StateAbbreviation.x), master_df_115$StateAbbreviation.alt_en, master_df_115$StateAbbreviation.x)
-
-# Remove redundant columns
-master_df_115 <- master_df_115[, !(names(master_df_115) %in% c("Party.alt_en", "StateAbbreviation.alt_en"))]
-
-# Move columns before Amounts
-master_df_115 <- master_df_115 %>%
-    relocate(StateAbbreviation.x, .after = FirstName) %>%
-    relocate(Party.x, .after = StateAbbreviation.x)
-
-# view(master_df_115)
-
-# turn "invalid number" or NA into 0
-amount_cols <- grep("^Amount", names(master_df_115), value = TRUE)
-master_df_115[amount_cols][is.na(master_df_115[amount_cols])] <- 0
-# view(master_df_115)
-# THIS IS THE FINAL FINANCIAL CONTRIBUTION DATASET FOR THE 115TH CONGRESSIONAL TERM
-
-# 116
-master_df_116 <- full_join(oil_116, coal_116[, c("LastName", "FirstName", "Party", "StateAbbreviation", "Amount")], by = c("LastName", "FirstName"), suffix = c(".oil", ".coal"))
-
-# If Party and StateAbbreviation are missing in oil_116, use values from coal_116
-master_df_116$Party <- ifelse(is.na(master_df_116$Party.oil), master_df_116$Party.coal, master_df_116$Party.oil)
-master_df_116$StateAbbreviation <- ifelse(is.na(master_df_116$StateAbbreviation.oil), master_df_116$StateAbbreviation.coal, master_df_116$StateAbbreviation.oil)
-
-# Remove redundant columns
-master_df_116 <- master_df_116[, !(names(master_df_116) %in% c("Party.oil", "Party.coal", "StateAbbreviation.oil", "StateAbbreviation.coal"))]
-
-# move columns before Amounts
-master_df_116 <- master_df_116 %>%
-    relocate(StateAbbreviation, .after = FirstName) %>%
-    relocate(Party, .after = StateAbbreviation)
-
-# view(master_df_116)
-
-
-master_df_116 <- full_join(master_df_116, mining_116[, c("LastName", "FirstName", "Party", "StateAbbreviation", "Amount")], by = c("LastName", "FirstName")) %>%
-    rename("Party.mining" = "Party.y") %>%
-    rename("StateAbbreviation.mining" = "StateAbbreviation.y") %>%
-    rename("Amount.mining" = "Amount")
-
-# Update Party and StateAbbreviation columns if missing
-master_df_116$Party.x <- ifelse(is.na(master_df_116$Party.x), master_df_116$Party.mining, master_df_116$Party.x)
-
-master_df_116$StateAbbreviation.x <- ifelse(is.na(master_df_116$StateAbbreviation.x), master_df_116$StateAbbreviation.mining, master_df_116$StateAbbreviation.x)
-
-# Remove redundant columns
-master_df_116 <- master_df_116[, !(names(master_df_116) %in% c("Party.mining", "StateAbbreviation.mining"))]
-
-# Move columns before Amounts
-master_df_116 <- master_df_116 %>%
-    relocate(StateAbbreviation.x, .after = FirstName) %>%
-    relocate(Party.x, .after = StateAbbreviation.x)
-
-# view(master_df_116)
-
-master_df_116 <- full_join(master_df_116, gas_116[, c("LastName", "FirstName", "Amount", "StateAbbreviation", "Party")], by = c("LastName", "FirstName")) %>%
-    rename("Amount.gas" = "Amount") %>%
-    rename("StateAbbreviation.gas" = "StateAbbreviation") %>%
-    rename("Party.gas" = "Party")
-
-# Update Party and StateAbbreviation columns if missing
-master_df_116$Party.x <- ifelse(is.na(master_df_116$Party.x), master_df_116$Party.gas, master_df_116$Party.x)
-
-master_df_116$StateAbbreviation.x <- ifelse(is.na(master_df_116$StateAbbreviation.x), master_df_116$StateAbbreviation.gas, master_df_116$StateAbbreviation.x)
-
-# Remove redundant columns
-master_df_116 <- master_df_116[, !(names(master_df_116) %in% c("Party.gas", "StateAbbreviation.gas"))]
-
-# Move columns before Amounts
-master_df_116 <- master_df_116 %>%
-    relocate(StateAbbreviation.x, .after = FirstName) %>%
-    relocate(Party.x, .after = StateAbbreviation.x)
-
-# view(master_df_116)
-
-master_df_116 <- full_join(master_df_116, env_116[, c("LastName", "FirstName", "Amount", "StateAbbreviation", "Party")], by = c("LastName", "FirstName")) %>%
-    rename("Amount.env" = "Amount") %>%
-    rename("Party.env" = "Party") %>%
-    rename("StateAbbreviation.env" = "StateAbbreviation")
-
-# Update Party and StateAbbreviation columns if missing
-master_df_116$Party.x <- ifelse(is.na(master_df_116$Party.x), master_df_116$Party.env, master_df_116$Party.x)
-
-master_df_116$StateAbbreviation.x <- ifelse(is.na(master_df_116$StateAbbreviation.x), master_df_116$StateAbbreviation.env, master_df_116$StateAbbreviation.x)
-
-# Remove redundant columns
-master_df_116 <- master_df_116[, !(names(master_df_116) %in% c("Party.env", "StateAbbreviation.env"))]
-
-# Move columns before Amounts
-master_df_116 <- master_df_116 %>%
-    relocate(StateAbbreviation.x, .after = FirstName) %>%
-    relocate(Party.x, .after = StateAbbreviation.x)
-
-# view(master_df_116)
-
-master_df_116 <- full_join(master_df_116, alternative_en_116[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName")) %>%
-    rename("Amount.alt_en" = "Amount") %>%
-    rename("Party.alt_en" = "Party") %>%
-    rename("StateAbbreviation.alt_en" = "StateAbbreviation")
-
-# Update Party and StateAbbreviation columns if missing
-master_df_116$Party.x <- ifelse(is.na(master_df_116$Party.x), master_df_116$Party.alt_en, master_df_116$Party.x)
-
-master_df_116$StateAbbreviation.x <- ifelse(is.na(master_df_116$StateAbbreviation.x), master_df_116$StateAbbreviation.alt_en, master_df_116$StateAbbreviation.x)
-
-# Remove redundant columns
-master_df_116 <- master_df_116[, !(names(master_df_116) %in% c("Party.alt_en", "StateAbbreviation.alt_en"))]
-
-# Move columns before Amounts
-master_df_116 <- master_df_116 %>%
-    relocate(StateAbbreviation.x, .after = FirstName) %>%
-    relocate(Party.x, .after = StateAbbreviation.x)
-
-# view(master_df_116)
-
-# turn "invalid number" or NA into 0
-amount_cols <- grep("^Amount", names(master_df_116), value = TRUE)
-master_df_116[amount_cols][is.na(master_df_116[amount_cols])] <- 0
-
-# view(master_df_116)
 # THIS IS THE FINAL FINANCIAL CONTRIBUTION DATASET FOR THE 116TH CONGRESSIONAL TERM
 
 write.csv(master_df_114, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/master_df_114.csv")
@@ -473,23 +219,15 @@ write.csv(master_df_115, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data
 
 write.csv(master_df_115, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/master_df_116.csv")
 
-# in the above dataset, "master_df_116" only those house reps. are shown, which have received contributions, i.e. we need to add in non-listed members, and their amounts = 0
-
-
-# # merge sample dataset
-# sample_rep_114 <- rep_114[309:310, ]
-# sample_rep_115 <- rep_115[1:10, ]
-# sample_dataset <- dataset[7:8, ]
-
-
-# merged_sample_rep_114 <- full_join(sample_dataset, sample_rep_114, by = c("LastName" = "Last"))
-
+# view(master_df_114)
+# view(master_df_115)
+# view(master_df_116)
 
 # create merge function, that merges based on LastName, and only keeps if FirstName = first.
 
 merged <- function(reps, contribution) {
     merge_last <- full_join(contribution, reps, by = c("LastName" = "Last"))
-    view(merge_last)
+    # view(merge_last)
     for (i in 1:nrow(merge_last)) {
         if (is.na(merge_last[i, ]$First)) {
             final_merge <- merge_last[-i, ]
@@ -505,7 +243,7 @@ merged <- function(reps, contribution) {
 
 
 # create master dataset, join by representative.
-master_contribution <- dataset %>% full_join(contribution_for_115,
+master_contribution <- contribution_for_114 %>% full_join(contribution_for_115,
     by = c("LastName", "FirstName"),
     suffix = c(".114", ".115")
 )
@@ -524,3 +262,33 @@ master_contribution_1 <- master_contribution_1 %>%
 # in total, the master dataset has 552 rows. aka 435 per Session = 1305 persons (since we only have 552 though, this means that most overlap)
 
 # create a column called count_contribution
+
+
+
+# merge financial contributions with unique id
+id_reps <- suppressMessages(read_csv("data/cleaned_unique_id_reps_copy.csv", show_col_types = FALSE))
+
+
+# remove index column, rename Member ID to member_id
+id_reps <- subset(id_reps, select = -...1)
+id_reps <- id_reps %>%
+    rename(member_id = `Member ID`)
+
+view(id_reps)
+
+
+# to merge with fuzzy join, we also include the party and states, for that we need to include the abbreviations of the states
+state_abbreviations <- suppressMessages(read_csv("data/state_abbreviations.csv", show_col_types = FALSE))
+view(state_abbreviations)
+
+# change State column to include only abbreviations of respective states
+for (i in 1:nrow(id_reps)) {
+    if (!is.na(id_reps$State[i]) && nchar(id_reps$State[i]) > 2) {
+        state <- id_reps$State[i]
+        matching_postal <- state_abbreviations$Postal[state_abbreviations$State == state]
+        if (length(matching_postal) > 0) {
+            id_reps$State[i] <- matching_postal[1]
+        }
+    }
+}
+view(id_reps)

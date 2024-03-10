@@ -272,7 +272,7 @@ fuzzy_dataset <- fuzzy_left_join(roll_call_full, id_reps,
 fuzzy_dataset <- relocate(fuzzy_dataset, LastName.y, .after = LastName.x)
 fuzzy_dataset <- relocate(fuzzy_dataset, FirstName.y, .after = FirstName.x)
 
-# view(fuzzy_dataset)
+view(fuzzy_dataset)
 # 614 rows -> 17 more than roll_call_full
 
 # write df as csv
@@ -328,7 +328,9 @@ fuzzy_dataset <- fuzzy_dataset %>%
     rename("State" = "State.x")
 
 
-# view(fuzzy_dataset)
+view(fuzzy_dataset)
+# before 602, now 597
+
 
 cleaned_roll_call <- fuzzy_dataset
 # view(cleaned_roll_call)

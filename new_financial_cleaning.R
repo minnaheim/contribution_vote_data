@@ -1,62 +1,28 @@
 # setup
 library(tidyverse)
 library(ggplot2)
+library(fuzzyjoin)
 
 # import datasets
 oil_candidates_114 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/oil_gas_house_candidates_2014_el.csv", show_col_types = FALSE)
 # view(oil_candidates_114)
-
 gas_candidates_114 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/gas_house_candidates_2014_el.csv", show_col_types = FALSE)
-# view(gas_candidates_114)
-
 mining_candidates_114 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/mining_house_candidates_2014_el.csv", show_col_types = FALSE)
-# view(mining_candidates_114)
-
 coal_candidates_114 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/coal_house_candidates_2014_el.csv", show_col_types = FALSE)
-# view(coal_candidates_114)
-
 env_candidates_114 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/env_house_candidates_2014_el.csv", show_col_types = FALSE)
-# view(env_candidates_114)
-
 alt_en_candidates_114 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/alt_en_house_candidates_2014_el.csv", show_col_types = FALSE)
-# view(alt_en_candidates_114)
-
 oil_candidates_115 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/oil_house_candidates_2016_el.csv", show_col_types = FALSE)
-# view(oil_candidates_115)
-
 gas_candidates_115 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/gas_house_candidates_2016_el.csv", show_col_types = FALSE)
-# view(gas_candidates_115)
-
 mining_candidates_115 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/mining_house_candidates_2016_el.csv", show_col_types = FALSE)
-# view(mining_candidates_115)
-
 coal_candidates_115 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/coal_house_candidates_2016_el.csv", show_col_types = FALSE)
-# view(coal_candidates_115)
-
 env_candidates_115 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/env_house_candidates_2016_el.csv", show_col_types = FALSE)
-# view(env_candidates_115)
-
 alt_en_candidates_115 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/alt_en_house_candidates_2018_el.csv", show_col_types = FALSE)
-# view(alt_en_candidates_115)
-
 oil_candidates_116 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/oil_house_candidates_2018_el.csv", show_col_types = FALSE)
-# view(oil_candidates_116)
-
 gas_candidates_116 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/gas_house_candidates_2018_el.csv", show_col_types = FALSE)
-# view(gas_candidates_116)
-
 mining_candidates_116 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/mining_house_candidates_2018_el.csv", show_col_types = FALSE)
-# view(mining_candidates_116)
-
 coal_candidates_116 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/coal_house_candidates_2018_el.csv", show_col_types = FALSE)
-# view(coal_candidates_116)
-
 env_candidates_116 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/env_house_candidates_2018_el.csv", show_col_types = FALSE)
-# view(env_candidates_116)
-
 alt_en_candidates_116 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/alt_en_house_candidates_2018_el.csv", show_col_types = FALSE)
-# view(alt_en_candidates_116)
-
 
 # clean data
 # data cleaning pipeline:
@@ -72,7 +38,8 @@ contribution_clean <- function(dataset) {
 
     # split the representatives column of contribution _144 into the columns LastName and FirstName.
 
-    dataset <- dataset %>% separate(Representative, c("LastName", "FirstName"), sep = "([^ ]+) (.*)")
+    dataset <- dataset %>% separate(Representative, c("LastName", "FirstName"), sep = "\\s")
+    # "([^ ]+) (.*)"
 
     # split Party and state-abbreviation into separate columns.
     dataset <- separate(dataset, Party, into = c("Party", "StateAbbreviation"), sep = "-")
@@ -112,8 +79,6 @@ alt_en_candidates_114 <- contribution_clean(alt_en_candidates_114)
 alt_en_candidates_115 <- contribution_clean(alt_en_candidates_115)
 alt_en_candidates_116 <- contribution_clean(alt_en_candidates_116)
 
-# view(alt_en_candidates_116)
-
 #  MERGE ALL DIFFERENT FINANCIAL CONTRIBUTIONS TOGETHER
 # 114
 master_df_candidates_114 <- full_join(oil_candidates_114, coal_candidates_114[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName"), suffix = c(".oil", ".coal"), multiple = "all")
@@ -132,7 +97,6 @@ master_df_candidates_114 <- master_df_candidates_114 %>%
     relocate(Party, .after = StateAbbreviation)
 
 # view(master_df_candidates_114)
-# works until here
 
 master_df_candidates_114 <- full_join(master_df_candidates_114, mining_candidates_114[, c("LastName", "FirstName", "Amount", "StateAbbreviation", "Party")], by = c("LastName", "FirstName"), multiple = "all") %>%
     rename("Amount.mining" = "Amount") %>%
@@ -154,10 +118,12 @@ master_df_candidates_114 <- master_df_candidates_114 %>%
 
 # view(master_df_candidates_114)
 
+
 master_df_candidates_114 <- full_join(master_df_candidates_114, gas_candidates_114[, c("LastName", "FirstName", "Amount", "StateAbbreviation", "Party")], by = c("LastName", "FirstName"), multiple = "all") %>%
     rename("Amount.gas" = "Amount") %>%
     rename("Party.gas" = "Party") %>%
     rename("StateAbbreviation.gas" = "StateAbbreviation")
+
 
 # Update Party and StateAbbreviation columns if missing
 master_df_candidates_114$Party.x <- ifelse(is.na(master_df_candidates_114$Party.x), master_df_candidates_114$Party.gas, master_df_candidates_114$Party.x)
@@ -173,6 +139,7 @@ master_df_candidates_114 <- master_df_candidates_114 %>%
     relocate(Party.x, .after = StateAbbreviation.x)
 
 # view(master_df_candidates_114)
+# works until here
 
 master_df_candidates_114 <- full_join(master_df_candidates_114, env_candidates_114[, c("LastName", "FirstName", "Amount", "Party", "StateAbbreviation")], by = c("LastName", "FirstName"), multiple = "all") %>%
     rename("Amount.env" = "Amount") %>%
@@ -629,7 +596,7 @@ for (i in 1:nrow(all_reps_contributions_116)) {
 
 all_reps_contributions <- full_join(all_reps_contributions_114, all_reps_contributions_115[, c("LastName", "FirstName", "Party.x", "StateAbbreviation.x", "Amount.oil", "Amount.coal", "Amount.mining", "Amount.gas", "Amount.env", "Amount.alt_en")], by = c("LastName", "FirstName"), suffix = c(".114", ".115"))
 
-
+# view(all_reps_contributions)
 # Update Party and StateAbbreviation columns if missing
 all_reps_contributions$Party.x.114 <- ifelse(is.na(all_reps_contributions$Party.x.114), all_reps_contributions$Party.x.115, all_reps_contributions$Party.x.114)
 
@@ -676,7 +643,6 @@ all_reps_contributions <- all_reps_contributions %>%
     relocate(StateAbbreviation.x.114, .after = FirstName) %>%
     relocate(Party.x.114, .after = StateAbbreviation.x.114)
 
-view(all_reps_contributions)
 # final version
 
 
@@ -685,3 +651,157 @@ write_csv(all_reps_contributions, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/
 write_csv(all_reps_contributions_114, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/all_reps_contribution_114.csv")
 write_csv(all_reps_contributions_115, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/all_reps_contribution_115.csv")
 write_csv(all_reps_contributions_116, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/all_reps_contribution_116.csv")
+
+
+# view(all_reps_contributions)
+# re importing all_reps_contributions because i want to manually edit "Xochitl Torres Small, first / Lastname incorrect"
+
+all_reps_contributions <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/all_reps_contribution_manual.csv", show_col_types = FALSE)
+
+# remove john lewis, MT D (?) not supposed to be in the dataset
+all_reps_contributions <- subset(
+    all_reps_contributions,
+    !(LastName == "Lewis" &
+        FirstName == "John" &
+        StateAbbreviation.x.114 == "MT")
+)
+
+# view(all_reps_contributions)
+# all_reps_contributions is the final df
+
+# merge financial contributions with unique id
+id_reps <- suppressMessages(read_csv("data/cleaned_unique_id_reps_copy_2.csv", show_col_types = FALSE))
+
+# view(id_reps)
+
+# remove index column, rename Member ID to member_id
+id_reps <- subset(id_reps, select = -...1)
+id_reps <- id_reps %>%
+    rename(member_id = `Member ID`)
+
+# view(id_reps)
+
+
+# to merge with fuzzy join, we also include the party and states, for that we need to include the abbreviations of the states
+
+# change State column to include only abbreviations of respective states
+for (i in 1:nrow(id_reps)) {
+    if (!is.na(id_reps$State[i]) && nchar(id_reps$State[i]) > 2) {
+        state <- id_reps$State[i]
+        matching_postal <- state_abbreviations$Postal[state_abbreviations$State == state]
+        if (length(matching_postal) > 0) {
+            id_reps$State[i] <- matching_postal[1]
+        }
+    }
+}
+
+# now turn party into abbreviations
+for (i in 1:nrow(id_reps)) {
+    if (id_reps$Party[i] == "Democratic") {
+        id_reps$Party[i] <- "D"
+    }
+    if (id_reps$Party[i] == "Republican") {
+        id_reps$Party[i] <- "R"
+    }
+    if (id_reps$Party[i] == "Independent") {
+        id_reps$Party[i] <- "I"
+    }
+}
+
+# view(id_reps)
+
+# MERGE WITH FUZZY JOIN
+# create function that returns True or False, if distance between two strings is less than 3
+fuzzy_match <- function(x, y, max_dist = 3) {
+    return(stringdist::stringdist(x, y) <= max_dist)
+}
+
+fuzzy_match_last <- function(x, y) {
+    return(fuzzy_match(x, y, 1))
+}
+fuzzy_match_first <- function(x, y) {
+    return(fuzzy_match(x, y, 3)) # in roll_call = 3
+}
+
+# rename cols in all_reps_contributions
+all_reps_contributions <- all_reps_contributions %>%
+    rename("State" = "StateAbbreviation.x.114") %>%
+    rename("Party" = "Party.x.114")
+
+# view(all_reps_contributions)
+# view(id_reps)
+
+# try fuzzy join
+fuzzy_dataset <- fuzzy_left_join(all_reps_contributions, id_reps,
+    by = c("LastName", "FirstName", "State", "Party"), match_fun = list(fuzzy_match_last, fuzzy_match_first, `==`, `==`)
+)
+
+# relocate cols
+fuzzy_dataset <- relocate(fuzzy_dataset, LastName.y, .after = LastName.x)
+fuzzy_dataset <- relocate(fuzzy_dataset, FirstName.y, .after = FirstName.x)
+
+# view(fuzzy_dataset)
+# 614 rows in roll_call and id merge -> 17 more than roll_call_full
+# 618 rows in fin_contributions & id merge -> 21 more than in all_reps_contributions
+
+
+# write df as csv
+# write.csv(roll_call_full, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_vote_change_full_rollcall_votes.csv")
+
+# if LastName.x, FirstName.x, State.x, Party.x are not equal to LastName.y, FirstName.y, State.y, Party.y, then remove these columns for row i.
+
+
+non_matches <- function(dataset) {
+    count <- 0
+    df <- data.frame()
+    for (i in 1:nrow(dataset)) {
+        row <- dataset[i, ]
+        for (i in 1:nrow(row)) {
+            if (!is.na(row$LastName.x) && !is.na(row$LastName.y) && !is.na(row$FirstName.x) && !is.na(row$FirstName.y)) {
+                if (row$LastName.x != row$LastName.y && row$FirstName.x != row$FirstName.y) {
+                    count <- count + 1
+                    df <- rbind(df, row[i])
+                }
+            }
+        }
+    }
+    return(df)
+}
+nr_non_matched <- non_matches(fuzzy_dataset)
+# view(nr_non_matched)
+
+
+# current dataset is correct, but need to remove duplicated rows and duplicated rows
+remove_duplicated <- function(dataset) {
+    for (i in 1:nrow(dataset)) {
+        row <- dataset[i, ]
+        next_row <- dataset[i + 1, ]
+        if (!is.na(row$LastName.x) && !is.na(row$LastName.y) && !is.na(row$FirstName.x) && !is.na(row$FirstName.y) && !is.na(next_row$LastName.x) && !is.na(next_row$LastName.y) && !is.na(next_row$FirstName.x) && !is.na(next_row$FirstName.y)) {
+            if (row$LastName.x == next_row$LastName.x && row$FirstName.x == next_row$FirstName.x && row$State.x == next_row$State.x && row$Party.x == next_row$Party.x) {
+                dataset <- dataset[-i, ]
+            }
+        }
+    }
+    return(dataset)
+}
+# before 600 rows
+fuzzy_dataset <- remove_duplicated(fuzzy_dataset)
+# view(fuzzy_dataset)
+
+
+# remove all .y cols
+fuzzy_dataset <- select(fuzzy_dataset, -c(contains(".y")))
+fuzzy_dataset <- fuzzy_dataset %>%
+    rename("LastName" = "LastName.x") %>%
+    rename("FirstName" = "FirstName.x") %>%
+    rename("Party" = "Party.x") %>%
+    rename("State" = "State.x")
+
+
+# view(fuzzy_dataset)
+
+cleaned_financial_data <- fuzzy_dataset
+# view(cleaned_financial_data)
+view(all_reps_contributions)
+
+write.csv(cleaned_financial_data, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_financial_data.csv")

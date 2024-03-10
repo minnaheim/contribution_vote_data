@@ -5,7 +5,7 @@ library(tidyverse)
 library(dplyr)
 
 # import data
-rep_114 <- read_csv("data/representatives_114.csv", show_col_types = FALSE)
+rep_114 <- read_csv("data/representatives_114_manual.csv", show_col_types = FALSE)
 rep_115 <- read_csv("data/representatives_115.csv", show_col_types = FALSE)
 rep_116 <- read_csv("data/representatives_116.csv", show_col_types = FALSE)
 
@@ -29,17 +29,19 @@ rep_116 <- rep_116 %>% dplyr::filter(Chamber != "Senate")
 # print(nrow(rep_114))
 # [1] 437 -> that incl. header...
 
+# view(rep_114)
+
 # write csv
 write.csv(rep_114, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_representatives_114.csv")
 write.csv(rep_115, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_representatives_115.csv")
-write.csv(rep_116, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_representatives_1146.csv")
+write.csv(rep_116, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_representatives_116.csv")
 
 # view(rep_116)
 
 # import datasets master_df_114, etc.
 master_df_114 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/master_df_114.csv", show_col_types = FALSE)
 # view(master_df_114)
-# view(rep_114)
+view(rep_114)
 # print(nrow(master_df_114))
 # [1] 439 -> rep_114 had 437, also header
 
@@ -51,6 +53,7 @@ master_df_114 <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/dat
 
 all_reps_contributions <- full_join(master_df_114, rep_114[, c("LastName", "FirstName")], by = c("LastName", "FirstName"))
 
+# view(all_reps_contributions)
 
 # 507 reps, something probably isnt right, ill clean the new df more
 all_reps_contributions <- subset(all_reps_contributions, select = -...1)
@@ -133,7 +136,7 @@ fix_na_and_shift <- function(data) {
 fixed_data <- fix_na_and_shift(rep_u_id)
 
 # Print the fixed data
-view(fixed_data)
+# view(fixed_data)
 
 
 # write csv
