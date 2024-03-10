@@ -1,431 +1,431 @@
-"","LastName","FirstName","StateAbbreviation.x","Party.x","State","Amount.oil","Amount.coal","Amount.mining","Amount.gas","Amount.env","Amount.alt_en"
-"1","Ryan","Paul","WI","R","Wisconsin",761678,58860,75290,81975,23920,26725
-"2","Young","Todd","IN","R","Indiana",443246,79690,157150,29866,13050,10000
-"3","Brady","Kevin","TX","R","Texas",416650,0,0,82500,0,14700
-"4","Boustany","Charles Jr","LA","R","Louisiana",413087,2500,10400,121700,38700,0
-"5","McCarthy","Kevin","CA","R","California",355050,15700,30700,24800,1000,20800
-"6","Heck","Joe","NV","R","Nevada",339281,21125,82325,18866,0,1500
-"7","Hurd","Will","TX","R","Texas",337089,1000,3500,20900,0,2950
-"8","Scalise","Steve","LA","R","Louisiana",285300,6400,13900,26750,0,0
-"9","Pearce","Steve","NM","R","New Mexico",271906,1000,25400,10000,0,0
-"10","Barton","Joe","TX","R","Texas",234282,4500,6500,18450,0,0
-"11","Upton","Fred","MI","R","Michigan",229000,4000,8000,52600,0,6000
-"12","Mullin","Markwayne","OK","R","Oklahoma",227850,10000,11000,36800,0,0
-"13","Flores","Bill","TX","R","Texas",223400,500,3500,17500,1000,0
-"14","Olson","Pete","TX","R","Texas",221200,1000,2000,49800,0,7700
-"15","Cramer","Kevin","ND","R","North Dakota",216200,26000,30000,23500,0,15000
-"16","Shuster","Bill","PA","R","Pennsylvania",198512,25300,39350,64500,0,0
-"17","Pompeo","Mike","KS","R","Kansas",194325,1000,2000,25500,0,0
-"18","Coffman","Mike","CO","R","Colorado",193244,15900,36250,4450,500,1000
-"19","Denham","Jeff","CA","R","California",189499,1000,6200,42999,0,2500
-"20","Fleming","John","LA","R","Louisiana",183730,0,10600,2000,2600,0
-"21","Zinke","Ryan","MT","R","Montana",180891,21000,31100,7500,2000,2017
-"22","Shimkus","John","IL","R","Illinois",180582,29200,40700,46000,0,37700
-"23","Boehner","John","OH","R","Ohio",171900,16900,23150,9850,13200,0
-"24","Graves","Garret","LA","R","Louisiana",169499,0,7250,35000,20550,2500
-"25","Cuellar","Henry","TX","D","Texas",162952,1000,4800,22500,0,0
-"26","Walden","Greg","OR","R","Oregon",151900,3500,7500,18000,0,0
-"27","Bishop","Rob","UT","R","Utah",151516,8000,28750,25750,14750,2000
-"28","Conaway","Mike","TX","R","Texas",146547,3500,3500,250,0,1500
-"29","Sessions","Pete","TX","R","Texas",136850,0,1000,27600,0,0
-"30","Tipton","Scott","CO","R","Colorado",136400,22400,53400,6500,0,0
-"31","Williams","Roger","TX","R","Texas",136250,0,0,0,0,0
-"32","Culberson","John","TX","R","Texas",133625,0,0,22825,0,0
-"33","Johnson","Bill","OH","R","Ohio",127950,25800,38800,40000,1000,12500
-"34","Cole","Tom","OK","R","Oklahoma",125750,17200,19200,13700,0,5000
-"35","Reed","Tom","NY","R","New York",121050,0,0,31900,0,35500
-"36","Rodgers","Cathy McMorris","WA","R","Washington",119600,0,13650,7000,0,4250
-"37","McCaul","Michael","TX","R","Texas",111150,0,2000,17100,0,0
-"38","Smith","Lamar","TX","R","Texas",108400,0,0,0,0,0
-"39","Green","Gene","TX","D","Texas",107700,0,0,41500,0,0
-"40","Costa","Jim","CA","D","California",95525,3500,6500,21000,2000,2000
-"41","Stewart","Chris","UT","R","Utah",95200,8256,13756,14400,0,0
-"42","Stutzman","Marlin","IN","R","Indiana",93830,1000,1000,0,0,0
-"43","Russell","Steven","OK","R","Oklahoma",93250,0,5400,6500,0,0
-"44","Hudson","Richard","NC","R","North Carolina",90900,0,3500,15200,0,0
-"45","Jenkins","Lynn","KS","R","Kansas",88700,0,13300,11000,0,6750
-"46","Marchant","Kenny","TX","R","Texas",86450,0,0,15700,0,0
-"47","Blackburn","Marsha","TN","R","Tennessee",85900,500,500,13500,0,0
-"48","Thompson","Glenn","PA","R","Pennsylvania",85550,9250,17250,22200,0,0
-"49","Tiberi","Pat","OH","R","Ohio",83000,3500,7500,6000,0,1500
-"50","Thornberry","Mac","TX","R","Texas",82175,0,0,0,0,8000
-"51","McKinley","David","WV","R","West Virginia",80000,37700,70150,17000,0,0
-"52","Latta","Bob","OH","R","Ohio",78750,0,0,7500,0,1250
-"53","Meehan","Patrick","PA","R","Pennsylvania",78200,0,1000,30300,0,7870
-"54","Farenthold","Blake","TX","R","Texas",77950,0,500,13500,0,0
-"55","Noem","Kristi","SD","R","South Dakota",77150,250,2750,0,500,25800
-"56","Kelly","Mike","PA","R","Pennsylvania",76412,37100,40850,21412,0,0
-"57","McSally","Martha","AZ","R","Arizona",76161,0,13325,1500,125,1200
-"58","Comstock","Barbara","VA","R","Virginia",75975,4450,9450,19000,0,0
-"59","Poe","Ted","TX","R","Texas",75000,0,0,7400,0,2700
-"60","Nunes","Devin","CA","R","California",73500,2000,3000,8500,0,250
-"61","Granger","Kay","TX","R","Texas",72350,0,0,0,0,1000
-"62","Veasey","Marc","TX","D","Texas",71800,0,0,2000,1000,500
-"63","Love","Mia","UT","R","Utah",70036,0,3000,3800,200,2300
-"64","Hensarling","Jeb","TX","R","Texas",70000,0,0,8900,0,0
-"65","McHenry","Patrick","NC","R","North Carolina",69250,0,0,6500,0,0
-"66","DeSantis","Ron","FL","R","Florida",68920,0,1500,4425,25,50
-"67","Lamborn","Doug","CO","R","Colorado",67377,15500,38000,8500,1000,0
-"68","Kinzinger","Adam","IL","R","Illinois",67250,1000,4000,16500,0,21200
-"69","Weber","Randy","TX","R","Texas",66550,0,3700,5750,0,0
-"70","Zeldin","Lee","NY","R","New York",65663,0,0,7250,0,800
-"71","Buck","Ken","CO","R","Colorado",64950,2300,6300,5500,0,2500
-"72","Katko","John","NY","R","New York",64950,0,0,9000,250,1000
-"73","Collins","Chris","NY","R","New York",63950,0,0,22000,0,0
-"74","Walters","Mimi","CA","R","California",63250,0,100,5000,0,4700
-"75","Calvert","Ken","CA","R","California",62500,9500,20000,4000,0,7900
-"76","Richmond","Cedric","LA","D","Louisiana",62500,0,0,5000,3700,0
-"77","Lucas","Frank D","OK","R","Oklahoma",62050,0,1000,6000,0,3500
-"78","Paulsen","Erik","MN","R","Minnesota",61799,0,1000,3700,0,2000
-"79","Davis","Rodney","IL","R","Illinois",61750,5100,8100,15500,0,15000
-"80","Harper","Gregg","MS","R","Mississippi",60550,0,1000,8500,0,0
-"81","Valadao","David","CA","R","California",59750,0,3550,1000,0,5000
-"82","Young","Don","AK","R","Alaska",59450,2000,20000,0,1500,0
-"83","Chaffetz","Jason","UT","R","Utah",57700,3000,5000,0,0,0
-"84","Guthrie","Brett","KY","R","Kentucky",57500,11700,12700,8000,0,0
-"85","Stivers","Steve","OH","R","Ohio",56350,15775,15775,12500,0,0
-"86","LaHood","Darin","IL","R","Illinois",56050,5050,7050,14700,0,31600
-"87","Stefanik","Elise","NY","R","New York",55675,0,0,5500,6650,3750
-"88","Schrader","Kurt","OR","D","Oregon",55500,2000,2000,15000,2500,3200
-"89","Curbelo","Carlos","FL","R","Florida",55400,0,0,4000,10750,4700
-"90","Whitfield","Ed","KY","R","Kentucky",55100,9500,16000,0,0,500
-"91","Poliquin","Bruce","ME","R","Maine",54100,0,100,3800,0,500
-"92","Holding","George","NC","R","North Carolina",54082,1000,1000,5500,0,22700
-"93","Babin","Brian","TX","R","Texas",53650,0,4700,7700,1000,0
-"94","Renacci","Jim","OH","R","Ohio",53243,0,0,4500,1000,2250
-"95","Huelskamp","Tim","KS","R","Kansas",52400,0,0,1000,0,2700
-"96","Murphy","Tim","PA","R","Pennsylvania",51750,27200,34950,21500,0,0
-"97","Knight","Steve","CA","R","California",50400,0,850,0,0,0
-"98","Walberg","Tim","MI","R","Michigan",49450,12500,28500,1000,0,0
-"99","Yoder","Kevin","KS","R","Kansas",49375,0,13800,2000,0,44800
-"100","Royce","Ed","CA","R","California",49300,0,0,2500,1000,2000
-"101","Bridenstine","James","OK","R","Oklahoma",49100,1000,1000,3250,0,0
-"102","Simpson","Mike","ID","R","Idaho",46700,3700,12450,5000,7750,1000
-"103","Wagner","Ann","MO","R","Missouri",45500,12900,14900,6000,0,500
-"104","Issa","Darrell","CA","R","California",45000,1000,2000,16100,0,0
-"105","Long","Billy","MO","R","Missouri",45000,2500,6000,5500,0,0
-"106","Duncan","Jeff","SC","R","South Carolina",44750,0,0,10500,5000,0
-"107","Dold","Bob","IL","R","Illinois",43900,1000,2000,12250,7900,11750
-"108","Rothfus","Keith J","PA","R","Pennsylvania",43550,43850,59850,12050,0,0
-"109","Messer","Luke","IN","R","Indiana",43400,0,31200,2000,0,2500
-"110","Black","Diane","TN","R","Tennessee",43250,0,0,3000,1000,1000
-"111","Burgess","Michael","TX","R","Texas",43100,0,0,0,0,0
-"112","Hardy","Cresent","NV","R","Nevada",42700,0,15000,7000,0,0
-"113","Jenkins","Evan","WV","R","West Virginia",42600,28600,51200,3000,0,0
-"114","Palazzo","Steven","MS","R","Mississippi",41200,0,1000,3500,0,0
-"115","Westerman","Bruce","AR","R","Arkansas",41200,1000,2000,3000,0,2250
-"116","Hoyer","Steny H","MD","D","Maryland",40500,0,0,15000,2288,4500
-"117","Ratcliffe","John","TX","R","Texas",40050,0,0,6400,0,0
-"118","Goodlatte","Bob","VA","R","Virginia",39950,0,0,5450,0,0
-"119","Griffith","Morgan","VA","R","Virginia",38568,26100,32850,3500,0,0
-"120","Barr","Andy","KY","R","Kentucky",38500,87200,98050,3000,0,0
-"121","Johnson","Sam","TX","R","Texas",37050,0,0,5700,0,1000
-"122","Costello","Ryan","PA","R","Pennsylvania",36250,0,1500,9500,5400,1000
-"123","Peterson","Collin","MN","D","Minnesota",35575,1500,4500,0,0,23500
-"124","Roskam","Peter","IL","R","Illinois",35350,0,0,5450,0,1000
-"125","Brooks","Susan","IN","R","Indiana",35200,1750,2750,1000,2000,5000
-"126","Mooney","Alex","WV","R","West Virginia",35200,20726,31126,9000,0,250
-"127","Perry","Scott","PA","R","Pennsylvania",35000,0,0,10500,0,0
-"128","Vela","Filemon","TX","D","Texas",35000,0,0,7000,0,1000
-"129","Hill","French","AR","R","Arkansas",34950,0,0,7700,750,0
-"130","Barletta","Lou","PA","R","Pennsylvania",34550,4200,4950,9000,0,0
-"131","Larsen","Rick","WA","D","Washington",34500,0,0,14000,3000,0
-"132","Gibbs","Bob","OH","R","Ohio",34000,2000,8000,2000,1000,3500
-"133","Dent","Charlie","PA","R","Pennsylvania",33900,0,2000,5000,250,500
-"134","Graves","Tom","GA","R","Georgia",33800,0,20700,3000,0,0
-"135","Byrne","Bradley","AL","R","Alabama",33450,10400,10900,4000,0,0
-"136","Smith","Jason","MO","R","Missouri",33300,2000,8750,1000,0,7000
-"137","Ashford","Brad","NE","D","Nebraska",33250,2000,3000,1750,0,8000
-"138","Garrett","Scott","NJ","R","New Jersey",31850,0,0,1250,0,5400
-"139","Ellmers","Renee","NC","R","North Carolina",30500,0,0,4500,0,1000
-"140","Newhouse","Dan","WA","R","Washington",30400,4000,8000,5150,0,250
-"141","Bost","Mike","IL","R","Illinois",30250,27050,33400,2500,0,1000
-"142","Collins","Doug","GA","R","Georgia",30250,0,0,1600,0,0
-"143","Turner","Michael R","OH","R","Ohio",29950,0,0,2000,0,0
-"144","Joyce","David P","OH","R","Ohio",29850,13900,38100,3500,3000,2200
-"145","Van","Hollen Chris","MD","D","Maryland",29750,0,0,5325,77905,25420
-"146","Brady","Robert A","PA","D","Pennsylvania",28875,0,0,0,0,0
-"147","Gowdy","Trey","SC","R","South Carolina",28700,0,0,1000,0,0
-"148","Guinta","Frank","NH","R","New Hampshire",28600,0,0,0,0,750
-"149","Walorski","Jackie","IN","R","Indiana",28500,2000,4000,0,0,11000
-"150","Lujan","Ben Ray","NM","D","New Mexico",28000,2000,9500,12000,9525,6000
-"151","LaMalfa","Doug","CA","R","California",27550,0,0,10250,0,0
-"152","Mica","John L","FL","R","Florida",27500,0,2550,2500,0,500
-"153","Kelly","Trent","MS","R","Mississippi",27450,2700,2700,3000,0,0
-"154","MacArthur","Thomas","NJ","R","New Jersey",26600,0,0,15900,1500,1000
-"155","Rokita","Todd","IN","R","Indiana",26600,500,2500,0,0,6000
-"156","Lance","Leonard","NJ","R","New Jersey",26200,0,0,7000,0,0
-"157","Donovan","Dan","NY","R","New York",26000,0,0,1000,0,0
-"158","Doyle","Mike","PA","D","Pennsylvania",26000,0,1500,19000,2477,0
-"159","Castro","Joaquin","TX","D","Texas",25600,0,0,2500,2000,0
-"160","Young","David","IA","R","Iowa",25000,0,0,2500,0,22750
-"161","Cardenas","Tony","CA","D","California",24800,0,0,7300,6200,1500
-"162","Murphy","Patrick","FL","D","Florida",24203,0,617,8200,105523,17627
-"163","Green","Al","TX","D","Texas",24200,0,0,0,0,0
-"164","Gohmert","Louis B Jr","TX","R","Texas",23750,0,1000,1250,0,0
-"165","Rouzer","David","NC","R","North Carolina",23740,0,0,2000,0,0
-"166","Bilirakis","Gus","FL","R","Florida",23700,0,0,0,0,0
-"167","Frelinghuysen","Rodney","NJ","R","New Jersey",23000,2000,5000,5500,0,0
-"168","Pallone","Frank Jr","NJ","D","New Jersey",22900,0,500,13400,4090,12000
-"169","Beyer","Don","VA","D","Virginia",22850,0,0,11600,5218,8400
-"170","Amash","Justin","MI","R","Michigan",22650,0,0,0,0,0
-"171","Duffy","Sean P","WI","R","Wisconsin",22495,0,1000,2000,0,2500
-"172","Grothman","Glenn","WI","R","Wisconsin",22150,0,0,0,0,500
-"173","Price","Tom","GA","R","Georgia",22000,0,0,2500,0,0
-"174","Roby","Martha","AL","R","Alabama",21950,7500,7500,2000,0,0
-"175","Blum","Rod","IA","R","Iowa",21900,0,0,900,0,14050
-"176","Rogers","Hal","KY","R","Kentucky",21800,21400,38400,0,0,0
-"177","Norcross","Don","NJ","D","New Jersey",21700,0,2700,7000,1000,0
-"178","Capuano","Michael E","MA","D","Massachusetts",21500,0,1000,2100,1500,0
-"179","McClintock","Tom","CA","R","California",20900,0,0,4000,0,0
-"180","Benishek","Dan","MI","R","Michigan",20525,2000,4000,0,1000,0
-"181","Harris","Andy","MD","R","Maryland",20500,2000,5000,2000,250,0
-"182","Bishop","Mike","MI","R","Michigan",20400,0,1000,0,0,0
-"183","Welch","Peter","VT","D","Vermont",20052,0,0,7000,4650,8525
-"184","Foster","Bill","IL","D","Illinois",19350,0,0,5400,28519,4200
-"185","Foxx","Virginia","NC","R","North Carolina",19250,2000,4500,5000,0,0
-"186","Aderholt","Robert B","AL","R","Alabama",19200,8000,9000,0,0,0
-"187","Pittenger","Robert","NC","R","North Carolina",18900,0,0,13900,0,0
-"188","Lummis","Cynthia","WY","R","Wyoming",18700,13500,20500,1000,0,0
-"189","Mulvaney","Mick","SC","R","South Carolina",18500,0,0,0,0,0
-"190","Woodall","Rob","GA","R","Georgia",18500,0,0,2000,0,0
-"191","Ribble","Reid","WI","R","Wisconsin",18400,0,0,1000,0,0
-"192","Cook","Paul","CA","R","California",18000,0,2750,13500,0,5400
-"193","Crowley","Joseph","NY","D","New York",18000,0,500,6000,3500,1285
-"194","Hultgren","Randy","IL","R","Illinois",18000,1000,1000,11000,0,0
-"195","Thompson","Bennie G","MS","D","Mississippi",18000,0,0,10000,500,0
-"196","Huizenga","Bill","MI","R","Michigan",17750,0,1000,0,0,0
-"197","Marino","Tom","PA","R","Pennsylvania",17750,2950,2950,4250,0,10000
-"198","Palmer","Gary","AL","R","Alabama",17300,13300,13300,0,0,0
-"199","Fleischmann","Chuck","TN","R","Tennessee",17200,3000,5000,4500,0,0
-"200","Bucshon","Larry","IN","R","Indiana",17000,19000,22500,0,0,5000
-"201","Carter","John","TX","R","Texas",16700,0,0,0,0,0
-"202","Graves","Sam","MO","R","Missouri",16500,1000,1000,3000,0,7000
-"203","Womack","Steve","AR","R","Arkansas",16500,0,0,3000,0,0
-"204","Jordan","Jim","OH","R","Ohio",16000,0,2000,1000,0,0
-"205","Pitts","Joe","PA","R","Pennsylvania",16000,0,0,3500,0,0
-"206","Rice","Tom","SC","R","South Carolina",15750,0,0,0,0,0
-"207","Israel","Steve","NY","D","New York",15600,0,0,4000,4097,5400
-"208","Kennedy","Joe III","MA","D","Massachusetts",15600,0,0,2000,19750,2750
-"209","Posey","Bill","FL","R","Florida",15600,0,0,0,0,0
-"210","Allen","Richard W","GA","R","Georgia",15500,0,0,0,0,0
-"211","Butterfield","G K","NC","D","North Carolina",15500,0,0,3000,2500,2000
-"212","Jackson","Lee Sheila","TX","D","Texas",15500,0,0,500,0,0
-"213","Rush","Bobby","IL","D","Illinois",15500,0,0,12000,4000,1000
-"214","Ryan","Tim","OH","D","Ohio",15500,0,0,4000,6400,0
-"215","Walz","Tim","MN","D","Minnesota",15500,0,0,0,300,4500
-"216","Beutler","Jaime Herrera","WA","R","Washington",15465,0,750,3100,0,0
-"217","Loudermilk","Barry","GA","R","Georgia",15250,0,0,1000,0,0
-"218","Labrador","Raul","ID","R","Idaho",14900,250,3750,5500,2000,0
-"219","Abraham","Ralph","LA","R","Louisiana",14550,0,3200,6250,0,0
-"220","Matsui","Doris","CA","D","California",14500,0,0,1000,6200,0
-"221","Dingell","Debbie","MI","D","Michigan",14200,0,0,4000,5027,250
-"222","Sanchez","Loretta","CA","D","California",14200,0,0,1500,2754,100
-"223","Salmon","Matt","AZ","R","Arizona",14150,0,7000,2500,0,0
-"224","Bishop","Sanford","GA","D","Georgia",14000,3000,7000,0,0,1000
-"225","Fincher","Steve","TN","R","Tennessee",14000,0,0,0,0,0
-"226","Massie","Thomas","KY","R","Kentucky",14000,1000,1000,0,0,0
-"227","Sensenbrenner","Jim","WI","R","Wisconsin",14000,0,1500,0,0,0
-"228","Wilson","Joe","SC","R","South Carolina",14000,0,0,0,0,2500
-"229","Smith","Adrian","NE","R","Nebraska",13750,2500,2500,2500,0,16500
-"230","Carter","Buddy","GA","R","Georgia",13500,0,0,1000,0,0
-"231","Jones","Walter B Jr","NC","R","North Carolina",13500,0,0,500,0,0
-"232","Ross","Dennis","FL","R","Florida",13500,0,0,0,0,0
-"233","Clyburn","James E","SC","D","South Carolina",13430,0,0,3000,1250,1500
-"234","Wittman","Rob","VA","R","Virginia",13250,0,0,0,2750,0
-"235","Meadows","Mark","NC","R","North Carolina",12800,0,0,0,0,0
-"236","Jolly","David","FL","R","Florida",12600,0,0,3500,0,1000
-"237","Duncan","John J Jr","TN","R","Tennessee",12500,1500,1500,0,0,500
-"238","Hurt","Robert","VA","R","Virginia",12500,0,0,4500,0,0
-"239","Rogers","Mike D","AL","R","Alabama",12500,11000,11000,3000,0,0
-"240","Bustos","Cheri","IL","D","Illinois",12140,0,0,4000,16006,17205
-"241","Perlmutter","Ed","CO","D","Colorado",11950,0,5250,0,9250,1000
-"242","Grisham","Michelle Lujan","NM","D","New Mexico",11750,0,5000,0,5500,2500
-"243","Engel","Eliot","NY","D","New York",11200,0,2700,0,1000,1000
-"244","Larson","John","CT","D","Connecticut",11000,0,0,3000,2500,0
-"245","LoBiondo","Frank","NJ","R","New Jersey",11000,0,0,5500,4500,0
-"246","Lowenthal","Alan","CA","D","California",11000,0,1000,2000,7223,100
-"247","Sinema","Kyrsten","AZ","D","Arizona",11000,0,7500,2750,0,4000
-"248","Emmer","Tom","MN","R","Minnesota",10950,0,1000,300,0,8000
-"249","Maloney","Carolyn","NY","D","New York",10805,0,0,5,2500,0
-"250","Doggett","Lloyd","TX","D","Texas",10800,0,0,0,2750,3700
-"251","Hunter","Duncan D","CA","R","California",10500,0,0,1000,0,0
-"252","Duckworth","Tammy","IL","D","Illinois",10478,10,40,1533,268458,26833
-"253","Moolenaar","John","MI","R","Michigan",10050,0,0,0,0,1000
-"254","Amodei","Mark","NV","R","Nevada",10000,0,38450,2000,0,0
-"255","DelBene","Suzan","WA","D","Washington",10000,0,0,0,33957,0
-"256","Reichert","Dave","WA","R","Washington",10000,0,250,4750,0,16500
-"257","Schweikert","David","AZ","R","Arizona",10000,0,5250,0,0,0
-"258","Higgins","Brian M","NY","D","New York",9850,0,0,8850,1000,3500
-"259","Hartzler","Vicky","MO","R","Missouri",9400,2000,2000,3000,0,0
-"260","Peters","Scott","CA","D","California",9400,0,0,5900,27449,10050
-"261","Scott","David","GA","D","Georgia",9250,0,250,2000,0,0
-"262","Swalwell","Eric","CA","D","California",9200,0,500,2000,9900,5900
-"263","Yoho","Ted","FL","R","Florida",9150,0,0,3750,0,0
-"264","Graham","Gwen","FL","D","Florida",9000,0,300,1000,7000,0
-"265","Ros-Lehtinen","Ileana","FL","R","Florida",9000,0,0,0,1000,0
-"266","Ruiz","Raul","CA","D","California",9000,280,280,3500,27078,6900
-"267","Sewell","Terri","AL","D","Alabama",8700,10000,10000,0,0,0
-"268","Rohrabacher","Dana","CA","R","California",8650,0,0,0,0,0
-"269","Kaptur","Marcy","OH","D","Ohio",8500,0,2000,4000,1000,3000
-"270","Desjarlais","Scott","TN","R","Tennessee",8400,800,800,0,0,0
-"271","King","Pete","NY","R","New York",8400,0,0,0,0,0
-"272","Keating","Bill","MA","D","Massachusetts",8250,0,0,3000,4000,0
-"273","Bonamici","Suzanne","OR","D","Oregon",8150,0,0,2750,9358,0
-"274","Desaulnier","Mark","CA","D","California",8000,0,0,0,3750,0
-"275","Visclosky","Pete","IN","D","Indiana",8000,0,2000,2000,0,1000
-"276","Ellison","Keith","MN","D","Minnesota",7663,0,0,0,17245,10
-"277","Sanchez","Linda","CA","D","California",7575,0,0,75,5330,1500
-"278","Clark","Katherine","MA","D","Massachusetts",7503,0,0,1000,9575,1300
-"279","Kind","Ron","WI","D","Wisconsin",7500,0,0,1000,4775,2000
-"280","Maloney","Sean Patrick","NY","D","New York",7500,0,0,4000,9406,750
-"281","Polis","Jared","CO","D","Colorado",7500,0,0,0,10975,0
-"282","Thompson","Mike","CA","D","California",7500,0,0,0,14000,9885
-"283","Loebsack","David","IA","D","Iowa",7250,0,2500,4500,13750,20000
-"284","Rigell","Scott","VA","R","Virginia",7200,0,0,1000,0,0
-"285","Brat","Dave","VA","R","Virginia",7000,0,0,2000,0,2250
-"286","Neal","Richard E","MA","D","Massachusetts",7000,0,0,3500,1000,0
-"287","Sanford","Mark","SC","R","South Carolina",7000,0,0,1000,0,0
-"288","Walker","Mark","NC","R","North Carolina",7000,0,0,0,0,0
-"289","Wenstrup","Brad","OH","R","Ohio",7000,5400,5400,1000,0,0
-"290","Gabbard","Tulsi","HI","D","Hawaii",6800,0,0,0,5000,8195
-"291","Kirkpatrick","Ann","AZ","D","Arizona",6720,0,7315,140,16397,813
-"292","Lipinski","Daniel","IL","D","Illinois",6500,0,0,0,0,0
-"293","Torres","Norma","CA","D","California",6500,0,0,3500,5200,0
-"294","Webster","Daniel","FL","R","Florida",6300,0,600,0,0,0
-"295","Crawford","Rick","AR","R","Arkansas",6250,0,0,3000,0,0
-"296","McGovern","James P","MA","D","Massachusetts",6010,0,0,0,9480,0
-"297","Becerra","Xavier","CA","D","California",6000,0,0,2000,4200,3500
-"298","Diaz-Balart","Mario","FL","R","Florida",6000,0,0,3500,1000,0
-"299","Gosar","Paul","AZ","R","Arizona",6000,3000,23750,1000,250,250
-"300","Luetkemeyer","Blaine","MO","R","Missouri",6000,6400,8400,3000,0,5500
-"301","Price","David","NC","D","North Carolina",6000,0,0,1000,14029,0
-"302","Kilmer","Derek","WA","D","Washington",5950,0,0,0,38079,250
-"303","Westmoreland","Lynn A","GA","R","Georgia",5750,0,0,0,0,0
-"304","Nadler","Jerrold","NY","D","New York",5650,0,0,0,7550,0
-"305","Beatty","Joyce","OH","D","Ohio",5550,0,0,1500,0,0
-"306","Buchanan","Vernon","FL","R","Florida",5500,0,0,2000,500,0
-"307","DeFazio","Peter","OR","D","Oregon",5500,0,0,0,3112,0
-"308","Franks","Trent","AZ","R","Arizona",5500,0,5000,3000,0,0
-"309","Kelly","Robin","IL","D","Illinois",5500,0,0,0,2000,500
-"310","Moulton","Seth","MA","D","Massachusetts",5500,0,0,1000,13100,1000
-"311","Davidson","Warren","OH","R","Ohio",5416,0,1002,25,100,0
-"312","Honda","Mike","CA","D","California",5400,0,600,0,30625,3143
-"313","Tonko","Paul","NY","D","New York",5400,0,0,4000,11957,7390
-"314","Rice","Kathleen","NY","D","New York",5200,0,0,0,13800,3700
-"315","Cummings","Elijah E","MD","D","Maryland",5000,0,0,0,5052,0
-"316","Hice","Jody","GA","R","Georgia",5000,0,3000,2000,2000,2600
-"317","Huffman","Jared","CA","D","California",5000,120,120,5000,27849,1025
-"318","Kline","John","MN","R","Minnesota",5000,0,0,0,0,0
-"319","Napolitano","Grace","CA","D","California",5000,0,0,5000,2651,0
-"320","Rooney","Tom","FL","R","Florida",5000,0,0,0,0,0
-"321","Sherman","Brad","CA","D","California",5000,0,0,0,0,0
-"322","Waters","Maxine","CA","D","California",5000,0,0,0,4700,0
-"323","Tsongas","Niki","MA","D","Massachusetts",4700,0,0,0,9058,2000
-"324","McNerney","Jerry","CA","D","California",4500,0,0,2000,46457,18750
-"325","Roe","Phil","TN","R","Tennessee",4500,300,300,0,0,0
-"326","Edwards","Donna","MD","D","Maryland",4456,0,0,1500,16200,4175
-"327","King","Steven A","IA","R","Iowa",4150,0,0,0,0,19050
-"328","Clay","William L Jr","MO","D","Missouri",4000,0,0,0,2000,0
-"329","Johnson","Eddie Bernice","TX","D","Texas",4000,0,0,0,2500,0
-"330","Pocan","Mark","WI","D","Wisconsin",4000,0,0,2000,4100,2500
-"331","Trott","Dave","MI","R","Michigan",4000,0,0,0,0,0
-"332","Forbes","Randy","VA","R","Virginia",3950,0,0,1000,0,0
-"333","Blumenauer","Earl","OR","D","Oregon",3900,0,0,3650,10650,17200
-"334","Connolly","Gerry","VA","D","Virginia",3800,0,0,3750,4665,2000
-"335","Boyle","Brendan","PA","D","Pennsylvania",3750,0,0,3000,6899,0
-"336","Esty","Elizabeth","CT","D","Connecticut",3700,0,1600,3700,27659,1000
-"337","Lofgren","Zoe","CA","D","California",3700,0,0,0,17100,6400
-"338","Quigley","Mike","IL","D","Illinois",3700,0,0,0,3900,0
-"339","Cooper","Jim","TN","D","Tennessee",3500,0,0,1000,0,2700
-"340","Delaney","John K","MD","D","Maryland",3500,0,0,3500,11438,0
-"341","Deutch","Ted","FL","D","Florida",3500,0,0,0,2500,0
-"342","Hanabusa","Colleen","HI","D","Hawaii",3500,0,0,0,0,2000
-"343","Ruppersberger","Dutch","MD","D","Maryland",3500,0,0,2000,2752,2700
-"344","Sires","Albio","NJ","D","New Jersey",3500,0,0,2000,0,0
-"345","Bera","Ami","CA","D","California",3095,0,0,2745,44633,4815
-"346","Courtney","Joe","CT","D","Connecticut",3000,0,0,2000,5550,0
-"347","Fitzpatrick","Michael G","PA","R","Pennsylvania",3000,0,0,0,0,0
-"348","Gallego","Ruben","AZ","D","Arizona",3000,0,0,1500,9960,11231
-"349","Himes","Jim","CT","D","Connecticut",3000,0,2600,3000,5209,25
-"350","Payne","Donald M Jr","NJ","D","New Jersey",3000,0,0,0,0,1000
-"351","Scott","Austin","GA","R","Georgia",3000,0,3000,0,3885,0
-"352","Pascrell","Bill Jr","NJ","D","New Jersey",2750,0,0,1000,2000,7000
-"353","Lee","Barbara","CA","D","California",2700,0,0,0,17098,0
-"354","Neugebauer","Randy","TX","R","Texas",2700,0,0,0,0,0
-"355","Carney","John","DE","D","Delaware",2500,0,0,0,0,0
-"356","Cartwright","Matt","PA","D","Pennsylvania",2500,0,0,1000,13671,0
-"357","Hinojosa","Ruben","TX","D","Texas",2500,0,0,1000,0,0
-"358","Lynch","Stephen","MA","D","Massachusetts",2500,0,0,0,0,4200
-"359","Meeks","Gregory","NY","D","New York",2500,0,0,0,0,0
-"360","Pelosi","Nancy","CA","D","California",2393,0,0,905,19295,7233
-"361","Chabot","Steve","OH","R","Ohio",2100,0,0,1000,750,0
-"362","Sarbanes","John","MD","D","Maryland",2100,0,0,0,100,2700
-"363","Clarke","Yvette","NY","D","New York",2000,0,0,0,2000,0
-"364","Davis","Danny K","IL","D","Illinois",2000,0,0,0,1000,6000
-"365","Levin","Sander","MI","D","Michigan",2000,0,0,2000,4750,2000
-"366","Norton","Eleanor Holmes","DC","D","District of Columbia",2000,0,0,2000,0,0
-"367","Takai","Mark","HI","D","Hawaii",2000,0,0,0,2584,4000
-"368","Nolan","Rick","MN","D","Minnesota",1574,0,18941,1041,14667,3870
-"369","Grayson","Alan","FL","D","Florida",1534,0,0,545,27895,234
-"370","Lewis","John","GA","D","Georgia",1500,0,0,0,2000,300
-"371","Meng","Grace","NY","D","New York",1500,0,0,0,1000,500
-"372","Carson","Andre","IN","D","Indiana",1250,0,0,0,0,1000
-"373","Brownley","Julia","CA","D","California",1143,90,90,50,25623,1425
-"374","Aguilar","Pete","CA","D","California",1103,0,0,1100,30846,755
-"375","Schultz","Debbie Wasserman","FL","D","Florida",1050,0,0,0,22330,8400
-"376","Bass","Karen","CA","D","California",1000,0,5000,0,8700,0
-"377","Cleaver","Emanuel","MO","D","Missouri",1000,0,0,0,2000,0
-"378","Coleman","Bonnie Watson","NJ","D","New Jersey",1000,0,0,0,2500,0
-"379","Crenshaw","Ander","FL","R","Florida",1000,0,0,0,0,0
-"380","Frankel","Lois","FL","D","Florida",1000,0,5,0,3910,0
-"381","Garamendi","John","CA","D","California",1000,0,0,1000,5327,6400
-"382","Heck","Dennis","WA","D","Washington",1000,0,0,0,8250,3000
-"383","Jeffries","Hakeem","NY","D","New York",1000,0,0,0,2000,0
-"384","Miller","Jeff","FL","R","Florida",1000,0,0,1000,2500,0
-"385","Pierluisi","Pedro","PR","D","Puerto Rico",1000,0,0,1000,0,0
-"386","Plaskett","Stacey","VI","D","Virgin Islands",1000,0,0,1000,0,0
-"387","Smith","Chris","NJ","R","New Jersey",1000,0,0,0,0,0
-"388","Fortenberry","Jeff","NE","R","Nebraska",500,0,0,0,6400,2000
-"389","Kildee","Dan","MI","D","Michigan",500,0,0,0,3573,1500
-"390","Langevin","Jim","RI","D","Rhode Island",500,0,0,0,2000,2000
-"391","O'Rourke","Beto","TX","D","Texas",250,0,0,250,0,0
-"392","Yarmuth","John","KY","D","Kentucky",250,0,0,0,1850,0
-"393","Lawrence","Brenda","MI","D","Michigan",100,0,0,0,4000,0
-"394","Nunnelee","Alan","MS","R","Mississippi",100,0,0,0,0,0
-"395","Schakowsky","Jan","IL","D","Illinois",15,0,0,0,10750,4350
-"396","Kuster","Ann","NH","D","New Hampshire",5,0,0,0,42911,12965
-"397","Grijalva","Raul M","AZ","D","Arizona",3,0,0,0,17218,501
-"398","Titus","Dina","NV","D",NA,0,0,13000,0,3060,6000
-"399","DeLauro","Rosa","CT","D",NA,0,0,4575,0,5000,0
-"400","DeGette","Diana","CO","D",NA,0,0,1000,0,11150,0
-"401","Fudge","Marcia","OH","D",NA,0,0,0,1000,1000,0
-"402","Eshoo","Anna","CA","D",NA,0,0,0,0,14500,4700
-"403","Speier","Jackie","CA","D",NA,0,0,0,0,13800,1000
-"404","Lowey","Nita M","NY","D",NA,0,0,0,0,13316,0
-"405","McCollum","Betty","MN","D",NA,0,0,0,0,10000,650
-"406","Adams","Alma","NC","D",NA,0,0,0,0,8508,250
-"407","Lieu","Ted","CA","D",NA,0,0,0,0,7950,0
-"408","Slaughter","Louise M","NY","D",NA,0,0,0,0,7530,0
-"409","Pingree","Chellie","ME","D",NA,0,0,0,0,7420,1000
-"410","Takano","Mark","CA","D",NA,0,0,0,0,6300,0
-"411","Davis","Susan","CA","D",NA,0,0,0,0,5200,500
-"412","Wilson","Frederica","FL","D",NA,0,0,0,0,4566,0
-"413","Roybal-Allard","Lucille","CA","D",NA,0,0,0,0,3700,0
-"414","Johnson","Hank","GA","D",NA,0,0,0,0,3500,0
-"415","Chu","Judy","CA","D",NA,0,0,0,0,3200,0
-"416","Scott","Bobby","VA","D",NA,0,0,0,0,3200,0
-"417","Castor","Kathy","FL","D",NA,0,0,0,0,3100,0
-"418","Gutierrez","Luis V","IL","D",NA,0,0,0,0,2117,0
-"419","Cicilline","David","RI","D",NA,0,0,0,0,2000,1500
-"420","Hastings","Alcee","FL","D",NA,0,0,0,0,2000,0
-"421","Moore","Gwen","WI","D",NA,0,0,0,0,2000,0
-"422","Conyers","John Jr","MI","D",NA,0,0,0,0,1250,0
-"423","Schiff","Adam","CA","D",NA,0,0,0,0,1250,0
-"424","Serrano","Jose E","NY","D",NA,0,0,0,0,1250,0
-"425","Bordallo","Madeleine Z","GU","D",NA,0,0,0,0,1000,0
-"426","Vargas","Juan","CA","D",NA,0,0,0,0,1000,0
-"427","Velazquez","Nydia","NY","D",NA,0,0,0,0,1000,0
-"428","Cohen","Steve","TN","D",NA,0,0,0,0,500,500
-"429","Hanna","Richard","NY","R",NA,0,0,0,0,250,0
-"430","Schock","Aaron","IL","R",NA,0,0,0,0,0,3000
+"","LastName","FirstName","Amount.oil","Amount.coal","Amount.mining","Amount.gas","Amount.env","Amount.alternative_en","Party","StateAbbreviation"
+"1","Ryan","Paul",761678,58860,75290,81975,23920,26725,"R","WI"
+"2","Young","Todd",443246,79690,157150,29866,13050,10000,"R","IN"
+"3","Brady","Kevin",416650,0,0,82500,0,14700,"R","TX"
+"4","Boustany","Charles Jr",413087,2500,10400,121700,38700,0,"R","LA"
+"5","McCarthy","Kevin",355050,15700,30700,24800,1000,20800,"R","CA"
+"6","Heck","Joe",339281,21125,82325,18866,0,1500,"R","NV"
+"7","Hurd","Will",337089,1000,3500,20900,0,2950,"R","TX"
+"8","Scalise","Steve",285300,6400,13900,26750,0,0,"R","LA"
+"9","Pearce","Steve",271906,1000,25400,10000,0,0,"R","NM"
+"10","Barton","Joe",234282,4500,6500,18450,0,0,"R","TX"
+"11","Upton","Fred",229000,4000,8000,52600,0,6000,"R","MI"
+"12","Mullin","Markwayne",227850,10000,11000,36800,0,0,"R","OK"
+"13","Flores","Bill",223400,500,3500,17500,1000,0,"R","TX"
+"14","Olson","Pete",221200,1000,2000,49800,0,7700,"R","TX"
+"15","Cramer","Kevin",216200,26000,30000,23500,0,15000,"R","ND"
+"16","Shuster","Bill",198512,25300,39350,64500,0,0,"R","PA"
+"17","Pompeo","Mike",194325,1000,2000,25500,0,0,"R","KS"
+"18","Coffman","Mike",193244,15900,36250,4450,500,1000,"R","CO"
+"19","Denham","Jeff",189499,1000,6200,42999,0,2500,"R","CA"
+"20","Fleming","John",183730,0,10600,2000,2600,0,"R","LA"
+"21","Zinke","Ryan",180891,21000,31100,7500,2000,2017,"R","MT"
+"22","Shimkus","John",180582,29200,40700,46000,0,37700,"R","IL"
+"23","Boehner","John",171900,16900,23150,9850,13200,0,"R","OH"
+"24","Graves","Garret",169499,0,7250,35000,20550,2500,"R","LA"
+"25","Cuellar","Henry",162952,1000,4800,22500,0,0,"D","TX"
+"26","Walden","Greg",151900,3500,7500,18000,0,0,"R","OR"
+"27","Bishop","Rob",151516,8000,28750,25750,14750,2000,"R","UT"
+"28","Conaway","Mike",146547,3500,3500,250,0,1500,"R","TX"
+"29","Sessions","Pete",136850,0,1000,27600,0,0,"R","TX"
+"30","Tipton","Scott",136400,22400,53400,6500,0,0,"R","CO"
+"31","Williams","Roger",136250,0,0,0,0,0,"R","TX"
+"32","Culberson","John",133625,0,0,22825,0,0,"R","TX"
+"33","Johnson","Bill",127950,25800,38800,40000,1000,12500,"R","OH"
+"34","Cole","Tom",125750,17200,19200,13700,0,5000,"R","OK"
+"35","Reed","Tom",121050,0,0,31900,0,35500,"R","NY"
+"36","Rodgers","Cathy McMorris",119600,0,13650,7000,0,4250,"R","WA"
+"37","McCaul","Michael",111150,0,2000,17100,0,0,"R","TX"
+"38","Smith","Lamar",108400,0,0,0,0,0,"R","TX"
+"39","Green","Gene",107700,0,0,41500,0,0,"D","TX"
+"40","Costa","Jim",95525,3500,6500,21000,2000,2000,"D","CA"
+"41","Stewart","Chris",95200,8256,13756,14400,0,0,"R","UT"
+"42","Stutzman","Marlin",93830,1000,1000,0,0,0,"R","IN"
+"43","Russell","Steven",93250,0,5400,6500,0,0,"R","OK"
+"44","Hudson","Richard",90900,0,3500,15200,0,0,"R","NC"
+"45","Jenkins","Lynn",88700,0,13300,11000,0,6750,"R","KS"
+"46","Marchant","Kenny",86450,0,0,15700,0,0,"R","TX"
+"47","Blackburn","Marsha",85900,500,500,13500,0,0,"R","TN"
+"48","Thompson","Glenn",85550,9250,17250,22200,0,0,"R","PA"
+"49","Tiberi","Pat",83000,3500,7500,6000,0,1500,"R","OH"
+"50","Thornberry","Mac",82175,0,0,0,0,8000,"R","TX"
+"51","McKinley","David",80000,37700,70150,17000,0,0,"R","WV"
+"52","Latta","Bob",78750,0,0,7500,0,1250,"R","OH"
+"53","Meehan","Patrick",78200,0,1000,30300,0,7870,"R","PA"
+"54","Farenthold","Blake",77950,0,500,13500,0,0,"R","TX"
+"55","Noem","Kristi",77150,250,2750,0,500,25800,"R","SD"
+"56","Kelly","Mike",76412,37100,40850,21412,0,0,"R","PA"
+"57","McSally","Martha",76161,0,13325,1500,125,1200,"R","AZ"
+"58","Comstock","Barbara",75975,4450,9450,19000,0,0,"R","VA"
+"59","Poe","Ted",75000,0,0,7400,0,2700,"R","TX"
+"60","Nunes","Devin",73500,2000,3000,8500,0,250,"R","CA"
+"61","Granger","Kay",72350,0,0,0,0,1000,"R","TX"
+"62","Veasey","Marc",71800,0,0,2000,1000,500,"D","TX"
+"63","Love","Mia",70036,0,3000,3800,200,2300,"R","UT"
+"64","Hensarling","Jeb",70000,0,0,8900,0,0,"R","TX"
+"65","McHenry","Patrick",69250,0,0,6500,0,0,"R","NC"
+"66","DeSantis","Ron",68920,0,1500,4425,25,50,"R","FL"
+"67","Lamborn","Doug",67377,15500,38000,8500,1000,0,"R","CO"
+"68","Kinzinger","Adam",67250,1000,4000,16500,0,21200,"R","IL"
+"69","Weber","Randy",66550,0,3700,5750,0,0,"R","TX"
+"70","Zeldin","Lee",65663,0,0,7250,0,800,"R","NY"
+"71","Buck","Ken",64950,2300,6300,5500,0,2500,"R","CO"
+"72","Katko","John",64950,0,0,9000,250,1000,"R","NY"
+"73","Collins","Chris",63950,0,0,22000,0,0,"R","NY"
+"74","Walters","Mimi",63250,0,100,5000,0,4700,"R","CA"
+"75","Calvert","Ken",62500,9500,20000,4000,0,7900,"R","CA"
+"76","Richmond","Cedric",62500,0,0,5000,3700,0,"D","LA"
+"77","Lucas","Frank D",62050,0,1000,6000,0,3500,"R","OK"
+"78","Paulsen","Erik",61799,0,1000,3700,0,2000,"R","MN"
+"79","Davis","Rodney",61750,5100,8100,15500,0,15000,"R","IL"
+"80","Harper","Gregg",60550,0,1000,8500,0,0,"R","MS"
+"81","Valadao","David",59750,0,3550,1000,0,5000,"R","CA"
+"82","Young","Don",59450,2000,20000,0,1500,0,"R","AK"
+"83","Chaffetz","Jason",57700,3000,5000,0,0,0,"R","UT"
+"84","Guthrie","Brett",57500,11700,12700,8000,0,0,"R","KY"
+"85","Stivers","Steve",56350,15775,15775,12500,0,0,"R","OH"
+"86","LaHood","Darin",56050,5050,7050,14700,0,31600,"R","IL"
+"87","Stefanik","Elise",55675,0,0,5500,6650,3750,"R","NY"
+"88","Schrader","Kurt",55500,2000,2000,15000,2500,3200,"D","OR"
+"89","Curbelo","Carlos",55400,0,0,4000,10750,4700,"R","FL"
+"90","Whitfield","Ed",55100,9500,16000,0,0,500,"R","KY"
+"91","Poliquin","Bruce",54100,0,100,3800,0,500,"R","ME"
+"92","Holding","George",54082,1000,1000,5500,0,22700,"R","NC"
+"93","Babin","Brian",53650,0,4700,7700,1000,0,"R","TX"
+"94","Renacci","Jim",53243,0,0,4500,1000,2250,"R","OH"
+"95","Huelskamp","Tim",52400,0,0,1000,0,2700,"R","KS"
+"96","Murphy","Tim",51750,27200,34950,21500,0,0,"R","PA"
+"97","Knight","Steve",50400,0,850,0,0,0,"R","CA"
+"98","Walberg","Tim",49450,12500,28500,1000,0,0,"R","MI"
+"99","Yoder","Kevin",49375,0,13800,2000,0,44800,"R","KS"
+"100","Royce","Ed",49300,0,0,2500,1000,2000,"R","CA"
+"101","Bridenstine","James",49100,1000,1000,3250,0,0,"R","OK"
+"102","Simpson","Mike",46700,3700,12450,5000,7750,1000,"R","ID"
+"103","Wagner","Ann",45500,12900,14900,6000,0,500,"R","MO"
+"104","Issa","Darrell",45000,1000,2000,16100,0,0,"R","CA"
+"105","Long","Billy",45000,2500,6000,5500,0,0,"R","MO"
+"106","Duncan","Jeff",44750,0,0,10500,5000,0,"R","SC"
+"107","Dold","Bob",43900,1000,2000,12250,7900,11750,"R","IL"
+"108","Rothfus","Keith J",43550,43850,59850,12050,0,0,"R","PA"
+"109","Messer","Luke",43400,0,31200,2000,0,2500,"R","IN"
+"110","Black","Diane",43250,0,0,3000,1000,1000,"R","TN"
+"111","Burgess","Michael",43100,0,0,0,0,0,"R","TX"
+"112","Hardy","Cresent",42700,0,15000,7000,0,0,"R","NV"
+"113","Jenkins","Evan",42600,28600,51200,3000,0,0,"R","WV"
+"114","Palazzo","Steven",41200,0,1000,3500,0,0,"R","MS"
+"115","Westerman","Bruce",41200,1000,2000,3000,0,2250,"R","AR"
+"116","Hoyer","Steny H",40500,0,0,15000,2288,4500,"D","MD"
+"117","Ratcliffe","John",40050,0,0,6400,0,0,"R","TX"
+"118","Goodlatte","Bob",39950,0,0,5450,0,0,"R","VA"
+"119","Griffith","Morgan",38568,26100,32850,3500,0,0,"R","VA"
+"120","Barr","Andy",38500,87200,98050,3000,0,0,"R","KY"
+"121","Johnson","Sam",37050,0,0,5700,0,1000,"R","TX"
+"122","Costello","Ryan",36250,0,1500,9500,5400,1000,"R","PA"
+"123","Peterson","Collin",35575,1500,4500,0,0,23500,"D","MN"
+"124","Roskam","Peter",35350,0,0,5450,0,1000,"R","IL"
+"125","Brooks","Susan",35200,1750,2750,1000,2000,5000,"R","IN"
+"126","Mooney","Alex",35200,20726,31126,9000,0,250,"R","WV"
+"127","Perry","Scott",35000,0,0,10500,0,0,"R","PA"
+"128","Vela","Filemon",35000,0,0,7000,0,1000,"D","TX"
+"129","Hill","French",34950,0,0,7700,750,0,"R","AR"
+"130","Barletta","Lou",34550,4200,4950,9000,0,0,"R","PA"
+"131","Larsen","Rick",34500,0,0,14000,3000,0,"D","WA"
+"132","Gibbs","Bob",34000,2000,8000,2000,1000,3500,"R","OH"
+"133","Dent","Charlie",33900,0,2000,5000,250,500,"R","PA"
+"134","Graves","Tom",33800,0,20700,3000,0,0,"R","GA"
+"135","Byrne","Bradley",33450,10400,10900,4000,0,0,"R","AL"
+"136","Smith","Jason",33300,2000,8750,1000,0,7000,"R","MO"
+"137","Ashford","Brad",33250,2000,3000,1750,0,8000,"D","NE"
+"138","Garrett","Scott",31850,0,0,1250,0,5400,"R","NJ"
+"139","Ellmers","Renee",30500,0,0,4500,0,1000,"R","NC"
+"140","Newhouse","Dan",30400,4000,8000,5150,0,250,"R","WA"
+"141","Bost","Mike",30250,27050,33400,2500,0,1000,"R","IL"
+"142","Collins","Doug",30250,0,0,1600,0,0,"R","GA"
+"143","Turner","Michael R",29950,0,0,2000,0,0,"R","OH"
+"144","Joyce","David P",29850,13900,38100,3500,3000,2200,"R","OH"
+"145","Van","Hollen Chris",29750,0,0,5325,77905,25420,"D","MD"
+"146","Brady","Robert A",28875,0,0,0,0,0,"D","PA"
+"147","Gowdy","Trey",28700,0,0,1000,0,0,"R","SC"
+"148","Guinta","Frank",28600,0,0,0,0,750,"R","NH"
+"149","Walorski","Jackie",28500,2000,4000,0,0,11000,"R","IN"
+"150","Lujan","Ben Ray",28000,2000,9500,12000,9525,6000,"D","NM"
+"151","LaMalfa","Doug",27550,0,0,10250,0,0,"R","CA"
+"152","Mica","John L",27500,0,2550,2500,0,500,"R","FL"
+"153","Kelly","Trent",27450,2700,2700,3000,0,0,"R","MS"
+"154","MacArthur","Thomas",26600,0,0,15900,1500,1000,"R","NJ"
+"155","Rokita","Todd",26600,500,2500,0,0,6000,"R","IN"
+"156","Lance","Leonard",26200,0,0,7000,0,0,"R","NJ"
+"157","Donovan","Dan",26000,0,0,1000,0,0,"R","NY"
+"158","Doyle","Mike",26000,0,1500,19000,2477,0,"D","PA"
+"159","Castro","Joaquin",25600,0,0,2500,2000,0,"D","TX"
+"160","Young","David",25000,0,0,2500,0,22750,"R","IA"
+"161","Cardenas","Tony",24800,0,0,7300,6200,1500,"D","CA"
+"162","Murphy","Patrick",24203,0,617,8200,105523,17627,"D","FL"
+"163","Green","Al",24200,0,0,0,0,0,"D","TX"
+"164","Gohmert","Louis B Jr",23750,0,1000,1250,0,0,"R","TX"
+"165","Rouzer","David",23740,0,0,2000,0,0,"R","NC"
+"166","Bilirakis","Gus",23700,0,0,0,0,0,"R","FL"
+"167","Frelinghuysen","Rodney",23000,2000,5000,5500,0,0,"R","NJ"
+"168","Pallone","Frank Jr",22900,0,500,13400,4090,12000,"D","NJ"
+"169","Beyer","Don",22850,0,0,11600,5218,8400,"D","VA"
+"170","Amash","Justin",22650,0,0,0,0,0,"R","MI"
+"171","Duffy","Sean P",22495,0,1000,2000,0,2500,"R","WI"
+"172","Grothman","Glenn",22150,0,0,0,0,500,"R","WI"
+"173","Price","Tom",22000,0,0,2500,0,0,"R","GA"
+"174","Roby","Martha",21950,7500,7500,2000,0,0,"R","AL"
+"175","Blum","Rod",21900,0,0,900,0,14050,"R","IA"
+"176","Rogers","Hal",21800,21400,38400,0,0,0,"R","KY"
+"177","Norcross","Don",21700,0,2700,7000,1000,0,"D","NJ"
+"178","Capuano","Michael E",21500,0,1000,2100,1500,0,"D","MA"
+"179","McClintock","Tom",20900,0,0,4000,0,0,"R","CA"
+"180","Benishek","Dan",20525,2000,4000,0,1000,0,"R","MI"
+"181","Harris","Andy",20500,2000,5000,2000,250,0,"R","MD"
+"182","Bishop","Mike",20400,0,1000,0,0,0,"R","MI"
+"183","Welch","Peter",20052,0,0,7000,4650,8525,"D","VT"
+"184","Foster","Bill",19350,0,0,5400,28519,4200,"D","IL"
+"185","Foxx","Virginia",19250,2000,4500,5000,0,0,"R","NC"
+"186","Aderholt","Robert B",19200,8000,9000,0,0,0,"R","AL"
+"187","Pittenger","Robert",18900,0,0,13900,0,0,"R","NC"
+"188","Lummis","Cynthia",18700,13500,20500,1000,0,0,"R","WY"
+"189","Mulvaney","Mick",18500,0,0,0,0,0,"R","SC"
+"190","Woodall","Rob",18500,0,0,2000,0,0,"R","GA"
+"191","Ribble","Reid",18400,0,0,1000,0,0,"R","WI"
+"192","Cook","Paul",18000,0,2750,13500,0,5400,"R","CA"
+"193","Crowley","Joseph",18000,0,500,6000,3500,1285,"D","NY"
+"194","Hultgren","Randy",18000,1000,1000,11000,0,0,"R","IL"
+"195","Thompson","Bennie G",18000,0,0,10000,500,0,"D","MS"
+"196","Huizenga","Bill",17750,0,1000,0,0,0,"R","MI"
+"197","Marino","Tom",17750,2950,2950,4250,0,10000,"R","PA"
+"198","Palmer","Gary",17300,13300,13300,0,0,0,"R","AL"
+"199","Fleischmann","Chuck",17200,3000,5000,4500,0,0,"R","TN"
+"200","Bucshon","Larry",17000,19000,22500,0,0,5000,"R","IN"
+"201","Carter","John",16700,0,0,0,0,0,"R","TX"
+"202","Graves","Sam",16500,1000,1000,3000,0,7000,"R","MO"
+"203","Womack","Steve",16500,0,0,3000,0,0,"R","AR"
+"204","Jordan","Jim",16000,0,2000,1000,0,0,"R","OH"
+"205","Pitts","Joe",16000,0,0,3500,0,0,"R","PA"
+"206","Rice","Tom",15750,0,0,0,0,0,"R","SC"
+"207","Israel","Steve",15600,0,0,4000,4097,5400,"D","NY"
+"208","Kennedy","Joe III",15600,0,0,2000,19750,2750,"D","MA"
+"209","Posey","Bill",15600,0,0,0,0,0,"R","FL"
+"210","Allen","Richard W",15500,0,0,0,0,0,"R","GA"
+"211","Butterfield","G K",15500,0,0,3000,2500,2000,"D","NC"
+"212","Jackson","Lee Sheila",15500,0,0,500,0,0,"D","TX"
+"213","Rush","Bobby",15500,0,0,12000,4000,1000,"D","IL"
+"214","Ryan","Tim",15500,0,0,4000,6400,0,"D","OH"
+"215","Walz","Tim",15500,0,0,0,300,4500,"D","MN"
+"216","Beutler","Jaime Herrera",15465,0,750,3100,0,0,"R","WA"
+"217","Loudermilk","Barry",15250,0,0,1000,0,0,"R","GA"
+"218","Labrador","Raul",14900,250,3750,5500,2000,0,"R","ID"
+"219","Abraham","Ralph",14550,0,3200,6250,0,0,"R","LA"
+"220","Matsui","Doris",14500,0,0,1000,6200,0,"D","CA"
+"221","Dingell","Debbie",14200,0,0,4000,5027,250,"D","MI"
+"222","Sanchez","Loretta",14200,0,0,1500,2754,100,"D","CA"
+"223","Salmon","Matt",14150,0,7000,2500,0,0,"R","AZ"
+"224","Bishop","Sanford",14000,3000,7000,0,0,1000,"D","GA"
+"225","Fincher","Steve",14000,0,0,0,0,0,"R","TN"
+"226","Massie","Thomas",14000,1000,1000,0,0,0,"R","KY"
+"227","Sensenbrenner","Jim",14000,0,1500,0,0,0,"R","WI"
+"228","Wilson","Joe",14000,0,0,0,0,2500,"R","SC"
+"229","Smith","Adrian",13750,2500,2500,2500,0,16500,"R","NE"
+"230","Carter","Buddy",13500,0,0,1000,0,0,"R","GA"
+"231","Jones","Walter B Jr",13500,0,0,500,0,0,"R","NC"
+"232","Ross","Dennis",13500,0,0,0,0,0,"R","FL"
+"233","Clyburn","James E",13430,0,0,3000,1250,1500,"D","SC"
+"234","Wittman","Rob",13250,0,0,0,2750,0,"R","VA"
+"235","Meadows","Mark",12800,0,0,0,0,0,"R","NC"
+"236","Jolly","David",12600,0,0,3500,0,1000,"R","FL"
+"237","Duncan","John J Jr",12500,1500,1500,0,0,500,"R","TN"
+"238","Hurt","Robert",12500,0,0,4500,0,0,"R","VA"
+"239","Rogers","Mike D",12500,11000,11000,3000,0,0,"R","AL"
+"240","Bustos","Cheri",12140,0,0,4000,16006,17205,"D","IL"
+"241","Perlmutter","Ed",11950,0,5250,0,9250,1000,"D","CO"
+"242","Grisham","Michelle Lujan",11750,0,5000,0,5500,2500,"D","NM"
+"243","Engel","Eliot",11200,0,2700,0,1000,1000,"D","NY"
+"244","Larson","John",11000,0,0,3000,2500,0,"D","CT"
+"245","LoBiondo","Frank",11000,0,0,5500,4500,0,"R","NJ"
+"246","Lowenthal","Alan",11000,0,1000,2000,7223,100,"D","CA"
+"247","Sinema","Kyrsten",11000,0,7500,2750,0,4000,"D","AZ"
+"248","Emmer","Tom",10950,0,1000,300,0,8000,"R","MN"
+"249","Maloney","Carolyn",10805,0,0,5,2500,0,"D","NY"
+"250","Doggett","Lloyd",10800,0,0,0,2750,3700,"D","TX"
+"251","Hunter","Duncan D",10500,0,0,1000,0,0,"R","CA"
+"252","Duckworth","Tammy",10478,10,40,1533,268458,26833,"D","IL"
+"253","Moolenaar","John",10050,0,0,0,0,1000,"R","MI"
+"254","Amodei","Mark",10000,0,38450,2000,0,0,"R","NV"
+"255","DelBene","Suzan",10000,0,0,0,33957,0,"D","WA"
+"256","Reichert","Dave",10000,0,250,4750,0,16500,"R","WA"
+"257","Schweikert","David",10000,0,5250,0,0,0,"R","AZ"
+"258","Higgins","Brian M",9850,0,0,8850,1000,3500,"D","NY"
+"259","Hartzler","Vicky",9400,2000,2000,3000,0,0,"R","MO"
+"260","Peters","Scott",9400,0,0,5900,27449,10050,"D","CA"
+"261","Scott","David",9250,0,250,2000,0,0,"D","GA"
+"262","Swalwell","Eric",9200,0,500,2000,9900,5900,"D","CA"
+"263","Yoho","Ted",9150,0,0,3750,0,0,"R","FL"
+"264","Graham","Gwen",9000,0,300,1000,7000,0,"D","FL"
+"265","Ros-Lehtinen","Ileana",9000,0,0,0,1000,0,"R","FL"
+"266","Ruiz","Raul",9000,280,280,3500,27078,6900,"D","CA"
+"267","Sewell","Terri",8700,10000,10000,0,0,0,"D","AL"
+"268","Rohrabacher","Dana",8650,0,0,0,0,0,"R","CA"
+"269","Kaptur","Marcy",8500,0,2000,4000,1000,3000,"D","OH"
+"270","Desjarlais","Scott",8400,800,800,0,0,0,"R","TN"
+"271","King","Pete",8400,0,0,0,0,0,"R","NY"
+"272","Keating","Bill",8250,0,0,3000,4000,0,"D","MA"
+"273","Bonamici","Suzanne",8150,0,0,2750,9358,0,"D","OR"
+"274","Desaulnier","Mark",8000,0,0,0,3750,0,"D","CA"
+"275","Visclosky","Pete",8000,0,2000,2000,0,1000,"D","IN"
+"276","Ellison","Keith",7663,0,0,0,17245,10,"D","MN"
+"277","Sanchez","Linda",7575,0,0,75,5330,1500,"D","CA"
+"278","Clark","Katherine",7503,0,0,1000,9575,1300,"D","MA"
+"279","Kind","Ron",7500,0,0,1000,4775,2000,"D","WI"
+"280","Maloney","Sean Patrick",7500,0,0,4000,9406,750,"D","NY"
+"281","Polis","Jared",7500,0,0,0,10975,0,"D","CO"
+"282","Thompson","Mike",7500,0,0,0,14000,9885,"D","CA"
+"283","Loebsack","David",7250,0,2500,4500,13750,20000,"D","IA"
+"284","Rigell","Scott",7200,0,0,1000,0,0,"R","VA"
+"285","Brat","Dave",7000,0,0,2000,0,2250,"R","VA"
+"286","Neal","Richard E",7000,0,0,3500,1000,0,"D","MA"
+"287","Sanford","Mark",7000,0,0,1000,0,0,"R","SC"
+"288","Walker","Mark",7000,0,0,0,0,0,"R","NC"
+"289","Wenstrup","Brad",7000,5400,5400,1000,0,0,"R","OH"
+"290","Gabbard","Tulsi",6800,0,0,0,5000,8195,"D","HI"
+"291","Kirkpatrick","Ann",6720,0,7315,140,16397,813,"D","AZ"
+"292","Lipinski","Daniel",6500,0,0,0,0,0,"D","IL"
+"293","Torres","Norma",6500,0,0,3500,5200,0,"D","CA"
+"294","Webster","Daniel",6300,0,600,0,0,0,"R","FL"
+"295","Crawford","Rick",6250,0,0,3000,0,0,"R","AR"
+"296","McGovern","James P",6010,0,0,0,9480,0,"D","MA"
+"297","Becerra","Xavier",6000,0,0,2000,4200,3500,"D","CA"
+"298","Diaz-Balart","Mario",6000,0,0,3500,1000,0,"R","FL"
+"299","Gosar","Paul",6000,3000,23750,1000,250,250,"R","AZ"
+"300","Luetkemeyer","Blaine",6000,6400,8400,3000,0,5500,"R","MO"
+"301","Price","David",6000,0,0,1000,14029,0,"D","NC"
+"302","Kilmer","Derek",5950,0,0,0,38079,250,"D","WA"
+"303","Westmoreland","Lynn A",5750,0,0,0,0,0,"R","GA"
+"304","Nadler","Jerrold",5650,0,0,0,7550,0,"D","NY"
+"305","Beatty","Joyce",5550,0,0,1500,0,0,"D","OH"
+"306","Buchanan","Vernon",5500,0,0,2000,500,0,"R","FL"
+"307","DeFazio","Peter",5500,0,0,0,3112,0,"D","OR"
+"308","Franks","Trent",5500,0,5000,3000,0,0,"R","AZ"
+"309","Kelly","Robin",5500,0,0,0,2000,500,"D","IL"
+"310","Moulton","Seth",5500,0,0,1000,13100,1000,"D","MA"
+"311","Davidson","Warren",5416,0,1002,25,100,0,"R","OH"
+"312","Honda","Mike",5400,0,600,0,30625,3143,"D","CA"
+"313","Tonko","Paul",5400,0,0,4000,11957,7390,"D","NY"
+"314","Rice","Kathleen",5200,0,0,0,13800,3700,"D","NY"
+"315","Cummings","Elijah E",5000,0,0,0,5052,0,"D","MD"
+"316","Hice","Jody",5000,0,3000,2000,2000,2600,"R","GA"
+"317","Huffman","Jared",5000,120,120,5000,27849,1025,"D","CA"
+"318","Kline","John",5000,0,0,0,0,0,"R","MN"
+"319","Napolitano","Grace",5000,0,0,5000,2651,0,"D","CA"
+"320","Rooney","Tom",5000,0,0,0,0,0,"R","FL"
+"321","Sherman","Brad",5000,0,0,0,0,0,"D","CA"
+"322","Waters","Maxine",5000,0,0,0,4700,0,"D","CA"
+"323","Tsongas","Niki",4700,0,0,0,9058,2000,"D","MA"
+"324","McNerney","Jerry",4500,0,0,2000,46457,18750,"D","CA"
+"325","Roe","Phil",4500,300,300,0,0,0,"R","TN"
+"326","Edwards","Donna",4456,0,0,1500,16200,4175,"D","MD"
+"327","King","Steven A",4150,0,0,0,0,19050,"R","IA"
+"328","Clay","William L Jr",4000,0,0,0,2000,0,"D","MO"
+"329","Johnson","Eddie Bernice",4000,0,0,0,2500,0,"D","TX"
+"330","Pocan","Mark",4000,0,0,2000,4100,2500,"D","WI"
+"331","Trott","Dave",4000,0,0,0,0,0,"R","MI"
+"332","Forbes","Randy",3950,0,0,1000,0,0,"R","VA"
+"333","Blumenauer","Earl",3900,0,0,3650,10650,17200,"D","OR"
+"334","Connolly","Gerry",3800,0,0,3750,4665,2000,"D","VA"
+"335","Boyle","Brendan",3750,0,0,3000,6899,0,"D","PA"
+"336","Esty","Elizabeth",3700,0,1600,3700,27659,1000,"D","CT"
+"337","Lofgren","Zoe",3700,0,0,0,17100,6400,"D","CA"
+"338","Quigley","Mike",3700,0,0,0,3900,0,"D","IL"
+"339","Cooper","Jim",3500,0,0,1000,0,2700,"D","TN"
+"340","Delaney","John K",3500,0,0,3500,11438,0,"D","MD"
+"341","Deutch","Ted",3500,0,0,0,2500,0,"D","FL"
+"342","Hanabusa","Colleen",3500,0,0,0,0,2000,"D","HI"
+"343","Ruppersberger","Dutch",3500,0,0,2000,2752,2700,"D","MD"
+"344","Sires","Albio",3500,0,0,2000,0,0,"D","NJ"
+"345","Bera","Ami",3095,0,0,2745,44633,4815,"D","CA"
+"346","Courtney","Joe",3000,0,0,2000,5550,0,"D","CT"
+"347","Fitzpatrick","Michael G",3000,0,0,0,0,0,"R","PA"
+"348","Gallego","Ruben",3000,0,0,1500,9960,11231,"D","AZ"
+"349","Himes","Jim",3000,0,2600,3000,5209,25,"D","CT"
+"350","Payne","Donald M Jr",3000,0,0,0,0,1000,"D","NJ"
+"351","Scott","Austin",3000,0,3000,0,3885,0,"R","GA"
+"352","Pascrell","Bill Jr",2750,0,0,1000,2000,7000,"D","NJ"
+"353","Lee","Barbara",2700,0,0,0,17098,0,"D","CA"
+"354","Neugebauer","Randy",2700,0,0,0,0,0,"R","TX"
+"355","Carney","John",2500,0,0,0,0,0,"D","DE"
+"356","Cartwright","Matt",2500,0,0,1000,13671,0,"D","PA"
+"357","Hinojosa","Ruben",2500,0,0,1000,0,0,"D","TX"
+"358","Lynch","Stephen",2500,0,0,0,0,4200,"D","MA"
+"359","Meeks","Gregory",2500,0,0,0,0,0,"D","NY"
+"360","Pelosi","Nancy",2393,0,0,905,19295,7233,"D","CA"
+"361","Chabot","Steve",2100,0,0,1000,750,0,"R","OH"
+"362","Sarbanes","John",2100,0,0,0,100,2700,"D","MD"
+"363","Clarke","Yvette",2000,0,0,0,2000,0,"D","NY"
+"364","Davis","Danny K",2000,0,0,0,1000,6000,"D","IL"
+"365","Levin","Sander",2000,0,0,2000,4750,2000,"D","MI"
+"366","Norton","Eleanor Holmes",2000,0,0,2000,0,0,"D","DC"
+"367","Takai","Mark",2000,0,0,0,2584,4000,"D","HI"
+"368","Nolan","Rick",1574,0,18941,1041,14667,3870,"D","MN"
+"369","Grayson","Alan",1534,0,0,545,27895,234,"D","FL"
+"370","Lewis","John",1500,0,0,0,2000,300,"D","GA"
+"371","Meng","Grace",1500,0,0,0,1000,500,"D","NY"
+"372","Carson","Andre",1250,0,0,0,0,1000,"D","IN"
+"373","Brownley","Julia",1143,90,90,50,25623,1425,"D","CA"
+"374","Aguilar","Pete",1103,0,0,1100,30846,755,"D","CA"
+"375","Schultz","Debbie Wasserman",1050,0,0,0,22330,8400,"D","FL"
+"376","Bass","Karen",1000,0,5000,0,8700,0,"D","CA"
+"377","Cleaver","Emanuel",1000,0,0,0,2000,0,"D","MO"
+"378","Coleman","Bonnie Watson",1000,0,0,0,2500,0,"D","NJ"
+"379","Crenshaw","Ander",1000,0,0,0,0,0,"R","FL"
+"380","Frankel","Lois",1000,0,5,0,3910,0,"D","FL"
+"381","Garamendi","John",1000,0,0,1000,5327,6400,"D","CA"
+"382","Heck","Dennis",1000,0,0,0,8250,3000,"D","WA"
+"383","Jeffries","Hakeem",1000,0,0,0,2000,0,"D","NY"
+"384","Miller","Jeff",1000,0,0,1000,2500,0,"R","FL"
+"385","Pierluisi","Pedro",1000,0,0,1000,0,0,"D","PR"
+"386","Plaskett","Stacey",1000,0,0,1000,0,0,"D","VI"
+"387","Smith","Chris",1000,0,0,0,0,0,"R","NJ"
+"388","Fortenberry","Jeff",500,0,0,0,6400,2000,"R","NE"
+"389","Kildee","Dan",500,0,0,0,3573,1500,"D","MI"
+"390","Langevin","Jim",500,0,0,0,2000,2000,"D","RI"
+"391","O'Rourke","Beto",250,0,0,250,0,0,"D","TX"
+"392","Yarmuth","John",250,0,0,0,1850,0,"D","KY"
+"393","Lawrence","Brenda",100,0,0,0,4000,0,"D","MI"
+"394","Nunnelee","Alan",100,0,0,0,0,0,"R","MS"
+"395","Schakowsky","Jan",15,0,0,0,10750,4350,"D","IL"
+"396","Kuster","Ann",5,0,0,0,42911,12965,"D","NH"
+"397","Grijalva","Raul M",3,0,0,0,17218,501,"D","AZ"
+"398","Titus","Dina",0,0,13000,0,3060,6000,"D","NV"
+"399","DeLauro","Rosa",0,0,4575,0,5000,0,"D","CT"
+"400","DeGette","Diana",0,0,1000,0,11150,0,"D","CO"
+"401","Fudge","Marcia",0,0,0,1000,1000,0,"D","OH"
+"402","Eshoo","Anna",0,0,0,0,14500,4700,"D","CA"
+"403","Speier","Jackie",0,0,0,0,13800,1000,"D","CA"
+"404","Lowey","Nita M",0,0,0,0,13316,0,"D","NY"
+"405","McCollum","Betty",0,0,0,0,10000,650,"D","MN"
+"406","Adams","Alma",0,0,0,0,8508,250,"D","NC"
+"407","Lieu","Ted",0,0,0,0,7950,0,"D","CA"
+"408","Slaughter","Louise M",0,0,0,0,7530,0,"D","NY"
+"409","Pingree","Chellie",0,0,0,0,7420,1000,"D","ME"
+"410","Takano","Mark",0,0,0,0,6300,0,"D","CA"
+"411","Davis","Susan",0,0,0,0,5200,500,"D","CA"
+"412","Wilson","Frederica",0,0,0,0,4566,0,"D","FL"
+"413","Roybal-Allard","Lucille",0,0,0,0,3700,0,"D","CA"
+"414","Johnson","Hank",0,0,0,0,3500,0,"D","GA"
+"415","Chu","Judy",0,0,0,0,3200,0,"D","CA"
+"416","Scott","Bobby",0,0,0,0,3200,0,"D","VA"
+"417","Castor","Kathy",0,0,0,0,3100,0,"D","FL"
+"418","Gutierrez","Luis V",0,0,0,0,2117,0,"D","IL"
+"419","Cicilline","David",0,0,0,0,2000,1500,"D","RI"
+"420","Hastings","Alcee",0,0,0,0,2000,0,"D","FL"
+"421","Moore","Gwen",0,0,0,0,2000,0,"D","WI"
+"422","Conyers","John Jr",0,0,0,0,1250,0,"D","MI"
+"423","Schiff","Adam",0,0,0,0,1250,0,"D","CA"
+"424","Serrano","Jose E",0,0,0,0,1250,0,"D","NY"
+"425","Bordallo","Madeleine Z",0,0,0,0,1000,0,"D","GU"
+"426","Vargas","Juan",0,0,0,0,1000,0,"D","CA"
+"427","Velazquez","Nydia",0,0,0,0,1000,0,"D","NY"
+"428","Cohen","Steve",0,0,0,0,500,500,"D","TN"
+"429","Hanna","Richard",0,0,0,0,250,0,"R","NY"
+"430","Schock","Aaron",0,0,0,0,0,3000,"R","IL"

@@ -1,4 +1,5 @@
-linters: linters_with_defaults() # see vignette("lintr")
-encoding: "UTF-8"
-
-regex: #[[:space:]]*nolint
+linters: linters_with_defaults(
+    indentation_linter(indent = 4L),
+    line_length_linter(140),
+    commented_code_linter = NULL
+  )
