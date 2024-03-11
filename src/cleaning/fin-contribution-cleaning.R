@@ -1,78 +1,80 @@
 # SET UP
 library(tidyverse)
+library(fuzzyjoin)
 
 # import data cleaning pipeline:
 source("src/cleaning/utils/fin_cleaning_functions.R")
 source("src/cleaning/utils/roll_call_cleaning_functions.R")
+# source("src/cleaning/utils/rep_cleaning_functions.R")
 
 # IMPORT DATASETS
 # fossil fuel oriented
 # oil & gas contributions
-oil_114 <- read_csv("data/original/oil_gas_contribution-2013-2014.csv",
+oil_114 <- read_csv("data/original/oil_gas_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
-oil_115 <- read_csv("data/original/oil_gas_contribution-2015-2016.csv",
+oil_115 <- read_csv("data/original/oil_house_candidates_2016_el.csv",
     show_col_types = FALSE
 )
-oil_116 <- read_csv("data/original/oil_gas_contribution-2017-2018.csv",
+oil_116 <- read_csv("data/original/oil_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
 # coal mining contributions
-coal_114 <- read_csv("data/original/Coal_2013-2014.csv",
+coal_114 <- read_csv("data/original/coal_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
-coal_115 <- read_csv("data/original/Coal_2015-2016.csv",
+coal_115 <- read_csv("data/original/coal_house_candidates_2016_el.csv",
     show_col_types = FALSE
 )
-coal_116 <- read_csv("data/original/Coal_2017-2018.csv",
+coal_116 <- read_csv("data/original/coal_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
 # mining
-mining_114 <- read_csv("data/original/Mining_2013-2014.csv",
+mining_114 <- read_csv("data/original/mining_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
-mining_115 <- read_csv("data/original/Mining_2015-2016.csv",
+mining_115 <- read_csv("data/original/mining_house_candidates_2016_el.csv",
     show_col_types = FALSE
 )
-mining_116 <- read_csv("data/original/Mining_2017-2018.csv",
+mining_116 <- read_csv("data/original/mining_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
 # gas pipelines
-gas_114 <- read_csv("data/original/Gas_2013-2014.csv",
+gas_114 <- read_csv("data/original/gas_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
-gas_115 <- read_csv("data/original/Gas_2015-2016.csv",
+gas_115 <- read_csv("data/original/gas_house_candidates_2016_el.csv",
     show_col_types = FALSE
 )
-gas_116 <- read_csv("data/original/Gas_2017-2018.csv",
+gas_116 <- read_csv("data/original/gas_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
 
 # environmentally friendly financial contributions
 # alternative energy production
-alternative_en_114 <- read_csv("data/original/Alternative_Energy_Production_2013-2014.csv",
+alternative_en_114 <- read_csv("data/original/alt_en_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
-alternative_en_115 <- read_csv("data/original/Alternative_Energy_Production_2015-2016.csv",
+alternative_en_115 <- read_csv("data/original/alt_en_house_candidates_2016_el.csv",
     show_col_types = FALSE
 )
-alternative_en_116 <- read_csv("data/original/Alternative_Energy_Production_2017-2018.csv",
+alternative_en_116 <- read_csv("data/original/alt_en_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
 # environmental contributions
-env_114 <- read_csv("data/original/Environment_2013-2014.csv",
+env_114 <- read_csv("data/original/env_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
-env_115 <- read_csv("data/original/Environment_2015-2016.csv",
+env_115 <- read_csv("data/original/env_house_candidates_2016_el.csv",
     show_col_types = FALSE
 )
-env_116 <- read_csv("data/original/Environment_2017-2018.csv",
+env_116 <- read_csv("data/original/env_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
-# data with all politicians of this term (not only those who received contribution)
-rep_114 <- read_csv("data/original/term-114.csv", show_col_types = FALSE)
-rep_115 <- read_csv("data/original/term-115.csv", show_col_types = FALSE)
-rep_116 <- read_csv("data/original/term-116.csv", show_col_types = FALSE)
+# cleaned data with all politicians of this term (not only those who received contribution)
+rep_114 <- read_csv("data/cleaned/cleaned_representatives_114_manual.csv", show_col_types = FALSE)
+rep_115 <- read_csv("data/cleaned/cleaned_representatives_115_manual.csv", show_col_types = FALSE)
+rep_116 <- read_csv("data/cleaned/cleaned_representatives_116_manual.csv", show_col_types = FALSE)
 
 # CLEAN DATA
 # 114th Congress
@@ -108,18 +110,27 @@ alternative_en_114 <- contribution_clean(alternative_en_114)
 alternative_en_115 <- contribution_clean(alternative_en_115)
 alternative_en_116 <- contribution_clean(alternative_en_116)
 
-# view(alternative_en_114)
-# view(env_114)
-# view(gas_114)
-# view(mining_114)
-# view(coal_114)
-# view(oil_114)
+# since this rep data is pre-cleaned, we don't need to apply the rep_name_split_keep_imp_cols function,
+# just the remove_index_state_abbrev function
 
+# apply remove_index_state_abbrev function
+rep_114 <- remove_index(rep_114)
+rep_115 <- remove_index(rep_115)
+rep_116 <- remove_index(rep_116)
 
-# use rep_name_split_keep_imp_cols function
-rep_114 <- rep_name_split_keep_imp_cols(rep_114)
-rep_115 <- rep_name_split_keep_imp_cols(rep_115)
-rep_116 <- rep_name_split_keep_imp_cols(rep_116)
+# apply state abbreviations to state
+rep_114 <- add_state_abbrev(rep_114)
+rep_115 <- add_state_abbrev(rep_115)
+rep_116 <- add_state_abbrev(rep_116)
+
+# apply party abbreviation function
+rep_114 <- party_abbreviation(rep_114)
+rep_115 <- party_abbreviation(rep_115)
+rep_116 <- party_abbreviation(rep_116)
+
+# view(rep_114)
+# view(rep_115)
+# view(rep_116)
 
 # add suffix to columns "Amount", "Party", "StateAbbreviation" based on the dataset
 columns_to_suffix <- c("Amount", "Party", "StateAbbreviation")
@@ -146,7 +157,6 @@ env_116 <- add_suffix(env_116, ".env.116", columns_to_suffix)
 alternative_en_114 <- add_suffix(alternative_en_114, ".alt_en.114", columns_to_suffix)
 alternative_en_115 <- add_suffix(alternative_en_115, ".alt_en.115", columns_to_suffix)
 alternative_en_116 <- add_suffix(alternative_en_116, ".alt_en.116", columns_to_suffix)
-
 
 # Process datasets for each congressional term
 master_df_114 <- process_financial_data(
@@ -180,52 +190,91 @@ master_df_116 <- process_financial_data(
     )
 )
 
-# write.csv(master_df_114, "data/cleaned/master_df_114.csv")
-# write.csv(master_df_115, "data/cleaned/master_df_115.csv")
-# write.csv(master_df_115, "data/cleaned/master_df_116.csv")
+# view(master_df_114)
+write.csv(master_df_114, "data/cleaned/master_df_114.csv")
+write.csv(master_df_115, "data/cleaned/master_df_115.csv")
+write.csv(master_df_115, "data/cleaned/master_df_116.csv")
+
+
+# merge master dfs from each term with the list of all representatives
+all_reps_114 <- left_join(rep_114[, c("LastName", "FirstName", "State", "Party")],
+    master_df_114,
+    by = c("LastName", "FirstName", c("State" = "StateAbbreviation"), c("Party"))
+)
+# NA to 0 for all amount cols, aka those who did not receive any contributions from the energy & env. sectors
+amount_cols <- grep("^Amount", names(all_reps_114), value = TRUE)
+all_reps_114[amount_cols][is.na(all_reps_114[amount_cols])] <- 0
+
+# remove non-voting members
+all_reps_114 <- remove_non_voting(all_reps_114)
+
+# view(all_reps_114)
+
+# repeat for 115 and 116
+all_reps_115 <- left_join(rep_115[, c("LastName", "FirstName", "State", "Party")],
+    master_df_115,
+    by = c("LastName", "FirstName", c("State" = "StateAbbreviation"), c("Party"))
+)
+# NA to 0 for all amount cols, aka those who did not receive any contributions from the energy & env. sectors
+amount_cols <- grep("^Amount", names(all_reps_115), value = TRUE)
+all_reps_115[amount_cols][is.na(all_reps_115[amount_cols])] <- 0
+# remove non-voting members
+all_reps_115 <- remove_non_voting(all_reps_115)
+
+# view(all_reps_115)
+
+all_reps_116 <- left_join(rep_116[, c("LastName", "FirstName", "State", "Party")],
+    master_df_116,
+    by = c("LastName", "FirstName", c("State" = "StateAbbreviation"), c("Party"))
+)
+# NA to 0 for all amount cols, aka those who did not receive any contributions from the energy & env. sectors
+amount_cols <- grep("^Amount", names(all_reps_116), value = TRUE)
+all_reps_116[amount_cols][is.na(all_reps_116[amount_cols])] <- 0
+# remove non-voting members
+all_reps_116 <- remove_non_voting(all_reps_116)
+
+# view(all_reps_116)
+
+
+# now add the unique ID reps:
+# merge financial contributions with unique id
+id_reps <- suppressMessages(read_csv("data/cleaned/cleaned_unique_id_reps_copy_2.csv", show_col_types = FALSE))
+
+# apply cleaning function to id_reps
+id_reps <- clean_id_reps(id_reps)
+# view(id_reps)
+
+
+# merge id with fuzzy join
+
+all_reps_114 <- fuzzy_join_id(all_reps_114, id_reps)
+all_reps_115 <- fuzzy_join_id(all_reps_115, id_reps)
+all_reps_116 <- fuzzy_join_id(all_reps_116, id_reps)
+
+all_reps_114 <- remove_duplicated(all_reps_114)
+all_reps_115 <- remove_duplicated(all_reps_115)
+all_reps_116 <- remove_duplicated(all_reps_116)
+
+all_reps_114 <- remove_y_cols(all_reps_114)
+all_reps_115 <- remove_y_cols(all_reps_115)
+all_reps_116 <- remove_y_cols(all_reps_116)
+
+# view(all_reps_114) -> no more ID NAs
+# view(all_reps_115) -> no more ID NAs
+# view(all_reps_116) -> no more ID NAs
+# looks like no mismatches?
+
 
 # merge datasets
-master_df <- term_merge(
+# merge datasets
+master_df <- term_merge_2(
     list(
-        master_df_114,
-        master_df_115,
-        master_df_116
+        all_reps_114,
+        all_reps_115,
+        all_reps_116
     )
 )
 # view(master_df)
-# finish id_reps & count contributions part
+# 597 elements -> account for changes in house of representatives...(approx. 20 changes per session)
 
-# in total, the master dataset has 552 rows. aka 435 per Session = 1305 persons
-# (since we only have 552 though, this means that most overlap)
-
-# create a column called count_contribution
-
-
-
-# merge financial contributions with unique id
-id_reps <- suppressMessages(read_csv("data/cleaned_unique_id_reps_copy.csv", show_col_types = FALSE))
-
-
-# remove index column, rename Member ID to member_id
-id_reps <- subset(id_reps, select = -...1)
-id_reps <- id_reps %>%
-    rename(member_id = `Member ID`)
-
-view(id_reps)
-
-
-# to merge with fuzzy join, we also include the party and states, for that we need to include the abbreviations of the states
-state_abbreviations <- suppressMessages(read_csv("data/state_abbreviations.csv", show_col_types = FALSE))
-view(state_abbreviations)
-
-# change State column to include only abbreviations of respective states
-for (i in 1:nrow(id_reps)) {
-    if (!is.na(id_reps$State[i]) && nchar(id_reps$State[i]) > 2) {
-        state <- id_reps$State[i]
-        matching_postal <- state_abbreviations$Postal[state_abbreviations$State == state]
-        if (length(matching_postal) > 0) {
-            id_reps$State[i] <- matching_postal[1]
-        }
-    }
-}
-view(id_reps)
+# write.csv(cleaned_financial_data, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_financial_data.csv")

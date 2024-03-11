@@ -594,7 +594,13 @@ for (i in 1:nrow(all_reps_contributions_116)) {
 
 # merge datasets into one .114, .115, .116, etc.
 
-all_reps_contributions <- full_join(all_reps_contributions_114, all_reps_contributions_115[, c("LastName", "FirstName", "Party.x", "StateAbbreviation.x", "Amount.oil", "Amount.coal", "Amount.mining", "Amount.gas", "Amount.env", "Amount.alt_en")], by = c("LastName", "FirstName"), suffix = c(".114", ".115"))
+all_reps_contributions <- full_join(all_reps_contributions_114,
+    all_reps_contributions_115[, c(
+        "LastName", "FirstName", "Party.x", "StateAbbreviation.x", "Amount.oil", "Amount.coal",
+        "Amount.mining", "Amount.gas", "Amount.env", "Amount.alt_en"
+    )],
+    by = c("LastName", "FirstName"), suffix = c(".114", ".115")
+)
 
 # view(all_reps_contributions)
 # Update Party and StateAbbreviation columns if missing
@@ -618,7 +624,13 @@ all_reps_contributions <- all_reps_contributions %>%
 
 # merge all_reps (114,115) with 116.
 
-all_reps_contributions <- full_join(all_reps_contributions, all_reps_contributions_116[, c("LastName", "FirstName", "Party.x", "StateAbbreviation.x", "Amount.oil", "Amount.coal", "Amount.mining", "Amount.gas", "Amount.env", "Amount.alt_en")], by = c("LastName", "FirstName")) %>%
+all_reps_contributions <- full_join(all_reps_contributions,
+    all_reps_contributions_116[, c(
+        "LastName", "FirstName", "Party.x", "StateAbbreviation.x", "Amount.oil",
+        "Amount.coal", "Amount.mining", "Amount.gas", "Amount.env", "Amount.alt_en"
+    )],
+    by = c("LastName", "FirstName")
+) %>%
     rename("Amount.oil.116" = "Amount.oil") %>%
     rename("Amount.coal.116" = "Amount.coal") %>%
     rename("Amount.mining.116" = "Amount.mining") %>%
@@ -802,6 +814,6 @@ fuzzy_dataset <- fuzzy_dataset %>%
 
 cleaned_financial_data <- fuzzy_dataset
 # view(cleaned_financial_data)
-view(all_reps_contributions)
+# view(all_reps_contributions)
 
-write.csv(cleaned_financial_data, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_financial_data.csv")
+# write.csv(cleaned_financial_data, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_financial_data.csv")
