@@ -10,6 +10,9 @@
 ├── data
 │   ├── cleaned
 │   ├── original (raw data)
+├── thesis
+│   ├── notes
+│   ├── first draft (incl. bib, figures, tables, etc.)
 
 ```
 ## type of data
