@@ -149,6 +149,35 @@ term_merge_2 <- function(datasets) {
     return(master_df)
 }
 
+
+# function that merges the contribution datasets for the separate terms together,
+# into a master financial dataset, if State not StateAbbreviation
+term_merge_id <- function(datasets) {
+    # Create master dataframe
+    master_df <- datasets[[1]]
+
+    # Iterate over each contribution dataset except the first one using name of the dataset as suffix for the second df
+    for (i in 2:length(datasets)) {
+        master_df <- full_join(
+            master_df,
+            datasets[[i]],
+            by = c("member_id", "LastName", "FirstName", "Party", "State")
+        )
+    }
+    # Handle missing Party and StateAbbreviation, remove redundant cols
+    master_df <- combine_columns(master_df, "Party")
+    master_df <- combine_columns(master_df, "State")
+    master_df <- combine_columns(master_df, "Alias")
+
+    # relocate party and state cols
+    master_df <- master_df %>% relocate("Party", "State", "member_id", .after = "FirstName")
+
+    # remove Alias col
+    master_df <- select(master_df, -Alias)
+
+    return(master_df)
+}
+
 # remove non-voting members (state = State)
 remove_non_voting <- function(dataset) {
     dataset <- dataset %>%

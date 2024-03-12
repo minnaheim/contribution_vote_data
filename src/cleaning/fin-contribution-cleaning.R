@@ -264,17 +264,10 @@ all_reps_116 <- remove_y_cols(all_reps_116)
 # view(all_reps_116) -> no more ID NAs
 # looks like no mismatches?
 
+# merge based on id, party, state and names
+all_reps <- term_merge_id(list(all_reps_114, all_reps_115, all_reps_116))
+view(all_reps)
 
-# merge datasets
-# merge datasets
-master_df <- term_merge_2(
-    list(
-        all_reps_114,
-        all_reps_115,
-        all_reps_116
-    )
-)
-# view(master_df)
-# 597 elements -> account for changes in house of representatives...(approx. 20 changes per session)
 
-# write.csv(cleaned_financial_data, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_financial_data.csv")
+# 597 elements -> ac count for changes in house of representatives...(approx. 20 changes per session)
+write.csv(all_reps, "data/cleaned/cleaned_financial_data.csv")
