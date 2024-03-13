@@ -210,6 +210,14 @@ all_reps_114 <- remove_non_voting(all_reps_114)
 
 # view(all_reps_114)
 
+# find the representatives who did not receive any contributions
+all_reps_114_0 <- all_reps_114 %>% dplyr::filter(Amount.oil.114 == 0 & Amount.coal.114 == 0 & Amount.mining.114 == 0 &
+    Amount.gas.114 == 0 & Amount.env.114 == 0 & Amount.alt_en.114 == 0)
+
+# view(all_reps_114_0)
+
+
+
 # repeat for 115 and 116
 all_reps_115 <- left_join(rep_115[, c("LastName", "FirstName", "State", "Party")],
     master_df_115,
@@ -266,8 +274,11 @@ all_reps_116 <- remove_y_cols(all_reps_116)
 
 # merge based on id, party, state and names
 all_reps <- term_merge_id(list(all_reps_114, all_reps_115, all_reps_116))
-view(all_reps)
+# view(all_reps)
 
 
 # 597 elements -> ac count for changes in house of representatives...(approx. 20 changes per session)
+write.csv(all_reps_114, "data/cleaned/cleaned_all_reps_contribution_114.csv")
+write.csv(all_reps_115, "data/cleaned/cleaned_all_reps_contribution_115.csv")
+write.csv(all_reps_116, "data/cleaned/cleaned_all_reps_contribution_116.csv")
 write.csv(all_reps, "data/cleaned/cleaned_financial_data.csv")

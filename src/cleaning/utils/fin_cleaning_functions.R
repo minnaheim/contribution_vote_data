@@ -193,6 +193,59 @@ remove_non_voting <- function(dataset) {
 # view(master_df)
 # cleaning function for unique id of representatives
 
+# rep_u_id <- read_csv("data/original/unique_id_reps.csv", show_col_types = FALSE)
+# # view(rep_u_id)
+
+alias_finder <- function(dataset) {
+    parties <- c("Republican", "Democratic", "Independent", "Libertarian")
+    for (i in 1:nrow(dataset)) {
+        if (!(dataset$Party[i] %in% parties)) {
+            dataset[i, ]["Alias"] <- dataset$Party[i]
+            dataset[i, ]["Party"] <- NA
+        }
+    }
+    return(dataset)
+}
+
+fix_na_and_shift <- function(data) {
+    for (i in 1:nrow(data)) {
+        # Check if there's NA in the Party column
+        if (is.na(data[i, "Party"])) {
+            # Move value from the next column to the Party column
+            data[i, "Party"] <- data[i, "State"]
+            data[i, "State"] <- data[i, "Member ID"]
+            # remove everything after the first comma for the State column
+            data[i, "State"] <- sub(",.*", "", data[i, "State"])
+            # remove everything before the first comma for the Member ID column
+            data[i, "Member ID"] <- sub("^(?:[^,]*,){1}", "", data[i, "Member ID"])
+            if (is.na(data[i, "Party"])) {
+                # Move value from the next column to the Party column
+                data[i, "Party"] <- data[i, "State"]
+                data[i, "State"] <- data[i, "Member ID"]
+                # remove everything after the first comma for the State column
+                data[i, "State"] <- sub(",.*", "", data[i, "State"])
+                # remove everything before the first comma for the Member ID column
+                data[i, "Member ID"] <- sub("^(?:[^,]*,){1}", "", data[i, "Member ID"])
+            }
+        }
+    }
+    return(data)
+}
+
+# this is a function that encompasses the functions alias_finder and fix_na_and_shift and also adds the Alias column
+clean_original_id_rep_list <- function(dataset) {
+    dataset["Alias"] <- NA
+    dataset <- alias_finder(dataset)
+    dataset <- fix_na_and_shift(dataset)
+    return(dataset)
+}
+
+
+
+
+
+
+
 clean_id_reps <- function(dataset) {
     # remove index column, rename Member ID to member_id
     dataset <- subset(dataset, select = -...1)

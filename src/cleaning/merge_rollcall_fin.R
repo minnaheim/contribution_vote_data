@@ -8,7 +8,7 @@ library(fuzzyjoin)
 library(stringdist)
 
 # import rollcall data
-roll_call <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_full_rollcall_votes.csv", show_col_types = FALSE)
+roll_call <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/cleaned_full_rollcall_votes.csv", show_col_types = FALSE)
 # import financial data
 contributions <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/all_reps_contribution.csv", show_col_types = FALSE)
 

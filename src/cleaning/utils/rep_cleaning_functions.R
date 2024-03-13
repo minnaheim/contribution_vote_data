@@ -1,3 +1,11 @@
+rep_cleaning <- function(dataset) {
+    trimws(dataset)
+    colnames(dataset) <- c("LastName", "FirstName", "State", "Party", "Chamber")
+    dataset <- dataset %>% dplyr::filter(Chamber != "Senate")
+    return(dataset)
+}
+
+
 # function to merge dataset with id_rep dataset
 # merge_with_cleaned_id <- function(dataset) {
 #     # read in id_rep dataset
