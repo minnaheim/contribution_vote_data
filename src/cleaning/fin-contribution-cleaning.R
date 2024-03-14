@@ -10,6 +10,9 @@ source("src/cleaning/utils/roll_call_cleaning_functions.R")
 # IMPORT DATASETS
 # fossil fuel oriented
 # oil & gas contributions
+oil_113 <- read_csv("data/original/oil_house_candidates_2012_el.csv",
+    show_col_types = FALSE
+)
 oil_114 <- read_csv("data/original/oil_gas_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
@@ -19,7 +22,13 @@ oil_115 <- read_csv("data/original/oil_house_candidates_2016_el.csv",
 oil_116 <- read_csv("data/original/oil_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
+oil_117 <- read_csv("data/original/oil_house_candidates_2020_el.csv",
+    show_col_types = FALSE
+)
 # coal mining contributions
+coal_113 <- read_csv("data/original/coal_house_candidates_2012_el.csv",
+    show_col_types = FALSE
+)
 coal_114 <- read_csv("data/original/coal_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
@@ -29,7 +38,13 @@ coal_115 <- read_csv("data/original/coal_house_candidates_2016_el.csv",
 coal_116 <- read_csv("data/original/coal_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
+coal_117 <- read_csv("data/original/coal_house_candidates_2020_el.csv",
+    show_col_types = FALSE
+)
 # mining
+mining_113 <- read_csv("data/original/mining_house_candidates_2012_el.csv",
+    show_col_types = FALSE
+)
 mining_114 <- read_csv("data/original/mining_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
@@ -39,7 +54,13 @@ mining_115 <- read_csv("data/original/mining_house_candidates_2016_el.csv",
 mining_116 <- read_csv("data/original/mining_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
+mining_117 <- read_csv("data/original/mining_house_candidates_2020_el.csv",
+    show_col_types = FALSE
+)
 # gas pipelines
+gas_113 <- read_csv("data/original/gas_house_candidates_2012_el.csv",
+    show_col_types = FALSE
+)
 gas_114 <- read_csv("data/original/gas_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
@@ -49,9 +70,14 @@ gas_115 <- read_csv("data/original/gas_house_candidates_2016_el.csv",
 gas_116 <- read_csv("data/original/gas_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
-
+gas_117 <- read_csv("data/original/gas_house_candidates_2020_el.csv",
+    show_col_types = FALSE
+)
 # environmentally friendly financial contributions
 # alternative energy production
+alternative_en_113 <- read_csv("data/original/alt_en_house_candidates_2012_el.csv",
+    show_col_types = FALSE
+)
 alternative_en_114 <- read_csv("data/original/alt_en_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
@@ -61,7 +87,13 @@ alternative_en_115 <- read_csv("data/original/alt_en_house_candidates_2016_el.cs
 alternative_en_116 <- read_csv("data/original/alt_en_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
+alternative_en_117 <- read_csv("data/original/alt_en_house_candidates_2020_el.csv",
+    show_col_types = FALSE
+)
 # environmental contributions
+env_113 <- read_csv("data/original/env_house_candidates_2012_el.csv",
+    show_col_types = FALSE
+)
 env_114 <- read_csv("data/original/env_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
@@ -71,69 +103,93 @@ env_115 <- read_csv("data/original/env_house_candidates_2016_el.csv",
 env_116 <- read_csv("data/original/env_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
+env_117 <- read_csv("data/original/env_house_candidates_2020_el.csv",
+    show_col_types = FALSE
+)
 # cleaned data with all politicians of this term (not only those who received contribution)
+rep_113 <- read_csv("data/cleaned/cleaned_representatives_113.csv", show_col_types = FALSE)
 rep_114 <- read_csv("data/cleaned/cleaned_representatives_114_manual.csv", show_col_types = FALSE)
 rep_115 <- read_csv("data/cleaned/cleaned_representatives_115_manual.csv", show_col_types = FALSE)
 rep_116 <- read_csv("data/cleaned/cleaned_representatives_116_manual.csv", show_col_types = FALSE)
+rep_117 <- read_csv("data/cleaned/cleaned_representatives_117.csv", show_col_types = FALSE)
 
 # CLEAN DATA
 # 114th Congress
 # DIRTY
 # oil & gas contributions
 # view(oil_114)
+oil_113 <- contribution_clean(oil_113)
 oil_114 <- contribution_clean(oil_114)
 oil_115 <- contribution_clean(oil_115)
 oil_116 <- contribution_clean(oil_116)
-
+oil_117 <- contribution_clean(oil_117)
 # coal mining contributions
+coal_113 <- contribution_clean(coal_113)
 coal_114 <- contribution_clean(coal_114)
 coal_115 <- contribution_clean(coal_115)
 coal_116 <- contribution_clean(coal_116)
+coal_117 <- contribution_clean(coal_117)
 
 # mining
+mining_113 <- contribution_clean(mining_113)
 mining_114 <- contribution_clean(mining_114)
 mining_115 <- contribution_clean(mining_115)
 mining_116 <- contribution_clean(mining_116)
+mining_117 <- contribution_clean(mining_117)
 
 # gas pipelines
+gas_113 <- contribution_clean(gas_113)
 gas_114 <- contribution_clean(gas_114)
 gas_115 <- contribution_clean(gas_115)
 gas_116 <- contribution_clean(gas_116)
+gas_117 <- contribution_clean(gas_117)
 
 # CLEAN
 # environmental contributions
+env_113 <- contribution_clean(env_113)
 env_114 <- contribution_clean(env_114)
 env_115 <- contribution_clean(env_115)
 env_116 <- contribution_clean(env_116)
+env_117 <- contribution_clean(env_117)
 # alternative energy sources
+alternative_en_113 <- contribution_clean(alternative_en_113)
 alternative_en_114 <- contribution_clean(alternative_en_114)
 alternative_en_115 <- contribution_clean(alternative_en_115)
 alternative_en_116 <- contribution_clean(alternative_en_116)
+alternative_en_117 <- contribution_clean(alternative_en_117)
 
 # since this rep data is pre-cleaned, we don't need to apply the rep_name_split_keep_imp_cols function,
 # just the remove_index_state_abbrev function
 
 # apply remove_index_state_abbrev function
+rep_113 <- remove_index(rep_113)
 rep_114 <- remove_index(rep_114)
 rep_115 <- remove_index(rep_115)
 rep_116 <- remove_index(rep_116)
+rep_117 <- remove_index(rep_117)
 
 # apply state abbreviations to state
+rep_113 <- add_state_abbrev(rep_113)
 rep_114 <- add_state_abbrev(rep_114)
 rep_115 <- add_state_abbrev(rep_115)
 rep_116 <- add_state_abbrev(rep_116)
+rep_117 <- add_state_abbrev(rep_117)
 
 # apply party abbreviation function
+rep_113 <- party_abbreviation(rep_113)
 rep_114 <- party_abbreviation(rep_114)
 rep_115 <- party_abbreviation(rep_115)
 rep_116 <- party_abbreviation(rep_116)
+rep_117 <- party_abbreviation(rep_117)
 
+# view(rep_113)
 # view(rep_114)
 # view(rep_115)
 # view(rep_116)
 
 # add suffix to columns "Amount", "Party", "StateAbbreviation" based on the dataset
 columns_to_suffix <- c("Amount", "Party", "StateAbbreviation")
+
 oil_114 <- add_suffix(oil_114, ".oil.114", columns_to_suffix)
 oil_115 <- add_suffix(oil_115, ".oil.115", columns_to_suffix)
 oil_116 <- add_suffix(oil_116, ".oil.116", columns_to_suffix)

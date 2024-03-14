@@ -5,75 +5,107 @@ rep_cleaning <- function(dataset) {
     return(dataset)
 }
 
+# clean term-117
+# create a function that deletes the row if it starts with "Picture of"
+# del_picture_of <- function(dataset) {
+#     dataset <- dataset %>% dplyr::filter(!grepl("Picture of", Representative))
+#     return(dataset)
+# }
 
-# function to merge dataset with id_rep dataset
-# merge_with_cleaned_id <- function(dataset) {
-#     # read in id_rep dataset
-#     read_csv("data/cleaned_unique_id_reps_copy.csv", show_col_types = FALSE) %>%
-#         # remove index column, rename Member ID to member_id
-#         select(-...1) %>%
-#         rename(member_id = `Member ID`) %>%
-#         # to merge with fuzzy join, we also include the party and states, for that we need to include the abbreviations of the states
-#         full_join(
-#             dataset,
-#             read_csv("data/state_abbreviations.csv", show_col_types = FALSE),
-#             by = c("State" = "State")
-#         )
+# sep_cols <- function(dataset) {
+#     dataset <- dataset %>% separate(Representative, into = c("Name", "Chamber", "Party-State-District"), sep = ",", extra = "merge")
+#     return(dataset)
 # }
 
 
-
-
-# # remove index column, rename Member ID to member_id
-# id_reps <- subset(id_reps, select = -...1)
-# id_reps <- id_reps %>%
-#     rename(member_id = `Member ID`)
-
-# view(id_reps)
-
-
-# # to merge with fuzzy join, we also include the party and states, for that we need to include the abbreviations of the states
-# state_abbreviations <- suppressMessages(read_csv("data/state_abbreviations.csv", show_col_types = FALSE))
-# view(state_abbreviations)
-
-# # change State column to include only abbreviations of respective states
-# for (i in 1:nrow(id_reps)) {
-#     if (!is.na(id_reps$State[i]) && nchar(id_reps$State[i]) > 2) {
-#         state <- id_reps$State[i]
-#         matching_postal <- state_abbreviations$Postal[state_abbreviations$State == state]
-#         if (length(matching_postal) > 0) {
-#             id_reps$State[i] <- matching_postal[1]
+# split_names <- function(dataset) {
+#     dataset["Alias"] <- NA
+#     dataset <- dataset %>% separate("Name", into = c("FirstName", "LastName"), sep = "\\s+(?=[^\\s]*$)", extra = "merge")
+#     for (i in 1:nrow(dataset)) {
+#         if (nchar(dataset$LastName[i]) <= 2) {
+#             new_last_name <- strsplit(dataset$FirstName[i], " ")[[1]]
+#             # remove new_last_name from FirstName
+#             dataset$FirstName[i] <- paste(new_last_name[-length(new_last_name)], collapse = " ")
+#             Alias <- dataset$LastName[i]
+#             dataset$LastName[i] <- new_last_name[length(new_last_name)]
+#             dataset$Alias[i] <- Alias
 #         }
 #     }
+#     dataset$LastName <- ifelse(nchar(dataset$LastName) <= 2, dataset$FirstName, dataset$LastName)
+#     dataset$FirstName <- ifelse(nchar(dataset$LastName) <= 2, dataset$Alias, dataset$FirstName)
+#     return(dataset)
 # }
 
-
-
-## copied from financial cleaning r file, do this in the main rep cleaning df:
-# merge financial contributions with unique id
-# id_reps <- suppressMessages(read_csv("data/cleaned_unique_id_reps_copy.csv", show_col_types = FALSE))
-
-# merge with the unique id dataset
-# remove index column, rename Member ID to member_id
-# id_reps <- subset(id_reps, select = -...1)
-# id_reps <- id_reps %>%
-#     rename(member_id = `Member ID`)
-
-# view(id_reps)
-
-# MERGING & CLEANING ID_REPS NOT DONE WITH FINANCIAL DATA YET, DO THIS IN REP_CLEANING?
-# # to merge with fuzzy join, we also include the party and states, for that we need to include the abbreviations of the states
-# state_abbreviations <- suppressMessages(read_csv("data/state_abbreviations.csv", show_col_types = FALSE))
-# view(state_abbreviations)
-
-# # change State column to include only abbreviations of respective states
-# for (i in 1:nrow(id_reps)) {
-#     if (!is.na(id_reps$State[i]) && nchar(id_reps$State[i]) > 2) {
-#         state <- id_reps$State[i]
-#         matching_postal <- state_abbreviations$Postal[state_abbreviations$State == state]
-#         if (length(matching_postal) > 0) {
-#             id_reps$State[i] <- matching_postal[1]
+# md_as_alias <- function(dataset) {
+#     for (i in 1:nrow(dataset)) {
+#         if (dataset$LastName[i] == "M.D.") {
+#             new_last_name <- strsplit(dataset$FirstName[i], " ")[[1]]
+#             # remove new_last_name from FirstName
+#             dataset$FirstName[i] <- paste(new_last_name[-length(new_last_name)], collapse = " ")
+#             dataset$Alias[i] <- dataset$LastName[i]
+#             dataset$LastName[i] <- new_last_name[length(new_last_name)]
 #         }
 #     }
+#     return(dataset)
 # }
-# view(id_reps)
+
+# jr_as_alias <- function(dataset) {
+#     for (i in 1:nrow(dataset)) {
+#         if (dataset$LastName[i] == "Jr.") {
+#             new_last_name <- strsplit(dataset$FirstName[i], " ")[[1]]
+#             # remove new_last_name from FirstName
+#             dataset$FirstName[i] <- paste(new_last_name[-length(new_last_name)], collapse = " ")
+#             dataset$Alias[i] <- dataset$LastName[i]
+#             dataset$LastName[i] <- new_last_name[length(new_last_name)]
+#         }
+#     }
+#     return(dataset)
+# }
+
+# nr_as_alias <- function(dataset) {
+#     for (i in 1:nrow(dataset)) {
+#         if (dataset$LastName[i] == "III") {
+#             new_last_name <- strsplit(dataset$FirstName[i], " ")[[1]]
+#             # remove new_last_name from FirstName
+#             dataset$FirstName[i] <- paste(new_last_name[-length(new_last_name)], collapse = " ")
+#             dataset$Alias[i] <- dataset$LastName[i]
+#             dataset$LastName[i] <- new_last_name[length(new_last_name)]
+#         }
+#     }
+#     return(dataset)
+# }
+
+# sep_party_cols <- function(dataset) {
+#     dataset <- dataset %>%
+#         separate("Party-State-District", into = c("PartyState", "District"), sep = "\\s+", extra = "merge") %>%
+#         mutate(PartyState = ifelse(grepl("Representative", PartyState), gsub("Representative", "", PartyState), PartyState))
+#     # for (i in 1:nrow(dataset)) {
+#     #     if ("Representative" %in% (dataset$"Party-State"[i])) {
+#     #         dataset$"Party-State"[i] <- gsub("Representative", "", dataset$"Party-State"[i])
+#     #     }
+#     # }
+#     return(dataset)
+# }
+
+# clean_117 <- function(dataset) {
+#     dataset <- del_picture_of(dataset)
+#     dataset <- sep_cols(dataset)
+#     dataset <- split_names(dataset)
+#     dataset <- md_as_alias(dataset)
+#     dataset <- jr_as_alias(dataset)
+#     dataset <- nr_as_alias(dataset)
+#     return(dataset)
+# }
+
+# cleaning 113th reps
+remove_cols <- function(dataset) {
+    dataset <- dataset %>% select(sort_name, group, area_id)
+    return(dataset)
+}
+
+sep_cols_rename <- function(dataset) {
+    dataset <- separate(dataset, "sort_name", into = c("LastName", "FirstName"), sep = ", ")
+    dataset <- separate(dataset, "area_id", into = c("State", "District"), sep = "-")
+    dataset <- dataset %>% rename("Party" = "group")
+    return(dataset)
+}

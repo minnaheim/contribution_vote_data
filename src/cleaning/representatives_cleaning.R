@@ -9,27 +9,15 @@ library(tidyverse)
 library(dplyr)
 
 # import data
+rep_113 <- read_csv("data/original/term-113.csv", show_col_types = FALSE)
 rep_114 <- read_csv("data/original/representatives_114_manual.csv", show_col_types = FALSE)
 rep_115 <- read_csv("data/original/representatives_115.csv", show_col_types = FALSE)
 rep_116 <- read_csv("data/original/representatives_116.csv", show_col_types = FALSE)
+rep_117 <- read_csv("data/original/term-117.csv", show_col_types = FALSE) # seperate cleaning process below
 
 rep_114 <- rep_cleaning(rep_114)
 rep_115 <- rep_cleaning(rep_115)
 rep_116 <- rep_cleaning(rep_116)
-
-# view(rep_114)
-
-# write csv
-write.csv(rep_114, "data/cleaned/cleaned_representatives_114.csv")
-write.csv(rep_115, "data/cleaned/cleaned_representatives_115.csv")
-write.csv(rep_116, "data/cleaned/cleaned_representatives_116.csv")
-
-# all_reps_contributions <- full_join(master_df_114, rep_114["LastName", "FirstName"], by = c("LastName", "FirstName"))
-# view(all_reps_contributions)
-
-all_reps_contributions <- full_join(master_df_114, rep_114[, c("LastName", "FirstName")], by = c("LastName", "FirstName"))
-
-# view(all_reps_contributions)
 
 # no need to merge rep_114 to master_df_114, as we already included this in all_reps_114, check here
 all_reps_114 <- read_csv("data/cleaned/cleaned_all_reps_contribution_114.csv", show_col_types = FALSE)
@@ -50,16 +38,31 @@ all_reps_116_0 <- all_reps_116 %>% dplyr::filter(Amount.oil.116 == 0 & Amount.co
 # view(all_reps_116_0)
 # 18 reps received 0 contributions from energy & env. sectors
 
-
-
-
 # import and clean unique identifiers of representatives
-# import data
 rep_u_id <- read_csv("data/original/unique_id_reps.csv", show_col_types = FALSE)
-# view(rep_u_id)
-
 rep_u_id <- clean_original_id_rep_list(rep_u_id)
 # view(rep_u_id)
 
 # write csv
-write.csv(rep_u_id, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_unique_id_reps.csv")
+write.csv(rep_u_id, "data/cleaned_unique_id_reps.csv")
+
+# cleaning of rep_117
+rep_117 <- party_abbreviation(rep_117)
+rep_117 <- subset(rep_117, select = -c(State))
+rep_117 <- rename(rep_117, State = StateAbbreviation)
+view(rep_117)
+
+# cleaning rep_113
+
+rep_113 <- remove_cols(rep_113)
+rep_113 <- sep_cols_rename(rep_113)
+rep_113 <- party_abbreviation(rep_113)
+# view(rep_113)
+
+
+# write csv
+write.csv(rep_113, "data/cleaned/cleaned_representatives_113.csv")
+write.csv(rep_114, "data/cleaned/cleaned_representatives_114.csv")
+write.csv(rep_115, "data/cleaned/cleaned_representatives_115.csv")
+write.csv(rep_116, "data/cleaned/cleaned_representatives_116.csv")
+write.csv(rep_117, "data/cleaned/cleaned_representatives_117.csv")

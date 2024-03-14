@@ -240,7 +240,20 @@ clean_original_id_rep_list <- function(dataset) {
     return(dataset)
 }
 
-
+party_abbreviation <- function(dataset) {
+    for (i in 1:nrow(dataset)) {
+        if (dataset$Party[i] == "Democratic") {
+            dataset$Party[i] <- "D"
+        }
+        if (dataset$Party[i] == "Republican") {
+            dataset$Party[i] <- "R"
+        }
+        if (dataset$Party[i] == "Independent") {
+            dataset$Party[i] <- "I"
+        }
+    }
+    return(dataset)
+}
 
 
 
