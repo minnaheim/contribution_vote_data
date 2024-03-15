@@ -9,11 +9,11 @@ library(tidyverse)
 library(dplyr)
 
 # import data
-rep_113 <- read_csv("data/original/term-113.csv", show_col_types = FALSE)
-rep_114 <- read_csv("data/original/representatives_114_manual.csv", show_col_types = FALSE)
-rep_115 <- read_csv("data/original/representatives_115.csv", show_col_types = FALSE)
-rep_116 <- read_csv("data/original/representatives_116.csv", show_col_types = FALSE)
-rep_117 <- read_csv("data/original/term-117.csv", show_col_types = FALSE) # seperate cleaning process below
+rep_113 <- read_csv("data/original/representatives/term-113.csv", show_col_types = FALSE)
+rep_114 <- read_csv("data/original/representatives/representatives_114_manual.csv", show_col_types = FALSE)
+rep_115 <- read_csv("data/original/representatives/representatives_115.csv", show_col_types = FALSE)
+rep_116 <- read_csv("data/original/representatives/representatives_116.csv", show_col_types = FALSE)
+rep_117 <- read_csv("data/original/representatives/term-117.csv", show_col_types = FALSE) # seperate cleaning process below
 
 rep_114 <- rep_cleaning(rep_114)
 rep_115 <- rep_cleaning(rep_115)
@@ -61,8 +61,8 @@ rep_113 <- party_abbreviation(rep_113)
 
 
 # write csv
-write.csv(rep_113, "data/cleaned/cleaned_representatives_113.csv")
-write.csv(rep_114, "data/cleaned/cleaned_representatives_114.csv")
-write.csv(rep_115, "data/cleaned/cleaned_representatives_115.csv")
-write.csv(rep_116, "data/cleaned/cleaned_representatives_116.csv")
-write.csv(rep_117, "data/cleaned/cleaned_representatives_117.csv")
+write.csv(rep_113, "data/cleaned/representatives/113.csv")
+write.csv(rep_114, "data/cleaned/representatives/114.csv")
+write.csv(rep_115, "data/cleaned/representatives/115.csv")
+write.csv(rep_116, "data/cleaned/representatives/116.csv")
+write.csv(rep_117, "data/cleaned/representatives/117.csv")

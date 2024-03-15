@@ -397,11 +397,11 @@
 "396","Chapman","Jim","Democratic","Texas","C000312",NA
 "397","Chappell","Bill","Democratic","Florida","	C000321","Jr."
 "398","Chappie","Eugene A.","Republican","California","C000322",NA
-"399","Chave","DeRemer","Republican","Oregon","	C001135","Lori"
+"399","Chavez DeRemer","Lori","Republican","Oregon","C001135","Lori"
 "400","Cheney",""Dick"","Republican","Wyoming","C000344",NA
 "401","Cheney","Liz","Republican","Wyoming","C001109",NA
-"402","Chenowet","Hage","Republican","Idaho","	C000345","Helen"
-"403","Cherfilu","McCormick","Democratic","Florida","	C001127","Sheila"
+"402","Chenowet","Hage","Republican","Idaho","C000345","Helen"
+"403","Cherfilus McCormick","Sheila","Democratic","Florida","C001127","Sheila"
 "404","Chiesa","Jeff","Republican","New Jersey","C001100",NA
 "405","Childers","Travis","Democratic","Mississippi","C001074",NA
 "406","Chiles","Lawton","Democratic","Florida","C000356",NA
@@ -488,7 +488,7 @@
 "487","Cornwell","David L.","Democratic","Indiana","C000787",NA
 "488","Cornyn","John","Republican","Texas","C001056",NA
 "489","Corrada","Baltasar","Independent","Puerto Rico","C000788",NA
-"490","Correa","J.","Democratic","California","C001110",NA
+"490","Correa","J. Luis","Democratic","California","C001110",NA
 "491","Cortez Masto","Catherine","Democratic","Nevada","C001113",NA
 "492","Corzine","Jon S.","Democratic","New Jersey","C001042",NA
 "493","Costa","Jim","Democratic","California","C001059",NA
@@ -1210,7 +1210,7 @@
 "1209","Johnson","Dusty","Republican","South Dakota","J000301",NA
 "1210","Johnson","Eddie Bernice","Democratic","Texas","J000126",NA
 "1211","Johnson","Harold T.","Democratic","California","J000135",NA
-"1212","Johnson","Hank","Democratic","Georgia","J000288",NA
+"1212","Johnson","Hank Jr.","Democratic","Georgia","J000288",NA
 "1213","Johnson","James P.","Republican"," Colorado","	J000148","Jim"
 "1214","Johnson","Jay W.","Democratic","Wisconsin","J000149",NA
 "1215","Johnson","Mike","Republican","Louisiana","J000299",NA
@@ -1241,7 +1241,7 @@
 "1240","Kagen","Steve","Democratic","Wisconsin","K000365",NA
 "1241","Kahele","Kaiali'i","Democratic","Hawaii","K000396",NA
 "1242","Kaine","Tim","Democratic","Virginia","K000384",NA
-"1243","Kamlage","Dove","Democratic","California","	K000400","Sydney"
+"1243","Kamlager Dove","Sydney","Democratic","California","	K000400",NA
 "1244","Kanjorski","Paul E.","Democratic","Pennsylvania","K000008",NA
 "1245","Kaptur","Marcy","Democratic","Ohio","K000009",NA
 "1246","Karnes","David K.","Republican","Nebraska","K000011",NA
@@ -1627,7 +1627,7 @@
 "1626","Miller","Mary E.","Republican","Illinois","M001211",NA
 "1627","Miller","Max L.","Republican","Ohio","M001222",NA
 "1628","Miller","Zell","Democratic","Georgia","M001141",NA
-"1629","Mille","Meeks","Republican","Iowa","	M001215","Mariannette"
+"1629","Miller Meeks","Mariannette","Republican","Iowa","	M001215","Mariannette"
 "1630","Mills","Cory","Republican","Florida","M001216",NA
 "1631","Mills","Wilbur D.","Democratic","Arkansas","M000778",NA
 "1632","Mills","William O.","Republican","Maryland","M000779",NA
@@ -1656,7 +1656,7 @@
 "1655","Montoya","Joseph M.","Democratic","New Mexico","M000876",NA
 "1656","Moody","Jim","Democratic","Wisconsin","M000881",NA
 "1657","Moolenaar","John R.","Republican","Michigan","M001194",NA
-"1658","Mooney","Alex","Republican","West Virginia","M001195",NA
+"1658","Mooney","Alexander","Republican","West Virginia","M001195",NA
 "1659","Moore","Barry","Republican","Alabama","M001212",NA
 "1660","Moore","Blake D.","Republican","Utah","M001213",NA
 "1661","Moore","Dennis","Democratic","Kansas","M001140",NA
@@ -2489,7 +2489,7 @@
 "2488","Wylie","Chalmers P.","Republican","Ohio","W000781",NA
 "2489","Wyman","Louis C.","Republican","New Hampshire","W000782",NA
 "2490","Wynn","Albert Russell","Democratic","Maryland","W000784",NA
-"2491","Yakym","Rudy","Republican","Indiana","Y000067",NA
+"2491","Yakym","Rudy III","Republican","Indiana","Y000067",NA
 "2492","Yarmuth","John A.","Democratic","Kentucky","Y000062",NA
 "2493","Yates","Sidney R.","Democratic","Illinois","Y000013",NA
 "2494","Yatron","Gus","Democratic","Pennsylvania","Y000014",NA
