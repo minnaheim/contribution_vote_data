@@ -82,4 +82,4 @@ roll_call_full <- remove_y_cols(roll_call_full)
 # view(roll_call_full)
 
 # write df as csv
-write.csv(roll_call_full, "data/cleaned/cleaned_full_roll_call_votes.csv")
+write.csv(roll_call_full, "data/cleaned/cleaned_full_roll_call_votes.csv", row.names = FALSE)

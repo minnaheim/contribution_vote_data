@@ -102,7 +102,7 @@ process_financial_data <- function(datasets) {
     return(master_df)
 }
 
-# function that merges the contribution datasets for the seperate terms together, into a master financaial dataset
+# function that merges the contribution datasets for the separate terms together, into a master financial dataset
 term_merge <- function(datasets) {
     # Create master dataframe
     master_df <- datasets[[1]]
@@ -193,69 +193,21 @@ remove_non_voting <- function(dataset) {
 # view(master_df)
 # cleaning function for unique id of representatives
 
-# rep_u_id <- read_csv("data/original/unique_id_reps.csv", show_col_types = FALSE)
-# # view(rep_u_id)
 
-alias_finder <- function(dataset) {
-    parties <- c("Republican", "Democratic", "Independent", "Libertarian")
+party_abbreviation <- function(dataset, column_name = "party") {
     for (i in 1:nrow(dataset)) {
-        if (!(dataset$Party[i] %in% parties)) {
-            dataset[i, ]["Alias"] <- dataset$Party[i]
-            dataset[i, ]["Party"] <- NA
+        if (startsWith(dataset[[i, column_name]], "Demo")) {
+            dataset[[i, column_name]] <- "D"
+        }
+        if (dataset[[i, column_name]] == "Republican") {
+            dataset[[i, column_name]] <- "R"
+        }
+        if (dataset[[i, column_name]] == "Independent") {
+            dataset[[i, column_name]] <- "I"
         }
     }
     return(dataset)
 }
-
-fix_na_and_shift <- function(data) {
-    for (i in 1:nrow(data)) {
-        # Check if there's NA in the Party column
-        if (is.na(data[i, "Party"])) {
-            # Move value from the next column to the Party column
-            data[i, "Party"] <- data[i, "State"]
-            data[i, "State"] <- data[i, "Member ID"]
-            # remove everything after the first comma for the State column
-            data[i, "State"] <- sub(",.*", "", data[i, "State"])
-            # remove everything before the first comma for the Member ID column
-            data[i, "Member ID"] <- sub("^(?:[^,]*,){1}", "", data[i, "Member ID"])
-            if (is.na(data[i, "Party"])) {
-                # Move value from the next column to the Party column
-                data[i, "Party"] <- data[i, "State"]
-                data[i, "State"] <- data[i, "Member ID"]
-                # remove everything after the first comma for the State column
-                data[i, "State"] <- sub(",.*", "", data[i, "State"])
-                # remove everything before the first comma for the Member ID column
-                data[i, "Member ID"] <- sub("^(?:[^,]*,){1}", "", data[i, "Member ID"])
-            }
-        }
-    }
-    return(data)
-}
-
-# this is a function that encompasses the functions alias_finder and fix_na_and_shift and also adds the Alias column
-clean_original_id_rep_list <- function(dataset) {
-    dataset["Alias"] <- NA
-    dataset <- alias_finder(dataset)
-    dataset <- fix_na_and_shift(dataset)
-    return(dataset)
-}
-
-party_abbreviation <- function(dataset) {
-    for (i in 1:nrow(dataset)) {
-        if (dataset$Party[i] == "Democratic") {
-            dataset$Party[i] <- "D"
-        }
-        if (dataset$Party[i] == "Republican") {
-            dataset$Party[i] <- "R"
-        }
-        if (dataset$Party[i] == "Independent") {
-            dataset$Party[i] <- "I"
-        }
-    }
-    return(dataset)
-}
-
-
 
 
 
@@ -269,17 +221,7 @@ clean_id_reps <- function(dataset) {
     dataset <- add_state_abbrev(dataset)
 
     # now turn party into abbreviations
-    for (i in 1:nrow(dataset)) {
-        if (dataset$Party[i] == "Democratic") {
-            dataset$Party[i] <- "D"
-        }
-        if (dataset$Party[i] == "Republican") {
-            dataset$Party[i] <- "R"
-        }
-        if (dataset$Party[i] == "Independent") {
-            dataset$Party[i] <- "I"
-        }
-    }
+    dataset <- party_abbreviation(dataset)
 
     return(dataset)
 }

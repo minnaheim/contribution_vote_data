@@ -1,14 +1,4 @@
-# create function to clean the representatives dataset,
-# clean rep dataset, split sort_name by ,
-# rep_name_split_keep_imp_cols <- function(rep) {
-#     # split sort_name by ,
-#     rep[c("Last", "First")] <- str_split_fixed(rep$sort_name, ",", 2)
-
-#     # select only important cols
-#     rep <- rep %>% select(Last, First, group_id, area_id, )
-
-#     return(rep)
-# }
+library(tidyverse)
 
 # this is a cleaning function for the pre-cleaned representative data,
 # where we only need to remove a second index column, and change the state names
@@ -17,16 +7,16 @@ remove_index <- function(dataset) {
     dataset <- subset(dataset, select = -...1)
 }
 
-add_state_abbrev <- function(dataset) {
-    # read in state abbreviation
+add_state_abbrev <- function(dataset, column_name = "state") {
     state_abbrev <- read_csv("data/original/state_abbreviations.csv", show_col_types = FALSE)
-    # now we want to look at the State Abbreviations column and match with state abbreviations, if the char length is > 2
-    for (i in 1:nrow(dataset)) {
-        if (!is.na(dataset$State[i]) && nchar(dataset$State[i]) > 2) {
-            state <- dataset$State[i]
-            matching_postal <- state_abbrev$Postal[state_abbrev$State == state]
+    for (i in seq_len(nrow(dataset))) {
+        state <- as.character(dataset[i, column_name])
+        # if you select in the way above, R saves this as a tibble, not as a string (check str())
+        if (!is.na(state) && nchar(state) > 2) {
+            matching_postal <- state_abbrev[state_abbrev$State == state, "Postal"]
+
             if (length(matching_postal) > 0) {
-                dataset$State[i] <- matching_postal[1]
+                dataset[i, column_name] <- matching_postal[1]
             }
         }
     }
@@ -34,20 +24,6 @@ add_state_abbrev <- function(dataset) {
 }
 
 
-party_abbreviation <- function(dataset) {
-    for (i in 1:nrow(dataset)) {
-        if (dataset$Party[i] == "Democrat") {
-            dataset$Party[i] <- "D"
-        }
-        if (dataset$Party[i] == "Republican") {
-            dataset$Party[i] <- "R"
-        }
-        if (dataset$Party[i] == "Independent") {
-            dataset$Party[i] <- "I"
-        }
-    }
-    return(dataset)
-}
 
 
 merge_roll_calls <- function(suffixes, datasets) {

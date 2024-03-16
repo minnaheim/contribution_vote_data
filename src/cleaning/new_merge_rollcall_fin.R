@@ -120,4 +120,4 @@ df <- subset(
 # view(df)
 
 # write csv
-write.csv(df, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_n_merged_df_114-116.csv")
+write.csv(df, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned_n_merged_df_114-116.csv", row.names = FALSE)

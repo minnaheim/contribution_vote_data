@@ -1,0 +1,129 @@
+---
+title: "checking data to determine problems"
+output: html_document
+---
+
+```{r, echo=FALSE, include=FALSE}
+library(tidyverse)
+setwd("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code")
+# import data cleaning pipeline:
+source("src/cleaning/utils/fin_cleaning_functions.R")
+source("src/cleaning/utils/roll_call_cleaning_functions.R")
+source("src/cleaning/utils/read_from_folder.R")
+source("src/cleaning/utils/read_from_folder.R")
+
+# import data
+contributions <- read_from_folder("data/cleaned/contributions")
+representatives <- read_from_folder("data/cleaned/representatives")
+```
+
+### check differences in representative data 
+why do some representative data merge better than others, i.e. 113,117 worse than 114, 115, 116, etc.
+
+```{r}
+view(representatives[1]) # 113
+view(representatives[2]) # 114
+
+# PROBLEM WITH DATA FROM 113 AND 117 IS THAT MERGE ISNT AS SMOOOTH AS WITH 114,115,116 -> FUZZY MERGE W/ ID BEFORE
+# NA to 0 for all amount cols, aka those who did not receive any contributions from the energy & env. sectors
+amount_cols <- grep("^Amount", names(all_reps_113), value = TRUE)
+all_reps_113[amount_cols][is.na(all_reps_113[amount_cols])] <- 0
+
+# remove non-voting members
+all_reps_113 <- remove_non_voting(all_reps_113)
+# find the representatives who did not receive any contributions
+all_reps_113_0 <- all_reps_113 %>% dplyr::filter(Amount.oil.113 == 0 & Amount.coal.113 == 0 & Amount.mining.113 == 0 &
+    Amount.gas.113 == 0 & Amount.env.113 == 0 & Amount.alt_en.113 == 0)
+# view(all_reps_113_0)
+# 134 rows
+```
+
+```{r}
+# NA to 0 for all amount cols, aka those who did not receive any contributions from the energy & env. sectors
+amount_cols <- grep("^Amount", names(all_reps_117), value = TRUE)
+all_reps_117[amount_cols][is.na(all_reps_117[amount_cols])] <- 0
+# remove non-voting members
+all_reps_117 <- remove_non_voting(all_reps_117)
+# view(all_reps_117)
+
+# find the representatives who did not receive any contributions
+all_reps_117_0 <- all_reps_117 %>% dplyr::filter(Amount.oil.117 == 0 & Amount.coal.117 == 0 & Amount.mining.117 == 0 &
+    Amount.gas.117 == 0 & Amount.env.117 == 0 & Amount.alt_en.117 == 0)
+
+# view(all_reps_117_0)
+# 222 before, now 213 rows -> something's wrong
+```
+
+### for comparison, 114, this works well
+
+```{r}
+# NA to 0 for all amount cols, aka those who did not receive any contributions from the energy & env. sectors
+amount_cols <- grep("^Amount", names(all_reps_114), value = TRUE)
+all_reps_114[amount_cols][is.na(all_reps_114[amount_cols])] <- 0
+
+# remove non-voting members
+all_reps_114 <- remove_non_voting(all_reps_114)
+
+# view(all_reps_114)
+
+# find the representatives who did not receive any contributions
+all_reps_114_0 <- all_reps_114 %>% dplyr::filter(Amount.oil.114 == 0 & Amount.coal.114 == 0 & Amount.mining.114 == 0 &
+    Amount.gas.114 == 0 & Amount.env.114 == 0 & Amount.alt_en.114 == 0)
+
+# view(all_reps_114_0)
+# 13 rows
+````
+
+```{r}
+# 115
+# NA to 0 for all amount cols, aka those who did not receive any contributions from the energy & env. sectors
+amount_cols <- grep("^Amount", names(all_reps_115), value = TRUE)
+all_reps_115[amount_cols][is.na(all_reps_115[amount_cols])] <- 0
+# remove non-voting members
+all_reps_115 <- remove_non_voting(all_reps_115)
+
+# find the representatives who did not receive any contributions
+all_reps_115_0 <- all_reps_115 %>% dplyr::filter(Amount.oil.115 == 0 & Amount.coal.115 == 0 & Amount.mining.115 == 0 &
+    Amount.gas.115 == 0 & Amount.env.115 == 0 & Amount.alt_en.115 == 0)
+
+# view(all_reps_115_0)
+# 25 rows
+```
+```{r}
+# no need to merge rep_114 to master_df_114, as we already included this in all_reps_114, check here
+all_reps_114 <- read_csv("data/cleaned/cleaned_all_reps_contribution_114.csv", show_col_types = FALSE)
+all_reps_115 <- read_csv("data/cleaned/cleaned_all_reps_contribution_115.csv", show_col_types = FALSE)
+all_reps_116 <- read_csv("data/cleaned/cleaned_all_reps_contribution_116.csv", show_col_types = FALSE)
+
+# 116
+# NA to 0 for all amount cols, aka those who did not receive any contributions from the energy & env. sectors
+amount_cols <- grep("^Amount", names(all_reps_116), value = TRUE)
+all_reps_116[amount_cols][is.na(all_reps_116[amount_cols])] <- 0
+# remove non-voting members
+all_reps_116 <- remove_non_voting(all_reps_116)
+# view(all_reps_116)
+
+# find the representatives who did not receive any contributions
+all_reps_116_0 <- all_reps_116 %>% dplyr::filter(Amount.oil.116 == 0 & Amount.coal.116 == 0 & Amount.mining.116 == 0 &
+    Amount.gas.116 == 0 & Amount.env.116 == 0 & Amount.alt_en.116 == 0)
+
+# view(all_reps_116_0)
+# 18 rows
+```
+
+## check again
+```{r}
+# check that there are people in the df without contributions
+all_reps_114_0 <- all_reps_114 %>% dplyr::filter(Amount.oil.114 == 0 & Amount.coal.114 == 0 & Amount.mining.114 == 0 &
+    Amount.gas.114 == 0 & Amount.env.114 == 0 & Amount.alt_en.114 == 0)
+# view(all_reps_114_0)
+# 18 reps received 0 contributions from energy & env. sectors
+all_reps_115_0 <- all_reps_115 %>% dplyr::filter(Amount.oil.115 == 0 & Amount.coal.115 == 0 & Amount.mining.115 == 0 &
+    Amount.gas.115 == 0 & Amount.env.115 == 0 & Amount.alt_en.115 == 0)
+# view(all_reps_115_0)
+# 25 reps received 0 contributions from energy & env. sectors
+all_reps_116_0 <- all_reps_116 %>% dplyr::filter(Amount.oil.116 == 0 & Amount.coal.116 == 0 & Amount.mining.116 == 0 &
+    Amount.gas.116 == 0 & Amount.env.116 == 0 & Amount.alt_en.116 == 0)
+# view(all_reps_116_0)
+# 18 reps received 0 contributions from energy & env. sectors
+```
