@@ -4,106 +4,105 @@ library(fuzzyjoin)
 
 # import data cleaning pipeline:
 source("src/cleaning/utils/fin_cleaning_functions.R")
-source("src/cleaning/utils/roll_call_cleaning_functions.R")
-# source("src/cleaning/utils/rep_cleaning_functions.R")
+source("src/cleaning/utils/rep_cleaning_functions.R")
 
 # IMPORT DATASETS
 # fossil fuel oriented
 # oil & gas contributions
-oil_113 <- read_csv("data/original/oil_house_candidates_2012_el.csv",
+oil_113 <- read_csv("data/original/contributions/oil_house_candidates_2012_el.csv",
     show_col_types = FALSE
 )
-oil_114 <- read_csv("data/original/oil_gas_house_candidates_2014_el.csv",
+oil_114 <- read_csv("data/original/contributions/oil_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
-oil_115 <- read_csv("data/original/oil_house_candidates_2016_el.csv",
+oil_115 <- read_csv("data/original/contributions/oil_house_candidates_2016_el.csv",
     show_col_types = FALSE
 )
-oil_116 <- read_csv("data/original/oil_house_candidates_2018_el.csv",
+oil_116 <- read_csv("data/original/contributions/oil_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
-oil_117 <- read_csv("data/original/oil_house_candidates_2020_el.csv",
+oil_117 <- read_csv("data/original/contributions/oil_house_candidates_2020_el.csv",
     show_col_types = FALSE
 )
 # coal mining contributions
-coal_113 <- read_csv("data/original/coal_house_candidates_2012_el.csv",
+coal_113 <- read_csv("data/original/contributions/coal_house_candidates_2012_el.csv",
     show_col_types = FALSE
 )
-coal_114 <- read_csv("data/original/coal_house_candidates_2014_el.csv",
+coal_114 <- read_csv("data/original/contributions/coal_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
-coal_115 <- read_csv("data/original/coal_house_candidates_2016_el.csv",
+coal_115 <- read_csv("data/original/contributions/coal_house_candidates_2016_el.csv",
     show_col_types = FALSE
 )
-coal_116 <- read_csv("data/original/coal_house_candidates_2018_el.csv",
+coal_116 <- read_csv("data/original/contributions/coal_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
-coal_117 <- read_csv("data/original/coal_house_candidates_2020_el.csv",
+coal_117 <- read_csv("data/original/contributions/coal_house_candidates_2020_el.csv",
     show_col_types = FALSE
 )
 # mining
-mining_113 <- read_csv("data/original/mining_house_candidates_2012_el.csv",
+mining_113 <- read_csv("data/original/contributions/mining_house_candidates_2012_el.csv",
     show_col_types = FALSE
 )
-mining_114 <- read_csv("data/original/mining_house_candidates_2014_el.csv",
+mining_114 <- read_csv("data/original/contributions/mining_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
-mining_115 <- read_csv("data/original/mining_house_candidates_2016_el.csv",
+mining_115 <- read_csv("data/original/contributions/mining_house_candidates_2016_el.csv",
     show_col_types = FALSE
 )
-mining_116 <- read_csv("data/original/mining_house_candidates_2018_el.csv",
+mining_116 <- read_csv("data/original/contributions/mining_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
-mining_117 <- read_csv("data/original/mining_house_candidates_2020_el.csv",
+mining_117 <- read_csv("data/original/contributions/mining_house_candidates_2020_el.csv",
     show_col_types = FALSE
 )
 # gas pipelines
-gas_113 <- read_csv("data/original/gas_house_candidates_2012_el.csv",
+gas_113 <- read_csv("data/original/contributions/gas_house_candidates_2012_el.csv",
     show_col_types = FALSE
 )
-gas_114 <- read_csv("data/original/gas_house_candidates_2014_el.csv",
+gas_114 <- read_csv("data/original/contributions/gas_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
-gas_115 <- read_csv("data/original/gas_house_candidates_2016_el.csv",
+gas_115 <- read_csv("data/original/contributions/gas_house_candidates_2016_el.csv",
     show_col_types = FALSE
 )
-gas_116 <- read_csv("data/original/gas_house_candidates_2018_el.csv",
+gas_116 <- read_csv("data/original/contributions/gas_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
-gas_117 <- read_csv("data/original/gas_house_candidates_2020_el.csv",
+gas_117 <- read_csv("data/original/contributions/gas_house_candidates_2020_el.csv",
     show_col_types = FALSE
 )
 # environmentally friendly financial contributions
 # alternative energy production
-alternative_en_113 <- read_csv("data/original/alt_en_house_candidates_2012_el.csv",
+alternative_en_113 <- read_csv("data/original/contributions/alt_en_house_candidates_2012_el.csv",
     show_col_types = FALSE
 )
-alternative_en_114 <- read_csv("data/original/alt_en_house_candidates_2014_el.csv",
+alternative_en_114 <- read_csv("data/original/contributions/alt_en_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
-alternative_en_115 <- read_csv("data/original/alt_en_house_candidates_2016_el.csv",
+alternative_en_115 <- read_csv("data/original/contributions/alt_en_house_candidates_2016_el.csv",
     show_col_types = FALSE
 )
-alternative_en_116 <- read_csv("data/original/alt_en_house_candidates_2018_el.csv",
+alternative_en_116 <- read_csv("data/original/contributions/alt_en_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
-alternative_en_117 <- read_csv("data/original/alt_en_house_candidates_2020_el.csv",
+alternative_en_117 <- read_csv("data/original/contributions/alt_en_house_candidates_2020_el.csv",
     show_col_types = FALSE
 )
 # environmental contributions
-env_113 <- read_csv("data/original/env_house_candidates_2012_el.csv",
+env_113 <- read_csv("data/original/contributions/env_house_candidates_2012_el.csv",
     show_col_types = FALSE
 )
-env_114 <- read_csv("data/original/env_house_candidates_2014_el.csv",
+env_114 <- read_csv("data/original/contributions/env_house_candidates_2014_el.csv",
     show_col_types = FALSE
 )
-env_115 <- read_csv("data/original/env_house_candidates_2016_el.csv",
+env_115 <- read_csv("data/original/contributions/env_house_candidates_2016_el.csv",
     show_col_types = FALSE
 )
-env_116 <- read_csv("data/original/env_house_candidates_2018_el.csv",
+env_116 <- read_csv("data/original/contributions/env_house_candidates_2018_el.csv",
     show_col_types = FALSE
 )
-env_117 <- read_csv("data/original/env_house_candidates_2020_el.csv",
+env_117 <- read_csv("data/original/contributions/env_house_candidates_2020_el.csv",
     show_col_types = FALSE
 )
 
@@ -154,7 +153,7 @@ alternative_en_117 <- contribution_clean(alternative_en_117)
 
 
 # add suffix to columns "Amount", "Party", "StateAbbreviation" based on the dataset
-columns_to_suffix <- c("Amount", "Party", "StateAbbreviation")
+columns_to_suffix <- c("amount", "party", "stateAbbreviation")
 oil_113 <- add_suffix(oil_113, ".oil.113", columns_to_suffix)
 oil_114 <- add_suffix(oil_114, ".oil.114", columns_to_suffix)
 oil_115 <- add_suffix(oil_115, ".oil.115", columns_to_suffix)
@@ -245,9 +244,31 @@ master_df_117 <- process_financial_data(
         alternative_en_117
     )
 )
-# view(master_df_117)
-write.csv(master_df_113, "data/cleaned/contributions/113.csv", row.names = FALSE)
-write.csv(master_df_114, "data/cleaned/contributions/114.csv", row.names = FALSE)
-write.csv(master_df_115, "data/cleaned/contributions/115.csv", row.names = FALSE)
-write.csv(master_df_116, "data/cleaned/contributions/116.csv", row.names = FALSE)
-write.csv(master_df_117, "data/cleaned/contributions/117.csv", row.names = FALSE)
+
+# add session column to each df
+master_df_113 <- master_df_113 %>% mutate(session = 113)
+master_df_114 <- master_df_114 %>% mutate(session = 114)
+master_df_115 <- master_df_115 %>% mutate(session = 115)
+master_df_116 <- master_df_116 %>% mutate(session = 116)
+master_df_117 <- master_df_117 %>% mutate(session = 117)
+
+dfs <- list(
+    master_df_113,
+    master_df_114,
+    master_df_115,
+    master_df_116,
+    master_df_117
+)
+
+for (i in 1:length(dfs)) {
+    # fuzzy join with representatives id
+    dfs[[i]] <- fuzzy_join_representative_id(dfs[[i]])
+}
+
+
+
+# concatenate all dfs
+fin_all <- bind_rows(dfs)
+
+# write to csv
+write_csv(fin_all, "data/cleaned/contributions.csv")

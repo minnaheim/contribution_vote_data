@@ -6,22 +6,22 @@ source("src/cleaning/utils/roll_call_cleaning_functions.R")
 source("src/cleaning/utils/fin_cleaning_functions.R")
 
 # import roll call data of the 3 "offshore drilling subsidies" bills:
-methane_113 <- read_csv("data/original/methane-emissions-113.csv",
+methane_113 <- read_csv("data/original/roll_call/methane-emissions-113.csv",
     show_col_types = FALSE
 )
-methane_114 <- read_csv("data/original/methane-pollution-safeguards-114.csv",
+methane_114 <- read_csv("data/original/roll_call/methane-pollution-safeguards-114.csv",
     show_col_types = FALSE
 )
-methane_115 <- read_csv("data/original/methane-pollution-safeguards-115.csv",
+methane_115 <- read_csv("data/original/roll_call/methane-pollution-safeguards-115.csv",
     show_col_types = FALSE
 )
-methane_115_2 <- read_csv("data/original/methane-pollution-safeguards-115-2.csv",
+methane_115_2 <- read_csv("data/original/roll_call/methane-pollution-safeguards-115-2.csv",
     show_col_types = FALSE
 )
-methane_116 <- read_csv("data/original/methane-pollution-safeguards-116.csv",
+methane_116 <- read_csv("data/original/roll_call/methane-pollution-safeguards-116.csv",
     show_col_types = FALSE
 )
-methane_117 <- read_csv("data/original/repealing-assault_methane_pollution_safeguards-117.csv",
+methane_117 <- read_csv("data/original/roll_call/repealing-assault_methane_pollution_safeguards-117.csv",
     show_col_types = FALSE
 )
 
@@ -64,22 +64,15 @@ repeat_voters_minus <- repeat_voters %>% dplyr::filter(Vote3 == "-" & Vote4 == "
 # view(repeat_voters_minus)
 
 
-# merge with unique ID (import functions from fin_cleaning_functions.R)
+# use fuzzy_join_rep_id to merge together roll_call data and id_reps, within function
+roll_call_full <- rename(roll_call_full, c("last_name" = "LastName")) %>%
+    rename(., c("first_name" = "FirstName")) %>%
+    rename(., c("state" = "State")) %>%
+    rename(., c("party" = "Party"))
 
-id_reps <- suppressMessages(read_csv("data/cleaned/cleaned_unique_id_reps_copy.csv", show_col_types = FALSE))
-
-id_reps <- clean_id_reps(id_reps)
-
-# view(id_reps)
-
-
-# MERGE WITH FUZZY JOIN
-roll_call_full <- fuzzy_join_id(roll_call_full, id_reps)
-roll_call_full <- remove_duplicated(roll_call_full)
-# 6 rows less
-roll_call_full <- remove_y_cols(roll_call_full)
-
+# merge with id_reps
+roll_call_full <- fuzzy_join_representative_id(roll_call_full)
 # view(roll_call_full)
 
 # write df as csv
-write.csv(roll_call_full, "data/cleaned/cleaned_full_roll_call_votes.csv", row.names = FALSE)
+write.csv(roll_call_full, "data/cleaned/roll_call.csv", row.names = FALSE)

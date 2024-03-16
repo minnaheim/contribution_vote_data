@@ -2,8 +2,9 @@
 # 115 and 116, so that we have a complete list of financial contributions (also with members who did not receive fin. contributions)
 # setup
 source("src/cleaning/utils/rep_cleaning_functions.R")
-source("src/cleaning/utils/fin_cleaning_functions.R")
-source("src/cleaning/utils/roll_call_cleaning_functions.R")
+source("src/cleaning/utils/party_abbreviation.R")
+source("src/cleaning/utils/state_abbreviation.R")
+source("src/cleaning/utils/combine_columns.R")
 
 library(tidyverse)
 library(dplyr)
@@ -49,23 +50,31 @@ rep_115 <- add_state_abbrev(rep_115)
 rep_116 <- add_state_abbrev(rep_116)
 # works till here
 
+# add session column to each df
+rep_113 <- rep_113 %>% mutate(session = 113)
+rep_114 <- rep_114 %>% mutate(session = 114)
+rep_115 <- rep_115 %>% mutate(session = 115)
+rep_116 <- rep_116 %>% mutate(session = 116)
+rep_117 <- rep_117 %>% mutate(session = 117)
+
 dfs <- list(rep_113, rep_114, rep_115, rep_116, rep_117)
 
 
 # fuzzyjoin each df with unique id reps
 for (i in 1:length(dfs)) {
-    dfs[[i]] <- fuzzy_join_representative_id(
-        dfs[[i]],
-        c("last_name", "first_name", "party", "state")
-    )
-    view(dfs[[i]])
-    break
+    dfs[[i]] <- fuzzy_join_representative_id(dfs[[i]])
 }
 
+# concatenate all dfs
+rep_all <- bind_rows(dfs)
+# remove all district columns, chamber
+rep_all <- rep_all %>% select(-c(district, District, chamber))
+# relocate member_id and first_name, last_name, party, state
+rep_all <- rep_all %>% relocate("member_id")
+rep_all <- rep_all %>% relocate("first_name", .after = "member_id")
+rep_all <- rep_all %>% relocate("last_name", .after = "first_name")
 
-# write csv
-# write.csv(rep_113, "data/cleaned/representatives/113.csv", row.names = FALSE)
-# write.csv(rep_114, "data/cleaned/representatives/114.csv", row.names = FALSE)
-# write.csv(rep_115, "data/cleaned/representatives/115.csv", row.names = FALSE)
-# write.csv(rep_116, "data/cleaned/representatives/116.csv", row.names = FALSE)
-# write.csv(rep_117, "data/cleaned/representatives/117.csv", row.names = FALSE)
+# view(rep_all)
+
+# write to csv
+write_csv(rep_all, "data/cleaned/representatives.csv")

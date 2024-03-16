@@ -2,6 +2,7 @@ library(tidyverse)
 library(fuzzyjoin)
 
 source("src/cleaning/utils/roll_call_cleaning_functions.R")
+source("src/cleaning/utils/combine_columns.R")
 
 # add suffix to columns in a dataset (rename columns)
 add_suffix <- function(dataset, suffix, columns) {
@@ -23,47 +24,21 @@ contribution_clean <- function(dataset) {
     dataset$Representative <- gsub("\\s*\\(.*?\\)\\s*", "", dataset$Representative)
 
     # split the representatives column of contribution _114 into the columns LastName and FirstName.
-    dataset <- extract(dataset, "Representative", c("LastName", "FirstName"), "([^ ]+) (.*)")
+    dataset <- extract(dataset, "Representative", c("last_name", "first_name"), "([^ ]+) (.*)")
 
     # split Party and state-abbreviation into separate columns.
-    dataset <- separate(dataset, "Party", into = c("Party", "StateAbbreviation"), sep = "-")
+    dataset <- separate(dataset, "Party", into = c("party", "state_abbreviation"), sep = "-")
 
     # relocate Party and StateAbbreviation columns to after Names
-    dataset <- dataset %>% relocate("Party", "StateAbbreviation", .after = "FirstName")
+    dataset <- dataset %>% relocate("party", "state_abbreviation", .after = "first_name")
 
-    return(dataset)
-}
-
-
-# combine all columns that start with column_name into one column
-# if values are different, seperate by ","
-# if values are the same or NA, keep the value
-# remove the other columns
-combine_columns <- function(dataset, column_name) {
-    cols <- grep(paste0("^", column_name), names(dataset), value = TRUE)
-    dataset[[column_name]] <- apply(
-        dataset[cols],
-        1,
-        function(x) {
-            x <- x[!is.na(x)]
-            if (length(unique(x)) > 1) {
-                paste(x, collapse = ",")
-            } else {
-                x[1]
-            }
-        }
-    )
-
-
-    # remove column_name from cols if exists
-    cols <- cols[!cols %in% column_name]
-
-    # remove other columns
+    # make all columns lowercase
     dataset <- dataset %>%
-        select(-one_of(cols))
+        rename_with(tolower)
 
     return(dataset)
 }
+
 
 # Functions to process financial contribution datasets for a given term
 # each dataset should have following columns LastName, FirstName, Amount, Party, StateAbbreviation
@@ -76,27 +51,31 @@ process_financial_data <- function(datasets) {
         master_df <- full_join(
             master_df,
             datasets[[i]],
-            by = c("LastName", "FirstName")
+            by = c("last_name", "first_name")
         )
     }
 
     # drop all columns except LastName.*, FirstName.*, Amount.*, Party.*, StateAbbreviation.*
     master_df <- master_df %>%
         select(
-            matches("LastName"),
-            matches("FirstName"),
-            matches("Amount"),
-            matches("Party"),
-            matches("StateAbbreviation")
+            matches("last_name"),
+            matches("first_name"),
+            matches("amount"),
+            matches("party"),
+            matches("state_abbreviation")
         )
 
 
     # Handle missing Party and StateAbbreviation, remove redundant cols
-    master_df <- combine_columns(master_df, "Party")
-    master_df <- combine_columns(master_df, "StateAbbreviation")
+    master_df <- combine_columns(master_df, "party")
+    master_df <- combine_columns(master_df, "state_abbreviation")
+
+    # rename state_abbreviation to state
+    master_df <- master_df %>%
+        rename("state" = "state_abbreviation")
 
     # Turn "invalid number" or NA into 0
-    amount_cols <- grep("^Amount", names(master_df), value = TRUE)
+    amount_cols <- grep("^amount", names(master_df), value = TRUE)
     master_df[amount_cols][is.na(master_df[amount_cols])] <- 0
 
     return(master_df)
@@ -207,29 +186,6 @@ clean_id_reps <- function(dataset) {
     dataset <- party_abbreviation(dataset)
 
     return(dataset)
-}
-
-
-# fuzzy join based on Names, Party and States
-# create function that returns True or False, if distance between two strings is less than 3
-fuzzy_match <- function(x, y, max_dist = 3) {
-    return(stringdist::stringdist(x, y) <= max_dist)
-}
-
-fuzzy_match_last <- function(x, y) {
-    return(fuzzy_match(x, y, 1))
-}
-fuzzy_match_first <- function(x, y) {
-    return(fuzzy_match(x, y, 3)) # in roll_call = 3
-}
-
-fuzzy_join_id <- function(dataset1, dataset2) {
-    fuzzy_dataset <- fuzzy_left_join(dataset1, dataset2,
-        by = c("LastName", "FirstName", "State", "Party"), match_fun = list(fuzzy_match_last, fuzzy_match_first, `==`, `==`)
-    )
-    # relocate cols
-    fuzzy_dataset <- relocate(fuzzy_dataset, LastName.y, .after = LastName.x)
-    fuzzy_dataset <- relocate(fuzzy_dataset, FirstName.y, .after = FirstName.x)
 }
 
 # if LastName.x, FirstName.x, State.x, Party.x are not equal to LastName.y,
