@@ -1,3 +1,7 @@
+library(tidyverse)
+source("src/cleaning/utils/party_abbreviation.R")
+source("src/cleaning/utils/state_abbreviation.R")
+
 # read file line by line
 
 con <- file("data/original/unique_id_reps.csv", "r")
@@ -40,6 +44,10 @@ for (i in 2:length(lines)) {
     df <- rbind(df, new_row)
 }
 
-# view(df)
+df <- party_abbreviation(df)
+# trim whitespace of all columns
+df <- df %>% mutate_all(str_squish)
+df <- add_state_abbrev(df)
+
 # write csv
 write.csv(df, "data/cleaned/unique_id_reps.csv", row.names = FALSE)

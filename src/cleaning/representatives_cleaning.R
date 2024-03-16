@@ -23,7 +23,13 @@ rep_116 <- rep_cleaning(rep_116)
 # cleaning of rep_117
 rep_117 <- party_abbreviation(rep_117, "Party")
 rep_117 <- subset(rep_117, select = -c(State)) # remove state column
-rep_117 <- rename(rep_117, state = StateAbbreviation) # rename stateAbbreviation to  column
+rep_117 <- rename(rep_117,
+    last_name = "LastName",
+    first_name = "FirstName",
+    party = "Party",
+    state = "StateAbbreviation"
+) # rename columns
+
 # view(rep_117)
 
 # cleaning rep_113
@@ -44,17 +50,22 @@ rep_116 <- add_state_abbrev(rep_116)
 # works till here
 
 dfs <- list(rep_113, rep_114, rep_115, rep_116, rep_117)
-view(dfs[3])
+
 
 # fuzzyjoin each df with unique id reps
 for (i in 1:length(dfs)) {
-    dfs[[i]] <- fuzzy_join_representative_id(dfs[[i]], c("last_name", "first_name", "party", "state"))
+    dfs[[i]] <- fuzzy_join_representative_id(
+        dfs[[i]],
+        c("last_name", "first_name", "party", "state")
+    )
+    view(dfs[[i]])
+    break
 }
 
 
 # write csv
-write.csv(rep_113, "data/cleaned/representatives/113.csv", row.names = FALSE)
-write.csv(rep_114, "data/cleaned/representatives/114.csv", row.names = FALSE)
-write.csv(rep_115, "data/cleaned/representatives/115.csv", row.names = FALSE)
-write.csv(rep_116, "data/cleaned/representatives/116.csv", row.names = FALSE)
-write.csv(rep_117, "data/cleaned/representatives/117.csv", row.names = FALSE)
+# write.csv(rep_113, "data/cleaned/representatives/113.csv", row.names = FALSE)
+# write.csv(rep_114, "data/cleaned/representatives/114.csv", row.names = FALSE)
+# write.csv(rep_115, "data/cleaned/representatives/115.csv", row.names = FALSE)
+# write.csv(rep_116, "data/cleaned/representatives/116.csv", row.names = FALSE)
+# write.csv(rep_117, "data/cleaned/representatives/117.csv", row.names = FALSE)

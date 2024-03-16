@@ -12,6 +12,7 @@ rep_cleaning <- function(dataset) {
 fuzzy_join_representative_id <- function(dataset, join_by) {
     # import id_reps
     id_reps <- read_csv("data/cleaned/unique_id_reps.csv", show_col_types = FALSE)
+    view(id_reps)
     dataset <- fuzzy_left_join(
         dataset,
         id_reps,
