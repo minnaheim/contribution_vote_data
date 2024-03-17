@@ -153,7 +153,7 @@ alternative_en_117 <- contribution_clean(alternative_en_117)
 
 
 # add suffix to columns "Amount", "Party", "StateAbbreviation" based on the dataset
-columns_to_suffix <- c("amount", "party", "stateAbbreviation")
+columns_to_suffix <- c("amount", "party", "state_abbreviation")
 oil_113 <- add_suffix(oil_113, ".oil.113", columns_to_suffix)
 oil_114 <- add_suffix(oil_114, ".oil.114", columns_to_suffix)
 oil_115 <- add_suffix(oil_115, ".oil.115", columns_to_suffix)
@@ -246,11 +246,11 @@ master_df_117 <- process_financial_data(
 )
 
 # add session column to each df
-master_df_113 <- master_df_113 %>% mutate(session = 113)
-master_df_114 <- master_df_114 %>% mutate(session = 114)
-master_df_115 <- master_df_115 %>% mutate(session = 115)
-master_df_116 <- master_df_116 %>% mutate(session = 116)
-master_df_117 <- master_df_117 %>% mutate(session = 117)
+# master_df_113 <- master_df_113 %>% mutate(session = 113)
+# master_df_114 <- master_df_114 %>% mutate(session = 114)
+# master_df_115 <- master_df_115 %>% mutate(session = 115)
+# master_df_116 <- master_df_116 %>% mutate(session = 116)
+# master_df_117 <- master_df_117 %>% mutate(session = 117)
 
 dfs <- list(
     master_df_113,
@@ -263,12 +263,20 @@ dfs <- list(
 for (i in 1:length(dfs)) {
     # fuzzy join with representatives id
     dfs[[i]] <- fuzzy_join_representative_id(dfs[[i]])
+    # view(dfs[[i]])
 }
+print("Fuzzy join done")
+
+# merge all dfs combining all rows where first name and last name are the same
+fin_all <- reduce(dfs, full_join, by = c("first_name", "last_name", "party", "state"))
+
+fin_all <- combine_columns(fin_all, "member_id")
+fin_all <- combine_columns(fin_all, "rest_of_name")
 
 
+# I love you. and i loooooove youu a googal   times.
 
-# concatenate all dfs
-fin_all <- bind_rows(dfs)
+# view(fin_all)
 
 # write to csv
 write_csv(fin_all, "data/cleaned/contributions.csv")

@@ -127,3 +127,8 @@ all_reps_116_0 <- all_reps_116 %>% dplyr::filter(Amount.oil.116 == 0 & Amount.co
 # view(all_reps_116_0)
 # 18 reps received 0 contributions from energy & env. sectors
 ```
+
+## stringsim
+```{r}
+?stringsim
+```

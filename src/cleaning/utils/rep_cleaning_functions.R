@@ -25,11 +25,13 @@ fuzzy_match_first <- function(x, y) {
 fuzzy_join_representative_id <- function(dataset) {
     # import id_reps
     id_reps <- read_csv("data/cleaned/unique_id_reps.csv", show_col_types = FALSE)
+    dataset["name"] <- paste(dataset$first_name, dataset$last_name)
+    id_reps["name"] <- paste(id_reps$first_name, id_reps$last_name)
     dataset <- fuzzy_left_join(
         dataset,
         id_reps,
-        by = c("last_name", "first_name", "party", "state"),
-        match_fun = list(fuzzy_match_last, fuzzy_match_first, `==`, `==`)
+        by = c("name", "party", "state"),
+        match_fun = list(fuzzy_match, `==`, `==`)
     )
     # combine columns
     dataset <- combine_columns(dataset, "first_name", FALSE)

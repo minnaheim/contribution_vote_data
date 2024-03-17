@@ -24,10 +24,10 @@ contribution_clean <- function(dataset) {
     dataset$Representative <- gsub("\\s*\\(.*?\\)\\s*", "", dataset$Representative)
 
     # split the representatives column of contribution _114 into the columns LastName and FirstName.
-    dataset <- extract(dataset, "Representative", c("last_name", "first_name"), "([^ ]+) (.*)")
+    dataset <- tidyr::extract(dataset, "Representative", c("last_name", "first_name"), "([^ ]+) (.*)")
 
     # split Party and state-abbreviation into separate columns.
-    dataset <- separate(dataset, "Party", into = c("party", "state_abbreviation"), sep = "-")
+    dataset <- tidyr::separate(dataset, "Party", into = c("party", "state_abbreviation"), sep = "-")
 
     # relocate Party and StateAbbreviation columns to after Names
     dataset <- dataset %>% relocate("party", "state_abbreviation", .after = "first_name")

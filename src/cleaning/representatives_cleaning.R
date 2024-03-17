@@ -50,12 +50,12 @@ rep_115 <- add_state_abbrev(rep_115)
 rep_116 <- add_state_abbrev(rep_116)
 # works till here
 
-# add session column to each df
-rep_113 <- rep_113 %>% mutate(session = 113)
-rep_114 <- rep_114 %>% mutate(session = 114)
-rep_115 <- rep_115 %>% mutate(session = 115)
-rep_116 <- rep_116 %>% mutate(session = 116)
-rep_117 <- rep_117 %>% mutate(session = 117)
+# # add session column to each df
+# rep_113 <- rep_113 %>% mutate(session = 113)
+# rep_114 <- rep_114 %>% mutate(session = 114)
+# rep_115 <- rep_115 %>% mutate(session = 115)
+# rep_116 <- rep_116 %>% mutate(session = 116)
+# rep_117 <- rep_117 %>% mutate(session = 117)
 
 dfs <- list(rep_113, rep_114, rep_115, rep_116, rep_117)
 
@@ -74,7 +74,7 @@ rep_all <- rep_all %>% relocate("member_id")
 rep_all <- rep_all %>% relocate("first_name", .after = "member_id")
 rep_all <- rep_all %>% relocate("last_name", .after = "first_name")
 
-# view(rep_all)
+view(rep_all)
 
 # write to csv
 write_csv(rep_all, "data/cleaned/representatives.csv")
