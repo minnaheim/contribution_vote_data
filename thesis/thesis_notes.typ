@@ -31,4 +31,11 @@ persons voted ­ and then + on the bills
 - merging names of diff sources (rollcall, financial, not uniform names)
 - added ID column (and used fuzzyjoin & stringdist)
 - stringsim/ fuzzy matching(choose the best option)
--  
+-  clean_strings for removing accents, special symbols in names
+
+#strong(Model)
+- 3 OLS models
+- time and state fixed effects (state,i.e. oil & political leaning)
+- DW Sentiment index?
+
+

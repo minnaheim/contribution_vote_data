@@ -1,9 +1,23 @@
+# setup
 source("src/cleaning/utils/combine_columns.R")
+# install.packages("fedmatch")
+library(fedmatch)
+
+# clean names, by removing all special symbols and making all names lowercase, cols need to be "last_name", and "first"
+clean_names <- function(dataset) {
+    clean_name <- lapply(dataset$last_name, clean_strings)
+    dataset$last_name <- clean_name
+    clean_name <- lapply(dataset$first_name, clean_strings)
+    dataset$first_name <- clean_name
+    return(dataset)
+}
+
 
 rep_cleaning <- function(dataset) {
     trimws(dataset)
     colnames(dataset) <- c("last_name", "first_name", "state", "party", "chamber")
     dataset <- dataset %>% dplyr::filter(chamber != "Senate")
+    dataset <- clean_names(dataset)
     return(dataset)
 }
 
@@ -44,3 +58,22 @@ fuzzy_join_representative_id <- function(dataset) {
 
     return(dataset)
 }
+# find all name matches (when merging two datasets, take the input dataset as the base dataset, and then find all matches in id_reps, by name)
+# dataset needs to have name column
+name_match <- function(dataset) {
+    # import id_reps
+    id_reps <- read_csv("data/cleaned/unique_id_reps.csv", show_col_types = FALSE)
+    id_reps["name"] <- paste(id_reps$first_name, id_reps$last_name)
+    # for each name in the dataset, find the best match in id_reps
+    for (i in 1:nrow(dataset)) {
+        name <- dataset$name[i]
+        matches <- id_reps$name
+        probs <- stringsim(name, matches, method = "jw")
+        best_match <- which.max(probs)
+        dataset$member_id[i] <- id_reps$member_id[best_match]
+        print(id_reps$member_id[best_match])
+    }
+    return(dataset)
+}
+
+# using the function stringsim, we calculate the similarities of the name matches, and then choose the best match, acc. to the highest probability

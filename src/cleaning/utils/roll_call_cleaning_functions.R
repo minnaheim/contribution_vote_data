@@ -120,53 +120,6 @@ mark_na <- function(dataset) {
 }
 
 
-# this is a function based on vote_count, If Vote_count is 3, it checks if there are any changes in votes, and counts them.
-# If vote_count is 2, then it looks at the non-NA values, and if they are + or -, then checks whether there is a change in vote, i.e.
-# from + to - or vice versa, if there are vote changes, puts 1, if not 0.
-# the function doesn't look at 1 vote counts, as there is no change in vote.
-# count_vote_changes <- function(dataset) {
-#     for (i in 1:nrow(dataset)) {
-#         row <- dataset[i, ]
-#         Vote_change <- 0
-#         if (row$Vote_count == 6) {
-#             if (row$Vote3 != row$Vote4) {
-#                 dataset[i, ]["Vote_change"] <- dataset[i, ]["Vote_change"] + 1
-#             }
-#             if (row$Vote4 != row$Vote51) {
-#                 dataset[i, ]["Vote_change"] <- dataset[i, ]["Vote_change"] + 1
-#             }
-#             if (row$Vote51 != row$Vote52) {
-#                 dataset[i, ]["Vote_change"] <- dataset[i, ]["Vote_change"] + 1
-#             }
-#             if (row$Vote52 != row$Vote6) {
-#                 dataset[i, ]["Vote_change"] <- dataset[i, ]["Vote_change"] + 1
-#             }
-#             if (row$Vote6 != row$Vote7) {
-#                 dataset[i, ]["Vote_change"] <- dataset[i, ]["Vote_change"] + 1
-#             }
-#         } else if (row$Vote_count == 5 || row$Vote_count == 4 || row$Vote_count == 3 || row$Vote_count == 2) {
-#             if (!is.na(row$Vote3) && !is.na(row$Vote4) && row$Vote3 != row$Vote4) {
-#                 dataset[i, ]["Vote_change"] <- dataset[i, ]["Vote_change"] + 1
-#             }
-#             if (!is.na(row$Vote4) && !is.na(row$Vote51) && row$Vote4 != row$Vote51) {
-#                 dataset[i, ]["Vote_change"] <- dataset[i, ]["Vote_change"] + 1
-#             }
-#             if (!is.na(row$Vote51) && !is.na(row$Vote52) && row$Vote51 != row$Vote52) {
-#                 dataset[i, ]["Vote_change"] <- dataset[i, ]["Vote_change"] + 1
-#             }
-#             if (!is.na(row$Vote52) && !is.na(row$Vote6) && row$Vote52 != row$Vote6) {
-#                 dataset[i, ]["Vote_change"] <- dataset[i, ]["Vote_change"] + 1
-#             }
-#             if (!is.na(row$Vote6) && !is.na(row$Vote7) && row$Vote6 != row$Vote7) {
-#                 dataset[i, ]["Vote_change"] <- dataset[i, ]["Vote_change"] + 1
-#             }
-#         } else { # vote_count == 1
-#             dataset[i, ]["Vote_change"] <- 0
-#         }
-#         return(dataset)
-#     }
-# }
-
 count_vote_changes <- function(dataset) {
     dataset$Vote_change <- NA
 

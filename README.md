@@ -26,6 +26,7 @@
 
 ## cleaned data:
 - `reps_contributions.csv` -> merged rep data and financial data of all sessions
+- `representatives.csv` -> cleaned rep data of all sessions (113 - 117th session)
 
 ## data sources:
 - [OpenSecrets](https://www.opensecrets.org/)

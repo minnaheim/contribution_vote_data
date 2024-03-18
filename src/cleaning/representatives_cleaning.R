@@ -5,9 +5,9 @@ source("src/cleaning/utils/rep_cleaning_functions.R")
 source("src/cleaning/utils/party_abbreviation.R")
 source("src/cleaning/utils/state_abbreviation.R")
 source("src/cleaning/utils/combine_columns.R")
-
 library(tidyverse)
-library(dplyr)
+library(fuzzyjoin)
+library(stringdist)
 
 # import data
 rep_113 <- read_csv("data/original/representatives/term-113.csv", show_col_types = FALSE)
@@ -30,7 +30,7 @@ rep_117 <- rename(rep_117,
     party = "Party",
     state = "StateAbbreviation"
 ) # rename columns
-
+rep_117 <- clean_names(rep_117) # clean names
 # view(rep_117)
 
 # cleaning rep_113
@@ -39,6 +39,7 @@ rep_113 <- separate(rep_113, "sort_name", into = c("last_name", "first_name"), s
 rep_113 <- separate(rep_113, "area_id", into = c("state", "district"), sep = "-")
 rep_113 <- rename(rep_113, party = "group")
 rep_113 <- party_abbreviation(rep_113)
+rep_113 <- clean_names(rep_113)
 # view(rep_113)
 
 rep_114 <- party_abbreviation(rep_114)
@@ -58,7 +59,8 @@ rep_116 <- add_state_abbrev(rep_116)
 # rep_117 <- rep_117 %>% mutate(session = 117)
 
 dfs <- list(rep_113, rep_114, rep_115, rep_116, rep_117)
-
+# view(dfs[[4]])
+# FINISH THIS - DOESNT MERGE YETi
 
 # fuzzyjoin each df with unique id reps
 for (i in 1:length(dfs)) {
@@ -67,6 +69,7 @@ for (i in 1:length(dfs)) {
 
 # concatenate all dfs
 rep_all <- bind_rows(dfs)
+# view(rep_all)
 # remove all district columns, chamber
 rep_all <- rep_all %>% select(-c(district, District, chamber))
 # relocate member_id and first_name, last_name, party, state
@@ -74,7 +77,9 @@ rep_all <- rep_all %>% relocate("member_id")
 rep_all <- rep_all %>% relocate("first_name", .after = "member_id")
 rep_all <- rep_all %>% relocate("last_name", .after = "first_name")
 
-view(rep_all)
+# try using the NA function to determine the matches of names
+# rep_test <- name_match(rep_all)
+
 
 # write to csv
 write_csv(rep_all, "data/cleaned/representatives.csv")
