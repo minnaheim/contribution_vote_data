@@ -20,6 +20,13 @@ rep_114 <- rep_cleaning(rep_114)
 rep_115 <- rep_cleaning(rep_115)
 rep_116 <- rep_cleaning(rep_116)
 
+rep_114 <- party_abbreviation(rep_114)
+rep_115 <- party_abbreviation(rep_115)
+rep_116 <- party_abbreviation(rep_116)
+
+rep_114 <- add_state_abbrev(rep_114)
+rep_115 <- add_state_abbrev(rep_115)
+rep_116 <- add_state_abbrev(rep_116)
 
 # cleaning of rep_117
 rep_117 <- party_abbreviation(rep_117, "Party")
@@ -42,34 +49,20 @@ rep_113 <- party_abbreviation(rep_113)
 rep_113 <- clean_names(rep_113)
 # view(rep_113)
 
-rep_114 <- party_abbreviation(rep_114)
-rep_115 <- party_abbreviation(rep_115)
-rep_116 <- party_abbreviation(rep_116)
-
-rep_114 <- add_state_abbrev(rep_114)
-rep_115 <- add_state_abbrev(rep_115)
-rep_116 <- add_state_abbrev(rep_116)
-# works till here
-
-# # add session column to each df
-# rep_113 <- rep_113 %>% mutate(session = 113)
-# rep_114 <- rep_114 %>% mutate(session = 114)
-# rep_115 <- rep_115 %>% mutate(session = 115)
-# rep_116 <- rep_116 %>% mutate(session = 116)
-# rep_117 <- rep_117 %>% mutate(session = 117)
-
 dfs <- list(rep_113, rep_114, rep_115, rep_116, rep_117)
-# view(dfs[[4]])
-# FINISH THIS - DOESNT MERGE YETi
 
+# view(dfs[[1]])
 # fuzzyjoin each df with unique id reps
 for (i in 1:length(dfs)) {
     dfs[[i]] <- fuzzy_join_representative_id(dfs[[i]])
+    # first df is dataset (representatives) = x
+    # second df is id_reps = y
 }
+# view(dfs[[4]])
 
+write.csv(dfs[[4]], "data/cleaned/representatives_116_test.csv")
 # concatenate all dfs
 rep_all <- bind_rows(dfs)
-# view(rep_all)
 # remove all district columns, chamber
 rep_all <- rep_all %>% select(-c(district, District, chamber))
 # relocate member_id and first_name, last_name, party, state
@@ -77,6 +70,8 @@ rep_all <- rep_all %>% relocate("member_id")
 rep_all <- rep_all %>% relocate("first_name", .after = "member_id")
 rep_all <- rep_all %>% relocate("last_name", .after = "first_name")
 
+view(dfs[[4]])
+view(rep_all)
 # try using the NA function to determine the matches of names
 # rep_test <- name_match(rep_all)
 

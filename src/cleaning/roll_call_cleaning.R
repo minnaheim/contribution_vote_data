@@ -25,7 +25,8 @@ methane_117 <- read_csv("data/original/roll_call/repealing-assault_methane_pollu
     show_col_types = FALSE
 )
 
-# Merge all roll calls
+
+# Merge all roll calls (and remove the upper casing of names)
 roll_call_full_1 <- merge_roll_calls(c("3", "4"), list(methane_113, methane_114))
 roll_call_full_2 <- merge_roll_calls(c("51", "52"), list(methane_115, methane_115_2))
 roll_call_full_3 <- merge_roll_calls(c("6", "7"), list(methane_116, methane_117))
@@ -65,14 +66,15 @@ repeat_voters_minus <- repeat_voters %>% dplyr::filter(Vote3 == "-" & Vote4 == "
 
 
 # use fuzzy_join_rep_id to merge together roll_call data and id_reps, within function
-roll_call_full <- rename(roll_call_full, c("last_name" = "LastName")) %>%
-    rename(., c("first_name" = "FirstName")) %>%
-    rename(., c("state" = "State")) %>%
-    rename(., c("party" = "Party"))
+roll_call_full <- rename(roll_call_full, c("party" = "Party")) %>%
+    # rename(., c("first_name" = "FirstName")) %>%
+    rename(., c("state" = "State"))
+# %>%
+# rename(., c("last_name" = "LastName"))
 
 # merge with id_reps
 roll_call_full <- fuzzy_join_representative_id(roll_call_full)
 view(roll_call_full)
 
 # write df as csv
-write.csv(roll_call_full, "data/cleaned/roll_call.csv", row.names = FALSE)
+# write.csv(roll_call_full, "data/cleaned/roll_call.csv", row.names = FALSE)

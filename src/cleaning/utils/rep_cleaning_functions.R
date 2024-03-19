@@ -5,10 +5,12 @@ library(fedmatch)
 
 # clean names, by removing all special symbols and making all names lowercase, cols need to be "last_name", and "first"
 clean_names <- function(dataset) {
-    clean_name <- lapply(dataset$last_name, clean_strings)
-    dataset$last_name <- clean_name
-    clean_name <- lapply(dataset$first_name, clean_strings)
-    dataset$first_name <- clean_name
+    dataset$last_name <- clean_strings(dataset$last_name)
+    dataset$first_name <- clean_strings(dataset$first_name)
+    # clean_names <- lapply(dataset[last_name], clean_strings)
+    # dataset[last_name] <- clean_names
+    # clean_names <- lapply(dataset[first_name], clean_strings)
+    # dataset[first_name] <- clean_names
     return(dataset)
 }
 
@@ -41,6 +43,8 @@ fuzzy_join_representative_id <- function(dataset) {
     id_reps <- read_csv("data/cleaned/unique_id_reps.csv", show_col_types = FALSE)
     dataset["name"] <- paste(dataset$first_name, dataset$last_name)
     id_reps["name"] <- paste(id_reps$first_name, id_reps$last_name)
+    # view(id_reps)
+    # view(dataset)
     dataset <- fuzzy_left_join(
         dataset,
         id_reps,
