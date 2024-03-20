@@ -20,10 +20,11 @@ roll_call <- read_csv("data/cleaned/roll_call.csv",
 # view(roll_call)
 
 # merge both cleaned data-frames together based on member_id
-df <- full_join(contributions, roll_call, by = "member_id")
+df <- left_join(roll_call, contributions, by = "member_id")
+view(df)
+
 df <- relocate(df, last_name.y)
 df <- relocate(df, last_name.x, .after = last_name.y)
 df <- relocate(df, first_name.x, .after = last_name.x)
 df <- relocate(df, first_name.y, .after = first_name.x)
 df <- relocate(df, member_id, .after = first_name.y)
-# view(df)

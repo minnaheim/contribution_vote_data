@@ -19,7 +19,7 @@ rep_cleaning <- function(dataset) {
     trimws(dataset)
     colnames(dataset) <- c("last_name", "first_name", "state", "party", "chamber")
     dataset <- dataset %>% dplyr::filter(chamber != "Senate")
-    dataset <- clean_names(dataset)
+    # dataset <- clean_names(dataset)
     return(dataset)
 }
 
@@ -43,6 +43,8 @@ fuzzy_join_representative_id <- function(dataset) {
     id_reps <- read_csv("data/cleaned/unique_id_reps.csv", show_col_types = FALSE)
     dataset["name"] <- paste(dataset$first_name, dataset$last_name)
     id_reps["name"] <- paste(id_reps$first_name, id_reps$last_name)
+    dataset["name"] <- lapply(dataset["name"], clean_strings)
+    id_reps["name"] <- lapply(id_reps["name"], clean_strings)
     # view(id_reps)
     # view(dataset)
     dataset <- fuzzy_left_join(

@@ -274,8 +274,6 @@ fin_all <- combine_columns(fin_all, "member_id")
 fin_all <- combine_columns(fin_all, "rest_of_name")
 
 
-# I love you. and i loooooove youu a googal   times.
-
 # view(fin_all)
 
 # write to csv

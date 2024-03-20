@@ -59,6 +59,6 @@ df <- party_abbreviation(df)
 df <- df %>% mutate_all(str_squish)
 df <- add_state_abbrev(df)
 
-view(df)
+# view(df)
 # write csv
 write.csv(df, "data/cleaned/unique_id_reps.csv", row.names = FALSE)
