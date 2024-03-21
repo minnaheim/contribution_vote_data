@@ -263,18 +263,22 @@ dfs <- list(
 for (i in 1:length(dfs)) {
     # fuzzy join with representatives id
     dfs[[i]] <- fuzzy_join_representative_id(dfs[[i]])
+    dfs[[i]] <- combine_columns(dfs[[i]], "name", FALSE)
     # view(dfs[[i]])
 }
 print("Fuzzy join done")
+# just one name column
 
 # merge all dfs combining all rows where first name and last name are the same
-fin_all <- reduce(dfs, full_join, by = c("first_name", "last_name", "party", "state"))
+fin_all <- reduce(dfs, full_join, by = c("name", "party", "state"))
 
 fin_all <- combine_columns(fin_all, "member_id")
 fin_all <- combine_columns(fin_all, "rest_of_name")
+fin_all <- combine_columns(fin_all, "first_name")
+fin_all <- combine_columns(fin_all, "last_name")
 
 
-# view(fin_all)
+view(fin_all)
 
 # write to csv
 write_csv(fin_all, "data/cleaned/contributions.csv")

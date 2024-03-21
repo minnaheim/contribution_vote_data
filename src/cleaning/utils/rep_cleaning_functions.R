@@ -36,7 +36,7 @@ fuzzy_match_first <- function(x, y) {
     return(fuzzy_match(x, y, 3)) # in roll_call = 3
 }
 
-# create a fuzzy merge function that merges each input dataset with the rep_u_id dataset,
+# fuzzy merge function that merges each input dataset with the rep_u_id dataset,
 # join_by must be this: c("last_name", "first_name", "party", "state")
 fuzzy_join_representative_id <- function(dataset) {
     # import id_reps
@@ -58,6 +58,8 @@ fuzzy_join_representative_id <- function(dataset) {
     dataset <- combine_columns(dataset, "last_name", FALSE)
     dataset <- combine_columns(dataset, "party")
     dataset <- combine_columns(dataset, "state")
+    dataset <- combine_columns(dataset, "name.x", FALSE)
+    dataset <- combine_columns(dataset, "name.y", FALSE)
     # relocate cols
     dataset <- relocate(dataset, "first_name")
     dataset <- relocate(dataset, "last_name", "party", "state", "member_id", .after = "first_name")
