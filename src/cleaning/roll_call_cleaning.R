@@ -4,8 +4,9 @@ library(conflicted)
 
 source("src/cleaning/utils/roll_call_cleaning_functions.R")
 source("src/cleaning/utils/fin_cleaning_functions.R")
+source("src/cleaning/utils/read_from_folder.R")
 
-# import roll call data of the 3 "offshore drilling subsidies" bills:
+# import roll call data of the bills:
 methane_113 <- read_csv("data/original/roll_call/methane-emissions-113.csv",
     show_col_types = FALSE
 )
@@ -76,7 +77,7 @@ roll_call_full <- rename(roll_call_full, c("party" = "Party")) %>%
 roll_call_full <- fuzzy_join_representative_id(roll_call_full)
 roll_call_full <- combine_columns(roll_call_full, "name")
 
-view(roll_call_full)
+# view(roll_call_full)
 
 # write df as csv
 write.csv(roll_call_full, "data/cleaned/roll_call.csv", row.names = FALSE)

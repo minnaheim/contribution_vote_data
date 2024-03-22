@@ -278,7 +278,7 @@ fin_all <- combine_columns(fin_all, "first_name")
 fin_all <- combine_columns(fin_all, "last_name")
 
 
-view(fin_all)
+# view(fin_all)
 
 # write to csv
 write_csv(fin_all, "data/cleaned/contributions.csv")

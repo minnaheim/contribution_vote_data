@@ -1,0 +1,74 @@
+---
+title: "Data Analysis of Roll Call Data"
+output: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, echo = TRUE, include = FALSE}
+library(tidyverse)
+library(ggplot2)
+```
+
+### Import Data
+```{r, echo=FALSE}
+df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/final_df.csv")
+# remove index col
+df <- df %>% select(-c("X"))
+view(df)
+```
+
+
+### prep dataset for general OLS model 
+```{r}
+# parties only incl. R, D, no I
+df <- df %>% dplyr::filter(party %in% c("D", "R"))
+
+# only include if vote_count > 1
+df <- df %>% dplyr::filter(Vote_count > 1)
+
+# vote change = 1 if > 0, and 0 if 0.
+df["Vote_change_dummy"] <- NA
+
+for (i in 1:nrow(df)) {
+    if (df$Vote_change[i] > 0) {
+        df$Vote_change_dummy[i] <- 1
+    } else {
+        df$Vote_change_dummy[i] <- 0
+    }
+}
+df <- relocate(df, "Vote_change_dummy", .after = "Vote_change")
+# view(df)
+
+```
+
+### time and state fixed effects 
+
+```{r}
+## import df that determines years of
+
+```
+
+
+### general OLS model
+```{r}
+ols <- lm(Vote_change_dummy ~ party, data = df)
+summary(ols)
+```
+
+regressing the vote change dummy on party affiliation, we find that the coefficient for the Republican party is 0.2, the intercept shows how likely a democrat is to change their voting behaviour, at 0.31, we can see that democrats are more likely to change their voting behaviour on methane related issues, with only the democrat variable at 0.05 being significant.
+
+### simple plot 
+```{r}
+
+```
+
+### subsample OLS 
+here we only look at those who did change their voting behavior.
+```{r mind changers, echo=FALSE}
+# create a function that looks at each row and its Vote_count. If 3, then compares 3 observations (Vote.114, Vote.115 and Vote.116) -> do the values change? if yes, where? -> if 2 ->
+```
+
+
