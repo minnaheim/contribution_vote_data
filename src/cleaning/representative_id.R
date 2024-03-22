@@ -2,63 +2,44 @@ library(tidyverse)
 source("src/cleaning/utils/party_abbreviation.R")
 source("src/cleaning/utils/state_abbreviation.R")
 source("src/cleaning/utils/rep_cleaning_functions.R")
-# read file line by line
 
-con <- file("data/original/unique_id_reps.csv", "r")
-lines <- readLines(con)
-close(con)
+# new unique id cleaning with tsv
+uid_df <- read_delim("data/original/uid_reps.tsv", show_col_types = FALSE) %>%
+    mutate(
+        party = str_extract(Member, "(?<=\\()[^-\\s)]+"),
+        state = str_extract(Member, "(?<=-\\s)[^\\)]+"),
+        member = str_remove(Member, "\\s*\\([^\\)]+\\)"),
+        last_name = str_extract(member, "[^,]+"),
+        first_name = str_extract(member, "(?<=,)[^,]+"),
+    ) %>%
+    rename(member_id = "Member ID")
+# view(uid_df)
 
-df <- data.frame()
-# some rows have more cols than others
-# iterate over all lines
-# split the row by comma
-for (i in 2:length(lines)) {
-    line <- strsplit(lines[i], ",")[[1]]
+# in about 20 rows, there are middle names in the party col
+# select columns which have middle names in party
+incorrect_df <- uid_df %>% filter(!(party %in% c("Democratic", "Republican", "Libertarian", "Independent")))
+# view(incorrect_df)
 
-    # first item is always the last name
-    last_name <- line[1]
-    # second item is always the first name, unless this item has 2 char or less, then check the next item,
-    # if it has 2 char or less, then the first name is the item after that.
-    # (trying to find members who dont use their first names, but their middle names)
-    if (nchar(line[2]) <= 2) {
-        first_name <- line[3]
-    }
-    if (nchar(line[3]) <= 2) {
-        first_name <- line[4]
-    } else {
-        first_name <- line[2]
-    }
-    # last item is always the representative id
-    member_id <- line[length(line)]
+incorrect_df <- incorrect_df %>%
+    rename(alias = party, ) %>%
+    mutate(
+        party = str_extract(member, "(?<=\\()[^-\\s)]+"),
+        state = str_extract(member, "(?<=-\\s)[^\\)]+"),
+        first_name = str_remove(first_name, "\\(.*")
+    )
 
-    # second to last is the state
-    state <- line[length(line) - 1]
+# view(incorrect_df)
 
-    # third to last is the party
-    party <- line[length(line) - 2]
 
-    # the rest is part of the name
-    if (length(line) > 5) {
-        rest_of_name <- paste(line[3:(length(line) - 3)], collapse = " ")
-    } else {
-        rest_of_name <- NA
-    }
-    # non-used
+uid_df["alias"] <- NA
+# filter out the rows from uid_df where MemberID is in incorrect_df
+uid_df <- uid_df %>% filter(!(member_id %in% incorrect_df$member_id))
+# concatenate the two dataframes
+uid_df <- rbind(uid_df, incorrect_df)
 
-    # create a new row
-    new_row <- data.frame(last_name, first_name, rest_of_name, party, state, member_id)
+# remove member col
+uid_df <- uid_df %>% select(-Member)
+# view(uid_df)
 
-    # add the new row to the dataframe
-    df <- rbind(df, new_row)
-}
-
-# view(df)
-df <- clean_names(df)
-df <- party_abbreviation(df)
-# trim whitespace of all columns
-df <- df %>% mutate_all(str_squish)
-df <- add_state_abbrev(df)
-
-# view(df)
 # write csv
-write.csv(df, "data/cleaned/unique_id_reps.csv", row.names = FALSE)
+write.csv(uid_df, "data/cleaned/unique_id_reps.csv", row.names = FALSE)

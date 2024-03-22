@@ -13,8 +13,8 @@ roll_call <- read_csv("data/cleaned/roll_call.csv",
     show_col_types = FALSE
 )
 
-# view(contributions)
-# view(roll_call)
+view(contributions)
+view(roll_call)
 
 df <- fuzzy_left_join(
     roll_call,
