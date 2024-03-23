@@ -1,18 +1,14 @@
+# this script serves to adjust the dataframes to fit to the requirements of each OLS
 library(tidyverse)
 library(ggplot2)
 
-df <- read.csv("data/cleaned/final_df.csv")
+df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/final_df.csv")
 
-# remove index col
-df <- df %>% select(-c("X"))
-
-# PREP DATASET FOR ANALYSIS
 # parties only incl. R, D, no I
 df <- df %>% dplyr::filter(party %in% c("D", "R"))
 
 # only include if vote_count > 1
 df <- df %>% dplyr::filter(Vote_count > 1)
-# view(df)
 
 # vote change = 1 if > 0, and 0 if 0.
 df["Vote_change_dummy"] <- NA
@@ -25,14 +21,8 @@ for (i in 1:nrow(df)) {
     }
 }
 df <- relocate(df, "Vote_change_dummy", .after = "Vote_change")
-# view(df)
 
-# remove unnecessary cols for analysis
-df <- subset(df, select = -c(last_name))
-view(df)
-# categorise amount cols into one... just amount.*
-
-
-# OLS
-ols <- lm(Vote_change_dummy ~ party, data = df)
-summary(ols)
+# remove irrelevant cols for analysis
+# df <- df %>% select(-c(last_name, first_name, name, member_id, District, state))
+df_full <- subset(df, select = -c(last_name, first_name, member_id, name, Vote_count, District, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Vote_change, state))
+# view(df_full)

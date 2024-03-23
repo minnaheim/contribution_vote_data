@@ -96,44 +96,712 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="import-data" class="level3">
-<h3 class="anchored" data-anchor-id="import-data">Import Data</h3>
+<section id="distribution-of-contributions" class="level3">
+<h3 class="anchored" data-anchor-id="distribution-of-contributions">distribution of contributions</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary statistics and ggplot</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summarise</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>data frame with 0 columns and 1 row</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot(df)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="prep-dataset-for-general-ols-model" class="level3">
 <h3 class="anchored" data-anchor-id="prep-dataset-for-general-ols-model">prep dataset for general OLS model</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># parties only incl. R, D, no I</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(party <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"D"</span>, <span class="st">"R"</span>))</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># only include if vote_count &gt; 1</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Vote_count <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># vote change = 1 if &gt; 0, and 0 if 0.</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Vote_change_dummy"</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(df)) {</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (df<span class="sc">$</span>Vote_change[i] <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>        df<span class="sc">$</span>Vote_change_dummy[i] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>        df<span class="sc">$</span>Vote_change_dummy[i] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">relocate</span>(df, <span class="st">"Vote_change_dummy"</span>, <span class="at">.after =</span> <span class="st">"Vote_change"</span>)</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># parties only incl. R, D, no I</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(party <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"D"</span>, <span class="st">"R"</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># only include if vote_count &gt; 1</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Vote_count <span class="sc">&gt;</span> <span class="dv">1</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co"># vote change = 1 if &gt; 0, and 0 if 0.</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>df[<span class="st">"Vote_change_dummy"</span>] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(df)) {</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (df<span class="sc">$</span>Vote_change[i] <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>        df<span class="sc">$</span>Vote_change_dummy[i] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>        df<span class="sc">$</span>Vote_change_dummy[i] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">relocate</span>(df, <span class="st">"Vote_change_dummy"</span>, <span class="at">.after =</span> <span class="st">"Vote_change"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># remove irrelevant cols for analysis</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="co"># df &lt;- df %&gt;% select(-c(last_name, first_name, name, member_id, District, state))</span></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>df_full <span class="ot">&lt;-</span> <span class="fu">subset</span>(df, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(last_name, first_name, member_id, name, Vote_count, District, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Vote_change, state))</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_full)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a function where the inputs are the df and the session to observe, and then dep. on the session, the function removes the irrelevant columns, i.e. if input is 113, then remove all amount columns that dont end in 113, and only keep the Vote column which ends in 3.</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># function that checks the last char of each column name in a df</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>substrRight <span class="ot">&lt;-</span> <span class="cf">function</span>(x, n){</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">substr</span>(x, <span class="fu">nchar</span>(x)<span class="sc">-</span>n<span class="sc">+</span><span class="dv">1</span>, <span class="fu">nchar</span>(x))</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>session_df <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset, session) {</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(dataset)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="time-and-state-fixed-effects" class="level3">
 <h3 class="anchored" data-anchor-id="time-and-state-fixed-effects">time and state fixed effects</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## import df that determines years of</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="do">## import df that determines years of env. significance?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</section>
+<section id="plot-change-in-mind-with-each-roll_call-to-be-able-to-analyse-the-contribution-better" class="level3">
+<h3 class="anchored" data-anchor-id="plot-change-in-mind-with-each-roll_call-to-be-able-to-analyse-the-contribution-better">plot change in mind with each roll_call… (to be able to analyse the contribution better)</h3>
 </section>
 <section id="general-ols-model" class="level3">
 <h3 class="anchored" data-anchor-id="general-ols-model">general OLS model</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>ols <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote_change_dummy <span class="sc">~</span> party, <span class="at">data =</span> df)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>ols <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote_change_dummy <span class="sc">~</span> . <span class="sc">-</span> party, <span class="at">data =</span> df)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Vote_change_dummy ~ . - party, data = df)
+
+Residuals:
+ALL 115 residuals are 0: no residual degrees of freedom!
+
+Coefficients: (505 not defined because of singularities)
+                             Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)                 4.782e-17        NaN     NaN      NaN
+last_nameAmodei            -2.249e-16        NaN     NaN      NaN
+last_nameBeatty             1.760e-16        NaN     NaN      NaN
+last_nameBera              -5.699e-17        NaN     NaN      NaN
+last_nameBishop             1.000e+00        NaN     NaN      NaN
+last_nameBlumenauer        -3.106e-16        NaN     NaN      NaN
+last_nameBonamici          -8.680e-17        NaN     NaN      NaN
+last_nameBrownley          -1.431e-16        NaN     NaN      NaN
+last_nameBuchanan          -7.617e-17        NaN     NaN      NaN
+last_nameBucshon           -8.241e-17        NaN     NaN      NaN
+last_nameBurgess            2.774e-16        NaN     NaN      NaN
+last_nameBustos            -3.946e-17        NaN     NaN      NaN
+last_nameButterfield       -2.256e-16        NaN     NaN      NaN
+last_nameCarter            -2.235e-16        NaN     NaN      NaN
+last_nameCastro            -3.594e-16        NaN     NaN      NaN
+last_nameChabot            -2.126e-16        NaN     NaN      NaN
+last_nameCleaver           -6.371e-17        NaN     NaN      NaN
+last_nameCohen              7.505e-17        NaN     NaN      NaN
+last_nameCole              -7.064e-17        NaN     NaN      NaN
+last_nameCooper            -2.459e-16        NaN     NaN      NaN
+last_nameCuellar            1.000e+00        NaN     NaN      NaN
+last_nameDavis             -8.321e-17        NaN     NaN      NaN
+last_nameDeFazio           -1.134e-16        NaN     NaN      NaN
+last_nameDelBene           -1.438e-16        NaN     NaN      NaN
+last_nameDesJarlais        -1.290e-16        NaN     NaN      NaN
+last_nameDuncan            -1.178e-16        NaN     NaN      NaN
+last_nameFortenberry       -1.291e-16        NaN     NaN      NaN
+last_nameFoster            -9.718e-17        NaN     NaN      NaN
+last_nameFoxx              -1.122e-16        NaN     NaN      NaN
+last_nameFrankel           -6.833e-17        NaN     NaN      NaN
+last_nameGaramendi          5.261e-17        NaN     NaN      NaN
+last_nameGibbs             -1.193e-16        NaN     NaN      NaN
+last_nameGranger           -6.848e-17        NaN     NaN      NaN
+last_nameGreen             -9.411e-17        NaN     NaN      NaN
+last_nameGuthrie           -1.160e-16        NaN     NaN      NaN
+last_nameHarris            -1.151e-16        NaN     NaN      NaN
+last_nameHartzler          -6.772e-17        NaN     NaN      NaN
+last_nameHudson            -1.002e-16        NaN     NaN      NaN
+last_nameHuffman           -1.650e-16        NaN     NaN      NaN
+last_nameHuizenga          -9.621e-17        NaN     NaN      NaN
+last_nameJeffries          -1.007e-16        NaN     NaN      NaN
+last_nameJohnson           -1.036e-16        NaN     NaN      NaN
+last_nameJordan            -1.086e-16        NaN     NaN      NaN
+last_nameJoyce             -9.383e-17        NaN     NaN      NaN
+last_nameKaptur            -1.154e-16        NaN     NaN      NaN
+last_nameKelly             -8.851e-17        NaN     NaN      NaN
+last_nameKilmer             1.097e-15        NaN     NaN      NaN
+last_nameKind              -2.665e-16        NaN     NaN      NaN
+last_nameKinzinger         -6.706e-17        NaN     NaN      NaN
+last_nameKuster            -8.747e-17        NaN     NaN      NaN
+last_nameLaMalfa            1.386e-16        NaN     NaN      NaN
+last_nameLamborn           -8.130e-17        NaN     NaN      NaN
+last_nameLarsen            -1.153e-16        NaN     NaN      NaN
+last_nameLarson            -2.822e-17        NaN     NaN      NaN
+last_nameLofgren            6.771e-17        NaN     NaN      NaN
+last_nameLong              -1.304e-16        NaN     NaN      NaN
+last_nameLowenthal         -7.035e-16        NaN     NaN      NaN
+last_nameLucas             -1.108e-16        NaN     NaN      NaN
+last_nameLuetkemeyer       -1.027e-16        NaN     NaN      NaN
+last_nameMaloney           -1.601e-16        NaN     NaN      NaN
+last_nameMassie            -6.607e-17        NaN     NaN      NaN
+last_nameMatsui            -4.091e-16        NaN     NaN      NaN
+last_nameMcCarthy           2.133e-16        NaN     NaN      NaN
+last_nameMcCaul            -9.383e-17        NaN     NaN      NaN
+last_nameMcClintock        -6.713e-18        NaN     NaN      NaN
+last_nameMcCollum          -1.239e-16        NaN     NaN      NaN
+last_nameMcHenry           -8.763e-17        NaN     NaN      NaN
+last_nameMcMorris Rodgers  -6.011e-16        NaN     NaN      NaN
+last_nameMcNerney          -5.987e-17        NaN     NaN      NaN
+last_nameMeeks             -1.103e-16        NaN     NaN      NaN
+last_nameMeng              -7.375e-17        NaN     NaN      NaN
+last_nameMullin            -1.237e-16        NaN     NaN      NaN
+last_nameNeal              -5.920e-17        NaN     NaN      NaN
+last_namePascrell          -1.230e-16        NaN     NaN      NaN
+last_namePayne             -8.915e-17        NaN     NaN      NaN
+last_namePerlmutter        -5.263e-17        NaN     NaN      NaN
+last_namePerry             -7.518e-17        NaN     NaN      NaN
+last_namePocan             -1.175e-16        NaN     NaN      NaN
+last_nameQuigley           -2.515e-17        NaN     NaN      NaN
+last_nameReed               1.000e+00        NaN     NaN      NaN
+last_nameRice              -7.844e-17        NaN     NaN      NaN
+last_nameRogers             1.913e-16        NaN     NaN      NaN
+last_nameRuiz              -2.510e-16        NaN     NaN      NaN
+last_nameSarbanes          -1.232e-16        NaN     NaN      NaN
+last_nameSchiff            -1.634e-16        NaN     NaN      NaN
+last_nameSchrader          -1.474e-16        NaN     NaN      NaN
+last_nameSchweikert        -1.183e-16        NaN     NaN      NaN
+last_nameScott             -9.711e-17        NaN     NaN      NaN
+last_nameSires             -1.514e-16        NaN     NaN      NaN
+last_nameStewart           -8.108e-17        NaN     NaN      NaN
+last_nameTakano            -1.562e-16        NaN     NaN      NaN
+last_nameThompson           1.017e-17        NaN     NaN      NaN
+last_nameTitus             -1.171e-16        NaN     NaN      NaN
+last_nameTurner            -8.263e-17        NaN     NaN      NaN
+last_nameUpton              1.000e+00        NaN     NaN      NaN
+last_nameVargas            -1.885e-17        NaN     NaN      NaN
+last_nameVeasey             1.000e+00        NaN     NaN      NaN
+last_nameVela               1.000e+00        NaN     NaN      NaN
+last_nameWagner            -4.792e-17        NaN     NaN      NaN
+last_nameWalberg           -4.659e-18        NaN     NaN      NaN
+last_nameWalorski          -5.696e-16        NaN     NaN      NaN
+last_nameWaters             1.417e-16        NaN     NaN      NaN
+last_nameWeber             -1.706e-16        NaN     NaN      NaN
+last_nameWebster           -1.235e-16        NaN     NaN      NaN
+last_nameWenstrup          -1.856e-16        NaN     NaN      NaN
+last_nameWilliams          -1.706e-16        NaN     NaN      NaN
+last_nameWilson            -1.710e-16        NaN     NaN      NaN
+last_nameWomack             2.603e-17        NaN     NaN      NaN
+last_nameYoung             -3.497e-16        NaN     NaN      NaN
+first_nameAdam B.                  NA         NA      NA       NA
+first_nameAl                       NA         NA      NA       NA
+first_nameAlan S.                  NA         NA      NA       NA
+first_nameAlbio                    NA         NA      NA       NA
+first_nameAmi                      NA         NA      NA       NA
+first_nameAndy                     NA         NA      NA       NA
+first_nameAnn                      NA         NA      NA       NA
+first_nameAnn M.                   NA         NA      NA       NA
+first_nameAustin            1.225e-17        NaN     NaN      NaN
+first_nameBennie G.        -1.393e-16        NaN     NaN      NaN
+first_nameBetty                    NA         NA      NA       NA
+first_nameBill              4.977e-18        NaN     NaN      NaN
+first_nameBilly                    NA         NA      NA       NA
+first_nameBlaine                   NA         NA      NA       NA
+first_nameBob                      NA         NA      NA       NA
+first_nameBrad R.                  NA         NA      NA       NA
+first_nameBrett                    NA         NA      NA       NA
+first_nameCarolyn B.        8.728e-17        NaN     NaN      NaN
+first_nameCathy                    NA         NA      NA       NA
+first_nameCheri                    NA         NA      NA       NA
+first_nameChris                    NA         NA      NA       NA
+first_nameDaniel                   NA         NA      NA       NA
+first_nameDanny K.         -7.014e-17        NaN     NaN      NaN
+first_nameDavid                    NA         NA      NA       NA
+first_nameDavid P.                 NA         NA      NA       NA
+first_nameDerek                    NA         NA      NA       NA
+first_nameDina                     NA         NA      NA       NA
+first_nameDon                      NA         NA      NA       NA
+first_nameDonald M.                NA         NA      NA       NA
+first_nameDoris O.                 NA         NA      NA       NA
+first_nameDoug                     NA         NA      NA       NA
+first_nameEarl                     NA         NA      NA       NA
+first_nameEd                       NA         NA      NA       NA
+first_nameEddie Bernice            NA         NA      NA       NA
+first_nameEmanuel                  NA         NA      NA       NA
+first_nameFilemon                  NA         NA      NA       NA
+first_nameFrank D.                 NA         NA      NA       NA
+first_nameFred                     NA         NA      NA       NA
+first_nameG.K.                     NA         NA      NA       NA
+first_nameGrace                    NA         NA      NA       NA
+first_nameGregory W.               NA         NA      NA       NA
+first_nameHakeem S.                NA         NA      NA       NA
+first_nameHarold           -1.963e-16        NaN     NaN      NaN
+first_nameHenry                    NA         NA      NA       NA
+first_nameJackie                   NA         NA      NA       NA
+first_nameJared                    NA         NA      NA       NA
+first_nameJeff                     NA         NA      NA       NA
+first_nameJerry                    NA         NA      NA       NA
+first_nameJim                      NA         NA      NA       NA
+first_nameJoaquin                  NA         NA      NA       NA
+first_nameJoe                      NA         NA      NA       NA
+first_nameJohn                     NA         NA      NA       NA
+first_nameJohn B.                  NA         NA      NA       NA
+first_nameJohn P.                  NA         NA      NA       NA
+first_nameJohn R.                  NA         NA      NA       NA
+first_nameJoyce                    NA         NA      NA       NA
+first_nameJuan                     NA         NA      NA       NA
+first_nameJulia                    NA         NA      NA       NA
+first_nameKay                      NA         NA      NA       NA
+first_nameKevin                    NA         NA      NA       NA
+first_nameKurt                     NA         NA      NA       NA
+first_nameLarry                    NA         NA      NA       NA
+first_nameLois                     NA         NA      NA       NA
+first_nameMarc A.                  NA         NA      NA       NA
+first_nameMarcy                    NA         NA      NA       NA
+first_nameMark                     NA         NA      NA       NA
+first_nameMark E.                  NA         NA      NA       NA
+first_nameMarkwayne                NA         NA      NA       NA
+first_nameMaxine                   NA         NA      NA       NA
+first_nameMichael C.               NA         NA      NA       NA
+first_nameMichael R.               NA         NA      NA       NA
+first_nameMichael T.               NA         NA      NA       NA
+first_nameMike                     NA         NA      NA       NA
+first_nameMike D.                  NA         NA      NA       NA
+first_namePatrick T.               NA         NA      NA       NA
+first_namePeter A.                 NA         NA      NA       NA
+first_nameRandy K.                 NA         NA      NA       NA
+first_nameRaul                     NA         NA      NA       NA
+first_nameRichard                  NA         NA      NA       NA
+first_nameRichard E.               NA         NA      NA       NA
+first_nameRick                     NA         NA      NA       NA
+first_nameRobert B.                NA         NA      NA       NA
+first_nameRodney                   NA         NA      NA       NA
+first_nameRoger                    NA         NA      NA       NA
+first_nameRon                      NA         NA      NA       NA
+first_nameSanford D.               NA         NA      NA       NA
+first_nameScott                    NA         NA      NA       NA
+first_nameSean Patrick             NA         NA      NA       NA
+first_nameSteve                    NA         NA      NA       NA
+first_nameSuzan K.                 NA         NA      NA       NA
+first_nameSuzanne                  NA         NA      NA       NA
+first_nameThomas                   NA         NA      NA       NA
+first_nameTim                      NA         NA      NA       NA
+first_nameTom                      NA         NA      NA       NA
+first_nameVern                     NA         NA      NA       NA
+first_nameVicky                    NA         NA      NA       NA
+first_nameVirginia                 NA         NA      NA       NA
+first_nameZoe                      NA         NA      NA       NA
+nameadam kinzinger                 NA         NA      NA       NA
+nameal green                       NA         NA      NA       NA
+namealan s lowenthal               NA         NA      NA       NA
+namealbio sires                    NA         NA      NA       NA
+nameami bera                       NA         NA      NA       NA
+nameandy harris                    NA         NA      NA       NA
+nameann m kuster                   NA         NA      NA       NA
+nameann wagner                     NA         NA      NA       NA
+nameaustin scott                   NA         NA      NA       NA
+namebennie g thompson              NA         NA      NA       NA
+namebetty mccollum                 NA         NA      NA       NA
+namebill foster                    NA         NA      NA       NA
+namebill huizenga                  NA         NA      NA       NA
+namebill johnson                   NA         NA      NA       NA
+namebill pascrell                  NA         NA      NA       NA
+namebilly long                     NA         NA      NA       NA
+nameblaine luetkemeyer             NA         NA      NA       NA
+namebob gibbs                      NA         NA      NA       NA
+namebrad r wenstrup                NA         NA      NA       NA
+namebrett guthrie                  NA         NA      NA       NA
+namecarolyn b maloney              NA         NA      NA       NA
+namecathy mcmorris rodgers         NA         NA      NA       NA
+namecheri bustos                   NA         NA      NA       NA
+namechris stewart                  NA         NA      NA       NA
+namedaniel webster                 NA         NA      NA       NA
+namedanny k davis                  NA         NA      NA       NA
+namedavid p joyce                  NA         NA      NA       NA
+namedavid schweikert               NA         NA      NA       NA
+namedavid scott                    NA         NA      NA       NA
+namederek kilmer                   NA         NA      NA       NA
+namedina titus                     NA         NA      NA       NA
+namedon young                      NA         NA      NA       NA
+namedonald m payne                 NA         NA      NA       NA
+namedoris o matsui                 NA         NA      NA       NA
+namedoug lamalfa                   NA         NA      NA       NA
+namedoug lamborn                   NA         NA      NA       NA
+nameearl blumenauer                NA         NA      NA       NA
+nameed perlmutter                  NA         NA      NA       NA
+nameeddie bernice johnson          NA         NA      NA       NA
+nameemanuel cleaver                NA         NA      NA       NA
+namefilemon vela                   NA         NA      NA       NA
+namefrank d lucas                  NA         NA      NA       NA
+namefred upton                     NA         NA      NA       NA
+nameg k butterfield                NA         NA      NA       NA
+namegrace meng                     NA         NA      NA       NA
+namegregory w meeks                NA         NA      NA       NA
+namehakeem s jeffries              NA         NA      NA       NA
+nameharold rogers                  NA         NA      NA       NA
+namehenry cuellar                  NA         NA      NA       NA
+namejackie walorski                NA         NA      NA       NA
+namejared huffman                  NA         NA      NA       NA
+namejeff duncan                    NA         NA      NA       NA
+namejeff fortenberry               NA         NA      NA       NA
+namejerry mcnerney                 NA         NA      NA       NA
+namejim cooper                     NA         NA      NA       NA
+namejim jordan                     NA         NA      NA       NA
+namejoaquin castro                 NA         NA      NA       NA
+namejoe wilson                     NA         NA      NA       NA
+namejohn b larson                  NA         NA      NA       NA
+namejohn garamendi                 NA         NA      NA       NA
+namejohn p sarbanes                NA         NA      NA       NA
+namejohn r carter                  NA         NA      NA       NA
+namejoyce beatty                   NA         NA      NA       NA
+namejuan vargas                    NA         NA      NA       NA
+namejulia brownley                 NA         NA      NA       NA
+namekay granger                    NA         NA      NA       NA
+namekevin mccarthy                 NA         NA      NA       NA
+namekurt schrader                  NA         NA      NA       NA
+namelarry bucshon                  NA         NA      NA       NA
+namelois frankel                   NA         NA      NA       NA
+namemarc a veasey                  NA         NA      NA       NA
+namemarcy kaptur                   NA         NA      NA       NA
+namemark e amodei                  NA         NA      NA       NA
+namemark pocan                     NA         NA      NA       NA
+namemark takano                    NA         NA      NA       NA
+namemarkwayne mullin               NA         NA      NA       NA
+namemaxine waters                  NA         NA      NA       NA
+namemichael c burgess              NA         NA      NA       NA
+namemichael r turner               NA         NA      NA       NA
+namemichael t mccaul               NA         NA      NA       NA
+namemike d rogers                  NA         NA      NA       NA
+namemike kelly                     NA         NA      NA       NA
+namemike quigley                   NA         NA      NA       NA
+namemike thompson                  NA         NA      NA       NA
+namepatrick t mchenry              NA         NA      NA       NA
+namepeter a defazio                NA         NA      NA       NA
+namerandy k weber                  NA         NA      NA       NA
+nameraul ruiz                      NA         NA      NA       NA
+namerichard e neal                 NA         NA      NA       NA
+namerichard hudson                 NA         NA      NA       NA
+namerick larsen                    NA         NA      NA       NA
+namerobert b aderholt              NA         NA      NA       NA
+namerodney davis                   NA         NA      NA       NA
+nameroger williams                 NA         NA      NA       NA
+nameron kind                       NA         NA      NA       NA
+namesanford d bishop               NA         NA      NA       NA
+namescott desjarlais               NA         NA      NA       NA
+namescott perry                    NA         NA      NA       NA
+namesean patrick maloney           NA         NA      NA       NA
+namesteve chabot                   NA         NA      NA       NA
+namesteve cohen                    NA         NA      NA       NA
+namesteve womack                   NA         NA      NA       NA
+namesuzan k delbene                NA         NA      NA       NA
+namesuzanne bonamici               NA         NA      NA       NA
+namethomas massie                  NA         NA      NA       NA
+nametim walberg                    NA         NA      NA       NA
+nametom cole                       NA         NA      NA       NA
+nametom mcclintock                 NA         NA      NA       NA
+nametom reed                       NA         NA      NA       NA
+nametom rice                       NA         NA      NA       NA
+namevern buchanan                  NA         NA      NA       NA
+namevicky hartzler                 NA         NA      NA       NA
+namevirginia foxx                  NA         NA      NA       NA
+namezoe lofgren                    NA         NA      NA       NA
+stateAL                            NA         NA      NA       NA
+stateAR                            NA         NA      NA       NA
+stateAZ                            NA         NA      NA       NA
+stateCA                            NA         NA      NA       NA
+stateCO                            NA         NA      NA       NA
+stateCT                            NA         NA      NA       NA
+stateFL                            NA         NA      NA       NA
+stateGA                            NA         NA      NA       NA
+stateIL                            NA         NA      NA       NA
+stateIN                            NA         NA      NA       NA
+stateKY                            NA         NA      NA       NA
+stateMA                            NA         NA      NA       NA
+stateMD                            NA         NA      NA       NA
+stateMI                            NA         NA      NA       NA
+stateMN                            NA         NA      NA       NA
+stateMO                            NA         NA      NA       NA
+stateMS                            NA         NA      NA       NA
+stateNC                            NA         NA      NA       NA
+stateNE                            NA         NA      NA       NA
+stateNH                            NA         NA      NA       NA
+stateNJ                            NA         NA      NA       NA
+stateNV                            NA         NA      NA       NA
+stateNY                            NA         NA      NA       NA
+stateOH                            NA         NA      NA       NA
+stateOK                            NA         NA      NA       NA
+stateOR                            NA         NA      NA       NA
+statePA                            NA         NA      NA       NA
+stateSC                            NA         NA      NA       NA
+stateTN                            NA         NA      NA       NA
+stateTX                            NA         NA      NA       NA
+stateUT                            NA         NA      NA       NA
+stateWA                            NA         NA      NA       NA
+stateWI                            NA         NA      NA       NA
+member_idA000369                   NA         NA      NA       NA
+member_idB000490                   NA         NA      NA       NA
+member_idB000574                   NA         NA      NA       NA
+member_idB001248                   NA         NA      NA       NA
+member_idB001251                   NA         NA      NA       NA
+member_idB001260                   NA         NA      NA       NA
+member_idB001275                   NA         NA      NA       NA
+member_idB001278                   NA         NA      NA       NA
+member_idB001281                   NA         NA      NA       NA
+member_idB001285                   NA         NA      NA       NA
+member_idB001286                   NA         NA      NA       NA
+member_idB001287                   NA         NA      NA       NA
+member_idC000266                   NA         NA      NA       NA
+member_idC000754                   NA         NA      NA       NA
+member_idC001051                   NA         NA      NA       NA
+member_idC001053                   NA         NA      NA       NA
+member_idC001061                   NA         NA      NA       NA
+member_idC001063                   NA         NA      NA       NA
+member_idC001068                   NA         NA      NA       NA
+member_idC001091                   NA         NA      NA       NA
+member_idD000096                   NA         NA      NA       NA
+member_idD000191                   NA         NA      NA       NA
+member_idD000615                   NA         NA      NA       NA
+member_idD000616                   NA         NA      NA       NA
+member_idD000617                   NA         NA      NA       NA
+member_idD000619                   NA         NA      NA       NA
+member_idF000449                   NA         NA      NA       NA
+member_idF000450                   NA         NA      NA       NA
+member_idF000454                   NA         NA      NA       NA
+member_idF000462                   NA         NA      NA       NA
+member_idG000377                   NA         NA      NA       NA
+member_idG000553                   NA         NA      NA       NA
+member_idG000558                   NA         NA      NA       NA
+member_idG000559                   NA         NA      NA       NA
+member_idG000563                   NA         NA      NA       NA
+member_idH001052                   NA         NA      NA       NA
+member_idH001053                   NA         NA      NA       NA
+member_idH001058                   NA         NA      NA       NA
+member_idH001067                   NA         NA      NA       NA
+member_idH001068                   NA         NA      NA       NA
+member_idJ000126                   NA         NA      NA       NA
+member_idJ000289                   NA         NA      NA       NA
+member_idJ000292                   NA         NA      NA       NA
+member_idJ000294                   NA         NA      NA       NA
+member_idJ000295                   NA         NA      NA       NA
+member_idK000009                   NA         NA      NA       NA
+member_idK000188                   NA         NA      NA       NA
+member_idK000376                   NA         NA      NA       NA
+member_idK000378                   NA         NA      NA       NA
+member_idK000381                   NA         NA      NA       NA
+member_idK000382                   NA         NA      NA       NA
+member_idL000397                   NA         NA      NA       NA
+member_idL000491                   NA         NA      NA       NA
+member_idL000557                   NA         NA      NA       NA
+member_idL000560                   NA         NA      NA       NA
+member_idL000564                   NA         NA      NA       NA
+member_idL000569                   NA         NA      NA       NA
+member_idL000576                   NA         NA      NA       NA
+member_idL000578                   NA         NA      NA       NA
+member_idL000579                   NA         NA      NA       NA
+member_idM000087                   NA         NA      NA       NA
+member_idM001137                   NA         NA      NA       NA
+member_idM001143                   NA         NA      NA       NA
+member_idM001156                   NA         NA      NA       NA
+member_idM001157                   NA         NA      NA       NA
+member_idM001159                   NA         NA      NA       NA
+member_idM001163                   NA         NA      NA       NA
+member_idM001165                   NA         NA      NA       NA
+member_idM001166                   NA         NA      NA       NA
+member_idM001177                   NA         NA      NA       NA
+member_idM001184                   NA         NA      NA       NA
+member_idM001185                   NA         NA      NA       NA
+member_idM001188                   NA         NA      NA       NA
+member_idM001190                   NA         NA      NA       NA
+member_idN000015                   NA         NA      NA       NA
+member_idP000096                   NA         NA      NA       NA
+member_idP000593                   NA         NA      NA       NA
+member_idP000604                   NA         NA      NA       NA
+member_idP000605                   NA         NA      NA       NA
+member_idP000607                   NA         NA      NA       NA
+member_idQ000023                   NA         NA      NA       NA
+member_idR000395                   NA         NA      NA       NA
+member_idR000575                   NA         NA      NA       NA
+member_idR000585                   NA         NA      NA       NA
+member_idR000597                   NA         NA      NA       NA
+member_idR000599                   NA         NA      NA       NA
+member_idS001150                   NA         NA      NA       NA
+member_idS001157                   NA         NA      NA       NA
+member_idS001165                   NA         NA      NA       NA
+member_idS001168                   NA         NA      NA       NA
+member_idS001180                   NA         NA      NA       NA
+member_idS001183                   NA         NA      NA       NA
+member_idS001189                   NA         NA      NA       NA
+member_idS001192                   NA         NA      NA       NA
+member_idT000193                   NA         NA      NA       NA
+member_idT000460                   NA         NA      NA       NA
+member_idT000463                   NA         NA      NA       NA
+member_idT000468                   NA         NA      NA       NA
+member_idT000472                   NA         NA      NA       NA
+member_idU000031                   NA         NA      NA       NA
+member_idV000130                   NA         NA      NA       NA
+member_idV000131                   NA         NA      NA       NA
+member_idV000132                   NA         NA      NA       NA
+member_idW000187                   NA         NA      NA       NA
+member_idW000795                   NA         NA      NA       NA
+member_idW000798                   NA         NA      NA       NA
+member_idW000806                   NA         NA      NA       NA
+member_idW000809                   NA         NA      NA       NA
+member_idW000812                   NA         NA      NA       NA
+member_idW000813                   NA         NA      NA       NA
+member_idW000814                   NA         NA      NA       NA
+member_idW000815                   NA         NA      NA       NA
+member_idW000816                   NA         NA      NA       NA
+member_idY000033                   NA         NA      NA       NA
+Vote3+                             NA         NA      NA       NA
+Vote4+                             NA         NA      NA       NA
+Vote51+                            NA         NA      NA       NA
+Vote52+                            NA         NA      NA       NA
+Vote6+                             NA         NA      NA       NA
+Vote7+                             NA         NA      NA       NA
+DistrictAL-03                      NA         NA      NA       NA
+DistrictAL-04                      NA         NA      NA       NA
+DistrictAR-03                      NA         NA      NA       NA
+DistrictAZ-06                      NA         NA      NA       NA
+DistrictCA-01                      NA         NA      NA       NA
+DistrictCA-02                      NA         NA      NA       NA
+DistrictCA-03                      NA         NA      NA       NA
+DistrictCA-04                      NA         NA      NA       NA
+DistrictCA-05                      NA         NA      NA       NA
+DistrictCA-06                      NA         NA      NA       NA
+DistrictCA-07                      NA         NA      NA       NA
+DistrictCA-09                      NA         NA      NA       NA
+DistrictCA-19                      NA         NA      NA       NA
+DistrictCA-23                      NA         NA      NA       NA
+DistrictCA-26                      NA         NA      NA       NA
+DistrictCA-28                      NA         NA      NA       NA
+DistrictCA-36                      NA         NA      NA       NA
+DistrictCA-41                      NA         NA      NA       NA
+DistrictCA-43                      NA         NA      NA       NA
+DistrictCA-47                      NA         NA      NA       NA
+DistrictCA-51                      NA         NA      NA       NA
+DistrictCO-05                      NA         NA      NA       NA
+DistrictCO-07                      NA         NA      NA       NA
+DistrictCT-01                      NA         NA      NA       NA
+DistrictFL-10,FL-11,FL-11          NA         NA      NA       NA
+DistrictFL-16                      NA         NA      NA       NA
+DistrictFL-22,FL-21,FL-21          NA         NA      NA       NA
+DistrictGA-02                      NA         NA      NA       NA
+DistrictGA-08                      NA         NA      NA       NA
+DistrictGA-13                      NA         NA      NA       NA
+DistrictIL-05                      NA         NA      NA       NA
+DistrictIL-07                      NA         NA      NA       NA
+DistrictIL-11                      NA         NA      NA       NA
+DistrictIL-13                      NA         NA      NA       NA
+DistrictIL-16                      NA         NA      NA       NA
+DistrictIL-17                      NA         NA      NA       NA
+DistrictIN-02                      NA         NA      NA       NA
+DistrictIN-08                      NA         NA      NA       NA
+DistrictKY-02                      NA         NA      NA       NA
+DistrictKY-04                      NA         NA      NA       NA
+DistrictKY-05                      NA         NA      NA       NA
+DistrictMA-01                      NA         NA      NA       NA
+DistrictMD-01                      NA         NA      NA       NA
+DistrictMD-03                      NA         NA      NA       NA
+DistrictMI-02                      NA         NA      NA       NA
+DistrictMI-06                      NA         NA      NA       NA
+DistrictMI-07                      NA         NA      NA       NA
+DistrictMN-04                      NA         NA      NA       NA
+DistrictMO-02                      NA         NA      NA       NA
+DistrictMO-03                      NA         NA      NA       NA
+DistrictMO-04                      NA         NA      NA       NA
+DistrictMO-05                      NA         NA      NA       NA
+DistrictMO-07                      NA         NA      NA       NA
+DistrictMS-02                      NA         NA      NA       NA
+DistrictNC-01                      NA         NA      NA       NA
+DistrictNC-05                      NA         NA      NA       NA
+DistrictNC-08                      NA         NA      NA       NA
+DistrictNC-10                      NA         NA      NA       NA
+DistrictNE-01                      NA         NA      NA       NA
+DistrictNH-02                      NA         NA      NA       NA
+DistrictNJ-08                      NA         NA      NA       NA
+DistrictNJ-09                      NA         NA      NA       NA
+DistrictNJ-10                      NA         NA      NA       NA
+DistrictNV-01                      NA         NA      NA       NA
+DistrictNV-02                      NA         NA      NA       NA
+DistrictNY-05                      NA         NA      NA       NA
+DistrictNY-06                      NA         NA      NA       NA
+DistrictNY-08                      NA         NA      NA       NA
+DistrictNY-12                      NA         NA      NA       NA
+DistrictNY-18                      NA         NA      NA       NA
+DistrictNY-23                      NA         NA      NA       NA
+DistrictOH-01                      NA         NA      NA       NA
+DistrictOH-02                      NA         NA      NA       NA
+DistrictOH-03                      NA         NA      NA       NA
+DistrictOH-04                      NA         NA      NA       NA
+DistrictOH-06                      NA         NA      NA       NA
+DistrictOH-07                      NA         NA      NA       NA
+DistrictOH-09                      NA         NA      NA       NA
+DistrictOH-10                      NA         NA      NA       NA
+DistrictOH-14                      NA         NA      NA       NA
+DistrictOK-02                      NA         NA      NA       NA
+DistrictOK-03                      NA         NA      NA       NA
+DistrictOK-04                      NA         NA      NA       NA
+DistrictOR-01                      NA         NA      NA       NA
+DistrictOR-03                      NA         NA      NA       NA
+DistrictOR-04                      NA         NA      NA       NA
+DistrictOR-05                      NA         NA      NA       NA
+DistrictPA-03,PA-03,PA-16          NA         NA      NA       NA
+DistrictPA-04,PA-04,PA-10          NA         NA      NA       NA
+DistrictSC-02                      NA         NA      NA       NA
+DistrictSC-03                      NA         NA      NA       NA
+DistrictSC-07                      NA         NA      NA       NA
+DistrictTN-04                      NA         NA      NA       NA
+DistrictTN-05                      NA         NA      NA       NA
+DistrictTN-09                      NA         NA      NA       NA
+DistrictTX-09                      NA         NA      NA       NA
+DistrictTX-10                      NA         NA      NA       NA
+DistrictTX-12                      NA         NA      NA       NA
+DistrictTX-14                      NA         NA      NA       NA
+DistrictTX-20                      NA         NA      NA       NA
+DistrictTX-25                      NA         NA      NA       NA
+DistrictTX-26                      NA         NA      NA       NA
+DistrictTX-28                      NA         NA      NA       NA
+DistrictTX-30                      NA         NA      NA       NA
+DistrictTX-31                      NA         NA      NA       NA
+DistrictTX-33                      NA         NA      NA       NA
+DistrictTX-34                      NA         NA      NA       NA
+DistrictUT-02                      NA         NA      NA       NA
+DistrictWA-01                      NA         NA      NA       NA
+DistrictWA-02                      NA         NA      NA       NA
+DistrictWA-05                      NA         NA      NA       NA
+DistrictWA-06                      NA         NA      NA       NA
+DistrictWI-02                      NA         NA      NA       NA
+DistrictWI-03                      NA         NA      NA       NA
+Vote_count                         NA         NA      NA       NA
+Vote_change                        NA         NA      NA       NA
+amount.oil.113                     NA         NA      NA       NA
+amount.coal.113                    NA         NA      NA       NA
+amount.mining.113                  NA         NA      NA       NA
+amount.gas.113                     NA         NA      NA       NA
+amount.env.113                     NA         NA      NA       NA
+amount.alt_en.113                  NA         NA      NA       NA
+amount.oil.114                     NA         NA      NA       NA
+amount.coal.114                    NA         NA      NA       NA
+amount.mining.114                  NA         NA      NA       NA
+amount.gas.114                     NA         NA      NA       NA
+amount.env.114                     NA         NA      NA       NA
+amount.alt_en.114                  NA         NA      NA       NA
+amount.oil.115                     NA         NA      NA       NA
+amount.coal.115                    NA         NA      NA       NA
+amount.mining.115                  NA         NA      NA       NA
+amount.gas.115                     NA         NA      NA       NA
+amount.env.115                     NA         NA      NA       NA
+amount.alt_en.115                  NA         NA      NA       NA
+amount.oil.116                     NA         NA      NA       NA
+amount.coal.116                    NA         NA      NA       NA
+amount.mining.116                  NA         NA      NA       NA
+amount.gas.116                     NA         NA      NA       NA
+amount.env.116                     NA         NA      NA       NA
+amount.alt_en.116                  NA         NA      NA       NA
+amount.oil.117                     NA         NA      NA       NA
+amount.coal.117                    NA         NA      NA       NA
+amount.mining.117                  NA         NA      NA       NA
+amount.gas.117                     NA         NA      NA       NA
+amount.env.117                     NA         NA      NA       NA
+amount.alt_en.117                  NA         NA      NA       NA
+
+Residual standard error: NaN on 0 degrees of freedom
+  (454 observations deleted due to missingness)
+Multiple R-squared:      1, Adjusted R-squared:    NaN 
+F-statistic:   NaN on 114 and 0 DF,  p-value: NA</code></pre>
+</div>
+</div>
+<p>::: {.cell}</p>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ols_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote_change_dummy <span class="sc">~</span> party, <span class="at">data =</span> df)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>::: {.cell-output .cell-output-stdout}</p>
 <pre><code>
 Call:
 lm(formula = Vote_change_dummy ~ party, data = df)
@@ -150,10 +818,9 @@ partyR       0.02158    0.01691   1.276   0.2024
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
 Residual standard error: 0.2011 on 567 degrees of freedom
-Multiple R-squared:  0.002865,  Adjusted R-squared:  0.001106 
+Multiple R-squared:  0.002865, Adjusted R-squared:  0.001106 
 F-statistic: 1.629 on 1 and 567 DF,  p-value: 0.2024</code></pre>
-</div>
-</div>
+<p>::: :::</p>
 <p>regressing the vote change dummy on party affiliation, we find that the coefficient for the Republican party is 0.2, the intercept shows how likely a democrat is to change their voting behaviour, at 0.31, we can see that democrats are more likely to change their voting behaviour on methane related issues, with only the democrat variable at 0.05 being significant.</p>
 </section>
 <section id="simple-plot" class="level3">

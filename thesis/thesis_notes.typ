@@ -13,6 +13,7 @@
 
 == Causal effect of campaign money on representatives’ voting decisions.
 = Methodology
+== Strattman paper vs. mine
 == Data
 === types of data
 + sources
@@ -20,6 +21,7 @@
 == Models
 + Robustness Checks
 = Results
+== discuss differences with Strattman due to difference in legislation
 + Discussion
 + Conclusion
 
@@ -43,3 +45,7 @@ bills find how many voted ­ and then + from vote changers (then mark which bill
 - time and state fixed effects (state,i.e. oil & political leaning)
 - DW Sentiment index?
 
+#strong("Questions for Professors when reviewing methodology")
+- is there a bias i am creating because i am using the general sample and then
+  just the subsample that will distort my results (never select based on outcome)
+- control for party
