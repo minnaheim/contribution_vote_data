@@ -8,7 +8,7 @@
 "Young","Don","don young","R","AK","Y000033","-","-","-","-","-","-","AK-AL",6,0,55450,2250,8550,7000,4000,0,43450,2000,11600,0,2000,0,59700,2000,20000,0,1500,0,56250,2000,18450,2000,0,0,101931,0,18294,9610,0,6
 "Kirkpatrick","Ann","ann kirkpatrick","D","AZ","K000368","+","+",NA,NA,NA,"+","AZ-01,AZ-02",3,0,6750,0,4000,1500,2500,0,6700,0,7500,0,7000,1000,NA,NA,NA,NA,NA,NA,3746,0,5,22,15743,3022,800,0,5007,159,675,437
 "Barber","Ron","ron barber","D","AZ","B001279","+",NA,NA,NA,NA,NA,"AZ-02",1,0,4000,0,250,3000,14981,6600,2450,0,3500,1700,22265,12200,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Grijalva","Raul","raul grijalva,ra l m grijalva","D","AZ","G000551","+","+","+","+","+","+","AZ-03",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Grijalva","Raul","raul grijalva","D","AZ",NA,"+","+","+","+","+","+","AZ-03",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Gosar","Paul","paul gosar,paul a gosar","R","AZ","G000565","-","-","-","-","-",NA,"AZ-04",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Salmon","Matt","matt salmon","R","AZ","S000018","-","-",NA,NA,NA,NA,"AZ-05",2,0,44139,2500,8500,18639,0,4750,15400,2000,16250,4500,0,13950,14150,0,7000,2500,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Schweikert","David","david schweikert","R","AZ","S001183","-","-","-","-","-","-","AZ-06",6,0,24250,0,12750,5500,0,0,10000,1000,8750,0,0,0,10000,0,5250,0,0,0,40950,0,6000,1500,0,5400,34579,0,2100,7599,0,13050
@@ -56,7 +56,7 @@
 "Negrete McLeod","Gloria","gloria negrete mcleod","D","CA","N000187","+",NA,NA,NA,NA,NA,"CA-35",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Ruiz","Raul","raul ruiz","D","CA","R000599","+","+","+","+","+","+","CA-36",6,0,250,0,0,0,2500,1250,5000,0,0,3000,46387,11200,9000,280,280,3500,27078,6900,3626,0,0,0,13619,11150,3803,0,5,1000,1690,16813
 "Bass","Karen","karen bass","D","CA","B001270","+","+","+",NA,"+","+","CA-37",5,0,0,0,0,0,500,250,3250,0,3500,750,3600,1000,1000,0,5000,0,8700,0,3500,0,1000,0,1100,1000,13775,0,0,0,1626,9000
-"Sanchez","Linda","linda sanchez,linda t s nchez","D","CA","S001156","+","+","+","+","+","+","CA-38",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Sanchez","Linda","linda sanchez","D","CA",NA,"+","+","+","+","+","+","CA-38",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Royce","Ed","ed royce","R","CA",NA,"-","-","-","-",NA,NA,"CA-39",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Roybal-Allard","Lucille","lucille roybal allard","D","CA",NA,"+","+","+","+","+","+","CA-40",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Takano","Mark","mark takano","D","CA","T000472","+","+","+","+","+","+","CA-41",6,0,250,0,0,0,15020,250,0,0,0,0,3700,5200,0,0,0,0,6300,0,0,0,0,0,1604,0,0,0,0,0,18,541
@@ -64,7 +64,6 @@
 "Waters","Maxine","maxine waters","D","CA","W000187","+","+","+","+","+","+","CA-43",6,0,250,0,0,0,1500,0,2500,10400,10400,0,1000,1000,5000,0,0,0,4700,0,4250,0,0,0,2375,0,6535,0,0,0,16,0
 "Hahn","Janice","janice hahn","D","CA","H001063","+","+",NA,NA,NA,NA,"CA-44",2,0,15050,0,0,300,7750,2000,4000,0,0,0,1000,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Campbell","John","john campbell","R","CA","C001064",NA,NA,NA,NA,NA,NA,"CA-45",0,0,13000,0,0,0,0,0,1000,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Campbell","John","john campbell,tom campbell","R","CA","C000100",NA,NA,NA,NA,NA,NA,"CA-45",0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Sanchez","Loretta L.","loretta l sanchez,loretta sanchez","D","CA","S000030","+","+",NA,NA,NA,NA,"CA-46",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Lowenthal","Alan S.","alan s lowenthal","D","CA","L000579","+","+","+","+","+","+","CA-47",6,0,21850,0,0,3600,21250,2750,10000,0,0,3000,9950,1000,11000,0,1000,2000,7223,100,7000,0,2500,0,5100,0,1025,0,5000,0,3450,1000
 "Rohrabacher","Dana T.","dana t rohrabacher,dana rohrabacher","R","CA","R000409","-","-","-","-",NA,NA,"CA-48",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -88,7 +87,7 @@
 "Esty","Elizabeth H.","elizabeth h esty","D","CT","E000293","+","+","+","+",NA,NA,"CT-05",4,0,10750,750,750,9500,34800,11600,1000,0,1150,1000,61280,4600,3700,0,1600,3700,27659,1000,2700,0,0,2700,23703,0,NA,NA,NA,NA,NA,NA
 "Carney","John","john carney,john c carney","D","DE","C001083","+","+",NA,NA,NA,NA,"DE-AL",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Miller","Jeff","jeff miller","R","FL","M001144","-","-",NA,NA,NA,NA,"FL-01",2,0,500,0,0,0,4000,0,3000,0,0,0,7600,0,1000,0,0,1000,2500,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Southerland","Steve","steve southerland,steve ii southerland","R","FL","S001186","-",NA,NA,NA,NA,NA,"FL-02",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Southerland","Steve","steve southerland","R","FL",NA,"-",NA,NA,NA,NA,NA,"FL-02",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Yoho","Ted S.","ted s yoho","R","FL","Y000065","-","-","-","-","-",NA,"FL-03",5,0,5000,0,500,0,0,0,7000,0,0,0,0,0,9150,0,0,3750,0,0,4500,0,0,3000,0,0,NA,NA,NA,NA,NA,NA
 "Crenshaw","Ander","ander crenshaw","R","FL","C001045","-","-",NA,NA,NA,NA,"FL-04",2,0,1000,0,0,0,0,0,7500,0,0,0,0,0,1000,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Brown","Corrine","corrine brown","D","FL","B000911","+","+",NA,NA,NA,NA,"FL-05",2,0,1500,0,0,0,0,0,5000,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -102,7 +101,7 @@
 "Castor","Kathy","kathy castor","D","FL","C001066","+","+",NA,"+","+","+","FL-14",5,0,1000,0,0,1000,3820,250,1500,0,0,1000,2500,250,0,0,0,0,3100,0,59,0,0,0,2253,0,112,0,5600,0,5135,7820
 "Ross","Dennis","dennis ross,dennis a ross","R","FL","R000593","-","-",NA,"-",NA,NA,"FL-15",3,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Buchanan","Vern","vern buchanan","R","FL","B001260","-","-","-","-","-","-","FL-16",6,0,12500,0,0,4000,10000,1500,3000,0,0,3000,0,0,5500,0,0,2000,500,0,31750,0,0,0,0,1000,54776,0,0,5599,3000,12500
-"Rooney","Tom","tom rooney,tom feeney","R","FL","F000447","-","-","-","-",NA,NA,"FL-17",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Rooney","Tom","tom rooney","R","FL",NA,"-","-","-","-",NA,NA,"FL-17",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Murphy","Patrick","patrick murphy","D","FL","M001191","+","+",NA,NA,NA,NA,"FL-18",2,0,5850,2750,2750,0,13895,2750,11400,0,0,0,25910,2000,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Radel","Trey","trey radel","R","FL","R000596",NA,NA,NA,NA,NA,NA,"FL-19",0,0,18500,1000,1000,0,0,0,15700,0,0,0,0,3700,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Hastings","Alcee L.","alcee l hastings","D","FL","H000324","+",NA,"+","+",NA,NA,"FL-20",3,0,NA,NA,NA,NA,NA,NA,0,0,0,0,300,0,0,0,0,0,2000,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -116,7 +115,7 @@
 "Kingston","Jack","jack kingston","R","GA","K000220","-",NA,NA,NA,NA,NA,"GA-01",1,0,17500,0,5000,3500,4500,2500,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Bishop","Sanford D.","sanford d bishop","D","GA","B000490","+","-","+","-","+","+","GA-02",6,4,5500,0,2000,2000,0,0,9000,1000,6000,0,0,0,14000,3000,7000,0,0,1000,11750,2500,8500,1000,0,1000,17500,1250,9250,5000,0,1000
 "Westmoreland","Lynn A.","lynn a westmoreland","R","GA","W000796","-","-",NA,NA,NA,NA,"GA-03",2,0,9000,0,3500,4000,0,0,17050,0,500,5000,0,0,5750,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Johnson","Hank","hank johnson,don johnson","D","GA","J000120","+","+","+","+","+","+","GA-04",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Johnson","Hank","hank johnson","D","GA",NA,"+","+","+","+","+","+","GA-04",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Lewis","John R.","john r lewis,john lewis","D","GA","L000287","+","+","+","+","+",NA,"GA-05",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Price","Tom","tom price","R","GA","P000591","-","-",NA,NA,NA,NA,"GA-06",2,0,37500,0,3000,4000,0,0,35250,0,3000,2000,0,0,22000,0,0,2500,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Woodall","Rob","rob woodall","R","GA","W000810","-","-","-","-","-",NA,"GA-07",5,0,16000,0,1500,2000,0,0,16750,0,0,5250,0,0,18500,0,0,2000,0,0,16500,0,500,2500,1000,0,1500,0,0,0,0,0
@@ -133,7 +132,7 @@
 "Simpson","Mike","mike simpson","R","ID",NA,"-","-","-","-","-","-","ID-02",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Rush","Bobby L.","bobby l rush","D","IL","R000515",NA,"+","+","+","+","+","IL-01",5,0,3500,0,0,3500,0,1000,8500,0,0,1000,2000,5000,15500,0,0,12000,4000,1000,13000,0,1000,5000,1000,1000,27000,0,0,17500,2000,1000
 "Kelly","Robin","robin kelly,robin l kelly","D","IL","K000385","+","+","+","+","+","+","IL-02",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Lipinski","Dan","dan lipinski,daniel lipinski","D","IL","L000563","+","+","+","+","+",NA,"IL-03",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Lipinski","Dan","dan lipinski","D","IL",NA,"+","+","+","+","+",NA,"IL-03",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Gutierrez","Luis V.","luis v gutierrez","D","IL","G000535","+","+","+","+",NA,NA,"IL-04",4,0,0,0,1000,0,0,1500,0,0,0,0,1000,0,0,0,0,0,2117,0,0,0,0,0,0,2500,0,0,0,0,0,-2500
 "Quigley","Mike","mike quigley","D","IL","Q000023","+","+","+","+","+","+","IL-05",6,0,2250,0,0,0,0,0,1500,0,0,0,5100,0,3700,0,0,0,3900,0,0,0,0,0,6525,0,0,0,0,0,3000,0
 "Roskam","Peter J.","peter j roskam","R","IL","R000580","-","-","-","+",NA,NA,"IL-06",4,1,42250,2000,7500,15250,0,2500,73550,1000,3000,17750,0,0,35350,0,0,5450,0,1000,131500,5200,12700,9000,0,1500,NA,NA,NA,NA,NA,NA
@@ -149,7 +148,7 @@
 "Kinzinger","Adam","adam kinzinger","R","IL","K000378","-","-","-","-","-","-","IL-16",6,0,54199,3500,6000,3000,0,9750,80600,3000,6000,16000,0,11500,67250,1000,4000,16500,0,21200,45500,0,12500,15500,0,12500,68932,0,5009,21002,0,11800
 "Bustos","Cheri","cheri bustos","D","IL","B001286","+","+","+","+","+","+","IL-17",6,0,1000,0,0,0,11976,1450,3000,0,0,2000,21946,16000,12140,0,0,4000,16006,17205,7870,3,3,1020,5929,19258,9739,40,65,2113,18575,52630
 "Schock","Aaron","aaron schock","R","IL","S001179","-",NA,NA,NA,NA,NA,"IL-18",1,0,51250,5750,9750,6000,0,15450,34700,2000,4000,9500,0,11000,0,0,0,0,0,3000,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Visclosky","Peter J.","peter j visclosky","D","IN","V000108","+","+","+","+","+",NA,"IN-01",5,0,6500,1000,1000,1000,0,500,7500,1700,1700,0,0,0,8000,0,2000,2000,0,1000,7051,0,2000,2000,0,2000,0,0,1000,0,0,500
+"Visclosky","Peter J.","peter j visclosky","D","IN","V000108","+","+","+","+","+",NA,"IN-01",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Walorski","Jackie","jackie walorski","R","IN","W000813","-","-","-","-","-","-","IN-02",6,0,41000,9500,18250,0,0,2500,39840,5600,10600,0,0,9500,28500,2000,4000,0,0,11000,63450,5500,10500,4500,1000,7000,61786,67,1069,5599,1000,3002
 "Stutzman","Marlin","marlin stutzman,marlin a stutzman","R","IN","S001188","-","-",NA,NA,NA,NA,"IN-03",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Rokita","Todd","todd rokita","R","IN","R000592","-","-","-","-",NA,NA,"IN-04",4,0,10600,11500,14500,0,0,1000,29500,22150,61600,0,0,0,26600,500,2500,0,0,6000,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -159,19 +158,18 @@
 "Bucshon","Larry","larry bucshon","R","IN","B001275","-","-","-","-","-","-","IN-08",6,0,26400,48800,59300,0,0,2000,20300,51050,98500,0,0,500,17000,19000,22500,0,0,5000,16200,21900,23900,1000,0,250,18505,13800,24800,3500,0,0
 "Young","Todd","todd young","R","IN","Y000064","-","-",NA,NA,NA,NA,"IN-09",2,0,19700,18650,29900,3250,0,0,37950,14050,22750,8050,0,1000,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Braley","Bruce","bruce braley,bruce l braley","D","IA","B001259","+",NA,NA,NA,NA,NA,"IA-01",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Loebsack","Dave W.","dave w loebsack,david loebsack","D","IA","L000565","+","+","+","+","+",NA,"IA-02",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Loebsack","Dave W.","dave w loebsack","D","IA",NA,"+","+","+","+","+",NA,"IA-02",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Latham","Tom","tom latham","R","IA","L000111","-",NA,NA,NA,NA,NA,"IA-03",1,0,38250,0,0,2250,0,23000,3000,1044,1599,2000,0,3500,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "King","Steve A.","steve a king,steve king","R","IA","K000362","-","-","-","-","-",NA,"IA-04",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Huelskamp","Tim","tim huelskamp","R","KS","H001057","-","-",NA,NA,NA,NA,"KS-01",2,0,64700,0,0,4500,0,9750,73550,0,0,4250,0,5200,52400,0,0,1000,0,2700,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Jenkins","Lynn M.","lynn m jenkins,lynn jenkins","R","KS","J000290","-","-","-","-",NA,NA,"KS-02",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Yoder","Kevin","kevin yoder","R","KS","Y000063","-","-","-","-",NA,NA,"KS-03",4,0,64700,3000,16000,2900,0,10500,68700,1000,13400,2000,0,23900,49375,0,13800,2000,0,44800,95350,16900,27700,6000,0,51400,NA,NA,NA,NA,NA,NA
-"Yoder","Kevin","kevin yoder","R","KS","Y000063","-","-","-","-",NA,NA,"KS-03",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,2800,0,0,0,0,0,NA,NA,NA,NA,NA,NA
 "Pompeo","Mike","mike pompeo","R","KS","P000602","-","-",NA,NA,NA,NA,"KS-04",2,0,320550,3000,8000,14500,0,7500,376850,10500,14000,31500,0,11400,194325,1000,2000,25500,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Whitfield","Ed","ed whitfield","R","KY","W000413","-","-",NA,NA,NA,NA,"KY-01",2,0,131250,75375,127900,16500,0,7500,136500,31000,37000,23500,0,13000,55100,9500,16000,0,0,500,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Guthrie","Brett","brett guthrie","R","KY","G000558","-","-","-","-","-","-","KY-02",6,0,44250,31499,37499,2000,0,0,64750,14600,18850,8750,0,0,57500,11700,12700,8000,0,0,48050,2500,8500,4500,0,0,51005,0,3500,9500,0,0
 "Yarmuth","John","john yarmuth,john a yarmuth","D","KY","Y000062","+","+","+","+","+","+","KY-03",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Massie","Thomas","thomas massie","R","KY","M001184","-","-","-","-","-","-","KY-04",6,0,32451,19500,28000,1750,0,0,21500,6600,9600,0,0,0,14000,1000,1000,0,0,0,10200,1000,2000,0,0,0,12950,500,1500,1000,0,2750
-"Rogers","Harold","harold rogers","R","KY","R000395","-","-","-","-","-","-","KY-05",6,0,31500,53099,65099,1000,2250,0,40100,46600,60600,0,8850,0,21800,21400,38400,0,0,0,40996,8000,12500,5000,0,0,11499,1000,2500,0,0,0
+"Rogers","Harold","harold rogers","R","KY","R000395","-","-","-","-","-","-","KY-05",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Barr","Garland","garland barr","R","KY",NA,"-","-","-","-","-",NA,"KY-06",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Scalise","Steve","steve scalise","R","LA","S001176","-","-",NA,"-","-","-","LA-01",5,0,135575,0,4000,12500,4000,0,217274,9500,16500,21100,7200,0,285300,6400,13900,26750,0,0,383665,0,13225,22700,0,1435,528542,1910,6306,47245,2960,14111
 "Richmond","Cedric L","cedric l richmond","D","LA","R000588","+","+","+",NA,"+",NA,"LA-02",4,0,25750,0,500,0,750,0,50100,0,0,2000,4600,0,62500,0,0,5000,3700,0,79200,0,0,15000,1000,0,139800,0,1000,31000,5000,1000
@@ -209,7 +207,7 @@
 "Miller","Candice S.","candice s miller","R","MI","M001150","-","-",NA,NA,NA,NA,"MI-10",2,0,8000,0,2500,0,0,0,30500,0,0,4000,0,13500,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Bentivolio","Kerry L.","kerry l bentivolio","R","MI","B001280","-",NA,NA,NA,NA,NA,"MI-11",1,0,13750,1000,1000,0,0,0,4500,0,0,0,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Dingell","John D.","john d dingell","D","MI","D000355","+",NA,NA,NA,NA,NA,"MI-12",1,0,16000,0,-1000,2000,250,550,7500,0,0,1000,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Conyers","John","john conyers","D","MI","C000714","+","+","+",NA,NA,NA,"MI-13",3,0,3500,0,1000,0,1700,0,7500,0,0,0,595,0,0,0,0,0,1250,0,1816,0,0,0,504,0,NA,NA,NA,NA,NA,NA
+"Conyers","John","john conyers","D","MI","C000714","+","+","+",NA,NA,NA,"MI-13",3,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Peters","Gary C.","gary c peters","D","MI","P000595","+",NA,NA,NA,NA,NA,"MI-14",1,0,500,0,0,500,3500,2000,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Walz","Tim","tim walz","D","MN",NA,"+","+","+",NA,NA,NA,"MN-01",3,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Kline","John P.","john p kline,john kline","R","MN","K000363","-","-",NA,NA,NA,NA,"MN-02",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -249,15 +247,15 @@
 "Pallone","Frank J.","frank j pallone,frank pallone","D","NJ","P000034","+","+","+","+","+","+","NJ-06",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Lance","Leonard","leonard lance","R","NJ","L000567","-","-","-","+",NA,NA,"NJ-07",4,1,21050,0,0,5500,3000,0,30500,0,0,9500,1000,0,26200,0,0,7000,0,0,38400,0,0,4000,0,250,NA,NA,NA,NA,NA,NA
 "Sires","Albio","albio sires","D","NJ","S001165","+","+","+","+","+","+","NJ-08",6,0,1000,0,0,3000,0,0,5400,0,0,3000,500,0,3500,0,0,2000,0,0,1000,0,0,1000,500,2500,3000,0,0,0,-500,0
-"Pascrell","Bill","bill pascrell","D","NJ","P000096","+","+","+","+","+","+","NJ-09",6,0,7000,0,0,5000,0,1500,2500,0,0,2000,2500,0,2750,0,0,1000,2000,7000,0,0,0,0,1000,0,3500,0,0,0,1125,12000
-"Payne","Donald M.","donald m payne","D","NJ","P000604","+","+","+","+","+","+","NJ-10",6,0,250,0,0,0,0,0,2500,0,500,0,0,0,3000,0,0,0,0,1000,10000,0,0,0,0,10000,11000,0,0,0,1000,5000
+"Pascrell","Bill","bill pascrell","D","NJ","P000096","+","+","+","+","+","+","NJ-09",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Payne","Donald M.","donald m payne","D","NJ","P000604","+","+","+","+","+","+","NJ-10",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Frelinghuysen","Rodney P.","rodney p frelinghuysen","R","NJ","F000372","-","-","-","-",NA,NA,"NJ-11",4,0,11350,1000,2000,2000,0,500,8050,2000,2000,3000,0,500,23000,2000,5000,5500,0,0,22800,0,1500,2500,0,0,NA,NA,NA,NA,NA,NA
 "Holt","Rush D.","rush d holt,rush holt","D","NJ","H001032","+",NA,NA,NA,NA,NA,"NJ-12",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Lujan Grisham","Michelle","michelle lujan grisham","D","NM","L000580","+","+","+","+",NA,NA,"NM-01",4,0,7900,0,0,0,16240,250,18700,0,0,0,4250,1750,11750,0,5000,0,5500,2500,0,0,0,0,2000,0,NA,NA,NA,NA,NA,NA
 "Pearce","Steve","steve pearce,stevan pearce","R","NM","P000588","-",NA,"-","-",NA,NA,"NM-02",3,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Luján","Ben Ray","ben ray luj n,ben ray lujan","D","NM","L000570","+","+","+","+","+",NA,"NM-03",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Bishop","Timothy H.","timothy h bishop","D","NY","B001242","+",NA,NA,NA,NA,NA,"NY-01",1,0,12250,0,0,1000,28603,1000,6950,0,0,0,27825,7200,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"King","Peter T.","peter t king","R","NY","K000210","-","-","-","-","-",NA,"NY-02",5,0,13800,0,0,1000,0,0,4000,0,0,2000,0,3000,8400,0,0,0,0,0,12900,0,0,2500,0,0,10596,0,0,3122,0,0
+"King","Peter T.","peter t king","R","NY","K000210","-","-","-","-","-",NA,"NY-02",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Israel","Steve J.","steve j israel,steve israel","D","NY","I000057","+","+",NA,NA,NA,NA,"NY-03",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "McCarthy","Carolyn","carolyn mccarthy","D","NY","M000309",NA,NA,NA,NA,NA,NA,"NY-04",0,0,3000,0,0,1000,1000,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Meeks","Gregory W.","gregory w meeks","D","NY","M001137","+","+","+","+","+","+","NY-05",6,0,2750,0,0,0,0,0,9100,0,0,2000,0,0,2500,0,0,0,0,0,2500,0,0,0,0,0,8500,0,0,0,1000,0
@@ -313,7 +311,7 @@
 "Joyce","David P.","david p joyce","R","OH","J000295","-","-","-","-","-","-","OH-14",6,0,9500,21214,42414,0,0,0,51300,22000,34200,9200,7500,2000,29850,13900,38100,3500,3000,2200,40600,22200,36875,7000,3000,6400,66004,15150,21150,16622,0,1004
 "Stivers","Steve","steve stivers","R","OH","S001187","-","-","-","-","-",NA,"OH-15",5,0,52750,24000,29000,0,0,2000,55600,17850,25050,5500,0,0,56350,15775,15775,12500,0,0,96500,21000,70475,13000,0,2000,36755,13200,13200,6000,0,0
 "Renacci","Jim","jim renacci","R","OH",NA,"-","-","-","-",NA,NA,"OH-16",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Bridenstine","Jim","jim bridenstine","R","OK","B001283","-","-",NA,NA,NA,NA,"OK-01",2,0,88000,0,2500,3000,0,0,72950,0,0,3500,0,0,49100,1000,1000,3250,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Bridenstine","Jim","jim bridenstine","R","OK","B001283","-","-",NA,NA,NA,NA,"OK-01",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Mullin","Markwayne","markwayne mullin","R","OK","M001190","-","-","-","-","-","-","OK-02",6,0,113000,15500,18000,1000,0,0,148950,2500,6000,14600,0,0,227850,10000,11000,36800,0,0,183350,2700,4700,36000,0,1500,164215,10900,11900,26625,0,3000
 "Lucas","Frank D.","frank d lucas","R","OK","L000491","-","-","-","-","-","-","OK-03",6,0,84000,0,0,15500,0,7500,101450,1500,2500,10000,0,1000,62050,0,1000,6000,0,3500,64600,0,0,10000,0,5000,73125,0,1000,13525,0,1000
 "Cole","Tom","tom cole","R","OK","C001053","-","-","-","-","-","-","OK-04",6,0,121700,0,1250,12000,0,4500,123200,1000,2000,13000,0,2000,125750,17200,19200,13700,0,5000,119250,0,1000,35400,0,7493,136100,5600,6600,31500,5600,6000
@@ -333,7 +331,6 @@
 "Meehan","Patrick","patrick meehan","R","PA","M001181","-","-","+",NA,NA,NA,"PA-07",3,1,50000,1500,4500,6000,0,0,64400,0,0,25600,0,0,78200,0,1000,30300,0,7870,40750,1500,1500,13500,0,5000,NA,NA,NA,NA,NA,NA
 "Fitzpatrick","Michael","michael fitzpatrick,michael g fitzpatrick","R","PA","F000451","-","-",NA,NA,NA,NA,"PA-08",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Shuster","Bill","bill shuster","R","PA","S001154",NA,"-","-",NA,NA,NA,"PA-09",2,0,96400,23250,38150,40000,0,0,205048,52315,105090,62100,0,1000,198512,25300,39350,64500,0,0,91112,5000,6250,42400,0,1000,NA,NA,NA,NA,NA,NA
-"Shuster","Bill","bill shuster,bud shuster","R","PA","S000394",NA,"-","-",NA,NA,NA,"PA-09",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Marino","Tom","tom marino","R","PA","M001179","-","-","-","-",NA,NA,"PA-10",4,0,17750,5000,7500,2500,0,0,34000,500,500,8000,0,0,17750,2950,2950,4250,0,10000,10000,2700,2700,0,0,0,-2000,0,0,0,0,0
 "Barletta","Lou","lou barletta","R","PA","B001269","-","-","-","-",NA,NA,"PA-11",4,0,39450,2500,4500,500,0,0,33020,750,1750,4500,0,0,34550,4200,4950,9000,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Rothfus","Keith J.","keith j rothfus","R","PA","R000598","-","-","-","-",NA,NA,"PA-12",4,0,54000,29500,38000,7300,0,0,79550,71240,127304,16700,0,0,43550,43850,59850,12050,0,0,81311,54600,127425,21400,0,0,NA,NA,NA,NA,NA,NA
@@ -390,7 +387,6 @@
 "Burgess","Michael C.","michael c burgess","R","TX","B001248","-","-","-","-","-","-","TX-26",6,0,68000,0,0,10500,0,0,67956,0,0,0,0,0,43100,0,0,0,0,0,35250,0,0,4000,0,5200,79575,0,1000,6800,2800,1000
 "Farenthold","Blake","blake farenthold","R","TX","F000460","-","-","-",NA,NA,NA,"TX-27",3,0,113452,0,2833,13500,0,0,109325,0,1000,13000,6600,0,77950,0,500,13500,0,0,31600,0,0,4500,0,0,NA,NA,NA,NA,NA,NA
 "Cuellar","Henry","henry cuellar","D","TX","C001063","-","-","-","-","+","+","TX-28",6,1,99125,0,3000,7500,0,0,135758,0,8000,16000,0,0,162952,1000,4800,22500,0,0,173919,1500,8000,17000,0,500,228210,1250,11750,32500,0,0
-"Green","Gene","gene green,pete geren","D","TX","G000134","-","+","+","+",NA,NA,"TX-29",4,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Green","Gene","gene green","D","TX","G000410","-","+","+","+",NA,NA,"TX-29",4,1,96700,0,0,17200,0,0,102350,1000,1000,23100,0,0,107700,0,0,41500,0,0,24000,0,0,11000,0,0,NA,NA,NA,NA,NA,NA
 "Johnson","Eddie Bernice","eddie bernice johnson","D","TX","J000126","+","+","+","+","+","+","TX-30",6,0,8000,0,0,3000,1500,0,8570,0,0,3500,1000,1000,4000,0,0,0,2500,0,3756,0,0,0,2000,0,23200,0,0,0,3800,0
 "Carter","John R.","john r carter","R","TX","C001051","-","-","-","-","-","-","TX-31",6,0,62550,250,3650,4300,0,0,49600,0,0,6000,0,0,16700,0,0,0,0,0,62350,0,1000,5500,0,5400,64728,67,94,7670,13,26
@@ -425,7 +421,6 @@
 "McDermott","Jim","jim mcdermott","D","WA","M000404","+","+",NA,NA,NA,NA,"WA-07",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,500,0,0,0,2950,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Reichert","Dave","dave reichert","R","WA",NA,"-","-","+","+",NA,NA,"WA-08",4,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Smith","Adam","adam smith","D","WA","S000510","+","+","+","+","+","+","WA-09",6,0,0,0,0,0,3000,1750,1500,0,0,0,3000,500,NA,NA,NA,NA,NA,NA,0,0,0,0,4500,1700,1000,0,0,0,1075,8000
-"Smith","Adam","adam smith","D","WA","S000510","+","+","+","+","+","+","WA-09",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,4,0,0,1,1,3,NA,NA,NA,NA,NA,NA
 "Heck","Denny","denny heck","D","WA","H001064","+","+","+","+","+",NA,"WA-10",5,0,0,0,0,0,17950,5500,3100,0,0,100,11250,5000,1000,0,0,0,8250,3000,4000,0,0,0,7250,250,0,0,0,0,2000,0
 "McKinley","David","david mckinley,david b mckinley","R","WV","M001180","-","-","-","-","-","-","WV-01",6,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Capito","Shelley Moore","shelley moore capito","R","WV","C001047","-",NA,NA,NA,NA,NA,"WV-02",1,0,65200,102636,177936,7500,0,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -446,7 +441,7 @@
 "Hill","French","french hill,j french hill","R","AR","H001072",NA,"-","-","-","-","-","AR-02",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Westerman","Bruce","bruce westerman","R","AR","W000821",NA,"-","-","-","-","-","AR-04",5,0,NA,NA,NA,NA,NA,NA,65150,5200,5200,0,0,0,41200,1000,2000,3000,0,2250,73400,1000,4000,2000,0,250,66900,0,3000,15000,0,250
 "DeSaulnier","Mark","mark desaulnier","D","CA","D000623",NA,"+","+","+","+","+","CA-11",5,0,NA,NA,NA,NA,NA,NA,8000,0,0,0,5140,0,8000,0,0,0,3750,0,7175,0,0,0,650,1500,6700,0,0,0,4050,50
-"Knight","Steve","steve knight,stephen knight","R","CA","K000387",NA,"-","+","-",NA,NA,"CA-25",3,2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Knight","Steve","steve knight","R","CA",NA,NA,"-","+","-",NA,NA,"CA-25",3,2,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Aguilar","Pete","pete aguilar","D","CA","A000371",NA,"+","+",NA,"+","+","CA-31",4,0,NA,NA,NA,NA,NA,NA,500,0,0,0,43561,250,1103,0,0,1100,30846,755,4983,0,0,646,8075,1528,10282,0,4,440,2101,25
 "Lieu","Ted","ted lieu","D","CA","L000582",NA,"+","+","+","+","+","CA-33",5,0,NA,NA,NA,NA,NA,NA,5500,0,0,5500,6350,8100,0,0,0,0,7950,0,400,0,0,150,11600,25,2153,0,0,650,4118,55
 "Torres","Norma","norma torres,norma j torres","D","CA","T000474",NA,"+","+","+","+","+","CA-35",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -483,14 +478,13 @@
 "Hardy","Cresent","cresent hardy","R","NV","H001070",NA,"-",NA,NA,NA,NA,"NV-04",1,0,NA,NA,NA,NA,NA,NA,2500,0,5000,2500,0,2000,42700,0,15000,7000,0,0,21400,0,5000,2500,0,0,NA,NA,NA,NA,NA,NA
 "Guinta","Frank","frank guinta,frank c guinta","R","NH","G000570",NA,"-",NA,NA,NA,NA,"NH-01",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Norcross","Donald W.","donald w norcross,donald norcross","D","NJ","N000188",NA,"+","+","+","+",NA,"NJ-01",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"MacArthur","Tom","tom macarthur,thomas macarthur","R","NJ","M001193",NA,"-","-","-",NA,NA,"NJ-03",3,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"MacArthur","Tom","tom macarthur","R","NJ",NA,NA,"-","-","-",NA,NA,"NJ-03",3,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Watson Coleman","Bonnie","bonnie watson coleman","D","NJ","W000822",NA,"+",NA,"+","+","+","NJ-12",4,0,NA,NA,NA,NA,NA,NA,1000,0,0,0,9740,1000,1000,0,0,0,2500,0,2,0,0,0,5504,0,10,0,0,0,4350,0
 "Zeldin","Lee","lee zeldin,lee m zeldin","R","NY","Z000017",NA,"-","-","-","-","-","NY-01",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Rice","Kathleen","kathleen rice,kathleen m rice","D","NY","R000602",NA,"+","+",NA,"+","+","NY-04",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Donovan","Daniel M.","daniel m donovan","R","NY","D000625",NA,"-","-","-",NA,NA,"NY-11",3,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Stefanik","Elise","elise stefanik,elise m stefanik","R","NY","S001196",NA,"+","+","+","+","-","NY-21",5,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Katko","John","john katko","R","NY","K000386",NA,"+","+","+","+","+","NY-24",5,0,NA,NA,NA,NA,NA,NA,14450,0,0,1000,0,0,64950,0,0,9000,250,1000,122590,0,0,18552,0,0,101038,0,60,22632,750,1019
-"Katko","John","john katko","R","NY","K000386",NA,"+","+","+","+","+","NY-24",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,58575,1000,1000,7500,0,1750,92317,0,0,19652,1100,11449,NA,NA,NA,NA,NA,NA
 "Walker","Bradley Mark","bradley mark walker","R","NC",NA,NA,"-","-","-","-",NA,"NC-06",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Rouzer","David","david rouzer","R","NC","R000603",NA,"-","-","-","-","-","NC-07",5,0,28400,0,0,1250,1700,0,29100,0,0,1500,0,0,23740,0,0,2000,0,0,37000,0,0,1000,0,3500,41666,0,2,6599,0,0
 "Adams","Alma","alma adams,alma s adams","D","NC","A000370",NA,"+","+","+","+","+","NC-12",5,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -532,7 +526,6 @@
 "Handel","Karen","karen handel,karen c handel","R","GA","H001078",NA,NA,"-","-",NA,NA,"GA-06",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Krishnamoorthi","Raja","raja krishnamoorthi","D","IL","K000391",NA,NA,"+","+","+","+","IL-08",4,0,13500,0,0,1000,1350,0,NA,NA,NA,NA,NA,NA,15475,0,0,0,24665,6750,21925,500,500,250,4408,12100,25024,0,1000,1150,2492,15177
 "Banks","Jim","jim banks","R","IN","B001299",NA,NA,"-","-","-","-","IN-03",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,28035,0,2000,500,57650,0,15000,0,1000,0,0,0,23005,0,1000,0,500,30
-"Banks","Jim","jim banks","R","IN","B001299",NA,NA,"-","-","-","-","IN-03",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,1000,0,0,1000,5000,1000,1000,0,0,0
 "Hollingsworth","Trey","trey hollingsworth","R","IN","H001074",NA,NA,"-","-","-","-","IN-09",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,13500,2000,4000,0,0,0,29450,11000,11000,0,0,17000,25000,0,1000,0,0,10000
 "Marshall","Roger","roger marshall","R","KS","M001198",NA,NA,"-","-","-",NA,"KS-01",3,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,23000,0,0,6000,0,25000,25082,0,0,1000,0,48693,NA,NA,NA,NA,NA,NA
 "Estes","Ron","ron estes","R","KS","E000298",NA,NA,"-","-","-","-","KS-04",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,131675,0,0,4000,0,41700,101924,0,0,3000,0,42850
@@ -541,7 +534,7 @@
 "Johnson","Mike","mike johnson","R","LA","J000299",NA,NA,"-","-","-",NA,"LA-04",3,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,64300,0,1000,3000,8100,0,78350,0,7400,19400,0,0,81925,0,7600,1000,0,0
 "Brown","Anthony","anthony brown,anthony g brown","D","MD","B001304",NA,NA,"+","+","+","+","MD-04",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Raskin","Jamie","jamie raskin","D","MD","R000606",NA,NA,"+","+","+","+","MD-08",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,0,0,0,0,25784,0,0,0,0,0,5665,0,3,0,0,0,11436,2500
-"Bergman","Jack","jack bergman","R","MI","B001301",NA,NA,"-","-","-","-","MI-01",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,33600,0,4000,0,0,4000,37345,0,10000,0,350,0,44047,0,9022,8112,0,20
+"Bergman","Jack","jack bergman","R","MI","B001301",NA,NA,"-","-","-","-","MI-01",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Mitchell","Paul","paul mitchell","R","MI",NA,NA,NA,"-","-","-",NA,"MI-10",3,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Lewis","Jason","jason lewis","R","MN","L000587",NA,NA,"-","-",NA,NA,"MN-02",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,14900,0,0,0,0,0,89775,5000,7000,10552,0,2700,NA,NA,NA,NA,NA,NA
 "Gianforte","Greg","greg gianforte","R","MT","G000584",NA,NA,"-","-","-",NA,"MT-AL",3,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,219640,28225,32225,3500,0,350,19511,11200,11200,3122,0,0
@@ -552,7 +545,6 @@
 "Suozzi","Thomas","thomas suozzi,thomas r suozzi","D","NY","S001201",NA,NA,"+","+","+","+","NY-03",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Espaillat","Adriano","adriano espaillat","D","NY","E000297",NA,NA,"+","+","+","+","NY-13",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,500,0,0,0,1022,0,0,0,0,0,2000,2500,500,0,0,0,530,0
 "Faso","John","john faso,john j faso","R","NY","F000464",NA,NA,"+","+",NA,NA,"NY-19",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Faso","John","john faso,john katko","R","NY","K000386",NA,NA,"+","+",NA,NA,"NY-19",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Tenney","Claudia","claudia tenney","R","NY","T000478",NA,NA,"-","-",NA,"-","NY-22",3,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,15950,0,0,3000,0,0,122290,5000,5100,9052,0,0,82718,25,763,6878,4,267
 "Budd","Ted","ted budd","R","NC","B001305",NA,NA,"-","-","-","-","NC-13",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,37700,0,2000,0,0,0,41869,0,2,5599,0,0
 "Evans","Dwight","dwight evans","D","PA","E000296",NA,NA,"+","+","+","+","PA-02,PA-03",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,5400,0,0,0,2750,5400,1100,0,0,0,5958,0,245,0,0,0,5280,0
@@ -567,7 +559,6 @@
 "Garrett","Thomas","thomas garrett,thomas a garrett","R","VA","G000580",NA,NA,NA,"-",NA,NA,"VA-05",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Jayapal","Pramila","pramila jayapal","D","WA","J000298",NA,NA,"+","+","+","+","WA-07",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,528,1600,1600,0,12350,300,1011,900,910,0,17231,515,331,0,146,21,20437,362
 "Gallagher","Mike","mike gallagher","R","WI","G000579",NA,NA,"-","-","-","-","WI-08",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,36900,0,2000,0,0,1000,53450,0,0,5000,0,0,53871,0,4,5500,50,0
-"Cheney","Liz","liz cheney,dick cheney","R","WY","C000344",NA,NA,"-","-","-","-","WY-AL",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Cheney","Liz","liz cheney","R","WY","C001109",NA,NA,"-","-","-","-","WY-AL",4,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,124775,9000,12000,2500,0,0,93700,16000,24500,3000,0,0,162384,29650,44816,8509,2000,16
 "Cloud","Michael","michael cloud","R","OH",NA,NA,NA,NA,"-","-","-","OH-10,TX-27",3,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Lesko","Debbie","debbie lesko","R","OH",NA,NA,NA,NA,"-","-","-","OH-10,AZ-08",3,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -582,7 +573,7 @@
 "Porter","Katie","katie porter","D","CA","P000618",NA,NA,NA,NA,"+","+","CA-45",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,2828,0,3,47,33216,12143,11992,12,160,959,45573,10285
 "Rouda","Harley","harley rouda","D","CA","R000616",NA,NA,NA,NA,"+",NA,"CA-48",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,7577,0,0,82,30557,14966,7903,0,1,2038,45319,7789
 "Levin","Mike","mike levin","D","CA","L000593",NA,NA,NA,NA,"+","+","CA-49",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,9015,0,1,5404,45795,15042,1063,0,1,505,41739,18191
-"Neguse","Joe","joe neguse","D","CO","N000191",NA,NA,NA,NA,"+","+","CO-02",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,555,0,0,2,11374,1795,5145,0,5000,0,24288,735
+"Neguse","Joe","joe neguse","D","CO","N000191",NA,NA,NA,NA,"+","+","CO-02",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Crow","Jason","jason crow","D","CO","C001121",NA,NA,NA,NA,"+","+","CO-06",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,11020,0,507,1852,66533,5032,16032,0,25,2800,52217,8564
 "Hayes","Jahana","jahana hayes","D","CT","H001081",NA,NA,NA,NA,"+","+","CT-05",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,271,0,0,252,2588,273,570,0,1,5,16422,1094
 "Norton","Eleanor Holmes","eleanor holmes norton","D","DC","N000147",NA,NA,NA,NA,"+",NA,"DC-AL",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
@@ -609,7 +600,6 @@
 "Trahan","Lori","lori trahan","D","MA","T000482",NA,NA,NA,NA,"+","+","MA-03",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,2600,0,5400,0,5260,6029,15,0,0,0,2004,0
 "Pressley","Ayanna","ayanna pressley","D","MA","P000617",NA,NA,NA,NA,"+","+","MA-07",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,3,0,0,0,6918,2106,7032,0,25,36,1912,941
 "Slotkin","Elissa","elissa slotkin","D","MI","S001208",NA,NA,NA,NA,"+","+","MI-08",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,13517,0,0,5900,56414,3839,9712,0,0,2053,65344,1149
-"Levin","Andy","andy levin","D","MI","L000592",NA,NA,NA,NA,"+","+","MI-09",2,0,10250,0,2000,2000,7250,4000,4500,0,2000,2000,3095,1000,2000,0,0,2000,4750,2000,-1000,0,0,-1000,0,0,NA,NA,NA,NA,NA,NA
 "Levin","Andy","andy levin","D","MI","L000592",NA,NA,NA,NA,"+","+","MI-09",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,3,0,0,2,5870,4000,4,0,0,0,4908,2125
 "Stevens","Haley","haley stevens,haley m stevens","D","MI","S001215",NA,NA,NA,NA,"+","+","MI-11",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Tlaib","Rashida","rashida tlaib","D","MI","T000481",NA,NA,NA,NA,"+","+","MI-13",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,-2359,0,0,2,3779,255,13994,29,54,1144,4863,3596
@@ -642,7 +632,7 @@
 "Scanlon","Mary Gay","mary gay scanlon","D","PA","S001205",NA,NA,NA,NA,"+","+","PA-05",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,6451,0,0,0,6997,0,3715,0,0,0,13375,10
 "Houlahan","Chrissy","chrissy houlahan","D","PA","H001085",NA,NA,NA,NA,"+","+","PA-06",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,2023,0,0,15,18329,6012,2766,0,0,0,22020,2864
 "Wild","Susan","susan wild","D","PA","W000826",NA,NA,NA,NA,"+","+","PA-07",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,93,0,2,2,18520,63,1318,0,400,0,39965,3499
-"Meuser","Daniel","daniel meuser","R","PA","M001204",NA,NA,NA,NA,"-","-","PA-09",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10300,8100,9100,2500,0,500,34300,20000,21000,4000,0,0
+"Meuser","Daniel","daniel meuser","R","PA","M001204",NA,NA,NA,NA,"-","-","PA-09",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Keller","Fred","fred keller","R","PA","K000395",NA,NA,NA,NA,"-","-","PA-12",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,28158,8100,8100,14250,0,0
 "Joyce","John","john joyce","R","PA","J000302",NA,NA,NA,NA,"-","-","PA-13",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,10500,0,0,5000,0,0,30500,1000,1000,2500,0,0
 "Reschenthaler","Guy","guy reschenthaler","R","PA","R000610",NA,NA,NA,NA,"-","-","PA-14",2,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,53550,17400,20400,14750,0,0,75950,24525,26829,22800,0,0
@@ -683,7 +673,7 @@
 "Cammack","Kat","kat cammack","R","FL","C001039",NA,NA,NA,NA,NA,"-","FL-03",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,15737,0,0,1900,0,11
 "Franklin","Scott","scott franklin,c scott franklin","R","FL","F000472",NA,NA,NA,NA,NA,"-","FL-15",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Donalds","Byron","byron donalds","R","FL","D000032",NA,NA,NA,NA,NA,"-","FL-19",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,18063,0,50,50,0,35
-"Giménez","Carlos","carlos gim nez,carlos a gimenez","R","FL","G000593",NA,NA,NA,NA,NA,"-","FL-26",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Giménez","Carlos","carlos gim nez","R","FL",NA,NA,NA,NA,NA,NA,"-","FL-26",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Salazar","María  Elvira","mar a elvira salazar,maria elvira salazar","R","FL","S000168",NA,NA,NA,NA,NA,"+","FL-27",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Williams","Nikema","nikema williams","D","GA","W000788",NA,NA,NA,NA,NA,"+","GA-05",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Bourdeaux","Carolyn","carolyn bourdeaux","D","GA","B001312",NA,NA,NA,NA,NA,"+","GA-07",1,0,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,449,0,0,0,22097,4759,4144,0,0,3533,32422,7035

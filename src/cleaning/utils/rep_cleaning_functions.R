@@ -25,7 +25,7 @@ rep_cleaning <- function(dataset) {
 
 # fuzzy join based on Names, Party and States
 # create function that returns True or False, if distance between two strings is less than 3
-fuzzy_match <- function(x, y, max_dist = 3) {
+fuzzy_match <- function(x, y, max_dist = 2) {
     return(stringdist::stringdist(x, y) <= max_dist)
 }
 
@@ -33,7 +33,7 @@ fuzzy_match_last <- function(x, y) {
     return(fuzzy_match(x, y, 1))
 }
 fuzzy_match_first <- function(x, y) {
-    return(fuzzy_match(x, y, 3)) # in roll_call = 3
+    return(fuzzy_match(x, y, 2)) # in roll_call = 3
 }
 
 # fuzzy merge function that merges each input dataset with the rep_u_id dataset,

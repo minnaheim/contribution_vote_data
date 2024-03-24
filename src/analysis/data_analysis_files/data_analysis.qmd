@@ -10,6 +10,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, echo = TRUE, include = FALSE}
 library(tidyverse)
 library(ggplot2)
+source("src/analysis/data_analysis_files/data_prep_analysis.R")
+
+view(df)
+df <- filter_session_data(df, "113")
+
+
 
 ```
 
@@ -23,26 +29,6 @@ summarise(df)
 ```
 
 
-
-```{r}
-# create a function where the inputs are the df and the session to observe, and then dep. on the session, the function removes the irrelevant columns, i.e. if input is 113, then remove all amount columns that dont end in 113, and only keep the Vote column which ends in 3.
-
-# function that checks the last char of each column name in a df
-substrRight <- function(x, n) {
-    substr(x, nchar(x) - n + 1, nchar(x))
-}
-# session needs to be one
-session_df <- function(dataset, session) {
-    for (i in 1:ncol(dataset)) {
-        if (!is.na(dataset[i]) && substrRight(colnames(dataset)[i], 1) != session) {
-            # drop all amount cols except for this one
-            dataset <- dataset %>% select(colnames(dataset)[i], Vote_change_dummy)
-        }
-    }
-    return(dataset)
-}
-session_df(df, "113")
-```
 
 ### time and state fixed effects 
 ```{r}
@@ -66,9 +52,6 @@ summary(ols_1)
 regressing the vote change dummy on party affiliation, we find that the coefficient for the Republican party is 0.2, the intercept shows how likely a democrat is to change their voting behaviour, at 0.31, we can see that democrats are more likely to change their voting behaviour on methane related issues, with only the democrat variable at 0.05 being significant.
 
 ### simple plot 
-```{r}
-
-```
 
 ### subsample OLS 
 here we only look at those who did change their voting behavior.

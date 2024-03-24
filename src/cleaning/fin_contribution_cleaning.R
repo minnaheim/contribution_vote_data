@@ -280,5 +280,8 @@ fin_all <- combine_columns(fin_all, "last_name")
 
 # view(fin_all)
 
+# problem with contributions, replicated if ID match not perfect
+
+
 # write to csv
 write_csv(fin_all, "data/cleaned/contributions.csv")

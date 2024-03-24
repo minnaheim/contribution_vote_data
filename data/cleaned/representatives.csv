@@ -35,7 +35,6 @@ J000292,Bill,Johnson,R,OH,bill johnson,NA,bill johnson
 P000096,Bill,Pascrell,D,NJ,bill pascrell,NA,bill pascrell
 P000599,Bill,Posey,R,FL,bill posey,NA,bill posey
 S001154,Bill,Shuster,R,PA,bill shuster,NA,bill shuster
-S000394,Bill,Shuster,R,PA,bill shuster,NA,bud shuster
 L000576,Billy,Long,R,MO,billy long,NA,billy long
 L000569,Blaine,Luetkemeyer,R,MO,blaine luetkemeyer,NA,blaine luetkemeyer
 F000460,Blake,Farenthold,R,TX,blake farenthold,NA,blake farenthold
@@ -144,7 +143,6 @@ W000808,Frederica,Wilson,D,FL,frederica wilson,NA,frederica s wilson
 NA,George,Butterfield,D,NC,george butterfield,NA,NA
 P000595,Gary,Peters,D,MI,gary peters,NA,gary c peters
 M001139,Gary,Miller,R,CA,gary miller,NA,gary g miller
-G000134,Gene,Green,D,TX,gene green,NA,pete geren
 G000410,Gene,Green,D,TX,gene green,NA,gene green
 H001065,George,Holding,R,NC,george holding,NA,george holding
 M000725,George,Miller,D,CA,george miller,NA,george miller
@@ -214,7 +212,6 @@ L000557,John,Larson,D,CT,john larson,NA,john b larson
 B001252,John,Barrow,D,GA,john barrow,NA,john barrow
 C001083,John,Carney,D,DE,john carney,Jr.,john c carney
 C001064,John,Campbell,R,CA,john campbell,NA,john campbell
-C000100,John,Campbell,R,CA,john campbell,NA,tom campbell
 C000714,John,Conyers,D,MI,john conyers,Jr.,john conyers
 D000355,John,Dingell,D,MI,john dingell,NA,john d dingell
 T000266,John,Tierney,D,MA,john tierney,NA,john f tierney
@@ -235,7 +232,7 @@ H001055,Joseph,Heck,R,NV,joseph heck,NA,joseph j heck
 K000110,Joseph,Kennedy,D,MA,joseph kennedy,II,joseph p kennedy
 K000379,Joseph,Kennedy,D,MA,joseph kennedy,III,joseph p kennedy
 P000373,Joseph,Pitts,R,PA,joseph pitts,NA,joseph r pitts
-S000248,José,Serrano,D,NY,jos serrano,NA,jose e serrano
+NA,José,Serrano,D,NY,jos serrano,NA,NA
 B001281,Joyce,Beatty,D,OH,joyce beatty,NA,joyce beatty
 V000130,Juan,Vargas,D,CA,juan vargas,NA,juan vargas
 C001080,Judy,Chu,D,CA,judy chu,NA,judy chu
@@ -271,7 +268,7 @@ B001269,Lou,Barletta,R,PA,lou barletta,NA,lou barletta
 G000552,Louie,Gohmert,R,TX,louie gohmert,NA,louie gohmert
 NA,Louise,Slaughter,D,NY,louise slaughter,NA,NA
 NA,Lucille,Roybal-Allard,D,CA,lucille roybal allard,NA,NA
-G000535,Luis,Gutiérrez,D,IL,luis guti rrez,NA,luis v gutierrez
+NA,Luis,Gutiérrez,D,IL,luis guti rrez,NA,NA
 M001189,Luke,Messer,R,IN,luke messer,NA,luke messer
 W000796,Lynn,Westmoreland,R,GA,lynn westmoreland,NA,lynn a westmoreland
 J000290,Lynn,Jenkins,R,KS,lynn jenkins,NA,lynn jenkins
@@ -290,7 +287,7 @@ M001190,Markwayne,Mullin,R,OK,markwayne mullin,NA,markwayne mullin
 S001188,Marlin,Stutzman,R,IN,marlin stutzman,NA,marlin a stutzman
 B001243,Marsha,Blackburn,R,TN,marsha blackburn,NA,marsha blackburn
 R000591,Martha,Roby,R,AL,martha roby,NA,martha roby
-C001090,Matthew,Cartwright,D,PA,matthew cartwright,NA,matt cartwright
+NA,Matthew,Cartwright,D,PA,matthew cartwright,NA,NA
 S000018,Matt,Salmon,R,AZ,matt salmon,NA,matt salmon
 W000187,Maxine,Waters,D,CA,maxine waters,NA,maxine waters
 W000207,Melvin,Watt,D,NC,melvin watt,NA,melvin l watt
@@ -346,7 +343,7 @@ W000814,Randy,Weber,R,TX,randy weber,NA,randy k weber
 N000182,Randy,Neugebauer,R,TX,randy neugebauer,NA,randy neugebauer
 R000599,Raul,Ruiz,D,CA,raul ruiz,NA,raul ruiz
 G000551,Raúl,Grijalva,D,AZ,ra l grijalva,NA,ra l m grijalva
-L000573,Raúl,Labrador,R,ID,ra l labrador,NA,raul r labrador
+NA,Raúl,Labrador,R,ID,ra l labrador,NA,NA
 R000587,Reid,Ribble,R,WI,reid ribble,NA,reid j ribble
 E000291,Renee,Ellmers,R,NC,renee ellmers,NA,renee l ellmers
 N000185,Richard,Nugent,R,FL,richard nugent,NA,richard b nugent
@@ -362,7 +359,6 @@ A000055,Robert,Aderholt,R,AL,robert aderholt,NA,robert b aderholt
 NA,Robert,Scott,D,VA,robert scott,NA,NA
 A000210,Robert,Andrews,D,NJ,robert andrews,NA,robert e andrews
 L000566,Robert,Latta,R,OH,robert latta,NA,robert e latta
-T000010,Robert,Latta,R,OH,robert latta,Jr.,robert taft
 H001060,Robert,Hurt,R,VA,robert hurt,NA,robert hurt
 W000804,Robert,Wittman,R,VA,robert wittman,NA,robert j wittman
 P000606,Robert,Pittenger,R,NC,robert pittenger,NA,robert pittenger
@@ -380,7 +376,6 @@ H001032,Rush,Holt,D,NJ,rush holt,NA,rush holt
 F000030,Sam,Farr,D,CA,sam farr,NA,sam farr
 G000546,Sam,Graves,R,MO,sam graves,NA,sam graves
 J000174,Sam,Johnson,R,TX,sam johnson,NA,sam johnson
-L000592,Sander,Levin,D,MI,sander levin,NA,andy levin
 L000263,Sander,Levin,D,MI,sander levin,NA,sander m levin
 B000490,Sanford,Bishop,D,GA,sanford bishop,NA,sanford d bishop
 D000616,Scott,DesJarlais,R,TN,scott desjarlais,NA,scott desjarlais
@@ -403,7 +398,7 @@ D000618,Steve,Daines,R,MT,steve daines,NA,steve daines
 I000057,Steve,Israel,D,NY,steve israel,NA,steve israel
 K000362,Steve,King,R,IA,steve king,NA,steve king
 S001176,Steve,Scalise,R,LA,steve scalise,NA,steve scalise
-S001186,Steve,Southerland,R,FL,steve southerland,NA,steve ii southerland
+NA,Steve,Southerland,R,FL,steve southerland,NA,NA
 S001187,Steve,Stivers,R,OH,steve stivers,NA,steve stivers
 S000937,Steve,Stockman,R,TX,steve stockman,NA,steve stockman
 W000809,Steve,Womack,R,AR,steve womack,NA,steve womack
@@ -490,7 +485,7 @@ B001296,Brendan,Boyle,D,PA,brendan boyle,NA,brendan f boyle
 B000755,Kevin,Brady,R,TX,kevin brady,NA,kevin brady
 B001227,Robert A,Brady,D,PA,robert a brady,NA,robert a brady
 B001290,Dave,Brat,R,VA,dave brat,NA,dave brat
-B001283,James,Bridenstine,R,OK,james bridenstine,NA,jim bridenstine
+NA,James,Bridenstine,R,OK,james bridenstine,NA,NA
 B001274,Mo,Brooks,R,AL,mo brooks,NA,mo brooks
 B001284,Susan,Brooks,R,IN,susan brooks,NA,susan w brooks
 B000911,Corrine,Brown,D,FL,corrine brown,NA,corrine brown
@@ -532,7 +527,7 @@ C001093,Doug,Collins,R,GA,doug collins,NA,doug collins
 C001105,Barbara,Comstock,R,VA,barbara comstock,NA,barbara comstock
 NA,Mike,Conaway,R,TX,mike conaway,NA,NA
 NA,Gerry,Connolly,D,VA,gerry connolly,NA,NA
-C000714,John Jr,Conyers,D,MI,john jr conyers,Jr.,john conyers
+NA,John Jr,Conyers,D,MI,john jr conyers,NA,NA
 C001094,Paul,Cook,R,CA,paul cook,NA,paul cook
 C000754,Jim,Cooper,D,TN,jim cooper,NA,jim cooper
 C001059,Jim,Costa,D,CA,jim costa,NA,jim costa
@@ -570,8 +565,7 @@ NA,Mike,Doyle,D,PA,mike doyle,NA,NA
 D000622,Tammy,Duckworth,D,IL,tammy duckworth,NA,tammy duckworth
 D000614,Sean P,Duffy,R,WI,sean p duffy,NA,sean p duffy
 D000615,Jeff,Duncan,R,SC,jeff duncan,NA,jeff duncan
-D000534,John J Jr,Duncan,R,TN,john j jr duncan,NA,john j duncan
-D000533,John J Jr,Duncan,R,TN,john j jr duncan,Jr.,john j duncan
+NA,John J Jr,Duncan,R,TN,john j jr duncan,NA,NA
 E000290,Donna,Edwards,D,MD,donna edwards,NA,donna f edwards
 E000288,Keith,Ellison,D,MN,keith ellison,NA,keith ellison
 E000291,Renee,Ellmers,R,NC,renee ellmers,NA,renee l ellmers
@@ -611,7 +605,6 @@ G000546,Sam,Graves,R,MO,sam graves,NA,sam graves
 G000560,Tom,Graves,R,GA,tom graves,NA,tom graves
 G000556,Alan,Grayson,D,FL,alan grayson,NA,alan grayson
 G000553,Al,Green,D,TX,al green,NA,al green
-G000134,Gene,Green,D,TX,gene green,NA,pete geren
 G000410,Gene,Green,D,TX,gene green,NA,gene green
 G000568,Morgan,Griffith,R,VA,morgan griffith,NA,h morgan griffith
 G000551,Raul M,Grijalva,D,AZ,raul m grijalva,NA,ra l m grijalva
@@ -656,10 +649,10 @@ J000297,Evan,Jenkins,R,WV,evan jenkins,NA,evan h jenkins
 J000290,Lynn,Jenkins,R,KS,lynn jenkins,NA,lynn jenkins
 J000292,Bill,Johnson,R,OH,bill johnson,NA,bill johnson
 J000126,Eddie Bernice,Johnson,D,TX,eddie bernice johnson,NA,eddie bernice johnson
-J000120,Hank,Johnson,D,GA,hank johnson,NA,don johnson
+NA,Hank,Johnson,D,GA,hank johnson,NA,NA
 J000174,Sam,Johnson,R,TX,sam johnson,NA,sam johnson
 J000296,David,Jolly,R,FL,david jolly,NA,david w jolly
-J000255,Walter B Jr,Jones,R,NC,walter b jr jones,Jr.,walter b jones
+NA,Walter B Jr,Jones,R,NC,walter b jr jones,NA,NA
 J000289,Jim,Jordan,R,OH,jim jordan,NA,jim jordan
 J000295,David P,Joyce,R,OH,david p joyce,NA,david p joyce
 K000009,Marcy,Kaptur,D,OH,marcy kaptur,NA,marcy kaptur
@@ -672,12 +665,12 @@ NA,Joe III,Kennedy,D,MA,joe iii kennedy,NA,NA
 NA,Dan,Kildee,D,MI,dan kildee,NA,NA
 K000381,Derek,Kilmer,D,WA,derek kilmer,NA,derek kilmer
 K000188,Ron,Kind,D,WI,ron kind,NA,ron kind
-K000210,Pete,King,R,NY,pete king,NA,peter t king
-K000362,Steven A,King,R,IA,steven a king,NA,steve king
+NA,Pete,King,R,NY,pete king,NA,NA
+NA,Steven A,King,R,IA,steven a king,NA,NA
 K000378,Adam,Kinzinger,R,IL,adam kinzinger,NA,adam kinzinger
 K000368,Ann,Kirkpatrick,D,AZ,ann kirkpatrick,NA,ann kirkpatrick
 K000363,John,Kline,R,MN,john kline,NA,john kline
-K000387,Steve,Knight,R,CA,steve knight,NA,stephen knight
+NA,Steve,Knight,R,CA,steve knight,NA,NA
 K000382,Ann,Kuster,D,NH,ann kuster,NA,ann m kuster
 L000573,Raul,Labrador,R,ID,raul labrador,NA,raul r labrador
 L000585,Darin,LaHood,R,IL,darin lahood,NA,darin lahood
@@ -690,7 +683,6 @@ L000557,John,Larson,D,CT,john larson,NA,john b larson
 NA,Bob,Latta,R,OH,bob latta,NA,NA
 L000581,Brenda,Lawrence,D,MI,brenda lawrence,NA,brenda l lawrence
 L000551,Barbara,Lee,D,CA,barbara lee,NA,barbara lee
-L000592,Sander,Levin,D,MI,sander levin,NA,andy levin
 L000263,Sander,Levin,D,MI,sander levin,NA,sander m levin
 L000287,John,Lewis,D,GA,john lewis,NA,john lewis
 L000582,Ted,Lieu,D,CA,ted lieu,NA,ted lieu
@@ -748,18 +740,18 @@ N000182,Randy,Neugebauer,R,TX,randy neugebauer,NA,randy neugebauer
 N000189,Dan,Newhouse,R,WA,dan newhouse,NA,dan newhouse
 N000184,Kristi,Noem,R,SD,kristi noem,NA,kristi l noem
 NA,Rick,Nolan,D,MN,rick nolan,NA,NA
-N000188,Don,Norcross,D,NJ,don norcross,NA,donald norcross
+NA,Don,Norcross,D,NJ,don norcross,NA,NA
 N000147,Eleanor Holmes,Norton,D,DC,eleanor holmes norton,NA,eleanor holmes norton
 N000185,Richard,Nugent,R,FL,richard nugent,NA,richard b nugent
 N000181,Devin,Nunes,R,CA,devin nunes,NA,devin nunes
 O000170,Beto,O'Rourke,D,TX,beto o rourke,NA,beto o rourke
 O000168,Pete,Olson,R,TX,pete olson,NA,pete olson
 P000601,Steven,Palazzo,R,MS,steven palazzo,NA,steven m palazzo
-P000034,Frank Jr,Pallone,D,NJ,frank jr pallone,NA,frank pallone
+NA,Frank Jr,Pallone,D,NJ,frank jr pallone,NA,NA
 P000609,Gary,Palmer,R,AL,gary palmer,NA,gary j palmer
-P000096,Bill Jr,Pascrell,D,NJ,bill jr pascrell,NA,bill pascrell
+NA,Bill Jr,Pascrell,D,NJ,bill jr pascrell,NA,NA
 P000594,Erik,Paulsen,R,MN,erik paulsen,NA,erik paulsen
-P000604,Donald M Jr,Payne,D,NJ,donald m jr payne,NA,donald m payne
+NA,Donald M Jr,Payne,D,NJ,donald m jr payne,NA,NA
 P000588,Steve,Pearce,R,NM,steve pearce,NA,stevan pearce
 P000197,Nancy,Pelosi,D,CA,nancy pelosi,NA,nancy pelosi
 P000593,Ed,Perlmutter,D,CO,ed perlmutter,NA,ed perlmutter
@@ -794,11 +786,11 @@ R000589,Scott,Rigell,R,VA,scott rigell,NA,e scott rigell
 R000591,Martha,Roby,R,AL,martha roby,NA,martha roby
 M001159,Cathy McMorris,Rodgers,R,WA,cathy mcmorris rodgers,NA,cathy mcmorris rodgers
 NA,Phil,Roe,R,TN,phil roe,NA,NA
-R000395,Hal,Rogers,R,KY,hal rogers,NA,harold rogers
+NA,Hal,Rogers,R,KY,hal rogers,NA,NA
 R000575,Mike D,Rogers,R,AL,mike d rogers,NA,mike d rogers
 R000409,Dana,Rohrabacher,R,CA,dana rohrabacher,NA,dana rohrabacher
 R000592,Todd,Rokita,R,IN,todd rokita,NA,todd rokita
-F000447,Tom,Rooney,R,FL,tom rooney,NA,tom feeney
+NA,Tom,Rooney,R,FL,tom rooney,NA,NA
 NA,Ileana,Ros-Lehtinen,R,FL,ileana ros lehtinen,NA,NA
 R000580,Peter,Roskam,R,IL,peter roskam,NA,peter j roskam
 R000593,Dennis,Ross,R,FL,dennis ross,NA,dennis a ross
@@ -813,7 +805,7 @@ R000604,Steven,Russell,R,OK,steven russell,NA,steve russell
 R000570,Paul,Ryan,R,WI,paul ryan,NA,paul d ryan
 R000577,Tim,Ryan,D,OH,tim ryan,NA,tim ryan
 S000018,Matt,Salmon,R,AZ,matt salmon,NA,matt salmon
-S001156,Linda,Sanchez,D,CA,linda sanchez,NA,linda t s nchez
+NA,Linda,Sanchez,D,CA,linda sanchez,NA,NA
 S000030,Loretta,Sanchez,D,CA,loretta sanchez,NA,loretta sanchez
 S000051,Mark,Sanford,R,SC,mark sanford,NA,mark sanford
 S001168,John,Sarbanes,D,MD,john sarbanes,NA,john p sarbanes
@@ -833,7 +825,6 @@ S001185,Terri,Sewell,D,AL,terri sewell,NA,terri a sewell
 S000344,Brad,Sherman,D,CA,brad sherman,NA,brad sherman
 S000364,John,Shimkus,R,IL,john shimkus,NA,john shimkus
 S001154,Bill,Shuster,R,PA,bill shuster,NA,bill shuster
-S000394,Bill,Shuster,R,PA,bill shuster,NA,bud shuster
 NA,Mike,Simpson,R,ID,mike simpson,NA,NA
 NA,Kyrsten,Sinema,D,AZ,kyrsten sinema,NA,NA
 S001165,Albio,Sires,D,NJ,albio sires,NA,albio sires
@@ -868,8 +859,8 @@ V000128,Chris,Van Hollen,D,MD,chris van hollen,NA,chris van hollen
 V000130,Juan,Vargas,D,CA,juan vargas,NA,juan vargas
 V000131,Marc,Veasey,D,TX,marc veasey,NA,marc a veasey
 V000132,Filemon,Vela,D,TX,filemon vela,NA,filemon vela
-V000081,Nydia,Velazquez,D,NY,nydia velazquez,NA,nydia m vel zquez
-V000108,Pete,Visclosky,D,IN,pete visclosky,NA,peter j visclosky
+NA,Nydia,Velazquez,D,NY,nydia velazquez,NA,NA
+NA,Pete,Visclosky,D,IN,pete visclosky,NA,NA
 W000812,Ann,Wagner,R,MO,ann wagner,NA,ann wagner
 W000798,Tim,Walberg,R,MI,tim walberg,NA,tim walberg
 W000791,Greg,Walden,R,OR,greg walden,NA,greg walden
@@ -917,7 +908,7 @@ B000213,Joe,Barton,R,TX,joe barton,NA,joe barton
 B001270,Karen,Bass,D,CA,karen bass,NA,karen bass
 B001281,Joyce,Beatty,D,OH,joyce beatty,NA,joyce beatty
 B001287,Ami,Bera,D,CA,ami bera,NA,ami bera
-B001301,John,Bergman,R,MI,john bergman,NA,jack bergman
+NA,John,Bergman,R,MI,john bergman,NA,NA
 H001056,Jaime Herrera,Beutler,R,WA,jaime herrera beutler,NA,jaime herrera beutler
 NA,Don,Beyer,D,VA,don beyer,NA,NA
 B001302,Andy,Biggs,R,AZ,andy biggs,NA,andy biggs
@@ -959,7 +950,6 @@ C001090,Matt,Cartwright,D,PA,matt cartwright,NA,matt cartwright
 C001066,Kathy,Castor,D,FL,kathy castor,NA,kathy castor
 C001091,Joaquin,Castro,D,TX,joaquin castro,NA,joaquin castro
 C000266,Steve,Chabot,R,OH,steve chabot,NA,steve chabot
-C000344,Liz,Cheney,R,WY,liz cheney,NA,dick cheney
 C001109,Liz,Cheney,R,WY,liz cheney,NA,liz cheney
 C001080,Judy,Chu,D,CA,judy chu,NA,judy chu
 C001084,David,Cicilline,D,RI,david cicilline,NA,david n cicilline
@@ -1015,8 +1005,7 @@ NA,Dan,Donovan,R,NY,dan donovan,NA,NA
 NA,Mike,Doyle,D,PA,mike doyle,NA,NA
 D000614,Sean P,Duffy,R,WI,sean p duffy,NA,sean p duffy
 D000615,Jeff,Duncan,R,SC,jeff duncan,NA,jeff duncan
-D000534,John J Jr,Duncan,R,TN,john j jr duncan,NA,john j duncan
-D000533,John J Jr,Duncan,R,TN,john j jr duncan,Jr.,john j duncan
+NA,John J Jr,Duncan,R,TN,john j jr duncan,NA,NA
 D000628,Neal,Dunn,R,FL,neal dunn,NA,neal p dunn
 E000288,Keith,Ellison,D,MN,keith ellison,NA,keith ellison
 E000294,Tom,Emmer,R,MN,tom emmer,NA,tom emmer
@@ -1027,7 +1016,6 @@ E000298,Ron,Estes,R,KS,ron estes,NA,ron estes
 E000293,Elizabeth,Esty,D,CT,elizabeth esty,NA,elizabeth h esty
 E000296,Dwight,Evans,D,PA,dwight evans,NA,dwight evans
 F000464,John,Faso,R,NY,john faso,NA,john j faso
-K000386,John,Faso,R,NY,john faso,NA,john katko
 F000465,Drew,Ferguson,R,GA,drew ferguson,NA,a drew ferguson
 F000466,Brian,Fitzpatrick,R,PA,brian fitzpatrick,NA,brian k fitzpatrick
 NA,Chuck,Fleischmann,R,TN,chuck fleischmann,NA,NA
@@ -1058,7 +1046,6 @@ G000577,Garret,Graves,R,LA,garret graves,NA,garret graves
 G000546,Sam,Graves,R,MO,sam graves,NA,sam graves
 G000560,Tom,Graves,R,GA,tom graves,NA,tom graves
 G000553,Al,Green,D,TX,al green,NA,al green
-G000134,Gene,Green,D,TX,gene green,NA,pete geren
 G000410,Gene,Green,D,TX,gene green,NA,gene green
 G000568,Morgan,Griffith,R,VA,morgan griffith,NA,h morgan griffith
 G000551,Raul M,Grijalva,D,AZ,raul m grijalva,NA,ra l m grijalva
@@ -1098,11 +1085,11 @@ J000297,Evan,Jenkins,R,WV,evan jenkins,NA,evan h jenkins
 J000290,Lynn,Jenkins,R,KS,lynn jenkins,NA,lynn jenkins
 J000292,Bill,Johnson,R,OH,bill johnson,NA,bill johnson
 J000126,Eddie Bernice,Johnson,D,TX,eddie bernice johnson,NA,eddie bernice johnson
-J000120,Hank,Johnson,D,GA,hank johnson,NA,don johnson
+NA,Hank,Johnson,D,GA,hank johnson,NA,NA
 J000299,Mike,Johnson,R,LA,mike johnson,NA,mike johnson
 J000174,Sam,Johnson,R,TX,sam johnson,NA,sam johnson
 J000303,Brenda,Jones,D,MI,brenda jones,NA,brenda jones
-J000255,Walter B Jr,Jones,R,NC,walter b jr jones,Jr.,walter b jones
+NA,Walter B Jr,Jones,R,NC,walter b jr jones,NA,NA
 J000289,Jim,Jordan,R,OH,jim jordan,NA,jim jordan
 J000295,David P,Joyce,R,OH,david p joyce,NA,david p joyce
 K000009,Marcy,Kaptur,D,OH,marcy kaptur,NA,marcy kaptur
@@ -1117,10 +1104,10 @@ K000390,Ruben,Kihuen,D,NV,ruben kihuen,NA,ruben j kihuen
 NA,Dan,Kildee,D,MI,dan kildee,NA,NA
 K000381,Derek,Kilmer,D,WA,derek kilmer,NA,derek kilmer
 K000188,Ron,Kind,D,WI,ron kind,NA,ron kind
-K000210,Pete,King,R,NY,pete king,NA,peter t king
-K000362,Steven A,King,R,IA,steven a king,NA,steve king
+NA,Pete,King,R,NY,pete king,NA,NA
+NA,Steven A,King,R,IA,steven a king,NA,NA
 K000378,Adam,Kinzinger,R,IL,adam kinzinger,NA,adam kinzinger
-K000387,Steve,Knight,R,CA,steve knight,NA,stephen knight
+NA,Steve,Knight,R,CA,steve knight,NA,NA
 K000391,Raja,Krishnamoorthi,D,IL,raja krishnamoorthi,NA,raja krishnamoorthi
 K000382,Ann,Kuster,D,NH,ann kuster,NA,ann m kuster
 K000392,David,Kustoff,R,TN,david kustoff,NA,david kustoff
@@ -1138,7 +1125,6 @@ L000581,Brenda,Lawrence,D,MI,brenda lawrence,NA,brenda l lawrence
 L000586,Al,Lawson,D,FL,al lawson,Jr.,al lawson
 L000551,Barbara,Lee,D,CA,barbara lee,NA,barbara lee
 L000589,Debbie,Lesko,R,AZ,debbie lesko,NA,debbie lesko
-L000592,Sander,Levin,D,MI,sander levin,NA,andy levin
 L000263,Sander,Levin,D,MI,sander levin,NA,sander m levin
 L000587,Jason,Lewis,R,MN,jason lewis,NA,jason lewis
 L000287,John,Lewis,D,GA,john lewis,NA,john lewis
@@ -1193,7 +1179,7 @@ N000015,Richard E,Neal,D,MA,richard e neal,NA,richard e neal
 N000189,Dan,Newhouse,R,WA,dan newhouse,NA,dan newhouse
 N000184,Kristi,Noem,R,SD,kristi noem,NA,kristi l noem
 NA,Rick,Nolan,D,MN,rick nolan,NA,NA
-N000188,Don,Norcross,D,NJ,don norcross,NA,donald norcross
+NA,Don,Norcross,D,NJ,don norcross,NA,NA
 N000190,Ralph,Norman,R,SC,ralph norman,NA,ralph norman
 N000147,Eleanor Holmes,Norton,D,DC,eleanor holmes norton,NA,eleanor holmes norton
 N000181,Devin,Nunes,R,CA,devin nunes,NA,devin nunes
@@ -1201,12 +1187,12 @@ O000171,Tom,O'Halleran,D,AZ,tom o halleran,NA,tom o halleran
 O000170,Beto,O'Rourke,D,TX,beto o rourke,NA,beto o rourke
 O000168,Pete,Olson,R,TX,pete olson,NA,pete olson
 P000601,Steven,Palazzo,R,MS,steven palazzo,NA,steven m palazzo
-P000034,Frank Jr,Pallone,D,NJ,frank jr pallone,NA,frank pallone
+NA,Frank Jr,Pallone,D,NJ,frank jr pallone,NA,NA
 P000609,Gary,Palmer,R,AL,gary palmer,NA,gary j palmer
 P000613,Jimmy,Panetta,D,CA,jimmy panetta,NA,jimmy panetta
-P000096,Bill Jr,Pascrell,D,NJ,bill jr pascrell,NA,bill pascrell
+NA,Bill Jr,Pascrell,D,NJ,bill jr pascrell,NA,NA
 P000594,Erik,Paulsen,R,MN,erik paulsen,NA,erik paulsen
-P000604,Donald M Jr,Payne,D,NJ,donald m jr payne,NA,donald m payne
+NA,Donald M Jr,Payne,D,NJ,donald m jr payne,NA,NA
 P000588,Steve,Pearce,R,NM,steve pearce,NA,stevan pearce
 P000197,Nancy,Pelosi,D,CA,nancy pelosi,NA,nancy pelosi
 P000593,Ed,Perlmutter,D,CO,ed perlmutter,NA,ed perlmutter
@@ -1236,12 +1222,12 @@ R000591,Martha,Roby,R,AL,martha roby,NA,martha roby
 B001303,Lisa Blunt,Rochester,D,DE,lisa blunt rochester,NA,lisa blunt rochester
 M001159,Cathy McMorris,Rodgers,R,WA,cathy mcmorris rodgers,NA,cathy mcmorris rodgers
 NA,Phil,Roe,R,TN,phil roe,NA,NA
-R000395,Hal,Rogers,R,KY,hal rogers,NA,harold rogers
+NA,Hal,Rogers,R,KY,hal rogers,NA,NA
 R000575,Mike D,Rogers,R,AL,mike d rogers,NA,mike d rogers
 R000409,Dana,Rohrabacher,R,CA,dana rohrabacher,NA,dana rohrabacher
 R000592,Todd,Rokita,R,IN,todd rokita,NA,todd rokita
 R000607,Francis,Rooney,R,FL,francis rooney,NA,francis rooney
-F000447,Tom,Rooney,R,FL,tom rooney,NA,tom feeney
+NA,Tom,Rooney,R,FL,tom rooney,NA,NA
 NA,Ileana,Ros-Lehtinen,R,FL,ileana ros lehtinen,NA,NA
 R000608,Jacky,Rosen,D,NV,jacky rosen,NA,jacky rosen
 R000580,Peter,Roskam,R,IL,peter roskam,NA,peter j roskam
@@ -1257,7 +1243,7 @@ R000604,Steven,Russell,R,OK,steven russell,NA,steve russell
 R000609,John,Rutherford,R,FL,john rutherford,NA,john h rutherford
 R000570,Paul,Ryan,R,WI,paul ryan,NA,paul d ryan
 R000577,Tim,Ryan,D,OH,tim ryan,NA,tim ryan
-S001156,Linda,Sanchez,D,CA,linda sanchez,NA,linda t s nchez
+NA,Linda,Sanchez,D,CA,linda sanchez,NA,NA
 S000051,Mark,Sanford,R,SC,mark sanford,NA,mark sanford
 S001168,John,Sarbanes,D,MD,john sarbanes,NA,john p sarbanes
 S001176,Steve,Scalise,R,LA,steve scalise,NA,steve scalise
@@ -1279,7 +1265,6 @@ NA,Carol,Shea-Porter,D,NH,carol shea porter,NA,NA
 S000344,Brad,Sherman,D,CA,brad sherman,NA,brad sherman
 S000364,John,Shimkus,R,IL,john shimkus,NA,john shimkus
 S001154,Bill,Shuster,R,PA,bill shuster,NA,bill shuster
-S000394,Bill,Shuster,R,PA,bill shuster,NA,bud shuster
 NA,Mike,Simpson,R,ID,mike simpson,NA,NA
 NA,Kyrsten,Sinema,D,AZ,kyrsten sinema,NA,NA
 S001165,Albio,Sires,D,NJ,albio sires,NA,albio sires
@@ -1315,8 +1300,8 @@ V000129,David,Valadao,R,CA,david valadao,NA,david g valadao
 V000130,Juan,Vargas,D,CA,juan vargas,NA,juan vargas
 V000131,Marc,Veasey,D,TX,marc veasey,NA,marc a veasey
 V000132,Filemon,Vela,D,TX,filemon vela,NA,filemon vela
-V000081,Nydia,Velazquez,D,NY,nydia velazquez,NA,nydia m vel zquez
-V000108,Pete,Visclosky,D,IN,pete visclosky,NA,peter j visclosky
+NA,Nydia,Velazquez,D,NY,nydia velazquez,NA,NA
+NA,Pete,Visclosky,D,IN,pete visclosky,NA,NA
 W000812,Ann,Wagner,R,MO,ann wagner,NA,ann wagner
 W000798,Tim,Walberg,R,MI,tim walberg,NA,tim walberg
 W000791,Greg,Walden,R,OR,greg walden,NA,greg walden
@@ -1355,7 +1340,7 @@ A000375,Jodey,Arrington,R,TX,jodey arrington,NA,jodey c arrington
 NA,Cindy,Axne,D,IA,cindy axne,NA,NA
 B001291,Brian,Babin,R,TX,brian babin,NA,brian babin
 NA,Donald John,Bacon,R,NE,donald john bacon,NA,NA
-B001299,Jim,Baird,R,IN,jim baird,NA,jim banks
+NA,Jim,Baird,R,IN,jim baird,NA,NA
 B001306,Troy,Balderson,R,OH,troy balderson,NA,troy balderson
 B001299,Jim,Banks,R,IN,jim banks,NA,jim banks
 B001282,Andy,Barr,R,KY,andy barr,NA,andy barr
@@ -1363,7 +1348,7 @@ NA,Nanette,Barragan,D,CA,nanette barragan,NA,NA
 B001270,Karen,Bass,D,CA,karen bass,NA,karen bass
 B001281,Joyce,Beatty,D,OH,joyce beatty,NA,joyce beatty
 B001287,Ami,Bera,D,CA,ami bera,NA,ami bera
-B001301,John,Bergman,R,MI,john bergman,NA,jack bergman
+NA,John,Bergman,R,MI,john bergman,NA,NA
 H001056,Jaime Herrera,Beutler,R,WA,jaime herrera beutler,NA,jaime herrera beutler
 NA,Don,Beyer,D,VA,don beyer,NA,NA
 B001302,Andy,Biggs,R,AZ,andy biggs,NA,andy biggs
@@ -1402,7 +1387,6 @@ C001117,Sean,Casten,D,IL,sean casten,NA,sean casten
 C001066,Kathy,Castor,D,FL,kathy castor,NA,kathy castor
 C001091,Joaquin,Castro,D,TX,joaquin castro,NA,joaquin castro
 C000266,Steve,Chabot,R,OH,steve chabot,NA,steve chabot
-C000344,Liz,Cheney,R,WY,liz cheney,NA,dick cheney
 C001109,Liz,Cheney,R,WY,liz cheney,NA,liz cheney
 C001080,Judy,Chu,D,CA,judy chu,NA,judy chu
 C001084,David,Cicilline,D,RI,david cicilline,NA,david n cicilline
@@ -1534,7 +1518,7 @@ J000294,Hakeem,Jeffries,D,NY,hakeem jeffries,NA,hakeem s jeffries
 J000292,Bill,Johnson,R,OH,bill johnson,NA,bill johnson
 J000301,Dusty,Johnson,R,SD,dusty johnson,NA,dusty johnson
 J000126,Eddie Bernice,Johnson,D,TX,eddie bernice johnson,NA,eddie bernice johnson
-J000120,Hank,Johnson,D,GA,hank johnson,NA,don johnson
+NA,Hank,Johnson,D,GA,hank johnson,NA,NA
 J000299,Mike,Johnson,R,LA,mike johnson,NA,mike johnson
 J000289,Jim,Jordan,R,OH,jim jordan,NA,jim jordan
 J000295,David P,Joyce,R,OH,david p joyce,NA,david p joyce
@@ -1552,8 +1536,8 @@ NA,Dan,Kildee,D,MI,dan kildee,NA,NA
 K000381,Derek,Kilmer,D,WA,derek kilmer,NA,derek kilmer
 K000394,Andy,Kim,D,NJ,andy kim,NA,andy kim
 K000188,Ron,Kind,D,WI,ron kind,NA,ron kind
-K000210,Pete,King,R,NY,pete king,NA,peter t king
-K000362,Steven A,King,R,IA,steven a king,NA,steve king
+NA,Pete,King,R,NY,pete king,NA,NA
+NA,Steven A,King,R,IA,steven a king,NA,NA
 K000378,Adam,Kinzinger,R,IL,adam kinzinger,NA,adam kinzinger
 K000368,Ann,Kirkpatrick,D,AZ,ann kirkpatrick,NA,ann kirkpatrick
 K000391,Raja,Krishnamoorthi,D,IL,raja krishnamoorthi,NA,raja krishnamoorthi
@@ -1608,7 +1592,7 @@ M001180,David,McKinley,R,WV,david mckinley,NA,david b mckinley
 M001166,Jerry,McNerney,D,CA,jerry mcnerney,NA,jerry mcnerney
 M001137,Gregory,Meeks,D,NY,gregory meeks,NA,gregory w meeks
 M001188,Grace,Meng,D,NY,grace meng,NA,grace meng
-M001204,Dan,Meuser,R,PA,dan meuser,NA,daniel meuser
+NA,Dan,Meuser,R,PA,dan meuser,NA,NA
 M000687,Kweisi,Mfume,D,MD,kweisi mfume,NA,kweisi mfume
 M001205,Carol,Miller,R,WV,carol miller,NA,carol d miller
 NA,Paul,Mitchell,R,MI,paul mitchell,NA,NA
@@ -1624,9 +1608,9 @@ M001202,Stephanie,Murphy,D,FL,stephanie murphy,NA,stephanie n murphy
 N000002,Jerrold,Nadler,D,NY,jerrold nadler,NA,jerrold nadler
 N000179,Grace,Napolitano,D,CA,grace napolitano,NA,grace f napolitano
 N000015,Richard E,Neal,D,MA,richard e neal,NA,richard e neal
-N000191,Joseph,Neguse,D,CO,joseph neguse,NA,joe neguse
+NA,Joseph,Neguse,D,CO,joseph neguse,NA,NA
 N000189,Dan,Newhouse,R,WA,dan newhouse,NA,dan newhouse
-N000188,Don,Norcross,D,NJ,don norcross,NA,donald norcross
+NA,Don,Norcross,D,NJ,don norcross,NA,NA
 N000190,Ralph,Norman,R,SC,ralph norman,NA,ralph norman
 N000147,Eleanor Holmes,Norton,D,DC,eleanor holmes norton,NA,eleanor holmes norton
 N000181,Devin,Nunes,R,CA,devin nunes,NA,devin nunes
@@ -1635,12 +1619,12 @@ NA,Alexandria,Ocasio-Cortez,D,NY,alexandria ocasio cortez,NA,NA
 O000168,Pete,Olson,R,TX,pete olson,NA,pete olson
 O000173,Ilhan,Omar,D,MN,ilhan omar,NA,ilhan omar
 P000601,Steven,Palazzo,R,MS,steven palazzo,NA,steven m palazzo
-P000034,Frank Jr,Pallone,D,NJ,frank jr pallone,NA,frank pallone
+NA,Frank Jr,Pallone,D,NJ,frank jr pallone,NA,NA
 P000609,Gary,Palmer,R,AL,gary palmer,NA,gary j palmer
 P000613,Jimmy,Panetta,D,CA,jimmy panetta,NA,jimmy panetta
 P000614,Chris,Pappas,D,NH,chris pappas,NA,chris pappas
-P000096,Bill Jr,Pascrell,D,NJ,bill jr pascrell,NA,bill pascrell
-P000604,Donald M Jr,Payne,D,NJ,donald m jr payne,NA,donald m payne
+NA,Bill Jr,Pascrell,D,NJ,bill jr pascrell,NA,NA
+NA,Donald M Jr,Payne,D,NJ,donald m jr payne,NA,NA
 P000197,Nancy,Pelosi,D,CA,nancy pelosi,NA,nancy pelosi
 P000615,Greg,Pence,R,IN,greg pence,NA,greg pence
 P000593,Ed,Perlmutter,D,CO,ed perlmutter,NA,ed perlmutter
@@ -1668,7 +1652,7 @@ R000591,Martha,Roby,R,AL,martha roby,NA,martha roby
 B001303,Lisa Blunt,Rochester,D,DE,lisa blunt rochester,NA,lisa blunt rochester
 M001159,Cathy McMorris,Rodgers,R,WA,cathy mcmorris rodgers,NA,cathy mcmorris rodgers
 NA,Phil,Roe,R,TN,phil roe,NA,NA
-R000395,Hal,Rogers,R,KY,hal rogers,NA,harold rogers
+NA,Hal,Rogers,R,KY,hal rogers,NA,NA
 R000575,Mike D,Rogers,R,AL,mike d rogers,NA,mike d rogers
 R000607,Francis,Rooney,R,FL,francis rooney,NA,francis rooney
 R000612,John,Rose,R,TN,john rose,NA,john w rose
@@ -1683,7 +1667,7 @@ R000515,Bobby,Rush,D,IL,bobby rush,NA,bobby l rush
 R000609,John,Rutherford,R,FL,john rutherford,NA,john h rutherford
 R000577,Tim,Ryan,D,OH,tim ryan,NA,tim ryan
 NA,Michael,San Nicolas,D,GU,michael san nicolas,NA,NA
-S001156,Linda,Sanchez,D,CA,linda sanchez,NA,linda t s nchez
+NA,Linda,Sanchez,D,CA,linda sanchez,NA,NA
 S001168,John,Sarbanes,D,MD,john sarbanes,NA,john p sarbanes
 S001176,Steve,Scalise,R,LA,steve scalise,NA,steve scalise
 S001205,Mary Gay,Scanlon,D,PA,mary gay scanlon,NA,mary gay scanlon
@@ -1749,8 +1733,8 @@ NA,Jeff,Van Drew,R,NJ,jeff van drew,NA,NA
 V000130,Juan,Vargas,D,CA,juan vargas,NA,juan vargas
 V000131,Marc,Veasey,D,TX,marc veasey,NA,marc a veasey
 V000132,Filemon,Vela,D,TX,filemon vela,NA,filemon vela
-V000081,Nydia,Velazquez,D,NY,nydia velazquez,NA,nydia m vel zquez
-V000108,Pete,Visclosky,D,IN,pete visclosky,NA,peter j visclosky
+NA,Nydia,Velazquez,D,NY,nydia velazquez,NA,NA
+NA,Pete,Visclosky,D,IN,pete visclosky,NA,NA
 W000812,Ann,Wagner,R,MO,ann wagner,NA,ann wagner
 W000798,Tim,Walberg,R,MI,tim walberg,NA,tim walberg
 W000791,Greg,Walden,R,OR,greg walden,NA,greg walden
@@ -1801,12 +1785,12 @@ B001281,Joyce,Beatty,D,OH,joyce beatty,NA,joyce beatty
 B000668,Cliff,Bentz,R,OR,cliff bentz,NA,cliff bentz
 B001287,Ami,Bera,D,CA,ami bera,NA,ami bera
 B001301,Jack,Bergman,R,MI,jack bergman,NA,jack bergman
-B001292,Donald S. Jr.,Beyer,D,VA,donald s jr beyer,NA,donald s beyer
+NA,Donald S. Jr.,Beyer,D,VA,donald s jr beyer,NA,NA
 B000740,Stephanie I.,Bice,R,OK,stephanie i bice,NA,stephanie i bice
 B001302,Andy,Biggs,R,AZ,andy biggs,NA,andy biggs
 B001257,Gus M.,Bilirakis,R,FL,gus m bilirakis,NA,gus m bilirakis
 B001311,Dan,Bishop,R,NC,dan bishop,NA,dan bishop
-B000490,Sanford D. Jr.,Bishop,D,GA,sanford d jr bishop,NA,sanford d bishop
+NA,Sanford D. Jr.,Bishop,D,GA,sanford d jr bishop,NA,NA
 B000574,Earl,Blumenauer,D,OR,earl blumenauer,NA,earl blumenauer
 B001303,Lisa,Blunt Rochester,D,DE,lisa blunt rochester,NA,lisa blunt rochester
 B000825,Lauren,Boebert,R,CO,lauren boebert,NA,lauren boebert
@@ -1854,7 +1838,6 @@ C000537,James E.,Clyburn,D,SC,james e clyburn,NA,james e clyburn
 C001116,Andrew S.,Clyde,R,GA,andrew s clyde,NA,andrew s clyde
 C001068,Steve,Cohen,D,TN,steve cohen,NA,steve cohen
 C001053,Tom,Cole,R,OK,tom cole,NA,tom cole
-C000640,Mike,Collins,R,GA,mike collins,NA,mac collins
 C001129,Mike,Collins,R,GA,mike collins,NA,mike collins
 C001108,James,Comer,R,KY,james comer,NA,james comer
 C001078,Gerald E.,Connolly,D,VA,gerald e connolly,NA,gerald e connolly
@@ -1901,7 +1884,7 @@ E000296,Dwight,Evans,D,PA,dwight evans,NA,dwight evans
 E000235,Mike,Ezell,R,MS,mike ezell,NA,mike ezell
 F000246,Pat,Fallon,R,TX,pat fallon,NA,pat fallon
 F000446,Randy,Feenstra,R,IA,randy feenstra,NA,randy feenstra
-F000465,A. Drew IV,Ferguson,R,GA,a drew iv ferguson,NA,a drew ferguson
+NA,A. Drew IV,Ferguson,R,GA,a drew iv ferguson,NA,NA
 F000475,Brad,Finstad,R,MN,brad finstad,NA,brad finstad
 F000470,Michelle,Fischbach,R,MN,michelle fischbach,NA,michelle fischbach
 F000471,Scott,Fitzgerald,R,WI,scott fitzgerald,NA,scott fitzgerald
@@ -1978,14 +1961,14 @@ J000307,John,James,R,MI,john james,NA,john james
 J000298,Pramila,Jayapal,D,WA,pramila jayapal,NA,pramila jayapal
 J000294,Hakeem S.,Jeffries,D,NY,hakeem s jeffries,NA,hakeem s jeffries
 J000301,Dusty,Johnson,R,SD,dusty johnson,NA,dusty johnson
-J000288,"Henry C. ""Hank"" Jr.",Johnson,D,GA,henry c hank jr johnson,NA,henry c hank johnson
+NA,"Henry C. ""Hank"" Jr.",Johnson,D,GA,henry c hank jr johnson,NA,NA
 J000299,Mike,Johnson,R,LA,mike johnson,NA,mike johnson
 J000289,Jim,Jordan,R,OH,jim jordan,NA,jim jordan
 J000295,David P.,Joyce,R,OH,david p joyce,NA,david p joyce
 J000302,John,Joyce,R,PA,john joyce,NA,john joyce
 NA,Sydney,Kamlager-Dove,D,CA,sydney kamlager dove,NA,NA
 K000009,Marcy,Kaptur,D,OH,marcy kaptur,NA,marcy kaptur
-K000398,Thomas H. Jr.,Kean,R,NJ,thomas h jr kean,NA,thomas h kean
+NA,Thomas H. Jr.,Kean,R,NJ,thomas h jr kean,NA,NA
 K000375,William R.,Keating,D,MA,william r keating,NA,william r keating
 K000376,Mike,Kelly,R,PA,mike kelly,NA,mike kelly
 K000385,Robin L.,Kelly,D,IL,robin l kelly,NA,robin l kelly
@@ -2086,12 +2069,12 @@ NA,Alexandria,Ocasio-Cortez,D,NY,alexandria ocasio cortez,NA,NA
 O000175,Andrew,Ogles,R,TN,andrew ogles,NA,andrew ogles
 O000173,Ilhan,Omar,D,MN,ilhan omar,NA,ilhan omar
 O000086,Burgess,Owens,R,UT,burgess owens,NA,burgess owens
-P000034,Frank Jr.,Pallone,D,NJ,frank jr pallone,NA,frank pallone
+NA,Frank Jr.,Pallone,D,NJ,frank jr pallone,NA,NA
 P000609,Gary J.,Palmer,R,AL,gary j palmer,NA,gary j palmer
 P000613,Jimmy,Panetta,D,CA,jimmy panetta,NA,jimmy panetta
 P000614,Chris,Pappas,D,NH,chris pappas,NA,chris pappas
-P000096,Bill Jr.,Pascrell,D,NJ,bill jr pascrell,NA,bill pascrell
-P000604,Donald M. Jr.,Payne,D,NJ,donald m jr payne,NA,donald m payne
+NA,Bill Jr.,Pascrell,D,NJ,bill jr pascrell,NA,NA
+NA,Donald M. Jr.,Payne,D,NJ,donald m jr payne,NA,NA
 P000197,Nancy,Pelosi,D,CA,nancy pelosi,NA,nancy pelosi
 P000619,Mary Sattler,Peltola,D,AK,mary sattler peltola,NA,mary sattler peltola
 P000615,Greg,Pence,R,IN,greg pence,NA,greg pence
@@ -2116,7 +2099,7 @@ M001159,Cathy McMorris,Rodgers,R,WA,cathy mcmorris rodgers,NA,cathy mcmorris rod
 R000395,Harold,Rogers,R,KY,harold rogers,NA,harold rogers
 R000575,Mike,Rogers,R,AL,mike rogers,NA,mike d rogers
 R000612,John W.,Rose,R,TN,john w rose,NA,john w rose
-R000103,Matthew M. Sr.,Rosendale,R,MT,matthew m sr rosendale,NA,matthew m rosendale
+NA,Matthew M. Sr.,Rosendale,R,MT,matthew m sr rosendale,NA,NA
 R000305,Deborah K.,Ross,D,NC,deborah k ross,NA,deborah k ross
 R000603,David,Rouzer,R,NC,david rouzer,NA,david rouzer
 R000614,Chip,Roy,R,TX,chip roy,NA,chip roy
@@ -2176,7 +2159,7 @@ T000193,Bennie G.,Thompson,D,MS,bennie g thompson,NA,bennie g thompson
 T000467,Glenn,Thompson,R,PA,glenn thompson,NA,glenn thompson
 T000460,Mike,Thompson,D,CA,mike thompson,NA,mike thompson
 T000165,Thomas P.,Tiffany,R,WI,thomas p tiffany,NA,thomas p tiffany
-T000480,William R. IV,Timmons,R,SC,william r iv timmons,NA,william r timmons
+NA,William R. IV,Timmons,R,SC,william r iv timmons,NA,NA
 T000468,Dina,Titus,D,NV,dina titus,NA,dina titus
 T000481,Rashida,Tlaib,D,MI,rashida tlaib,NA,rashida tlaib
 T000487,Jill N.,Tokuda,D,HI,jill n tokuda,NA,jill n tokuda
@@ -2201,7 +2184,7 @@ W000823,Michael,Waltz,R,FL,michael waltz,NA,michael waltz
 W000797,Debbie,Wasserman Schultz,D,FL,debbie wasserman schultz,NA,debbie wasserman schultz
 W000187,Maxine,Waters,D,CA,maxine waters,NA,maxine waters
 W000822,Bonnie,Watson Coleman,D,NJ,bonnie watson coleman,NA,bonnie watson coleman
-W000814,Randy K. Sr.,Weber,R,TX,randy k sr weber,NA,randy k weber
+NA,Randy K. Sr.,Weber,R,TX,randy k sr weber,NA,NA
 W000806,Daniel,Webster,R,FL,daniel webster,NA,daniel webster
 W000815,Brad R.,Wenstrup,R,OH,brad r wenstrup,NA,brad r wenstrup
 W000821,Bruce,Westerman,R,AR,bruce westerman,NA,bruce westerman
