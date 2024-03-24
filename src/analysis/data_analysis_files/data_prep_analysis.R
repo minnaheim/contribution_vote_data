@@ -4,6 +4,7 @@ library(ggplot2)
 
 df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/final_df.csv")
 
+# df <- select(-c(X))
 # parties only incl. R, D, no I
 df <- df %>% dplyr::filter(party %in% c("D", "R"))
 
@@ -24,11 +25,12 @@ df <- relocate(df, "Vote_change_dummy", .after = "Vote_change")
 
 # remove irrelevant cols for analysis
 # df <- df %>% select(-c(last_name, first_name, name, member_id, District, state))
-df_full <- subset(df, select = -c(
+df <- subset(df, select = -c(
     last_name, first_name, member_id, name, Vote_count, District,
-    Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Vote_change, state
+    Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Vote_change
 ))
-# view(df_full)
+
+write.csv(df, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis_df.csv", row.names = FALSE)
 
 # create a function where the inputs are the df and the session to observe, and then dep. on the session,
 # the function removes the irrelevant columns, i.e. if input is 113, then remove all amount columns
@@ -87,35 +89,53 @@ df_full <- subset(df, select = -c(
 filter_session_data <- function(df, session) {
     if (session == 113) {
         # Select columns based on conditions
-        selected_cols <- c("Vote3", grep("^amount.*113$", names(df), value = TRUE))
-        excluded_cols <- grep("^vote|^amount", names(df), value = TRUE, invert = TRUE)
-        # Subset dataframe, add only selected cols, not excluded cols, those need to be removed
-        df <- df[, !(names(df) %in% excluded_cols)]
+        selected_cols <- c(
+            "first_name", "last_name", "name", "party", "member_id",
+            "Vote3", grep("^amount.*113$", names(df), value = TRUE)
+        )
+        df <- df[, c(selected_cols)]
+        # excluded_cols <- grep("^vote|^amount", names(df), value = TRUE, invert = TRUE)
+        # excluded_cols <- grep("^(?!Vote*3|amount.*113$)", names(df), value = TRUE, perl = TRUE)
     }
     if (session == 114) {
-        selected_cols <- c("Vote4", grep("^amount.*114$", names(df), value = TRUE))
-        excluded_cols <- grep("^vote|^amount", names(df), value = TRUE, invert = TRUE)
-        df <- df[, c(selected_cols, excluded_cols)]
+        selected_cols <- c(
+            "first_name", "last_name", "name", "party", "member_id",
+            "Vote4", grep("^amount.*114$", names(df), value = TRUE)
+        )
+        df <- df[, c(selected_cols)]
+        # excluded_cols <- grep("^(?!Vote*4|amount.*114$)", names(df), value = TRUE, perl = TRUE)
     }
     if (session == 1151) {
-        selected_cols <- c("Vote51", grep("^amount.*115$", names(df), value = TRUE))
-        excluded_cols <- grep("^vote|^amount", names(df), value = TRUE, invert = TRUE)
-        df <- df[, c(selected_cols, excluded_cols)]
+        selected_cols <- c(
+            "first_name", "last_name", "name", "party", "member_id",
+            "Vote51", grep("^amount.*115$", names(df), value = TRUE)
+        )
+        df <- df[, c(selected_cols)]
+        # excluded_cols <- grep("^(?!Vote*51|amount.*115$)", names(df), value = TRUE, perl = TRUE)
     }
     if (session == 1152) {
-        selected_cols <- c("Vote52", grep("^amount.*115$", names(df), value = TRUE))
-        excluded_cols <- grep("^vote|^amount", names(df), value = TRUE, invert = TRUE)
-        df <- df[, c(selected_cols, excluded_cols)]
+        selected_cols <- c(
+            "first_name", "last_name", "name", "party", "member_id",
+            "Vote52", grep("^amount.*115$", names(df), value = TRUE)
+        )
+        df <- df[, c(selected_cols)]
+        # excluded_cols <- grep("^(?!Vote*52|amount.*115$)", names(df), value = TRUE, perl = TRUE)
     }
     if (session == 116) {
-        selected_cols <- c("Vote6", grep("^amount.*116$", names(df), value = TRUE))
-        excluded_cols <- grep("^vote|^amount", names(df), value = TRUE, invert = TRUE)
-        df <- df[, c(selected_cols, excluded_cols)]
+        selected_cols <- c(
+            "first_name", "last_name", "name", "party", "member_id",
+            "Vote6", grep("^amount.*116$", names(df), value = TRUE)
+        )
+        df <- df[, c(selected_cols)]
+        # excluded_cols <- grep("^(?!Vote*6|amount.*116$)", names(df), value = TRUE, perl = TRUE)
     }
     if (session == 117) {
-        selected_cols <- c("Vote7", grep("^amount.*117$", names(df), value = TRUE))
-        excluded_cols <- grep("^vote|^amount", names(df), value = TRUE, invert = TRUE)
-        df <- df[, c(selected_cols, excluded_cols)]
+        selected_cols <- c(
+            "first_name", "last_name", "name", "party", "member_id",
+            "Vote7", grep("^amount.*117$", names(df), value = TRUE)
+        )
+        df <- df[, c(selected_cols)]
+        # excluded_cols <- grep("^(?!Vote*7|amount.*117$)", names(df), value = TRUE, perl = TRUE)
     }
     return(df)
 }

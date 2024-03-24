@@ -1,0 +1,99 @@
+---
+title: "Plots & Summary Statistics for Data Analysis"
+output: html
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(ggplot2)
+# install.packages("pastecs")
+library(pastecs)
+```
+
+```{r, include=FALSE}
+source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/data_analysis_files/data_prep_analysis.R")
+
+df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis_df.csv")
+# view(df)
+
+# df <- filter_session_data(df, "113")
+# view(df)
+
+```
+
+### distribution of contributions 
+```{r}
+# summary statistics 
+str(df)
+summary(df)
+```
+```{r}
+# plot df
+
+df_long <- df %>%
+  pivot_longer(cols = starts_with("amount"), names_to = "contribution_type", values_to = "contribution_amount")
+
+view(df_long)
+# Now you can plot the distribution
+plot_1 <- ggplot(df_long, aes(x = contribution_amount)) +
+  geom_histogram(binwidth = 10000) +
+  labs(title = "Distribution of Contributions of all Members of the House", x = "Contributions", y = "Frequency") + 
+  theme_gray()
+
+plot_1
+
+# plot of the contributions amount to type
+plot_2 <- ggplot(df_long, aes(x = contribution_amount, y = contribution_type)) + geom_col(fill = "cornflowerblue")
+plot_2
+
+# boxplot to better show distributions of categories
+boxplot_1 <- ggplot(df_long, aes(x = contribution_amount, y = contribution_type)) + geom_boxplot()
+boxplot_1
+
+# create a boxplot which shows the distribution of the different variables: oil, mining, gas, env, coal and alt_en.
+# avg_oil <- colMeans(df)
+```
+
+
+### contrbutions to party plots
+```{r}
+# plot of contributions by party
+
+# set upper and lower limits for outliers
+# upper.limit <- quantile(df_long$contribution_amount, na.rm=TRUE)[4] + 1.5*IQR(df_long$contribution_amount, na.rm=TRUE)
+# lower.limit <- quantile(df_long$contribution_amount, na.rm=TRUE)[2] - 1.5*IQR(df_long$contribution_amount, na.rm=TRUE)
+
+# add this to ggplot2 function
+#  + coord_cartesian(ylim=c(lower.limit, upper.limit)) 
+
+plot_3 <- df_long %>% group_by(party) %>%
+  ggplot(aes(y = contribution_amount, x = party, fill = party)) + 
+  geom_boxplot() + 
+  labs(title = "Distribution of Contributions by Party", x = "Contributions", y = "Party")
+plot_3
+
+
+```
+
+The reason for the negative contributions which some representatives received is.... Since negative contributions still is data for contributions, I will keep them in the data set. 
+
+The reason for the NAs in some contributions, e.g. in 113th congress, there are 320 NAs. This is because some of the representatives that are in thge later congresses were not in the 113th congress, e.g. and thus potential contributions they received are not important for this analysis.
+
+### plot change in vote dummy vs. state, party, etc. 
+```{r}
+# determine vote_change by party
+plot_4 <- df_long %>% group_by(party) %>%
+  ggplot(aes(x = Vote_change_dummy, fill = party)) + 
+  geom_bar(position = "fill") + 
+  labs(title = "Distribution of Vote Change by Party", x = "Vote Change", y = "Party") +
+  scale_x_continuous(breaks = c(0,1))
+
+plot_4
+
+# count how many persons of each party are in df_long
+party_count <- df_long %>% group_by(party) %>% count()
+print(party_count)
+```
+
+The above plot shows, that in amount, Republicans and Democrats almost equally often do not change their votes. However, Republicans are more likely to change their votes. The reason as to why the non-vote changers are almost equal in number and still the Republicans change their votes more often, is because the amount of Republicans in the data set is higher than the amount of Democrats.
