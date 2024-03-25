@@ -102,9 +102,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># summary statistics </span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   560 obs. of  33 variables:
+<pre><code>'data.frame':   560 obs. of  46 variables:
+ $ last_name        : chr  "Roby" "Rogers" "Aderholt" "Brooks" ...
+ $ first_name       : chr  "Martha" "Mike D." "Robert B." "Mo" ...
+ $ name             : chr  "martha roby" "mike d rogers" "robert b aderholt" "mo brooks" ...
  $ party            : chr  "R" "R" "R" "R" ...
  $ state            : chr  "AL" "AL" "AL" "AL" ...
+ $ member_id        : chr  "R000591" "R000575" "A000055" "B001274" ...
+ $ Vote3            : chr  "-" "-" "-" "-" ...
+ $ Vote4            : chr  "-" "-" "-" "-" ...
+ $ Vote51           : chr  "-" "-" "-" "-" ...
+ $ Vote52           : chr  "-" "-" "-" "-" ...
+ $ Vote6            : chr  "-" "-" "-" "-" ...
+ $ Vote7            : chr  NA "-" "-" "-" ...
+ $ District         : chr  "AL-02" "AL-03" "AL-04" "AL-05" ...
+ $ Vote_count       : int  5 6 6 6 6 6 3 6 5 2 ...
+ $ Vote_change      : int  0 0 0 0 0 0 0 0 0 0 ...
  $ Vote_change_dummy: int  0 0 0 0 0 0 0 0 0 0 ...
  $ amount.oil.113   : int  7000 18750 32700 6250 NA 55450 6750 NA NA 44139 ...
  $ amount.coal.113  : int  3500 15000 10500 0 NA 2250 0 NA NA 2500 ...
@@ -139,96 +152,125 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    party              state           Vote_change_dummy amount.oil.113  
- Length:560         Length:560         Min.   :0.00000   Min.   :     0  
- Class :character   Class :character   1st Qu.:0.00000   1st Qu.:  3500  
- Mode  :character   Mode  :character   Median :0.00000   Median : 14475  
-                                       Mean   :0.04107   Mean   : 36289  
-                                       3rd Qu.:0.00000   3rd Qu.: 42250  
-                                       Max.   :1.00000   Max.   :362933  
-                                                         NA's   :320     
- amount.coal.113 amount.mining.113 amount.gas.113  amount.env.113 
- Min.   :    0   Min.   :  -250    Min.   :    0   Min.   :    0  
- 1st Qu.:    0   1st Qu.:     0    1st Qu.:    0   1st Qu.:    0  
- Median :    0   Median :   625    Median : 1000   Median :    0  
- Mean   : 3766   Mean   :  7368    Mean   : 4261   Mean   : 3988  
- 3rd Qu.: 1500   3rd Qu.:  5625    3rd Qu.: 4538   3rd Qu.: 2500  
- Max.   :89500   Max.   :130250    Max.   :50500   Max.   :56606  
- NA's   :320     NA's   :320       NA's   :320     NA's   :320    
- amount.alt_en.113 amount.oil.114   amount.coal.114 amount.mining.114
- Min.   :    0     Min.   :     0   Min.   : -250   Min.   : -1000   
- 1st Qu.:    0     1st Qu.:  5500   1st Qu.:    0   1st Qu.:     0   
- Median :    0     Median : 16750   Median :    0   Median :     0   
- Mean   : 1722     Mean   : 41403   Mean   : 3415   Mean   :  6553   
- 3rd Qu.: 1500     3rd Qu.: 51300   3rd Qu.: 1000   3rd Qu.:  5500   
- Max.   :26602     Max.   :376850   Max.   :78856   Max.   :141519   
- NA's   :320       NA's   :291      NA's   :291     NA's   :291      
- amount.gas.114  amount.env.114  amount.alt_en.114 amount.oil.115  
- Min.   :    0   Min.   :    0   Min.   :    0     Min.   :  -600  
- 1st Qu.:    0   1st Qu.:    0   1st Qu.:    0     1st Qu.:  4125  
- Median : 2000   Median :    0   Median :    0     Median : 15500  
- Mean   : 5461   Mean   : 4784   Mean   : 2148     Mean   : 35977  
- 3rd Qu.: 6500   3rd Qu.: 3600   3rd Qu.: 2000     3rd Qu.: 44450  
- Max.   :62100   Max.   :84869   Max.   :23900     Max.   :355050  
- NA's   :291     NA's   :291     NA's   :291       NA's   :262     
- amount.coal.115 amount.mining.115 amount.gas.115  amount.env.115 
- Min.   :    0   Min.   :-1000     Min.   :    0   Min.   :    0  
- 1st Qu.:    0   1st Qu.:    0     1st Qu.:    0   1st Qu.:    0  
- Median :    0   Median :    0     Median : 2000   Median :    0  
- Mean   : 1929   Mean   : 3906     Mean   : 5174   Mean   : 4228  
- 3rd Qu.:  240   3rd Qu.: 3662     3rd Qu.: 5488   3rd Qu.: 3908  
- Max.   :43850   Max.   :59850     Max.   :64500   Max.   :57650  
- NA's   :262     NA's   :262       NA's   :262     NA's   :262    
- amount.alt_en.115 amount.oil.116   amount.coal.116 amount.mining.116
- Min.   :-2500     Min.   : -2359   Min.   :    0   Min.   :     0   
- 1st Qu.:    0     1st Qu.:  3065   1st Qu.:    0   1st Qu.:     0   
- Median :    0     Median : 15100   Median :    0   Median :     4   
- Mean   : 2498     Mean   : 38791   Mean   : 2414   Mean   :  5753   
- 3rd Qu.: 2238     3rd Qu.: 48199   3rd Qu.: 1000   3rd Qu.:  4962   
- Max.   :44800     Max.   :484650   Max.   :68600   Max.   :184500   
- NA's   :262       NA's   :232      NA's   :232     NA's   :232      
- amount.gas.116  amount.env.116  amount.alt_en.116 amount.oil.117  
- Min.   :-1500   Min.   : -500   Min.   :    0.0   Min.   : -3500  
- 1st Qu.:    0   1st Qu.:    0   1st Qu.:    0.0   1st Qu.:  2766  
- Median : 1010   Median :    0   Median :  919.5   Median : 16000  
- Mean   : 5130   Mean   : 4492   Mean   : 3736.4   Mean   : 38362  
- 3rd Qu.: 5600   3rd Qu.: 4431   3rd Qu.: 3500.0   3rd Qu.: 48535  
- Max.   :69300   Max.   :66533   Max.   :54750.0   Max.   :556734  
- NA's   :232     NA's   :232     NA's   :232       NA's   :279     
- amount.coal.117 amount.mining.117 amount.gas.117  amount.env.117  
- Min.   :    0   Min.   :-1000     Min.   :-3500   Min.   :  -900  
- 1st Qu.:    0   1st Qu.:    0     1st Qu.:    0   1st Qu.:     0  
- Median :    0   Median :    5     Median : 1000   Median :   500  
- Mean   : 1520   Mean   : 3077     Mean   : 5988   Mean   :  6227  
- 3rd Qu.:    0   3rd Qu.: 2500     3rd Qu.: 7100   3rd Qu.:  4863  
- Max.   :56301   Max.   :66420     Max.   :92070   Max.   :112546  
- NA's   :279     NA's   :279       NA's   :279     NA's   :279     
- amount.alt_en.117
- Min.   :-2500    
- 1st Qu.:    0    
- Median :  520    
- Mean   : 4040    
- 3rd Qu.: 3800    
- Max.   :68175    
- NA's   :279      </code></pre>
+<pre><code>  last_name          first_name            name              party          
+ Length:560         Length:560         Length:560         Length:560        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+    state            member_id            Vote3              Vote4          
+ Length:560         Length:560         Length:560         Length:560        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+    Vote51             Vote52             Vote6              Vote7          
+ Length:560         Length:560         Length:560         Length:560        
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+   District           Vote_count     Vote_change      Vote_change_dummy
+ Length:560         Min.   :2.000   Min.   :0.00000   Min.   :0.00000  
+ Class :character   1st Qu.:3.000   1st Qu.:0.00000   1st Qu.:0.00000  
+ Mode  :character   Median :4.000   Median :0.00000   Median :0.00000  
+                    Mean   :4.237   Mean   :0.05536   Mean   :0.04107  
+                    3rd Qu.:6.000   3rd Qu.:0.00000   3rd Qu.:0.00000  
+                    Max.   :6.000   Max.   :4.00000   Max.   :1.00000  
+                                                                       
+ amount.oil.113   amount.coal.113 amount.mining.113 amount.gas.113 
+ Min.   :     0   Min.   :    0   Min.   :  -250    Min.   :    0  
+ 1st Qu.:  3500   1st Qu.:    0   1st Qu.:     0    1st Qu.:    0  
+ Median : 14475   Median :    0   Median :   625    Median : 1000  
+ Mean   : 36289   Mean   : 3766   Mean   :  7368    Mean   : 4261  
+ 3rd Qu.: 42250   3rd Qu.: 1500   3rd Qu.:  5625    3rd Qu.: 4538  
+ Max.   :362933   Max.   :89500   Max.   :130250    Max.   :50500  
+ NA's   :320      NA's   :320     NA's   :320       NA's   :320    
+ amount.env.113  amount.alt_en.113 amount.oil.114   amount.coal.114
+ Min.   :    0   Min.   :    0     Min.   :     0   Min.   : -250  
+ 1st Qu.:    0   1st Qu.:    0     1st Qu.:  5500   1st Qu.:    0  
+ Median :    0   Median :    0     Median : 16750   Median :    0  
+ Mean   : 3988   Mean   : 1722     Mean   : 41403   Mean   : 3415  
+ 3rd Qu.: 2500   3rd Qu.: 1500     3rd Qu.: 51300   3rd Qu.: 1000  
+ Max.   :56606   Max.   :26602     Max.   :376850   Max.   :78856  
+ NA's   :320     NA's   :320       NA's   :291      NA's   :291    
+ amount.mining.114 amount.gas.114  amount.env.114  amount.alt_en.114
+ Min.   : -1000    Min.   :    0   Min.   :    0   Min.   :    0    
+ 1st Qu.:     0    1st Qu.:    0   1st Qu.:    0   1st Qu.:    0    
+ Median :     0    Median : 2000   Median :    0   Median :    0    
+ Mean   :  6553    Mean   : 5461   Mean   : 4784   Mean   : 2148    
+ 3rd Qu.:  5500    3rd Qu.: 6500   3rd Qu.: 3600   3rd Qu.: 2000    
+ Max.   :141519    Max.   :62100   Max.   :84869   Max.   :23900    
+ NA's   :291       NA's   :291     NA's   :291     NA's   :291      
+ amount.oil.115   amount.coal.115 amount.mining.115 amount.gas.115 
+ Min.   :  -600   Min.   :    0   Min.   :-1000     Min.   :    0  
+ 1st Qu.:  4125   1st Qu.:    0   1st Qu.:    0     1st Qu.:    0  
+ Median : 15500   Median :    0   Median :    0     Median : 2000  
+ Mean   : 35977   Mean   : 1929   Mean   : 3906     Mean   : 5174  
+ 3rd Qu.: 44450   3rd Qu.:  240   3rd Qu.: 3662     3rd Qu.: 5488  
+ Max.   :355050   Max.   :43850   Max.   :59850     Max.   :64500  
+ NA's   :262      NA's   :262     NA's   :262       NA's   :262    
+ amount.env.115  amount.alt_en.115 amount.oil.116   amount.coal.116
+ Min.   :    0   Min.   :-2500     Min.   : -2359   Min.   :    0  
+ 1st Qu.:    0   1st Qu.:    0     1st Qu.:  3065   1st Qu.:    0  
+ Median :    0   Median :    0     Median : 15100   Median :    0  
+ Mean   : 4228   Mean   : 2498     Mean   : 38791   Mean   : 2414  
+ 3rd Qu.: 3908   3rd Qu.: 2238     3rd Qu.: 48199   3rd Qu.: 1000  
+ Max.   :57650   Max.   :44800     Max.   :484650   Max.   :68600  
+ NA's   :262     NA's   :262       NA's   :232      NA's   :232    
+ amount.mining.116 amount.gas.116  amount.env.116  amount.alt_en.116
+ Min.   :     0    Min.   :-1500   Min.   : -500   Min.   :    0.0  
+ 1st Qu.:     0    1st Qu.:    0   1st Qu.:    0   1st Qu.:    0.0  
+ Median :     4    Median : 1010   Median :    0   Median :  919.5  
+ Mean   :  5753    Mean   : 5130   Mean   : 4492   Mean   : 3736.4  
+ 3rd Qu.:  4962    3rd Qu.: 5600   3rd Qu.: 4431   3rd Qu.: 3500.0  
+ Max.   :184500    Max.   :69300   Max.   :66533   Max.   :54750.0  
+ NA's   :232       NA's   :232     NA's   :232     NA's   :232      
+ amount.oil.117   amount.coal.117 amount.mining.117 amount.gas.117 
+ Min.   : -3500   Min.   :    0   Min.   :-1000     Min.   :-3500  
+ 1st Qu.:  2766   1st Qu.:    0   1st Qu.:    0     1st Qu.:    0  
+ Median : 16000   Median :    0   Median :    5     Median : 1000  
+ Mean   : 38362   Mean   : 1520   Mean   : 3077     Mean   : 5988  
+ 3rd Qu.: 48535   3rd Qu.:    0   3rd Qu.: 2500     3rd Qu.: 7100  
+ Max.   :556734   Max.   :56301   Max.   :66420     Max.   :92070  
+ NA's   :279      NA's   :279     NA's   :279       NA's   :279    
+ amount.env.117   amount.alt_en.117
+ Min.   :  -900   Min.   :-2500    
+ 1st Qu.:     0   1st Qu.:    0    
+ Median :   500   Median :  520    
+ Mean   :  6227   Mean   : 4040    
+ 3rd Qu.:  4863   3rd Qu.: 3800    
+ Max.   :112546   Max.   :68175    
+ NA's   :279      NA's   :279      </code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot df</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"amount"</span>), <span class="at">names_to =</span> <span class="st">"contribution_type"</span>, <span class="at">values_to =</span> <span class="st">"contribution_amount"</span>)</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_long)</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Now you can plot the distribution</span></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>plot_1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> contribution_amount)) <span class="sc">+</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10000</span>) <span class="sc">+</span></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Contributions of all Members of the House"</span>, <span class="at">x =</span> <span class="st">"Contributions"</span>, <span class="at">y =</span> <span class="st">"Frequency"</span>) <span class="sc">+</span> </span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>()</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>plot_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"amount"</span>), <span class="at">names_to =</span> <span class="st">"contribution_type"</span>, <span class="at">values_to =</span> <span class="st">"contribution_amount"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_long)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># plotting  the distribution</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>plot_1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> contribution_amount)) <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10000</span>) <span class="sc">+</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Contributions of all Members of the House"</span>, <span class="at">x =</span> <span class="st">"Contributions"</span>, <span class="at">y =</span> <span class="st">"Number of Contributions (log)"</span>) <span class="sc">+</span> </span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">trans=</span><span class="st">'log10'</span>) <span class="sc">+</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_gray</span>()</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plot_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 8304 rows containing non-finite values (`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 18 rows containing missing values (`geom_bar()`).</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
@@ -237,9 +279,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot of the contributions amount to type</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>plot_2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> contribution_amount, <span class="at">y =</span> contribution_type)) <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"cornflowerblue"</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>plot_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot of the contributions amount to type</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>plot_2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> contribution_amount, <span class="at">y =</span> contribution_type)) <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">"cornflowerblue"</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>plot_2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 8304 rows containing missing values (`position_stack()`).</code></pre>
 </div>
@@ -250,9 +292,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># boxplot to better show distributions of categories</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>boxplot_1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> contribution_amount, <span class="at">y =</span> contribution_type)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>boxplot_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># boxplot of the distribution of the contribution data by amount</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot with limits applied on the x-axis</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>boxplot_1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df_long, <span class="fu">aes</span>(<span class="at">x =</span> contribution_amount, <span class="at">y =</span> contribution_type)) <span class="sc">+</span> </span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() </span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>boxplot_1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 8304 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 </div>
@@ -263,27 +309,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a boxplot which shows the distribution of the different variables: oil, mining, gas, env, coal and alt_en.</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co"># avg_oil &lt;- colMeans(df)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="contrbutions-to-party-plots" class="level3">
 <h3 class="anchored" data-anchor-id="contrbutions-to-party-plots">contrbutions to party plots</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot of contributions by party</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set upper and lower limits for outliers</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># upper.limit &lt;- quantile(df_long$contribution_amount, na.rm=TRUE)[4] + 1.5*IQR(df_long$contribution_amount, na.rm=TRUE)</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co"># lower.limit &lt;- quantile(df_long$contribution_amount, na.rm=TRUE)[2] - 1.5*IQR(df_long$contribution_amount, na.rm=TRUE)</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co"># add this to ggplot2 function</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#  + coord_cartesian(ylim=c(lower.limit, upper.limit)) </span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>plot_3 <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(party) <span class="sc">%&gt;%</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> contribution_amount, <span class="at">x =</span> party, <span class="at">fill =</span> party)) <span class="sc">+</span> </span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Contributions by Party"</span>, <span class="at">x =</span> <span class="st">"Contributions"</span>, <span class="at">y =</span> <span class="st">"Party"</span>)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>plot_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot of contributions by party</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate upper and lower limits for outliers</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>upper.limit <span class="ot">&lt;-</span> <span class="fu">quantile</span>(df_long<span class="sc">$</span>contribution_amount, <span class="at">na.rm=</span><span class="cn">TRUE</span>)[<span class="dv">4</span>] <span class="sc">+</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">IQR</span>(df_long<span class="sc">$</span>contribution_amount, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>lower.limit <span class="ot">&lt;-</span> <span class="fu">quantile</span>(df_long<span class="sc">$</span>contribution_amount, <span class="at">na.rm=</span><span class="cn">TRUE</span>)[<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">1.5</span><span class="sc">*</span><span class="fu">IQR</span>(df_long<span class="sc">$</span>contribution_amount, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co"># maybe set lower limit to 0, to eliminate neg. contributions.</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot with limits applied</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>plot_3 <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span> </span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(party) <span class="sc">%&gt;%</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">y =</span> contribution_amount, <span class="at">x =</span> party, <span class="at">fill =</span> party)) <span class="sc">+</span> </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span> </span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Contributions by Party"</span>, <span class="at">x =</span> <span class="st">"Party"</span>, <span class="at">y =</span> <span class="st">"Contribution Amount"</span>) <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">ylim=</span><span class="fu">c</span>(lower.limit, upper.limit)) <span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"R"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"D"</span> <span class="ot">=</span> <span class="st">"blue"</span>))</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>plot_3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: Removed 8304 rows containing non-finite values (`stat_boxplot()`).</code></pre>
 </div>
@@ -301,14 +347,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="plot-change-in-vote-dummy-vs.-state-party-etc." class="level3">
 <h3 class="anchored" data-anchor-id="plot-change-in-vote-dummy-vs.-state-party-etc.">plot change in vote dummy vs.&nbsp;state, party, etc.</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># determine vote_change by party</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plot_4 <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(party) <span class="sc">%&gt;%</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Vote_change_dummy, <span class="at">fill =</span> party)) <span class="sc">+</span> </span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span> </span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Vote Change by Party"</span>, <span class="at">x =</span> <span class="st">"Vote Change"</span>, <span class="at">y =</span> <span class="st">"Party"</span>) <span class="sc">+</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>plot_4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># determine vote_change by party</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_long)</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>plot_4 <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(party) <span class="sc">%&gt;%</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Vote_change_dummy, <span class="at">fill =</span> party)) <span class="sc">+</span> </span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Vote Change by Party"</span>, <span class="at">x =</span> <span class="st">"Vote Change"</span>, <span class="at">y =</span> <span class="st">"Party"</span>) <span class="sc">+</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>)) <span class="sc">+</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"R"</span> <span class="ot">=</span> <span class="st">"red"</span>, <span class="st">"D"</span> <span class="ot">=</span> <span class="st">"blue"</span>))</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>plot_4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -316,9 +363,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count how many persons of each party are in df_long</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>party_count <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(party) <span class="sc">%&gt;%</span> <span class="fu">count</span>()</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(party_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># count how many persons of each party are in df_long</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>party_count <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span> <span class="fu">group_by</span>(party) <span class="sc">%&gt;%</span> <span class="fu">count</span>()</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(party_count)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 2
 # Groups:   party [2]
@@ -329,6 +376,100 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>The above plot shows, that in amount, Republicans and Democrats almost equally often do not change their votes. However, Republicans are more likely to change their votes. The reason as to why the non-vote changers are almost equal in number and still the Republicans change their votes more often, is because the amount of Republicans in the data set is higher than the amount of Democrats.</p>
+</section>
+<section id="plot-change-in-mind-with-each-roll_call-to-be-able-to-analyse-the-contribution-better" class="level3">
+<h3 class="anchored" data-anchor-id="plot-change-in-mind-with-each-roll_call-to-be-able-to-analyse-the-contribution-better">plot change in mind with each roll_call… (to be able to analyse the contribution better)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df_113 <span class="ot">&lt;-</span> <span class="fu">filter_session_data</span>(df, <span class="dv">113</span>) </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_113)</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="co"># plot vote_change_dummy with the amount cols</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>df_long_113 <span class="ot">&lt;-</span> df_113 <span class="sc">%&gt;%</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">starts_with</span>(<span class="st">"amount"</span>), <span class="at">names_to =</span> <span class="st">"contribution_type"</span>, <span class="at">values_to =</span> <span class="st">"contribution_amount"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_long_113)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot change in mind with each roll_call</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># create a plot which plots the contributions to the vote_change dummy per session.</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>plot_113 <span class="ot">&lt;-</span> df_long_113 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> contribution_amount, <span class="at">y =</span> Vote_change_dummy)) <span class="sc">+</span> <span class="fu">geom_violin</span>() <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Distribution of Contributions to Vote Change Dummy"</span>, <span class="at">x =</span> <span class="st">"Contributions"</span>, <span class="at">y =</span> <span class="st">"Vote Change (1 = change, 0 = no change)"</span>)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>plot_113</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 1920 rows containing non-finite values (`stat_ydensity()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="plots_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># plot all other congresses too </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mind-changers-table---strattman-replicate" class="level3">
+<h3 class="anchored" data-anchor-id="mind-changers-table---strattman-replicate">mind changers table -&gt; strattman replicate</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># vote changers</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>vote_change <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Vote_change_dummy <span class="sc">==</span> <span class="dv">1</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># non-vote changers</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>non_vote_change <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(Vote_change_dummy <span class="sc">==</span> <span class="dv">0</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialize counters</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>pos_first <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>neg_first <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>pos <span class="ot">&lt;-</span> <span class="dv">0</span> </span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>neg <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(df)) {</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (df<span class="sc">$</span>Vote_change[i] <span class="sc">&gt;</span> <span class="dv">0</span>) {</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Loop through vote columns for each row</span></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (vote_col <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"Vote3"</span>, <span class="st">"Vote4"</span>, <span class="st">"Vote51"</span>, <span class="st">"Vote52"</span>, <span class="st">"Vote6"</span>, <span class="st">"Vote7"</span>)) {</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>      vote <span class="ot">&lt;-</span> df[[vote_col]][i]</span>
+<span id="cb22-18"><a href="#cb22-18" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(vote)) {</span>
+<span id="cb22-19"><a href="#cb22-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If vote is found, increment the respective counter and break the loop</span></span>
+<span id="cb22-20"><a href="#cb22-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (vote <span class="sc">==</span> <span class="st">"-"</span>) {</span>
+<span id="cb22-21"><a href="#cb22-21" aria-hidden="true" tabindex="-1"></a>          neg_first <span class="ot">&lt;-</span> neg_first <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb22-22"><a href="#cb22-22" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> <span class="cf">if</span> (vote <span class="sc">==</span> <span class="st">"+"</span>) {</span>
+<span id="cb22-23"><a href="#cb22-23" aria-hidden="true" tabindex="-1"></a>          pos_first <span class="ot">&lt;-</span> pos_first <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb22-24"><a href="#cb22-24" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb22-25"><a href="#cb22-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb22-26"><a href="#cb22-26" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb22-27"><a href="#cb22-27" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb22-28"><a href="#cb22-28" aria-hidden="true" tabindex="-1"></a>  } </span>
+<span id="cb22-29"><a href="#cb22-29" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (df<span class="sc">$</span>Vote_change[i] <span class="sc">==</span> <span class="dv">0</span>) {</span>
+<span id="cb22-30"><a href="#cb22-30" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> (vote_col <span class="cf">in</span> <span class="fu">c</span>(<span class="st">"Vote3"</span>, <span class="st">"Vote4"</span>, <span class="st">"Vote51"</span>, <span class="st">"Vote52"</span>, <span class="st">"Vote6"</span>, <span class="st">"Vote7"</span>)) {</span>
+<span id="cb22-31"><a href="#cb22-31" aria-hidden="true" tabindex="-1"></a>      vote <span class="ot">&lt;-</span> df[[vote_col]][i]</span>
+<span id="cb22-32"><a href="#cb22-32" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.na</span>(vote)) {</span>
+<span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># If vote is found, increment the respective counter and break the loop</span></span>
+<span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> (vote <span class="sc">==</span> <span class="st">"-"</span>) {</span>
+<span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a>          neg <span class="ot">&lt;-</span> neg <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>        } <span class="cf">else</span> <span class="cf">if</span> (vote <span class="sc">==</span> <span class="st">"+"</span>) {</span>
+<span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a>          pos <span class="ot">&lt;-</span> pos <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a>        <span class="cf">break</span></span>
+<span id="cb22-40"><a href="#cb22-40" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb22-41"><a href="#cb22-41" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb22-42"><a href="#cb22-42" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb22-43"><a href="#cb22-43" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-44"><a href="#cb22-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-45"><a href="#cb22-45" aria-hidden="true" tabindex="-1"></a><span class="fu">list</span>(<span class="at">pos_first =</span> pos_first, <span class="at">neg_first =</span> neg_first, <span class="at">pos =</span> pos, <span class="at">neg =</span> neg)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$pos_first
+[1] 4
+
+$neg_first
+[1] 19
+
+$pos
+[1] 259
+
+$neg
+[1] 278</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a table for these vars with the labels (always positive, always negative, change - change to negative, change to positive</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 
 </main>

@@ -8,19 +8,132 @@ The summary statistics and plots of the data can be found in the plots.qmd file 
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(ggplot2)
-# install.packages("pastecs")
-library(pastecs)
+# install.packages("car")
+library(car) # for the plotting of MLRs
+# install.packages("GGally")
+library(GGally)
 ```
 
 ```{r, include=FALSE}
 source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/data_analysis_files/data_prep_analysis.R")
 
 df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis_df.csv")
-# view(df)
+df_sum <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis_df_sum.csv")
 
-# df <- filter_session_data(df, "113")
-# view(df)
+# remove irrelevant cols for analysis
+df_ols <- subset(df, select = -c(
+    last_name, first_name, member_id, name, Vote_count, District,
+    Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Vote_change, state
+))
 
+df_sum <- subset(df_sum, select = -c(
+    last_name, first_name, member_id, name, Vote_count, District,
+    Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Vote_change, state
+))
+```
+
+### MODEL 1: Simple Linear Probability Model (OLS)
+<!-- 1. **Simple Linear Probability Model (OLS)**
+    1. over entire dataset (df)
+    2. b0 = baseline contributions = 2014 contributions 
+    3. where 0 is constant opinions, 1 is mind change (at least once) -->
+```{r}
+ols_1 <- lm(Vote_change_dummy ~ ., data = df_ols)
+summary(ols_1)
+```
+
+here we can see the results are not very significant, only the party variable gives us significant results.
+```{r}
+ols_sum <- lm(Vote_change_dummy ~ ., data = df_sum)
+summary(ols_sum)
+```
+
+interestingly, at least amount_gas is more significant here, but party variable does not produce any significant results.
+
+### plot correllelograms of variables 
+
+Results are not very significant, we need to add more variables, but also we need to check each session with the vote changes. 
+
+```{r} 
+# ggpairs(df_ols)
+ggpairs(df_sum)
+
+```
+
+ Interpretation...
+
+### 113th session contributions & vote change
+I am looking at each session independently, aka the vote of the representative in the 113th session and the corresponding contributions received. I am regressing these values with the Vote_change_dummy. This does not necessarily mean that a representative had to have changed their vote in the next session, but just how representatives who eventually changed their votes voted, and how their campaign contributions looked like in the 113th session.
+
+```{r}
+df_113 <- filter_session_data(df, "113")
+ols_113 <- lm(Vote_change_dummy ~ ., data = df_113)
+summary(ols_113)
+```
+
+b0 is 0.75, aka the change of a representative changing their votes is to 75% not affected by the following coefficients, and holding all else constant. b0 is significant at a 0 level.
+
+b1 is the coefficient which determines that being in the republican party is associated with a -0.752 change in vote. Meaning compared to democrats, republicans in the 113th session are less likely to change their votes. b1 is significant at a 0 level.
+
+b2 describes that voting pro-environment on the methane bill introduced in the 113th congress decreases the chance of changing votes by 0.73, this coefficient is significant on a 0 level. 
+
+from the amount variables. only b6 is significant on a high level, which means that for a one unit increase in natural gas contributions to a representatives campaign, will increase their change of a change in vote by 0.0000078, aka 0.00078 percent.
+
+### 114th session contributions & vote change
+
+```{r}
+df_114 <- filter_session_data(df, "114")
+ols_114 <- lm(Vote_change_dummy ~ ., data = df_114)
+summary(ols_114)
+```
+
+### 115th session contributions & vote change
+```{r}
+# incl. two votes
+df_1151 <- filter_session_data(df, "1151")
+df_1152 <- filter_session_data(df, "1152")
+ols_1151 <- lm(Vote_change_dummy ~ ., data = df_1151)
+summary(ols_1151)
+ols_1151 <- lm(Vote_change_dummy ~ ., data = df_1151)
+summary(ols_1151)
+```
+
+not much change in the 115th session. is this because in between the 115th session there were no vote changes? There were 7 vote changes within the 115th session...
+
+### 116th session contributions & vote change
+
+```{r}
+df_116 <- filter_session_data(df, "116")
+df_116 <- lm(Vote_change_dummy ~ ., data = df_116)
+summary(df_116)
+```
+
+### 117th session contributions & vote change
+
+```{r}
+df_117 <- filter_session_data(df, "117")
+df_117 <- lm(Vote_change_dummy ~ ., data = df_117)
+summary(df_117)
+```
+
+
+```{r}
+ols_1 <- lm(Vote_change_dummy ~ party, data = df)
+summary(ols_1)
+```
+
+regressing the vote change dummy on party affiliation, we find that the coefficient for the Republican party is 0.2, the intercept shows how likely a democrat is to change their voting behaviour, at 0.31, we can see that democrats are more likely to change their voting behaviour on methane related issues, with only the democrat variable at 0.05 being significant.
+
+### subsample OLS 
+<!-- 2. **Simple LPM (OLS) - SUBSAMPLE** 
+    1. include only people who changed their minds (1 from above). 
+    2. 0: people changed from dirty to clean energy
+    3. 1: people changed from clean to dirty -->
+here we only look at those who did change their voting behavior.
+```{r , echo=FALSE}
+# create a function that looks at each row and its Vote_count. If 3, then compares 3 observations (Vote.114, Vote.115 and Vote.116) -> do the values change? if yes, where? -> if 2 ->
+
+df
 ```
 
 
@@ -30,29 +143,11 @@ df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/a
 
 ```
 
-### plot change in mind with each roll_call... (to be able to analyse the contribution better)
+
+### mind changers 
 ```{r}
-# plot change in mind with each roll_call
+mind_changers <- df %>% filter(Vote_change_dummy == 1)
+# view(mind_changers)
 
-
+knitr::kable(mind_changers, format = "html")
 ```
-
-### general OLS model
-```{r}
-ols <- lm(Vote_change_dummy ~ . - party, data = df)
-summary(ols)
-```
-
-```{r}
-ols_1 <- lm(Vote_change_dummy ~ party, data = df)
-summary(ols_1)
-```
-
-regressing the vote change dummy on party affiliation, we find that the coefficient for the Republican party is 0.2, the intercept shows how likely a democrat is to change their voting behaviour, at 0.31, we can see that democrats are more likely to change their voting behaviour on methane related issues, with only the democrat variable at 0.05 being significant.
-### subsample OLS 
-here we only look at those who did change their voting behavior.
-```{r mind changers, echo=FALSE}
-# create a function that looks at each row and its Vote_count. If 3, then compares 3 observations (Vote.114, Vote.115 and Vote.116) -> do the values change? if yes, where? -> if 2 ->
-```
-
-

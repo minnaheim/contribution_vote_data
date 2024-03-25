@@ -15,6 +15,7 @@ library(pastecs)
 source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/data_analysis_files/data_prep_analysis.R")
 
 df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis_df.csv")
+# df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/final_df.csv")
 # view(df)
 
 # df <- filter_session_data(df, "113")
@@ -29,16 +30,15 @@ str(df)
 summary(df)
 ```
 ```{r}
-# plot df
-
 df_long <- df %>%
   pivot_longer(cols = starts_with("amount"), names_to = "contribution_type", values_to = "contribution_amount")
 
-view(df_long)
-# Now you can plot the distribution
+# view(df_long)
+# plotting  the distribution
 plot_1 <- ggplot(df_long, aes(x = contribution_amount)) +
   geom_histogram(binwidth = 10000) +
-  labs(title = "Distribution of Contributions of all Members of the House", x = "Contributions", y = "Frequency") + 
+  labs(title = "Distribution of Contributions of all Members of the House", x = "Contributions", y = "Number of Contributions (log)") + 
+  scale_y_continuous(trans='log10') +
   theme_gray()
 
 plot_1
@@ -47,32 +47,35 @@ plot_1
 plot_2 <- ggplot(df_long, aes(x = contribution_amount, y = contribution_type)) + geom_col(fill = "cornflowerblue")
 plot_2
 
-# boxplot to better show distributions of categories
-boxplot_1 <- ggplot(df_long, aes(x = contribution_amount, y = contribution_type)) + geom_boxplot()
-boxplot_1
 
-# create a boxplot which shows the distribution of the different variables: oil, mining, gas, env, coal and alt_en.
-# avg_oil <- colMeans(df)
+# boxplot of the distribution of the contribution data by amount
+
+# Plot with limits applied on the x-axis
+boxplot_1 <- ggplot(df_long, aes(x = contribution_amount, y = contribution_type)) + 
+  geom_boxplot() 
+
+boxplot_1
 ```
 
 
 ### contrbutions to party plots
 ```{r}
 # plot of contributions by party
+# Calculate upper and lower limits for outliers
+upper.limit <- quantile(df_long$contribution_amount, na.rm=TRUE)[4] + 1.5*IQR(df_long$contribution_amount, na.rm=TRUE)
+lower.limit <- quantile(df_long$contribution_amount, na.rm=TRUE)[2] - 1.5*IQR(df_long$contribution_amount, na.rm=TRUE)
+# maybe set lower limit to 0, to eliminate neg. contributions.
 
-# set upper and lower limits for outliers
-# upper.limit <- quantile(df_long$contribution_amount, na.rm=TRUE)[4] + 1.5*IQR(df_long$contribution_amount, na.rm=TRUE)
-# lower.limit <- quantile(df_long$contribution_amount, na.rm=TRUE)[2] - 1.5*IQR(df_long$contribution_amount, na.rm=TRUE)
-
-# add this to ggplot2 function
-#  + coord_cartesian(ylim=c(lower.limit, upper.limit)) 
-
-plot_3 <- df_long %>% group_by(party) %>%
+# Plot with limits applied
+plot_3 <- df_long %>% 
+  group_by(party) %>%
   ggplot(aes(y = contribution_amount, x = party, fill = party)) + 
   geom_boxplot() + 
-  labs(title = "Distribution of Contributions by Party", x = "Contributions", y = "Party")
-plot_3
+  labs(title = "Distribution of Contributions by Party", x = "Party", y = "Contribution Amount") +
+  coord_cartesian(ylim=c(lower.limit, upper.limit)) +
+  scale_fill_manual(values = c("R" = "red", "D" = "blue"))
 
+plot_3
 
 ```
 
@@ -83,11 +86,12 @@ The reason for the NAs in some contributions, e.g. in 113th congress, there are 
 ### plot change in vote dummy vs. state, party, etc. 
 ```{r}
 # determine vote_change by party
+# view(df_long)
 plot_4 <- df_long %>% group_by(party) %>%
   ggplot(aes(x = Vote_change_dummy, fill = party)) + 
-  geom_bar(position = "fill") + 
-  labs(title = "Distribution of Vote Change by Party", x = "Vote Change", y = "Party") +
-  scale_x_continuous(breaks = c(0,1))
+  geom_bar(position = "fill") + labs(title = "Distribution of Vote Change by Party", x = "Vote Change", y = "Party") + 
+  scale_x_continuous(breaks = c(0,1)) +
+  scale_fill_manual(values = c("R" = "red", "D" = "blue"))
 
 plot_4
 
@@ -97,3 +101,87 @@ print(party_count)
 ```
 
 The above plot shows, that in amount, Republicans and Democrats almost equally often do not change their votes. However, Republicans are more likely to change their votes. The reason as to why the non-vote changers are almost equal in number and still the Republicans change their votes more often, is because the amount of Republicans in the data set is higher than the amount of Democrats.
+
+### plot change in mind with each roll_call... (to be able to analyse the contribution better)
+```{r}
+
+df_113 <- filter_session_data(df, 113) 
+view(df_113)
+
+# plot vote_change_dummy with the amount cols
+df_long_113 <- df_113 %>%
+  pivot_longer(cols = starts_with("amount"), names_to = "contribution_type", values_to = "contribution_amount")
+
+# view(df_long_113)
+
+```
+
+```{r}
+# plot change in mind with each roll_call
+# create a plot which plots the contributions to the vote_change dummy per session.
+plot_113 <- df_long_113 %>% ggplot(aes(x = contribution_amount, y = Vote_change_dummy)) + geom_violin() + labs(title = "Distribution of Contributions to Vote Change Dummy", x = "Contributions", y = "Vote Change (1 = change, 0 = no change)")
+plot_113
+
+# plot all other congresses too 
+
+```
+
+
+### mind changers table -> strattman replicate
+```{r}
+# vote changers
+vote_change <- df %>% filter(Vote_change_dummy == 1)
+
+# non-vote changers
+non_vote_change <- df %>% filter(Vote_change_dummy == 0)
+
+# Initialize counters
+pos_first <- 0
+neg_first <- 0
+pos <- 0 
+neg <- 0
+  
+for (i in 1:nrow(df)) {
+  if (df$Vote_change[i] > 0) {
+    # Loop through vote columns for each row
+    for (vote_col in c("Vote3", "Vote4", "Vote51", "Vote52", "Vote6", "Vote7")) {
+      vote <- df[[vote_col]][i]
+      if (!is.na(vote)) {
+        # If vote is found, increment the respective counter and break the loop
+        if (vote == "-") {
+          neg_first <- neg_first + 1
+        } else if (vote == "+") {
+          pos_first <- pos_first + 1
+        }
+        break
+      }
+    }
+  } 
+  if (df$Vote_change[i] == 0) {
+    for (vote_col in c("Vote3", "Vote4", "Vote51", "Vote52", "Vote6", "Vote7")) {
+      vote <- df[[vote_col]][i]
+      if (!is.na(vote)) {
+        # If vote is found, increment the respective counter and break the loop
+        if (vote == "-") {
+          neg <- neg + 1
+        } else if (vote == "+") {
+          pos <- pos + 1
+        }
+        break
+      }
+    }
+  }
+}
+
+list(pos_first = pos_first, neg_first = neg_first, pos = pos, neg = neg)
+
+# create a table for these vars with the labels (always positive, always negative, change - change to negative, change to positive
+
+
+```
+
+```{r}
+
+
+
+```
