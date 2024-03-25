@@ -5,6 +5,8 @@
 ├── README.md
 ├── src
 │   ├── analysis
+│   │   ├── plots
+│   │   ├── model
 │   ├── cleaning
 │   │   ├── utils  
 ├── data
@@ -17,8 +19,7 @@
 ```
 ## type of data
 - representatives
-- votes
-    - 
+- vot 
 - financial contributions 
     - `contributions_*.csv` = contributions of energy and env. sectors for all house candidates in that congress election
     - all_reps_*.csv = contributions of energy and env. sectors for all house members in that session
