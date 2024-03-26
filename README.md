@@ -1,4 +1,5 @@
-# Bachelor thesis:
+## Effect of fossil fuel & environmental related campaign contributions on the voting behavior of US House members on methane related bills
+
 
 ## project file layout
 ```
