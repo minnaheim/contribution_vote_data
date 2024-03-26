@@ -1,0 +1,32 @@
+"last_name","first_name","name","change","votes","party","state","member_id","Vote3","Vote4","Vote51","Vote52","Vote6","Vote7","District","Vote_count","Vote_change","Vote_change_dummy","oil_sum","coal_sum","gas_sum","mining_sum","env_sum","alt_en_sum"
+"Costa","Jim","jim costa","1","change1","D","CA","C001059","-","+",NA,"+","-","+","CA-16",5,3,1,464709,17250,80249,46250,11500,9250
+"Costa","Jim","jim costa","0","change2","D","CA","C001059","-","+",NA,"+","-","+","CA-16",5,3,1,464709,17250,80249,46250,11500,9250
+"Costa","Jim","jim costa","1","change3","D","CA","C001059","-","+",NA,"+","-","+","CA-16",5,3,1,464709,17250,80249,46250,11500,9250
+"Coffman","Mike","mike coffman","1","change1","R","CO","C001077","-","-","-","+",NA,NA,"CO-06",4,1,1,1003322,50850,40450,141231,4350,5950
+"Ros-Lehtinen","Ileana","ileana ros lehtinen","1","change1","R","FL",NA,"-","+",NA,"+",NA,NA,"FL-27",3,1,1,0,0,0,0,0,0
+"Bishop","Sanford D.","sanford d bishop","0","change1","D","GA","B000490","+","-","+","-","+","+","GA-02",6,4,1,57750,7750,8000,32750,0,3000
+"Bishop","Sanford D.","sanford d bishop","1","change2","D","GA","B000490","+","-","+","-","+","+","GA-02",6,4,1,57750,7750,8000,32750,0,3000
+"Bishop","Sanford D.","sanford d bishop","0","change3","D","GA","B000490","+","-","+","-","+","+","GA-02",6,4,1,57750,7750,8000,32750,0,3000
+"Bishop","Sanford D.","sanford d bishop","1","change4","D","GA","B000490","+","-","+","-","+","+","GA-02",6,4,1,57750,7750,8000,32750,0,3000
+"Roskam","Peter J.","peter j roskam","1","change1","R","IL","R000580","-","-","-","+",NA,NA,"IL-06",4,1,1,282650,8200,47450,23200,0,5000
+"Upton","Fred","fred upton","1","change1","R","MI","U000031","-","-","-","+","+","+","MI-06",6,1,1,953538,75700,237570,152852,0,22026
+"Smith","Christopher H.","christopher h smith","1","change1","R","NJ","S000522","-","-","+","+","+","-","NJ-04",6,2,1,0,0,0,0,0,0
+"Smith","Christopher H.","christopher h smith","0","change2","R","NJ","S000522","-","-","+","+","+","-","NJ-04",6,2,1,0,0,0,0,0,0
+"Lance","Leonard","leonard lance","1","change1","R","NJ","L000567","-","-","-","+",NA,NA,"NJ-07",4,1,1,116150,0,26000,0,4000,250
+"Hanna","Richard","richard hanna,richard l hanna","1","change1","R","NY","H001051","-","+",NA,NA,NA,NA,"NY-22",2,1,1,0,0,0,0,0,0
+"Reed","Tom","tom reed","1","change1","R","NY","R000585","-","-","-","-","-","+","NY-23",6,1,1,690508,1000,157299,5655,5514,97575
+"Meehan","Patrick","patrick meehan","1","change1","R","PA","M001181","-","-","+",NA,NA,NA,"PA-07",3,1,1,233350,3000,75400,7000,0,12870
+"Sanford","Mark","mark sanford","1","change1","R","SC","S000051","-","-","+","+",NA,NA,"SC-01",4,1,1,37750,0,3000,0,0,8700
+"Cuellar","Henry","henry cuellar","1","change1","D","TX","C001063","-","-","-","-","+","+","TX-28",6,1,1,799964,3750,95500,35550,0,500
+"Green","Gene","gene green","1","change1","D","TX","G000410","-","+","+","+",NA,NA,"TX-29",4,1,1,330750,1000,92800,1000,0,0
+"Veasey","Marc A.","marc a veasey","0","change1","D","TX","V000131","+","-","+","+","+","+","TX-33",6,2,1,396605,0,36500,0,9200,2350
+"Veasey","Marc A.","marc a veasey","1","change2","D","TX","V000131","+","-","+","+","+","+","TX-33",6,2,1,396605,0,36500,0,9200,2350
+"Vela","Filemon","filemon vela","1","change1","D","TX","V000132","-","+","+","+","+","+","TX-34",6,1,1,174856,0,29500,0,1000,3500
+"Reichert","Dave","dave reichert","1","change1","R","WA",NA,"-","-","+","+",NA,NA,"WA-08",4,1,1,0,0,0,0,0,0
+"Knight","Steve","steve knight","1","change1","R","CA",NA,NA,"-","+","-",NA,NA,"CA-25",3,2,1,0,0,0,0,0,0
+"Knight","Steve","steve knight","0","change2","R","CA",NA,NA,"-","+","-",NA,NA,"CA-25",3,2,1,0,0,0,0,0,0
+"Stefanik","Elise","elise stefanik,elise m stefanik","0","change1","R","NY","S001196",NA,"+","+","+","+","-","NY-21",5,1,1,0,0,0,0,0,0
+"Costello","Ryan","ryan costello,ryan a costello","1","change1","R","PA","C001106",NA,"-","+","+",NA,NA,"PA-06",3,1,1,0,0,0,0,0,0
+"Gaetz","Matt","matt gaetz","1","change1","R","FL","G000578",NA,NA,"-",NA,"-","+","FL-01",3,1,1,22810,0,0,0,0,0
+"Gonzalez","Vicente","vicente gonzalez","1","change1","D","TX","G000581",NA,NA,"-","+","+","+","TX-15",4,1,1,200262,0,38500,1000,3625,0
+"Waltz","Michael","michael waltz","0","change1","R","FL","W000823",NA,NA,NA,NA,"+","-","FL-06",2,1,1,45896,0,0,1004,250,3550

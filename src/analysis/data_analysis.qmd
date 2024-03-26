@@ -3,22 +3,19 @@ title: "Data Analysis of Roll Call Data"
 output: html
 ---
 The summary statistics and plots of the data can be found in the plots.qmd file in the same directory.
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 library(ggplot2)
-# install.packages("car")
-library(car) # for the plotting of MLRs
-# install.packages("GGally")
+library(car)
 library(GGally)
+source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/prep_analysis.R")
 ```
 
 ```{r, include=FALSE}
-source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/data_analysis_files/data_prep_analysis.R")
-
-df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis_df.csv")
-df_sum <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis_df_sum.csv")
+df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis/df.csv")
+df_sum <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis/df_sum.csv")
+df_subsample <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis/df_subsample.csv")
 
 # remove irrelevant cols for analysis
 df_ols <- subset(df, select = -c(
@@ -33,10 +30,6 @@ df_sum <- subset(df_sum, select = -c(
 ```
 
 ### MODEL 1: Simple Linear Probability Model (OLS)
-<!-- 1. **Simple Linear Probability Model (OLS)**
-    1. over entire dataset (df)
-    2. b0 = baseline contributions = 2014 contributions 
-    3. where 0 is constant opinions, 1 is mind change (at least once) -->
 ```{r}
 ols_1 <- lm(Vote_change_dummy ~ ., data = df_ols)
 summary(ols_1)
@@ -116,26 +109,46 @@ df_117 <- lm(Vote_change_dummy ~ ., data = df_117)
 summary(df_117)
 ```
 
+### MODEL 2: Subsample OLS 
+here I only look at those who did change their voting behavior. For this I created a seperate df out of the original df, where i only included representatives who changed their minds. I marked the changes, where from pro-environment vote "+" to anti-environment "-" = 0, and from anti-environment to pro-environment = 1. 
 
+```{r}
+knitr::kable(df_subsample, format = "html")
+
+df_subsample <- subset(df_subsample, select = -c(
+    last_name, first_name, member_id, name, Vote_count, District,
+    Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Vote_change, state, Vote_change_dummy
+))
+
+ols_subsample <- lm(change ~ ., data = df_subsample)
+summary(ols_subsample)
+```
+
+I tried regressing the change variable with each individual contributions, i.e. amount.coal.113, amount.oil.113, etc. but the results were neither significant, nor did they often appear. many had NAs.
+
+```{r}
+df_subsample_sum <- subset(df_subsample_sum, select = -c(
+    last_name, first_name, member_id, name, Vote_count, District,
+    Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Vote_change, state, Vote_change_dummy
+))
+
+ols_subsample_sum <- lm(change ~ ., data = df_subsample_sum)
+summary(ols_subsample_sum)
+```
+
+So i tried to regress the change with the summarised variables, i.e. oil_sum, coal_sum, etc. and now the variables aren't NA, just not significant.
+
+
+### OLS vote change and party affiliation
 ```{r}
 ols_1 <- lm(Vote_change_dummy ~ party, data = df)
 summary(ols_1)
+
+ols_2 <- lm(Vote_change_dummy ~ party, data = df_subsample_sum)
+summary(ols_2)
 ```
 
 regressing the vote change dummy on party affiliation, we find that the coefficient for the Republican party is 0.2, the intercept shows how likely a democrat is to change their voting behaviour, at 0.31, we can see that democrats are more likely to change their voting behaviour on methane related issues, with only the democrat variable at 0.05 being significant.
-
-### subsample OLS 
-<!-- 2. **Simple LPM (OLS) - SUBSAMPLE** 
-    1. include only people who changed their minds (1 from above). 
-    2. 0: people changed from dirty to clean energy
-    3. 1: people changed from clean to dirty -->
-here we only look at those who did change their voting behavior.
-```{r , echo=FALSE}
-# create a function that looks at each row and its Vote_count. If 3, then compares 3 observations (Vote.114, Vote.115 and Vote.116) -> do the values change? if yes, where? -> if 2 ->
-
-df
-```
-
 
 ### time and state fixed effects 
 ```{r}
@@ -143,7 +156,7 @@ df
 
 ```
 
-
+time fixed effects --  This model eliminates omitted variable bias caused by excluding unobserved variables that evolve over time but are constant across entities.
 ### mind changers 
 ```{r}
 mind_changers <- df %>% filter(Vote_change_dummy == 1)

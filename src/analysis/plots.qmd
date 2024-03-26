@@ -12,15 +12,8 @@ library(pastecs)
 ```
 
 ```{r, include=FALSE}
-source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/data_analysis_files/data_prep_analysis.R")
-
-df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis_df.csv")
-# df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/final_df.csv")
-# view(df)
-
-# df <- filter_session_data(df, "113")
-# view(df)
-
+source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/prep_analysis.R")
+df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis/df.csv")
 ```
 
 ### distribution of contributions 
