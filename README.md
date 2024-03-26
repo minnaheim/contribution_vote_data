@@ -18,8 +18,8 @@
 
 ```
 ## type of data
-- representatives
-- vot 
+- unique_id_reps (member_id of every house member)
+- roll call data (votes on 6 methane (pollution safeguard) related bills)
 - financial contributions 
     - `contributions_*.csv` = contributions of energy and env. sectors for all house candidates in that congress election
     - all_reps_*.csv = contributions of energy and env. sectors for all house members in that session
