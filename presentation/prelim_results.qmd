@@ -10,6 +10,7 @@ format:
 library(tidyverse)
 library(ggplot2)
 library(knitr)
+library(plm)
 source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_prep_functions.R")
 
 # read in data
@@ -184,14 +185,6 @@ summary(ols_114)
 
 ::: {.panel-tabset}
 
-### FE
-
-* Integrating Entity and Time fixed effects
-    + Entity = State 
-    + Time = Year
-
-* Control for Party 
-
 ### Data
 ```{r}
 kable(head(df_fe))
@@ -222,6 +215,21 @@ summary(ols_subsample_sum)
 ```
 
 :::
+
+## Subsample OLS incl. Fixed Effects
+
+```{r}
+df_fe <- df_fe %>% select(-c(
+    last_name, first_name, name, District, Vote_count, Vote_change,
+    first_contribution, Vote_change, Vote_change_dummy, member_id, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7
+))
+# view(df_fe)
+
+fixed <- plm(vote_change_type ~ ., data = df_fe, index = c("state", "year"), model = "within")
+summary(fixed)
+```
+
+<!-- Integrating Entity and Time fixed effects (state and year), and control for party -->
 
 ## Problems 
 * Integration of State Variable

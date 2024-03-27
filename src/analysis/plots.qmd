@@ -1,10 +1,6 @@
 ---
 title: "Plots & Summary Statistics for Data Analysis"
-format:
- pdf:
-    toc: true
-    number-sections: true
-    colorlinks: true
+format: html
 ---
 
 ```{r setup, include=FALSE}

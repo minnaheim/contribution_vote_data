@@ -37,22 +37,23 @@ df_fe$vote_change_year <- apply(df_fe[, vote_columns], 1, detect_year_of_changes
 df_fe <- df_fe %>% relocate(vote_change_year, .after = vote_change_type)
 df_fe$first_contribution <- apply(df_fe[, vote_columns], 1, first_contribution)
 # works until here
-view(df_fe)
-
-
-# df_fe <- pivot_longer_function(df_fe)
-# df_fe <- df_fe %>%
-#     separate(vote_change_year, paste0("change_year", c(1:4)), sep = ",")
-
-# df_fe <- pivot_longer(df_fe, c(change_year1, change_year2, change_year3, change_year4),
-#     names_to = "year", values_to = "change_year", values_drop_na = TRUE
-# )
-
 # view(df_fe)
 
+# Separate the 'vote_change_type' and 'vote_change_year' into multiple rows where they are comma-separated
+df_fe <- df_fe %>%
+    # Convert to long format by splitting 'vote_change_type' and 'vote_change_year' strings into multiple rows
+    separate_rows(vote_change_type, vote_change_year, sep = ",") %>%
+    # Optionally, you can trim whitespace if necessary
+    mutate(
+        vote_change_type = trimws(vote_change_type),
+        vote_change_year = trimws(vote_change_year)
+    )
 
-
-# df_fe <- relocate(df_fe, "first_contribution", .before = "Vote_change_dummy")
+# View the transformed DataFrame
+df_fe <- relocate(df_fe, "first_contribution", .after = "vote_change_year")
+df_fe$vote_change_type <- as.numeric(df_fe$vote_change_type)
+df_fe <- df_fe %>% mutate(year = str_extract(vote_change_year, "(?<=-).*"))
+df_fe <- relocate(df_fe, "year", .after = vote_change_year)
 # view(df_fe)
 
 # write to csv

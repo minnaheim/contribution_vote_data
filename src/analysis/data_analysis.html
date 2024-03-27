@@ -3340,23 +3340,59 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove cols not necessary for analysis</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df_fe <span class="ot">&lt;-</span> df_fe <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    last_name, first_name, name, District, Vote_count, Vote_change,</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    first_contribution, Vote_change, votes, Vote_change_dummy, member_id, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>    first_contribution, Vote_change, Vote_change_dummy, member_id, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7</span>
 <span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>))</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># doesnt work</span></span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ols_fe &lt;- plm(change ~ ., data = df_fe)</span></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="co"># ols_fe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_fe)</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>fixed <span class="ot">&lt;-</span> <span class="fu">plm</span>(vote_change_type <span class="sc">~</span> ., <span class="at">data =</span> df_fe, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"year"</span>), <span class="at">model =</span> <span class="st">"within"</span>) <span class="co"># fixed model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in pdata.frame(data, index): duplicate couples (id-time) in resulting pdata.frame
+ to find out which, use, e.g., table(index(your_pdataframe), useNA = "ifany")</code></pre>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df_fe, <span class="at">format =</span> <span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fixed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Oneway (individual) effect Within Model
+
+Call:
+plm(formula = vote_change_type ~ ., data = df_fe, model = "within", 
+    index = c("state", "year"))
+
+Unbalanced Panel: n = 6, T = 1-4, N = 14
+
+Residuals:
+          1           4           5           6          10          11 
+ 5.3333e-01 -5.3333e-01  1.7222e-16  2.3700e-16 -4.0000e-01 -1.3333e-01 
+         12          13          15          20          26          27 
+ 7.7843e-17  5.3333e-01  0.0000e+00  0.0000e+00 -1.3333e-01 -1.9971e-16 
+         28          30 
+ 1.3333e-01 -8.8690e-17 
+
+Coefficients: (30 dropped because of singularities)
+                             Estimate  Std. Error t-value Pr(&gt;|t|)
+vote_change_year2016-2017  7.3333e-01  7.0553e-01  1.0394   0.4078
+vote_change_year2017-2018 -4.0000e-01  9.2376e-01 -0.4330   0.7072
+vote_change_year2018-2019  6.6667e-02  7.0553e-01  0.0945   0.9333
+vote_change_year2019-2021  5.3333e-01  9.6148e-01  0.5547   0.6349
+amount.oil.113            -1.7760e-05  1.9702e-05 -0.9014   0.4625
+amount.mining.113          4.8437e-04  5.0413e-04  0.9608   0.4380
+
+Total Sum of Squares:    2.4167
+Residual Sum of Squares: 1.0667
+R-Squared:      0.55862
+Adj. R-Squared: -1.869
+F-statistic: 0.421875 on 6 and 2 DF, p-value: 0.82568</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(df_fe, <span class="at">format =</span> <span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th style="text-align: left;" data-quarto-table-cell-role="th">change</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">party</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">state</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">vote_change_type</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">vote_change_year</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">year</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">amount.oil.113</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">amount.coal.113</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">amount.mining.113</th>
@@ -3391,9 +3427,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">CA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2013-2016</td>
+<td style="text-align: right;">2016</td>
 <td style="text-align: right;">82750</td>
 <td style="text-align: right;">5000</td>
 <td style="text-align: right;">6000</td>
@@ -3426,9 +3464,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">0</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">CA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">2018-2019</td>
+<td style="text-align: right;">2019</td>
 <td style="text-align: right;">82750</td>
 <td style="text-align: right;">5000</td>
 <td style="text-align: right;">6000</td>
@@ -3461,9 +3501,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">CA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2019-2021</td>
+<td style="text-align: right;">2021</td>
 <td style="text-align: right;">82750</td>
 <td style="text-align: right;">5000</td>
 <td style="text-align: right;">6000</td>
@@ -3496,9 +3538,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">CO</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2017-2018</td>
+<td style="text-align: right;">2018</td>
 <td style="text-align: right;">210275</td>
 <td style="text-align: right;">12750</td>
 <td style="text-align: right;">42031</td>
@@ -3531,9 +3575,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">FL</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2013-2016</td>
+<td style="text-align: right;">2016</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -3566,9 +3612,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">0</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">GA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">2013-2016</td>
+<td style="text-align: right;">2016</td>
 <td style="text-align: right;">5500</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">2000</td>
@@ -3601,9 +3649,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">1000</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">GA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2016-2017</td>
+<td style="text-align: right;">2017</td>
 <td style="text-align: right;">5500</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">2000</td>
@@ -3636,9 +3686,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">1000</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">0</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">GA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">2017-2018</td>
+<td style="text-align: right;">2018</td>
 <td style="text-align: right;">5500</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">2000</td>
@@ -3671,9 +3723,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">1000</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">GA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2018-2019</td>
+<td style="text-align: right;">2019</td>
 <td style="text-align: right;">5500</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">2000</td>
@@ -3706,9 +3760,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">1000</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">IL</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2017-2018</td>
+<td style="text-align: right;">2018</td>
 <td style="text-align: right;">42250</td>
 <td style="text-align: right;">2000</td>
 <td style="text-align: right;">7500</td>
@@ -3741,9 +3797,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">MI</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2017-2018</td>
+<td style="text-align: right;">2018</td>
 <td style="text-align: right;">224300</td>
 <td style="text-align: right;">44633</td>
 <td style="text-align: right;">103208</td>
@@ -3776,9 +3834,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">2026</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">NJ</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2016-2017</td>
+<td style="text-align: right;">2017</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -3811,9 +3871,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">0</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">NJ</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">2019-2021</td>
+<td style="text-align: right;">2021</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -3846,9 +3908,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">NJ</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2017-2018</td>
+<td style="text-align: right;">2018</td>
 <td style="text-align: right;">21050</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
@@ -3881,9 +3945,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">NY</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2013-2016</td>
+<td style="text-align: right;">2016</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -3916,9 +3982,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">NY</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2019-2021</td>
+<td style="text-align: right;">2021</td>
 <td style="text-align: right;">120021</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">2000</td>
@@ -3951,9 +4019,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">10600</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">PA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2016-2017</td>
+<td style="text-align: right;">2017</td>
 <td style="text-align: right;">50000</td>
 <td style="text-align: right;">1500</td>
 <td style="text-align: right;">4500</td>
@@ -3986,9 +4056,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">SC</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2016-2017</td>
+<td style="text-align: right;">2017</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4021,9 +4093,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">TX</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2018-2019</td>
+<td style="text-align: right;">2019</td>
 <td style="text-align: right;">99125</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">3000</td>
@@ -4056,9 +4130,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">TX</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2013-2016</td>
+<td style="text-align: right;">2016</td>
 <td style="text-align: right;">96700</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
@@ -4091,9 +4167,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">0</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">TX</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">2013-2016</td>
+<td style="text-align: right;">2016</td>
 <td style="text-align: right;">62350</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
@@ -4126,9 +4204,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">100</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">TX</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2016-2017</td>
+<td style="text-align: right;">2017</td>
 <td style="text-align: right;">62350</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
@@ -4161,9 +4241,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">100</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">TX</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2013-2016</td>
+<td style="text-align: right;">2016</td>
 <td style="text-align: right;">13550</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
@@ -4196,9 +4278,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">WA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2016-2017</td>
+<td style="text-align: right;">2017</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4231,9 +4315,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">CA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2016-2017</td>
+<td style="text-align: right;">2017</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4266,9 +4352,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">0</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">CA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">2017-2018</td>
+<td style="text-align: right;">2018</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4301,9 +4389,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">0</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">NY</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">2019-2021</td>
+<td style="text-align: right;">2021</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4336,9 +4426,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">PA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2016-2017</td>
+<td style="text-align: right;">2017</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4371,9 +4463,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">NA</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">FL</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2019-2021</td>
+<td style="text-align: right;">2021</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4406,9 +4500,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">1</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">TX</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2017-2018</td>
+<td style="text-align: right;">2018</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4441,9 +4537,11 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">0</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">FL</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">2019-2021</td>
+<td style="text-align: right;">2021</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">NA</td>
@@ -4483,6 +4581,10 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 </div>
 </div>
 <p>time &amp; state fixed effects – This model eliminates omitted variable bias caused by excluding unobserved variables that evolve over time but are constant across entities.</p>
+<p>fixed effects remove the effect of those time-invariant characteristics so we can assess the net effect of the predictors on the outcome variable. I.e. we fix time and thus only look at one time period each.</p>
+</section>
+<section id="model-4-probit-and-logit-for-robustness" class="level3">
+<h3 class="anchored" data-anchor-id="model-4-probit-and-logit-for-robustness">MODEL 4: Probit and Logit for Robustness</h3>
 </section>
 </section>
 

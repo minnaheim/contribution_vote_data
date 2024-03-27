@@ -1,10 +1,6 @@
 ---
 title: "Data Analysis of Roll Call Data"
-format:
- pdf:
-    toc: true
-    number-sections: true
-    colorlinks: true
+format: html
 ---
 The summary statistics and plots of the data can be found in the plots.qmd file in the same directory.
 ```{r setup, include=FALSE}
@@ -172,18 +168,13 @@ regressing the vote change dummy on party affiliation, we find that the coeffici
 # remove cols not necessary for analysis
 df_fe <- df_fe %>% select(-c(
     last_name, first_name, name, District, Vote_count, Vote_change,
-    first_contribution, Vote_change, votes, Vote_change_dummy, member_id, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7
+    first_contribution, Vote_change, Vote_change_dummy, member_id, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7
 ))
-view(df_fe)
+# view(df_fe)
 
-# doesnt work
-fixed <- plm(y ~ x1, data = df_fe, index = c("state", "year"), model = "within") # fixed model
-view(fixed)
+fixed <- plm(vote_change_type ~ ., data = df_fe, index = c("state", "year"), model = "within") # fixed model
+summary(fixed)
 
-<!-- ``` -->
-
-
-```{r}
 knitr::kable(df_fe, format = "html")
 ```
 
@@ -194,6 +185,5 @@ fixed effects remove the effect of those time-invariant characteristics so we ca
 
 ### MODEL 4: Probit and Logit for Robustness
 ```{r}
-glm()
 
 ```

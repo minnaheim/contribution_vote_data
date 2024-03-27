@@ -1576,19 +1576,9 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <section id="subsample-ols" class="slide level2 smaller">
 <h2>Subsample OLS</h2>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">FE</a></li><li><a href="#tabset-3-2">Data</a></li><li><a href="#tabset-3-3">OLS</a></li><li><a href="#tabset-3-4">sessionized</a></li></ul>
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">Data</a></li><li><a href="#tabset-3-2">OLS</a></li><li><a href="#tabset-3-3">sessionized</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
-<ul>
-<li>Integrating Entity and Time fixed effects
-<ul>
-<li>Entity = State</li>
-<li>Time = Year</li>
-</ul></li>
-<li>control for party</li>
-</ul>
-</div>
-<div id="tabset-3-2">
 <div class="cell">
 <div class="cell-output-display">
 <table>
@@ -1596,8 +1586,6 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <col style="width: 1%">
 <col style="width: 1%">
 <col style="width: 2%">
-<col style="width: 1%">
-<col style="width: 1%">
 <col style="width: 0%">
 <col style="width: 0%">
 <col style="width: 1%">
@@ -1610,6 +1598,9 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <col style="width: 1%">
 <col style="width: 1%">
 <col style="width: 1%">
+<col style="width: 2%">
+<col style="width: 2%">
+<col style="width: 0%">
 <col style="width: 2%">
 <col style="width: 2%">
 <col style="width: 2%">
@@ -1648,8 +1639,6 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <th style="text-align: left;">last_name</th>
 <th style="text-align: left;">first_name</th>
 <th style="text-align: left;">name</th>
-<th style="text-align: right;">change</th>
-<th style="text-align: left;">votes</th>
 <th style="text-align: left;">party</th>
 <th style="text-align: left;">state</th>
 <th style="text-align: left;">member_id</th>
@@ -1662,6 +1651,9 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <th style="text-align: left;">District</th>
 <th style="text-align: right;">Vote_count</th>
 <th style="text-align: right;">Vote_change</th>
+<th style="text-align: right;">vote_change_type</th>
+<th style="text-align: left;">vote_change_year</th>
+<th style="text-align: right;">year</th>
 <th style="text-align: right;">first_contribution</th>
 <th style="text-align: right;">Vote_change_dummy</th>
 <th style="text-align: right;">amount.oil.113</th>
@@ -1701,8 +1693,6 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <td style="text-align: left;">Costa</td>
 <td style="text-align: left;">Jim</td>
 <td style="text-align: left;">jim costa</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">change1</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">CA</td>
 <td style="text-align: left;">C001059</td>
@@ -1715,6 +1705,9 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <td style="text-align: left;">CA-16</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2013-2016</td>
+<td style="text-align: right;">2016</td>
 <td style="text-align: right;">113</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">82750</td>
@@ -1752,8 +1745,6 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <td style="text-align: left;">Costa</td>
 <td style="text-align: left;">Jim</td>
 <td style="text-align: left;">jim costa</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">change2</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">CA</td>
 <td style="text-align: left;">C001059</td>
@@ -1766,6 +1757,9 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <td style="text-align: left;">CA-16</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">2018-2019</td>
+<td style="text-align: right;">2019</td>
 <td style="text-align: right;">113</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">82750</td>
@@ -1803,8 +1797,6 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <td style="text-align: left;">Costa</td>
 <td style="text-align: left;">Jim</td>
 <td style="text-align: left;">jim costa</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">change3</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">CA</td>
 <td style="text-align: left;">C001059</td>
@@ -1817,6 +1809,9 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <td style="text-align: left;">CA-16</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2019-2021</td>
+<td style="text-align: right;">2021</td>
 <td style="text-align: right;">113</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">82750</td>
@@ -1854,8 +1849,6 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <td style="text-align: left;">Coffman</td>
 <td style="text-align: left;">Mike</td>
 <td style="text-align: left;">mike coffman</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">change1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">CO</td>
 <td style="text-align: left;">C001077</td>
@@ -1868,6 +1861,9 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <td style="text-align: left;">CO-06</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2017-2018</td>
+<td style="text-align: right;">2018</td>
 <td style="text-align: right;">113</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">210275</td>
@@ -1905,8 +1901,6 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <td style="text-align: left;">Ros-Lehtinen</td>
 <td style="text-align: left;">Ileana</td>
 <td style="text-align: left;">ileana ros lehtinen</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: left;">change1</td>
 <td style="text-align: left;">R</td>
 <td style="text-align: left;">FL</td>
 <td style="text-align: left;">NA</td>
@@ -1919,6 +1913,9 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <td style="text-align: left;">FL-27</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: left;">2013-2016</td>
+<td style="text-align: right;">2016</td>
 <td style="text-align: right;">113</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">NA</td>
@@ -1956,8 +1953,6 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <td style="text-align: left;">Bishop</td>
 <td style="text-align: left;">Sanford D.</td>
 <td style="text-align: left;">sanford d bishop</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: left;">change1</td>
 <td style="text-align: left;">D</td>
 <td style="text-align: left;">GA</td>
 <td style="text-align: left;">B000490</td>
@@ -1970,6 +1965,9 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <td style="text-align: left;">GA-02</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: left;">2013-2016</td>
+<td style="text-align: right;">2016</td>
 <td style="text-align: right;">113</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">5500</td>
@@ -2008,7 +2006,7 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-3-3">
+<div id="tabset-3-2">
 <p>Including only those representatives, where Vote_change_dummy == 1</p>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -2067,7 +2065,7 @@ F-statistic: 0.2143 on 10 and 3 DF,  p-value: 0.9726</code></pre>
 </div>
 </div>
 </div>
-<div id="tabset-3-4">
+<div id="tabset-3-3">
 <div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -2103,6 +2101,44 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 </div>
 </div>
 </section>
+<section id="subsample-ols-incl.-fixed-effects" class="slide level2">
+<h2>Subsample OLS incl.&nbsp;Fixed Effects</h2>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>Oneway (individual) effect Within Model
+
+Call:
+plm(formula = vote_change_type ~ ., data = df_fe, model = "within", 
+    index = c("state", "year"))
+
+Unbalanced Panel: n = 6, T = 1-4, N = 14
+
+Residuals:
+          1           4           5           6          10          11 
+ 5.3333e-01 -5.3333e-01  1.7222e-16  2.3700e-16 -4.0000e-01 -1.3333e-01 
+         12          13          15          20          26          27 
+ 7.7843e-17  5.3333e-01  0.0000e+00  0.0000e+00 -1.3333e-01 -1.9971e-16 
+         28          30 
+ 1.3333e-01 -8.8690e-17 
+
+Coefficients: (30 dropped because of singularities)
+                             Estimate  Std. Error t-value Pr(&gt;|t|)
+vote_change_year2016-2017  7.3333e-01  7.0553e-01  1.0394   0.4078
+vote_change_year2017-2018 -4.0000e-01  9.2376e-01 -0.4330   0.7072
+vote_change_year2018-2019  6.6667e-02  7.0553e-01  0.0945   0.9333
+vote_change_year2019-2021  5.3333e-01  9.6148e-01  0.5547   0.6349
+amount.oil.113            -1.7760e-05  1.9702e-05 -0.9014   0.4625
+amount.mining.113          4.8437e-04  5.0413e-04  0.9608   0.4380
+
+Total Sum of Squares:    2.4167
+Residual Sum of Squares: 1.0667
+R-Squared:      0.55862
+Adj. R-Squared: -1.869
+F-statistic: 0.421875 on 6 and 2 DF, p-value: 0.82568</code></pre>
+</div>
+</div>
+<!-- Integrating Entity and Time fixed effects (state and year), and control for party -->
+</section>
 <section id="problems" class="slide level2">
 <h2>Problems</h2>
 <ul>
@@ -2130,7 +2166,7 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 <h2>Future work</h2>
 <p>Things I still want to integrate into the data/models/thesis</p>
 <ul>
-<li>improve FE dataset (?)</li>
+<li>Improve FE dataset (?)</li>
 <li>Time of Contribution (analyse differences in 2 votes in the 115th congress)</li>
 <li>Remove remaining NAs in Data. 83 out of 725 rows are NAs.</li>
 <li>Robustness checks (with Logit/Probit)</li>
