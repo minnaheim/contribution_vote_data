@@ -33,12 +33,27 @@ df_fe <- analysis_prep(df)
 df_fe <- df_fe %>% dplyr::filter(Vote_change_dummy == 1)
 df_fe$vote_change_type <- apply(df_fe[, vote_columns], 1, detect_changes)
 df_fe <- df_fe %>% relocate(vote_change_type, .after = Vote_change)
+df_fe$vote_change_year <- apply(df_fe[, vote_columns], 1, detect_year_of_changes)
+df_fe <- df_fe %>% relocate(vote_change_year, .after = vote_change_type)
+df_fe$first_contribution <- apply(df_fe[, vote_columns], 1, first_contribution)
+# works until here
+view(df_fe)
+
+
+# df_fe <- pivot_longer_function(df_fe)
+# df_fe <- df_fe %>%
+#     separate(vote_change_year, paste0("change_year", c(1:4)), sep = ",")
+
+# df_fe <- pivot_longer(df_fe, c(change_year1, change_year2, change_year3, change_year4),
+#     names_to = "year", values_to = "change_year", values_drop_na = TRUE
+# )
+
 # view(df_fe)
 
-# df_fe <- first_contribution(df_fe)
-df_fe$first_contribution <- apply(df_fe[, vote_columns], 1, first_contribution)
-df_fe <- pivot_longer_function(df_fe)
-df_fe <- relocate(df_fe, "first_contribution", .before = "Vote_change_dummy")
+
+
+# df_fe <- relocate(df_fe, "first_contribution", .before = "Vote_change_dummy")
+# view(df_fe)
 
 # write to csv
 write.csv(df_gen, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv", row.names = FALSE)

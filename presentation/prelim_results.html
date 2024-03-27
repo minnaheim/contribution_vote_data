@@ -1576,52 +1576,19 @@ F-statistic: 9.068 on 8 and 256 DF,  p-value: 5.782e-11</code></pre>
 <section id="subsample-ols" class="slide level2 smaller">
 <h2>Subsample OLS</h2>
 <div class="panel-tabset">
-<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">OLS</a></li><li><a href="#tabset-3-2">sessionized</a></li><li><a href="#tabset-3-3">Data</a></li></ul>
+<ul id="tabset-3" class="panel-tabset-tabby"><li><a data-tabby-default="" href="#tabset-3-1">FE</a></li><li><a href="#tabset-3-2">Data</a></li><li><a href="#tabset-3-3">OLS</a></li><li><a href="#tabset-3-4">sessionized</a></li></ul>
 <div class="tab-content">
 <div id="tabset-3-1">
-<p>Including only those representatives, where Vote_change_dummy == 1</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href=""></a>df_subsample <span class="ot">&lt;-</span> <span class="fu">subset</span>(df_subsample, <span class="at">select =</span> <span class="sc">-</span><span class="fu">c</span>(</span>
-<span id="cb6-2"><a href=""></a>    last_name, first_name, member_id, name, Vote_count, District,</span>
-<span id="cb6-3"><a href=""></a>    Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Vote_change, state, Vote_change_dummy</span>
-<span id="cb6-4"><a href=""></a>))</span>
-<span id="cb6-5"><a href=""></a></span>
-<span id="cb6-6"><a href=""></a>ols_subsample <span class="ot">&lt;-</span> <span class="fu">lm</span>(change <span class="sc">~</span> ., <span class="at">data =</span> df_subsample)</span>
-<span id="cb6-7"><a href=""></a><span class="fu">summary</span>(ols_subsample)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>Integrating Entity and Time fixed effects
+<ul>
+<li>Entity = State</li>
+<li>Time = Year</li>
+</ul></li>
+<li>control for party</li>
+</ul>
 </div>
 <div id="tabset-3-2">
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = change ~ ., data = df_subsample_sum)
-
-Residuals:
-    Min      1Q  Median      3Q     Max 
--0.8396 -0.2432  0.1327  0.2473  0.7695 
-
-Coefficients:
-               Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept)   6.094e-01  3.045e-01   2.001   0.0591 .
-voteschange2 -3.492e-01  2.584e-01  -1.352   0.1916  
-voteschange3 -2.006e-01  4.314e-01  -0.465   0.6470  
-voteschange4  4.203e-01  5.719e-01   0.735   0.4710  
-partyR        1.433e-01  3.070e-01   0.467   0.6458  
-oil_sum       3.967e-07  1.059e-06   0.374   0.7121  
-coal_sum     -5.561e-06  4.570e-05  -0.122   0.9044  
-gas_sum       2.314e-06  5.609e-06   0.413   0.6843  
-mining_sum   -4.936e-07  2.015e-05  -0.024   0.9807  
-env_sum      -2.517e-07  3.498e-05  -0.007   0.9943  
-alt_en_sum   -3.930e-06  8.332e-06  -0.472   0.6422  
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.4789 on 20 degrees of freedom
-Multiple R-squared:  0.2273,    Adjusted R-squared:  -0.1591 
-F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
-</div>
-</div>
-</div>
-<div id="tabset-3-3">
 <div class="cell">
 <div class="cell-output-display">
 <table>
@@ -2041,19 +2008,132 @@ F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
 </div>
 </div>
 </div>
+<div id="tabset-3-3">
+<p>Including only those representatives, where Vote_change_dummy == 1</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = change ~ ., data = df_subsample)
+
+Residuals:
+         1          2          3          4          6          7          8 
+ 5.000e-01 -8.333e-01  3.333e-01  7.440e-16 -1.667e-01  5.000e-01 -3.333e-01 
+         9         11         16         19         21         22         23 
+-3.313e-17 -3.662e-16 -4.772e-16 -1.143e-15 -3.333e-01  3.333e-01 -3.313e-17 
+
+Coefficients: (24 not defined because of singularities)
+                    Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)        1.279e-01  7.321e-01   0.175    0.872
+voteschange2       3.333e-01  6.086e-01   0.548    0.622
+voteschange3       1.667e-01  7.136e-01   0.234    0.830
+voteschange4       8.333e-01  9.379e-01   0.889    0.440
+partyR             1.335e+00  2.574e+00   0.519    0.640
+amount.oil.113     1.382e-05  1.272e-05   1.087    0.357
+amount.coal.113   -4.443e-04  6.692e-04  -0.664    0.554
+amount.mining.113  7.962e-05  1.886e-04   0.422    0.701
+amount.gas.113    -9.826e-05  1.222e-04  -0.804    0.480
+amount.env.113    -7.094e-04  7.206e-04  -0.985    0.397
+amount.alt_en.113  1.370e-03  1.596e-03   0.858    0.454
+amount.oil.114            NA         NA      NA       NA
+amount.coal.114           NA         NA      NA       NA
+amount.mining.114         NA         NA      NA       NA
+amount.gas.114            NA         NA      NA       NA
+amount.env.114            NA         NA      NA       NA
+amount.alt_en.114         NA         NA      NA       NA
+amount.oil.115            NA         NA      NA       NA
+amount.coal.115           NA         NA      NA       NA
+amount.mining.115         NA         NA      NA       NA
+amount.gas.115            NA         NA      NA       NA
+amount.env.115            NA         NA      NA       NA
+amount.alt_en.115         NA         NA      NA       NA
+amount.oil.116            NA         NA      NA       NA
+amount.coal.116           NA         NA      NA       NA
+amount.mining.116         NA         NA      NA       NA
+amount.gas.116            NA         NA      NA       NA
+amount.env.116            NA         NA      NA       NA
+amount.alt_en.116         NA         NA      NA       NA
+amount.oil.117            NA         NA      NA       NA
+amount.coal.117           NA         NA      NA       NA
+amount.mining.117         NA         NA      NA       NA
+amount.gas.117            NA         NA      NA       NA
+amount.env.117            NA         NA      NA       NA
+amount.alt_en.117         NA         NA      NA       NA
+
+Residual standard error: 0.7454 on 3 degrees of freedom
+  (17 observations deleted due to missingness)
+Multiple R-squared:  0.4167,    Adjusted R-squared:  -1.528 
+F-statistic: 0.2143 on 10 and 3 DF,  p-value: 0.9726</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-4">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = change ~ ., data = df_subsample_sum)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.8396 -0.2432  0.1327  0.2473  0.7695 
+
+Coefficients:
+               Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept)   6.094e-01  3.045e-01   2.001   0.0591 .
+voteschange2 -3.492e-01  2.584e-01  -1.352   0.1916  
+voteschange3 -2.006e-01  4.314e-01  -0.465   0.6470  
+voteschange4  4.203e-01  5.719e-01   0.735   0.4710  
+partyR        1.433e-01  3.070e-01   0.467   0.6458  
+oil_sum       3.967e-07  1.059e-06   0.374   0.7121  
+coal_sum     -5.561e-06  4.570e-05  -0.122   0.9044  
+gas_sum       2.314e-06  5.609e-06   0.413   0.6843  
+mining_sum   -4.936e-07  2.015e-05  -0.024   0.9807  
+env_sum      -2.517e-07  3.498e-05  -0.007   0.9943  
+alt_en_sum   -3.930e-06  8.332e-06  -0.472   0.6422  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4789 on 20 degrees of freedom
+Multiple R-squared:  0.2273,    Adjusted R-squared:  -0.1591 
+F-statistic: 0.5882 on 10 and 20 DF,  p-value: 0.8049</code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
 <section id="problems" class="slide level2">
 <h2>Problems</h2>
+<ul>
+<li>Integration of State Variable
+<ul>
+<li>doesnt produce coeff. in general OLS, probably won’t in subsample either</li>
+</ul></li>
+<li>Negative Contribution Values
+<ul>
+<li>acc. to Open Secrets, due to refunds from previous campaign</li>
+</ul></li>
+<li>Fixed Effects Model
+<ul>
+<li>cannot run ols regressions with dataset (error: variables are factors of another, due to small n)</li>
+<li>construct base contribution, as first contribution, or avg. of all before change</li>
+<li>Should I calculate ∆contribution?</li>
+</ul></li>
+<li>NA Problems
+<ul>
+<li>still 83 out of 725 rows are NAs (Names too divergent)</li>
+</ul></li>
+</ul>
 </section>
 <section id="future-work" class="slide level2">
 <h2>Future work</h2>
 <p>Things I still want to integrate into the data/models/thesis</p>
 <ul>
+<li>improve FE dataset (?)</li>
 <li>Time of Contribution (analyse differences in 2 votes in the 115th congress)</li>
 <li>Remove remaining NAs in Data. 83 out of 725 rows are NAs.</li>
-<li>Robustness checks</li>
+<li>Robustness checks (with Logit/Probit)</li>
 </ul>
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">

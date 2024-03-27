@@ -183,10 +183,24 @@ summary(ols_114)
 ## Subsample OLS {.smaller}
 
 ::: {.panel-tabset}
+
+### FE
+
+* Integrating Entity and Time fixed effects
+    + Entity = State 
+    + Time = Year
+
+* Control for Party 
+
+### Data
+```{r}
+kable(head(df_fe))
+```
+
+
 ### OLS
 Including only those representatives, where Vote_change_dummy == 1
-
-```r
+```{r}
 df_subsample <- subset(df_subsample, select = -c(
     last_name, first_name, member_id, name, Vote_count, District,
     Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Vote_change, state, Vote_change_dummy
@@ -195,6 +209,7 @@ df_subsample <- subset(df_subsample, select = -c(
 ols_subsample <- lm(change ~ ., data = df_subsample)
 summary(ols_subsample)
 ```
+
 ### sessionized
 ```{r}
 df_subsample_sum <- subset(df_subsample_sum, select = -c(
@@ -206,22 +221,29 @@ ols_subsample_sum <- lm(change ~ ., data = df_subsample_sum)
 summary(ols_subsample_sum)
 ```
 
-### Data
-```{r}
-kable(head(df_fe))
-```
-
-
 :::
 
 ## Problems 
+* Integration of State Variable
+    + doesnt produce coeff. in general OLS, probably won't in subsample either
+* Negative Contribution Values
+    + acc. to Open Secrets, due to refunds from previous campaign
+* Fixed Effects Model
+    + cannot run ols regressions with dataset (error: variables are factors of another, due to small n)
+    + construct base contribution, as first contribution, or avg. of all before change
+    + Should I calculate ∆contribution? 
+* NA Problems 
+    + still 83 out of 725 rows are NAs (Names too divergent)
+
+
 
 ## Future work
 
 Things I still want to integrate into the data/models/thesis
 
+* Improve FE dataset (?)
 * Time of Contribution (analyse differences in 2 votes in the 115th congress)
 * Remove remaining NAs in Data. 83 out of 725 rows are NAs.
-* Robustness checks 
+* Robustness checks (with Logit/Probit)
 
 

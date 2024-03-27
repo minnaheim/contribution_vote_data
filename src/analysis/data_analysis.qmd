@@ -117,7 +117,7 @@ df_117 <- lm(Vote_change_dummy ~ ., data = df_117)
 summary(df_117)
 ```
 
-### MODEL 2: Subsample OLS 
+### MODEL 2: Subsample OLS
 here I only look at those who did change their voting behavior. For this I created a seperate df out of the original df, where i only included representatives who changed their minds. I marked the changes, where from pro-environment vote "+" to anti-environment "-" = 0, and from anti-environment to pro-environment = 1. 
 ### vote changers dataframe
 ```{r}
@@ -174,11 +174,13 @@ df_fe <- df_fe %>% select(-c(
     last_name, first_name, name, District, Vote_count, Vote_change,
     first_contribution, Vote_change, votes, Vote_change_dummy, member_id, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7
 ))
+view(df_fe)
 
 # doesnt work
-# ols_fe <- plm(change ~ ., data = df_fe)
-# ols_fe
-```
+fixed <- plm(y ~ x1, data = df_fe, index = c("state", "year"), model = "within") # fixed model
+view(fixed)
+
+<!-- ``` -->
 
 
 ```{r}
@@ -187,8 +189,10 @@ knitr::kable(df_fe, format = "html")
 
 time & state fixed effects --  This model eliminates omitted variable bias caused by excluding unobserved variables that evolve over time but are constant across entities.
 
+fixed effects remove the effect of those time-invariant characteristics so we can assess the net effect of the predictors on the outcome variable. I.e. we fix time and thus only look at one time period each.
 
-### MODEL 4: 
+
+### MODEL 4: Probit and Logit for Robustness
 ```{r}
 glm()
 
