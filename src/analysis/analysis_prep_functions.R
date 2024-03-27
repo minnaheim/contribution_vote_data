@@ -100,7 +100,7 @@ filter_session_data <- function(df, session) {
             "Vote7", grep("^amount.*117$", names(df), value = TRUE)
         )
         df <- df[, c(selected_cols)]
-        view(df)
+        # view(df)
     }
     return(df)
 }

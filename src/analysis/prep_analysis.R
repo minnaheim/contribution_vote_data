@@ -12,7 +12,7 @@ df_gen <- analysis_prep(df)
 
 # summarize contributions
 df_sum <- analysis_prep(df)
-df_sum <- summarise_contributions(df)
+df_sum <- summarise_contributions(df_sum)
 # view(df_sum)
 
 ## for subsample OLS - identify how people changed their minds

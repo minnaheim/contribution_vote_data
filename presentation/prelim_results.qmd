@@ -1,0 +1,227 @@
+---
+title: "Preliminary Results Presentation"
+author: "Minna Heim"
+format: 
+    revealjs:
+        slide-number: c/t #< collapsed/total
+---
+
+```{r setup, echo = FALSE, include = FALSE}
+library(tidyverse)
+library(ggplot2)
+library(knitr)
+source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_prep_functions.R")
+
+# read in data
+df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
+roll_call <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/roll_call.csv")
+contributions <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/contributions.csv")
+unique_id_reps <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/unique_id_reps.csv")
+final_df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/final_df.csv")
+df_subsample <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_subsample.csv")
+df_sum <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_sum.csv")
+df_fe <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_fe.csv")
+df_subsample_sum <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_subsample_sum.csv")
+```
+
+# Data 
+
+## Data Structure {.smaller}
+::: {.panel-tabset}
+
+### 1
+* Roll Call Data 
+    + 6 votes (2013,2016, 2017, 2018, 2019, 2021)
+* Contribution Data 
+    + Dirty - Oil, Gas, Coal, Mining
+    + Clean - Alternative Energy, Environmental Industry
+* Unique ID Data 
+    + list of all house members & their member_id
+
+\
+\
+Documentation available on my [Github Profile](https://github.com/minnaheim). 
+
+### 2
+#### Roll Call Dataset
+```{r}
+roll_call <- roll_call %>% relocate(name, .after = last_name)
+kable(head(roll_call))
+```
+
+### 3
+#### Contribution Dataset
+Here my cleaned contribution data
+```{r}
+kable(head(contributions))
+```
+
+### 4
+#### Unique IDs of all House Members
+```{r}
+kable(head(unique_id_reps))
+```
+
+### 5
+#### Merged Dataset
+```{r}
+kable(head(final_df))
+```
+
+:::
+## Data Cleaning {.smaller}
+
+If I had to summarize 1 and a half months of work... 
+
+\
+merged each dataset with member_id using the fuzzyjoin package
+```r
+fuzzy_match <- function(x, y, max_dist = 2) {
+    return(stringdist::stringdist(x, y) <= max_dist)
+}
+
+fuzzy_match_last <- function(x, y) {
+    return(fuzzy_match(x, y, 1))
+}
+fuzzy_match_first <- function(x, y) {
+    return(fuzzy_match(x, y, 2))
+}
+
+```
+merged all datasets together 
+```r
+df <- fuzzy_left_join(
+    roll_call,
+    contributions,
+    by = c("name", "party", "state", "member_id"),
+    match_fun = list(`fuzzy_match_first`, `==`, `==`, `==`)
+)
+```
+
+# Plots 
+## Distribution of Contributions {.smaller}
+```{r}
+# Plot with limits applied on the x-axis
+df_long <- df %>%
+    pivot_longer(cols = starts_with("amount"), names_to = "contribution_type", values_to = "contribution_amount")
+
+boxplot_1 <- ggplot(df_long, aes(x = contribution_amount, y = contribution_type)) +
+    geom_boxplot()
+
+boxplot_1
+```
+
+## Distribution of Vote Change by Party {.smaller}
+
+```{r}
+
+plot_4 <- df_long %>%
+    group_by(party) %>%
+    ggplot(aes(x = Vote_change_dummy, fill = party)) +
+    geom_bar(position = "fill") +
+    labs(x = "Vote Change", y = "Party") +
+    scale_x_continuous(breaks = c(0, 1)) +
+    scale_fill_manual(values = c("R" = "red", "D" = "blue"))
+
+plot_4
+```
+
+Where D = 259 Representatives and R = 301 Representatives (if we only could those analysed, i.e. those who voted > 1 time)
+<!-- D       259 -->
+<!-- R       301 -->
+
+<!--  D       326
+ I         1
+ R       402 -->
+
+# Analysis
+
+## Vote changes {.smaller}
+
+Representatives who changed their votes = 23 
+Total vote changes = 31
+
+| Pro - Env | Anti - Env | Pro -> Anti | Anti -> Pro |
+|:---------:|:-----:|:------:|:------:|
+| 259      | 278  |    8 |   23   
+
+# Models 
+## General OLS {.smaller}
+
+::: {.panel-tabset}
+### original
+```{r}
+df_ols <- subset(df, select = -c(
+    last_name, first_name, member_id, name, Vote_count, District,
+    Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Vote_change, state
+))
+
+ols_1 <- lm(Vote_change_dummy ~ ., data = df_ols)
+summary(ols_1)
+```
+
+### summarized
+```{r}
+df_sum <- subset(df_sum, select = -c(
+    last_name, first_name, member_id, name, Vote_count, District,
+    Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Vote_change, state
+))
+
+ols_sum <- lm(Vote_change_dummy ~ ., data = df_sum)
+summary(ols_sum)
+```
+
+### sessionized
+```{r}
+df_114 <- filter_session_data(df, "114")
+ols_114 <- lm(Vote_change_dummy ~ ., data = df_114)
+summary(ols_114)
+```
+
+:::
+
+## Subsample OLS {.smaller}
+
+::: {.panel-tabset}
+### OLS
+Including only those representatives, where Vote_change_dummy == 1
+
+```r
+df_subsample <- subset(df_subsample, select = -c(
+    last_name, first_name, member_id, name, Vote_count, District,
+    Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Vote_change, state, Vote_change_dummy
+))
+
+ols_subsample <- lm(change ~ ., data = df_subsample)
+summary(ols_subsample)
+```
+### sessionized
+```{r}
+df_subsample_sum <- subset(df_subsample_sum, select = -c(
+    last_name, first_name, member_id, name, Vote_count, District,
+    Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Vote_change, state, Vote_change_dummy
+))
+
+ols_subsample_sum <- lm(change ~ ., data = df_subsample_sum)
+summary(ols_subsample_sum)
+```
+
+### Data
+```{r}
+kable(head(df_fe))
+```
+
+
+:::
+
+## Problems 
+
+## Future work
+
+Things I still want to integrate into the data/models/thesis
+
+* Time of Contribution (analyse differences in 2 votes in the 115th congress)
+* Remove remaining NAs in Data. 83 out of 725 rows are NAs.
+* Robustness checks 
+
+

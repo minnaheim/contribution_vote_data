@@ -1,6 +1,10 @@
 ---
 title: "Data Analysis of Roll Call Data"
-output: html
+format:
+ pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
 ---
 The summary statistics and plots of the data can be found in the plots.qmd file in the same directory.
 ```{r setup, include=FALSE}
@@ -9,14 +13,17 @@ library(tidyverse)
 library(ggplot2)
 library(car)
 library(GGally)
+library(plm)
 source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/prep_analysis.R")
+
+df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
+df_sum <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_sum.csv")
+df_subsample <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_subsample.csv")
+df_subsample_sum <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_subsample_sum.csv")
+df_fe <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_fe.csv")
 ```
 
 ```{r, include=FALSE}
-df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis/df.csv")
-df_sum <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis/df_sum.csv")
-df_subsample <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis/df_subsample.csv")
-
 # remove irrelevant cols for analysis
 df_ols <- subset(df, select = -c(
     last_name, first_name, member_id, name, Vote_count, District,
@@ -37,6 +44,7 @@ summary(ols_1)
 
 here we can see the results are not very significant, only the party variable gives us significant results.
 ```{r}
+# view(df_sum)
 ols_sum <- lm(Vote_change_dummy ~ ., data = df_sum)
 summary(ols_sum)
 ```
@@ -53,7 +61,7 @@ ggpairs(df_sum)
 
 ```
 
- Interpretation...
+Interpretation...
 
 ### 113th session contributions & vote change
 I am looking at each session independently, aka the vote of the representative in the 113th session and the corresponding contributions received. I am regressing these values with the Vote_change_dummy. This does not necessarily mean that a representative had to have changed their vote in the next session, but just how representatives who eventually changed their votes voted, and how their campaign contributions looked like in the 113th session.
@@ -111,7 +119,15 @@ summary(df_117)
 
 ### MODEL 2: Subsample OLS 
 here I only look at those who did change their voting behavior. For this I created a seperate df out of the original df, where i only included representatives who changed their minds. I marked the changes, where from pro-environment vote "+" to anti-environment "-" = 0, and from anti-environment to pro-environment = 1. 
+### vote changers dataframe
+```{r}
+mind_changers <- df %>% filter(Vote_change_dummy == 1)
+# view(mind_changers)
 
+knitr::kable(mind_changers, format = "html")
+```
+
+# OLS
 ```{r}
 knitr::kable(df_subsample, format = "html")
 
@@ -141,26 +157,39 @@ So i tried to regress the change with the summarised variables, i.e. oil_sum, co
 
 ### OLS vote change and party affiliation
 ```{r}
-ols_1 <- lm(Vote_change_dummy ~ party, data = df)
-summary(ols_1)
+# ols_1 <- lm(Vote_change_dummy ~ party, data = df)
+# summary(ols_1)
 
-ols_2 <- lm(Vote_change_dummy ~ party, data = df_subsample_sum)
-summary(ols_2)
+# ols_2 <- lm(Vote_change_dummy ~ party, data = df_subsample_sum)
+# summary(ols_2)
 ```
 
 regressing the vote change dummy on party affiliation, we find that the coefficient for the Republican party is 0.2, the intercept shows how likely a democrat is to change their voting behaviour, at 0.31, we can see that democrats are more likely to change their voting behaviour on methane related issues, with only the democrat variable at 0.05 being significant.
 
-### time and state fixed effects 
-```{r}
-## import df that determines years of env. significance?
+### MODEL 3: Subsample OLS with (time and state) Fixed Effects
 
+```{r}
+# remove cols not necessary for analysis
+df_fe <- df_fe %>% select(-c(
+    last_name, first_name, name, District, Vote_count, Vote_change,
+    first_contribution, Vote_change, votes, Vote_change_dummy, member_id, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7
+))
+
+# doesnt work
+# ols_fe <- plm(change ~ ., data = df_fe)
+# ols_fe
 ```
 
-time fixed effects --  This model eliminates omitted variable bias caused by excluding unobserved variables that evolve over time but are constant across entities.
-### mind changers 
-```{r}
-mind_changers <- df %>% filter(Vote_change_dummy == 1)
-# view(mind_changers)
 
-knitr::kable(mind_changers, format = "html")
+```{r}
+knitr::kable(df_fe, format = "html")
+```
+
+time & state fixed effects --  This model eliminates omitted variable bias caused by excluding unobserved variables that evolve over time but are constant across entities.
+
+
+### MODEL 4: 
+```{r}
+glm()
+
 ```

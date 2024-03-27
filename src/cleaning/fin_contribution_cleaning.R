@@ -277,11 +277,13 @@ fin_all <- combine_columns(fin_all, "rest_of_name")
 fin_all <- combine_columns(fin_all, "first_name")
 fin_all <- combine_columns(fin_all, "last_name")
 
-
-# view(fin_all)
+fin_all <- fin_all %>% relocate("first_name")
+fin_all <- fin_all %>% relocate("last_name", .after = "first_name")
+fin_all <- fin_all %>% relocate("name", .after = "last_name")
+view(fin_all)
 
 # problem with contributions, replicated if ID match not perfect
 
 
 # write to csv
-write_csv(fin_all, "data/cleaned/contributions.csv")
+write_csv(fin_all, "data/cleaned/contributions.csv", row.names = FALSE)

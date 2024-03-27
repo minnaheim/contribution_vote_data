@@ -1,6 +1,10 @@
 ---
 title: "Plots & Summary Statistics for Data Analysis"
-output: html
+format:
+ pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
 ---
 
 ```{r setup, include=FALSE}
@@ -13,7 +17,7 @@ library(pastecs)
 
 ```{r, include=FALSE}
 source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/prep_analysis.R")
-df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/analysis/df.csv")
+df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
 ```
 
 ### distribution of contributions 
@@ -65,7 +69,7 @@ plot_3 <- df_long %>%
   ggplot(aes(y = contribution_amount, x = party, fill = party)) + 
   geom_boxplot() + 
   labs(title = "Distribution of Contributions by Party", x = "Party", y = "Contribution Amount") +
-  coord_cartesian(ylim=c(lower.limit, upper.limit)) +
+  # coord_cartesian(ylim=c(lower.limit, upper.limit)) +
   scale_fill_manual(values = c("R" = "red", "D" = "blue"))
 
 plot_3
@@ -88,8 +92,8 @@ plot_4 <- df_long %>% group_by(party) %>%
 
 plot_4
 
-# count how many persons of each party are in df_long
-party_count <- df_long %>% group_by(party) %>% count()
+# count how many people of which party affiliation there are 
+party_count <- df %>% group_by(party) %>% count()
 print(party_count)
 ```
 
@@ -169,12 +173,6 @@ for (i in 1:nrow(df)) {
 list(pos_first = pos_first, neg_first = neg_first, pos = pos, neg = neg)
 
 # create a table for these vars with the labels (always positive, always negative, change - change to negative, change to positive
-
-
-```
-
-```{r}
-
 
 
 ```
