@@ -280,7 +280,7 @@ fin_all <- combine_columns(fin_all, "last_name")
 fin_all <- fin_all %>% relocate("first_name")
 fin_all <- fin_all %>% relocate("last_name", .after = "first_name")
 fin_all <- fin_all %>% relocate("name", .after = "last_name")
-view(fin_all)
+# view(fin_all)
 
 # problem with contributions, replicated if ID match not perfect
 

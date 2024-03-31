@@ -255,3 +255,7 @@ Things I still want to integrate into the data/models/thesis
 * Robustness checks (with Logit/Probit)
 
 
+```{r}
+# install.packages("renderthis")
+renderthis::to_pdf("quarto_render.html")
+```
