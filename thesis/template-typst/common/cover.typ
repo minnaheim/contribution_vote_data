@@ -31,7 +31,7 @@
   align(center, text(font: sans-font, 2em, weight: 700, "University of St. Gallen"))
 
   v(5mm)
-  align(center, text(font: sans-font, 1.5em, weight: 100, "School of Management, Economics, Law, Social Sciences, /n  -- International Affairs and Computer Science --"))
+  align(center, text(font: sans-font, 1em, weight: 100, "School of Management, Economics, Law, Social Sciences, /n  -- International Affairs and Computer Science --"))
   
   v(15mm)
 

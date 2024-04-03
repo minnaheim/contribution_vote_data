@@ -62,11 +62,11 @@
   - contribution goals (enrichment, campaign contributions, revolving door) @Weschle_2022c
 - consensus: spending in politics has risen over time (opensecrets sources, @Stratmann_2005 p.141), explained by Lott, higher in states with bigger gov.  @Stratmann_2005 p.148 
 
-== Legislation 
-p.149 in @Stratmann_2005
-- 1994 transparency act
-- Bipartisan Campaign Reform Act of 2003
-- State regulations - contribution limits, 
+// == Legislation 
+// p.149 in @Stratmann_2005
+// - 1994 transparency act
+// - Bipartisan Campaign Reform Act of 2003
+// - State regulations - contribution limits, 
 
 // == campaign contributions & elections -> less important for analysis
 // - coate, if special interest contribution, less voters, more contribution (voters suspicious of favor trading) @Stratmann_2005
@@ -77,54 +77,104 @@ p.149 in @Stratmann_2005
 // - spending not accurate representation for campaigning, diff. Montana and LA. 
 
 == Campaign Contributions 
-- why is there campaign, what does it achieve? -> better election @Stratmann_2005
-- background on campaign spending in Money in politics @Weschle_2022c, pp.24-28
-- 2 motives, change mind, or support those cands. that have yours @Weschle_2022c pp.26-28
+- why is there campaign contribution, what does it achieve? -> better election @Stratmann_2005 @Weschle_2022c p.24 
+- but no correlation between campaign spending and vote shares,  @Weschle_2022c p.24, (also other authors who state this)
+- but just saying that money doenst influence vote outcomes would be shortsighted, need to include other factors:
+  - strategic spending, closeness of race, spending limits, etc.  @Weschle_2022c p.25
+  - industry specific results, specific legilastion, p.27.28 @Weschle_2022c
+  - after all, there is good evidence that more campaign spending affects politicians and policy @Weschle_2022c p.26 (just have to consider more factors, different approaches?)
+- 2 motives on what campaign donors receive in return, influence  , i.e. change mind, or support those cands. that have yours @Weschle_2022c pp.26-28 - small scale contributors do follow both methods.
 - correlation isnt enough, other factors influence, campaign contributions endogenously determined by a multitude of factors. @bronars-lott-1997 p.318
+- 3 types of candidates receiving contribution, also what is the goal of the contributor - access to the candidate, influence elections, most likely to win @Stratmann_2005 p.146 
 
 
 == Causal Effect of Campaign Contributions on Representatives' Voting Decisions.
-- main question: do incumbents cater to wishes of special interest groups, bec. of their contribution or do they get contribution because their views coinicide with the special interests groups (mind-changers)? @Stratmann_2005 p.143 @Stratmann_2005 p.146 (or do contributions go to those candidates that are most likely to win)
-- 3 types of candidates receiving contribution, also what is the goal of the contributor - access to the candidate, influence elections, etc.
-- bronars, lott -> when retire and not standing for re-election, how do they vote. @bronars-lott-1997- two types, vote buyers, ideological sorting (if vote buy, ∆contributions & ∆vote is given, if ideology, then not.)
+*Main question*: Do incumbents cater to wishes of special interest groups, bec. of their contribution or do they get contribution because their views coincide with the special interests groups (mind-changers)? @Stratmann_2005 p.143
+
+\
+Bronars & Lott tried to do this....
+- when retire and not standing for re-election, how do they vote, on two similar bills. @bronars-lott-1997 two types, vote buyers, ideological sorting (if vote buy, change contributions & change vote is given, if ideology, then not.)
     - effect of changes in  campaign contributions during a politician's last term in office. more to do with politician's retirement, less their preferences/contributions. 
     -  politicians should represent their ideology/votes, ideally (even without threat of re-election)
     - if not, politicians will deviate from constituent's wishes, cost of shirking decreases. p. 319
     - evidence: close races, conservative PACs to conservative candidates, and to shift opinion within party,etc. @Stratmann_2005 p. 147-148
 
-- answer is potentially difficult for US democracy...
--> correlation there, need to find causal relationship
-- causal relationship may be found by looking at repeated votes @Stratmann_2005 p.143-144
+\
+Other studies also failed to estimate a causal effect:
+- no academic consensus on the matter, contributions dont actually result in changes of candidates positions @stratmann-2002 p.1 
+- reasons for this incl.: lack of cross-sectional studies (repetition), simultaneous equation bias, correlation != causation, i.e. voters support companies who support them anyways.. 
+
+\
+What some of the failed studies did not inlcude...
+- address this by regressing and controlling for ind. propositions, counties, geographical area @Stratmann_2005 p.142
+- causal relationship may be found by looking at repeated votes @Stratmann_2005 p.143-144 @stratmann-2002
 - timing as important factor, increase 2 months  @Stratmann_2005 p.144
+- model setup: must allow for endogeneity of contributions, dichotomus nature of dependent vote variable (yes/no) and non-negativity of campaign comntributions. @stratmann-1991 p.606
+
+Lead over to Research Design, where I incorporate these things.
 
 #pagebreak()
 
-= Methodology
-== Stratmann paper
-== Why environmental perspective
-- why this topic?
-- why these bills?
-- how to change study/ assumptions from above..
-== Hypotheses
-- set up hypotheses, back up with literature review in previous chapter
-  - literature states, effects usually minimal, if significant
+= Research Design (Methodology)
+== Stratmann paper defines...
+*vote preconditions*
++ change in voting behaviour
++ winners & losers clearly defined
++ no vote before/ after repeated → aka only these votes (first vote as a benchmark)
++ “legislators do not typically take clearly articulated positions in their voting campaigns”
++ financial contributions the highest contributors per interest group (doesn’t hold for energy/nat resources, only about 9th, not 1st)[https://www.opensecrets.org/industries?cycle=2020]
++ substantial amount of legislators receive money from oil&gas interest groups (here: 114: 406 /435, 115: 397/ 435, and 116: 408/435) ?
 
+\
+*data preconditions*
+- uses cross-sectional panel data (panel data erhoben multiple times, like ts.) → only works w/ similar bills
+- votes in 1991 and 1998
+- contributions in 1991-1992 and 1995-1996
+- use contributions from 1991-92 as a base year, since no prior legislation done. 1991-1992 contributions taken either as reward of vote in 1991 or as punishment
+- but… maybe timing or “rewarding” or “punishing” contributions are not momentary, so also take 1989-1990 and 1995-1996 and 1991-1992 to 1997-1998 into account → how ??
+== Methane Pollution Safeguard Votes 
+*why this topic?*
+- fossil fuel industry as a significant contributor of campaign contributions
+- topic of incredible relevance (interest of mine?)
+- relevance means large amount of votes 
+*why these bills?*
+- repeated 6 times, where 2 are the same bill, and 5 out of 6 are exactly the same topic, only 113th bill is a tad bit different
+- more detail on the bills, why revoted, why in different sessions...
+*how to change study/assumptions from above*
+- legislators do not take clear positions on topics (even before, with Glass Stagall Act, this was a stretch, here it is definetly given) -> individual FE to account for this.
+- financial contributions from these industries are the highest & similar in size (not given here, large but not largest, not similar in size. Plot difference in contributions - from Opensecrets stats by industry.)
+- large amount of mind changers (incl. plot) ... no, still enough
+
+== Hypotheses
+- Effects usually minimal, if significant @stratmann-2002 ?
+- change in votes is positively related with change in contributions (if little) 
+
+#pagebreak()
 = Data
 == Types of data
-- sources
-- cleaning & merge
-- general cleaned df
+- sources (OpenSecrets, Congress, Github)
+- cleaning & merge (fuzzyjoin, without ID? if with ID, then easy...)
 - df for analysis 
   - only R, D, no Liberatrians, Independents
   - only vote repeaters
   - pivot longer (for FE df)
 #pagebreak()
 
-== Models
-=== OLS (general & subsample)
-=== Logit / Probit 
+= Models
+== OLS (general & subsample)
+- Altough most basic model, needed to estimate the linear relationship between ALL contributions and votes.
++ basic OLS 
+  - votes: pro-env/anti-env
+  - contributions: all / grouped env/non-env
+  - no FE / with FE -> differences?
++ individual OLS 
+  - df FE (base year, pivot longer, ∆contribution, person-FE)
+  - only incl. mind changers (only variations in voting behavior are relevant @stratmann-2002 p.11)
+  - vote change in which direction (pro -> contra env = 0?) & vice versa
+
+== Logit / Probit 
+- literature on why OLS is bad, and logit/probit is good. 
 - as Robustness Checks, since OLS sometimes over/underestimates @Stratmann_2005 p.143 
-- literature on why OLS is bad, and logit/probit is good.
 
 #pagebreak()
 = Results
