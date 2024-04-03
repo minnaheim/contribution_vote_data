@@ -80,14 +80,17 @@ p.149 in @Stratmann_2005
 - why is there campaign, what does it achieve? -> better election @Stratmann_2005
 - background on campaign spending in Money in politics @Weschle_2022c, pp.24-28
 - 2 motives, change mind, or support those cands. that have yours @Weschle_2022c pp.26-28
+- correlation isnt enough, other factors influence, campaign contributions endogenously determined by a multitude of factors. @bronars-lott-1997 p.318
 
 
 == Causal Effect of Campaign Contributions on Representatives' Voting Decisions.
 - main question: do incumbents cater to wishes of special interest groups, bec. of their contribution or do they get contribution because their views coinicide with the special interests groups (mind-changers)? @Stratmann_2005 p.143 @Stratmann_2005 p.146 (or do contributions go to those candidates that are most likely to win)
 - 3 types of candidates receiving contribution, also what is the goal of the contributor - access to the candidate, influence elections, etc.
-- bronars, lott -> when retire and not standing for re-election, how do they vote. @bronars-lott-1997
-  - 
-- evidence: close races, conservative PACs to conservative candidates, and to shift opinion within party,etc. @Stratmann_2005 p. 147-148
+- bronars, lott -> when retire and not standing for re-election, how do they vote. @bronars-lott-1997- two types, vote buyers, ideological sorting (if vote buy, ∆contributions & ∆vote is given, if ideology, then not.)
+    - effect of changes in  campaign contributions during a politician's last term in office. more to do with politician's retirement, less their preferences/contributions. 
+    -  politicians should represent their ideology/votes, ideally (even without threat of re-election)
+    - if not, politicians will deviate from constituent's wishes, cost of shirking decreases. p. 319
+    - evidence: close races, conservative PACs to conservative candidates, and to shift opinion within party,etc. @Stratmann_2005 p. 147-148
 
 - answer is potentially difficult for US democracy...
 -> correlation there, need to find causal relationship

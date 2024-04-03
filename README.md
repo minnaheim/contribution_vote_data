@@ -23,8 +23,8 @@
 - roll call data (votes on 6 methane (pollution safeguard) related bills)
 - financial contributions 
     - `contributions_*.csv` = contributions of energy and env. sectors for all house candidates in that congress election
-    - all_reps_*.csv = contributions of energy and env. sectors for all house members in that session
-    - all_reps.csv = contributions of energy and env. sectors for all house members in all sessions (113th until 117th congress)
+    - `all_reps_*.csv` = contributions of energy and env. sectors for all house members in that session
+    - `all_reps.csv` = contributions of energy and env. sectors for all house members in all sessions (113th until 117th congress)
 
 ### cleaned data:
 - `roll_call.csv` -> roll_call data of 6 methane bills (between 113 - 117th session)
