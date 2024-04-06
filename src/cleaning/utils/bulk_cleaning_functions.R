@@ -52,9 +52,34 @@ pac_basic_cleaning <- function(cycle) {
 # create contribution cleaning function that only keeps industries, contribution types and contributions after a certain date
 clean_contributions <- function(contributions, cutoff_date) {
     contributions$Date <- mdy(contributions$Date)
-    contributions %>%
+    cutoff_date <- mdy(cutoff_date)
+    contributions <- contributions %>%
         filter(Date > cutoff_date) %>%
         filter(Type != "22Y") %>%
         filter(str_detect(RealCode, "^E"))
     return(contributions)
 }
+# keep only representatives...
+clean_ind_contributions <- function(contributions, cutoff_date) {
+    contributions$Date <- mdy(contributions$Date)
+    cutoff_date <- mdy(cutoff_date)
+    contributions <- contributions %>%
+        filter(Date > cutoff_date) %>%
+        filter(Type != "22Y") %>%
+        filter(str_detect(RealCode, "^E")) %>%
+        filter(str_detect(RecipID, "^N"))
+    return(contributions)
+}
+
+
+# concatinate all individual and pac contributions and combine the diff ID columns, and merge with the representatives from that session
+combine_contributions <- function(indivs, pacs, reps) {
+    contribs <- bind_rows(indivs, pacs)
+    contribs <- combine_diff_columns(contribs, "CID", "RecipID")
+    contribs_reps <- inner_join(reps, contribs, by = c("opensecrets_id" = "CID"))
+    return(contribs_reps)
+}
+
+
+
+# keep only if part of congress
