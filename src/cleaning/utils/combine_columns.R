@@ -27,3 +27,22 @@ combine_columns <- function(dataset, column_start_with, combine = TRUE) {
 
     return(dataset)
 }
+
+combine_diff_columns <- function(dataset, col1, col2, combine = TRUE) {
+    dataset[[col1]] <- apply(
+        dataset[c(col1, col2)],
+        1,
+        function(x) {
+            x <- x[!is.na(x)]
+            if (length(unique(x)) > 1 && combine) {
+                paste(x, collapse = ",")
+            } else {
+                x[1]
+            }
+        }
+    )
+    # remove column_name from cols if exists
+    dataset <- dataset %>% select(-one_of(col2))
+
+    return(dataset)
+}
