@@ -1,64 +1,114 @@
 library(tidyverse)
 source("src/cleaning/utils/combine_columns.R")
 source("src/cleaning/utils/bulk_cleaning_functions.R")
-print("source files done")
 
-# read in test data
-# pac22 <- read_csv("data/cleaned/semi_clean/pac22_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-# pac20 <- read_csv("data/cleaned/semi_clean/pac20_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-# pac18 <- read_csv("data/cleaned/semi_clean/pac18_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-# pac16 <- read_csv("data/cleaned/semi_clean/pac16_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-# pac14 <- read_csv("data/cleaned/semi_clean/pac14_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-# pac12 <- read_csv("data/cleaned/semi_clean/pac12_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-# indivs22 <- read_csv("data/cleaned/semi_clean/indivs22_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-# indivs20 <- read_csv("data/cleaned/semi_clean/indivs20_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-# indivs18 <- read_csv("data/cleaned/semi_clean/indivs18_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-# indivs16 <- read_csv("data/cleaned/semi_clean/indivs16_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-# indivs14 <- read_csv("data/cleaned/semi_clean/indivs14_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-# indivs12 <- read_csv("data/cleaned/semi_clean/indivs12_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
+# read in test data (contributions are read in, in the cleaning function file)
 rep_117 <- read_csv("data/cleaned/bioguide_117_rep.csv", show_col_types = FALSE)
 rep_116 <- read_csv("data/cleaned/bioguide_116_rep.csv", show_col_types = FALSE)
 rep_115 <- read_csv("data/cleaned/bioguide_115_rep.csv", show_col_types = FALSE)
 rep_114 <- read_csv("data/cleaned/bioguide_114_rep.csv", show_col_types = FALSE)
 rep_113 <- read_csv("data/cleaned/bioguide_113_rep.csv", show_col_types = FALSE)
-print("read in")
+
+
 
 # clean contributions for vote
 contribs20 <- clean_contribs_for_vote(rep_117, "12-25-2020")
-view(contribs20)
 contribs18 <- clean_contribs_for_vote(rep_116, "12-19-2018")
-view(contribs18)
-print("contrib18 done")
 contribs16_2 <- clean_contribs_for_vote(rep_115, "01-17-2018")
-view(contribs16_2)
-print("halfway")
 contribs16 <- clean_contribs_for_vote(rep_115, "12-02-2017")
-view(contribs16)
-print("contrib16 done")
 contribs14 <- clean_contribs_for_vote(rep_114, "01-12-2016")
-view(contribs14)
 contribs12 <- clean_contribs_for_vote(rep_113, "03-19-2013")
-view(contribs12)
+# view(contribs20)
+# view(contribs18)
+# view(contribs16_2)
+# view(contribs16)
+# view(contribs14)
+# view(contribs12)
+
+
+# clean industry, keep only relevant and determine which are good energy, and which are bad
+determine_industry <- function(contributions) {
+    industry_type <- rep(NA, nrow(contributions)) # initialize Industry_Type vector
+
+    for (i in 1:nrow(contributions)) {
+        if (contributions$RealCode[i] %in% c("E0000", "E1500", "E2000")) {
+            industry_type[i] <- "+"
+        } else {
+            industry_type[i] <- "-"
+        }
+    }
+    # Add the Industry_Type column to the filtered dataframe
+    contributions$Industry_Type <- industry_type
+    # Filter out rows with RealCode in ("E4000", "E5000", "E4100", "E4200")
+    contributions <- contributions[!(contributions$RealCode %in% c("E4000", "E5000", "E4100", "E4200")), ]
+    return(contributions)
+}
+contribs20 <- determine_industry(contribs20)
+contribs18 <- determine_industry(contribs18)
+contribs16_2 <- determine_industry(contribs16_2)
+contribs16 <- determine_industry(contribs16)
+contribs14 <- determine_industry(contribs14)
+contribs12 <- determine_industry(contribs12)
+# view(contribs12)
+view(contribs20)
+
+# summarise the contributions by type per representative (use summarize to
+# keep only relevant rows, but add original data back to keep the other cols)
+
+# create function which summarises the contributions by type
+summarise_contribs <- function(contributions) {
+    contributions_summarized <- contributions %>%
+        group_by(last_name, first_name, state, opensecrets_id, bioguide_id, Industry_Type) %>%
+        summarise(total = sum(Amount)) %>%
+        ungroup()
+    return(contributions_summarized)
+}
+contribs12_summarized <- summarise_contribs(contribs12)
+contribs14_summarized <- summarise_contribs(contribs14)
+contribs16_summarized <- summarise_contribs(contribs16)
+contribs16_2_summarized <- summarise_contribs(contribs16_2)
+contribs18_summarized <- summarise_contribs(contribs18)
+contribs20_summarized <- summarise_contribs(contribs20)
+# view(contribs12_summarized)
+# view(contribs14_summarized)
+# view(contribs16_summarized)
+# view(contribs16_2_summarized)
+# view(contribs18_summarized)
+# view(contribs20_summarized)
 
 
 
 # determine number of appearance of each cycle
-contribs14 %>%
-    group_by(Cycle) %>%
-    summarise(n = n()) %>%
-    arrange(desc(n))
+# contribs20 %>%
+#     group_by(Cycle) %>%
+#     summarise(n = n()) %>%
+#     arrange(desc(n))
+
+# 20
+#   Cycle     n
+#   <dbl> <int>
+# 1  2022  4965
+# 2  2020    34
+
+# 18
+#   Cycle     n
+#   <dbl> <int>
+# 1  2020  5191
+# 2  2018    30
+
+# 16
+#   Cycle     n
+#   <dbl> <int>
+# 1  2018  7148
+
 # 14
 #   Cycle     n
 #   <dbl> <int>
-# 1  2018 25293
-# 2  2020 19585
-# 3  2016 12830
+# 1  2016  7142
+# 2  2018     1
 
 # 12
-# A tibble: 4 × 2
+# A tibble: 1 × 2
 #   Cycle     n
 #   <dbl> <int>
-# 1  2014 23542
-# 2  2018 21699
-# 3  2016 20393
-# 4  2020 17830
+# 1  2014  7085

@@ -56,7 +56,6 @@ clean_contributions <- function(contributions, cutoff_date) {
     contributions$Date <- mdy(contributions$Date)
     cutoff_date <- mdy(cutoff_date)
     vote_date <- cutoff_date %m+% months(6) %m+% days(1) # 6 mo. after the cutoff date
-    print(vote_date)
     contributions <- contributions %>%
         filter(Date > cutoff_date) %>%
         filter(Date < vote_date) %>% # only contributions 6 mo. before the vote
@@ -65,17 +64,18 @@ clean_contributions <- function(contributions, cutoff_date) {
     # filter(str_detect(RealCode, "^E"))
     return(contributions)
 }
-# keep only representatives...
-clean_ind_contributions <- function(contributions, cutoff_date) {
-    contributions$Date <- mdy(contributions$Date)
-    cutoff_date <- mdy(cutoff_date)
-    contributions <- contributions %>%
-        filter(Date > cutoff_date) %>%
-        filter(Type != "22Y") %>%
-        filter(str_detect(RealCode, "^E")) %>%
-        filter(str_detect(RecipID, "^N"))
-    return(contributions)
-}
+# # keep only representatives...
+# clean_ind_contributions <- function(contributions, cutoff_date) {
+#     contributions$Date <- mdy(contributions$Date)
+#     cutoff_date <- mdy(cutoff_date)
+#     contributions <- contributions %>%
+#         filter(Date > cutoff_date) %>%
+#         filter(Type != "22Y")
+# %>%
+# filter(str_detect(RealCode, "^E")) %>%
+# filter(str_detect(RecipID, "^N"))
+#     return(contributions)
+# }
 
 
 # concatinate all individual and pac contributions and combine the diff ID columns, and merge with the representatives from that session
@@ -101,30 +101,27 @@ combine_all_contributions <- function(contributions, reps) {
 
 
 clean_contribs_for_vote <- function(rep, cutoff_date) {
-    indivs22 <- read_csv("data/cleaned/semi_clean/indivs22_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-    indivs20 <- read_csv("data/cleaned/semi_clean/indivs20_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-    indivs18 <- read_csv("data/cleaned/semi_clean/indivs18_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-    indivs16 <- read_csv("data/cleaned/semi_clean/indivs16_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-    indivs14 <- read_csv("data/cleaned/semi_clean/indivs14_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-    indivs12 <- read_csv("data/cleaned/semi_clean/indivs12_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-    pac22 <- read_csv("data/cleaned/semi_clean/pac22_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-    pac20 <- read_csv("data/cleaned/semi_clean/pac20_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-    pac18 <- read_csv("data/cleaned/semi_clean/pac18_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-    pac16 <- read_csv("data/cleaned/semi_clean/pac16_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-    pac14 <- read_csv("data/cleaned/semi_clean/pac14_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-    pac12 <- read_csv("data/cleaned/semi_clean/pac12_semi_clean.csv", show_col_types = FALSE, lazy = TRUE)
-    print("read in")
+    indivs22 <- read_csv("data/cleaned/semi_clean/indivs22.csv", show_col_types = FALSE, lazy = TRUE)
+    indivs20 <- read_csv("data/cleaned/semi_clean/indivs20.csv", show_col_types = FALSE, lazy = TRUE)
+    indivs18 <- read_csv("data/cleaned/semi_clean/indivs18.csv", show_col_types = FALSE, lazy = TRUE)
+    indivs16 <- read_csv("data/cleaned/semi_clean/indivs16.csv", show_col_types = FALSE, lazy = TRUE)
+    indivs14 <- read_csv("data/cleaned/semi_clean/indivs14.csv", show_col_types = FALSE, lazy = TRUE)
+    indivs12 <- read_csv("data/cleaned/semi_clean/indivs12.csv", show_col_types = FALSE, lazy = TRUE)
+    pac22 <- read_csv("data/cleaned/semi_clean/pacs22.csv", show_col_types = FALSE, lazy = TRUE)
+    pac20 <- read_csv("data/cleaned/semi_clean/pacs20.csv", show_col_types = FALSE, lazy = TRUE)
+    pac18 <- read_csv("data/cleaned/semi_clean/pacs18.csv", show_col_types = FALSE, lazy = TRUE)
+    pac16 <- read_csv("data/cleaned/semi_clean/pacs16.csv", show_col_types = FALSE, lazy = TRUE)
+    pac14 <- read_csv("data/cleaned/semi_clean/pacs14.csv", show_col_types = FALSE, lazy = TRUE)
+    pac12 <- read_csv("data/cleaned/semi_clean/pacs12.csv", show_col_types = FALSE, lazy = TRUE)
     contributions <- list(
         indivs12, indivs14,
         indivs16, indivs18, indivs20,
         indivs22, pac12, pac14, pac16,
         pac18, pac20, pac22
     )
-    print("contributions vector")
     for (i in 1:length(contributions)) {
         contributions[[i]] <- clean_contributions(contributions[[i]], cutoff_date)
     }
-    print("concatinated")
     contribution <- combine_all_contributions(contributions, rep)
     return(contribution)
 }
