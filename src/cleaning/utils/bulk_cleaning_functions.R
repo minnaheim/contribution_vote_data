@@ -37,19 +37,6 @@ pac_basic_cleaning <- function(cycle) {
         filter(str_detect(RealCode, "^E"))
 }
 
-# cands20 <- read_delim("data/original/contributions/CampaignFin20/cands20.txt",
-#     delim = ",",
-#     col_names = c(
-#         "Cycle", "FECCandID", "CID", "FirstLastP", "Party", "DistIDRunFor",
-#         "DistIDCurr", "CurrCand", "CycleCand", "CRPICO", "RecipCode", "NoPacs"
-#     ),
-#     quote = "|",
-#     show_col_types = FALSE,
-#     lazy = TRUE
-# )
-# head(cands20)
-# view(cands20)
-
 
 # create contribution cleaning function that only keeps industries, contribution types and contributions after a certain date
 clean_contributions <- function(contributions, cutoff_date) {
@@ -64,18 +51,6 @@ clean_contributions <- function(contributions, cutoff_date) {
     # filter(str_detect(RealCode, "^E"))
     return(contributions)
 }
-# # keep only representatives...
-# clean_ind_contributions <- function(contributions, cutoff_date) {
-#     contributions$Date <- mdy(contributions$Date)
-#     cutoff_date <- mdy(cutoff_date)
-#     contributions <- contributions %>%
-#         filter(Date > cutoff_date) %>%
-#         filter(Type != "22Y")
-# %>%
-# filter(str_detect(RealCode, "^E")) %>%
-# filter(str_detect(RecipID, "^N"))
-#     return(contributions)
-# }
 
 
 # concatinate all individual and pac contributions and combine the diff ID columns, and merge with the representatives from that session
