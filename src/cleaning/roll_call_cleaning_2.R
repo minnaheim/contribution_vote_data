@@ -1,0 +1,69 @@
+# here I import the LCV scorecard votes, clean them and prepare to merge them to the contributions dataset.
+# out of the 6 rollcall votes, only the most recent vote, from 2021 has the bioguide and govtrack ID, so i will merge by that.
+# the other 5 i will merge manually, by names, party, state and district.
+library(tidyverse)
+library(fuzzyjoin)
+library(conflicted)
+source("src/cleaning/utils/roll_call_cleaning_functions.R")
+source("src/cleaning/utils/fin_cleaning_functions.R")
+source("src/cleaning/utils/read_from_folder.R")
+
+# read in data
+lcv_2021 <- read_delim("data/original/roll_call/2021_lcv_votes.csv",
+    show_col_types = FALSE
+)
+methane_113 <- read_csv("data/original/roll_call/methane-emissions-113.csv",
+    show_col_types = FALSE
+)
+methane_114 <- read_csv("data/original/roll_call/methane-pollution-safeguards-114.csv",
+    show_col_types = FALSE
+)
+methane_115 <- read_csv("data/original/roll_call/methane-pollution-safeguards-115.csv",
+    show_col_types = FALSE
+)
+methane_115_2 <- read_csv("data/original/roll_call/methane-pollution-safeguards-115-2.csv",
+    show_col_types = FALSE
+)
+methane_116 <- read_csv("data/original/roll_call/methane-pollution-safeguards-116.csv",
+    show_col_types = FALSE
+)
+
+# 2021 vote
+# manually removed spaced within cols, to snakecase
+methane_117 <- lcv_2021 %>% select(District, Party, Member_of_Congress, BioID, GovtrackID, Repealing)
+methane_117 <- methane_117 %>%
+    rename(Representative = Member_of_Congress) %>%
+    rename(Vote = Repealing)
+# view(methane_117)
+
+
+# 2019-2013 votes
+# view(methane_113)
+
+# Merge all roll calls (and remove the upper casing of names)
+roll_call_full_1 <- merge_roll_calls(c("3", "4"), list(methane_113, methane_114))
+roll_call_full_2 <- merge_roll_calls(c("51", "52"), list(methane_115, methane_115_2))
+roll_call_full_3 <- merge_roll_calls(c("6", "7"), list(methane_116, methane_117))
+roll_call_full <- final_merge_roll_call(list(roll_call_full_1, roll_call_full_2, roll_call_full_3))
+
+# insert count_votes column
+roll_call_full <- count_votes(roll_call_full)
+# write ? and n/a values to NA
+roll_call_full <- mark_na(roll_call_full)
+# using count_changes function to find out how many reps changed their votes
+roll_call_full <- count_vote_changes(roll_call_full)
+
+# use fuzzy_join_rep_id to merge together roll_call data and id_reps, within function
+roll_call_full <- rename(roll_call_full, c("party" = "Party")) %>%
+    # rename(., c("first_name" = "FirstName")) %>%
+    rename(., c("state" = "State"))
+# %>%
+# rename(., c("last_name" = "LastName"))
+
+# merge with id_reps -> with new ID merge we dont need the representatives IDs.
+# roll_call_full <- fuzzy_join_representative_id(roll_call_full)
+# roll_call_full <- combine_columns(roll_call_full, "name")
+
+
+# write df as csv
+write.csv(roll_call_full, "data/cleaned/roll_call.csv", row.names = FALSE)

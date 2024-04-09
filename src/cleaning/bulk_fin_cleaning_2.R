@@ -57,16 +57,16 @@ contribs20 <- combine_contributions(indivs20_filtered, pac20_filtered, rep_117)
 
 
 # write to csv
-write.csv(indivs20_filtered, "data/cleaned/indivs20_filtered.csv", row.names = FALSE)
-write.csv(indivs18_filtered, "data/cleaned/indivs18_filtered.csv", row.names = FALSE)
-write.csv(indivs16_filtered, "data/cleaned/indivs16_filtered.csv", row.names = FALSE)
-write.csv(indivs14_filtered, "data/cleaned/indivs14_filtered.csv", row.names = FALSE)
-write.csv(indivs12_filtered, "data/cleaned/indivs12_filtered.csv", row.names = FALSE)
-write.csv(pac20_filtered, "data/cleaned/pac20_filtered.csv", row.names = FALSE)
-write.csv(pac18_filtered, "data/cleaned/pac18_filtered.csv", row.names = FALSE)
-write.csv(pac16_filtered, "data/cleaned/pac16_filtered.csv", row.names = FALSE)
-write.csv(pac14_filtered, "data/cleaned/pac14_filtered.csv", row.names = FALSE)
-write.csv(pac12_filtered, "data/cleaned/pac12_filtered.csv", row.names = FALSE)
+# write.csv(indivs20_filtered, "data/cleaned/indivs20_filtered.csv", row.names = FALSE)
+# write.csv(indivs18_filtered, "data/cleaned/indivs18_filtered.csv", row.names = FALSE)
+# write.csv(indivs16_filtered, "data/cleaned/indivs16_filtered.csv", row.names = FALSE)
+# write.csv(indivs14_filtered, "data/cleaned/indivs14_filtered.csv", row.names = FALSE)
+# write.csv(indivs12_filtered, "data/cleaned/indivs12_filtered.csv", row.names = FALSE)
+# write.csv(pac20_filtered, "data/cleaned/pac20_filtered.csv", row.names = FALSE)
+# write.csv(pac18_filtered, "data/cleaned/pac18_filtered.csv", row.names = FALSE)
+# write.csv(pac16_filtered, "data/cleaned/pac16_filtered.csv", row.names = FALSE)
+# write.csv(pac14_filtered, "data/cleaned/pac14_filtered.csv", row.names = FALSE)
+# write.csv(pac12_filtered, "data/cleaned/pac12_filtered.csv", row.names = FALSE)
 
 
 
