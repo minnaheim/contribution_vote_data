@@ -42,8 +42,7 @@ contribs16_2 <- determine_industry(contribs16_2)
 contribs16 <- determine_industry(contribs16)
 contribs14 <- determine_industry(contribs14)
 contribs12 <- determine_industry(contribs12)
-view(contribs12)
-# view(contribs20)
+
 
 # summarise the contributions by type per representative (use summarize to
 # keep only relevant rows, but add original data back to keep the other cols)
@@ -82,6 +81,10 @@ contribs_wide <- contribs_long %>%
         values_from = total, names_prefix = "Contribution_"
     )
 # view(contribs_wide)
+
+# rename cols from + and - to _plus and _minus
+contribs_wide <- contribs_wide %>% rename_with(~ str_replace(., "\\+", "plus"))
+contribs_wide <- contribs_wide %>% rename_with(~ str_replace(., "-", "minus"))
 
 write.csv(contribs12_summarized, "data/cleaned/contribs12_summarized.csv", row.names = FALSE)
 write.csv(contribs14_summarized, "data/cleaned/contribs14_summarized.csv", row.names = FALSE)

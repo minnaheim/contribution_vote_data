@@ -1,0 +1,41 @@
+---
+title: "Data Analysis of Campaign Contributions and Voting Behavior"
+format: html
+---
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(plm)
+library(fastDummies)
+
+source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_prep_functions.R")
+df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
+df_no_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_no_change.csv")
+df_vote_3 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_3.csv")
+df_vote_4 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4.csv")
+df_vote_51 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_51.csv")
+df_vote_52 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_52.csv")
+df_vote_6 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_6.csv")
+df_vote_7 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_7.csv")
+```
+
+Plots and Data inspection can be found in the plot qmd located in the same directory
+
+## Model 1: OLS
+```{r}
+# Vote 3
+ols_3 <- lm(Vote3_plus ~ . - Vote3_minus - Vote3 - Vote_change_dummy, data = df_vote_3)
+summary(ols_3)
+
+# Vote 4
+ols_4 <- lm(Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy, data = df_vote_4)
+summary(ols_4)
+```
+
+```{r}
+# all Votes
+view(df_no_change)
+ols_all <- lm(all_votes_plus ~ . - all_votes_minus, data = df_no_change)
+summary(ols_all)
+
+```

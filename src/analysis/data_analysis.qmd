@@ -1,5 +1,5 @@
 ---
-title: "Data Analysis of Roll Call Data"
+title: "Data Analysis of Campaign Contributions and Voting Behavior"
 format: html
 ---
 The summary statistics and plots of the data can be found in the plots.qmd file in the same directory.
