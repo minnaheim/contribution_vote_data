@@ -36,15 +36,23 @@ methane_117 <- methane_117 %>%
     rename(Vote = Repealing)
 # view(methane_117)
 
-
 # 2019-2013 votes
 # view(methane_113)
-
 # Merge all roll calls (and remove the upper casing of names)
 roll_call_full_1 <- merge_roll_calls(c("3", "4"), list(methane_113, methane_114))
 roll_call_full_2 <- merge_roll_calls(c("51", "52"), list(methane_115, methane_115_2))
 roll_call_full_3 <- merge_roll_calls(c("6", "7"), list(methane_116, methane_117))
 roll_call_full <- final_merge_roll_call(list(roll_call_full_1, roll_call_full_2, roll_call_full_3))
+
+# clean district column
+roll_call_full <- roll_call_full %>%
+    rename(district = District)
+roll_call_full$district <- str_extract(roll_call_full$district, "^([^,]+)")
+# remove 23 NAs, i.e. representatives from Alaska and Delaware, only one representative from each state
+roll_call_full$district <- str_extract(roll_call_full$district, "(?<=-)[0-9]+")
+roll_call_full$district <- str_replace(roll_call_full$district, "(?:0*([1-9][0-9]*))|(0)", "\\1")
+roll_call_full$district[is.na(roll_call_full$district)] <- 0
+# view(roll_call_full)
 
 # insert count_votes column
 roll_call_full <- count_votes(roll_call_full)
@@ -64,6 +72,6 @@ roll_call_full <- rename(roll_call_full, c("party" = "Party")) %>%
 # roll_call_full <- fuzzy_join_representative_id(roll_call_full)
 # roll_call_full <- combine_columns(roll_call_full, "name")
 
-
+view(roll_call_full)
 # write df as csv
 write.csv(roll_call_full, "data/cleaned/roll_call.csv", row.names = FALSE)
