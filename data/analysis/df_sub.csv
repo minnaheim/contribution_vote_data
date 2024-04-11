@@ -1,0 +1,24 @@
+"BioID","GovtrackID","opensecrets_id","first_name","last_name","state","district","party","Vote3","Vote4","Vote51","Vote52","Vote6","Vote7","Vote_count","Vote_change","Vote_change_dummy","Contribution_3_minus","Contribution_3_plus","Contribution_4_minus","Contribution_4_plus","Contribution_51_minus","Contribution_51_plus","Contribution_52_minus","Contribution_52_plus","Contribution_6_minus","Contribution_6_plus","Contribution_7_minus","Contribution_7_plus","name.x","name.y"
+"C001059",400618,"N00026341","Jim","Costa","CA",NA,"D","-","+",NA,"+","-","+",5,3,1,24114,0,58000,2000,36750,0,59750,0,27500,0,45500,0,NA,NA
+"U000031",400414,"N00004133","Fred","Upton","MI",6,"R","-","-","-","+","+","+",6,1,1,127350,1000,142613,0,28200,0,94750,0,51788,0,33233,0,NA,NA
+"R000585",412393,"N00030949","Tom","Reed","NY",23,"R","-","-","-","-","-","+",6,1,1,85750,4250,77325,18000,40925,-500,32425,0,45288,0,5600,0,NA,NA
+"C001063",400657,"N00024978","Henry","Cuellar","TX",28,"D","-","-","-","-","+","+",6,1,1,65100,0,43750,0,53950,250,63700,250,66150,0,61598,0,NA,NA
+"V000132",412580,"N00034349","Filemon","Vela","TX",34,"D","-","+","+","+","+","+",6,1,1,7500,1000,14900,500,19500,0,12500,0,14500,0,2500,0,NA,NA
+"S001196",412648,"N00035523","Elise","Stefanik","NY",21,"R",NA,"+","+","+","+","-",5,1,1,NA,NA,26250,2250,34750,5493,25550,12200,22738,2500,1092,5800,NA,NA
+"G000578",412690,"N00039503","Matt","Gaetz","FL",1,"R",NA,NA,"-",NA,"-","+",3,1,1,NA,NA,NA,NA,5400,0,8100,0,1500,0,5391,0,NA,NA
+"G000581",412725,"N00038809","Vicente","Gonzalez","TX",NA,"D",NA,NA,"-","+","+","+",4,1,1,NA,NA,NA,NA,26000,0,24000,0,16000,0,53800,0,NA,NA
+"W000823",412764,"N00042403","Michael","Waltz","FL",6,"R",NA,NA,NA,NA,"+","-",2,1,1,NA,NA,NA,NA,NA,NA,NA,NA,7000,0,8750,0,NA,NA
+"C001077",NA,"N00024753","Mike","Coffman","CO",6,"R","-","-","-","+",NA,NA,4,1,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"mike coffman","mike coffman"
+"R000435",NA,"N00002858","Ileana","Ros-Lehtinen","FL",27,"R","-","+",NA,"+",NA,NA,3,1,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"ileana ros lehtinen","ileana ros lehtinen"
+NA,NA,NA,"Sanford D.","Bishop","GA",2,"D","+","-","+","-","+",NA,5,4,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"sanford d bishop",NA
+"R000580",NA,"N00004719","Peter J.,Peter","Roskam","IL",6,"R","-","-","-","+",NA,NA,4,1,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"peter j roskam","peter roskam"
+NA,NA,NA,"Christopher H.","Smith","NJ",4,"R","-","-","+","+","+",NA,5,1,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"christopher h smith",NA
+"L000567",NA,"N00000898","Leonard","Lance","NJ",7,"R","-","-","-","+",NA,NA,4,1,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"leonard lance","leonard lance"
+"H001051",NA,"N00030197","Richard","Hanna","NY",22,"R","-","+",NA,NA,NA,NA,2,1,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"richard hanna","richard hanna"
+"M001181",NA,"N00031134","Patrick","Meehan","PA",7,"R","-","-","+",NA,NA,NA,3,1,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"patrick meehan","patrick meehan"
+NA,NA,NA,"Mark","Sanford","SC",1,"R","-","-","+","+",NA,NA,4,1,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"mark sanford",NA
+"G000410",NA,"N00005870","Gene","Green","TX",29,"D","-","+","+","+",NA,NA,4,1,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"gene green","gene green"
+NA,NA,NA,"Marc A.","Veasey","TX",33,"D","+","-","+","+","+",NA,5,2,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"marc a veasey",NA
+"R000578",NA,"N00026885","Dave,David","Reichert","WA",8,"R","-","-","+","+",NA,NA,4,1,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"dave reichert","david reichert"
+"K000387",NA,"N00035820","Steve","Knight","CA",25,"R",NA,"-","+","-",NA,NA,3,2,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"steve knight","steve knight"
+"C001106",NA,"N00031064","Ryan","Costello","PA",6,"R",NA,"-","+","+",NA,NA,3,1,1,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,NA,"ryan costello","ryan costello"

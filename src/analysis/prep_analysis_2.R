@@ -1,4 +1,5 @@
 library(tidyverse)
+library(fastDummies)
 library(ggplot2)
 library(glue)
 
@@ -7,7 +8,8 @@ df <- read.csv("data/cleaned/df.csv")
 
 # remove representatives who voted only once, whose party isnt R,D,
 df <- analysis_prep(df)
-# view(df)
+
+view(df)
 
 # filter for each session
 df_vote_3 <- filter_session_data_2(df, 3)
@@ -70,8 +72,16 @@ df_no_change <- df_no_change %>% rename("all_votes_plus" = "all_votes_+")
 df_no_change <- df_no_change %>% rename("all_votes_minus" = "all_votes_-")
 df_no_change <- df_no_change %>% select(-c(
     all_votes, Vote_change_dummy, Vote_change, Vote_count,
-    Vote3, Vote4, Vote51, Vote52, Vote6, Vote7
+    Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, BioID, GovtrackID, opensecrets_id,
+    first_name, last_name, name.x, name.y
 ))
+
+# create df for subsample analysis
+df_sub <- df %>% dplyr::filter(Vote_change_dummy == 1)
+view(df_sub)
+
+
+
 
 write.csv(df, "data/analysis/df.csv", row.names = FALSE)
 write.csv(df_no_change, "data/analysis/df_no_change.csv", row.names = FALSE)
@@ -81,3 +91,4 @@ write.csv(df_vote_51, "data/analysis/df_vote_51.csv", row.names = FALSE)
 write.csv(df_vote_52, "data/analysis/df_vote_52.csv", row.names = FALSE)
 write.csv(df_vote_6, "data/analysis/df_vote_6.csv", row.names = FALSE)
 write.csv(df_vote_7, "data/analysis/df_vote_7.csv", row.names = FALSE)
+write.csv(df_sub, "data/analysis/df_sub.csv", row.names = FALSE)

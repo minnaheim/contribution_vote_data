@@ -156,8 +156,55 @@ F-statistic: 727.8 on 3 and 164 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all Votes</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all Votes</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ols_all <span class="ot">&lt;-</span> <span class="fu">lm</span>(all_votes_plus <span class="sc">~</span> . <span class="sc">-</span> all_votes_minus <span class="sc">-</span> state <span class="sc">-</span> district, <span class="at">data =</span> df_no_change)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = all_votes_plus ~ . - all_votes_minus - state - district, 
+    data = df_no_change)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.92283 -0.03514  0.02036  0.09750  0.32305 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            9.895e-01  4.669e-02  21.191   &lt;2e-16 ***
+partyR                -3.962e-02  6.425e-02  -0.617   0.5395    
+Contribution_3_minus   1.630e-07  2.000e-06   0.082   0.9353    
+Contribution_3_plus    1.350e-05  1.525e-05   0.886   0.3790    
+Contribution_4_minus   8.273e-06  3.132e-06   2.641   0.0103 *  
+Contribution_4_plus    1.950e-05  1.550e-05   1.258   0.2128    
+Contribution_51_minus  1.718e-06  6.606e-06   0.260   0.7956    
+Contribution_51_plus   4.086e-06  3.438e-05   0.119   0.9057    
+Contribution_52_minus -7.985e-06  5.859e-06  -1.363   0.1775    
+Contribution_52_plus  -5.188e-06  3.123e-05  -0.166   0.8686    
+Contribution_6_minus  -3.253e-06  2.103e-06  -1.547   0.1267    
+Contribution_6_plus    2.444e-06  2.462e-05   0.099   0.9212    
+Contribution_7_minus  -6.659e-07  1.940e-06  -0.343   0.7325    
+Contribution_7_plus    5.712e-06  2.021e-05   0.283   0.7783    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2293 on 66 degrees of freedom
+  (450 observations deleted due to missingness)
+Multiple R-squared:  0.3748,    Adjusted R-squared:  0.2517 
+F-statistic: 3.044 on 13 and 66 DF,  p-value: 0.001465</code></pre>
 </div>
+</div>
+</section>
+<section id="model-2-subsample-ols" class="level2">
+<h2 class="anchored" data-anchor-id="model-2-subsample-ols">Model 2: Subsample OLS</h2>
+</section>
+<section id="model-3-ols-with-person-fixed-effects" class="level2">
+<h2 class="anchored" data-anchor-id="model-3-ols-with-person-fixed-effects">Model 3: OLS with person Fixed Effects</h2>
+<p>include person fixed effects for all of the above OLS’, means we control for the individual, to see whether there are difference in votes, which are not dependent on the different individuals, but vote changes within the same person. so we can isolate all other factors of change, i.e.&nbsp;their state, district, party, and other things we do not have variables in the dataset for, like education.</p>
+</section>
+<section id="model-4-robustness-checks" class="level2">
+<h2 class="anchored" data-anchor-id="model-4-robustness-checks">Model 4: Robustness Checks</h2>
+<p>Use a logit and probit for the robustness checks</p>
 </section>
 
 </main>

@@ -34,11 +34,12 @@ print(nrow(unmerged))
 unmerged <- unmerged %>% select(first_name, last_name, state, district, everything()) # places relevant cols infront
 unmerged$district <- as.numeric(unmerged$district)
 df_1$district <- as.numeric(df_1$district)
+unassigned_contribs$district <- as.numeric(unassigned_contribs$district)
 
 
 # fuzzy join based on Names, District and States
 # create function that returns True or False, if distance between two strings is less than 3
-fuzzy_match <- function(x, y, max_dist = 2) {
+fuzzy_match <- function(x, y, max_dist = 5) {
     return(stringdist::stringdist(x, y) <= max_dist)
 }
 
@@ -56,6 +57,10 @@ df_2 <- fuzzy_left_join(
     match_fun = list(`==`, `==`, fuzzy_match)
 )
 
+# put both name columns infront
+# df_2 <- combine_columns(df_2, "name")
+df_2 <- select(df_2, name.x, name.y, everything())
+
 # to csv for manual inspection
 # write.csv(df_2, "temp.csv", row.names = FALSE)
 # view(df_2)
@@ -68,7 +73,7 @@ df_2 <- df_2 %>% rename(BioID.x = bioguide_id)
 df_2 <- df_2 %>% rename(BioID.y = BioID)
 df_2 <- combine_columns(df_2, "BioID")
 
-# view(df_2)
+view(df_2)
 
 print("Number of rows in df_2")
 print(nrow(df_2))

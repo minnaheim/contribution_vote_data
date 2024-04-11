@@ -34,8 +34,20 @@ summary(ols_4)
 
 ```{r}
 # all Votes
-view(df_no_change)
-ols_all <- lm(all_votes_plus ~ . - all_votes_minus, data = df_no_change)
+ols_all <- lm(all_votes_plus ~ . - all_votes_minus - state - district, data = df_no_change)
 summary(ols_all)
+```
+
+
+## Model 2: Subsample OLS 
+create a subsample, which only includes those representatives that changed their votes, i.e. Vote_change_dummy = 1. Out of those, check in which direction they changed their votes, and their corresponding votes & vote changes? -> use prep_analysis abd data_analysis as vorlage.
+```{r, include = FALSE}
+
 
 ```
+
+## Model 3: OLS with person Fixed Effects
+include person fixed effects for all of the above OLS', means we control for the individual, to see whether there are difference in votes, which are not dependent on the different individuals, but vote changes within the same person. so we can isolate all other factors of change, i.e. their state, district, party, and other things we do not have variables in the dataset for, like education.
+
+## Model 4: Robustness Checks 
+Use a logit and probit for the robustness checks.

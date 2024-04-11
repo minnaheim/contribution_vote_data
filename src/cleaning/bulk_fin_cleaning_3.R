@@ -34,6 +34,7 @@ determine_industry <- function(contributions) {
     contributions$Industry_Type <- industry_type
     # Filter out rows with RealCode in ("E4000", "E5000", "E4100", "E4200")
     contributions <- contributions[!(contributions$RealCode %in% c("E4000", "E5000", "E4100", "E4200")), ]
+    contributions <- dplyr::filter(contributions, Amount >= 0)
     return(contributions)
 }
 contribs20 <- determine_industry(contribs20)
@@ -42,7 +43,6 @@ contribs16_2 <- determine_industry(contribs16_2)
 contribs16 <- determine_industry(contribs16)
 contribs14 <- determine_industry(contribs14)
 contribs12 <- determine_industry(contribs12)
-
 
 # summarise the contributions by type per representative (use summarize to
 # keep only relevant rows, but add original data back to keep the other cols)
@@ -64,6 +64,7 @@ contribs16_summarized <- summarise_contribs(contribs16)
 contribs16_2_summarized <- summarise_contribs(contribs16_2)
 contribs18_summarized <- summarise_contribs(contribs18)
 contribs20_summarized <- summarise_contribs(contribs20)
+# view(contribs12_summarized)
 
 # merge together wide format, to merge with rollcall data
 contribs_long <- bind_rows(list(
