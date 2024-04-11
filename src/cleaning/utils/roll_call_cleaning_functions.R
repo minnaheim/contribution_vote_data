@@ -20,14 +20,6 @@ merge_roll_calls <- function(suffixes, datasets) {
 
     # Split Representative column
     merged_data <- separate(merged_data, "Representative", c("last_name", "first_name"), sep = ", ")
-    # view(merged_data)
-    # clean strings (remove uppercase letters, special characters, etc.)
-    # merged_data <- clean_strings(merged_data)
-    # clean_names <- lapply(merged_data$last_name, clean_strings)
-    # merged_data$last_name <- clean_names
-    # clean_names <- lapply(merged_data$first_name, clean_strings)
-    # merged_data$first_name <- clean_names
-    # view(merged_data)
 
     # combine cols
     merged_data <- combine_columns(merged_data, "Party")

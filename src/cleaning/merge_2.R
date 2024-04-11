@@ -6,25 +6,22 @@ source("src/cleaning/utils/rep_cleaning_functions.R")
 
 # read in cleaned data
 roll_call <- read_csv("data/cleaned/roll_call.csv", show_col_types = FALSE)
-contribs_wide <- read_csv("data/cleaned/contribs_wide.csv", show_col_types = FALSE)
+contributions <- read_csv("data/cleaned/contribs_wide.csv", show_col_types = FALSE)
 
-# view(roll_call)
-# view(contribs_wide)
+print("Number of rows in roll_call")
+print(nrow(roll_call))
 
 # Initial join on BioID
-df_1 <- left_join(roll_call, contribs_wide, by = c("BioID" = "bioguide_id"))
-
-# if "," in first_name and no "," in district, then take the second name, and discard the first in firstname
+df_1 <- left_join(roll_call, contributions, by = c("BioID" = "bioguide_id"))
 
 # combine columns
 df_1 <- combine_columns(df_1, "first_name")
 df_1 <- combine_columns(df_1, "last_name")
 df_1 <- combine_columns(df_1, "state")
 df_1 <- combine_columns(df_1, "district")
-# view(df_1)
 
 # select all columns from contribs_wide that are not in df_1
-unassigned_contribs <- contribs_wide %>% anti_join(df_1, by = c("bioguide_id" = "BioID"))
+unassigned_contribs <- contributions %>% anti_join(df_1, by = c("bioguide_id" = "BioID"))
 
 unmerged <- df_1 %>% filter(is.na(BioID))
 
@@ -127,6 +124,9 @@ final_df <- final_df %>% rename_with(~ str_replace(., "\\+", "plus"))
 final_df <- final_df %>% rename_with(~ str_replace(., "-", "minus"))
 
 # non merges appear twice (Robert (B.) Aderholt, Mark E. Amodei...)
+
+# keep only distinct representatives
+final_df <- final_df %>% distinct(first_name, last_name, state, district, .keep_all = TRUE)
 
 # view(final_df)
 # print(nrow(final_df))

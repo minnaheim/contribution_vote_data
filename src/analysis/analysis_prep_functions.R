@@ -225,20 +225,32 @@ detect_year_of_changes <- function(row) {
 
 
 vote_columns <- c("Vote3", "Vote4", "Vote51", "Vote52", "Vote6", "Vote7")
-session_columns <- c("113", "114", "115", "115", "116", "117")
+session_columns <- c("3", "4", "51", "52", "6", "7")
 
-first_contribution <- function(row) {
-    first_contribution <- NA
+base_year <- function(row) {
+    base_year <- NA
     # Iterate over the vote columns
     for (i in 1:length(vote_columns)) {
         # Check if the vote is not NA
         if (!is.na(row[vote_columns[i]])) {
             # Save the session as the base contribution
-            first_contribution <- session_columns[i]
+            base_year <- session_columns[i]
             # Break the loop
             break
         }
     }
     # Return the base contribution
-    return(first_contribution)
+    return(base_year)
+}
+
+# based on first contribution, find the corresponding contributions
+base_amount_plus <- function(row) {
+    base_amount_plus <- NA
+    base_amount_plus <- mutate(base_amount_plus = str_extract(glue("Contribution_{}_plus"), "\\d+"))
+    return(base_amount_plus)
+}
+base_amount_minus <- function(row) {
+    base_amount_minus <- NA
+    base_amount_minus <- mutate(base_amount_minus = str_extract(glue("Contribution_{session}_minus"), "\\d+"))
+    return(base_amount_minus)
 }

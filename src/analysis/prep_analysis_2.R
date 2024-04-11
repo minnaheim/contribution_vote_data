@@ -9,7 +9,7 @@ df <- read.csv("data/cleaned/df.csv")
 # remove representatives who voted only once, whose party isnt R,D,
 df <- analysis_prep(df)
 
-view(df)
+# view(df)
 
 # filter for each session
 df_vote_3 <- filter_session_data_2(df, 3)
@@ -76,11 +76,34 @@ df_no_change <- df_no_change %>% select(-c(
     first_name, last_name, name.x, name.y
 ))
 
-# create df for subsample analysis
-df_sub <- df %>% dplyr::filter(Vote_change_dummy == 1)
-view(df_sub)
-
-
+# create df for subsample analysis (incl. fixed effects)
+df_fe <- df %>% dplyr::filter(Vote_change_dummy == 1)
+df_fe$vote_change_type <- apply(df_fe[, vote_columns], 1, detect_changes)
+df_fe <- df_fe %>% relocate(vote_change_type, .after = Vote_change)
+df_fe$vote_change_year <- apply(df_fe[, vote_columns], 1, detect_year_of_changes)
+df_fe <- df_fe %>% relocate(vote_change_year, .after = vote_change_type)
+df_fe$base_year <- apply(df_fe[, vote_columns], 1, base_year)
+base_amount_plus <- function(row) {
+    base_amount_plus <- NA
+    base_amount_plus <- mutate(base_amount_plus = str_extract(glue("Contribution_{}_plus"), "\\d+"))
+    return(base_amount_plus)
+}
+df_fe$base_amount_plus <- apply(df_fe[, base_year], 1, base_amount_plus)
+# df_fe$base_amount_minus <- apply(df_fe[, base_year], 1, base_amount_minus)
+df_fe <- df_fe %>%
+    # Convert to long format by splitting 'vote_change_type' and 'vote_change_year' strings into multiple rows
+    separate_rows(vote_change_type, vote_change_year, sep = ",") %>%
+    # Optionally, you can trim whitespace if necessary
+    mutate(
+        vote_change_type = trimws(vote_change_type),
+        vote_change_year = trimws(vote_change_year)
+    )
+# relocate cols
+df_fe <- relocate(df_fe, "base_year", .after = "vote_change_year")
+df_fe$vote_change_type <- as.numeric(df_fe$vote_change_type)
+df_fe <- df_fe %>% mutate(year = str_extract(vote_change_year, "(?<=-).*"))
+df_fe <- relocate(df_fe, "year", .after = vote_change_year)
+# view(df_fe)
 
 
 write.csv(df, "data/analysis/df.csv", row.names = FALSE)

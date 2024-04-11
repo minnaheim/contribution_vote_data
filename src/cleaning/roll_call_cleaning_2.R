@@ -35,6 +35,7 @@ methane_117 <- methane_117 %>%
     rename(Representative = Member_of_Congress) %>%
     rename(Vote = Repealing)
 # view(methane_117)
+# view(methane_116)
 
 # 2019-2013 votes
 # view(methane_113)
@@ -42,6 +43,10 @@ methane_117 <- methane_117 %>%
 roll_call_full_1 <- merge_roll_calls(c("3", "4"), list(methane_113, methane_114))
 roll_call_full_2 <- merge_roll_calls(c("51", "52"), list(methane_115, methane_115_2))
 roll_call_full_3 <- merge_roll_calls(c("6", "7"), list(methane_116, methane_117))
+write.csv(roll_call_full_3, "data/cleaned/roll_call_full_3.csv", row.names = FALSE)
+view(roll_call_full_3)
+# clean names, (using clean_strings) and fuzzyjoin
+
 roll_call_full <- final_merge_roll_call(list(roll_call_full_1, roll_call_full_2, roll_call_full_3))
 
 # clean district column
