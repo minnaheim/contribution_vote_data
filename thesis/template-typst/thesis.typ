@@ -91,6 +91,11 @@
   - after all, there is good evidence that more campaign spending affects
     politicians and policy @Weschle_2022c p.26 (just have to consider more factors,
     different approaches?)
+  - Economic Literature states that the campaign contributions received depend on:
+    @stratmann-1995 p.128
+    - interest of the voter base (constituency) -> SOURCE
+    - PAC contributions depend on the incumbency status of legislators
+    - expected closeness of outcomes
 - 2 motives on what campaign donors receive in return, influence , i.e. change
   mind, or support those cands. that have yours @Weschle_2022c pp.26-28 - small
   scale contributors do follow both methods.
@@ -119,6 +124,15 @@ Bronars & Lott tried to do this....
     decreases. p. 319
   - evidence: close races, conservative PACs to conservative candidates, and to
     shift opinion within party,etc. @Stratmann_2005 p. 147-148
+
+\
+Stratmann, 1995 - campaign contributions and votes,does the timing of
+contributions matter?
+- main statements: contributions from current election cycles are more relevant
+  that the contributions from previous election cylces (short over long term),
+  PACs conclude different contracts with representatives, not ones that are first
+  contributions in one session and then votes as soon as they are voted, but
+  almost simultaneous votes
 
 \
 Other studies also failed to estimate a causal effect:
@@ -159,16 +173,7 @@ Lead over to Research Design, where I incorporate these things.
   (here: 114: 406 /435, 115: 397/ 435, and 116: 408/435) ?
 
 \
-*data preconditions*
-- uses cross-sectional panel data (panel data erhoben multiple times, like ts.) →
-  only works w/ similar bills
-- votes in 1991 and 1998
-- contributions in 1991-1992 and 1995-1996
-- use contributions from 1991-92 as a base year, since no prior legislation done.
-  1991-1992 contributions taken either as reward of vote in 1991 or as punishment
-- but… maybe timing or “rewarding” or “punishing” contributions are not momentary,
-  so also take 1989-1990 and 1995-1996 and 1991-1992 to 1997-1998 into account →
-  how ??
+
 == Methane Pollution Safeguard Votes
 *why this topic?*
 - fossil fuel industry as a significant contributor of campaign contributions
@@ -190,20 +195,71 @@ Lead over to Research Design, where I incorporate these things.
 == Hypotheses
 - Effects usually minimal, if significant @stratmann-2002 ?
 - change in votes is positively related with change in contributions (if little)
+- more time relevant votes have a more significant effect on votes, than the
+  aggregate contributions, @stratmann-1995
 
 #pagebreak()
 = Data
-== Types of data
-- sources (OpenSecrets, Congress, Github)
-- cleaning & merge (fuzzyjoin, without ID? if with ID, then easy...)
-- df for analysis
-  - only R, D, no Liberatrians, Independents
-  - only vote repeaters
-  - pivot longer (for FE df)
+== Data Types
+=== rollcall data
+- stratmann prerequisites: uses cross-sectional panel data (panel data erhoben
+  multiple times, like ts.) → only works w/ similar bills
+  - yes, methane bills (6 different kinds -> from LCV Scorecard)
+  - why kind of votes? what kind of bills?
+
+=== contribution data
+- sources: opensecrets bulkdata campaign contributions (election data 2012-2022)
+- stratmann prerequisites: votes in 1991 and 1998, contributions in 1991-1992 and
+  1995-1996. use contributions from 1991-92 as a base year, since no prior
+  legislation done.1991-1992 contributions taken either as reward of vote in 1991
+  or as punishment,but… maybe timing or “rewarding” or “punishing” contributions
+  are not momentary,so also take 1989-1990 and 1995-1996 and 1991-1992 to
+  1997-1998 into account.
+  - decided on taking only 6 mo. prior to vote contributions of individual and PAC
+    contributions to all candidates of house, and all individual contributions in
+    general
+    - regardless of for which election the contributions were, only the time
+    committed mattered @stratmann-1995, argues that if we only consider the
+    contributions of the previous election cycle, not that of the current cycls,
+    p.1.
+    - why such strong recency focus? (because votes were
+    closely paced)
+  - also tried with taking entire election period...difficult if votes are within
+    the same congressional session (i.e. 115th session two methane votes)
+
+== Data Processing
+=== Cleaning
+- merge together rollcall votes, determine vote changes, vote counts, to make
+  analysis easier
+- contributions in aggregate form quite clean, in time-related form, quite
+  difficult to import due to size and small RAM (using lazyload, then piping and
+  avoiding to use the raw data, aka pre-cleaning makes it bearable but time
+  intensive).
+- in aggregate form, just need to join together relevant contributions (clean and
+  dirty energy per representative)
+- in time sensi
+=== Merging
+- about 60% mergable based on ID
+  - github df with govtrack ID, bioguide ID, opensecrets ID from reputable sources
+  - from 2021 vote onwards, LCV has bioguide ID
+  - why not take non-LCV votes? aka votes from govtrack, with ID? didnt have all
+    roll-call votes, i.e. usually not those with relevant environmental amendments
+    to bills.
+- 40% of the data are representatives who were not there in 117th congress, had to
+  merge manually, i.e. merge by name using fedmatch to remove special characters
+  and case-sensitivtity, merge with fuzzyjoin to include all reps with max.
+  distance of 4 (i.e. Micheal and Mike) in the names, perfect match in state,
+  district, etc. -> insert code block?
+
+=== Final Dataframe for Analysis
+- only R, D, no Liberatrians, Independents
+- only vote repeaters
+- pivot longer (for FE df)
+
 #pagebreak()
 
 = Models
-== OLS (general & subsample)
+== Linear Probability Model with Individual Fixed Effects
 - Altough most basic model, needed to estimate the linear relationship between ALL
   contributions and votes.
 + basic OLS
