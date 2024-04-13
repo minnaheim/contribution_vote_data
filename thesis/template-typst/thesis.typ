@@ -84,6 +84,8 @@
   @Stratmann_2005 @Weschle_2022c p.24
 - but no correlation between campaign spending and vote shares, @Weschle_2022c
   p.24, (also other authors who state this)
+- stratmann says - correlation due to the support of similar interests, so we have
+  simultaneous equation bias - p.1 @stratmann-2002
 - but just saying that money doenst influence vote outcomes would be shortsighted,
   need to include other factors:
   - strategic spending, closeness of race, spending limits, etc. @Weschle_2022c p.25
@@ -158,8 +160,9 @@ Lead over to Research Design, where I incorporate these things.
 #pagebreak()
 
 = Research Design (Methodology)
-== Stratmann paper defines...
-*vote preconditions*
+== Type of Votes
+* Stratmann paper defines: vote preconditions*
+> repeate votes to measure change...
 + change in voting behaviour
 + winners & losers clearly defined
 + no vote before/ after repeated → aka only these votes (first vote as a
@@ -174,7 +177,7 @@ Lead over to Research Design, where I incorporate these things.
 
 \
 
-== Methane Pollution Safeguard Votes
+== Topic of Votes (Methane Pollution Safeguard)
 *why this topic?*
 - fossil fuel industry as a significant contributor of campaign contributions
 - topic of incredible relevance (interest of mine?)
@@ -217,7 +220,9 @@ Lead over to Research Design, where I incorporate these things.
   1997-1998 into account.
   - decided on taking only 6 mo. prior to vote contributions of individual and PAC
     contributions to all candidates of house, and all individual contributions in
-    general
+    general.
+    - show plots of when looking at 6 mo. prior to vote, which election periods are
+      relevant (i.e. 2013 vote, 2014 and 2016 elections most relevant)
     - regardless of for which election the contributions were, only the time
     committed mattered @stratmann-1995, argues that if we only consider the
     contributions of the previous election cycle, not that of the current cycls,
@@ -229,15 +234,38 @@ Lead over to Research Design, where I incorporate these things.
 
 == Data Processing
 === Cleaning
+==== Representatives
+- imported Bioguide Representative Data (important for bio data, party, district,
+  etc. weren't so extensive in rollcall and contribution data)
+- *problem:* LCV scorecard did not have IDs for all votes, just the last one, only
+  from 2021 onwards. Thus merge was difficult later. But... used regardless
+  because predetermined which votes were pro-environmental and which were
+  anti-environmental, and they only showed those which were env. related rollcalls
+  which is all of what it is about.
+- had I used GOVTRACK ID, i would have had an easier time with the merge of IDs,
+  but the rollcall votes are not relevant, since not env. relevant, not all
+  amendments to bills are environmentally related, esp. for bills such as these,
+  where many insititutions are mentioned. and since environmental votes are the
+  main part of the study, this was most important.
+- used clean strings to remove special characters and case-sensitivtity, merge
+  with fuzzyjoin to include all reps with max. distance of 4 (i.e. Micheal and
+  Mike) in the names, perfect match in state, district, etc.
+==== Rollcall data
+- because i used LCV scorecard, already predetermined which were pro-environmental
+  votes, which were anti-environmental votes, drawback of no merge with ID.
 - merge together rollcall votes, determine vote changes, vote counts, to make
   analysis easier
+==== Campaign Contributions
 - contributions in aggregate form quite clean, in time-related form, quite
-  difficult to import due to size and small RAM (using lazyload, then piping and
-  avoiding to use the raw data, aka pre-cleaning makes it bearable but time
-  intensive).
+  difficult to import due to size and small RAM
+- to clean bulk data, created a script used shell bec. easier access to files,
+  could run it one by one, also used lazyload, then piping. -> all bec. of small
+  RAM and large files avoiding to use the raw data, aka pre-cleaning makes it
+  bearable but time intensive.
 - in aggregate form, just need to join together relevant contributions (clean and
   dirty energy per representative)
-- in time sensi
+- useful libraries like congress package not used, because did not use API to get
+  data
 === Merging
 - about 60% mergable based on ID
   - github df with govtrack ID, bioguide ID, opensecrets ID from reputable sources
@@ -272,10 +300,13 @@ Lead over to Research Design, where I incorporate these things.
     @stratmann-2002 p.11)
   - vote change in which direction (pro -> contra env = 0?) & vice versa
 
-== Logit / Probit
+== Logit / Probit (which Stratmann used)
 - literature on why OLS is bad, and logit/probit is good.
 - as Robustness Checks, since OLS sometimes over/underestimates @Stratmann_2005
   p.143
+- Stratmann uses a conditional fixed effects logit model @Allison @Chamberlin
+  @stratmann-2002
+- Stratmann uses probit model (only those who changed mind)
 
 #pagebreak()
 = Results
@@ -290,6 +321,9 @@ What to improve, work on or touch upon with more resources:
   (https://github.com/LibraryOfCongress/api.congress.gov/)), congressional data
   (https://github.com/unitedstates/congress-legislators), congress
   packages(https://github.com/IPPSR/congress)
+- use API in general, for opensecrets data and co. easier to work with, more
+  libraries (congress in r?)
+-
 - analyse difference in congress person's age, experience, etc. (are young/old
   legislators more likely to change their votes given contributions)
 
