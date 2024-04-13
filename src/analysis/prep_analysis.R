@@ -54,7 +54,7 @@ df_fe <- relocate(df_fe, "first_contribution", .after = "vote_change_year")
 df_fe$vote_change_type <- as.numeric(df_fe$vote_change_type)
 df_fe <- df_fe %>% mutate(year = str_extract(vote_change_year, "(?<=-).*"))
 df_fe <- relocate(df_fe, "year", .after = vote_change_year)
-# view(df_fe)
+view(df_fe)
 
 # write to csv
 write.csv(df_gen, "/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv", row.names = FALSE)

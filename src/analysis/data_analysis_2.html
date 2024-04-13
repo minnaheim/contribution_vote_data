@@ -127,9 +127,36 @@ Residual standard error: 0.1472 on 129 degrees of freedom
 Multiple R-squared:  0.9159,    Adjusted R-squared:  0.914 
 F-statistic: 468.4 on 3 and 129 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 4</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ols_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote4_plus <span class="sc">~</span> . <span class="sc">-</span> Vote4_minus <span class="sc">-</span> Vote4 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_4)</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the reverse, what determines a</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ols_3_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote3_minus <span class="sc">~</span> . <span class="sc">-</span> Vote3_plus <span class="sc">-</span> Vote3 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_3)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_3_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Vote3_minus ~ . - Vote3_plus - Vote3 - Vote_change_dummy, 
+    data = df_vote_3)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.10507 -0.04419 -0.03329  0.01207  0.95855 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           4.102e-02  1.886e-02   2.176   0.0314 *  
+partyR                9.323e-01  2.898e-02  32.174   &lt;2e-16 ***
+Contribution_3_minus  9.050e-07  5.056e-07   1.790   0.0758 .  
+Contribution_3_plus  -6.360e-06  6.959e-06  -0.914   0.3625    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1472 on 129 degrees of freedom
+  (226 observations deleted due to missingness)
+Multiple R-squared:  0.9159,    Adjusted R-squared:  0.914 
+F-statistic: 468.4 on 3 and 129 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 4</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ols_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote4_plus <span class="sc">~</span> . <span class="sc">-</span> Vote4_minus <span class="sc">-</span> Vote4 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_4)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -154,11 +181,116 @@ Residual standard error: 0.1337 on 164 degrees of freedom
 Multiple R-squared:  0.9301,    Adjusted R-squared:  0.9289 
 F-statistic: 727.8 on 3 and 164 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 51</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>ols_51 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote51_plus <span class="sc">~</span> . <span class="sc">-</span> Vote51_minus <span class="sc">-</span> Vote51 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_51)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_51)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Vote51_plus ~ . - Vote51_minus - Vote51 - Vote_change_dummy, 
+    data = df_vote_51)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.96057 -0.03272 -0.01434  0.02599  0.97722 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            9.754e-01  1.802e-02  54.135   &lt;2e-16 ***
+partyR                -9.375e-01  2.688e-02 -34.885   &lt;2e-16 ***
+Contribution_51_minus -5.720e-07  5.695e-07  -1.004   0.3164    
+Contribution_51_plus   9.420e-06  4.705e-06   2.002   0.0467 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1702 on 196 degrees of freedom
+  (211 observations deleted due to missingness)
+Multiple R-squared:  0.8864,    Adjusted R-squared:  0.8847 
+F-statistic: 509.8 on 3 and 196 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>ols_52 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote52_plus <span class="sc">~</span> . <span class="sc">-</span> Vote52_minus <span class="sc">-</span> Vote52 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_52)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_52)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Vote52_plus ~ . - Vote52_minus - Vote52 - Vote_change_dummy, 
+    data = df_vote_52)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.98717 -0.03155 -0.02176  0.02058  0.96907 
+
+Coefficients:
+                        Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)            9.782e-01  1.727e-02  56.637   &lt;2e-16 ***
+partyR                -9.571e-01  2.511e-02 -38.109   &lt;2e-16 ***
+Contribution_52_minus  1.041e-07  4.112e-07   0.253    0.800    
+Contribution_52_plus   9.486e-06  3.943e-06   2.406    0.017 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1653 on 204 degrees of freedom
+  (199 observations deleted due to missingness)
+Multiple R-squared:  0.8928,    Adjusted R-squared:  0.8912 
+F-statistic: 566.3 on 3 and 204 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>ols_6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote6_plus <span class="sc">~</span> . <span class="sc">-</span> Vote6_minus <span class="sc">-</span> Vote6 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_6)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Vote6_plus ~ . - Vote6_minus - Vote6 - Vote_change_dummy, 
+    data = df_vote_6)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.98607 -0.05382 -0.00270  0.00825  0.95394 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           9.928e-01  1.554e-02  63.878   &lt;2e-16 ***
+partyR               -9.341e-01  2.249e-02 -41.535   &lt;2e-16 ***
+Contribution_6_minus -2.442e-07  3.879e-07  -0.630    0.530    
+Contribution_6_plus   4.225e-06  9.772e-06   0.432    0.666    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1707 on 261 degrees of freedom
+  (138 observations deleted due to missingness)
+Multiple R-squared:  0.8849,    Adjusted R-squared:  0.8836 
+F-statistic: 668.8 on 3 and 261 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ols_7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote7_plus <span class="sc">~</span> . <span class="sc">-</span> Vote7_minus <span class="sc">-</span> Vote7 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_7)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Vote7_plus ~ . - Vote7_minus - Vote7 - Vote_change_dummy, 
+    data = df_vote_7)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.06383 -0.06086 -0.00355 -0.00179  0.94333 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           1.004e+00  1.519e-02  66.083   &lt;2e-16 ***
+partyR               -9.403e-01  2.133e-02 -44.075   &lt;2e-16 ***
+Contribution_7_minus -2.033e-07  3.840e-07  -0.530    0.597    
+Contribution_7_plus  -3.532e-06  8.326e-06  -0.424    0.672    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1635 on 246 degrees of freedom
+  (34 observations deleted due to missingness)
+Multiple R-squared:  0.8938,    Adjusted R-squared:  0.8925 
+F-statistic: 690.2 on 3 and 246 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all Votes</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>ols_all <span class="ot">&lt;-</span> <span class="fu">lm</span>(all_votes_plus <span class="sc">~</span> . <span class="sc">-</span> all_votes_minus <span class="sc">-</span> state <span class="sc">-</span> district, <span class="at">data =</span> df_no_change)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all Votes</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ols_all <span class="ot">&lt;-</span> <span class="fu">lm</span>(all_votes_plus <span class="sc">~</span> . <span class="sc">-</span> all_votes_minus <span class="sc">-</span> state <span class="sc">-</span> district, <span class="at">data =</span> df_no_change)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -197,14 +329,69 @@ F-statistic: 3.044 on 13 and 66 DF,  p-value: 0.001465</code></pre>
 </section>
 <section id="model-2-subsample-ols" class="level2">
 <h2 class="anchored" data-anchor-id="model-2-subsample-ols">Model 2: Subsample OLS</h2>
+<p>create a subsample, which only includes those representatives that changed their votes, i.e.&nbsp;Vote_change_dummy = 1. Out of those, check in which direction they changed their votes, and their corresponding votes &amp; vote changes? -&gt; use prep_analysis abd data_analysis as vorlage.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df_sub <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(BioID, GovtrackID, name.x, name.y, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, state, vote_change_year, opensecrets_id))</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df_sub <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(first_contribution_minus))</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>lm_sub <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_type <span class="sc">~</span> ., <span class="at">data =</span> df_sub)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = vote_change_type ~ ., data = df_sub)
+
+Residuals:
+         1          2          3          4          5          6          7 
+ 2.632e-01 -6.579e-01  3.947e-01 -6.469e-16  4.078e-16  5.327e-16 -1.230e-15 
+
+Coefficients: (11 not defined because of singularities)
+                           Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)               5.433e+01  4.578e+02   0.119    0.925
+partyR                    9.363e-01  8.389e+00   0.112    0.929
+year                     -2.632e-02  2.279e-01  -0.115    0.927
+Contribution_3_minus      4.480e-06  2.660e-05   0.168    0.894
+Contribution_3_plus      -1.418e-04  1.564e-03  -0.091    0.942
+Contribution_4_minus     -1.112e-05  5.370e-05  -0.207    0.870
+Contribution_4_plus              NA         NA      NA       NA
+Contribution_51_minus            NA         NA      NA       NA
+Contribution_51_plus             NA         NA      NA       NA
+Contribution_52_minus            NA         NA      NA       NA
+Contribution_52_plus             NA         NA      NA       NA
+Contribution_6_minus             NA         NA      NA       NA
+Contribution_6_plus              NA         NA      NA       NA
+Contribution_7_minus             NA         NA      NA       NA
+Contribution_7_plus              NA         NA      NA       NA
+first_contribution_minus         NA         NA      NA       NA
+first_contribution_plus          NA         NA      NA       NA
+
+Residual standard error: 0.8111 on 1 degrees of freedom
+  (4 observations deleted due to missingness)
+Multiple R-squared:  0.2325,    Adjusted R-squared:  -3.605 
+F-statistic: 0.06057 on 5 and 1 DF,  p-value: 0.9903</code></pre>
+</div>
+</div>
 </section>
 <section id="model-3-ols-with-person-fixed-effects" class="level2">
 <h2 class="anchored" data-anchor-id="model-3-ols-with-person-fixed-effects">Model 3: OLS with person Fixed Effects</h2>
-<p>include person fixed effects for all of the above OLS’, means we control for the individual, to see whether there are difference in votes, which are not dependent on the different individuals, but vote changes within the same person. so we can isolate all other factors of change, i.e.&nbsp;their state, district, party, and other things we do not have variables in the dataset for, like education.</p>
+<p>include person fixed effects for all of the above OLS’, means we control for the individual, to see whether there are difference in votes, which are not dependent on the different individuals, but vote changes within the same person. so we can isolate all other factors of change, i.e.&nbsp;their state, district, party, and other things we do not have variables in the dataset for, like education. -&gt; CONTROL FOR - REPRESENTATIVE (NAME, PARTY, STATE, DISTRICT) &amp; - BILL (or assume all bills are the same and then just fix by representative (individual), since we assume this.)</p>
 </section>
 <section id="model-4-robustness-checks" class="level2">
 <h2 class="anchored" data-anchor-id="model-4-robustness-checks">Model 4: Robustness Checks</h2>
-<p>Use a logit and probit for the robustness checks</p>
+<p>Use a logit and probit for the robustness checks.</p>
+<p>Use Stratmann model -&gt; (like the simple OLS model from above) conditional fixed effects logit model, use df_fe (dummy votes, contributions of interests and opposing interest, legislator fixed effects,) -&gt; <strong>HOW CONDITIONAL?</strong></p>
+<p>We use a conditional FE logit model to work around the fact that fixed effects in a logistic regression cannot be estimated. used in panel data when conditional variable is binary.</p>
+<p>Unobserved heterogeneity can be dealt with by using fixed effects regression models, with dummy variables. there are consistent differences within clusters (i.e representatives)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for conditional fixed effects logit, use bife or clogit (from survival package)</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mod.no &lt;– clogit(y ~ x + strata(Time) + strata(ID), data = panel -&gt; where you fix Time and ID</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># with bife</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># panel$Time &lt;– as.factor(panel$Time)</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># mod.no &lt;- bife(y ~ x + Time | ID, data = panel, bias_corr = "ana")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Stratmann model 2.0 -&gt; subsample analysis (Vote_change_dummy == 1), probit model which only uses legislators who changed their vote, where 1 = 0 -&gt; 1 and 0 = 1 -&gt; 0. here no fixed effects, x variables are only contribution changes. -&gt; <strong>ADD CONTRIBUTION CHANGES</strong></p>
 </section>
 
 </main>

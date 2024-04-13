@@ -226,31 +226,64 @@ detect_year_of_changes <- function(row) {
 
 vote_columns <- c("Vote3", "Vote4", "Vote51", "Vote52", "Vote6", "Vote7")
 session_columns <- c("3", "4", "51", "52", "6", "7")
+contribution_columns <- c(
+    "Contribution_3_minus", "Contribution_3_plus",
+    "Contribution_4_minus", "Contribution_4_plus",
+    "Contribution_51_minus", "Contribution_51_plus",
+    "Contribution_52_minus", "Contribution_52_plus",
+    "Contribution_6_minus", "Contribution_6_plus",
+    "Contribution_7_minus", "Contribution_7_minus"
+)
 
 base_year <- function(row) {
-    base_year <- NA
+    first_year <- NA
     # Iterate over the vote columns
     for (i in 1:length(vote_columns)) {
         # Check if the vote is not NA
         if (!is.na(row[vote_columns[i]])) {
             # Save the session as the base contribution
-            base_year <- session_columns[i]
+            first_year <- session_columns[i]
             # Break the loop
             break
         }
     }
     # Return the base contribution
-    return(base_year)
+    return(first_year)
 }
 
-# based on first contribution, find the corresponding contributions
+# create a function that for each row, runs through the contributions columns,
+# and copies the first non NA column into first_contributions_plus and first_contributions_minus
+first_contribution_minus <- function(row) {
+    for (i in contribution_columns) {
+        if (!is.na(row[i])) {
+            return(row[i])
+        }
+    }
+    return(NA)
+}
+
+first_contribution_plus <- function(row) {
+    found <- FALSE
+    for (col in contribution_columns) {
+        if (found) {
+            return(row[col])
+        }
+        if (!is.na(row[col])) {
+            found <- TRUE
+        }
+    }
+    return(NA)
+}
+
+
+# # based on first contribution, find the corresponding contributions
 base_amount_plus <- function(row) {
     base_amount_plus <- NA
-    base_amount_plus <- mutate(base_amount_plus = str_extract(glue("Contribution_{}_plus"), "\\d+"))
+    base_amount_plus <- mutate(base_amount_plus = str_extract(glue("Contribution_{first_vote}_plus"), "\\d+"))
     return(base_amount_plus)
 }
-base_amount_minus <- function(row) {
-    base_amount_minus <- NA
-    base_amount_minus <- mutate(base_amount_minus = str_extract(glue("Contribution_{session}_minus"), "\\d+"))
-    return(base_amount_minus)
-}
+# base_amount_minus <- function(row) {
+#     base_amount_minus <- NA
+#     base_amount_minus <- mutate(base_amount_minus = str_extract(glue("Contribution_{session}_minus"), "\\d+"))
+#     return(base_amount_minus)
+# }

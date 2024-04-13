@@ -31,10 +31,12 @@ df_vote_51 <- filter_session_data_2(df, 51)
 df_vote_51 <- df_vote_51 %>% filter(!is.na(Vote51))
 df_vote_51 <- dummy_cols(df_vote_51, select_columns = "Vote51")
 df_vote_51 <- df_vote_51 %>% rename("Vote51_plus" = "Vote51_+")
+df_vote_51 <- df_vote_51 %>% rename("Vote51_minus" = "Vote51_-")
 
 df_vote_52 <- filter_session_data_2(df, 52)
 df_vote_52 <- df_vote_52 %>% filter(!is.na(Vote52))
 df_vote_52 <- dummy_cols(df_vote_52, select_columns = "Vote52")
+df_vote_52 <- df_vote_52 %>% rename("Vote52_minus" = "Vote52_-")
 df_vote_52 <- df_vote_52 %>% rename("Vote52_plus" = "Vote52_+")
 
 df_vote_6 <- filter_session_data_2(df, 6)
@@ -82,14 +84,9 @@ df_fe$vote_change_type <- apply(df_fe[, vote_columns], 1, detect_changes)
 df_fe <- df_fe %>% relocate(vote_change_type, .after = Vote_change)
 df_fe$vote_change_year <- apply(df_fe[, vote_columns], 1, detect_year_of_changes)
 df_fe <- df_fe %>% relocate(vote_change_year, .after = vote_change_type)
-df_fe$base_year <- apply(df_fe[, vote_columns], 1, base_year)
-base_amount_plus <- function(row) {
-    base_amount_plus <- NA
-    base_amount_plus <- mutate(base_amount_plus = str_extract(glue("Contribution_{}_plus"), "\\d+"))
-    return(base_amount_plus)
-}
-df_fe$base_amount_plus <- apply(df_fe[, base_year], 1, base_amount_plus)
-# df_fe$base_amount_minus <- apply(df_fe[, base_year], 1, base_amount_minus)
+df_fe$first_vote <- apply(df_fe[, vote_columns], 1, base_year)
+df_fe$first_contribution_minus <- apply(df_fe, 1, first_contribution_minus)
+df_fe$first_contribution_plus <- apply(df_fe, 1, first_contribution_plus)
 df_fe <- df_fe %>%
     # Convert to long format by splitting 'vote_change_type' and 'vote_change_year' strings into multiple rows
     separate_rows(vote_change_type, vote_change_year, sep = ",") %>%
@@ -99,11 +96,10 @@ df_fe <- df_fe %>%
         vote_change_year = trimws(vote_change_year)
     )
 # relocate cols
-df_fe <- relocate(df_fe, "base_year", .after = "vote_change_year")
+df_fe <- relocate(df_fe, "first_vote", .after = "vote_change_year")
 df_fe$vote_change_type <- as.numeric(df_fe$vote_change_type)
 df_fe <- df_fe %>% mutate(year = str_extract(vote_change_year, "(?<=-).*"))
-df_fe <- relocate(df_fe, "year", .after = vote_change_year)
-# view(df_fe)
+df_sub <- relocate(df_fe, "year", .after = vote_change_year)
 
 
 write.csv(df, "data/analysis/df.csv", row.names = FALSE)

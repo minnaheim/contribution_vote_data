@@ -17,6 +17,7 @@ df_vote_51 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/a
 df_vote_52 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_52.csv")
 df_vote_6 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_6.csv")
 df_vote_7 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_7.csv")
+df_sub <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_sub.csv")
 ```
 
 Plots and Data inspection can be found in the plot qmd located in the same directory
@@ -27,9 +28,28 @@ Plots and Data inspection can be found in the plot qmd located in the same direc
 ols_3 <- lm(Vote3_plus ~ . - Vote3_minus - Vote3 - Vote_change_dummy, data = df_vote_3)
 summary(ols_3)
 
+# check the reverse, what determines a
+ols_3_2 <- lm(Vote3_minus ~ . - Vote3_plus - Vote3 - Vote_change_dummy, data = df_vote_3)
+summary(ols_3_2)
+
 # Vote 4
 ols_4 <- lm(Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy, data = df_vote_4)
 summary(ols_4)
+
+# Vote 51
+ols_51 <- lm(Vote51_plus ~ . - Vote51_minus - Vote51 - Vote_change_dummy, data = df_vote_51)
+summary(ols_51)
+
+ols_52 <- lm(Vote52_plus ~ . - Vote52_minus - Vote52 - Vote_change_dummy, data = df_vote_52)
+summary(ols_52)
+
+ols_6 <- lm(Vote6_plus ~ . - Vote6_minus - Vote6 - Vote_change_dummy, data = df_vote_6)
+summary(ols_6)
+
+ols_7 <- lm(Vote7_plus ~ . - Vote7_minus - Vote7 - Vote_change_dummy, data = df_vote_7)
+summary(ols_7)
+
+
 ```
 
 ```{r}
@@ -41,13 +61,46 @@ summary(ols_all)
 
 ## Model 2: Subsample OLS 
 create a subsample, which only includes those representatives that changed their votes, i.e. Vote_change_dummy = 1. Out of those, check in which direction they changed their votes, and their corresponding votes & vote changes? -> use prep_analysis abd data_analysis as vorlage.
-```{r, include = FALSE}
+```{r}
+df_sub <- df_sub %>% select(-c(BioID, GovtrackID, name.x, name.y, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, state, vote_change_year, opensecrets_id))
+df_sub <- df_sub %>% filter(!is.na(first_contribution_minus))
 
-
+lm_sub <- lm(vote_change_type ~ ., data = df_sub)
+summary(lm_sub)
 ```
 
 ## Model 3: OLS with person Fixed Effects
 include person fixed effects for all of the above OLS', means we control for the individual, to see whether there are difference in votes, which are not dependent on the different individuals, but vote changes within the same person. so we can isolate all other factors of change, i.e. their state, district, party, and other things we do not have variables in the dataset for, like education.
+-> CONTROL FOR - REPRESENTATIVE (NAME, PARTY, STATE, DISTRICT) & - BILL (or assume all bills are the same and then just fix by representative (individual), since we assume this.)
+
+```{r}
+
+
+```
 
 ## Model 4: Robustness Checks 
 Use a logit and probit for the robustness checks.
+
+Use Stratmann model -> (like the simple OLS model from above) conditional fixed effects logit model, use df_fe (dummy votes, contributions of interests and opposing interest, legislator fixed effects,) -> **HOW CONDITIONAL?**
+
+We use a conditional FE logit model to work around the fact that fixed effects in a logistic regression cannot be estimated. used in panel data when conditional variable is binary. 
+
+Unobserved heterogeneity can be dealt with by using fixed effects regression models, with dummy variables. there are consistent differences within clusters (i.e representatives)
+
+```{r}
+# for conditional fixed effects logit, use bife or clogit (from survival package)
+# mod.no <– clogit(y ~ x + strata(Time) + strata(ID), data = panel -> where you fix Time and ID
+
+# with bife
+# panel$Time <– as.factor(panel$Time)
+
+# mod.no <- bife(y ~ x + Time | ID, data = panel, bias_corr = "ana")
+
+
+```
+
+Stratmann model 2.0 -> subsample analysis (Vote_change_dummy == 1), probit model which only uses legislators who changed their vote, where 1 = 0 -> 1 and 0 = 1 -> 0. here no fixed effects, x variables are only contribution changes. -> **ADD CONTRIBUTION CHANGES**
+
+```{r}
+
+```
