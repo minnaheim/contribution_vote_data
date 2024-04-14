@@ -69,7 +69,8 @@ combine_all_contributions <- function(contributions, reps) {
     contribs <- bind_rows(contributions)
     contribs <- combine_diff_columns(contribs, "CID", "RecipID")
     # view(contribs)
-    contribs_reps <- inner_join(reps, contribs, by = c("opensecrets_id" = "CID"))
+    # left_join so that we not only keep those contributions belonging to reps, but we also keep those reps who received nothing that vote
+    contribs_reps <- left_join(reps, contribs, by = c("opensecrets_id" = "CID"))
     # view(contribs_reps)
     return(contribs_reps)
 }
@@ -97,6 +98,7 @@ clean_contribs_for_vote <- function(rep, cutoff_date) {
     for (i in 1:length(contributions)) {
         contributions[[i]] <- clean_contributions(contributions[[i]], cutoff_date)
     }
+    # combine only those contributions which belong to representatives of that congress, and reps who received nothing
     contribution <- combine_all_contributions(contributions, rep)
     return(contribution)
 }

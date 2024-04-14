@@ -34,21 +34,62 @@ methane_117 <- lcv_2021 %>% select(District, Party, Member_of_Congress, BioID, G
 methane_117 <- methane_117 %>%
     rename(Representative = Member_of_Congress) %>%
     rename(Vote = Repealing)
-# view(methane_117)
-# view(methane_116)
 
-# 2019-2013 votes
-# view(methane_113)
+# 2013 until 2019 votes
 # Merge all roll calls (and remove the upper casing of names)
 roll_call_full_1 <- merge_roll_calls(c("3", "4"), list(methane_113, methane_114))
 roll_call_full_2 <- merge_roll_calls(c("51", "52"), list(methane_115, methane_115_2))
-roll_call_full_3 <- merge_roll_calls(c("6", "7"), list(methane_116, methane_117))
-write.csv(roll_call_full_3, "data/cleaned/roll_call_full_3.csv", row.names = FALSE)
-view(roll_call_full_3)
-# clean names, (using clean_strings) and fuzzyjoin
+
+# roll_call_full_3 <- merge_roll_calls(c("6", "7"), list(methane_116, methane_117))
+# merge methane_116 and methane_117 together by using fuzzyjoin clean names, (using clean_strings) and fuzzyjoin
+fuzzy_match <- function(x, y, max_dist = 5) {
+    return(stringdist::stringdist(x, y) <= max_dist)
+}
+# sub , out of all rows, representativein methane_116
+methane_116$name <- methane_116$Representative
+methane_116$name <- gsub(",", "", methane_116$name)
+methane_116$name <- clean_strings(methane_116$Representative)
+methane_117$name <- methane_117$Representative
+methane_117$name <- gsub(",", "", methane_117$name)
+methane_117$name <- clean_strings(methane_117$Representative)
+
+# view(methane_116)
+# view(methane_117)
+
+roll_call_full_3 <- fuzzy_full_join(
+    methane_116,
+    methane_117,
+    by = c("name", "Party", "District"),
+    match_fun = list(fuzzy_match, `==`, `==`)
+)
+
+# combine all cols
+roll_call_full_3 <- combine_columns(roll_call_full_3, "Representative")
+roll_call_full_3 <- combine_columns(roll_call_full_3, "Party")
+roll_call_full_3 <- combine_columns(roll_call_full_3, "District")
+roll_call_full_3 <- combine_columns(roll_call_full_3, "name")
+roll_call_full_3 <- roll_call_full_3 %>%
+    rename(Vote6 = Vote.x) %>%
+    rename(Vote7 = Vote.y)
+
+# of those representatives that couldnt merge before, we have to remove the duplicated names
+roll_call_full_3$Representative <- str_extract(roll_call_full_3$Representative, "^[^,]+,[^,]+")
+
+# complete the rest of the merge_roll_calls function
+# Split Representative column
+roll_call_full_3 <- separate(roll_call_full_3, "Representative", c("last_name", "first_name"), sep = ", ")
+
+# combine cols
+roll_call_full_3 <- combine_columns(roll_call_full_3, "Party")
+roll_call_full_3 <- combine_columns(roll_call_full_3, "District")
+
+# # Create State column
+roll_call_full_3$State <- substr(roll_call_full_3$District, 1, 2)
+roll_call_full_3 <- relocate(roll_call_full_3, District, .after = State)
+
 
 roll_call_full <- final_merge_roll_call(list(roll_call_full_1, roll_call_full_2, roll_call_full_3))
-
+# view(roll_call_full)
 # clean district column
 roll_call_full <- roll_call_full %>%
     rename(district = District)
@@ -70,13 +111,9 @@ roll_call_full <- count_vote_changes(roll_call_full)
 roll_call_full <- rename(roll_call_full, c("party" = "Party")) %>%
     # rename(., c("first_name" = "FirstName")) %>%
     rename(., c("state" = "State"))
-# %>%
-# rename(., c("last_name" = "LastName"))
 
-# merge with id_reps -> with new ID merge we dont need the representatives IDs.
-# roll_call_full <- fuzzy_join_representative_id(roll_call_full)
-# roll_call_full <- combine_columns(roll_call_full, "name")
 
-view(roll_call_full)
+roll_call_full <- roll_call_full %>% relocate(BioID, GovtrackID)
+# view(roll_call_full)
 # write df as csv
 write.csv(roll_call_full, "data/cleaned/roll_call.csv", row.names = FALSE)

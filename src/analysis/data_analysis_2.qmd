@@ -62,9 +62,9 @@ summary(ols_all)
 ## Model 2: Subsample OLS 
 create a subsample, which only includes those representatives that changed their votes, i.e. Vote_change_dummy = 1. Out of those, check in which direction they changed their votes, and their corresponding votes & vote changes? -> use prep_analysis abd data_analysis as vorlage.
 ```{r}
-df_sub <- df_sub %>% select(-c(BioID, GovtrackID, name.x, name.y, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, state, vote_change_year, opensecrets_id))
-df_sub <- df_sub %>% filter(!is.na(first_contribution_minus))
+df_sub <- df_sub %>% select(-c(BioID, GovtrackID, name, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, state, vote_change_year, opensecrets_id))
 
+# create dummy for vote change... 1 or 0 vote!!
 lm_sub <- lm(vote_change_type ~ ., data = df_sub)
 summary(lm_sub)
 ```

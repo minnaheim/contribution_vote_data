@@ -18,13 +18,18 @@ contribs16 <- clean_contribs_for_vote(rep_115, "12-02-2017")
 contribs14 <- clean_contribs_for_vote(rep_114, "01-12-2016")
 contribs12 <- clean_contribs_for_vote(rep_113, "03-19-2013")
 
+# determine what to do with reps that received no contributions, i.e. in contribs12, for Vote3, 26 reps received no contributions.
+# Alma Adams, e.g. only got swapped in shortly after the vote.
+# view(contribs12)
+# view(contribs14)
 
+# FINISH THIS HERE!!
 # clean industry, keep only relevant and determine which are good energy, and which are bad
 determine_industry <- function(contributions) {
     industry_type <- rep(NA, nrow(contributions)) # initialize Industry_Type vector
 
     for (i in 1:nrow(contributions)) {
-        if (contributions$RealCode[i] %in% c("E0000", "E1500", "E2000")) {
+        if (is.na(contributions$RealCode[i]) || contributions$RealCode[i] %in% c("E0000", "E1500", "E2000")) {
             industry_type[i] <- "+"
         } else {
             industry_type[i] <- "-"
@@ -32,6 +37,8 @@ determine_industry <- function(contributions) {
     }
     # Add the Industry_Type column to the filtered dataframe
     contributions$Industry_Type <- industry_type
+    # change all NAs in amount to 0
+    contributions <- contributions %>% mutate(Amount = ifelse(is.na(Amount), 0, Amount))
     # Filter out rows with RealCode in ("E4000", "E5000", "E4100", "E4200")
     contributions <- contributions[!(contributions$RealCode %in% c("E4000", "E5000", "E4100", "E4200")), ]
     contributions <- dplyr::filter(contributions, Amount >= 0)
@@ -64,6 +71,8 @@ contribs16_summarized <- summarise_contribs(contribs16)
 contribs16_2_summarized <- summarise_contribs(contribs16_2)
 contribs18_summarized <- summarise_contribs(contribs18)
 contribs20_summarized <- summarise_contribs(contribs20)
+# view(contribs16_summarized)
+# view(contribs14_summarized)
 # view(contribs12_summarized)
 
 # merge together wide format, to merge with rollcall data
@@ -86,6 +95,11 @@ contribs_wide <- contribs_long %>%
 # rename cols from + and - to _plus and _minus
 contribs_wide <- contribs_wide %>% rename_with(~ str_replace(., "\\+", "plus"))
 contribs_wide <- contribs_wide %>% rename_with(~ str_replace(., "-", "minus"))
+
+# relocate ID cols
+contribs_wide <- contribs_wide %>% relocate(bioguide_id, opensecrets_id)
+view(contribs_wide)
+
 
 write.csv(contribs12_summarized, "data/cleaned/contribs12_summarized.csv", row.names = FALSE)
 write.csv(contribs14_summarized, "data/cleaned/contribs14_summarized.csv", row.names = FALSE)

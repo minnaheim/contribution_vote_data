@@ -65,7 +65,6 @@
 "Cunningham","Joe",1982-05-26,"M","rep","SC",1,"C001122","N00041400"
 "McAdams","Ben",1974-12-05,"M","rep","UT",4,"M001209","N00042013"
 "Riggleman","Denver",1970-03-17,"M","rep","VA",5,"R000611","N00043541"
-"Hall","Kwanza",1971-05-01,"M","rep","GA",5,"H001092",NA
 "Richmond","Cedric",1973-09-13,"M","rep","LA",2,"R000588","N00030184"
 "Wright","Ron",1953-04-08,"M","rep","TX",6,"W000827","N00042240"
 "Fudge","Marcia",1952-10-29,"F","rep","OH",11,"F000455","N00030490"
@@ -436,8 +435,3 @@
 "Tiffany","Thomas",1957-12-30,"M","rep","WI",7,"T000165","N00045307"
 "Garcia","Mike",1976-04-24,"M","rep","CA",27,"G000061","N00044298"
 "Suozzi","Thomas",1962-08-31,"M","rep","NY",3,"S001201","N00038742"
-NA,NA,NA,NA,NA,NA,NA,"B001305",NA
-NA,NA,NA,NA,NA,NA,NA,"L000570",NA
-NA,NA,NA,NA,NA,NA,NA,"M001198",NA
-NA,NA,NA,NA,NA,NA,NA,"M001190",NA
-NA,NA,NA,NA,NA,NA,NA,"W000800",NA

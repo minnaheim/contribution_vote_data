@@ -6,9 +6,9 @@ library(glue)
 source("src/analysis/analysis_prep_functions.R")
 df <- read.csv("data/cleaned/df.csv")
 
+
 # remove representatives who voted only once, whose party isnt R,D,
 df <- analysis_prep(df)
-
 # view(df)
 
 # filter for each session
@@ -75,7 +75,7 @@ df_no_change <- df_no_change %>% rename("all_votes_minus" = "all_votes_-")
 df_no_change <- df_no_change %>% select(-c(
     all_votes, Vote_change_dummy, Vote_change, Vote_count,
     Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, BioID, GovtrackID, opensecrets_id,
-    first_name, last_name, name.x, name.y
+    first_name, last_name, name
 ))
 
 # create df for subsample analysis (incl. fixed effects)
@@ -100,6 +100,13 @@ df_fe <- relocate(df_fe, "first_vote", .after = "vote_change_year")
 df_fe$vote_change_type <- as.numeric(df_fe$vote_change_type)
 df_fe <- df_fe %>% mutate(year = str_extract(vote_change_year, "(?<=-).*"))
 df_sub <- relocate(df_fe, "year", .after = vote_change_year)
+
+# combine cols
+
+# view(df_sub)
+
+# create person fixed effects df.
+
 
 
 write.csv(df, "data/analysis/df.csv", row.names = FALSE)
