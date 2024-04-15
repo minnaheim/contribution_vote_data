@@ -50,62 +50,7 @@ summarise_contributions <- function(df) {
     return(df_sum)
 }
 
-# function that filters the data based on the session, add 1151, 1152 for these two sessions
-filter_session_data <- function(df, session) {
-    if (session == 113) {
-        # Select columns based on conditions
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote3", grep("^amount.*113$", names(df), value = TRUE)
-        )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^vote|^amount", names(df), value = TRUE, invert = TRUE)
-        # excluded_cols <- grep("^(?!Vote*3|amount.*113$)", names(df), value = TRUE, perl = TRUE)
-    }
-    if (session == 114) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote4", grep("^amount.*114$", names(df), value = TRUE)
-        )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*4|amount.*114$)", names(df), value = TRUE, perl = TRUE)
-    }
-    if (session == 1151) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote51", grep("^amount.*115$", names(df), value = TRUE)
-        )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*51|amount.*115$)", names(df), value = TRUE, perl = TRUE)
-    }
-    if (session == 1152) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote52", grep("^amount.*115$", names(df), value = TRUE)
-        )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*52|amount.*115$)", names(df), value = TRUE, perl = TRUE)
-    }
-    if (session == 116) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote6", grep("^amount.*116$", names(df), value = TRUE)
-        )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*6|amount.*116$)", names(df), value = TRUE, perl = TRUE)
-    }
-    if (session == 117) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote7", grep("^amount.*117$", names(df), value = TRUE)
-        )
-        df <- df[, c(selected_cols)]
-        # view(df)
-    }
-    return(df)
-}
-
-# function that filters the data based on the session, add 1151, 1152 for these two sessions
+# function that filters the data based on the session
 filter_session_data_2 <- function(df, vote) {
     if (vote == 3) {
         # Select columns based on conditions
@@ -153,6 +98,77 @@ filter_session_data_2 <- function(df, vote) {
         selected_cols <- c(
             "party", "Vote_change_dummy",
             "Vote7", "Contribution_7_minus", "Contribution_7_plus"
+        )
+        df <- df[, c(selected_cols)]
+        # view(df)
+    }
+
+
+    return(df)
+}
+
+# function that filters the data based on the session
+filter_all_pre_session_data <- function(df, vote) {
+    if (vote == 3) {
+        # Select columns based on conditions
+        selected_cols <- c(
+            "party", "Vote_change_dummy",
+            "Vote3", "Contribution_3_minus", "Contribution_3_plus"
+        )
+        df <- df[, c(selected_cols)]
+        # excluded_cols <- grep("^vote|^amount", names(df), value = TRUE, invert = TRUE)
+        # excluded_cols <- grep("^(?!Vote*3|amount.*113$)", names(df), value = TRUE, perl = TRUE)
+    }
+    if (vote == 4) {
+        selected_cols <- c(
+            "party", "Vote_change_dummy",
+            "Vote4", "Contribution_3_minus", "Contribution_3_plus", "Contribution_4_minus", "Contribution_4_plus"
+        )
+        df <- df[, c(selected_cols)]
+        # excluded_cols <- grep("^(?!Vote*4|amount.*114$)", names(df), value = TRUE, perl = TRUE)
+    }
+    if (vote == 51) {
+        selected_cols <- c(
+            "party", "Vote_change_dummy",
+            "Vote51", "Contribution_3_minus", "Contribution_3_plus",
+            "Contribution_4_minus", "Contribution_4_plus",
+            "Contribution_51_minus", "Contribution_51_plus"
+        )
+        df <- df[, c(selected_cols)]
+        # excluded_cols <- grep("^(?!Vote*51|amount.*115$)", names(df), value = TRUE, perl = TRUE)
+    }
+    if (vote == 52) {
+        selected_cols <- c(
+            "party", "Vote_change_dummy",
+            "Vote52", "Contribution_3_minus", "Contribution_3_plus",
+            "Contribution_4_minus", "Contribution_4_plus",
+            "Contribution_51_minus", "Contribution_51_plus",
+            "Contribution_52_minus", "Contribution_52_plus"
+        )
+        df <- df[, c(selected_cols)]
+        # excluded_cols <- grep("^(?!Vote*52|amount.*115$)", names(df), value = TRUE, perl = TRUE)
+    }
+    if (vote == 6) {
+        selected_cols <- c(
+            "party", "Vote_change_dummy",
+            "Vote6", "Contribution_3_minus", "Contribution_3_plus",
+            "Contribution_4_minus", "Contribution_4_plus",
+            "Contribution_51_minus", "Contribution_51_plus",
+            "Contribution_52_minus", "Contribution_52_plus",
+            "Contribution_6_minus", "Contribution_6_plus"
+        )
+        df <- df[, c(selected_cols)]
+        # excluded_cols <- grep("^(?!Vote*6|amount.*116$)", names(df), value = TRUE, perl = TRUE)
+    }
+    if (vote == 7) {
+        selected_cols <- c(
+            "party", "Vote_change_dummy",
+            "Vote7", "Contribution_3_minus", "Contribution_3_plus",
+            "Contribution_4_minus", "Contribution_4_plus",
+            "Contribution_51_minus", "Contribution_51_plus",
+            "Contribution_52_minus", "Contribution_52_plus",
+            "Contribution_6_minus", "Contribution_6_plus",
+            "Contribution_7_minus", "Contribution_7_plus"
         )
         df <- df[, c(selected_cols)]
         # view(df)

@@ -13,7 +13,6 @@ df <- analysis_prep(df)
 
 # filter for each session
 df_vote_3 <- filter_session_data_2(df, 3)
-
 # dry...
 df_vote_3 <- df_vote_3 %>% filter(!is.na(Vote3))
 df_vote_3 <- dummy_cols(df_vote_3, select_columns = "Vote3")
@@ -57,6 +56,15 @@ df_vote_7 <- df_vote_7 %>% rename("Vote7_minus" = "Vote7_-")
 # out of 802, only 553 remain
 
 
+# get all votes leading up to the vote, to see if votes before have impact for next relevant vote
+df_vote_4_2 <- filter_all_pre_session_data(df, 4)
+df_vote_4_2 <- dummy_cols(df_vote_4_2, select_columns = "Vote4")
+df_vote_4_2 <- df_vote_4_2 %>% rename("Vote4_plus" = "Vote4_..1")
+df_vote_4_2 <- df_vote_4_2 %>% rename("Vote4_minus" = "Vote4_.")
+view(df_vote_4_2)
+
+
+
 # get all reps who voted only pos. or only neg. and regress with all contributions
 df_no_change <- df %>% filter(Vote_change_dummy == 0)
 df_no_change$"all_votes" <- 0
@@ -80,7 +88,7 @@ df_no_change <- df_no_change %>% select(-c(
 
 # create df for subsample analysis (incl. fixed effects)
 df_fe <- df %>% dplyr::filter(Vote_change_dummy == 1)
-view(df_fe)
+# view(df_fe)
 df_fe$vote_change_type <- apply(df_fe[, vote_columns], 1, detect_changes)
 df_fe <- df_fe %>% relocate(vote_change_type, .after = Vote_change)
 df_fe$vote_change_year <- apply(df_fe[, vote_columns], 1, detect_year_of_changes)
@@ -111,7 +119,7 @@ df_sub$vote_change_to_anti[df_sub$vote_change_type == 1] <- 0
 df_sub <- relocate(df_sub, vote_change_to_pro, .after = vote_change_type)
 df_sub <- relocate(df_sub, vote_change_to_anti, .after = vote_change_to_pro)
 
-view(df_sub)
+# view(df_sub)
 
 # create person fixed effects df.
 
@@ -121,6 +129,7 @@ write.csv(df, "data/analysis/df.csv", row.names = FALSE)
 write.csv(df_no_change, "data/analysis/df_no_change.csv", row.names = FALSE)
 write.csv(df_vote_3, "data/analysis/df_vote_3.csv", row.names = FALSE)
 write.csv(df_vote_4, "data/analysis/df_vote_4.csv", row.names = FALSE)
+write.csv(df_vote_4_2, "data/analysis/df_vote_4_2.csv", row.names = FALSE)
 write.csv(df_vote_51, "data/analysis/df_vote_51.csv", row.names = FALSE)
 write.csv(df_vote_52, "data/analysis/df_vote_52.csv", row.names = FALSE)
 write.csv(df_vote_6, "data/analysis/df_vote_6.csv", row.names = FALSE)

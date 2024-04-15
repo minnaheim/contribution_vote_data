@@ -13,6 +13,7 @@ df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/
 df_no_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_no_change.csv")
 df_vote_3 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_3.csv")
 df_vote_4 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4.csv")
+df_vote_4_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4_2.csv")
 df_vote_51 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_51.csv")
 df_vote_52 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_52.csv")
 df_vote_6 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_6.csv")
@@ -53,6 +54,15 @@ summary(ols_7)
 ```
 
 ```{r}
+# try it with sessionized, incl. all data leading up to the vote, not just vote
+# start with Vote, Vote3 first vote
+view(df_vote_4_2)
+ols_4_2 <- lm(Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy - Vote4_NA, data = df_vote_4_2)
+# doesnt work yet, go to prep_analysis to rename and remove Vote dummy cols
+summary(ols_4_2)
+```
+
+```{r}
 # all Votes
 ols_all <- lm(all_votes_plus ~ . - all_votes_minus - state - district, data = df_no_change)
 summary(ols_all)
@@ -66,14 +76,14 @@ create a subsample, which only includes those representatives that changed their
 
 # WHY ARE OLS RESULTS DIFFERENT DEP. ON QUARTO PREVIEW AND CONSOLE
 
-df_sub <- df_sub %>% select(-c(BioID, GovtrackID, name, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, state, vote_change_year, opensecrets_id, vote_change_type))
+df_sub <- df_sub %>% select(-c(BioID, GovtrackID, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, vote_change_year, opensecrets_id, vote_change_type))
 
 view(df_sub)
-lm_sub_pro <- lm(vote_change_to_pro ~ . - vote_change_to_anti, data = df_sub)
+lm_sub_pro <- lm(vote_change_to_pro ~ . - vote_change_to_anti - name - state, data = df_sub)
 summary(lm_sub_pro)
 
 
-lm_sub_anti <- lm(vote_change_to_anti ~ . - vote_change_to_pro, data = df_sub)
+lm_sub_anti <- lm(vote_change_to_anti ~ . - vote_change_to_pro - name - state, data = df_sub)
 summary(lm_sub_anti)
 ```
 
@@ -81,11 +91,12 @@ summary(lm_sub_anti)
 include person fixed effects for all of the above OLS', means we control for the individual, to see whether there are difference in votes, which are not dependent on the different individuals, but vote changes within the same person. so we can isolate all other factors of change, i.e. their state, district, party, and other things we do not have variables in the dataset for, like education.
 -> CONTROL FOR - REPRESENTATIVE (NAME, PARTY, STATE, DISTRICT) & - BILL (or assume all bills are the same and then just fix by representative (individual), since we assume this.)
 
-```{r}
+```{r,}
 # df_sub <- df_sub %>% select(-c(BioID, GovtrackID, first_vote, Vote_change, Vote_count, Vote_change_dummy, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, vote_change_year, opensecrets_id, vote_change_type))
-# view(df_sub)
+view(df_sub)
 # import correct df
-ind_fe_pro <- plm(vote_change_to_pro ~ . - vote_change_to_anti, data = df_sub, index = c("name", "state", "party", "year"), model = "within") # fix for correct modes.., by choosing year we fix for bills, since no bills were in the same year.
+ind_fe_pro <- plm(vote_change_to_pro ~ . - vote_change_to_anti, data = df_sub, index = c("name", "state", "year"), model = "within")
+# fix for correct modes.., by choosing year we fix for bills, since no bills were in the same year.
 summary(ind_fe_pro)
 # index can be length 3 max!!
 ```
