@@ -45,7 +45,8 @@
   - Koch Industries example (2016 elections)
   - consequences for democracy @Weschle_2022b
 - Literature & Methods used
-  - based on strattman, empirical and theoretical part, (causal identification
+  - based on strattman @stratmann-2002 (methodology & models) @stratmann-1995
+    (contribution data), empirical and theoretical part, (causal identification
     strategy) use of campaign contribution and roll call data, OLS/probit
 - Outline
   - first, theoretical review of campaign contribution literature, then model to
@@ -64,6 +65,10 @@
 - consensus: spending in politics has risen over time (opensecrets sources,
   @Stratmann_2005 p.141), explained by Lott, higher in states with bigger gov.
   @Stratmann_2005 p.148
+  - *plot* campaign contributions over time (steady increase), aka more relevant to
+    analyse
+  - *plot* distribution of campaign contributions - who gets contributions, over
+    time more congress people get some?
 
 // == Legislation
 // p.149 in @Stratmann_2005
@@ -191,9 +196,20 @@ Lead over to Research Design, where I incorporate these things.
   Stagall Act, this was a stretch, here it is definetly given) -> individual FE to
   account for this.
 - financial contributions from these industries are the highest & similar in size
-  (not given here, large but not largest, not similar in size. Plot difference in
-  contributions - from Opensecrets stats by industry.)
+  (not given here, large but not largest, not similar in size.
+  - *plot* difference in contributions - from Opensecrets stats by industry.)
 - large amount of mind changers (incl. plot) ... no, still enough
+- Stratmann works with campaign contributions from the electoral campaigns of
+  house members, i analyse these too, and additionally include votes of only 6 mo.
+  prior to vote, to accomplish 2 things: acct for 2 votes on methane pollution
+  safeguards in 115th congress and bec. more accurate, acc to @stratmann-1995 not
+  only election period before, but current one, next one (all overlap in time of
+  contribution.)
+  - *plot* contributions from before (e.g. relevant contributions over time, with
+    cutoff date, 2012 (misses vote 6mo. prior completely, 2014 right in the middle,
+    2016 in between))
+  - *plot* stats of the composition of the 6 mo. prior to vote contributions i.e.
+    2012 0 contribs, 2014 3000, 2016 2000...
 
 == Hypotheses
 - Effects usually minimal, if significant @stratmann-2002 ?
@@ -204,6 +220,13 @@ Lead over to Research Design, where I incorporate these things.
 #pagebreak()
 = Data
 == Data Types
+=== representative data
+- source: github dataframe (of current and historical legislators) and bioguide
+- needed to use representative data to match with contributions. Since
+  contributions always were to everyone, and/or to house candidates, needed to
+  keep only those who then made it to the house.
+- moreover, needed to import representative data from github to get the IDs to
+  then match rollcall and contribution data together.
 === rollcall data
 - stratmann prerequisites: uses cross-sectional panel data (panel data erhoben
   multiple times, like ts.) → only works w/ similar bills
@@ -212,6 +235,8 @@ Lead over to Research Design, where I incorporate these things.
 
 === contribution data
 - sources: opensecrets bulkdata campaign contributions (election data 2012-2022)
+- data were PAC contributions to candidates and individual contributions (to PACs,
+  candidates, etc.) -> source: opensecrets bulk data documentation
 - stratmann prerequisites: votes in 1991 and 1998, contributions in 1991-1992 and
   1995-1996. use contributions from 1991-92 as a base year, since no prior
   legislation done.1991-1992 contributions taken either as reward of vote in 1991
@@ -221,7 +246,7 @@ Lead over to Research Design, where I incorporate these things.
   - decided on taking only 6 mo. prior to vote contributions of individual and PAC
     contributions to all candidates of house, and all individual contributions in
     general.
-    - show plots of when looking at 6 mo. prior to vote, which election periods are
+    - *plots* of when looking at 6 mo. prior to vote, which election periods are
       relevant (i.e. 2013 vote, 2014 and 2016 elections most relevant)
     - regardless of for which election the contributions were, only the time
     committed mattered @stratmann-1995, argues that if we only consider the
@@ -237,8 +262,8 @@ Lead over to Research Design, where I incorporate these things.
 ==== Representatives
 - imported Bioguide Representative Data (important for bio data, party, district,
   etc. weren't so extensive in rollcall and contribution data)
-- *problem:* LCV scorecard did not have IDs for all votes, just the last one, only
-  from 2021 onwards. Thus merge was difficult later. But... used regardless
+- *problems:* LCV scorecard did not have IDs for all votes, just the last one,
+  only from 2021 onwards. Thus merge was difficult later. But... used regardless
   because predetermined which votes were pro-environmental and which were
   anti-environmental, and they only showed those which were env. related rollcalls
   which is all of what it is about.
@@ -250,14 +275,32 @@ Lead over to Research Design, where I incorporate these things.
 - used clean strings to remove special characters and case-sensitivtity, merge
   with fuzzyjoin to include all reps with max. distance of 4 (i.e. Micheal and
   Mike) in the names, perfect match in state, district, etc.
+- changes in members halfway, i.e. shows up in representative list, but not in
+  rollcall, or in contributions, etc.
+- (changes in congress from house to senate, github df then shows as only assen,
+  not rep history)
 ==== Rollcall data
 - because i used LCV scorecard, already predetermined which were pro-environmental
   votes, which were anti-environmental votes, drawback of no merge with ID.
 - merge together rollcall votes, determine vote changes, vote counts, to make
   analysis easier
+- *problems:* rollcall data from 2013-2019 was uniform, same names, cols, etc.
+  vote from 2021 had different format, names were different, had Bioguide ID so
+  when concatinating all rollcalls of the the 6 votes together, the last one didnt
+  match, i.e. couldnt "join" based on names (had to fuzzyjoin and merge based on
+  party, district, etc.)
 ==== Campaign Contributions
-- contributions in aggregate form quite clean, in time-related form, quite
-  difficult to import due to size and small RAM
+- data processing:
+  - aggregate: import all industry/sector data for each election (to all house
+    candidates), then join together, by reps - include only house members. join
+    together to create wide format panel data. Final step: categorize by pro-env
+    contributions and anti-env contributions
+  - bulkdata: use only individual and PAC data, select only members of congress and
+    then for the RealCodes choose only relevant ones, e.g. E (energy related) and
+    oil, etc. related -> source bulkdata documentation for industry summarize all
+    pro-env realcode contribs per rep into +/- env contributions
+- *problems:* contributions in aggregate form quite clean, in time-related form,
+  quite difficult to import due to size and small RAM
 - to clean bulk data, created a script used shell bec. easier access to files,
   could run it one by one, also used lazyload, then piping. -> all bec. of small
   RAM and large files avoiding to use the raw data, aka pre-cleaning makes it
@@ -288,12 +331,17 @@ Lead over to Research Design, where I incorporate these things.
 
 = Models
 == Linear Probability Model with Individual Fixed Effects
+- compare results aggregate contributions and time related contributions (6 mo.
+  prior to vote)
 - Altough most basic model, needed to estimate the linear relationship between ALL
   contributions and votes.
 + basic OLS
   - votes: pro-env/anti-env
   - contributions: all / grouped env/non-env
   - no FE / with FE -> differences?
++ sessionized OLS
+  - one regression for each vote (vote ~ contribution from election cylce/6 mo.
+    prior)
 + individual OLS
   - df FE (base year, pivot longer, ∆contribution, person-FE)
   - only incl. mind changers (only variations in voting behavior are relevant
