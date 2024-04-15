@@ -80,6 +80,7 @@ df_no_change <- df_no_change %>% select(-c(
 
 # create df for subsample analysis (incl. fixed effects)
 df_fe <- df %>% dplyr::filter(Vote_change_dummy == 1)
+view(df_fe)
 df_fe$vote_change_type <- apply(df_fe[, vote_columns], 1, detect_changes)
 df_fe <- df_fe %>% relocate(vote_change_type, .after = Vote_change)
 df_fe$vote_change_year <- apply(df_fe[, vote_columns], 1, detect_year_of_changes)
@@ -101,9 +102,16 @@ df_fe$vote_change_type <- as.numeric(df_fe$vote_change_type)
 df_fe <- df_fe %>% mutate(year = str_extract(vote_change_year, "(?<=-).*"))
 df_sub <- relocate(df_fe, "year", .after = vote_change_year)
 
-# combine cols
+# create dummy for vote change... 1 or 0 vote!! > von + -> - = 0, von - -> + = 1 (manually, use package for this)
+df_sub$vote_change_to_pro <- df_sub$vote_change_type
+df_sub$vote_change_to_pro[df_sub$vote_change_to_pro == 1] <- 1
+df_sub$vote_change_to_anti <- df_sub$vote_change_type
+df_sub$vote_change_to_anti[df_sub$vote_change_type == 0] <- 1
+df_sub$vote_change_to_anti[df_sub$vote_change_type == 1] <- 0
+df_sub <- relocate(df_sub, vote_change_to_pro, .after = vote_change_type)
+df_sub <- relocate(df_sub, vote_change_to_anti, .after = vote_change_to_pro)
 
-# view(df_sub)
+view(df_sub)
 
 # create person fixed effects df.
 

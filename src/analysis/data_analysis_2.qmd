@@ -62,11 +62,19 @@ summary(ols_all)
 ## Model 2: Subsample OLS 
 create a subsample, which only includes those representatives that changed their votes, i.e. Vote_change_dummy = 1. Out of those, check in which direction they changed their votes, and their corresponding votes & vote changes? -> use prep_analysis abd data_analysis as vorlage.
 ```{r}
-df_sub <- df_sub %>% select(-c(BioID, GovtrackID, name, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, state, vote_change_year, opensecrets_id))
+# view(df_sub)
 
-# create dummy for vote change... 1 or 0 vote!!
-lm_sub <- lm(vote_change_type ~ ., data = df_sub)
-summary(lm_sub)
+# WHY ARE OLS RESULTS DIFFERENT DEP. ON QUARTO PREVIEW AND CONSOLE
+
+df_sub <- df_sub %>% select(-c(BioID, GovtrackID, name, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, state, vote_change_year, opensecrets_id, vote_change_type))
+
+view(df_sub)
+lm_sub_pro <- lm(vote_change_to_pro ~ . - vote_change_to_anti, data = df_sub)
+summary(lm_sub_pro)
+
+
+lm_sub_anti <- lm(vote_change_to_anti ~ . - vote_change_to_pro, data = df_sub)
+summary(lm_sub_anti)
 ```
 
 ## Model 3: OLS with person Fixed Effects
@@ -74,8 +82,12 @@ include person fixed effects for all of the above OLS', means we control for the
 -> CONTROL FOR - REPRESENTATIVE (NAME, PARTY, STATE, DISTRICT) & - BILL (or assume all bills are the same and then just fix by representative (individual), since we assume this.)
 
 ```{r}
-
-
+# df_sub <- df_sub %>% select(-c(BioID, GovtrackID, first_vote, Vote_change, Vote_count, Vote_change_dummy, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, vote_change_year, opensecrets_id, vote_change_type))
+# view(df_sub)
+# import correct df
+ind_fe_pro <- plm(vote_change_to_pro ~ . - vote_change_to_anti, data = df_sub, index = c("name", "state", "party", "year"), model = "within") # fix for correct modes.., by choosing year we fix for bills, since no bills were in the same year.
+summary(ind_fe_pro)
+# index can be length 3 max!!
 ```
 
 ## Model 4: Robustness Checks 

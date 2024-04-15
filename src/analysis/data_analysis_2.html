@@ -331,15 +331,27 @@ F-statistic: 4.255 on 13 and 130 DF,  p-value: 6.65e-06</code></pre>
 <h2 class="anchored" data-anchor-id="model-2-subsample-ols">Model 2: Subsample OLS</h2>
 <p>create a subsample, which only includes those representatives that changed their votes, i.e.&nbsp;Vote_change_dummy = 1. Out of those, check in which direction they changed their votes, and their corresponding votes &amp; vote changes? -&gt; use prep_analysis abd data_analysis as vorlage.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df_sub <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(BioID, GovtrackID, name, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, state, vote_change_year, opensecrets_id))</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create dummy for vote change... 1 or 0 vote!!</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>lm_sub <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_type <span class="sc">~</span> ., <span class="at">data =</span> df_sub)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sub)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create dummy for vote change... 1 or 0 vote!! &gt; von + -&gt; - = 0, von - -&gt; + = 1</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>df_sub<span class="sc">$</span>vote_change_to_pro <span class="ot">&lt;-</span> df_sub<span class="sc">$</span>vote_change_type</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>df_sub<span class="sc">$</span>vote_change_to_pro[df_sub<span class="sc">$</span>vote_change_to_pro <span class="sc">==</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>df_sub<span class="sc">$</span>vote_change_to_anti <span class="ot">&lt;-</span> df_sub<span class="sc">$</span>vote_change_type</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>df_sub<span class="sc">$</span>vote_change_to_anti[df_sub<span class="sc">$</span>vote_change_type <span class="sc">==</span> <span class="dv">0</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>df_sub<span class="sc">$</span>vote_change_to_anti[df_sub<span class="sc">$</span>vote_change_type <span class="sc">==</span> <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> <span class="fu">relocate</span>(df_sub, vote_change_to_pro, <span class="at">.after =</span> vote_change_type)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> <span class="fu">relocate</span>(df_sub, vote_change_to_anti, <span class="at">.after =</span> vote_change_to_pro)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_sub)</span></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># WHY ARE OLS RESULTS DIFFERENT DEP. ON QUARTO PREVIEW AND CONSOLE</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df_sub <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(BioID, GovtrackID, name, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, state, vote_change_year, opensecrets_id, vote_change_type))</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_sub)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>lm_sub_pro <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_pro <span class="sc">~</span> . <span class="sc">-</span> vote_change_to_anti, <span class="at">data =</span> df_sub)</span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sub_pro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = vote_change_type ~ ., data = df_sub)
+lm(formula = vote_change_to_pro ~ . - vote_change_to_anti, data = df_sub)
 
 Residuals:
          1          2          3          4          5          6          7 
@@ -372,11 +384,54 @@ Residual standard error: 0.6468 on 5 degrees of freedom
 Multiple R-squared:  0.2446,    Adjusted R-squared:  -0.8128 
 F-statistic: 0.2313 on 7 and 5 DF,  p-value: 0.959</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>lm_sub_anti <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_anti <span class="sc">~</span> . <span class="sc">-</span> vote_change_to_pro, <span class="at">data =</span> df_sub)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sub_anti)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = vote_change_to_anti ~ . - vote_change_to_pro, data = df_sub)
+
+Residuals:
+         1          2          3          4          5          6          7 
+-5.046e-01  6.881e-01 -1.835e-01  4.037e-01 -5.321e-01  5.321e-01 -4.037e-01 
+         8         11         12         13         14         15 
+ 1.601e-16 -6.171e-16 -2.907e-15  4.679e-01 -4.679e-01  2.464e-15 
+
+Coefficients: (9 not defined because of singularities)
+                           Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)               1.301e+02  3.058e+02   0.426    0.688
+partyR                   -1.170e+00  2.350e+01  -0.050    0.962
+year                     -6.422e-02  1.518e-01  -0.423    0.690
+Contribution_3_minus      9.305e-06  1.206e-04   0.077    0.941
+Contribution_3_plus      -4.029e-04  2.523e-03  -0.160    0.879
+Contribution_4_minus      2.866e-06  7.994e-05   0.036    0.973
+Contribution_4_plus       1.352e-04  3.500e-04   0.386    0.715
+Contribution_51_minus    -2.221e-05  1.898e-04  -0.117    0.911
+Contribution_51_plus             NA         NA      NA       NA
+Contribution_52_minus            NA         NA      NA       NA
+Contribution_52_plus             NA         NA      NA       NA
+Contribution_6_minus             NA         NA      NA       NA
+Contribution_6_plus              NA         NA      NA       NA
+Contribution_7_minus             NA         NA      NA       NA
+Contribution_7_plus              NA         NA      NA       NA
+first_contribution_minus         NA         NA      NA       NA
+first_contribution_plus          NA         NA      NA       NA
+
+Residual standard error: 0.6468 on 5 degrees of freedom
+  (18 observations deleted due to missingness)
+Multiple R-squared:  0.2446,    Adjusted R-squared:  -0.8128 
+F-statistic: 0.2313 on 7 and 5 DF,  p-value: 0.959</code></pre>
+</div>
 </div>
 </section>
 <section id="model-3-ols-with-person-fixed-effects" class="level2">
 <h2 class="anchored" data-anchor-id="model-3-ols-with-person-fixed-effects">Model 3: OLS with person Fixed Effects</h2>
 <p>include person fixed effects for all of the above OLS’, means we control for the individual, to see whether there are difference in votes, which are not dependent on the different individuals, but vote changes within the same person. so we can isolate all other factors of change, i.e.&nbsp;their state, district, party, and other things we do not have variables in the dataset for, like education. -&gt; CONTROL FOR - REPRESENTATIVE (NAME, PARTY, STATE, DISTRICT) &amp; - BILL (or assume all bills are the same and then just fix by representative (individual), since we assume this.)</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df_sub &lt;- df_sub %&gt;% select(-c(BioID, GovtrackID, first_vote, Vote_change, Vote_count, Vote_change_dummy, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, vote_change_year, opensecrets_id, vote_change_type))</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_sub) <span class="co"># import correct df</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ind_fe &lt;- plm(y ~ x1, data = Panel, index = c("country", "year"), model = "within") # fix for correct modes..</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="model-4-robustness-checks" class="level2">
 <h2 class="anchored" data-anchor-id="model-4-robustness-checks">Model 4: Robustness Checks</h2>
@@ -385,13 +440,13 @@ F-statistic: 0.2313 on 7 and 5 DF,  p-value: 0.959</code></pre>
 <p>We use a conditional FE logit model to work around the fact that fixed effects in a logistic regression cannot be estimated. used in panel data when conditional variable is binary.</p>
 <p>Unobserved heterogeneity can be dealt with by using fixed effects regression models, with dummy variables. there are consistent differences within clusters (i.e representatives)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for conditional fixed effects logit, use bife or clogit (from survival package)</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mod.no &lt;– clogit(y ~ x + strata(Time) + strata(ID), data = panel -&gt; where you fix Time and ID</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># with bife</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># panel$Time &lt;– as.factor(panel$Time)</span></span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># mod.no &lt;- bife(y ~ x + Time | ID, data = panel, bias_corr = "ana")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for conditional fixed effects logit, use bife or clogit (from survival package)</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mod.no &lt;– clogit(y ~ x + strata(Time) + strata(ID), data = panel -&gt; where you fix Time and ID</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># with bife</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># panel$Time &lt;– as.factor(panel$Time)</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># mod.no &lt;- bife(y ~ x + Time | ID, data = panel, bias_corr = "ana")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Stratmann model 2.0 -&gt; subsample analysis (Vote_change_dummy == 1), probit model which only uses legislators who changed their vote, where 1 = 0 -&gt; 1 and 0 = 1 -&gt; 0. here no fixed effects, x variables are only contribution changes. -&gt; <strong>ADD CONTRIBUTION CHANGES</strong></p>
 </section>
