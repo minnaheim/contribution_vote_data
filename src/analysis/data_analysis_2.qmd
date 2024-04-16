@@ -3,10 +3,12 @@ title: "Data Analysis of Campaign Contributions and Voting Behavior"
 format: html
 ---
 ```{r setup, include=FALSE}
+# knitr::opts_chunk$set(warning = FALSE, message = FALSE)
 library(tidyverse)
 library(ggplot2)
 library(plm)
 library(fastDummies)
+library(GGally)
 
 source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_prep_functions.R")
 df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
@@ -29,9 +31,8 @@ Plots and Data inspection can be found in the plot qmd located in the same direc
 ols_3 <- lm(Vote3_plus ~ . - Vote3_minus - Vote3 - Vote_change_dummy, data = df_vote_3)
 summary(ols_3)
 
-# check the reverse, what determines a
-ols_3_2 <- lm(Vote3_minus ~ . - Vote3_plus - Vote3 - Vote_change_dummy, data = df_vote_3)
-summary(ols_3_2)
+df_vote_3 <- df_vote_3 %>% select(-c(Vote_change_dummy, Vote3_minus, Vote3_plus))
+ggpairs(df_vote_3)
 
 # Vote 4
 ols_4 <- lm(Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy, data = df_vote_4)
@@ -49,17 +50,15 @@ summary(ols_6)
 
 ols_7 <- lm(Vote7_plus ~ . - Vote7_minus - Vote7 - Vote_change_dummy, data = df_vote_7)
 summary(ols_7)
-
-
 ```
 
 ```{r}
 # try it with sessionized, incl. all data leading up to the vote, not just vote
 # start with Vote, Vote3 first vote
-view(df_vote_4_2)
-ols_4_2 <- lm(Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy - Vote4_NA, data = df_vote_4_2)
+# view(df_vote_4_2)
+# ols_4_2 <- lm(Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy - Vote4_NA, data = df_vote_4_2)
 # doesnt work yet, go to prep_analysis to rename and remove Vote dummy cols
-summary(ols_4_2)
+# summary(ols_4_2)
 ```
 
 ```{r}
@@ -68,14 +67,89 @@ ols_all <- lm(all_votes_plus ~ . - all_votes_minus - state - district, data = df
 summary(ols_all)
 ```
 
+## Correlelogram
+
+```{r}
+df_no_change <- df_no_change %>% select(-c(state))
+ggpairs(df_no_change)
+```
+
+### Correlations
+create correlelograms and measure correlations between contribution and vote outcomes
+```{r}
+# here correlation slightly negative, and p-value 0.93, so insignificant
+cor.test(df_vote_3$Vote3_plus, df_vote_3$Contribution_3_plus, method = "pearson")
+# effect is significant here, with p-value less than 0.0001
+cor.test(df_vote_3$Vote3_plus, df_vote_3$Contribution_3_minus, method = "pearson")
+# effect is significant on a 0.0001 level, and correlation is negative
+cor.test(df_vote_3$Vote3_minus, df_vote_3$Contribution_3_minus, method = "pearson")
+# here correlation slightly negative, and p-value 0.93, so insignificant
+cor.test(df_vote_3$Vote3_minus, df_vote_3$Contribution_3_plus, method = "pearson")
+# why contribution_plus not significant? because not enough data points?
+```
+
+```{r}
+# correlation of vote 4
+# not significant
+cor.test(df_vote_4$Vote4_plus, df_vote_4$Contribution_4_plus, method = "pearson")
+# significant on a 0.0001 level, negative correlation
+cor.test(df_vote_4$Vote4_plus, df_vote_4$Contribution_4_minus, method = "pearson")
+# significant on a 0.0001 level, positive correlation
+cor.test(df_vote_4$Vote4_minus, df_vote_4$Contribution_4_minus, method = "pearson")
+# not significant, 0.23 p-value
+cor.test(df_vote_4$Vote4_minus, df_vote_4$Contribution_4_plus, method = "pearson")
+```
+
+```{r}
+# Vote 51
+# surprisingly, significant on a 0.05 level, slight negative correlation
+cor.test(df_vote_51$Vote51_plus, df_vote_51$Contribution_51_plus, method = "pearson")
+# significant on a 0.0001 level, negative correlation
+cor.test(df_vote_51$Vote51_plus, df_vote_51$Contribution_51_minus, method = "pearson")
+# significant on a 0.0001 level, positive correlation
+cor.test(df_vote_51$Vote51_minus, df_vote_51$Contribution_51_minus, method = "pearson")
+# significant on a 0.05 level, slight positive correlation
+cor.test(df_vote_51$Vote51_minus, df_vote_51$Contribution_51_plus, method = "pearson")
+
+# Vote 52
+# significant on a 0.1 level, slight negative correlation
+cor.test(df_vote_52$Vote52_plus, df_vote_52$Contribution_52_plus, method = "pearson")
+# significant on a 0.0001 level, negative correlation
+cor.test(df_vote_52$Vote52_plus, df_vote_52$Contribution_52_minus, method = "pearson")
+# significant on a 0.0001 level, positive correlation
+cor.test(df_vote_52$Vote52_minus, df_vote_52$Contribution_52_minus, method = "pearson")
+# insignificant, slight positive correlation
+cor.test(df_vote_52$Vote52_minus, df_vote_52$Contribution_52_plus, method = "pearson")
+```
+
+```{r}
+# Vote 6
+# not significant
+cor.test(df_vote_6$Vote6_plus, df_vote_6$Contribution_6_plus, method = "pearson")
+# significant on a 0.0001 level, negative correlation
+cor.test(df_vote_6$Vote6_plus, df_vote_6$Contribution_6_minus, method = "pearson")
+# significant on a 0.0001 level, positive correlation
+cor.test(df_vote_6$Vote6_minus, df_vote_6$Contribution_6_minus, method = "pearson")
+# not significant
+cor.test(df_vote_6$Vote6_minus, df_vote_6$Contribution_6_plus, method = "pearson")
+```
+
+```{r}
+# Vote 7
+# not significant
+cor.test(df_vote_7$Vote7_plus, df_vote_7$Contribution_7_plus, method = "pearson")
+# significant on a 0.0001 level, negative correlation
+cor.test(df_vote_7$Vote7_plus, df_vote_7$Contribution_7_minus, method = "pearson")
+# significant on a 0.001 level, positive correlation
+cor.test(df_vote_7$Vote7_minus, df_vote_7$Contribution_7_minus, method = "pearson")
+# not significant
+cor.test(df_vote_7$Vote7_minus, df_vote_7$Contribution_7_plus, method = "pearson")
+```
 
 ## Model 2: Subsample OLS 
 create a subsample, which only includes those representatives that changed their votes, i.e. Vote_change_dummy = 1. Out of those, check in which direction they changed their votes, and their corresponding votes & vote changes? -> use prep_analysis abd data_analysis as vorlage.
 ```{r}
 # view(df_sub)
-
-# WHY ARE OLS RESULTS DIFFERENT DEP. ON QUARTO PREVIEW AND CONSOLE
-
 df_sub <- df_sub %>% select(-c(BioID, GovtrackID, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, vote_change_year, opensecrets_id, vote_change_type))
 
 view(df_sub)
