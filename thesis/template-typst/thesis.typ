@@ -41,18 +41,31 @@
 )
 #pagebreak()
 = Introduction
-== Koch Industries example (2016 elections)
-- political shift in US politics, differences in income and wealth, powerful and
-  wealthy want to influence elections/politics, @skocpol2016koch mixed with
-  polarisation of bipartisan parties @polarisation
-- even 84 percent of citizens believe that money has too great an influence in
-  politics and express a desire to reform the campaign finance system to limit the
-  influence of wealthy donors" @bonica p.1
+The United States has seen a dramatic increase in wealth and income gaps in
+recent decades, with the wealthy and powerful seeking to shape the political
+environment @skocpol2016koch. Additionally, the US bipartisan system has
+recently become more @polarisation. The public's perceptions mirror these
+trends: 84 percent of US residents think that money influences politics
+excessively and express a desire to see changes made to the campaign finance
+system to lessen the influence of wealthy donors @bonica p.1.
 
-- Koch Industries as one of the biggest donors...
-- especially involvement in the 2016 election - plegded to spend more than twice
-  that of republican comittee, support the republican party and the far-right
-  @skocpol2016koch p.8
+The Koch Industries, a privately held Industrial conglomerate, are one of the
+biggest donors to US politics. They are known especially for their involvement
+in the 2016 election cycle, where they spent "more than twice what the
+Republican national committee spent in the previous presidential election"
+@skocpol2016koch p.8.
+
+// == Koch Industries example (2016 elections)
+// - political shift in US politics, differences in income and wealth, powerful and
+//   wealthy want to influence elections/politics, @skocpol2016koch mixed with
+//   polarisation of bipartisan parties @polarisation
+// - even 84 percent of citizens believe that money has too great an influence in
+//   politics and express a desire to reform the campaign finance system to limit the
+//   influence of wealthy donors" @bonica p.1
+// - Koch Industries as one of the biggest donors...
+// - especially involvement in the 2016 election - plegded to spend more than twice
+//   that of republican comittee, support the republican party and the far-right
+//   @skocpol2016koch p.8
 - most republicans received contributions from oil&gas, with constently over 80%
   of rebublicans receiving oil&gas contributions from 2016-2024.
   @OpenSecrets2024PartisanIndustries
@@ -97,22 +110,29 @@
   - first, theoretical review of campaign contribution literature, with a focus on
     the causal relationship between contributions and votes, then linear and
     logit/probi model to estimate the effect of anti/pro env. contributions on
-    pro/anti env. otes
+    pro/anti env. votes
 
 #pagebreak()
 
 = Money in Politics
 - how does money in politics work?
   - contribution types (PAC, individual)
+  - tradeoff for congressmen, vote acc. to voter base (get re-elected) and vote acc.
+    to donors (get money to spend on campaigning) @KauKeenanRubin p.273
   - contribution goals (enrichment, campaign contributions, revolving door)
     @Weschle_2022c
 - consensus: spending in politics has risen over time (opensecrets sources,
   @Stratmann_2005 p.141), explained by Lott, higher in states with bigger gov.
-  @Stratmann_2005 p.148
+  @Stratmann_2005 p.148 @stratmann-2017 p.1 ("money given in contributions to
+  political campaigns has grown substantially")
   - *plot* campaign contributions over time (steady increase), aka more relevant to
     analyse
   - *plot* distribution of campaign contributions - who gets contributions, over
     time more congress people get some?
+- campaign contributions rose over time because of landmark US Supreme court case
+  Citizens United v. FEC "in 2010, which cleared the way for unlimited
+  election-related ‘independent expenditures’ previously capped in 24 U.S.
+  states." @citizen
 
 == Campaign Contributions
 - especially in campaign contributions, increase... ?
@@ -139,34 +159,74 @@ Depends on:
   different approaches?)
 - Economic Literature states that the campaign contributions received depend on:
   @stratmann-1995 p.128
-  - interest of the voter base (constituency) -> SOURCE
-  - PAC contributions depend on the incumbency status of legislators, since there is
-    a "tendency of companies to direct their contributions to incumbents"
-    @Selling2023 @fouirnaies2014financial
-  - expected closeness of outcomes
+  - party spread of the voter base "by the distribution of left-wing/right-wing
+    voters in the district in which candidates are running" @stratmann-2017 p.9
+- PAC contributions depend on the incumbency status of legislators, since there is
+  a "tendency of companies to direct their contributions to incumbents"
+  @Selling2023 @fouirnaies2014financial
+- expected closeness of outcomes -> "if incumbents expect that challengers pose no
+  real threat, then incumbents will spend much less than if challengers did pose a
+  threat" p.8 @stratmann-2017
 - correlation isnt enough, other factors influence, campaign contributions
   endogenously determined by a multitude of factors. @bronars-lott-1997 p.318
+- a contribution dollar doesnt go the same way, dep. on district where adv. is
+  spent @stratmann-2009
 // Reason for Contribution
+- assumption that "the firms are profit-maximizing and don’t make contributions
+  for reasons that do not benefit their bottom line" that the contribution is not
+  for nothing...what they recevie, however is unclear @stratmann-2017 p.13
 - 2 motives on what campaign donors receive in return, influence , i.e. change
   mind, or support those cands. that have yours @Weschle_2022c pp.26-28 - small
   scale contributors do follow both methods.
 - 3 types of candidates receiving contribution, also what is the goal of the
   contributor - access to the candidate, influence elections, most likely to win
-  @Stratmann_2005 p.146
+  @Stratmann_2005 p.146 @stratmann-2017 p.13
 
 To summarise... many different specifications needed, no clear consensus
 - part of the reason there is no academic consensus is because of the nature of
   the studies, cross-sectionality design, where correlation between contributions
   and votes (aka that money buys votes) is given due to the support of similar
   interests, so we have simultaneousequation bias - p.1 @stratmann-2002
-  @burris2001two
+  @burris2001two @chappell
 - Important is to understand, from which side the causation runs...
-  @stratmann-2002 p.1
+  @stratmann-2002 p.1 @bronars-lott-1997
+- endogeneity issue...
+- need to "exploiting specific votes and a rather narrow policy setting" @kang2015
+  @stratmann-1991 p.607 @chappell
+
+Why did these studies fail?
+
+#quote(
+  attribution: [@stratmann-2017 p.14],
+)[These studies lacked a convincing identification strategy to estimate the causal
+  effect of campaign contributions on legislative voting behavior. One major issue
+  arises due to possible reverse causality, meaning that while contributions have
+  an impact on roll call votes, it is also possible that legislators who cast roll
+  call votes which are favorable to interest groups receive contributions from
+  these groups.]
 
 == Causal Effect of Campaign Contributions on Representatives' Voting Decisions.
 *Main question*: Do incumbents cater to wishes of special interest groups, bec.
 of their contribution or do they get contribution because their views coincide
 with the special interests groups (mind-changers)? @Stratmann_2005 p.143
+@KauKeenanRubin p.275
+
+#quote(
+  attribution: [@matter, p.6 Bronars and Lott @bronars-lott-1997],
+)[
+  So far, causal evidence on this question is scarce as it is challenging to
+  disentangle whether donors simply sympathize with and donate to politicians with
+  political positions close to their own positions (i.e., donations are simply an
+  expression of support), or whether donations actually affect the observed
+  politicians’ decisions (i.e., donations actually buy votes).
+]
+same said for @chappell p.83. cannot conclude that contributions affect voting
+behavior of US representatives Evidence of Causal Relationship....\
+#quote(
+  attribution: [@matter p.6 @bertrand],
+)[provides indirect evidence in support of vote buying, by showing that lobbying
+  firms provide special interests access to politicians (as opposed to only giving
+  issue-specific information to Members of Congress)]
 
 \
 Bronars & Lott tried to do this....
@@ -201,7 +261,10 @@ Evidence from Environmental Voting in the U.S. Congress:
   public and the interest groups' policy preferences explains the electoral
   effect. (electoral gap meaning the difference between what they vote due to the
   contributions and the votes they make to suit their voter base and get
-  re-elected)
+  re-elected) - "Candidates that receive generous campaign contributions from the
+  oil and gas industry increase their pro-environment voting at election time,
+  because they understand that the public's preference for environmental
+  protection is stronger than that of the oil and gas industry".
 
 \
 Baldwin, Magee 1997,
@@ -227,7 +290,7 @@ Lead over to Research Design, where I incorporate these things.
 == Type of Votes
 * Stratmann paper defines: vote preconditions*
 > repeate votes to measure change...
-+ change in voting behaviour
++ change in voting behaviour @KauKeenanRubin p.276
 + winners & losers clearly defined
 + no vote before/ after repeated → aka only these votes (first vote as a
   benchmark)
@@ -255,8 +318,16 @@ Lead over to Research Design, where I incorporate these things.
   interest group ]
 - topic of incredible relevance (interest of mine?), many votes... relevance means
   large amount of votes
--
+- american public and even more so, congress members have become more polarised on
+  env. issues @McAlexander2020
+- environmental issue is important enough, that candidates still need to
+  articulate positions, dep. on the average voter @list2006elections
 *why these bills?*
+- all amend the funding/resources allocated to the EPA, which is "the Congress
+  plays a central role in the formulation of federal environmental policy. The
+  authority of the executive wing and the Environmental Protection Agency (EPA) to
+  regulate behavior is based on legislation enacted by the Congress"
+  @McAlexander2020
 - repeated 6 times, where 2 are the same bill, and 5 out of 6 are exactly the same
   topic, only 113th bill is a tad bit different
 - more detail on the bills, why revoted, why in different sessions...
@@ -340,6 +411,9 @@ Validate Decision on which types of contributions to use based on:
   the same congressional session (i.e. 115th session two methane votes)
 
 == Data Processing
+You can find the entire data processing, plots and analysis on my github
+profile.
+
 === Cleaning
 ==== Representatives
 - imported Bioguide Representative Data (important for bio data, party, district,
@@ -427,6 +501,8 @@ Why use which models? first LPM because....
 
 - still use Logit/Probit for robustness...
 == Linear Probability Model with Individual Fixed Effects
+- takes into account that dichotomous nature of votes, and non-negativity
+  constraint of votes @chappell p.77
 - compare results aggregate contributions and time related contributions (6 mo.
   prior to vote)
 - Altough most basic model, needed to estimate the linear relationship between ALL
@@ -476,6 +552,10 @@ What to improve, work on or touch upon with more resources:
   @stratmann-1991
 - include models from @stratmann-1995, that work with time related data and not
   just aggregate electoral data, like in @stratmann-2002
+- use DW-Nominate to make study more robust... compare partisan lines
+- this can lead to OVB, since "has no good measure for whether a challenger poses
+  a
+threat" -> by using 2SLS we can overcome this @stratmann-2017 p.9
 
 #pagebreak()
 = Conclusion
