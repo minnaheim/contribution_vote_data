@@ -101,9 +101,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="anchored" data-anchor-id="model-1-ols">Model 1: OLS</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 3</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_vote_3)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>ols_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote3_plus <span class="sc">~</span> . <span class="sc">-</span> Vote3_minus <span class="sc">-</span> Vote3 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_3)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ols_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote3_plus <span class="sc">~</span> . <span class="sc">-</span> Vote3_minus <span class="sc">-</span> Vote3 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_3)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -128,7 +127,62 @@ Residual standard error: 0.1194 on 335 degrees of freedom
 Multiple R-squared:  0.9433,    Adjusted R-squared:  0.9428 
 F-statistic:  1858 on 3 and 335 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(df_vote_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_vote_3 <span class="ot">&lt;-</span> df_vote_3 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Vote_change_dummy, Vote3_minus, Vote3_plus))</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(df_vote_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 20 rows containing non-finite outside the scale range
+(`stat_boxplot()`).
+Removed 20 rows containing non-finite outside the scale range
+(`stat_boxplot()`).
+Removed 20 rows containing non-finite outside the scale range
+(`stat_boxplot()`).
+Removed 20 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 20 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 20 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 20 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 20 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 20 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 20 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 20 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 20 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -136,36 +190,9 @@ F-statistic:  1858 on 3 and 335 DF,  p-value: &lt; 2.2e-16</code></pre>
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the reverse, what determines a</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>ols_3_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote3_minus <span class="sc">~</span> . <span class="sc">-</span> Vote3_plus <span class="sc">-</span> Vote3 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_3)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_3_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = Vote3_minus ~ . - Vote3_plus - Vote3 - Vote_change_dummy, 
-    data = df_vote_3)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.06825 -0.03086 -0.01970  0.00618  0.97024 
-
-Coefficients:
-                       Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)           2.937e-02  9.785e-03   3.001  0.00289 ** 
-partyR                9.568e-01  1.431e-02  66.860  &lt; 2e-16 ***
-Contribution_3_minus  5.184e-07  2.500e-07   2.073  0.03890 *  
-Contribution_3_plus  -3.500e-06  3.051e-06  -1.147  0.25216    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.1194 on 335 degrees of freedom
-  (20 observations deleted due to missingness)
-Multiple R-squared:  0.9433,    Adjusted R-squared:  0.9428 
-F-statistic:  1858 on 3 and 335 DF,  p-value: &lt; 2.2e-16</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 4</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ols_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote4_plus <span class="sc">~</span> . <span class="sc">-</span> Vote4_minus <span class="sc">-</span> Vote4 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_4)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 4</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ols_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote4_plus <span class="sc">~</span> . <span class="sc">-</span> Vote4_minus <span class="sc">-</span> Vote4 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_4)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -190,9 +217,9 @@ Residual standard error: 0.1511 on 383 degrees of freedom
 Multiple R-squared:  0.9087,    Adjusted R-squared:  0.908 
 F-statistic:  1271 on 3 and 383 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 51</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>ols_51 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote51_plus <span class="sc">~</span> . <span class="sc">-</span> Vote51_minus <span class="sc">-</span> Vote51 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_51)</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_51)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 51</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ols_51 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote51_plus <span class="sc">~</span> . <span class="sc">-</span> Vote51_minus <span class="sc">-</span> Vote51 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_51)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_51)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -217,8 +244,8 @@ Residual standard error: 0.1859 on 382 degrees of freedom
 Multiple R-squared:  0.8631,    Adjusted R-squared:  0.862 
 F-statistic: 802.7 on 3 and 382 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ols_52 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote52_plus <span class="sc">~</span> . <span class="sc">-</span> Vote52_minus <span class="sc">-</span> Vote52 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_52)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_52)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ols_52 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote52_plus <span class="sc">~</span> . <span class="sc">-</span> Vote52_minus <span class="sc">-</span> Vote52 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_52)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_52)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -243,8 +270,8 @@ Residual standard error: 0.193 on 378 degrees of freedom
 Multiple R-squared:  0.8524,    Adjusted R-squared:  0.8513 
 F-statistic: 727.9 on 3 and 378 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ols_6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote6_plus <span class="sc">~</span> . <span class="sc">-</span> Vote6_minus <span class="sc">-</span> Vote6 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_6)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ols_6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote6_plus <span class="sc">~</span> . <span class="sc">-</span> Vote6_minus <span class="sc">-</span> Vote6 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_6)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -269,8 +296,8 @@ Residual standard error: 0.1571 on 386 degrees of freedom
 Multiple R-squared:  0.9012,    Adjusted R-squared:  0.9005 
 F-statistic:  1174 on 3 and 386 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ols_7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote7_plus <span class="sc">~</span> . <span class="sc">-</span> Vote7_minus <span class="sc">-</span> Vote7 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_7)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ols_7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote7_plus <span class="sc">~</span> . <span class="sc">-</span> Vote7_minus <span class="sc">-</span> Vote7 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_7)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -297,17 +324,17 @@ F-statistic:  1275 on 3 and 336 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try it with sessionized, incl. all data leading up to the vote, not just vote</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># start with Vote, Vote3 first vote</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_vote_4_2)</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ols_4_2 &lt;- lm(Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy - Vote4_NA, data = df_vote_4_2)</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># doesnt work yet, go to prep_analysis to rename and remove Vote dummy cols</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(ols_4_2)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try it with sessionized, incl. all data leading up to the vote, not just vote</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># start with Vote, Vote3 first vote</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_vote_4_2)</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ols_4_2 &lt;- lm(Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy - Vote4_NA, data = df_vote_4_2)</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># doesnt work yet, go to prep_analysis to rename and remove Vote dummy cols</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(ols_4_2)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all Votes</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ols_all <span class="ot">&lt;-</span> <span class="fu">lm</span>(all_votes_plus <span class="sc">~</span> . <span class="sc">-</span> all_votes_minus <span class="sc">-</span> state <span class="sc">-</span> district, <span class="at">data =</span> df_no_change)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all Votes</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ols_all <span class="ot">&lt;-</span> <span class="fu">lm</span>(all_votes_plus <span class="sc">~</span> . <span class="sc">-</span> all_votes_minus <span class="sc">-</span> state <span class="sc">-</span> district, <span class="at">data =</span> df_no_change)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -347,8 +374,890 @@ F-statistic: 4.255 on 13 and 130 DF,  p-value: 6.65e-06</code></pre>
 <section id="correlelogram" class="level2">
 <h2 class="anchored" data-anchor-id="correlelogram">Correlelogram</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>df_no_change <span class="ot">&lt;-</span> df_no_change <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(state))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(df_no_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df_no_change <span class="ot">&lt;-</span> df_no_change <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(state))</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(df_no_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 66 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 66 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 240 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 240 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 205 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 205 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 193 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 193 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 193 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 193 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 209 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 209 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 257 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 257 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 66 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 66 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 66 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 200 rows containing non-finite outside the scale range
+(`stat_boxplot()`).
+Removed 200 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 156 rows containing non-finite outside the scale range
+(`stat_boxplot()`).
+Removed 156 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 136 rows containing non-finite outside the scale range
+(`stat_boxplot()`).
+Removed 136 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 137 rows containing non-finite outside the scale range
+(`stat_boxplot()`).
+Removed 137 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 147 rows containing non-finite outside the scale range
+(`stat_boxplot()`).
+Removed 147 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 193 rows containing non-finite outside the scale range
+(`stat_boxplot()`).
+Removed 193 rows containing non-finite outside the scale range
+(`stat_boxplot()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 240 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 200 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 200 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 200 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 210 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 210 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 246 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 246 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 246 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 246 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 304 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 304 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 344 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 344 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 200 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 200 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 240 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 200 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 200 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 200 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 210 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 210 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 246 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 246 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 246 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 246 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 304 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 304 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 344 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 344 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 200 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 200 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 205 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 156 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 210 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 210 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 156 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 156 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 197 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 197 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 197 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 197 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 268 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 268 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 312 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 312 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 156 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 156 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 205 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 156 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 210 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 210 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 156 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 156 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 197 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 197 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 197 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 197 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 268 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 268 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 312 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 312 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 156 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 156 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 193 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 136 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 246 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 246 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 197 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 197 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 136 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 136 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 141 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 141 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 216 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 216 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 261 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 261 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 136 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 136 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 193 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 136 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 246 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 246 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 197 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 197 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 136 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 136 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 141 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 141 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 216 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 216 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 261 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 261 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 136 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 136 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 193 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 137 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 246 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 246 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 197 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 197 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 141 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 141 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 137 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 137 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 216 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 216 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 262 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 262 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 137 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 137 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 193 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 137 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 246 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 246 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 197 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 197 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 141 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 141 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 137 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 137 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 216 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 216 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 262 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 262 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 137 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 137 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 209 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 147 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 304 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 304 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 268 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 268 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 216 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 216 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 216 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 216 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 147 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 147 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 198 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 198 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 147 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 147 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 209 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 147 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 304 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 304 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 268 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 268 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 216 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 216 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 216 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 216 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 147 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 147 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 198 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 198 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 147 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 147 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 257 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 193 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 344 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 344 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 312 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 312 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 261 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 261 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 262 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 262 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 198 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 198 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 193 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 193 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 193 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 193 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 257 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 193 rows containing non-finite outside the scale range
+(`stat_bin()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 344 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 344 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 312 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 312 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 261 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 261 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 262 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 262 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 198 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 198 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 193 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 193 rows containing non-finite outside the scale range
+(`stat_density()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 193 rows containing missing values
+
+Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
+Removed 193 rows containing missing values</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 66 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 200 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 200 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 156 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 156 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 136 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 136 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 137 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 137 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 147 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 147 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 193 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 193 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 66 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 200 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 200 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 156 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 156 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 136 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 136 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 137 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 137 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 147 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 147 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 193 rows containing missing values or values outside the scale range
+(`geom_point()`).
+Removed 193 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -361,72 +1270,20 @@ F-statistic: 4.255 on 13 and 130 DF,  p-value: 6.65e-06</code></pre>
 <h3 class="anchored" data-anchor-id="correlations">Correlations</h3>
 <p>create correlelograms and measure correlations between contribution and vote outcomes</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># here correlation slightly negative, and p-value 0.93, so insignificant</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_3<span class="sc">$</span>Vote3_plus, df_vote_3<span class="sc">$</span>Contribution_3_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_3$Vote3_plus and df_vote_3$Contribution_3_plus
-t = -0.08381, df = 337, p-value = 0.9333
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.1110306  0.1020034
-sample estimates:
-        cor 
--0.00456538 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># effect is significant here, with p-value less than 0.0001</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_3<span class="sc">$</span>Vote3_plus, df_vote_3<span class="sc">$</span>Contribution_3_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_3$Vote3_plus and df_vote_3$Contribution_3_minus
-t = -8.4993, df = 337, p-value = 6.255e-16
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.5041013 -0.3283163
-sample estimates:
-       cor 
--0.4201423 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># effect is significant on a 0.0001 level, and correlation is negative</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_3<span class="sc">$</span>Vote3_minus, df_vote_3<span class="sc">$</span>Contribution_3_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_3$Vote3_minus and df_vote_3$Contribution_3_minus
-t = 8.4993, df = 337, p-value = 6.255e-16
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- 0.3283163 0.5041013
-sample estimates:
-      cor 
-0.4201423 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># here correlation slightly negative, and p-value 0.93, so insignificant</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_3<span class="sc">$</span>Vote3_minus, df_vote_3<span class="sc">$</span>Contribution_3_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_3$Vote3_minus and df_vote_3$Contribution_3_plus
-t = 0.08381, df = 337, p-value = 0.9333
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.1020034  0.1110306
-sample estimates:
-       cor 
-0.00456538 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># why contribution_plus not significant? because not enough data points?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb190"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # here correlation slightly negative, and p-value 0.93, so insignificant</span></span>
+<span id="cb190-2"><a href="#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_3$Vote3_plus, df_vote_3$Contribution_3_plus, method = "pearson")</span></span>
+<span id="cb190-3"><a href="#cb190-3" aria-hidden="true" tabindex="-1"></a><span class="co"># # effect is significant here, with p-value less than 0.0001</span></span>
+<span id="cb190-4"><a href="#cb190-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_3$Vote3_plus, df_vote_3$Contribution_3_minus, method = "pearson")</span></span>
+<span id="cb190-5"><a href="#cb190-5" aria-hidden="true" tabindex="-1"></a><span class="co"># # effect is significant on a 0.0001 level, and correlation is negative</span></span>
+<span id="cb190-6"><a href="#cb190-6" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_3$Vote3_minus, df_vote_3$Contribution_3_minus, method = "pearson")</span></span>
+<span id="cb190-7"><a href="#cb190-7" aria-hidden="true" tabindex="-1"></a><span class="co"># # here correlation slightly negative, and p-value 0.93, so insignificant</span></span>
+<span id="cb190-8"><a href="#cb190-8" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_3$Vote3_minus, df_vote_3$Contribution_3_plus, method = "pearson")</span></span>
+<span id="cb190-9"><a href="#cb190-9" aria-hidden="true" tabindex="-1"></a><span class="co"># why contribution_plus not significant? because not enough data points?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation of vote 4</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_4<span class="sc">$</span>Vote4_plus, df_vote_4<span class="sc">$</span>Contribution_4_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb191"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb191-1"><a href="#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation of vote 4</span></span>
+<span id="cb191-2"><a href="#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
+<span id="cb191-3"><a href="#cb191-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_4<span class="sc">$</span>Vote4_plus, df_vote_4<span class="sc">$</span>Contribution_4_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -440,8 +1297,8 @@ sample estimates:
         cor 
 -0.06208552 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_4<span class="sc">$</span>Vote4_plus, df_vote_4<span class="sc">$</span>Contribution_4_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb193"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb193-1"><a href="#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
+<span id="cb193-2"><a href="#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_4<span class="sc">$</span>Vote4_plus, df_vote_4<span class="sc">$</span>Contribution_4_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -455,8 +1312,8 @@ sample estimates:
        cor 
 -0.3570589 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, positive correlation</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_4<span class="sc">$</span>Vote4_minus, df_vote_4<span class="sc">$</span>Contribution_4_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb195"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb195-1"><a href="#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, positive correlation</span></span>
+<span id="cb195-2"><a href="#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_4<span class="sc">$</span>Vote4_minus, df_vote_4<span class="sc">$</span>Contribution_4_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -470,8 +1327,8 @@ sample estimates:
       cor 
 0.3570589 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant, 0.23 p-value</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_4<span class="sc">$</span>Vote4_minus, df_vote_4<span class="sc">$</span>Contribution_4_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb197"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb197-1"><a href="#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant, 0.23 p-value</span></span>
+<span id="cb197-2"><a href="#cb197-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_4<span class="sc">$</span>Vote4_minus, df_vote_4<span class="sc">$</span>Contribution_4_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -487,9 +1344,9 @@ sample estimates:
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 51</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co"># surprisingly, significant on a 0.05 level, slight negative correlation</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_51<span class="sc">$</span>Vote51_plus, df_vote_51<span class="sc">$</span>Contribution_51_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb199"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb199-1"><a href="#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 51</span></span>
+<span id="cb199-2"><a href="#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="co"># surprisingly, significant on a 0.05 level, slight negative correlation</span></span>
+<span id="cb199-3"><a href="#cb199-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_51<span class="sc">$</span>Vote51_plus, df_vote_51<span class="sc">$</span>Contribution_51_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -503,8 +1360,8 @@ sample estimates:
        cor 
 -0.1009153 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_51<span class="sc">$</span>Vote51_plus, df_vote_51<span class="sc">$</span>Contribution_51_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb201"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb201-1"><a href="#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
+<span id="cb201-2"><a href="#cb201-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_51<span class="sc">$</span>Vote51_plus, df_vote_51<span class="sc">$</span>Contribution_51_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -518,8 +1375,8 @@ sample estimates:
        cor 
 -0.3878153 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, positive correlation</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_51<span class="sc">$</span>Vote51_minus, df_vote_51<span class="sc">$</span>Contribution_51_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb203"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb203-1"><a href="#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, positive correlation</span></span>
+<span id="cb203-2"><a href="#cb203-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_51<span class="sc">$</span>Vote51_minus, df_vote_51<span class="sc">$</span>Contribution_51_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -533,8 +1390,8 @@ sample estimates:
       cor 
 0.3878153 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.05 level, slight positive correlation</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_51<span class="sc">$</span>Vote51_minus, df_vote_51<span class="sc">$</span>Contribution_51_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb205"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb205-1"><a href="#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.05 level, slight positive correlation</span></span>
+<span id="cb205-2"><a href="#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_51<span class="sc">$</span>Vote51_minus, df_vote_51<span class="sc">$</span>Contribution_51_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -548,9 +1405,9 @@ sample estimates:
       cor 
 0.1009153 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 52</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.1 level, slight negative correlation</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_52<span class="sc">$</span>Vote52_plus, df_vote_52<span class="sc">$</span>Contribution_52_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb207"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb207-1"><a href="#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 52</span></span>
+<span id="cb207-2"><a href="#cb207-2" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.1 level, slight negative correlation</span></span>
+<span id="cb207-3"><a href="#cb207-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_52<span class="sc">$</span>Vote52_plus, df_vote_52<span class="sc">$</span>Contribution_52_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -564,8 +1421,8 @@ sample estimates:
         cor 
 -0.02653255 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_52<span class="sc">$</span>Vote52_plus, df_vote_52<span class="sc">$</span>Contribution_52_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb209"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb209-1"><a href="#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
+<span id="cb209-2"><a href="#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_52<span class="sc">$</span>Vote52_plus, df_vote_52<span class="sc">$</span>Contribution_52_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -579,8 +1436,8 @@ sample estimates:
        cor 
 -0.3526774 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, positive correlation</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_52<span class="sc">$</span>Vote52_minus, df_vote_52<span class="sc">$</span>Contribution_52_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb211"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb211-1"><a href="#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, positive correlation</span></span>
+<span id="cb211-2"><a href="#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_52<span class="sc">$</span>Vote52_minus, df_vote_52<span class="sc">$</span>Contribution_52_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -594,8 +1451,8 @@ sample estimates:
       cor 
 0.3526774 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># insignificant, slight positive correlation</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_52<span class="sc">$</span>Vote52_minus, df_vote_52<span class="sc">$</span>Contribution_52_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb213"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb213-1"><a href="#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># insignificant, slight positive correlation</span></span>
+<span id="cb213-2"><a href="#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_52<span class="sc">$</span>Vote52_minus, df_vote_52<span class="sc">$</span>Contribution_52_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -611,9 +1468,9 @@ sample estimates:
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 6</span></span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
-<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_6<span class="sc">$</span>Vote6_plus, df_vote_6<span class="sc">$</span>Contribution_6_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb215"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb215-1"><a href="#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 6</span></span>
+<span id="cb215-2"><a href="#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
+<span id="cb215-3"><a href="#cb215-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_6<span class="sc">$</span>Vote6_plus, df_vote_6<span class="sc">$</span>Contribution_6_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -627,8 +1484,8 @@ sample estimates:
        cor 
 0.01011408 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_6<span class="sc">$</span>Vote6_plus, df_vote_6<span class="sc">$</span>Contribution_6_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb217"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb217-1"><a href="#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
+<span id="cb217-2"><a href="#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_6<span class="sc">$</span>Vote6_plus, df_vote_6<span class="sc">$</span>Contribution_6_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -642,8 +1499,8 @@ sample estimates:
       cor 
 -0.300914 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, positive correlation</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_6<span class="sc">$</span>Vote6_minus, df_vote_6<span class="sc">$</span>Contribution_6_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb219"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb219-1"><a href="#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, positive correlation</span></span>
+<span id="cb219-2"><a href="#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_6<span class="sc">$</span>Vote6_minus, df_vote_6<span class="sc">$</span>Contribution_6_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -657,8 +1514,8 @@ sample estimates:
      cor 
 0.300914 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_6<span class="sc">$</span>Vote6_minus, df_vote_6<span class="sc">$</span>Contribution_6_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb221"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb221-1"><a href="#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
+<span id="cb221-2"><a href="#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_6<span class="sc">$</span>Vote6_minus, df_vote_6<span class="sc">$</span>Contribution_6_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -674,9 +1531,9 @@ sample estimates:
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 7</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_7<span class="sc">$</span>Vote7_plus, df_vote_7<span class="sc">$</span>Contribution_7_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb223"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb223-1"><a href="#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 7</span></span>
+<span id="cb223-2"><a href="#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
+<span id="cb223-3"><a href="#cb223-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_7<span class="sc">$</span>Vote7_plus, df_vote_7<span class="sc">$</span>Contribution_7_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -690,8 +1547,8 @@ sample estimates:
        cor 
 0.06553043 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
-<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_7<span class="sc">$</span>Vote7_plus, df_vote_7<span class="sc">$</span>Contribution_7_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb225"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb225-1"><a href="#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
+<span id="cb225-2"><a href="#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_7<span class="sc">$</span>Vote7_plus, df_vote_7<span class="sc">$</span>Contribution_7_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -705,8 +1562,8 @@ sample estimates:
       cor 
 -0.166882 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.001 level, positive correlation</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_7<span class="sc">$</span>Vote7_minus, df_vote_7<span class="sc">$</span>Contribution_7_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb227"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb227-1"><a href="#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.001 level, positive correlation</span></span>
+<span id="cb227-2"><a href="#cb227-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_7<span class="sc">$</span>Vote7_minus, df_vote_7<span class="sc">$</span>Contribution_7_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -720,8 +1577,8 @@ sample estimates:
      cor 
 0.166882 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_7<span class="sc">$</span>Vote7_minus, df_vote_7<span class="sc">$</span>Contribution_7_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb229"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb229-1"><a href="#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
+<span id="cb229-2"><a href="#cb229-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_7<span class="sc">$</span>Vote7_minus, df_vote_7<span class="sc">$</span>Contribution_7_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Pearson's product-moment correlation
@@ -742,12 +1599,12 @@ sample estimates:
 <h2 class="anchored" data-anchor-id="model-2-subsample-ols">Model 2: Subsample OLS</h2>
 <p>create a subsample, which only includes those representatives that changed their votes, i.e.&nbsp;Vote_change_dummy = 1. Out of those, check in which direction they changed their votes, and their corresponding votes &amp; vote changes? -&gt; use prep_analysis abd data_analysis as vorlage.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_sub)</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df_sub <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(BioID, GovtrackID, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, vote_change_year, opensecrets_id, vote_change_type))</span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_sub)</span>
-<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>lm_sub_pro <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_pro <span class="sc">~</span> . <span class="sc">-</span> vote_change_to_anti <span class="sc">-</span> name <span class="sc">-</span> state, <span class="at">data =</span> df_sub)</span>
-<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sub_pro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb231"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb231-1"><a href="#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_sub)</span></span>
+<span id="cb231-2"><a href="#cb231-2" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df_sub <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(BioID, GovtrackID, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, vote_change_year, opensecrets_id, vote_change_type))</span>
+<span id="cb231-3"><a href="#cb231-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb231-4"><a href="#cb231-4" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_sub)</span>
+<span id="cb231-5"><a href="#cb231-5" aria-hidden="true" tabindex="-1"></a>lm_sub_pro <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_pro <span class="sc">~</span> . <span class="sc">-</span> vote_change_to_anti <span class="sc">-</span> name <span class="sc">-</span> state, <span class="at">data =</span> df_sub)</span>
+<span id="cb231-6"><a href="#cb231-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sub_pro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -785,8 +1642,8 @@ Residual standard error: 0.6468 on 5 degrees of freedom
 Multiple R-squared:  0.2446,    Adjusted R-squared:  -0.8128 
 F-statistic: 0.2313 on 7 and 5 DF,  p-value: 0.959</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>lm_sub_anti <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_anti <span class="sc">~</span> . <span class="sc">-</span> vote_change_to_pro <span class="sc">-</span> name <span class="sc">-</span> state, <span class="at">data =</span> df_sub)</span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sub_anti)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb233"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb233-1"><a href="#cb233-1" aria-hidden="true" tabindex="-1"></a>lm_sub_anti <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_anti <span class="sc">~</span> . <span class="sc">-</span> vote_change_to_pro <span class="sc">-</span> name <span class="sc">-</span> state, <span class="at">data =</span> df_sub)</span>
+<span id="cb233-2"><a href="#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sub_anti)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -830,12 +1687,39 @@ F-statistic: 0.2313 on 7 and 5 DF,  p-value: 0.959</code></pre>
 <h2 class="anchored" data-anchor-id="model-3-ols-with-person-fixed-effects">Model 3: OLS with person Fixed Effects</h2>
 <p>include person fixed effects for all of the above OLS’, means we control for the individual, to see whether there are difference in votes, which are not dependent on the different individuals, but vote changes within the same person. so we can isolate all other factors of change, i.e.&nbsp;their state, district, party, and other things we do not have variables in the dataset for, like education. -&gt; CONTROL FOR - REPRESENTATIVE (NAME, PARTY, STATE, DISTRICT) &amp; - BILL (or assume all bills are the same and then just fix by representative (individual), since we assume this.)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df_sub &lt;- df_sub %&gt;% select(-c(BioID, GovtrackID, first_vote, Vote_change, Vote_count, Vote_change_dummy, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, vote_change_year, opensecrets_id, vote_change_type))</span></span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_sub)</span>
-<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import correct df</span></span>
-<span id="cb73-4"><a href="#cb73-4" aria-hidden="true" tabindex="-1"></a>ind_fe_pro <span class="ot">&lt;-</span> <span class="fu">plm</span>(vote_change_to_pro <span class="sc">~</span> . <span class="sc">-</span> vote_change_to_anti, <span class="at">data =</span> df_sub, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"name"</span>, <span class="st">"state"</span>, <span class="st">"year"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span>
-<span id="cb73-5"><a href="#cb73-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fix for correct modes.., by choosing year we fix for bills, since no bills were in the same year.</span></span>
-<span id="cb73-6"><a href="#cb73-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ind_fe_pro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb235"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb235-1"><a href="#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df_sub &lt;- df_sub %&gt;% select(-c(BioID, GovtrackID, first_vote, Vote_change, Vote_count, Vote_change_dummy, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, vote_change_year, opensecrets_id, vote_change_type))</span></span>
+<span id="cb235-2"><a href="#cb235-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_sub)</span>
+<span id="cb235-3"><a href="#cb235-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import correct df</span></span>
+<span id="cb235-4"><a href="#cb235-4" aria-hidden="true" tabindex="-1"></a>ind_fe_pro <span class="ot">&lt;-</span> <span class="fu">plm</span>(vote_change_to_pro <span class="sc">~</span> . <span class="sc">-</span> vote_change_to_anti, <span class="at">data =</span> df_sub, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"name"</span>, <span class="st">"state"</span>, <span class="st">"year"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in pdata.frame(data, index): duplicate couples (id-time) in resulting pdata.frame
+ to find out which, use, e.g., table(index(your_pdataframe), useNA = "ifany")</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in terms.formula(object, data = data, ...): 'varlist' has changed (from
+nvar=19) to new 20 after EncodeVars() -- should no longer happen!</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in terms.formula(fi, ...): 'varlist' has changed (from nvar=19) to new
+20 after EncodeVars() -- should no longer happen!</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb239"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb239-1"><a href="#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fix for correct modes.., by choosing year we fix for bills, since no bills were in the same year.</span></span>
+<span id="cb239-2"><a href="#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ind_fe_pro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in terms.formula(object, data = data, ...): 'varlist' has changed (from
+nvar=19) to new 20 after EncodeVars() -- should no longer happen!
+
+Warning in terms.formula(object, data = data, ...): 'varlist' has changed (from
+nvar=19) to new 20 after EncodeVars() -- should no longer happen!</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in terms.formula(object, data = data, ...): 'varlist' has changed (from
+nvar=19) to new 20 after EncodeVars() -- should no longer happen!</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in terms.formula(fi, ...): 'varlist' has changed (from nvar=19) to new
+20 after EncodeVars() -- should no longer happen!</code></pre>
+</div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Oneway (individual) effect Within Model
 
@@ -866,7 +1750,7 @@ R-Squared:      0.50769
 Adj. R-Squared: -1.9538
 F-statistic: 0.515625 on 4 and 2 DF, p-value: 0.74225</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># index can be length 3 max!!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb244"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb244-1"><a href="#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="co"># index can be length 3 max!!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="model-4-robustness-checks" class="level2">
@@ -876,13 +1760,13 @@ F-statistic: 0.515625 on 4 and 2 DF, p-value: 0.74225</code></pre>
 <p>We use a conditional FE logit model to work around the fact that fixed effects in a logistic regression cannot be estimated. used in panel data when conditional variable is binary.</p>
 <p>Unobserved heterogeneity can be dealt with by using fixed effects regression models, with dummy variables. there are consistent differences within clusters (i.e representatives)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for conditional fixed effects logit, use bife or clogit (from survival package)</span></span>
-<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mod.no &lt;– clogit(y ~ x + strata(Time) + strata(ID), data = panel -&gt; where you fix Time and ID</span></span>
-<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a><span class="co"># with bife</span></span>
-<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a><span class="co"># panel$Time &lt;– as.factor(panel$Time)</span></span>
-<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a><span class="co"># mod.no &lt;- bife(y ~ x + Time | ID, data = panel, bias_corr = "ana")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb245"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb245-1"><a href="#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for conditional fixed effects logit, use bife or clogit (from survival package)</span></span>
+<span id="cb245-2"><a href="#cb245-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mod.no &lt;– clogit(y ~ x + strata(Time) + strata(ID), data = panel -&gt; where you fix Time and ID</span></span>
+<span id="cb245-3"><a href="#cb245-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-4"><a href="#cb245-4" aria-hidden="true" tabindex="-1"></a><span class="co"># with bife</span></span>
+<span id="cb245-5"><a href="#cb245-5" aria-hidden="true" tabindex="-1"></a><span class="co"># panel$Time &lt;– as.factor(panel$Time)</span></span>
+<span id="cb245-6"><a href="#cb245-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-7"><a href="#cb245-7" aria-hidden="true" tabindex="-1"></a><span class="co"># mod.no &lt;- bife(y ~ x + Time | ID, data = panel, bias_corr = "ana")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Stratmann model 2.0 -&gt; subsample analysis (Vote_change_dummy == 1), probit model which only uses legislators who changed their vote, where 1 = 0 -&gt; 1 and 0 = 1 -&gt; 0. here no fixed effects, x variables are only contribution changes. -&gt; <strong>ADD CONTRIBUTION CHANGES</strong></p>
 </section>
