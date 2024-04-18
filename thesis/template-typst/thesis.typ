@@ -49,68 +49,83 @@ trends: 84 percent of US residents think that money influences politics
 excessively and express a desire to see changes made to the campaign finance
 system to lessen the influence of wealthy donors @bonica p.1.
 
-The Koch Industries, a privately held Industrial conglomerate, are one of the
-biggest donors to US politics. They are known especially for their involvement
-in the 2016 election cycle, where they spent "more than twice what the
-Republican national committee spent in the previous presidential election"
-@skocpol2016koch p.8.
+The Koch brothers (David and Charles), are one of these influential donors, who
+have a multifaceted approach when it comes to their involvement in US politics.
+On the one hand, they shape the "mindset" of the US population through organised
+groups, think-tanks and networks of other mega-donors with similar political and
+social ideologies, such as the Koch Network @Hertel-Fernandez_Skocpol_Sclar_2018
+p.1.
 
-// == Koch Industries example (2016 elections)
-// - political shift in US politics, differences in income and wealth, powerful and
-//   wealthy want to influence elections/politics, @skocpol2016koch mixed with
-//   polarisation of bipartisan parties @polarisation
-// - even 84 percent of citizens believe that money has too great an influence in
-//   politics and express a desire to reform the campaign finance system to limit the
-//   influence of wealthy donors" @bonica p.1
-// - Koch Industries as one of the biggest donors...
-// - especially involvement in the 2016 election - plegded to spend more than twice
-//   that of republican comittee, support the republican party and the far-right
-//   @skocpol2016koch p.8
-- most republicans received contributions from oil&gas, with constently over 80%
-  of rebublicans receiving oil&gas contributions from 2016-2024.
-  @OpenSecrets2024PartisanIndustries
-- Koch Industries have multifaceted approach, one through campaign contributions,
-  another through organized groups and networks of political mega-donors
-  (reshaping "gedankengut"), @Hertel-Fernandez_Skocpol_Sclar_2018 p.1 such as
-  through the "koch network":
+#set quote(block: true)
+#quote(
+  attribution: [Skocpol @skocpol2016koch p.8],
+)[
+  The Koch network is not just a[n]... undisciplined array of advocacy groups and
+  political action committees to which the principals send checks. Instead, the
+  network has by now evolved into a nationally federated, full-service,
+  ideologically focused parallel to the Republican Party.
+]
 
-  #quote(
-    attribution: [Skocpol @skocpol2016koch p.8],
-  )[
-    The Koch network is not just a congeries of big money donations from the two
-    brothers themselves, or a loose, undisciplined array of advocacy groups and
-    political action committees to which the principals send checks. Instead, the
-    network has by now evolved into a nationally federated, full-service,
-    ideologically focused parallel to the Republican Party.
-  ]
+// - although with their Koch network and ideology they can do so much, the
+//   contributions are relevant bec. quantifiable. increased so much over time (rank
+//   5 over 29k in contributions in 2024 @OpenSecretsKochIndustries)
+On the other hand, the Koch Industries, headed by Charles Koch, not only
+influence elections through their Network, but they donate insane sums of money
+to fund the electoral campaigns of Republican presidential and congressional
+candidates @skocpol2016koch. Especially over the past ten years, Koch Industries
+have increased their campaign contributions by at least 10% per election cycle,
+amounting to 28 Millon USD in the 2022 election cycle, with approximately 90-97%
+of these congressional contributions going to Republican candidates
+@OpenSecretsKochIndustries.
 
-- although with their Koch network and ideology they can do so much, the
-  contributions are relevant bec. quantifiable. increased so much over time (rank
-  5 over 29k in contributions in 2024 @OpenSecretsKochIndustries)
+In general, the increase in contribution of the Koch Industries to US
+congressional candidates reflects the general trends, with 80% of all
+congressional Oil&Gas related contributions going to republican candidates from
+the 2016-2024 electoral cycles @OpenSecrets2024PartisanIndustries. The average
+contributions to members of congress have increased as well within the last 40
+years. Since the 2024 election cylce is due in November 2024, the contributions
+there are not comparable to 2022 yet.
 
 #figure(image("figures/FusionCharts.jpg", width: 80%), caption: [
   Average Contributions to Members of Congress, 1990-2022
 ])
-- Not only does this have dire consequences for democracy (e.g. wealthy donors
-  being able to influence policy) @Weschle_2022b
-- But... the Koch Brothers, esp. David Koch's role in climate change denying,
-  @doreian2022koch p.2,8 @skocpolfernandez2016 and given their role in being able
-  to contribute to congresspeople and influence the "gedankengut" of the US
-  citizens, makes one wonder what the consquences for environmental policy is.
 
-- this is exactly what is to be analysed in this paper, e.g. how energy related
-  (anti and pro env.) campaign contributions to house members effects their votes
-  on environmental legislation.
+Given these trends of campaign contributions in the US Congress, and especially
+the participation which wealthy (fossil fuel) donors like the Koch brothers have
+in these elections, the question is why donors such as these contribute immense
+sums such as these to congressional elections? It is to assume that
+profit-maximizing firms such as the Koch Industries do not merely contribute
+millions of USD to congressional campaigns without considering their "bottom
+line" @stratmann-2017 p.13. Thus, the question is what campaign contributors are
+to receive in return for their donations.
 
-== Literature & Methods used
-- based on strattman @stratmann-2002 (methodology & models) @stratmann-1995
-  (contribution data), empirical and theoretical part, (causal identification
-  strategy) use of campaign contribution and roll call data, OLS/probit
-- Outline
-  - first, theoretical review of campaign contribution literature, with a focus on
-    the causal relationship between contributions and votes, then linear and
-    logit/probi model to estimate the effect of anti/pro env. contributions on
-    pro/anti env. votes
+Given Charles Koch's position at the Industry and fossil fuel related
+conglomerate Koch Industries and David Koch's history in climate change denial
+@doreian2022koch pp. 2-8, and their donor and advocacy roles in the United
+States, makes one wonder what the consequences of fossil fuel related campaign
+contributions to the US congress could mean for US environmental policies.
+
+These questions will be analysed in this paper, i.e. examining the influence of
+energy (fossil fuel and environmental related) contributions on the voting
+behavior of US House members on methane pollution bills.The Analysis is based on
+the Paper of Thomas Stratmann @stratmann-2002, who exploits the time series
+nature of contribution and votes to approach a causal identification strategy to
+measure the effect of financial contributions on rollcall votes. Regarding
+campaign contribution, however, @stratmann-2002 uses the aggregate contributions
+for each election cycle, whereas in his 1995 paper @stratmann-1995, only the
+contributions leading up to the vote are included, regardless of election cylce.
+In this paper, both contribution data approaches will be included.// if i use 1995 stratmann's "data", then shouldn't I also include his models ?
+
+The chapter 2 of this paper will give a short literature review on the economics
+and political science perspectives on money in politics, with a focus on the
+causal relationship between campaign contributions and the representatives'
+voting decisions. Chapter 3 presents the research design, details the reasoning
+behind analysing environmental legislation and the methane pollution rollcall
+votes in particular, and presents the hypotheses regarding the effect of
+contribution on voting decisions. Chapter 4 presents the data types and
+processing for the analysis, and chapter 5 presents the models used. Chapter 6
+reports the results, Chapter 7 provides the discussion of these, and chapter 8
+concludes the paper.
 
 #pagebreak()
 
@@ -223,7 +238,7 @@ with the special interests groups (mind-changers)? @Stratmann_2005 p.143
 same said for @chappell p.83. cannot conclude that contributions affect voting
 behavior of US representatives Evidence of Causal Relationship....\
 #quote(
-  attribution: [@matter p.6 @bertrand],
+  attribution: [@matter p.6 @Bertrand],
 )[provides indirect evidence in support of vote buying, by showing that lobbying
   firms provide special interests access to politicians (as opposed to only giving
   issue-specific information to Members of Congress)]
@@ -533,6 +548,8 @@ Why use which models? first LPM because....
 
 #pagebreak()
 = Discussion
+- Not only does this have dire consequences for democracy (e.g. wealthy donors
+  being able to influence policy) @Weschle_2022b
 == Limitations
 === differences with Strattman due to difference in legislation
 == Improvements
@@ -552,10 +569,10 @@ What to improve, work on or touch upon with more resources:
   @stratmann-1991
 - include models from @stratmann-1995, that work with time related data and not
   just aggregate electoral data, like in @stratmann-2002
-- use DW-Nominate to make study more robust... compare partisan lines
+- use DW-Nominate to make study more robust... compare partisan lines -> MENTION
+  IN FOOTNOTES WITH ROBUSTNESS/ MODEL
 - this can lead to OVB, since "has no good measure for whether a challenger poses
-  a
-threat" -> by using 2SLS we can overcome this @stratmann-2017 p.9
+  a threat" -> by using 2SLS we can overcome this @stratmann-2017 p.9
 
 #pagebreak()
 = Conclusion
