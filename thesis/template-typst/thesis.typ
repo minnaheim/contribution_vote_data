@@ -78,17 +78,10 @@ amounting to 28 Millon USD in the 2022 election cycle, with approximately 90-97%
 of these congressional contributions going to Republican candidates
 @OpenSecretsKochIndustries.
 
-In general, the increase in contribution of the Koch Industries to US
-congressional candidates reflects the general trends, with 80% of all
-congressional Oil&Gas related contributions going to republican candidates from
-the 2016-2024 electoral cycles @OpenSecrets2024PartisanIndustries. The average
-contributions to members of congress have increased as well within the last 40
-years. Since the 2024 election cylce is due in November 2024, the contributions
-there are not comparable to 2022 yet.
-
-#figure(image("figures/FusionCharts.jpg", width: 80%), caption: [
-  Average Contributions to Members of Congress, 1990-2022
-])
+// In general, the increase in contribution of the Koch Industries to US
+// congressional candidates reflects the general trends, with 80% of all
+// congressional Oil&Gas related contributions going to republican candidates from
+// the 2016-2024 electoral cycles @OpenSecrets2024PartisanIndustries.
 
 Given these trends of campaign contributions in the US Congress, and especially
 the participation which wealthy (fossil fuel) donors like the Koch brothers have
@@ -130,38 +123,97 @@ concludes the paper.
 #pagebreak()
 
 = Money in Politics
-- how does money in politics work?
-  - contribution types (PAC, individual)
-  - tradeoff for congressmen, vote acc. to voter base (get re-elected) and vote acc.
-    to donors (get money to spend on campaigning) @KauKeenanRubin p.273
-  - contribution goals (enrichment, campaign contributions, revolving door)
-    @Weschle_2022c
-- consensus: spending in politics has risen over time (opensecrets sources,
-  @Stratmann_2005 p.141), explained by Lott, higher in states with bigger gov.
-  @Stratmann_2005 p.148 @stratmann-2017 p.1 ("money given in contributions to
-  political campaigns has grown substantially")
-  - *plot* campaign contributions over time (steady increase), aka more relevant to
-    analyse
-  - *plot* distribution of campaign contributions - who gets contributions, over
-    time more congress people get some?
-- campaign contributions rose over time because of landmark US Supreme court case
-  Citizens United v. FEC "in 2010, which cleared the way for unlimited
-  election-related ‘independent expenditures’ previously capped in 24 U.S.
-  states." @citizen
+
+To understand the relationship between campaign contributions and
+representatives' voting decisions, the background for money in US politics needs
+to be introduced. Political Scientist Simon Weschle defines three types of money
+in politics, namely self-enrichment, campaign contribution and golden parachute
+jobs, where the first type happens when politicians are in office, and receive
+resources from special interest groups. Politicians receive campaign
+contributions during elections, to fund their campaigns. According to Weschle,
+the last type of money in politics is the golden parachute jobs, which are
+financially lucrative positions offered to ex-politicians @Weschle_2022c.
 
 == Campaign Contributions
-- especially in campaign contributions, increase... ?
-- why do candidates need contribution?
-  - election every 2 years in house of representatives
-  - need contributions to fund campaigns, to run for election. this money is spent
-    on advertisments and rallies, handouts, etc. @Weschle_2022c p.24
-- why is there campaign contribution, what does it achieve? -> better election
-  @Stratmann_2005 @Weschle_2022c p.24
-- but no clear correlation between campaign spending and vote shares which
-  candidates receive, in the US, @Weschle_2022c p.24, (also other authors who
-  state this) - there is endogeneity - depends on a host of factors, ie.e.
-  closeness/competition in race, contribution limits in some states, strategic
-  spending @Denzau-Munger-1986, @Weschle_2022c p.25
+Although each of these types of money in politics has significant and different
+repercussions for democracy @Weschle_2022c, campaign contributions in US
+politics are of particular significance for this paper. One of the reasons for
+this, is that there has been a stark increase in contributions to political
+campaigns over time @stratmann-2017 p.1 @stratmann-2005 p.141. The average
+contributions to members of congress have increased as well within the last 40
+years. Since the 2024 election cylce is due in November 2024, the contributions
+there are not comparable to 2022 yet.
+
+#figure(image("figures/avg_contrib_house.jpg", width: 100%), caption: [
+  Average Contributions to House Members, 1990-2022
+])
+
+// figure out how to label axes, make it title and cite sources
+// #import "@preview/cetz:0.2.2"
+// #cetz.canvas({
+//   import cetz.draw: *
+//   import cetz.chart
+//   let data = (
+//     ("1998", 2934),
+//     ("2000", 2860),
+//     ("2002", 3575),
+//     ("2004", 3496),
+//     ("2006", 4143),
+//     ("2008", 6724),
+//     ("2010", 4926),
+//     ("2012", 4710),
+//     ("2014", 4788),
+//     ("2016", 5071),
+//     ("2018", 6724),
+//     ("2020", 9916),
+//     ("2022", 8937),
+//   )
+//   group(name: "a", {
+//     chart.columnchart(size: (13, 5), data)
+//   })
+// })
+
+//
+#figure(image("figures/total_contrib_congress.jpg", width: 100%), caption: [
+  Total Cost of Election, 1990-2022 @OpenSecretscostofelections
+])
+
+One of the main reasons for the noted increase in not only total campaign
+contributions over the last 30 years, but also the average campaign contribuions
+per representative might be attributable to the change in legislature. In 2010,
+the US Supreme Court passed the landmark court case Citizens United v. Federal
+Election Commission (FEC), treated the question of whether Congress has the
+authority to limit independent expenditures by corporations.Campaign
+contributions are usually structured as individual and Political Action Comittee
+(PAC) contributions in OpenSecrets data, with the former stemming from natural
+persons, and the latter from comittees representing corporation or labor
+interests @OpenSecretspac. The Citizens United v. FEC case declared that natural
+and legal persons, i.e. persons and corporations have the same campaign spending
+rights when it comes to the US congress @foreman p.194. In essence, this case
+enabled independent expenditures which are election related to become unlimited
+@citizen.
+
+That campaign contributions have increased over the years, and one of the
+reasons for this increase, is clear. Still, the necessity of campaign
+contributions should still be clarified. US Citizens who would like to become
+members of the United States Congress, such as the House of Representatives,
+which is what this paper focuses on, need to become elected. These congressional
+elections happen bi-yearly.
+
+// - why do candidates need contribution?
+//   - election every 2 years in house of representatives
+//   - need contributions to fund campaigns, to run for election. this money is spent
+//     on advertisments and rallies, handouts, etc. @Weschle_2022c p.24
+//   - tradeoff for congressmen, vote acc. to voter base (get re-elected) and vote acc.
+//     to donors (get money to spend on campaigning) @KauKeenanRubin p.273
+
+// - why is there campaign contribution, what does it achieve? -> better election
+//   @stratmann-2005 @Weschle_2022c p.24
+// - but no clear correlation between campaign spending and vote shares which
+//   candidates receive, in the US, @Weschle_2022c p.24, (also other authors who
+//   state this) - there is endogeneity - depends on a host of factors, ie.e.
+//   closeness/competition in race, contribution limits in some states, strategic
+//   spending @Denzau-Munger-1986, @Weschle_2022c p.25
 == Correlation Contributions & Votes in Corporate Interests
 - in general, consensus that there is no link between PAC contributions and votes
   in that PACs favor @Selling2023 p.1 @fellowes-wolf2004 p.315, @fiorina1999new
@@ -174,6 +226,8 @@ Depends on:
   different approaches?)
 - Economic Literature states that the campaign contributions received depend on:
   @stratmann-1995 p.128
+  //  explained by Lott, higher in states with bigger gov. @stratmann-2005 p.148
+  // https://www.opensecrets.org/elections-overview/most-expensive-races -> expensive races, most competitive races, etc.
   - party spread of the voter base "by the distribution of left-wing/right-wing
     voters in the district in which candidates are running" @stratmann-2017 p.9
 - PAC contributions depend on the incumbency status of legislators, since there is
@@ -195,7 +249,7 @@ Depends on:
   scale contributors do follow both methods.
 - 3 types of candidates receiving contribution, also what is the goal of the
   contributor - access to the candidate, influence elections, most likely to win
-  @Stratmann_2005 p.146 @stratmann-2017 p.13
+  @stratmann-2005 p.146 @stratmann-2017 p.13
 
 To summarise... many different specifications needed, no clear consensus
 - part of the reason there is no academic consensus is because of the nature of
@@ -223,7 +277,7 @@ Why did these studies fail?
 == Causal Effect of Campaign Contributions on Representatives' Voting Decisions.
 *Main question*: Do incumbents cater to wishes of special interest groups, bec.
 of their contribution or do they get contribution because their views coincide
-with the special interests groups (mind-changers)? @Stratmann_2005 p.143
+with the special interests groups (mind-changers)? @stratmann-2005 p.143
 @KauKeenanRubin p.275
 
 #quote(
@@ -256,7 +310,7 @@ Bronars & Lott tried to do this....
   - if not, politicians will deviate from constituent's wishes, cost of shirking
     decreases. p. 319
   - evidence: close races, conservative PACs to conservative candidates, and to
-    shift opinion within party,etc. @Stratmann_2005 p. 147-148
+    shift opinion within party,etc. @stratmann-2005 p. 147-148
 
 \
 Stratmann, 1995 - campaign contributions and votes,does the timing of
@@ -289,10 +343,10 @@ Baldwin, Magee 1997,
 // Solution... I will include these things
 What some of the failed studies did not inlcude...
 - address this by regressing and controlling for ind. propositions, counties,
-  geographical area @Stratmann_2005 p.142
-- causal relationship may be found by looking at repeated votes @Stratmann_2005
+  geographical area @stratmann-2005 p.142
+- causal relationship may be found by looking at repeated votes @stratmann-2005
   p.143-144 @stratmann-2002
-- timing as important factor, increase 2 months @Stratmann_2005 p.144
+- timing as important factor, increase 2 months @stratmann-2005 p.144
 - model setup: must allow for endogeneity of contributions, dichotomus nature of
   dependent vote variable (yes/no) and non-negativity of campaign comntributions.
   @stratmann-1991 p.606
@@ -537,7 +591,7 @@ Why use which models? first LPM because....
 
 == Logit / Probit (which Stratmann used)
 - literature on why OLS is bad, and logit/probit is good.
-- as Robustness Checks, since OLS sometimes over/underestimates @Stratmann_2005
+- as Robustness Checks, since OLS sometimes over/underestimates @stratmann-2005
   p.143
 - Stratmann uses a conditional fixed effects logit model @Allison @Chamberlin
   @stratmann-2002
@@ -579,16 +633,16 @@ What to improve, work on or touch upon with more resources:
 
 // -------------- CRAP LINE ------------------------
 // == Legislation
-// p.149 in @Stratmann_2005
+// p.149 in @stratmann-2005
 // - 1994 transparency act
 // - Bipartisan Campaign Reform Act of 2003
 // - State regulations - contribution limits,
 
 // == campaign contributions & elections -> less important for analysis
-// - coate, if special interest contribution, less voters, more contribution (voters suspicious of favor trading) @Stratmann_2005
+// - coate, if special interest contribution, less voters, more contribution (voters suspicious of favor trading) @stratmann-2005
 // - Asymmetry in effectiveness of spending, endogeneity and OVB
-// - difficult to find causal effect between contributions and vote shares @Stratmann_2005 p.137-138
-// - also, sometimes more campaign contributions because of tighter race, so negative correlation vote share and contribution (OVB - competition, bipartisan factors) @Stratmann_2005 p.138
+// - difficult to find causal effect between contributions and vote shares @stratmann-2005 p.137-138
+// - also, sometimes more campaign contributions because of tighter race, so negative correlation vote share and contribution (OVB - competition, bipartisan factors) @stratmann-2005 p.138
 // - bias stronger in house, than senate, p.138
 // - spending not accurate representation for campaigning, diff. Montana and LA.
 // #acknowledgement()

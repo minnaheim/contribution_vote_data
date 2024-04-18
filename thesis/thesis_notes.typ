@@ -1,3 +1,29 @@
+
+#import "@preview/cetz:0.2.2"
+#cetz.canvas({
+  import cetz.draw: *
+  import cetz.chart
+  let data = (
+    ("1998", 2934),
+    ("2000", 2860),
+    ("2002", 3575),
+    ("2004", 3496),
+    ("2006", 4143),
+    ("2008", 6724),
+    ("2010", 4926),
+    ("2012", 4710),
+    ("2014", 4788),
+    ("2016", 5071),
+    ("2018", 6724),
+    ("2020", 9916),
+    ("2022", 8937),
+  )
+  group(name: "a", {
+    chart.columnchart(size: (16, 5), data)
+  })
+})
+// in millions
+
 = Bachelor Thesis Notes
 #set heading(numbering: "1.")
 #outline(indent: auto)
