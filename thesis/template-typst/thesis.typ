@@ -197,33 +197,26 @@ That campaign contributions have increased over the years, and one of the
 reasons for this increase, is clear. Still, the necessity of campaign
 contributions should still be clarified. US Citizens who would like to become
 members of the United States Congress, such as the House of Representatives,
-which is what this paper focuses on, need to become elected. These congressional
-elections happen bi-yearly.
+which is what this paper focuses on, need to become elected through a bi-yearly
+congressional election. To improve chances of election, these candidates get
+financial contributions, which they spend on advertisments, rallies and handouts
+@Weschle_2022c p.24.
 
-// - why do candidates need contribution?
-//   - election every 2 years in house of representatives
-//   - need contributions to fund campaigns, to run for election. this money is spent
-//     on advertisments and rallies, handouts, etc. @Weschle_2022c p.24
-//   - tradeoff for congressmen, vote acc. to voter base (get re-elected) and vote acc.
-//     to donors (get money to spend on campaigning) @KauKeenanRubin p.273
-
-// - why is there campaign contribution, what does it achieve? -> better election
-//   @stratmann-2005 @Weschle_2022c p.24
-// - but no clear correlation between campaign spending and vote shares which
-//   candidates receive, in the US, @Weschle_2022c p.24, (also other authors who
-//   state this) - there is endogeneity - depends on a host of factors, ie.e.
-//   closeness/competition in race, contribution limits in some states, strategic
-//   spending @Denzau-Munger-1986, @Weschle_2022c p.25
 == Correlation Contributions & Votes in Corporate Interests
-- in general, consensus that there is no link between PAC contributions and votes
-  in that PACs favor @Selling2023 p.1 @fellowes-wolf2004 p.315, @fiorina1999new
-  p.216
-Depends on:
-// Institution related
+
+One would assume that receiving more campaign contributions would relate to a
+higher chance of getting elected, yet there is no clear correlation between
+campaign contributions and the vote shares which candidates receive
+@stratmann-2005 @Weschle_2022c p.24. In fact, there are a host of factors that
+influence the vote shares and contributions of politicials, which are endogenous
+@Weschle_2022c p.24. Among those factors are:
+
+// formulate these bullet points better...
+- such as the competition in the electoral race between the candidates
+  @Weschle_2022c p.25
+- the contribution limits imposed on states @Weschle_2022c p.25
+- strategic spending to candidates @Denzau-Munger-1986 @Weschle_2022c p.25
 - industry specific results, specific legislation, p.27.28 @Weschle_2022c
-- after all, there is good evidence that more campaign spending affects
-  politicians and policy @Weschle_2022c p.26 (just have to consider more factors,
-  different approaches?)
 - Economic Literature states that the campaign contributions received depend on:
   @stratmann-1995 p.128
   //  explained by Lott, higher in states with bigger gov. @stratmann-2005 p.148
@@ -279,6 +272,10 @@ Why did these studies fail?
 of their contribution or do they get contribution because their views coincide
 with the special interests groups (mind-changers)? @stratmann-2005 p.143
 @KauKeenanRubin p.275
+
+- in general, consensus that there is no link between PAC contributions and votes
+  in that PACs favor @Selling2023 p.1 @fellowes-wolf2004 p.315, @fiorina1999new
+  p.216
 
 #quote(
   attribution: [@matter, p.6 Bronars and Lott @bronars-lott-1997],

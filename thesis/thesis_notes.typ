@@ -24,6 +24,9 @@
 })
 // in millions
 
+Things to put into thesis (potentially) ->
+- tradeoff for congressmen, vote acc. to voter base (get re-elected) and vote acc.
+
 = Bachelor Thesis Notes
 #set heading(numbering: "1.")
 #outline(indent: auto)
