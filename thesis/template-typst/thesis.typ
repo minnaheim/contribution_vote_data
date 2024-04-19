@@ -587,7 +587,8 @@ Why use which models? first LPM because....
   - vote change in which direction (pro -> contra env = 0?) & vice versa
 
 == Logit / Probit (which Stratmann used)
-- literature on why OLS is bad, and logit/probit is good.
+- literature on why OLS is bad, and logit/probit is good. (since LPM not 0-1, so
+  negative effects nicht schätzbar?)
 - as Robustness Checks, since OLS sometimes over/underestimates @stratmann-2005
   p.143
 - Stratmann uses a conditional fixed effects logit model @Allison @Chamberlin
