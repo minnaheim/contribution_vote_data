@@ -25,14 +25,29 @@ df_sub <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analy
 
 Plots and Data inspection can be found in the plot qmd located in the same directory
 
+```{r}
+# transform to panel data
+df_sub <- df_sub %>% filter(!is.na(BioID))
+# view(df_sub)
+panel_data <- pdata.frame(df_sub, index = c("BioID", "year"))
+# view(panel_data)
+
+# remove cols which are unnecessary for analysis..
+
+model <- plm(vote_change_to_pro ~ contribution + as.factor(Representative_ID) + as.factor(Year), data = panel_data, model = "within")
+
+```
+
+
+
 ## Model 1: OLS
 ```{r}
 # Vote 3
-ols_3 <- lm(Vote3_plus ~ . - Vote3_minus - Vote3 - Vote_change_dummy, data = df_vote_3)
+ols_3 <- lm(Vote3_plus ~ as.factor(state) + party + Contribution_3_minus + Contribution_3_plus + BioID, data = df_vote_3)
 summary(ols_3)
 
-df_vote_3 <- df_vote_3 %>% select(-c(Vote_change_dummy, Vote3_minus, Vote3_plus))
-ggpairs(df_vote_3)
+# df_vote_3 <- df_vote_3 %>% select(-c(Vote_change_dummy, Vote3_minus, Vote3_plus))
+# ggpairs(df_vote_3)
 
 # Vote 4
 ols_4 <- lm(Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy, data = df_vote_4)
@@ -53,16 +68,15 @@ summary(ols_7)
 ```
 
 ```{r}
-# try it with sessionized, incl. all data leading up to the vote, not just vote
-# start with Vote, Vote3 first vote
-# view(df_vote_4_2)
-# ols_4_2 <- lm(Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy - Vote4_NA, data = df_vote_4_2)
-# doesnt work yet, go to prep_analysis to rename and remove Vote dummy cols
-# summary(ols_4_2)
+ols_4_2 <- lm(Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy - Vote4_NA, data = df_vote_4_2)
+summary(ols_4_2)
+
 ```
+
 
 ```{r}
 # all Votes
+view(df_no_change)
 ols_all <- lm(all_votes_plus ~ . - all_votes_minus - state - district, data = df_no_change)
 summary(ols_all)
 ```
@@ -71,79 +85,79 @@ summary(ols_all)
 
 ```{r}
 df_no_change <- df_no_change %>% select(-c(state))
-ggpairs(df_no_change)
+# ggpairs(df_no_change)
 ```
 
 ### Correlations
 create correlelograms and measure correlations between contribution and vote outcomes
 ```{r}
 # here correlation slightly negative, and p-value 0.93, so insignificant
-cor.test(df_vote_3$Vote3_plus, df_vote_3$Contribution_3_plus, method = "pearson")
-# effect is significant here, with p-value less than 0.0001
-cor.test(df_vote_3$Vote3_plus, df_vote_3$Contribution_3_minus, method = "pearson")
-# effect is significant on a 0.0001 level, and correlation is negative
-cor.test(df_vote_3$Vote3_minus, df_vote_3$Contribution_3_minus, method = "pearson")
-# here correlation slightly negative, and p-value 0.93, so insignificant
-cor.test(df_vote_3$Vote3_minus, df_vote_3$Contribution_3_plus, method = "pearson")
+# cor.test(df_vote_3$Vote3_plus, df_vote_3$Contribution_3_plus, method = "pearson")
+# # effect is significant here, with p-value less than 0.0001
+# cor.test(df_vote_3$Vote3_plus, df_vote_3$Contribution_3_minus, method = "pearson")
+# # effect is significant on a 0.0001 level, and correlation is negative
+# cor.test(df_vote_3$Vote3_minus, df_vote_3$Contribution_3_minus, method = "pearson")
+# # here correlation slightly negative, and p-value 0.93, so insignificant
+# cor.test(df_vote_3$Vote3_minus, df_vote_3$Contribution_3_plus, method = "pearson")
 # why contribution_plus not significant? because not enough data points?
 ```
 
 ```{r}
 # correlation of vote 4
 # not significant
-cor.test(df_vote_4$Vote4_plus, df_vote_4$Contribution_4_plus, method = "pearson")
-# significant on a 0.0001 level, negative correlation
-cor.test(df_vote_4$Vote4_plus, df_vote_4$Contribution_4_minus, method = "pearson")
-# significant on a 0.0001 level, positive correlation
-cor.test(df_vote_4$Vote4_minus, df_vote_4$Contribution_4_minus, method = "pearson")
-# not significant, 0.23 p-value
-cor.test(df_vote_4$Vote4_minus, df_vote_4$Contribution_4_plus, method = "pearson")
+# cor.test(df_vote_4$Vote4_plus, df_vote_4$Contribution_4_plus, method = "pearson")
+# # significant on a 0.0001 level, negative correlation
+# cor.test(df_vote_4$Vote4_plus, df_vote_4$Contribution_4_minus, method = "pearson")
+# # significant on a 0.0001 level, positive correlation
+# cor.test(df_vote_4$Vote4_minus, df_vote_4$Contribution_4_minus, method = "pearson")
+# # not significant, 0.23 p-value
+# cor.test(df_vote_4$Vote4_minus, df_vote_4$Contribution_4_plus, method = "pearson")
 ```
 
 ```{r}
 # Vote 51
 # surprisingly, significant on a 0.05 level, slight negative correlation
-cor.test(df_vote_51$Vote51_plus, df_vote_51$Contribution_51_plus, method = "pearson")
-# significant on a 0.0001 level, negative correlation
-cor.test(df_vote_51$Vote51_plus, df_vote_51$Contribution_51_minus, method = "pearson")
-# significant on a 0.0001 level, positive correlation
-cor.test(df_vote_51$Vote51_minus, df_vote_51$Contribution_51_minus, method = "pearson")
-# significant on a 0.05 level, slight positive correlation
-cor.test(df_vote_51$Vote51_minus, df_vote_51$Contribution_51_plus, method = "pearson")
+# cor.test(df_vote_51$Vote51_plus, df_vote_51$Contribution_51_plus, method = "pearson")
+# # significant on a 0.0001 level, negative correlation
+# cor.test(df_vote_51$Vote51_plus, df_vote_51$Contribution_51_minus, method = "pearson")
+# # significant on a 0.0001 level, positive correlation
+# cor.test(df_vote_51$Vote51_minus, df_vote_51$Contribution_51_minus, method = "pearson")
+# # significant on a 0.05 level, slight positive correlation
+# cor.test(df_vote_51$Vote51_minus, df_vote_51$Contribution_51_plus, method = "pearson")
 
-# Vote 52
-# significant on a 0.1 level, slight negative correlation
-cor.test(df_vote_52$Vote52_plus, df_vote_52$Contribution_52_plus, method = "pearson")
-# significant on a 0.0001 level, negative correlation
-cor.test(df_vote_52$Vote52_plus, df_vote_52$Contribution_52_minus, method = "pearson")
-# significant on a 0.0001 level, positive correlation
-cor.test(df_vote_52$Vote52_minus, df_vote_52$Contribution_52_minus, method = "pearson")
-# insignificant, slight positive correlation
-cor.test(df_vote_52$Vote52_minus, df_vote_52$Contribution_52_plus, method = "pearson")
+# # Vote 52
+# # significant on a 0.1 level, slight negative correlation
+# cor.test(df_vote_52$Vote52_plus, df_vote_52$Contribution_52_plus, method = "pearson")
+# # significant on a 0.0001 level, negative correlation
+# cor.test(df_vote_52$Vote52_plus, df_vote_52$Contribution_52_minus, method = "pearson")
+# # significant on a 0.0001 level, positive correlation
+# cor.test(df_vote_52$Vote52_minus, df_vote_52$Contribution_52_minus, method = "pearson")
+# # insignificant, slight positive correlation
+# cor.test(df_vote_52$Vote52_minus, df_vote_52$Contribution_52_plus, method = "pearson")
 ```
 
 ```{r}
 # Vote 6
 # not significant
-cor.test(df_vote_6$Vote6_plus, df_vote_6$Contribution_6_plus, method = "pearson")
-# significant on a 0.0001 level, negative correlation
-cor.test(df_vote_6$Vote6_plus, df_vote_6$Contribution_6_minus, method = "pearson")
-# significant on a 0.0001 level, positive correlation
-cor.test(df_vote_6$Vote6_minus, df_vote_6$Contribution_6_minus, method = "pearson")
-# not significant
-cor.test(df_vote_6$Vote6_minus, df_vote_6$Contribution_6_plus, method = "pearson")
+# cor.test(df_vote_6$Vote6_plus, df_vote_6$Contribution_6_plus, method = "pearson")
+# # significant on a 0.0001 level, negative correlation
+# cor.test(df_vote_6$Vote6_plus, df_vote_6$Contribution_6_minus, method = "pearson")
+# # significant on a 0.0001 level, positive correlation
+# cor.test(df_vote_6$Vote6_minus, df_vote_6$Contribution_6_minus, method = "pearson")
+# # not significant
+# cor.test(df_vote_6$Vote6_minus, df_vote_6$Contribution_6_plus, method = "pearson")
 ```
 
 ```{r}
 # Vote 7
 # not significant
-cor.test(df_vote_7$Vote7_plus, df_vote_7$Contribution_7_plus, method = "pearson")
-# significant on a 0.0001 level, negative correlation
-cor.test(df_vote_7$Vote7_plus, df_vote_7$Contribution_7_minus, method = "pearson")
-# significant on a 0.001 level, positive correlation
-cor.test(df_vote_7$Vote7_minus, df_vote_7$Contribution_7_minus, method = "pearson")
-# not significant
-cor.test(df_vote_7$Vote7_minus, df_vote_7$Contribution_7_plus, method = "pearson")
+# cor.test(df_vote_7$Vote7_plus, df_vote_7$Contribution_7_plus, method = "pearson")
+# # significant on a 0.0001 level, negative correlation
+# cor.test(df_vote_7$Vote7_plus, df_vote_7$Contribution_7_minus, method = "pearson")
+# # significant on a 0.001 level, positive correlation
+# cor.test(df_vote_7$Vote7_minus, df_vote_7$Contribution_7_minus, method = "pearson")
+# # not significant
+# cor.test(df_vote_7$Vote7_minus, df_vote_7$Contribution_7_plus, method = "pearson")
 ```
 
 ## Model 2: Subsample OLS 
@@ -192,6 +206,19 @@ Unobserved heterogeneity can be dealt with by using fixed effects regression mod
 # panel$Time <– as.factor(panel$Time)
 
 # mod.no <- bife(y ~ x + Time | ID, data = panel, bias_corr = "ana")
+
+
+# maybe you can use state fixed effects without needid to group states together, i.e. by north vs. south, if you use..
+# mod_plm <- plm(hwy ~ emp + as.factor(region), index = c("state", "year"), model = "within", data = df)
+# summary(mod_plm)[["coefficients"]]
+
+#     Estimate Std. Error  t-value     Pr(>|t|)
+# emp 1.119484 0.07663479 14.60804 8.040036e-43
+
+# instead of...
+
+# mod_lm <- lm(hwy ~ emp + as.factor(state) + as.factor(region), data = df)
+# summary(mod_lm)[["coefficients"]]
 
 
 ```

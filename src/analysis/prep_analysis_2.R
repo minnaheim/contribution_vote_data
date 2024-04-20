@@ -59,11 +59,8 @@ df_vote_7 <- df_vote_7 %>% rename("Vote7_minus" = "Vote7_-")
 # get all votes leading up to the vote, to see if votes before have impact for next relevant vote
 df_vote_4_2 <- filter_all_pre_session_data(df, 4)
 df_vote_4_2 <- dummy_cols(df_vote_4_2, select_columns = "Vote4")
-df_vote_4_2 <- df_vote_4_2 %>% rename("Vote4_plus" = "Vote4_..1")
-df_vote_4_2 <- df_vote_4_2 %>% rename("Vote4_minus" = "Vote4_.")
-view(df_vote_4_2)
-
-
+df_vote_4_2 <- df_vote_4_2 %>% rename("Vote4_plus" = "Vote4_+")
+df_vote_4_2 <- df_vote_4_2 %>% rename("Vote4_minus" = "Vote4_-")
 
 # get all reps who voted only pos. or only neg. and regress with all contributions
 df_no_change <- df %>% filter(Vote_change_dummy == 0)

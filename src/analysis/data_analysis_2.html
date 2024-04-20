@@ -97,102 +97,427 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <p>Plots and Data inspection can be found in the plot qmd located in the same directory</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># transform to panel data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(BioID))</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>panel_data <span class="ot">&lt;-</span> <span class="fu">pdata.frame</span>(df, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"BioID"</span>))</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(panel_data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="model-1-ols" class="level2">
 <h2 class="anchored" data-anchor-id="model-1-ols">Model 1: OLS</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 3</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>ols_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote3_plus <span class="sc">~</span> . <span class="sc">-</span> Vote3_minus <span class="sc">-</span> Vote3 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_3)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 3</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ols_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote3_plus <span class="sc">~</span> <span class="fu">as.factor</span>(state) <span class="sc">+</span> party <span class="sc">+</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> BioID, <span class="at">data =</span> df_vote_3)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
-lm(formula = Vote3_plus ~ . - Vote3_minus - Vote3 - Vote_change_dummy, 
-    data = df_vote_3)
+lm(formula = Vote3_plus ~ as.factor(state) + party + Contribution_3_minus + 
+    Contribution_3_plus + BioID, data = df_vote_3)
 
 Residuals:
-     Min       1Q   Median       3Q      Max 
--0.97024 -0.00618  0.01970  0.03086  0.06825 
+ALL 339 residuals are 0: no residual degrees of freedom!
 
-Coefficients:
-                       Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)           9.706e-01  9.785e-03  99.193   &lt;2e-16 ***
-partyR               -9.568e-01  1.431e-02 -66.860   &lt;2e-16 ***
-Contribution_3_minus -5.184e-07  2.500e-07  -2.073   0.0389 *  
-Contribution_3_plus   3.500e-06  3.051e-06   1.147   0.2522    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+Coefficients: (47 not defined because of singularities)
+                       Estimate Std. Error t value Pr(&gt;|t|)
+(Intercept)           1.000e+00        NaN     NaN      NaN
+as.factor(state)AL    1.140e-14        NaN     NaN      NaN
+as.factor(state)AR   -8.303e-15        NaN     NaN      NaN
+as.factor(state)AZ    2.917e-15        NaN     NaN      NaN
+as.factor(state)CA   -1.134e-14        NaN     NaN      NaN
+as.factor(state)CO   -8.943e-15        NaN     NaN      NaN
+as.factor(state)CT   -5.276e-15        NaN     NaN      NaN
+as.factor(state)DE   -2.050e-14        NaN     NaN      NaN
+as.factor(state)FL   -1.006e-14        NaN     NaN      NaN
+as.factor(state)GA   -9.407e-15        NaN     NaN      NaN
+as.factor(state)HI   -1.176e-14        NaN     NaN      NaN
+as.factor(state)IA   -8.057e-15        NaN     NaN      NaN
+as.factor(state)ID   -1.310e-14        NaN     NaN      NaN
+as.factor(state)IL   -9.083e-15        NaN     NaN      NaN
+as.factor(state)IN   -9.794e-15        NaN     NaN      NaN
+as.factor(state)KS   -1.113e-14        NaN     NaN      NaN
+as.factor(state)KY   -8.682e-15        NaN     NaN      NaN
+as.factor(state)LA   -9.196e-15        NaN     NaN      NaN
+as.factor(state)MA   -6.484e-15        NaN     NaN      NaN
+as.factor(state)MD   -1.019e-14        NaN     NaN      NaN
+as.factor(state)ME   -8.245e-15        NaN     NaN      NaN
+as.factor(state)MI   -9.483e-15        NaN     NaN      NaN
+as.factor(state)MN   -1.049e-14        NaN     NaN      NaN
+as.factor(state)MO   -8.832e-15        NaN     NaN      NaN
+as.factor(state)MS   -9.901e-15        NaN     NaN      NaN
+as.factor(state)NC   -1.025e-14        NaN     NaN      NaN
+as.factor(state)NE   -7.402e-15        NaN     NaN      NaN
+as.factor(state)NH   -8.817e-15        NaN     NaN      NaN
+as.factor(state)NJ   -8.518e-15        NaN     NaN      NaN
+as.factor(state)NM   -1.020e-14        NaN     NaN      NaN
+as.factor(state)NV   -9.739e-15        NaN     NaN      NaN
+as.factor(state)NY   -9.106e-15        NaN     NaN      NaN
+as.factor(state)OH   -8.863e-15        NaN     NaN      NaN
+as.factor(state)OK   -5.493e-15        NaN     NaN      NaN
+as.factor(state)OR   -1.048e-14        NaN     NaN      NaN
+as.factor(state)PA   -8.962e-15        NaN     NaN      NaN
+as.factor(state)RI   -1.271e-14        NaN     NaN      NaN
+as.factor(state)SC   -9.108e-15        NaN     NaN      NaN
+as.factor(state)TN   -9.741e-15        NaN     NaN      NaN
+as.factor(state)TX   -9.638e-15        NaN     NaN      NaN
+as.factor(state)UT   -9.200e-15        NaN     NaN      NaN
+as.factor(state)VA   -8.485e-15        NaN     NaN      NaN
+as.factor(state)WA   -1.029e-14        NaN     NaN      NaN
+as.factor(state)WI   -1.032e-14        NaN     NaN      NaN
+as.factor(state)WV   -9.669e-15        NaN     NaN      NaN
+partyR               -1.000e+00        NaN     NaN      NaN
+Contribution_3_minus  5.625e-21        NaN     NaN      NaN
+Contribution_3_plus  -1.110e-19        NaN     NaN      NaN
+BioIDA000367          2.243e-16        NaN     NaN      NaN
+BioIDA000369          2.729e-16        NaN     NaN      NaN
+BioIDB000213         -9.167e-17        NaN     NaN      NaN
+BioIDB000287         -2.480e-16        NaN     NaN      NaN
+BioIDB000490         -4.900e-17        NaN     NaN      NaN
+BioIDB000574          5.403e-16        NaN     NaN      NaN
+BioIDB000755         -4.156e-17        NaN     NaN      NaN
+BioIDB000911          3.237e-17        NaN     NaN      NaN
+BioIDB001227          4.643e-17        NaN     NaN      NaN
+BioIDB001248          1.634e-16        NaN     NaN      NaN
+BioIDB001250          4.094e-17        NaN     NaN      NaN
+BioIDB001251         -1.830e-16        NaN     NaN      NaN
+BioIDB001255          8.431e-17        NaN     NaN      NaN
+BioIDB001257         -1.311e-16        NaN     NaN      NaN
+BioIDB001260         -1.990e-16        NaN     NaN      NaN
+BioIDB001269          2.493e-16        NaN     NaN      NaN
+BioIDB001270          6.760e-16        NaN     NaN      NaN
+BioIDB001271         -1.464e-16        NaN     NaN      NaN
+BioIDB001273         -1.052e-16        NaN     NaN      NaN
+BioIDB001274         -1.429e-14        NaN     NaN      NaN
+BioIDB001275         -5.634e-16        NaN     NaN      NaN
+BioIDB001278         -3.055e-16        NaN     NaN      NaN
+BioIDB001281         -5.579e-16        NaN     NaN      NaN
+BioIDB001282         -4.901e-16        NaN     NaN      NaN
+BioIDB001283          1.798e-16        NaN     NaN      NaN
+BioIDB001284         -4.693e-16        NaN     NaN      NaN
+BioIDB001285         -2.117e-15        NaN     NaN      NaN
+BioIDB001286          4.417e-16        NaN     NaN      NaN
+BioIDB001287         -7.868e-16        NaN     NaN      NaN
+BioIDC000059          1.215e-15        NaN     NaN      NaN
+BioIDC000266         -1.746e-16        NaN     NaN      NaN
+BioIDC000537         -3.272e-16        NaN     NaN      NaN
+BioIDC000714          2.783e-16        NaN     NaN      NaN
+BioIDC000754         -3.059e-16        NaN     NaN      NaN
+BioIDC000984         -1.880e-16        NaN     NaN      NaN
+BioIDC001036         -3.558e-16        NaN     NaN      NaN
+BioIDC001037         -5.543e-17        NaN     NaN      NaN
+BioIDC001038          8.277e-16        NaN     NaN      NaN
+BioIDC001045         -1.265e-16        NaN     NaN      NaN
+BioIDC001048          2.020e-16        NaN     NaN      NaN
+BioIDC001051          1.171e-16        NaN     NaN      NaN
+BioIDC001053         -7.531e-17        NaN     NaN      NaN
+BioIDC001059         -1.000e+00        NaN     NaN      NaN
+BioIDC001061          1.099e-16        NaN     NaN      NaN
+BioIDC001063         -1.000e+00        NaN     NaN      NaN
+BioIDC001066          3.119e-17        NaN     NaN      NaN
+BioIDC001067         -6.242e-17        NaN     NaN      NaN
+BioIDC001068         -2.719e-16        NaN     NaN      NaN
+BioIDC001069         -1.808e-16        NaN     NaN      NaN
+BioIDC001072         -1.762e-16        NaN     NaN      NaN
+BioIDC001076          4.947e-17        NaN     NaN      NaN
+BioIDC001077         -1.988e-16        NaN     NaN      NaN
+BioIDC001078         -1.190e-16        NaN     NaN      NaN
+BioIDC001080         -2.366e-15        NaN     NaN      NaN
+BioIDC001083                 NA         NA      NA       NA
+BioIDC001084          9.227e-17        NaN     NaN      NaN
+BioIDC001087          4.450e-15        NaN     NaN      NaN
+BioIDC001090          1.290e-16        NaN     NaN      NaN
+BioIDC001091          1.877e-16        NaN     NaN      NaN
+BioIDC001092         -1.804e-16        NaN     NaN      NaN
+BioIDC001093         -1.372e-16        NaN     NaN      NaN
+BioIDC001094         -2.156e-16        NaN     NaN      NaN
+BioIDC001097         -1.381e-16        NaN     NaN      NaN
+BioIDD000096          2.540e-16        NaN     NaN      NaN
+BioIDD000191         -2.795e-16        NaN     NaN      NaN
+BioIDD000197          1.162e-15        NaN     NaN      NaN
+BioIDD000399          2.963e-16        NaN     NaN      NaN
+BioIDD000482         -1.215e-16        NaN     NaN      NaN
+BioIDD000533          2.603e-17        NaN     NaN      NaN
+BioIDD000598         -3.056e-16        NaN     NaN      NaN
+BioIDD000600         -1.271e-16        NaN     NaN      NaN
+BioIDD000604          2.969e-19        NaN     NaN      NaN
+BioIDD000610          3.427e-16        NaN     NaN      NaN
+BioIDD000612         -4.717e-16        NaN     NaN      NaN
+BioIDD000614         -1.907e-17        NaN     NaN      NaN
+BioIDD000615         -9.880e-17        NaN     NaN      NaN
+BioIDD000616          5.265e-17        NaN     NaN      NaN
+BioIDD000617         -1.312e-16        NaN     NaN      NaN
+BioIDD000619          8.636e-16        NaN     NaN      NaN
+BioIDD000620         -3.141e-17        NaN     NaN      NaN
+BioIDD000621         -1.665e-16        NaN     NaN      NaN
+BioIDE000179         -5.052e-17        NaN     NaN      NaN
+BioIDE000215         -6.148e-16        NaN     NaN      NaN
+BioIDE000288          3.571e-16        NaN     NaN      NaN
+BioIDE000290          3.191e-18        NaN     NaN      NaN
+BioIDE000291         -6.944e-17        NaN     NaN      NaN
+BioIDE000293          1.663e-16        NaN     NaN      NaN
+BioIDF000030         -1.984e-16        NaN     NaN      NaN
+BioIDF000372         -2.219e-16        NaN     NaN      NaN
+BioIDF000448         -1.019e-14        NaN     NaN      NaN
+BioIDF000449         -4.541e-17        NaN     NaN      NaN
+BioIDF000450          3.815e-16        NaN     NaN      NaN
+BioIDF000451          5.125e-16        NaN     NaN      NaN
+BioIDF000454          8.536e-16        NaN     NaN      NaN
+BioIDF000455         -5.624e-16        NaN     NaN      NaN
+BioIDF000456          3.418e-17        NaN     NaN      NaN
+BioIDF000458         -1.238e-17        NaN     NaN      NaN
+BioIDF000459          7.766e-16        NaN     NaN      NaN
+BioIDF000460          1.280e-16        NaN     NaN      NaN
+BioIDF000461          1.023e-15        NaN     NaN      NaN
+BioIDF000462          8.510e-17        NaN     NaN      NaN
+BioIDG000289         -9.896e-17        NaN     NaN      NaN
+BioIDG000377          9.837e-17        NaN     NaN      NaN
+BioIDG000410         -1.000e+00        NaN     NaN      NaN
+BioIDG000535          3.763e-16        NaN     NaN      NaN
+BioIDG000546          4.334e-16        NaN     NaN      NaN
+BioIDG000548          9.789e-16        NaN     NaN      NaN
+BioIDG000552          2.728e-16        NaN     NaN      NaN
+BioIDG000553          4.883e-16        NaN     NaN      NaN
+BioIDG000556          1.416e-16        NaN     NaN      NaN
+BioIDG000558         -2.005e-17        NaN     NaN      NaN
+BioIDG000559          5.752e-15        NaN     NaN      NaN
+BioIDG000560         -1.117e-16        NaN     NaN      NaN
+BioIDG000563         -4.169e-16        NaN     NaN      NaN
+BioIDG000565         -2.010e-14        NaN     NaN      NaN
+BioIDG000566         -3.515e-17        NaN     NaN      NaN
+BioIDG000568         -1.440e-16        NaN     NaN      NaN
+BioIDG000571          3.878e-16        NaN     NaN      NaN
+BioIDH000324          4.686e-17        NaN     NaN      NaN
+BioIDH000636          2.416e-16        NaN     NaN      NaN
+BioIDH000874         -4.211e-16        NaN     NaN      NaN
+BioIDH001034         -1.761e-16        NaN     NaN      NaN
+BioIDH001036          6.243e-17        NaN     NaN      NaN
+BioIDH001038         -4.269e-17        NaN     NaN      NaN
+BioIDH001045         -4.064e-16        NaN     NaN      NaN
+BioIDH001047         -1.378e-16        NaN     NaN      NaN
+BioIDH001048         -2.254e-16        NaN     NaN      NaN
+BioIDH001050                 NA         NA      NA       NA
+BioIDH001051         -1.899e-16        NaN     NaN      NaN
+BioIDH001052         -2.653e-16        NaN     NaN      NaN
+BioIDH001053          1.588e-16        NaN     NaN      NaN
+BioIDH001055          1.496e-16        NaN     NaN      NaN
+BioIDH001057         -1.257e-15        NaN     NaN      NaN
+BioIDH001058          2.852e-16        NaN     NaN      NaN
+BioIDH001059          7.122e-16        NaN     NaN      NaN
+BioIDH001063         -3.891e-16        NaN     NaN      NaN
+BioIDH001064         -1.750e-16        NaN     NaN      NaN
+BioIDH001066          7.863e-16        NaN     NaN      NaN
+BioIDH001067         -1.090e-16        NaN     NaN      NaN
+BioIDH001068         -1.591e-15        NaN     NaN      NaN
+BioIDI000056         -2.788e-15        NaN     NaN      NaN
+BioIDI000057          9.409e-16        NaN     NaN      NaN
+BioIDJ000032          2.849e-16        NaN     NaN      NaN
+BioIDJ000126          2.128e-16        NaN     NaN      NaN
+BioIDJ000174          3.452e-16        NaN     NaN      NaN
+BioIDJ000288         -2.538e-17        NaN     NaN      NaN
+BioIDJ000289         -2.233e-16        NaN     NaN      NaN
+BioIDJ000290         -1.876e-15        NaN     NaN      NaN
+BioIDJ000292         -3.890e-16        NaN     NaN      NaN
+BioIDJ000294          3.923e-17        NaN     NaN      NaN
+BioIDJ000295         -2.722e-16        NaN     NaN      NaN
+BioIDK000009         -5.266e-16        NaN     NaN      NaN
+BioIDK000188          4.187e-16        NaN     NaN      NaN
+BioIDK000210          3.802e-17        NaN     NaN      NaN
+BioIDK000362         -8.772e-16        NaN     NaN      NaN
+BioIDK000363         -4.975e-16        NaN     NaN      NaN
+BioIDK000368         -8.504e-15        NaN     NaN      NaN
+BioIDK000375         -1.553e-16        NaN     NaN      NaN
+BioIDK000376          3.353e-18        NaN     NaN      NaN
+BioIDK000378          1.071e-15        NaN     NaN      NaN
+BioIDK000379         -3.987e-17        NaN     NaN      NaN
+BioIDK000380          1.727e-16        NaN     NaN      NaN
+BioIDK000381         -9.987e-17        NaN     NaN      NaN
+BioIDK000382          7.068e-16        NaN     NaN      NaN
+BioIDK000385          3.518e-16        NaN     NaN      NaN
+BioIDL000263          3.175e-16        NaN     NaN      NaN
+BioIDL000287          4.520e-18        NaN     NaN      NaN
+BioIDL000397          2.150e-15        NaN     NaN      NaN
+BioIDL000480         -4.913e-17        NaN     NaN      NaN
+BioIDL000491                 NA         NA      NA       NA
+BioIDL000551          1.606e-16        NaN     NaN      NaN
+BioIDL000554         -1.075e-16        NaN     NaN      NaN
+BioIDL000557                 NA         NA      NA       NA
+BioIDL000559                 NA         NA      NA       NA
+BioIDL000560         -3.325e-17        NaN     NaN      NaN
+BioIDL000562          2.184e-17        NaN     NaN      NaN
+BioIDL000563          3.506e-16        NaN     NaN      NaN
+BioIDL000564         -1.138e-14        NaN     NaN      NaN
+BioIDL000565                 NA         NA      NA       NA
+BioIDL000566          6.878e-16        NaN     NaN      NaN
+BioIDL000567         -1.681e-16        NaN     NaN      NaN
+BioIDL000569          1.012e-16        NaN     NaN      NaN
+BioIDL000573          1.288e-16        NaN     NaN      NaN
+BioIDL000576          2.666e-17        NaN     NaN      NaN
+BioIDL000578          1.647e-15        NaN     NaN      NaN
+BioIDL000579          2.691e-16        NaN     NaN      NaN
+BioIDL000580          6.584e-16        NaN     NaN      NaN
+BioIDM000087         -1.725e-16        NaN     NaN      NaN
+BioIDM000312          3.440e-16        NaN     NaN      NaN
+BioIDM000404         -1.520e-16        NaN     NaN      NaN
+BioIDM000689         -2.495e-16        NaN     NaN      NaN
+BioIDM001137         -7.640e-17        NaN     NaN      NaN
+BioIDM001143         -5.751e-16        NaN     NaN      NaN
+BioIDM001144         -1.847e-16        NaN     NaN      NaN
+BioIDM001150          5.765e-17        NaN     NaN      NaN
+BioIDM001151         -2.707e-17        NaN     NaN      NaN
+BioIDM001156         -5.680e-17        NaN     NaN      NaN
+BioIDM001157         -6.537e-17        NaN     NaN      NaN
+BioIDM001158          1.027e-17        NaN     NaN      NaN
+BioIDM001159         -7.194e-17        NaN     NaN      NaN
+BioIDM001160          3.629e-17        NaN     NaN      NaN
+BioIDM001163          7.584e-15        NaN     NaN      NaN
+BioIDM001165         -2.289e-15        NaN     NaN      NaN
+BioIDM001166          3.328e-16        NaN     NaN      NaN
+BioIDM001177         -3.630e-15        NaN     NaN      NaN
+BioIDM001180                 NA         NA      NA       NA
+BioIDM001181          8.929e-16        NaN     NaN      NaN
+BioIDM001182         -6.680e-17        NaN     NaN      NaN
+BioIDM001184          1.581e-16        NaN     NaN      NaN
+BioIDM001187         -8.252e-18        NaN     NaN      NaN
+BioIDM001188          4.580e-17        NaN     NaN      NaN
+BioIDM001189         -5.573e-16        NaN     NaN      NaN
+BioIDM001191         -3.511e-17        NaN     NaN      NaN
+BioIDN000002          1.689e-16        NaN     NaN      NaN
+BioIDN000015          9.070e-17        NaN     NaN      NaN
+BioIDN000127          3.464e-17        NaN     NaN      NaN
+BioIDN000179         -4.584e-16        NaN     NaN      NaN
+BioIDN000181          3.686e-15        NaN     NaN      NaN
+BioIDN000182         -2.920e-17        NaN     NaN      NaN
+BioIDN000185         -2.551e-16        NaN     NaN      NaN
+BioIDO000168         -5.017e-16        NaN     NaN      NaN
+BioIDO000170          2.979e-16        NaN     NaN      NaN
+BioIDP000034          2.838e-17        NaN     NaN      NaN
+BioIDP000096         -8.658e-17        NaN     NaN      NaN
+BioIDP000197         -1.043e-14        NaN     NaN      NaN
+BioIDP000258         -1.000e+00        NaN     NaN      NaN
+BioIDP000373          1.643e-16        NaN     NaN      NaN
+BioIDP000523         -2.062e-16        NaN     NaN      NaN
+BioIDP000588                 NA         NA      NA       NA
+BioIDP000591         -2.216e-16        NaN     NaN      NaN
+BioIDP000592          5.828e-17        NaN     NaN      NaN
+BioIDP000593          6.835e-16        NaN     NaN      NaN
+BioIDP000594         -7.280e-16        NaN     NaN      NaN
+BioIDP000597                 NA         NA      NA       NA
+BioIDP000598          4.170e-16        NaN     NaN      NaN
+BioIDP000599         -1.508e-16        NaN     NaN      NaN
+BioIDP000601         -7.139e-17        NaN     NaN      NaN
+BioIDP000602         -7.814e-16        NaN     NaN      NaN
+BioIDP000604         -6.864e-18        NaN     NaN      NaN
+BioIDP000605          2.278e-16        NaN     NaN      NaN
+BioIDP000606                 NA         NA      NA       NA
+BioIDP000607          1.533e-16        NaN     NaN      NaN
+BioIDP000608         -8.568e-16        NaN     NaN      NaN
+BioIDQ000023          3.141e-16        NaN     NaN      NaN
+BioIDR000053         -4.369e-17        NaN     NaN      NaN
+BioIDR000395         -5.964e-17        NaN     NaN      NaN
+BioIDR000409         -2.094e-16        NaN     NaN      NaN
+BioIDR000435          5.130e-17        NaN     NaN      NaN
+BioIDR000486          2.422e-15        NaN     NaN      NaN
+BioIDR000487         -2.990e-16        NaN     NaN      NaN
+BioIDR000575          2.002e-14        NaN     NaN      NaN
+BioIDR000576         -7.948e-18        NaN     NaN      NaN
+BioIDR000577         -6.975e-16        NaN     NaN      NaN
+BioIDR000578          1.415e-16        NaN     NaN      NaN
+BioIDR000580          7.331e-16        NaN     NaN      NaN
+BioIDR000582                 NA         NA      NA       NA
+BioIDR000583         -2.229e-16        NaN     NaN      NaN
+BioIDR000585         -1.846e-16        NaN     NaN      NaN
+BioIDR000586         -2.480e-16        NaN     NaN      NaN
+BioIDR000587                 NA         NA      NA       NA
+BioIDR000588          5.637e-16        NaN     NaN      NaN
+BioIDR000591         -1.431e-14        NaN     NaN      NaN
+BioIDR000592         -5.599e-16        NaN     NaN      NaN
+BioIDR000593         -9.226e-17        NaN     NaN      NaN
+BioIDR000597         -1.087e-16        NaN     NaN      NaN
+BioIDR000598         -2.078e-16        NaN     NaN      NaN
+BioIDR000599         -6.289e-15        NaN     NaN      NaN
+BioIDS000018         -1.005e-14        NaN     NaN      NaN
+BioIDS000030         -2.706e-16        NaN     NaN      NaN
+BioIDS000051         -4.023e-17        NaN     NaN      NaN
+BioIDS000185          9.634e-18        NaN     NaN      NaN
+BioIDS000248         -4.828e-17        NaN     NaN      NaN
+BioIDS000250          6.157e-17        NaN     NaN      NaN
+BioIDS000344         -3.963e-15        NaN     NaN      NaN
+BioIDS000364          9.773e-16        NaN     NaN      NaN
+BioIDS000480          1.662e-16        NaN     NaN      NaN
+BioIDS000510                 NA         NA      NA       NA
+BioIDS000522         -4.195e-17        NaN     NaN      NaN
+BioIDS000583         -5.267e-17        NaN     NaN      NaN
+BioIDS001145          7.896e-16        NaN     NaN      NaN
+BioIDS001148                 NA         NA      NA       NA
+BioIDS001150          8.699e-17        NaN     NaN      NaN
+BioIDS001156         -2.358e-15        NaN     NaN      NaN
+BioIDS001157         -7.967e-17        NaN     NaN      NaN
+BioIDS001165                 NA         NA      NA       NA
+BioIDS001168                 NA         NA      NA       NA
+BioIDS001170                 NA         NA      NA       NA
+BioIDS001172                 NA         NA      NA       NA
+BioIDS001175         -2.030e-15        NaN     NaN      NaN
+BioIDS001176                 NA         NA      NA       NA
+BioIDS001180         -2.216e-16        NaN     NaN      NaN
+BioIDS001183                 NA         NA      NA       NA
+BioIDS001185         -9.771e-15        NaN     NaN      NaN
+BioIDS001187         -4.577e-16        NaN     NaN      NaN
+BioIDS001188          1.603e-15        NaN     NaN      NaN
+BioIDS001189         -2.155e-16        NaN     NaN      NaN
+BioIDS001190                 NA         NA      NA       NA
+BioIDS001192                 NA         NA      NA       NA
+BioIDS001193          4.768e-16        NaN     NaN      NaN
+BioIDS001195         -2.146e-17        NaN     NaN      NaN
+BioIDT000193                 NA         NA      NA       NA
+BioIDT000238         -7.726e-17        NaN     NaN      NaN
+BioIDT000460          3.729e-15        NaN     NaN      NaN
+BioIDT000462         -3.935e-16        NaN     NaN      NaN
+BioIDT000463         -2.709e-16        NaN     NaN      NaN
+BioIDT000465                 NA         NA      NA       NA
+BioIDT000467                 NA         NA      NA       NA
+BioIDT000468                 NA         NA      NA       NA
+BioIDT000469          3.172e-16        NaN     NaN      NaN
+BioIDT000470                 NA         NA      NA       NA
+BioIDT000472         -2.707e-16        NaN     NaN      NaN
+BioIDU000031         -3.322e-16        NaN     NaN      NaN
+BioIDV000081                 NA         NA      NA       NA
+BioIDV000108         -5.996e-16        NaN     NaN      NaN
+BioIDV000130         -1.040e-15        NaN     NaN      NaN
+BioIDV000131          4.705e-17        NaN     NaN      NaN
+BioIDV000132         -1.000e+00        NaN     NaN      NaN
+BioIDW000187                 NA         NA      NA       NA
+BioIDW000413                 NA         NA      NA       NA
+BioIDW000791                 NA         NA      NA       NA
+BioIDW000795                 NA         NA      NA       NA
+BioIDW000796         -9.591e-17        NaN     NaN      NaN
+BioIDW000798                 NA         NA      NA       NA
+BioIDW000799                 NA         NA      NA       NA
+BioIDW000804                 NA         NA      NA       NA
+BioIDW000806         -2.521e-16        NaN     NaN      NaN
+BioIDW000808                 NA         NA      NA       NA
+BioIDW000809                 NA         NA      NA       NA
+BioIDW000810                 NA         NA      NA       NA
+BioIDW000812                 NA         NA      NA       NA
+BioIDW000813                 NA         NA      NA       NA
+BioIDW000814                 NA         NA      NA       NA
+BioIDW000815                 NA         NA      NA       NA
+BioIDW000816                 NA         NA      NA       NA
+BioIDY000033                 NA         NA      NA       NA
+BioIDY000062                 NA         NA      NA       NA
+BioIDY000063                 NA         NA      NA       NA
+BioIDY000065                 NA         NA      NA       NA
 
-Residual standard error: 0.1194 on 335 degrees of freedom
+Residual standard error: NaN on 0 degrees of freedom
   (20 observations deleted due to missingness)
-Multiple R-squared:  0.9433,    Adjusted R-squared:  0.9428 
-F-statistic:  1858 on 3 and 335 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:      1, Adjusted R-squared:    NaN 
+F-statistic:   NaN on 338 and 0 DF,  p-value: NA</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df_vote_3 <span class="ot">&lt;-</span> df_vote_3 <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Vote_change_dummy, Vote3_minus, Vote3_plus))</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(df_vote_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 20 rows containing non-finite outside the scale range
-(`stat_boxplot()`).
-Removed 20 rows containing non-finite outside the scale range
-(`stat_boxplot()`).
-Removed 20 rows containing non-finite outside the scale range
-(`stat_boxplot()`).
-Removed 20 rows containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 20 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 20 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 20 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 20 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 20 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 20 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 20 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 20 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="data_analysis_2_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 4</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>ols_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote4_plus <span class="sc">~</span> . <span class="sc">-</span> Vote4_minus <span class="sc">-</span> Vote4 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_4)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df_vote_3 &lt;- df_vote_3 %&gt;% select(-c(Vote_change_dummy, Vote3_minus, Vote3_plus))</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ggpairs(df_vote_3)</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 4</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>ols_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote4_plus <span class="sc">~</span> . <span class="sc">-</span> Vote4_minus <span class="sc">-</span> Vote4 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_4)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -201,25 +526,70 @@ lm(formula = Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy,
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.97165 -0.02757 -0.00999  0.02248  0.98648 
+-0.88976 -0.02644 -0.00009  0.03083  0.88715 
 
 Coefficients:
                        Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)           9.787e-01  1.191e-02  82.166   &lt;2e-16 ***
-partyR               -9.459e-01  1.653e-02 -57.207   &lt;2e-16 ***
-Contribution_4_minus -4.009e-07  2.864e-07  -1.400    0.162    
-Contribution_4_plus   2.885e-06  3.692e-06   0.781    0.435    
+(Intercept)           9.279e-01  1.524e-01   6.088  3.1e-09 ***
+partyR               -9.204e-01  1.936e-02 -47.547  &lt; 2e-16 ***
+Contribution_4_minus -2.678e-07  3.195e-07  -0.838    0.403    
+Contribution_4_plus   2.641e-07  4.078e-06   0.065    0.948    
+stateAL               7.154e-03  1.618e-01   0.044    0.965    
+stateAR              -4.107e-03  1.692e-01  -0.024    0.981    
+stateAZ               4.176e-02  1.663e-01   0.251    0.802    
+stateCA               5.622e-02  1.534e-01   0.366    0.714    
+stateCO               3.403e-02  1.620e-01   0.210    0.834    
+stateCT               7.410e-02  1.667e-01   0.444    0.657    
+stateDE               7.212e-02  2.147e-01   0.336    0.737    
+stateFL               1.166e-01  1.551e-01   0.752    0.453    
+stateGA              -5.336e-02  1.567e-01  -0.340    0.734    
+stateHI               7.166e-02  2.152e-01   0.333    0.739    
+stateIA               1.374e-02  1.714e-01   0.080    0.936    
+stateID               4.847e-03  1.854e-01   0.026    0.979    
+stateIL               4.531e-02  1.567e-01   0.289    0.773    
+stateIN               1.931e-02  1.607e-01   0.120    0.904    
+stateKS              -4.553e-05  1.696e-01   0.000    1.000    
+stateKY               1.409e-02  1.658e-01   0.085    0.932    
+stateLA               2.619e-02  1.642e-01   0.159    0.873    
+stateMA               7.358e-02  1.605e-01   0.458    0.647    
+stateMD               6.571e-02  1.626e-01   0.404    0.686    
+stateME               3.567e-02  1.857e-01   0.192    0.848    
+stateMI               2.687e-02  1.568e-01   0.171    0.864    
+stateMN              -7.943e-02  1.609e-01  -0.494    0.622    
+stateMO               6.915e-03  1.620e-01   0.043    0.966    
+stateMS               1.911e-02  1.692e-01   0.113    0.910    
+stateNC               2.255e-02  1.588e-01   0.142    0.887    
+stateNE              -6.599e-03  1.858e-01  -0.036    0.972    
+stateNH               7.413e-02  2.148e-01   0.345    0.730    
+stateNJ               3.612e-02  1.590e-01   0.227    0.820    
+stateNM               7.387e-02  2.152e-01   0.343    0.732    
+stateNV               3.996e-02  1.758e-01   0.227    0.820    
+stateNY               1.697e-01  1.549e-01   1.096    0.274    
+stateOH               1.960e-02  1.561e-01   0.126    0.900    
+stateOK               2.999e-03  1.692e-01   0.018    0.986    
+stateOR               6.253e-02  1.666e-01   0.375    0.708    
+statePA               2.052e-02  1.561e-01   0.131    0.895    
+stateRI               7.272e-02  1.862e-01   0.390    0.696    
+stateSC               9.074e-03  1.618e-01   0.056    0.955    
+stateSD               2.454e-03  2.140e-01   0.011    0.991    
+stateTN               1.450e-02  1.606e-01   0.090    0.928    
+stateTX              -3.241e-02  1.538e-01  -0.211    0.833    
+stateUT               1.167e-03  1.692e-01   0.007    0.994    
+stateVA               2.769e-02  1.606e-01   0.172    0.863    
+stateWA               4.381e-02  1.592e-01   0.275    0.783    
+stateWI               4.311e-02  1.661e-01   0.260    0.795    
+stateWV               2.815e-04  1.747e-01   0.002    0.999    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1511 on 383 degrees of freedom
+Residual standard error: 0.1513 on 338 degrees of freedom
   (28 observations deleted due to missingness)
-Multiple R-squared:  0.9087,    Adjusted R-squared:  0.908 
-F-statistic:  1271 on 3 and 383 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.9192,    Adjusted R-squared:  0.9077 
+F-statistic: 80.12 on 48 and 338 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 51</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>ols_51 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote51_plus <span class="sc">~</span> . <span class="sc">-</span> Vote51_minus <span class="sc">-</span> Vote51 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_51)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_51)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 51</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ols_51 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote51_plus <span class="sc">~</span> . <span class="sc">-</span> Vote51_minus <span class="sc">-</span> Vote51 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_51)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_51)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -228,24 +598,71 @@ lm(formula = Vote51_plus ~ . - Vote51_minus - Vote51 - Vote_change_dummy,
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--1.00855 -0.05659 -0.01456  0.01782  0.95521 
+-0.85878 -0.05275 -0.00534  0.02288  0.88742 
 
 Coefficients:
                         Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)            9.844e-01  1.436e-02  68.530   &lt;2e-16 ***
-partyR                -9.179e-01  2.062e-02 -44.519   &lt;2e-16 ***
-Contribution_51_minus -7.509e-07  3.971e-07  -1.891   0.0594 .  
-Contribution_51_plus   5.074e-06  3.101e-06   1.636   0.1026    
+(Intercept)            9.113e-01  1.870e-01   4.874 1.69e-06 ***
+partyR                -8.902e-01  2.407e-02 -36.991  &lt; 2e-16 ***
+Contribution_51_minus -7.783e-07  4.279e-07  -1.819   0.0698 .  
+Contribution_51_plus   7.863e-06  3.636e-06   2.163   0.0313 *  
+stateAL                5.386e-03  1.985e-01   0.027   0.9784    
+stateAR               -5.136e-03  2.075e-01  -0.025   0.9803    
+stateAZ                3.061e-02  2.035e-01   0.150   0.8805    
+stateCA                8.486e-02  1.882e-01   0.451   0.6524    
+stateCO                2.858e-02  1.987e-01   0.144   0.8857    
+stateCT                8.897e-02  2.087e-01   0.426   0.6702    
+stateDE                9.296e-02  2.634e-01   0.353   0.7244    
+stateFL                8.849e-02  1.911e-01   0.463   0.6437    
+stateGA                2.198e-02  1.928e-01   0.114   0.9093    
+stateHI                8.809e-02  2.284e-01   0.386   0.7000    
+stateIA               -7.977e-02  2.130e-01  -0.375   0.7082    
+stateID               -3.540e-03  2.273e-01  -0.016   0.9876    
+stateIL                3.486e-02  1.916e-01   0.182   0.8558    
+stateIN               -4.264e-03  1.960e-01  -0.022   0.9827    
+stateKS               -3.815e-02  2.150e-01  -0.177   0.8593    
+stateKY                2.621e-03  2.006e-01   0.013   0.9896    
+stateLA                1.470e-02  2.034e-01   0.072   0.9424    
+stateMA                8.353e-02  1.970e-01   0.424   0.6719    
+stateMD                8.007e-02  1.978e-01   0.405   0.6859    
+stateME                3.176e-02  2.277e-01   0.139   0.8892    
+stateMI                3.359e-02  1.928e-01   0.174   0.8618    
+stateMN               -9.979e-02  1.980e-01  -0.504   0.6146    
+stateMO               -1.945e-03  2.007e-01  -0.010   0.9923    
+stateMS                1.656e-02  2.076e-01   0.080   0.9365    
+stateMT               -6.878e-03  2.634e-01  -0.026   0.9792    
+stateNC                2.629e-02  1.958e-01   0.134   0.8933    
+stateNE               -5.306e-02  2.155e-01  -0.246   0.8057    
+stateNH                7.615e-02  2.286e-01   0.333   0.7392    
+stateNJ                1.353e-01  1.954e-01   0.693   0.4890    
+stateNM                3.475e-02  2.277e-01   0.153   0.8788    
+stateNV                6.116e-02  2.148e-01   0.285   0.7761    
+stateNY                1.674e-01  1.898e-01   0.882   0.3782    
+stateOH                3.363e-02  1.918e-01   0.175   0.8609    
+stateOK               -4.103e-03  2.143e-01  -0.019   0.9847    
+stateOR                7.781e-02  2.044e-01   0.381   0.7036    
+statePA                1.960e-01  1.911e-01   1.026   0.3058    
+stateRI                8.936e-02  2.284e-01   0.391   0.6959    
+stateSC                1.496e-01  2.006e-01   0.746   0.4562    
+stateSD               -1.841e-02  2.627e-01  -0.070   0.9442    
+stateTN                1.323e-02  1.987e-01   0.067   0.9469    
+stateTX               -3.230e-02  1.887e-01  -0.171   0.8642    
+stateUT               -5.954e-03  2.143e-01  -0.028   0.9779    
+stateVA                2.575e-02  1.958e-01   0.132   0.8954    
+stateWA                1.506e-01  1.951e-01   0.772   0.4409    
+stateWI                4.467e-02  2.008e-01   0.222   0.8241    
+stateWV               -3.142e-03  2.145e-01  -0.015   0.9883    
+stateWY               -6.342e-03  2.625e-01  -0.024   0.9807    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1859 on 382 degrees of freedom
+Residual standard error: 0.1856 on 335 degrees of freedom
   (25 observations deleted due to missingness)
-Multiple R-squared:  0.8631,    Adjusted R-squared:  0.862 
-F-statistic: 802.7 on 3 and 382 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.8803,    Adjusted R-squared:  0.8625 
+F-statistic: 49.29 on 50 and 335 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ols_52 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote52_plus <span class="sc">~</span> . <span class="sc">-</span> Vote52_minus <span class="sc">-</span> Vote52 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_52)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_52)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>ols_52 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote52_plus <span class="sc">~</span> . <span class="sc">-</span> Vote52_minus <span class="sc">-</span> Vote52 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_52)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_52)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -254,24 +671,73 @@ lm(formula = Vote52_plus ~ . - Vote52_minus - Vote52 - Vote_change_dummy,
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.96974 -0.05709 -0.03061  0.02164  0.99323 
+-0.85366 -0.06172 -0.00313  0.03233  0.93990 
 
 Coefficients:
                         Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)            9.797e-01  1.503e-02  65.184  &lt; 2e-16 ***
-partyR                -9.204e-01  2.145e-02 -42.903  &lt; 2e-16 ***
-Contribution_52_minus -5.545e-07  3.258e-07  -1.702   0.0895 .  
-Contribution_52_plus   1.087e-05  2.152e-06   5.053 6.79e-07 ***
+(Intercept)            8.921e-01  1.940e-01   4.599 6.06e-06 ***
+partyR                -8.787e-01  2.512e-02 -34.978  &lt; 2e-16 ***
+Contribution_52_minus -6.137e-07  3.568e-07  -1.720   0.0863 .  
+Contribution_52_plus   1.192e-05  2.467e-06   4.832 2.08e-06 ***
+stateAL                9.797e-03  2.059e-01   0.048   0.9621    
+stateAR               -6.983e-03  2.153e-01  -0.032   0.9741    
+stateAZ               -1.389e-03  2.114e-01  -0.007   0.9948    
+stateCA                7.727e-02  1.955e-01   0.395   0.6930    
+stateCO                7.498e-02  2.076e-01   0.361   0.7181    
+stateCT                1.074e-01  2.122e-01   0.506   0.6131    
+stateDE                1.125e-01  2.733e-01   0.412   0.6808    
+stateFL                1.668e-01  1.971e-01   0.846   0.3979    
+stateGA               -4.523e-02  1.995e-01  -0.227   0.8207    
+stateHI                1.000e-01  2.733e-01   0.366   0.7147    
+stateIA               -1.728e-01  2.194e-01  -0.787   0.4316    
+stateID                2.983e-03  2.358e-01   0.013   0.9899    
+stateIL                9.021e-02  1.985e-01   0.454   0.6498    
+stateIN               -6.647e-03  2.032e-01  -0.033   0.9739    
+stateKS               -7.824e-02  2.229e-01  -0.351   0.7258    
+stateKY                9.365e-04  2.080e-01   0.005   0.9964    
+stateLA               -1.332e-03  2.113e-01  -0.006   0.9950    
+stateMA                9.048e-02  2.044e-01   0.443   0.6583    
+stateMD                8.535e-02  2.068e-01   0.413   0.6801    
+stateME                5.030e-02  2.361e-01   0.213   0.8314    
+stateMI                1.049e-01  2.000e-01   0.525   0.6002    
+stateMN                3.250e-02  2.115e-01   0.154   0.8780    
+stateMO               -9.157e-03  2.060e-01  -0.044   0.9646    
+stateMS                3.398e-02  2.225e-01   0.153   0.8787    
+stateMT               -2.821e-02  2.731e-01  -0.103   0.9178    
+stateNC                1.874e-02  2.032e-01   0.092   0.9266    
+stateNE               -7.560e-02  2.229e-01  -0.339   0.7347    
+stateNH                1.108e-01  2.733e-01   0.405   0.6855    
+stateNJ                2.253e-01  2.018e-01   1.116   0.2650    
+stateNM                4.806e-02  2.362e-01   0.204   0.8389    
+stateNV                7.569e-02  2.229e-01   0.340   0.7344    
+stateNY                1.702e-01  1.972e-01   0.863   0.3886    
+stateOH                4.053e-02  1.991e-01   0.204   0.8388    
+stateOH,AZ             3.283e-02  2.732e-01   0.120   0.9044    
+stateOH,TX            -9.659e-03  2.724e-01  -0.035   0.9717    
+stateOK               -7.525e-03  2.223e-01  -0.034   0.9730    
+stateOR                9.224e-02  2.122e-01   0.435   0.6641    
+statePA                1.686e-01  1.997e-01   0.844   0.3991    
+stateRI                1.085e-01  2.370e-01   0.458   0.6474    
+stateSC                1.396e-01  2.059e-01   0.678   0.4983    
+stateSD               -1.334e-02  2.725e-01  -0.049   0.9610    
+stateTN                2.520e-02  2.060e-01   0.122   0.9027    
+stateTX               -2.293e-03  1.957e-01  -0.012   0.9907    
+stateUT                2.527e-03  2.153e-01   0.012   0.9906    
+stateVA                3.541e-02  2.022e-01   0.175   0.8611    
+stateWA                6.702e-02  2.036e-01   0.329   0.7422    
+stateWI                5.410e-02  2.083e-01   0.260   0.7952    
+stateWV               -2.122e-02  2.224e-01  -0.095   0.9240    
+stateWY                2.308e-03  2.723e-01   0.008   0.9932    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.193 on 378 degrees of freedom
+Residual standard error: 0.1925 on 329 degrees of freedom
   (25 observations deleted due to missingness)
-Multiple R-squared:  0.8524,    Adjusted R-squared:  0.8513 
-F-statistic: 727.9 on 3 and 378 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.8722,    Adjusted R-squared:  0.852 
+F-statistic: 43.18 on 52 and 329 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>ols_6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote6_plus <span class="sc">~</span> . <span class="sc">-</span> Vote6_minus <span class="sc">-</span> Vote6 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_6)</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>ols_6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote6_plus <span class="sc">~</span> . <span class="sc">-</span> Vote6_minus <span class="sc">-</span> Vote6 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_6)</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -280,24 +746,73 @@ lm(formula = Vote6_plus ~ . - Vote6_minus - Vote6 - Vote_change_dummy,
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.98935 -0.05075  0.00250  0.00401  0.95848 
+-0.96229 -0.03996 -0.01186  0.02858  0.90371 
 
 Coefficients:
                        Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)           9.975e-01  1.143e-02  87.285   &lt;2e-16 ***
-partyR               -9.407e-01  1.682e-02 -55.924   &lt;2e-16 ***
-Contribution_6_minus -2.950e-07  2.970e-07  -0.993    0.321    
-Contribution_6_plus   2.379e-06  7.621e-06   0.312    0.755    
+(Intercept)           9.128e-01  1.601e-01   5.702  2.6e-08 ***
+partyR               -9.098e-01  2.062e-02 -44.116  &lt; 2e-16 ***
+Contribution_6_minus -2.430e-07  3.248e-07  -0.748    0.455    
+Contribution_6_plus   2.524e-06  8.065e-06   0.313    0.755    
+stateAL               1.074e-02  1.695e-01   0.063    0.950    
+stateAR               8.564e-04  1.776e-01   0.005    0.996    
+stateAZ               4.615e-02  1.718e-01   0.269    0.788    
+stateCA               5.613e-02  1.614e-01   0.348    0.728    
+stateCO               4.975e-02  1.702e-01   0.292    0.770    
+stateCT               8.795e-02  1.751e-01   0.502    0.616    
+stateDE               9.019e-02  2.254e-01   0.400    0.689    
+stateFL               1.678e-01  1.624e-01   1.033    0.302    
+stateGA               3.116e-02  1.646e-01   0.189    0.850    
+stateHI               8.818e-02  1.954e-01   0.451    0.652    
+stateIA               5.708e-02  1.836e-01   0.311    0.756    
+stateID               6.724e-03  2.246e-01   0.030    0.976    
+stateIL               6.736e-02  1.637e-01   0.411    0.681    
+stateIN               1.966e-02  1.675e-01   0.117    0.907    
+stateKS               4.890e-02  1.947e-01   0.251    0.802    
+stateKY               1.361e-02  1.713e-01   0.079    0.937    
+stateLA               2.420e-02  1.720e-01   0.141    0.888    
+stateMA               8.749e-02  1.683e-01   0.520    0.604    
+stateMD               7.842e-02  1.706e-01   0.460    0.646    
+stateME               8.743e-02  1.954e-01   0.447    0.655    
+stateMI               1.185e-01  1.648e-01   0.719    0.473    
+stateMN               5.972e-02  1.721e-01   0.347    0.729    
+stateMO               1.494e-02  1.698e-01   0.088    0.930    
+stateMS               2.323e-02  1.777e-01   0.131    0.896    
+stateMT               5.900e-03  2.246e-01   0.026    0.979    
+stateNC               3.482e-02  1.687e-01   0.206    0.837    
+stateND               7.015e-03  2.246e-01   0.031    0.975    
+stateNE              -8.665e-04  1.833e-01  -0.005    0.996    
+stateNH               8.798e-02  1.954e-01   0.450    0.653    
+stateNJ               2.419e-01  1.661e-01   1.457    0.146    
+stateNV               6.741e-02  1.782e-01   0.378    0.705    
+stateNY               1.503e-01  1.627e-01   0.924    0.356    
+stateOH               2.157e-02  1.641e-01   0.131    0.896    
+stateOH,AZ            4.752e-03  2.245e-01   0.021    0.983    
+stateOH,TX           -1.929e-03  2.245e-01  -0.009    0.993    
+stateOK               5.587e-03  1.943e-01   0.029    0.977    
+stateOR               7.671e-02  1.750e-01   0.438    0.661    
+statePA               1.014e-01  1.635e-01   0.620    0.536    
+stateRI               8.732e-02  1.954e-01   0.447    0.655    
+stateSC               1.660e-02  1.716e-01   0.097    0.923    
+stateSD               5.016e-04  2.245e-01   0.002    0.998    
+stateTN               1.838e-02  1.675e-01   0.110    0.913    
+stateTX               3.930e-02  1.616e-01   0.243    0.808    
+stateUT              -2.812e-03  1.942e-01  -0.014    0.988    
+stateVA               6.063e-02  1.668e-01   0.363    0.717    
+stateWA               6.755e-02  1.678e-01   0.403    0.688    
+stateWI               3.892e-02  1.701e-01   0.229    0.819    
+stateWV               4.649e-03  1.835e-01   0.025    0.980    
+stateWY               1.183e-02  2.249e-01   0.053    0.958    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1571 on 386 degrees of freedom
+Residual standard error: 0.1585 on 337 degrees of freedom
   (15 observations deleted due to missingness)
-Multiple R-squared:  0.9012,    Adjusted R-squared:  0.9005 
-F-statistic:  1174 on 3 and 386 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.9122,    Adjusted R-squared:  0.8987 
+F-statistic: 67.36 on 52 and 337 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>ols_7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote7_plus <span class="sc">~</span> . <span class="sc">-</span> Vote7_minus <span class="sc">-</span> Vote7 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_7)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ols_7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote7_plus <span class="sc">~</span> . <span class="sc">-</span> Vote7_minus <span class="sc">-</span> Vote7 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_7)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -306,35 +821,106 @@ lm(formula = Vote7_plus ~ . - Vote7_minus - Vote7 - Vote_change_dummy,
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.04970 -0.04843 -0.00213 -0.00130  0.95326 
+-0.16516 -0.04776 -0.00107  0.01452  0.90451 
 
 Coefficients:
                        Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)           1.002e+00  1.082e-02  92.634   &lt;2e-16 ***
-partyR               -9.525e-01  1.572e-02 -60.586   &lt;2e-16 ***
-Contribution_7_minus -8.915e-08  3.052e-07  -0.292    0.770    
-Contribution_7_plus  -3.059e-06  6.605e-06  -0.463    0.644    
+(Intercept)           9.210e-01  1.459e-01   6.314 1.03e-09 ***
+partyR               -9.214e-01  1.964e-02 -46.906  &lt; 2e-16 ***
+Contribution_7_minus  3.686e-08  3.411e-07   0.108    0.914    
+Contribution_7_plus  -6.835e-06  7.272e-06  -0.940    0.348    
+stateAL               1.552e-02  1.584e-01   0.098    0.922    
+stateAR              -1.945e-04  1.617e-01  -0.001    0.999    
+stateAZ               5.247e-02  1.567e-01   0.335    0.738    
+stateCA               7.528e-02  1.474e-01   0.511    0.610    
+stateCO               5.267e-02  1.567e-01   0.336    0.737    
+stateCT               7.884e-02  1.596e-01   0.494    0.622    
+stateDE               9.535e-02  2.062e-01   0.462    0.644    
+stateFL               1.349e-01  1.483e-01   0.910    0.364    
+stateGA               3.952e-02  1.537e-01   0.257    0.797    
+stateHI               7.895e-02  2.054e-01   0.384    0.701    
+stateIA               9.567e-02  2.062e-01   0.464    0.643    
+stateID              -9.720e-04  2.047e-01  -0.005    0.996    
+stateIL               6.423e-02  1.499e-01   0.428    0.669    
+stateIN               6.970e-04  1.562e-01   0.004    0.996    
+stateKS               3.881e-02  1.774e-01   0.219    0.827    
+stateKY               1.593e-02  1.584e-01   0.101    0.920    
+stateLA               4.885e-03  1.779e-01   0.027    0.978    
+stateMA               8.005e-02  1.546e-01   0.518    0.605    
+stateMD               6.527e-02  1.571e-01   0.416    0.678    
+stateME               7.936e-02  1.781e-01   0.445    0.656    
+stateMI               1.298e-01  1.509e-01   0.860    0.391    
+stateMN               4.506e-02  1.550e-01   0.291    0.771    
+stateMO               1.296e-02  1.562e-01   0.083    0.934    
+stateMS               2.626e-02  1.671e-01   0.157    0.875    
+stateNC               3.379e-02  1.548e-01   0.218    0.827    
+stateND              -1.193e-03  2.048e-01  -0.006    0.995    
+stateNE               1.576e-04  1.670e-01   0.001    0.999    
+stateNH               8.401e-02  1.782e-01   0.471    0.638    
+stateNJ               1.553e-01  1.519e-01   1.023    0.307    
+stateNV               6.112e-02  1.623e-01   0.377    0.707    
+stateNY               1.645e-01  1.490e-01   1.104    0.271    
+stateOH               1.878e-02  1.497e-01   0.125    0.900    
+stateOH,AZ           -7.435e-05  2.045e-01   0.000    1.000    
+stateOH,TX            3.551e-04  2.045e-01   0.002    0.999    
+stateOK               2.206e-04  1.771e-01   0.001    0.999    
+stateOR               7.914e-02  1.629e-01   0.486    0.627    
+statePA               9.501e-02  1.489e-01   0.638    0.524    
+stateRI               9.875e-02  1.795e-01   0.550    0.583    
+stateSC               1.267e-02  1.563e-01   0.081    0.935    
+stateSD              -5.591e-04  2.045e-01  -0.003    0.998    
+stateTN               2.259e-02  1.547e-01   0.146    0.884    
+stateTX               3.512e-02  1.476e-01   0.238    0.812    
+stateUT               3.229e-03  1.771e-01   0.018    0.985    
+stateVA               5.965e-02  1.523e-01   0.392    0.696    
+stateWA               5.403e-02  1.531e-01   0.353    0.724    
+stateWI               4.323e-02  1.565e-01   0.276    0.783    
+stateWV               3.016e-04  1.670e-01   0.002    0.999    
+stateWY              -4.301e-03  2.083e-01  -0.021    0.984    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1408 on 336 degrees of freedom
+Residual standard error: 0.1446 on 288 degrees of freedom
   (12 observations deleted due to missingness)
-Multiple R-squared:  0.9193,    Adjusted R-squared:  0.9186 
-F-statistic:  1275 on 3 and 336 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.9271,    Adjusted R-squared:  0.9141 
+F-statistic: 71.76 on 51 and 288 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try it with sessionized, incl. all data leading up to the vote, not just vote</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># start with Vote, Vote3 first vote</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_vote_4_2)</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ols_4_2 &lt;- lm(Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy - Vote4_NA, data = df_vote_4_2)</span></span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="co"># doesnt work yet, go to prep_analysis to rename and remove Vote dummy cols</span></span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(ols_4_2)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>ols_4_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote4_plus <span class="sc">~</span> . <span class="sc">-</span> Vote4_minus <span class="sc">-</span> Vote4 <span class="sc">-</span> Vote_change_dummy <span class="sc">-</span> Vote4_NA, <span class="at">data =</span> df_vote_4_2)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_4_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy - 
+    Vote4_NA, data = df_vote_4_2)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.96854 -0.01963  0.01540  0.02440  0.97033 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)           9.782e-01  1.116e-02  87.626   &lt;2e-16 ***
+partyR               -9.469e-01  1.618e-02 -58.537   &lt;2e-16 ***
+Contribution_3_minus -4.904e-07  3.722e-07  -1.317    0.189    
+Contribution_3_plus   2.224e-06  3.462e-06   0.643    0.521    
+Contribution_4_minus -2.571e-07  3.370e-07  -0.763    0.446    
+Contribution_4_plus   2.057e-06  3.550e-06   0.579    0.563    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1331 on 326 degrees of freedom
+  (223 observations deleted due to missingness)
+Multiple R-squared:  0.9302,    Adjusted R-squared:  0.9292 
+F-statistic: 869.5 on 5 and 326 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all Votes</span></span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>ols_all <span class="ot">&lt;-</span> <span class="fu">lm</span>(all_votes_plus <span class="sc">~</span> . <span class="sc">-</span> all_votes_minus <span class="sc">-</span> state <span class="sc">-</span> district, <span class="at">data =</span> df_no_change)</span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># all Votes</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_no_change)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>ols_all <span class="ot">&lt;-</span> <span class="fu">lm</span>(all_votes_plus <span class="sc">~</span> . <span class="sc">-</span> all_votes_minus <span class="sc">-</span> state <span class="sc">-</span> district, <span class="at">data =</span> df_no_change)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_all)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -374,1224 +960,76 @@ F-statistic: 4.255 on 13 and 130 DF,  p-value: 6.65e-06</code></pre>
 <section id="correlelogram" class="level2">
 <h2 class="anchored" data-anchor-id="correlelogram">Correlelogram</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>df_no_change <span class="ot">&lt;-</span> df_no_change <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(state))</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(df_no_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 66 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 66 rows containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 240 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 240 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 205 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 205 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 193 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 193 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 193 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 193 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 209 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 209 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 257 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 257 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 66 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 66 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 66 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 200 rows containing non-finite outside the scale range
-(`stat_boxplot()`).
-Removed 200 rows containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 156 rows containing non-finite outside the scale range
-(`stat_boxplot()`).
-Removed 156 rows containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 136 rows containing non-finite outside the scale range
-(`stat_boxplot()`).
-Removed 136 rows containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 137 rows containing non-finite outside the scale range
-(`stat_boxplot()`).
-Removed 137 rows containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 147 rows containing non-finite outside the scale range
-(`stat_boxplot()`).
-Removed 147 rows containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 193 rows containing non-finite outside the scale range
-(`stat_boxplot()`).
-Removed 193 rows containing non-finite outside the scale range
-(`stat_boxplot()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 240 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 200 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 200 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 200 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 210 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 210 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 246 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 246 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 246 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 246 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 304 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 304 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 344 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 344 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 200 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 200 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 240 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 200 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 200 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 200 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 210 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 210 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 246 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 246 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 246 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 246 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 304 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 304 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 344 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 344 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 200 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 200 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 205 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 156 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 210 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 210 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 156 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 156 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 197 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 197 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 197 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 197 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 268 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 268 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 312 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 312 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 156 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 156 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 205 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 156 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 210 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 210 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 156 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 156 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 197 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 197 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 197 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 197 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 268 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 268 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 312 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 312 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 156 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 156 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 193 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 136 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 246 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 246 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 197 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 197 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 136 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 136 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 141 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 141 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 216 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 216 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 261 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 261 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 136 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 136 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 193 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 136 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 246 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 246 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 197 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 197 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 136 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 136 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 141 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 141 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 216 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 216 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 261 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 261 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 136 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 136 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 193 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 137 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 246 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 246 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 197 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 197 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 141 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 141 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 137 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 137 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 216 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 216 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 262 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 262 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 137 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 137 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 193 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 137 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 246 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 246 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 197 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 197 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 141 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 141 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 137 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 137 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 216 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 216 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 262 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 262 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 137 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 137 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 209 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 147 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 304 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 304 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 268 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 268 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 216 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 216 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 216 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 216 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 147 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 147 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 198 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 198 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 147 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 147 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 209 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 147 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 304 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 304 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 268 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 268 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 216 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 216 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 216 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 216 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 147 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 147 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 198 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 198 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 147 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 147 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 257 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 193 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 344 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 344 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 312 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 312 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 261 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 261 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 262 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 262 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 198 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 198 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 193 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 193 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 193 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 193 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 257 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 193 rows containing non-finite outside the scale range
-(`stat_bin()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 344 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 344 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 312 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 312 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 261 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 261 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 262 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 262 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 198 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 198 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 193 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 193 rows containing non-finite outside the scale range
-(`stat_density()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 193 rows containing missing values
-
-Warning in ggally_statistic(data = data, mapping = mapping, na.rm = na.rm, :
-Removed 193 rows containing missing values</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 66 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 200 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 200 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 156 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 156 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 136 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 136 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 137 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 137 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 147 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 147 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 193 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 193 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 66 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 200 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 200 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 156 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 156 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 136 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 136 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 137 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 137 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 147 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 147 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Removed 193 rows containing missing values or values outside the scale range
-(`geom_point()`).
-Removed 193 rows containing missing values or values outside the scale range
-(`geom_point()`).</code></pre>
-</div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="data_analysis_2_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df_no_change <span class="ot">&lt;-</span> df_no_change <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(state))</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ggpairs(df_no_change)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="correlations" class="level3">
 <h3 class="anchored" data-anchor-id="correlations">Correlations</h3>
 <p>create correlelograms and measure correlations between contribution and vote outcomes</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb190"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb190-1"><a href="#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # here correlation slightly negative, and p-value 0.93, so insignificant</span></span>
-<span id="cb190-2"><a href="#cb190-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_3$Vote3_plus, df_vote_3$Contribution_3_plus, method = "pearson")</span></span>
-<span id="cb190-3"><a href="#cb190-3" aria-hidden="true" tabindex="-1"></a><span class="co"># # effect is significant here, with p-value less than 0.0001</span></span>
-<span id="cb190-4"><a href="#cb190-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_3$Vote3_plus, df_vote_3$Contribution_3_minus, method = "pearson")</span></span>
-<span id="cb190-5"><a href="#cb190-5" aria-hidden="true" tabindex="-1"></a><span class="co"># # effect is significant on a 0.0001 level, and correlation is negative</span></span>
-<span id="cb190-6"><a href="#cb190-6" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_3$Vote3_minus, df_vote_3$Contribution_3_minus, method = "pearson")</span></span>
-<span id="cb190-7"><a href="#cb190-7" aria-hidden="true" tabindex="-1"></a><span class="co"># # here correlation slightly negative, and p-value 0.93, so insignificant</span></span>
-<span id="cb190-8"><a href="#cb190-8" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_3$Vote3_minus, df_vote_3$Contribution_3_plus, method = "pearson")</span></span>
-<span id="cb190-9"><a href="#cb190-9" aria-hidden="true" tabindex="-1"></a><span class="co"># why contribution_plus not significant? because not enough data points?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># here correlation slightly negative, and p-value 0.93, so insignificant</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_3$Vote3_plus, df_vote_3$Contribution_3_plus, method = "pearson")</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># # effect is significant here, with p-value less than 0.0001</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_3$Vote3_plus, df_vote_3$Contribution_3_minus, method = "pearson")</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="co"># # effect is significant on a 0.0001 level, and correlation is negative</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_3$Vote3_minus, df_vote_3$Contribution_3_minus, method = "pearson")</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># # here correlation slightly negative, and p-value 0.93, so insignificant</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_3$Vote3_minus, df_vote_3$Contribution_3_plus, method = "pearson")</span></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># why contribution_plus not significant? because not enough data points?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb191"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb191-1"><a href="#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation of vote 4</span></span>
-<span id="cb191-2"><a href="#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
-<span id="cb191-3"><a href="#cb191-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_4<span class="sc">$</span>Vote4_plus, df_vote_4<span class="sc">$</span>Contribution_4_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_4$Vote4_plus and df_vote_4$Contribution_4_plus
-t = -1.2206, df = 385, p-value = 0.223
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.16077725  0.03783545
-sample estimates:
-        cor 
--0.06208552 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb193"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb193-1"><a href="#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
-<span id="cb193-2"><a href="#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_4<span class="sc">$</span>Vote4_plus, df_vote_4<span class="sc">$</span>Contribution_4_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_4$Vote4_plus and df_vote_4$Contribution_4_minus
-t = -7.5004, df = 385, p-value = 4.436e-13
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.4410471 -0.2668711
-sample estimates:
-       cor 
--0.3570589 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb195"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb195-1"><a href="#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, positive correlation</span></span>
-<span id="cb195-2"><a href="#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_4<span class="sc">$</span>Vote4_minus, df_vote_4<span class="sc">$</span>Contribution_4_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_4$Vote4_minus and df_vote_4$Contribution_4_minus
-t = 7.5004, df = 385, p-value = 4.436e-13
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- 0.2668711 0.4410471
-sample estimates:
-      cor 
-0.3570589 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb197"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb197-1"><a href="#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant, 0.23 p-value</span></span>
-<span id="cb197-2"><a href="#cb197-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_4<span class="sc">$</span>Vote4_minus, df_vote_4<span class="sc">$</span>Contribution_4_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_4$Vote4_minus and df_vote_4$Contribution_4_plus
-t = 1.2206, df = 385, p-value = 0.223
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.03783545  0.16077725
-sample estimates:
-       cor 
-0.06208552 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># correlation of vote 4</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_4$Vote4_plus, df_vote_4$Contribution_4_plus, method = "pearson")</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # significant on a 0.0001 level, negative correlation</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_4$Vote4_plus, df_vote_4$Contribution_4_minus, method = "pearson")</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="co"># # significant on a 0.0001 level, positive correlation</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_4$Vote4_minus, df_vote_4$Contribution_4_minus, method = "pearson")</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a><span class="co"># # not significant, 0.23 p-value</span></span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_4$Vote4_minus, df_vote_4$Contribution_4_plus, method = "pearson")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb199"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb199-1"><a href="#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 51</span></span>
-<span id="cb199-2"><a href="#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="co"># surprisingly, significant on a 0.05 level, slight negative correlation</span></span>
-<span id="cb199-3"><a href="#cb199-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_51<span class="sc">$</span>Vote51_plus, df_vote_51<span class="sc">$</span>Contribution_51_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_51$Vote51_plus and df_vote_51$Contribution_51_plus
-t = -1.9877, df = 384, p-value = 0.04756
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.198729531 -0.001110535
-sample estimates:
-       cor 
--0.1009153 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb201"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb201-1"><a href="#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
-<span id="cb201-2"><a href="#cb201-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_51<span class="sc">$</span>Vote51_plus, df_vote_51<span class="sc">$</span>Contribution_51_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_51$Vote51_plus and df_vote_51$Contribution_51_minus
-t = -8.2449, df = 384, p-value = 2.654e-15
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.4694585 -0.2995968
-sample estimates:
-       cor 
--0.3878153 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb203"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb203-1"><a href="#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, positive correlation</span></span>
-<span id="cb203-2"><a href="#cb203-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_51<span class="sc">$</span>Vote51_minus, df_vote_51<span class="sc">$</span>Contribution_51_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_51$Vote51_minus and df_vote_51$Contribution_51_minus
-t = 8.2449, df = 384, p-value = 2.654e-15
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- 0.2995968 0.4694585
-sample estimates:
-      cor 
-0.3878153 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb205"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb205-1"><a href="#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.05 level, slight positive correlation</span></span>
-<span id="cb205-2"><a href="#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_51<span class="sc">$</span>Vote51_minus, df_vote_51<span class="sc">$</span>Contribution_51_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_51$Vote51_minus and df_vote_51$Contribution_51_plus
-t = 1.9877, df = 384, p-value = 0.04756
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- 0.001110535 0.198729531
-sample estimates:
-      cor 
-0.1009153 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb207"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb207-1"><a href="#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 52</span></span>
-<span id="cb207-2"><a href="#cb207-2" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.1 level, slight negative correlation</span></span>
-<span id="cb207-3"><a href="#cb207-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_52<span class="sc">$</span>Vote52_plus, df_vote_52<span class="sc">$</span>Contribution_52_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_52$Vote52_plus and df_vote_52$Contribution_52_plus
-t = -0.5174, df = 380, p-value = 0.6052
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.12653351  0.07400227
-sample estimates:
-        cor 
--0.02653255 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb209"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb209-1"><a href="#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
-<span id="cb209-2"><a href="#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_52<span class="sc">$</span>Vote52_plus, df_vote_52<span class="sc">$</span>Contribution_52_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_52$Vote52_plus and df_vote_52$Contribution_52_minus
-t = -7.347, df = 380, p-value = 1.249e-12
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.4375323 -0.2615967
-sample estimates:
-       cor 
--0.3526774 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb211"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb211-1"><a href="#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, positive correlation</span></span>
-<span id="cb211-2"><a href="#cb211-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_52<span class="sc">$</span>Vote52_minus, df_vote_52<span class="sc">$</span>Contribution_52_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_52$Vote52_minus and df_vote_52$Contribution_52_minus
-t = 7.347, df = 380, p-value = 1.249e-12
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- 0.2615967 0.4375323
-sample estimates:
-      cor 
-0.3526774 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb213"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb213-1"><a href="#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># insignificant, slight positive correlation</span></span>
-<span id="cb213-2"><a href="#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_52<span class="sc">$</span>Vote52_minus, df_vote_52<span class="sc">$</span>Contribution_52_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_52$Vote52_minus and df_vote_52$Contribution_52_plus
-t = 0.5174, df = 380, p-value = 0.6052
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.07400227  0.12653351
-sample estimates:
-       cor 
-0.02653255 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 51</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># surprisingly, significant on a 0.05 level, slight negative correlation</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_51$Vote51_plus, df_vote_51$Contribution_51_plus, method = "pearson")</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # significant on a 0.0001 level, negative correlation</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_51$Vote51_plus, df_vote_51$Contribution_51_minus, method = "pearson")</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="co"># # significant on a 0.0001 level, positive correlation</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_51$Vote51_minus, df_vote_51$Contribution_51_minus, method = "pearson")</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="co"># # significant on a 0.05 level, slight positive correlation</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_51$Vote51_minus, df_vote_51$Contribution_51_plus, method = "pearson")</span></span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a><span class="co"># # Vote 52</span></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a><span class="co"># # significant on a 0.1 level, slight negative correlation</span></span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_52$Vote52_plus, df_vote_52$Contribution_52_plus, method = "pearson")</span></span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a><span class="co"># # significant on a 0.0001 level, negative correlation</span></span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_52$Vote52_plus, df_vote_52$Contribution_52_minus, method = "pearson")</span></span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a><span class="co"># # significant on a 0.0001 level, positive correlation</span></span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_52$Vote52_minus, df_vote_52$Contribution_52_minus, method = "pearson")</span></span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a><span class="co"># # insignificant, slight positive correlation</span></span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_52$Vote52_minus, df_vote_52$Contribution_52_plus, method = "pearson")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb215"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb215-1"><a href="#cb215-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 6</span></span>
-<span id="cb215-2"><a href="#cb215-2" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
-<span id="cb215-3"><a href="#cb215-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_6<span class="sc">$</span>Vote6_plus, df_vote_6<span class="sc">$</span>Contribution_6_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_6$Vote6_plus and df_vote_6$Contribution_6_plus
-t = 0.19923, df = 388, p-value = 0.8422
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.0892778  0.1093065
-sample estimates:
-       cor 
-0.01011408 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb217"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb217-1"><a href="#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
-<span id="cb217-2"><a href="#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_6<span class="sc">$</span>Vote6_plus, df_vote_6<span class="sc">$</span>Contribution_6_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_6$Vote6_plus and df_vote_6$Contribution_6_minus
-t = -6.2154, df = 388, p-value = 1.323e-09
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.3886042 -0.2078218
-sample estimates:
-      cor 
--0.300914 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb219"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb219-1"><a href="#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, positive correlation</span></span>
-<span id="cb219-2"><a href="#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_6<span class="sc">$</span>Vote6_minus, df_vote_6<span class="sc">$</span>Contribution_6_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_6$Vote6_minus and df_vote_6$Contribution_6_minus
-t = 6.2154, df = 388, p-value = 1.323e-09
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- 0.2078218 0.3886042
-sample estimates:
-     cor 
-0.300914 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb221"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb221-1"><a href="#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
-<span id="cb221-2"><a href="#cb221-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_6<span class="sc">$</span>Vote6_minus, df_vote_6<span class="sc">$</span>Contribution_6_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_6$Vote6_minus and df_vote_6$Contribution_6_plus
-t = -0.19923, df = 388, p-value = 0.8422
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.1093065  0.0892778
-sample estimates:
-        cor 
--0.01011408 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 6</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_6$Vote6_plus, df_vote_6$Contribution_6_plus, method = "pearson")</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # significant on a 0.0001 level, negative correlation</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_6$Vote6_plus, df_vote_6$Contribution_6_minus, method = "pearson")</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="co"># # significant on a 0.0001 level, positive correlation</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_6$Vote6_minus, df_vote_6$Contribution_6_minus, method = "pearson")</span></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># # not significant</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_6$Vote6_minus, df_vote_6$Contribution_6_plus, method = "pearson")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb223"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb223-1"><a href="#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 7</span></span>
-<span id="cb223-2"><a href="#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
-<span id="cb223-3"><a href="#cb223-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_7<span class="sc">$</span>Vote7_plus, df_vote_7<span class="sc">$</span>Contribution_7_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_7$Vote7_plus and df_vote_7$Contribution_7_plus
-t = 1.2074, df = 338, p-value = 0.2281
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.04111837  0.17070285
-sample estimates:
-       cor 
-0.06553043 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb225"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb225-1"><a href="#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.0001 level, negative correlation</span></span>
-<span id="cb225-2"><a href="#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_7<span class="sc">$</span>Vote7_plus, df_vote_7<span class="sc">$</span>Contribution_7_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_7$Vote7_plus and df_vote_7$Contribution_7_minus
-t = -3.1117, df = 338, p-value = 0.002018
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.26847874 -0.06161344
-sample estimates:
-      cor 
--0.166882 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb227"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb227-1"><a href="#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="co"># significant on a 0.001 level, positive correlation</span></span>
-<span id="cb227-2"><a href="#cb227-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_7<span class="sc">$</span>Vote7_minus, df_vote_7<span class="sc">$</span>Contribution_7_minus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_7$Vote7_minus and df_vote_7$Contribution_7_minus
-t = 3.1117, df = 338, p-value = 0.002018
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- 0.06161344 0.26847874
-sample estimates:
-     cor 
-0.166882 </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb229"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb229-1"><a href="#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
-<span id="cb229-2"><a href="#cb229-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cor.test</span>(df_vote_7<span class="sc">$</span>Vote7_minus, df_vote_7<span class="sc">$</span>Contribution_7_plus, <span class="at">method =</span> <span class="st">"pearson"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Pearson's product-moment correlation
-
-data:  df_vote_7$Vote7_minus and df_vote_7$Contribution_7_plus
-t = -1.2074, df = 338, p-value = 0.2281
-alternative hypothesis: true correlation is not equal to 0
-95 percent confidence interval:
- -0.17070285  0.04111837
-sample estimates:
-        cor 
--0.06553043 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 7</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="co"># not significant</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_7$Vote7_plus, df_vote_7$Contribution_7_plus, method = "pearson")</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># # significant on a 0.0001 level, negative correlation</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_7$Vote7_plus, df_vote_7$Contribution_7_minus, method = "pearson")</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="co"># # significant on a 0.001 level, positive correlation</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_7$Vote7_minus, df_vote_7$Contribution_7_minus, method = "pearson")</span></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="co"># # not significant</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="co"># cor.test(df_vote_7$Vote7_minus, df_vote_7$Contribution_7_plus, method = "pearson")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -1599,12 +1037,12 @@ sample estimates:
 <h2 class="anchored" data-anchor-id="model-2-subsample-ols">Model 2: Subsample OLS</h2>
 <p>create a subsample, which only includes those representatives that changed their votes, i.e.&nbsp;Vote_change_dummy = 1. Out of those, check in which direction they changed their votes, and their corresponding votes &amp; vote changes? -&gt; use prep_analysis abd data_analysis as vorlage.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb231"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb231-1"><a href="#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_sub)</span></span>
-<span id="cb231-2"><a href="#cb231-2" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df_sub <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(BioID, GovtrackID, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, vote_change_year, opensecrets_id, vote_change_type))</span>
-<span id="cb231-3"><a href="#cb231-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb231-4"><a href="#cb231-4" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_sub)</span>
-<span id="cb231-5"><a href="#cb231-5" aria-hidden="true" tabindex="-1"></a>lm_sub_pro <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_pro <span class="sc">~</span> . <span class="sc">-</span> vote_change_to_anti <span class="sc">-</span> name <span class="sc">-</span> state, <span class="at">data =</span> df_sub)</span>
-<span id="cb231-6"><a href="#cb231-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sub_pro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_sub)</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df_sub <span class="ot">&lt;-</span> df_sub <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(BioID, GovtrackID, first_vote, Vote_change, Vote_count, Vote_change_dummy, first_name, last_name, district, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, vote_change_year, opensecrets_id, vote_change_type))</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_sub)</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>lm_sub_pro <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_pro <span class="sc">~</span> . <span class="sc">-</span> vote_change_to_anti <span class="sc">-</span> name <span class="sc">-</span> state, <span class="at">data =</span> df_sub)</span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sub_pro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1642,8 +1080,8 @@ Residual standard error: 0.6468 on 5 degrees of freedom
 Multiple R-squared:  0.2446,    Adjusted R-squared:  -0.8128 
 F-statistic: 0.2313 on 7 and 5 DF,  p-value: 0.959</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb233"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb233-1"><a href="#cb233-1" aria-hidden="true" tabindex="-1"></a>lm_sub_anti <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_anti <span class="sc">~</span> . <span class="sc">-</span> vote_change_to_pro <span class="sc">-</span> name <span class="sc">-</span> state, <span class="at">data =</span> df_sub)</span>
-<span id="cb233-2"><a href="#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sub_anti)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>lm_sub_anti <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_anti <span class="sc">~</span> . <span class="sc">-</span> vote_change_to_pro <span class="sc">-</span> name <span class="sc">-</span> state, <span class="at">data =</span> df_sub)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lm_sub_anti)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1687,10 +1125,10 @@ F-statistic: 0.2313 on 7 and 5 DF,  p-value: 0.959</code></pre>
 <h2 class="anchored" data-anchor-id="model-3-ols-with-person-fixed-effects">Model 3: OLS with person Fixed Effects</h2>
 <p>include person fixed effects for all of the above OLS’, means we control for the individual, to see whether there are difference in votes, which are not dependent on the different individuals, but vote changes within the same person. so we can isolate all other factors of change, i.e.&nbsp;their state, district, party, and other things we do not have variables in the dataset for, like education. -&gt; CONTROL FOR - REPRESENTATIVE (NAME, PARTY, STATE, DISTRICT) &amp; - BILL (or assume all bills are the same and then just fix by representative (individual), since we assume this.)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb235"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb235-1"><a href="#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df_sub &lt;- df_sub %&gt;% select(-c(BioID, GovtrackID, first_vote, Vote_change, Vote_count, Vote_change_dummy, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, vote_change_year, opensecrets_id, vote_change_type))</span></span>
-<span id="cb235-2"><a href="#cb235-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_sub)</span>
-<span id="cb235-3"><a href="#cb235-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import correct df</span></span>
-<span id="cb235-4"><a href="#cb235-4" aria-hidden="true" tabindex="-1"></a>ind_fe_pro <span class="ot">&lt;-</span> <span class="fu">plm</span>(vote_change_to_pro <span class="sc">~</span> . <span class="sc">-</span> vote_change_to_anti, <span class="at">data =</span> df_sub, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"name"</span>, <span class="st">"state"</span>, <span class="st">"year"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># df_sub &lt;- df_sub %&gt;% select(-c(BioID, GovtrackID, first_vote, Vote_change, Vote_count, Vote_change_dummy, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, vote_change_year, opensecrets_id, vote_change_type))</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_sub)</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># import correct df</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>ind_fe_pro <span class="ot">&lt;-</span> <span class="fu">plm</span>(vote_change_to_pro <span class="sc">~</span> . <span class="sc">-</span> vote_change_to_anti, <span class="at">data =</span> df_sub, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"name"</span>, <span class="st">"state"</span>, <span class="st">"year"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in pdata.frame(data, index): duplicate couples (id-time) in resulting pdata.frame
  to find out which, use, e.g., table(index(your_pdataframe), useNA = "ifany")</code></pre>
@@ -1703,8 +1141,8 @@ nvar=19) to new 20 after EncodeVars() -- should no longer happen!</code></pre>
 <pre><code>Warning in terms.formula(fi, ...): 'varlist' has changed (from nvar=19) to new
 20 after EncodeVars() -- should no longer happen!</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb239"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb239-1"><a href="#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fix for correct modes.., by choosing year we fix for bills, since no bills were in the same year.</span></span>
-<span id="cb239-2"><a href="#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ind_fe_pro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fix for correct modes.., by choosing year we fix for bills, since no bills were in the same year.</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ind_fe_pro)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in terms.formula(object, data = data, ...): 'varlist' has changed (from
 nvar=19) to new 20 after EncodeVars() -- should no longer happen!
@@ -1750,7 +1188,7 @@ R-Squared:      0.50769
 Adj. R-Squared: -1.9538
 F-statistic: 0.515625 on 4 and 2 DF, p-value: 0.74225</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb244"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb244-1"><a href="#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="co"># index can be length 3 max!!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># index can be length 3 max!!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="model-4-robustness-checks" class="level2">
@@ -1760,13 +1198,26 @@ F-statistic: 0.515625 on 4 and 2 DF, p-value: 0.74225</code></pre>
 <p>We use a conditional FE logit model to work around the fact that fixed effects in a logistic regression cannot be estimated. used in panel data when conditional variable is binary.</p>
 <p>Unobserved heterogeneity can be dealt with by using fixed effects regression models, with dummy variables. there are consistent differences within clusters (i.e representatives)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb245"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb245-1"><a href="#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for conditional fixed effects logit, use bife or clogit (from survival package)</span></span>
-<span id="cb245-2"><a href="#cb245-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mod.no &lt;– clogit(y ~ x + strata(Time) + strata(ID), data = panel -&gt; where you fix Time and ID</span></span>
-<span id="cb245-3"><a href="#cb245-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb245-4"><a href="#cb245-4" aria-hidden="true" tabindex="-1"></a><span class="co"># with bife</span></span>
-<span id="cb245-5"><a href="#cb245-5" aria-hidden="true" tabindex="-1"></a><span class="co"># panel$Time &lt;– as.factor(panel$Time)</span></span>
-<span id="cb245-6"><a href="#cb245-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb245-7"><a href="#cb245-7" aria-hidden="true" tabindex="-1"></a><span class="co"># mod.no &lt;- bife(y ~ x + Time | ID, data = panel, bias_corr = "ana")</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># for conditional fixed effects logit, use bife or clogit (from survival package)</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># mod.no &lt;– clogit(y ~ x + strata(Time) + strata(ID), data = panel -&gt; where you fix Time and ID</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="co"># with bife</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># panel$Time &lt;– as.factor(panel$Time)</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># mod.no &lt;- bife(y ~ x + Time | ID, data = panel, bias_corr = "ana")</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a><span class="co"># maybe you can use state fixed effects without needid to group states together, i.e. by north vs. south, if you use..</span></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true" tabindex="-1"></a><span class="co"># mod_plm &lt;- plm(hwy ~ emp + as.factor(region), index = c("state", "year"), model = "within", data = df)</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(mod_plm)[["coefficients"]]</span></span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="co">#     Estimate Std. Error  t-value     Pr(&gt;|t|)</span></span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true" tabindex="-1"></a><span class="co"># emp 1.119484 0.07663479 14.60804 8.040036e-43</span></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true" tabindex="-1"></a><span class="co"># instead of...</span></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true" tabindex="-1"></a><span class="co"># mod_lm &lt;- lm(hwy ~ emp + as.factor(state) + as.factor(region), data = df)</span></span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(mod_lm)[["coefficients"]]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Stratmann model 2.0 -&gt; subsample analysis (Vote_change_dummy == 1), probit model which only uses legislators who changed their vote, where 1 = 0 -&gt; 1 and 0 = 1 -&gt; 0. here no fixed effects, x variables are only contribution changes. -&gt; <strong>ADD CONTRIBUTION CHANGES</strong></p>
 </section>
