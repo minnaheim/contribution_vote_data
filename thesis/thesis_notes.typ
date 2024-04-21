@@ -26,6 +26,39 @@
 
 Things to put into thesis (potentially) ->
 - tradeoff for congressmen, vote acc. to voter base (get re-elected) and vote acc.
+- industry specific results, specific legislation, p.27.28 @Weschle_2022c
+- Economic Literature states that the campaign contributions received depend on:
+  @stratmann-1995 p.128
+
+  // https://www.opensecrets.org/elections-overview/most-expensive-races -> expensive races, most competitive races, etc.
+
+- correlation isnt enough, other factors influence, campaign contributions
+  endogenously determined by a multitude of factors. @bronars-lott-1997 p.318
+
+// figure out how to label axes, make it title and cite sources
+// #import "@preview/cetz:0.2.2"
+// #cetz.canvas({
+//   import cetz.draw: *
+//   import cetz.chart
+//   let data = (
+//     ("1998", 2934),
+//     ("2000", 2860),
+//     ("2002", 3575),
+//     ("2004", 3496),
+//     ("2006", 4143),
+//     ("2008", 6724),
+//     ("2010", 4926),
+//     ("2012", 4710),
+//     ("2014", 4788),
+//     ("2016", 5071),
+//     ("2018", 6724),
+//     ("2020", 9916),
+//     ("2022", 8937),
+//   )
+//   group(name: "a", {
+//     chart.columnchart(size: (13, 5), data)
+//   })
+// })
 
 = Bachelor Thesis Notes
 #set heading(numbering: "1.")

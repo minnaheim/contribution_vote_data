@@ -124,6 +124,7 @@ concludes the paper.
 
 = Money in Politics
 
+// three types of money in politics
 To understand the relationship between campaign contributions and
 representatives' voting decisions, the background for money in US politics needs
 to be introduced. Political Scientist Simon Weschle defines three types of money
@@ -135,6 +136,7 @@ the last type of money in politics is the golden parachute jobs, which are
 financially lucrative positions offered to ex-politicians @Weschle_2022c.
 
 == Campaign Contributions
+// why focus on campaign contributions - largest increase?
 Although each of these types of money in politics has significant and different
 repercussions for democracy @Weschle_2022c, campaign contributions in US
 politics are of particular significance for this paper. One of the reasons for
@@ -148,36 +150,11 @@ there are not comparable to 2022 yet.
   Average Contributions to House Members, 1990-2022
 ])
 
-// figure out how to label axes, make it title and cite sources
-// #import "@preview/cetz:0.2.2"
-// #cetz.canvas({
-//   import cetz.draw: *
-//   import cetz.chart
-//   let data = (
-//     ("1998", 2934),
-//     ("2000", 2860),
-//     ("2002", 3575),
-//     ("2004", 3496),
-//     ("2006", 4143),
-//     ("2008", 6724),
-//     ("2010", 4926),
-//     ("2012", 4710),
-//     ("2014", 4788),
-//     ("2016", 5071),
-//     ("2018", 6724),
-//     ("2020", 9916),
-//     ("2022", 8937),
-//   )
-//   group(name: "a", {
-//     chart.columnchart(size: (13, 5), data)
-//   })
-// })
-
-//
 #figure(image("figures/total_contrib_congress.jpg", width: 100%), caption: [
   Total Cost of Election, 1990-2022 @OpenSecretscostofelections
 ])
 
+// legislative background
 One of the main reasons for the noted increase in not only total campaign
 contributions over the last 30 years, but also the average campaign contribuions
 per representative might be attributable to the change in legislature. In 2010,
@@ -193,6 +170,7 @@ rights when it comes to the US congress @foreman p.194. In essence, this case
 enabled independent expenditures which are election related to become unlimited
 @citizen.
 
+// why do candidates need contributions?  -  improve election values
 That campaign contributions have increased over the years, and one of the
 reasons for this increase, is clear. Still, the necessity of campaign
 contributions should still be clarified. US Citizens who would like to become
@@ -200,56 +178,68 @@ members of the United States Congress, such as the House of Representatives,
 which is what this paper focuses on, need to become elected through a bi-yearly
 congressional election. To improve chances of election, these candidates get
 financial contributions, which they spend on advertisments, rallies and handouts
-@Weschle_2022c p.24.
+to attract more votes @Weschle_2022c p.24.
+
+// Reason for Contribution
+Although it is clear that candidates need contributions to fund their campaigns,
+the question remains: why would corporations via PACs or individuals give money
+to candidates which they will not return? Stratmann makes the assumption that "firms
+are profit-maximizing and don’t make contributions for reasons that do not
+benefit their bottom line", meaning that companies' campaign spending is
+strategic @stratmann-2017 @Denzau-Munger-1986 @Weschle_2022c p.25. What these
+companies receive in return for their contribution, however, is unclear
+@stratmann-2017. Stratmann defines three types of goals for contributions, the
+first is access to the candidate, the second is to influence election and the
+third is to contribute to the candidate most likely to win @stratmann-2005 p.146
+@stratmann-2017 p.13. Weschle determines that what campaign donors receive in
+return to contributing to candidates is either influence, meaning they change
+the opinion of the candidate by contributing to their campaign, or the support
+of a candidate that has your interest at heart. Specifically small scale
+contributors follow both methods @Weschle_2022c pp.26-28.
+
+// Überleitung, reason for contribution to correlation between 2 vars
+Besides the literatur dicussing the reasons for campaign spending, the question
+is also whether there is a positive correlation between candidates receiving
+contributions and receiving increased vote shares. If this were the case, then
+campaign spending would be more straightforward, since this would mean that
+successful election can be assumed.
 
 == Correlation Contributions & Votes in Corporate Interests
 
+// can we assume correlation?
 One would assume that receiving more campaign contributions would relate to a
 higher chance of getting elected, yet there is no clear correlation between
 campaign contributions and the vote shares which candidates receive
 @stratmann-2005 @Weschle_2022c p.24. In fact, there are a host of factors that
-influence the vote shares and contributions of politicials, which are endogenous
-@Weschle_2022c p.24. Among those factors are:
+influence the amount of campaign contributions of politicials, which are often
+endogenously (?) estimated for vote shares @Weschle_2022c p.24.
 
-// formulate these bullet points better...
-- such as the competition in the electoral race between the candidates
-  @Weschle_2022c p.25
-- the contribution limits imposed on states @Weschle_2022c p.25
-- strategic spending to candidates @Denzau-Munger-1986 @Weschle_2022c p.25
-- industry specific results, specific legislation, p.27.28 @Weschle_2022c
-- Economic Literature states that the campaign contributions received depend on:
-  @stratmann-1995 p.128
-  //  explained by Lott, higher in states with bigger gov. @stratmann-2005 p.148
-  // https://www.opensecrets.org/elections-overview/most-expensive-races -> expensive races, most competitive races, etc.
-  - party spread of the voter base "by the distribution of left-wing/right-wing
-    voters in the district in which candidates are running" @stratmann-2017 p.9
-- PAC contributions depend on the incumbency status of legislators, since there is
-  a "tendency of companies to direct their contributions to incumbents"
-  @Selling2023 @fouirnaies2014financial
-- expected closeness of outcomes -> "if incumbents expect that challengers pose no
-  real threat, then incumbents will spend much less than if challengers did pose a
-  threat" p.8 @stratmann-2017
-- correlation isnt enough, other factors influence, campaign contributions
-  endogenously determined by a multitude of factors. @bronars-lott-1997 p.318
-- a contribution dollar doesnt go the same way, dep. on district where adv. is
-  spent @stratmann-2009
-// Reason for Contribution
-- assumption that "the firms are profit-maximizing and don’t make contributions
-  for reasons that do not benefit their bottom line" that the contribution is not
-  for nothing...what they recevie, however is unclear @stratmann-2017 p.13
-- 2 motives on what campaign donors receive in return, influence , i.e. change
-  mind, or support those cands. that have yours @Weschle_2022c pp.26-28 - small
-  scale contributors do follow both methods.
-- 3 types of candidates receiving contribution, also what is the goal of the
-  contributor - access to the candidate, influence elections, most likely to win
-  @stratmann-2005 p.146 @stratmann-2017 p.13
+// factors to include to explain correlation between contribs & votes
+Geographical factors play a role in contribution, for example. A contribution
+amount is worth more in some congressional districts than in others, since costs
+like rallying and advertising is priced differently in districts
+@stratmann-2009. Similarly, contribution limits imposed on certain US states
+caps the contribution amount some candidates may receive @Weschle_2022c p.25,
+and candidates from states with larger governments receive more contributions on
+average @stratmann-2005 p.148 @bronars-lott-1997. Factors which depend on the
+nature of the election are also influence the level of contributions, since
+expected closeness of the election outcome also changes the average contribution
+amounts, i.e. incumbents who expect their position to be threatened, will be
+incentivised to spend more @Weschle_2022c, @stratmann-2017 p.8. p.25. The
+partisan "leaning" of the state also determines which candidates are up for race
+@stratmann-2017 p.9. PAC contributions in particular depend on the incumbency
+status of the candidate, since incumbents receive more contribution on average
+@Selling2023 @fouirnaies2014financial. When academic papers such as that of
+@Weschle_2022c include factors such as those above, increased campaign spending
+does relate to higher vote shares for representatives.
 
-To summarise... many different specifications needed, no clear consensus
-- part of the reason there is no academic consensus is because of the nature of
-  the studies, cross-sectionality design, where correlation between contributions
-  and votes (aka that money buys votes) is given due to the support of similar
-  interests, so we have simultaneousequation bias - p.1 @stratmann-2002
-  @burris2001two @chappell
+Still, difficult to deduce as to which side the relationship comes from...
+
+- part of the reason there is no academic consensus (on causal relationship) is
+  because of the nature of the studies, cross-sectionality design, where
+  correlation between contributions and votes (aka that money buys votes) is given
+  due to the support of similar interests, so we have simultaneousequation bias -
+  p.1 @stratmann-2002 @burris2001two @chappell
 - Important is to understand, from which side the causation runs...
   @stratmann-2002 p.1 @bronars-lott-1997
 - endogeneity issue...
@@ -336,6 +326,11 @@ Evidence from Environmental Voting in the U.S. Congress:
 Baldwin, Magee 1997,
 - linkages between voting behavior on specific roll call votes and campaign
   contributions from industry, labor unions, PACs
+
+In general, the most causal relationships which were found between campaign
+contributions and voting behaviours has been attributed to *studies in specific
+industries or bills*, e.g. @stratmann-2002 (financial legislatives)
+@stratmann-1995 @kang2015 @stratmann-1995 (timing of financial contributions).
 
 // Solution... I will include these things
 What some of the failed studies did not inlcude...
@@ -427,7 +422,9 @@ Lead over to Research Design, where I incorporate these things.
 = Data
 == Data Types
 === representative data
-- source: github dataframe (of current and historical legislators) and bioguide
+- source: github dataframe (of current and historical legislators) and bioguide,
+  not https://sunlightlabs.github.io/datacommons/bulk_data.html because only goes
+  till 2014..
 - needed to use representative data to match with contributions. Since
   contributions always were to everyone, and/or to house candidates, needed to
   keep only those who then made it to the house.
@@ -564,6 +561,33 @@ Why use which models? first LPM because....
   solution to this problem is to run linear probability models (LPMs). LPMs
   usually fit about as well as logistic models, even in the case of nonlinearities
   (Long 1997).]
+
+Why not 2SLS -> @stratmann-2002 p.1
+
+== Model specification
++ confounding variables
+  - argue why the important effects are included.
+  - confounding effects -> needed for causal econometrics
+  - deterine through literature what needs to be included:
+
+  confounding variables:
+  - party
+  - state (geoographical area) ?
+  - district (for robustness)
+  - age of legislators
+  // - loglikelihood ???
+  - DW-Nominates -> (Poole and Rosenthal, 1985) "It is widely acknowledged that
+    DW-Nominate scores are strong predictors of representatives’ voting behavior.
+    Data on DW-Nominate scores is provided by voteview.com."
+  - environmental catastrophy?
+  - control for individual (how to include individual, if not ID, doesnt work well)
+  - log transformation of contribution..
+
+  confounding vars from statmann: @stratmann-2002 p.12-13
+  - employment in banking, insurance nad investment industries
+  - indicator for party majority in the house
+  - percentage of last popular votes which members received
+  - DW-Nominates absolute deviation from the party mean
 
 - still use Logit/Probit for robustness...
 == Linear Probability Model with Individual Fixed Effects
