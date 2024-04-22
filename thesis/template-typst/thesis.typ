@@ -408,6 +408,8 @@ in the environmental context.
   - why kind of votes? what kind of bills?
 
 === contribution data
+*Determine which financial data to use for analysis - time related or aggregate,
+the non-used analyses can be found in the Appendix*
 - sources: opensecrets bulkdata campaign contributions (election data 2012-2022)
 - data were PAC contributions to candidates and individual contributions (to PACs,
   candidates, etc.) -> source: opensecrets bulk data documentation
@@ -589,6 +591,7 @@ confounding vars from statmann: @stratmann-2002 p.12-13
 - DW-Nominates absolute deviation from the party mean
 
 - still use Logit/Probit for robustness...
+
 == Linear Probability Model with Individual Fixed Effects
 - takes into account that dichotomous nature of votes, and non-negativity
   constraint of votes @chappell p.77
@@ -603,11 +606,24 @@ confounding vars from statmann: @stratmann-2002 p.12-13
 + sessionized OLS
   - one regression for each vote (vote ~ contribution from election cylce/6 mo.
     prior)
-+ individual OLS
++ all contribs prior to vote
+  - this way we avoid recency bias and see whether long term relationships matter
+    after all...@stratmann-1995
++ mind-changers OLS
   - df FE (base year, pivot longer, ∆contribution, person-FE)
   - only incl. mind changers (only variations in voting behavior are relevant
     @stratmann-2002 p.11)
   - vote change in which direction (pro -> contra env = 0?) & vice versa
+
+- When arguing why use unit and time fixed effects ...
+@Imai-Kim-2019
+== Two-way Fixed Effects model
+Argue why use this with @Imai_Kim_2021 -> use this vorlage:
+http://congressdata.joshuamccrain.com/models.html
++ basic OLS
++ sessionized OLS
++ all contribs prior to vote OLS
++ mind-changers OLS
 
 == Logit / Probit (which Stratmann used)
 - literature on why OLS is bad, and logit/probit is good. (since LPM not 0-1, so
@@ -617,6 +633,10 @@ confounding vars from statmann: @stratmann-2002 p.12-13
 - Stratmann uses a conditional fixed effects logit model @Allison @Chamberlin
   @stratmann-2002
 - Stratmann uses probit model (only those who changed mind)
++ basic OLS
++ sessionized OLS
++ all contribs prior to vote OLS
++ mind-changers OLS
 
 #pagebreak()
 = Results
