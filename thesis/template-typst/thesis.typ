@@ -551,9 +551,26 @@ Why not 2SLS -> @stratmann-2002 p.1
   - district (for robustness)
   - age of legislators
   // - loglikelihood ???
-  - DW-Nominates -> (Poole and Rosenthal, 1985) "It is widely acknowledged that
-    DW-Nominate scores are strong predictors of representatives’ voting behavior.
-    Data on DW-Nominate scores is provided by voteview.com."
+  - DW-Nominates (dynamic weighted Nominates)
+    - DW Nominates are are a broadly applied measure of a representative’s policy
+      position in a multi-dimensional policy space that are computed based on
+      roll-call records @matter p.40
+    - @rosenthalpoole "It is widely acknowledged that DW-Nominate
+    scores are strong predictors of representatives’ voting behavior
+    - Data on DW-Nominate scores is provided by voteview.com.
+    - gives the propensity of each representative to vote yes/no given given their
+      first and second dimension DW-Nominate score values of the respective congress
+    - "Ideological positions are calculated using the DW-NOMINATE (Dynamic Weighted
+      NOMINAl Three-step Estimation). This procedure was developed by Poole and
+      Rosenthal in the 1980s and is a "scaling procedure", representing legislators on
+      a spatial map. In this sense, a spatial map is much like a road map--the
+      closeness of two legislators on the map shows how similar their voting records
+      are. Using this measure of distance, DW-NOMINATE is able to recover the "dimensions"
+      that inform congressional voting behavior. The primary dimension through most of
+      American history has been "liberal" vs. "conservative" (also referred to as "left"
+      vs. "right"). A second dimension picks up differences within the major political
+      parties over slavery, currency, nativism, civil rights, and lifestyle issues
+      during periods of American history." @voteview
   - environmental catastrophy?
   - control for individual (how to include individual, if not ID, doesnt work well)
   - log transformation of contribution..
