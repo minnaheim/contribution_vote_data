@@ -66,9 +66,6 @@ p.1.
   ideologically focused parallel to the Republican Party.
 ]
 
-// - although with their Koch network and ideology they can do so much, the
-//   contributions are relevant bec. quantifiable. increased so much over time (rank
-//   5 over 29k in contributions in 2024 @OpenSecretsKochIndustries)
 On the other hand, the Koch Industries, headed by Charles Koch, not only
 influence elections through their Network, but they donate insane sums of money
 to fund the electoral campaigns of Republican presidential and congressional
@@ -77,11 +74,6 @@ have increased their campaign contributions by at least 10% per election cycle,
 amounting to 28 Millon USD in the 2022 election cycle, with approximately 90-97%
 of these congressional contributions going to Republican candidates
 @OpenSecretsKochIndustries.
-
-// In general, the increase in contribution of the Koch Industries to US
-// congressional candidates reflects the general trends, with 80% of all
-// congressional Oil&Gas related contributions going to republican candidates from
-// the 2016-2024 electoral cycles @OpenSecrets2024PartisanIndustries.
 
 Given these trends of campaign contributions in the US Congress, and especially
 the participation which wealthy (fossil fuel) donors like the Koch brothers have
@@ -204,9 +196,10 @@ contributions and receiving increased vote shares. If this were the case, then
 campaign spending would be more straightforward, since this would mean that
 successful election can be assumed.
 
-== Correlation Contributions & Votes in Corporate Interests
-
+== Correlation Contributions & Candidate's election sucess
+// -> CHANGE THIS SECTION - NOT CONTRIBUTION AND VOTE SHARES, BUT CONTRIBUTION AND VOTES IN CONTRIBUTORS INTEREST
 // can we assume correlation?
+
 One would assume that receiving more campaign contributions would relate to a
 higher chance of getting elected, yet there is no clear correlation between
 campaign contributions and the vote shares which candidates receive
@@ -217,137 +210,115 @@ endogenously (?) estimated for vote shares @Weschle_2022c p.24.
 // factors to include to explain correlation between contribs & votes
 Geographical factors play a role in contribution, for example. A contribution
 amount is worth more in some congressional districts than in others, since costs
-like rallying and advertising is priced differently in districts
-@stratmann-2009. Similarly, contribution limits imposed on certain US states
-caps the contribution amount some candidates may receive @Weschle_2022c p.25,
-and candidates from states with larger governments receive more contributions on
-average @stratmann-2005 p.148 @bronars-lott-1997. Factors which depend on the
-nature of the election are also influence the level of contributions, since
-expected closeness of the election outcome also changes the average contribution
-amounts, i.e. incumbents who expect their position to be threatened, will be
-incentivised to spend more @Weschle_2022c, @stratmann-2017 p.8. p.25. The
-partisan "leaning" of the state also determines which candidates are up for race
-@stratmann-2017 p.9. PAC contributions in particular depend on the incumbency
-status of the candidate, since incumbents receive more contribution on average
-@Selling2023 @fouirnaies2014financial. When academic papers such as that of
-@Weschle_2022c include factors such as those above, increased campaign spending
-does relate to higher vote shares for representatives.
+like rallying and advertising are priced differently @stratmann-2009. Similarly,
+contribution limits imposed on certain US states cap the contribution amount
+candidates may receive @Weschle_2022c p.25, and candidates from states with
+larger governments receive more contributions on average @stratmann-2005 p.148
+@bronars-lott-1997. Factors which depend on the nature of the election also
+influence the level of contributions, since expected closeness of the election
+outcome also changes the average contribution amounts, i.e. incumbents who
+expect their position to be threatened will be incentivised to spend more
+@Weschle_2022c, @stratmann-2017 p.8. p.25. The partisan "leaning" of the state
+also determines which candidates are up for race @stratmann-2017 p.9. PAC
+contributions in particular depend on the incumbency status of the candidate,
+since incumbents receive more contribution on average @Selling2023
+@fouirnaies2014financial. When academic papers such as that of @Weschle_2022c
+include factors such as those above, increased campaign spending does relate to
+higher vote shares for representatives.
 
-Still, difficult to deduce as to which side the relationship comes from...
+== Correlation Campaign Contributions & Votes in Contributor's favor
 
-- part of the reason there is no academic consensus (on causal relationship) is
-  because of the nature of the studies, cross-sectionality design, where
-  correlation between contributions and votes (aka that money buys votes) is given
-  due to the support of similar interests, so we have simultaneousequation bias -
-  p.1 @stratmann-2002 @burris2001two @chappell
-- Important is to understand, from which side the causation runs...
-  @stratmann-2002 p.1 @bronars-lott-1997
-- endogeneity issue...
-- need to "exploiting specific votes and a rather narrow policy setting" @kang2015
-  @stratmann-1991 p.607 @chappell
-
-Why did these studies fail?
-
-#quote(
-  attribution: [@stratmann-2017 p.14],
-)[These studies lacked a convincing identification strategy to estimate the causal
-  effect of campaign contributions on legislative voting behavior. One major issue
-  arises due to possible reverse causality, meaning that while contributions have
-  an impact on roll call votes, it is also possible that legislators who cast roll
-  call votes which are favorable to interest groups receive contributions from
-  these groups.]
+In general, consensus that there is no link between PAC contributions and votes
+in that PACs favor @Selling2023 p.1 @fellowes-wolf2004 p.315, @fiorina1999new
+p.216
 
 == Causal Effect of Campaign Contributions on Representatives' Voting Decisions.
-*Main question*: Do incumbents cater to wishes of special interest groups, bec.
-of their contribution or do they get contribution because their views coincide
-with the special interests groups (mind-changers)? @stratmann-2005 p.143
-@KauKeenanRubin p.275
+Even if we have correlation between campaign contributions and the votes in the
+contributers interest, it is still important to determine from which side the
+causation runs. Do incumbents cater to wishes of special interest groups,
+because of their contribution or do they get contribution because their views
+coincide with the special interests groups @stratmann-2005 p.143 @KauKeenanRubin
+p.275? Similarly, it is difficult to distinguish between two possible
+explanations for donations to politicians: either donors merely sympathise with
+and support politicians who share their views, or donations actually influence
+the politicians' decisions (i.e., donations actually buy votes)
+@bronars-lott-1997 @chappell p.83.
 
-- in general, consensus that there is no link between PAC contributions and votes
-  in that PACs favor @Selling2023 p.1 @fellowes-wolf2004 p.315, @fiorina1999new
-  p.216
+// check again whether indirect effects were found in these papers.
+Several researchers have tried to identify a causal relationship between voting
+and contributions and have not found effects, such as Bronars & Lott, which
+analysied how the voting behavior of politicians changed when they did not stand
+for re-election. Ideally, politicians should represent their ideology, even
+without facing threat of re-election, yet if their vote is "bought" then their
+contributions and voting behaviour changes, since the cost of shirking decreases
+@bronars-lott-1997 p.319.
 
-#quote(
-  attribution: [@matter, p.6 Bronars and Lott @bronars-lott-1997],
-)[
-  So far, causal evidence on this question is scarce as it is challenging to
-  disentangle whether donors simply sympathize with and donate to politicians with
-  political positions close to their own positions (i.e., donations are simply an
-  expression of support), or whether donations actually affect the observed
-  politicians’ decisions (i.e., donations actually buy votes).
-]
-same said for @chappell p.83. cannot conclude that contributions affect voting
-behavior of US representatives Evidence of Causal Relationship....\
-#quote(
-  attribution: [@matter p.6 @Bertrand],
-)[provides indirect evidence in support of vote buying, by showing that lobbying
-  firms provide special interests access to politicians (as opposed to only giving
-  issue-specific information to Members of Congress)]
+Others, however, have found that contributions change voting behaviour:
+Stratmann analysed the timing of contributions, and instead of analysing how the
+contributions of the previous cycle relates to the voting behaviour of
+politicians, Stratmann took the contributions from current election cylces,
+since short term contributions are more relevant for voting behavior, according
+to him @stratmann-1995. Betrand also researches lobbying companies provide
+special interest groups access to politicians when contributing (as opposed to
+giving only issue specific information to congress members), and finds indirect
+evidence of this @Bertrand @matter. Baldwin and Magee also find linkages of
+rollcall votes on specific trade agreement related bills and the contributions
+from businesses and labor groups @baldwinmagee. McAlexander, in his paper on the
+electoral gap in evironmental voting shows that "Candidates that receive
+generous campaign contributions from the oil and gas industry increase their
+pro-environment voting at election time, because they understand that the
+public's preference for environmental protection is stronger than that of the
+oil and gas industry" @McAlexander2020. Also Mian et al. find that campaign
+contributions alter rollcall votes @mian.
 
-\
-Bronars & Lott tried to do this....
-- when retire and not standing for re-election, how do they vote, on two similar
-  bills. @bronars-lott-1997 two types, vote buyers, ideological sorting (if vote
-  buy, change contributions & change vote is given, if ideology, then not.)
-  - effect of changes in campaign contributions during a politician's last term in
-    office. more to do with politician's retirement, less their
-    preferences/contributions.
-  - politicians should represent their ideology/votes, ideally (even without threat
-    of re-election)
-  - if not, politicians will deviate from constituent's wishes, cost of shirking
-    decreases. p. 319
-  - evidence: close races, conservative PACs to conservative candidates, and to
-    shift opinion within party,etc. @stratmann-2005 p. 147-148
+Given that some results find causal relationships between contirbutions and
+others find no effect, one can conclude that there is no academic consensus on
+this matter @stratmann-2017 p.13. Moreover, it is difficult to ascertain from
+which direction the causation runs, there has been little causal evidence to
+identify "the causal direction of donations on legislators’ voting decisions"
+@matter p.6. Part of the reason there is no academic consensus on causal
+relationships is because of the nature of the studies, which are cross-sectional
+in design, where correlation between contributions and votes is given due to the
+support of similar interests, so we have simultaneousequation bias
+@stratmann-2002 p.1 @burris2001two @chappell.
 
-\
-Stratmann, 1995 - campaign contributions and votes,does the timing of
-contributions matter?
-- main statements: contributions from current election cycles are more relevant
-  that the contributions from previous election cylces (short over long term),
-  PACs conclude different contracts with representatives, not ones that are first
-  contributions in one session and then votes as soon as they are voted, but
-  almost simultaneous votes
+The studies which found causal links between campaign contributions and voting
+behaviour are to be found to have a common denominator: research in particular
+fields or legislation, e.g. @baldwinmagee who analysed trade agreement related
+bills, @stratmann-2002 who analysed financial bills @stratmann-1995 @kang2015
+@stratmann-1995 and the timing of financial contributions. Hence, one needs to
+analyse "specific votes and a rather narrow policy setting" @kang2015
+@stratmann-1991 p.607 @chappell.
 
-\
-McAlexander, 2020 @McAlexander2020 - Elections and Policy Responsiveness:
-Evidence from Environmental Voting in the U.S. Congress:
-- shows that the association between upcoming elections and pro-environmental
-  voting grows more positive when candidates receive campaign contributions from
-  the oil and gas industry, again consistent with the idea that the gap in the
-  public and the interest groups' policy preferences explains the electoral
-  effect. (electoral gap meaning the difference between what they vote due to the
-  contributions and the votes they make to suit their voter base and get
-  re-elected) - "Candidates that receive generous campaign contributions from the
-  oil and gas industry increase their pro-environment voting at election time,
-  because they understand that the public's preference for environmental
-  protection is stronger than that of the oil and gas industry".
+Moreover, Stratmann critisises that most studies done in the field lack "a
+convincing identification strategy to estimate the causal effect of campaign
+contributions on legislative voting behavior. One major issue arises due to
+possible reverse causality, meaning that while contributions have an impact on
+roll call votes, it is also possible that legislators who cast roll call votes
+which are favorable to interest groups receive contributions from these groups."
+@stratmann-2017 p.14
 
-\
-Baldwin, Magee 1997,
-- linkages between voting behavior on specific roll call votes and campaign
-  contributions from industry, labor unions, PACs
+Common criticism in the field is attributed not only to studies whose analysis
+does not focus on a specific legistlation or account for reverse causality, but
+also those who do not control for individual counties and geographical areas
+@stratmann-2005 p.142. Moreover, by looking at repeated votes and thus changes
+in voting behaviour, a link can be determined between contribution and voting
+@stratmann-2005 p.143-144 @stratmann-2002. Considering a closer time-frame for
+contribution has also proven to increase plausibility @stratmann-1995.
 
-In general, the most causal relationships which were found between campaign
-contributions and voting behaviours has been attributed to *studies in specific
-industries or bills*, e.g. @stratmann-2002 (financial legislatives)
-@stratmann-1995 @kang2015 @stratmann-1995 (timing of financial contributions).
+// - model setup: must allow for endogeneity of contributions, dichotomus nature of
+//   dependent vote variable (yes/no) and non-negativity of campaign comntributions.
+//   @stratmann-1991 p.606
 
-// Solution... I will include these things
-What some of the failed studies did not inlcude...
-- address this by regressing and controlling for ind. propositions, counties,
-  geographical area @stratmann-2005 p.142
-- causal relationship may be found by looking at repeated votes @stratmann-2005
-  p.143-144 @stratmann-2002
-- timing as important factor, increase 2 months @stratmann-2005 p.144
-- model setup: must allow for endogeneity of contributions, dichotomus nature of
-  dependent vote variable (yes/no) and non-negativity of campaign comntributions.
-  @stratmann-1991 p.606
-
-Lead over to Research Design, where I incorporate these things.
+Given the extensive research done in money in politics, and moreover in the
+(causal) relationship between campaign contributions and rollcall voting
+behaviour, this paper will aim to take the above stated specifications to
+analyse a causal relationship between campaign contributions and rollcall votes
+in the environmental context.
 
 #pagebreak()
 
-= Research Design (Methodology)
+= Research Design
 == Type of Votes
 * Stratmann paper defines: vote preconditions*
 > repeate votes to measure change...
@@ -563,6 +534,10 @@ Why use which models? first LPM because....
   (Long 1997).]
 
 Why not 2SLS -> @stratmann-2002 p.1
+
+// - model setup: must allow for endogeneity of contributions, dichotomus nature of
+//   dependent vote variable (yes/no) and non-negativity of campaign comntributions.
+//   @stratmann-1991 p.606
 
 == Model specification
 + confounding variables
