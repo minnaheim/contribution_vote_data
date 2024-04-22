@@ -499,6 +499,7 @@ profile.
   dirty energy per representative)
 - useful libraries like congress package not used, because did not use API to get
   data
+- same with tidycensus, also API based
 === Merging
 - about 60% mergable based on ID
   - github df with govtrack ID, bioguide ID, opensecrets ID from reputable sources
@@ -545,41 +546,47 @@ Why not 2SLS -> @stratmann-2002 p.1
   - confounding effects -> needed for causal econometrics
   - deterine through literature what needs to be included:
 
-  confounding variables:
-  - party
-  - state (geoographical area) ?
-  - district (for robustness)
-  - age of legislators
-  // - loglikelihood ???
-  - DW-Nominates (dynamic weighted Nominates)
-    - DW Nominates are are a broadly applied measure of a representative’s policy
-      position in a multi-dimensional policy space that are computed based on
-      roll-call records @matter p.40
-    - @rosenthalpoole "It is widely acknowledged that DW-Nominate
-    scores are strong predictors of representatives’ voting behavior
-    - Data on DW-Nominate scores is provided by voteview.com.
-    - gives the propensity of each representative to vote yes/no given given their
-      first and second dimension DW-Nominate score values of the respective congress
-    - "Ideological positions are calculated using the DW-NOMINATE (Dynamic Weighted
-      NOMINAl Three-step Estimation). This procedure was developed by Poole and
-      Rosenthal in the 1980s and is a "scaling procedure", representing legislators on
-      a spatial map. In this sense, a spatial map is much like a road map--the
-      closeness of two legislators on the map shows how similar their voting records
-      are. Using this measure of distance, DW-NOMINATE is able to recover the "dimensions"
-      that inform congressional voting behavior. The primary dimension through most of
-      American history has been "liberal" vs. "conservative" (also referred to as "left"
-      vs. "right"). A second dimension picks up differences within the major political
-      parties over slavery, currency, nativism, civil rights, and lifestyle issues
-      during periods of American history." @voteview
-  - environmental catastrophy?
-  - control for individual (how to include individual, if not ID, doesnt work well)
-  - log transformation of contribution..
+variables we control for (using fixed effects):
+- party
+- legislator fixed effects (aka)
+- state (geoographical area) ?
+- district (for robustness)
+- age of legislators
+- party which had majority during session @McAlexander2020 p.47 @stratmann-2002
+- the LCV data include a variable indicating the issue the bill relates to, so
+  that we can control for cross-issue variation that may drive the results.
+  @McAlexander2020 p.48 -> all the same for me? drilling...
+- DW-Nominates (dynamic weighted Nominates)
+  - DW Nominates are are a broadly applied measure of a representative’s policy
+    position in a multi-dimensional policy space that are computed based on
+    roll-call records @matter p.40
+  - @rosenthalpoole "It is widely acknowledged that DW-Nominate
+  scores are strong predictors of representatives’ voting behavior
+  - Data on DW-Nominate scores is provided by voteview.com.
+  - gives the propensity of each representative to vote yes/no given given their
+    first and second dimension DW-Nominate score values of the respective congress
+  - "Ideological positions are calculated using the DW-NOMINATE (Dynamic Weighted
+    NOMINAl Three-step Estimation). This procedure was developed by Poole and
+    Rosenthal in the 1980s and is a "scaling procedure", representing legislators on
+    a spatial map. In this sense, a spatial map is much like a road map--the
+    closeness of two legislators on the map shows how similar their voting records
+    are. Using this measure of distance, DW-NOMINATE is able to recover the "dimensions"
+    that inform congressional voting behavior. The primary dimension through most of
+    American history has been "liberal" vs. "conservative" (also referred to as "left"
+    vs. "right"). A second dimension picks up differences within the major political
+    parties over slavery, currency, nativism, civil rights, and lifestyle issues
+    during periods of American history." @voteview
+  - here how to do it in R ->
+    http://congressdata.joshuamccrain.com/visualization.html (create abs(), )
+- environmental catastrophy?
+- control for individual (how to include individual, if not ID, doesnt work well)
+- log transformation of contribution..
 
-  confounding vars from statmann: @stratmann-2002 p.12-13
-  - employment in banking, insurance nad investment industries
-  - indicator for party majority in the house
-  - percentage of last popular votes which members received
-  - DW-Nominates absolute deviation from the party mean
+confounding vars from statmann: @stratmann-2002 p.12-13
+- employment in banking, insurance nad investment industries
+- indicator for party majority in the house
+- percentage of last popular votes which members received
+- DW-Nominates absolute deviation from the party mean
 
 - still use Logit/Probit for robustness...
 == Linear Probability Model with Individual Fixed Effects
