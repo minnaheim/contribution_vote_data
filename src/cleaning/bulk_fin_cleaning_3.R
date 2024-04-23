@@ -9,6 +9,7 @@ rep_116 <- read_csv("data/cleaned/bioguide_116_rep.csv", show_col_types = FALSE)
 rep_115 <- read_csv("data/cleaned/bioguide_115_rep.csv", show_col_types = FALSE)
 rep_114 <- read_csv("data/cleaned/bioguide_114_rep.csv", show_col_types = FALSE)
 rep_113 <- read_csv("data/cleaned/bioguide_113_rep.csv", show_col_types = FALSE)
+# view(rep_113)
 
 # clean contributions for vote
 contribs20 <- clean_contribs_for_vote(rep_117, "12-25-2020")
@@ -23,57 +24,23 @@ contribs12 <- clean_contribs_for_vote(rep_113, "03-19-2013")
 # view(contribs12)
 # view(contribs14)
 
-# FINISH THIS HERE!!
-# clean industry, keep only relevant and determine which are good energy, and which are bad
-determine_industry <- function(contributions) {
-    industry_type <- rep(NA, nrow(contributions)) # initialize Industry_Type vector
 
-    for (i in 1:nrow(contributions)) {
-        if (is.na(contributions$RealCode[i]) || contributions$RealCode[i] %in% c("E0000", "E1500", "E2000")) {
-            industry_type[i] <- "+"
-        } else {
-            industry_type[i] <- "-"
-        }
-    }
-    # Add the Industry_Type column to the filtered dataframe
-    contributions$Industry_Type <- industry_type
-    # change all NAs in amount to 0
-    contributions <- contributions %>% mutate(Amount = ifelse(is.na(Amount), 0, Amount))
-    # Filter out rows with RealCode in ("E4000", "E5000", "E4100", "E4200")
-    contributions <- contributions[!(contributions$RealCode %in% c("E4000", "E5000", "E4100", "E4200")), ]
-    contributions <- dplyr::filter(contributions, Amount >= 0)
-    return(contributions)
-}
 contribs20 <- determine_industry(contribs20)
 contribs18 <- determine_industry(contribs18)
 contribs16_2 <- determine_industry(contribs16_2)
 contribs16 <- determine_industry(contribs16)
 contribs14 <- determine_industry(contribs14)
 contribs12 <- determine_industry(contribs12)
+view(contribs12)
 
-# summarise the contributions by type per representative (use summarize to
-# keep only relevant rows, but add original data back to keep the other cols)
 
-# create function which summarises the contributions by type
-summarise_contribs <- function(contributions) {
-    contributions_summarized <- contributions %>%
-        group_by(last_name, first_name, state, opensecrets_id, bioguide_id, Industry_Type, district) %>%
-        summarise(total = sum(Amount)) %>%
-        ungroup() %>%
-        group_by(last_name, first_name, state, opensecrets_id, bioguide_id, district) %>%
-        complete(Industry_Type = c("-", "+"), fill = list(total = 0)) %>%
-        ungroup()
-    return(contributions_summarized)
-}
 contribs12_summarized <- summarise_contribs(contribs12)
 contribs14_summarized <- summarise_contribs(contribs14)
 contribs16_summarized <- summarise_contribs(contribs16)
 contribs16_2_summarized <- summarise_contribs(contribs16_2)
 contribs18_summarized <- summarise_contribs(contribs18)
 contribs20_summarized <- summarise_contribs(contribs20)
-# view(contribs16_summarized)
-# view(contribs14_summarized)
-# view(contribs12_summarized)
+view(contribs12_summarized)
 
 # merge together wide format, to merge with rollcall data
 contribs_long <- bind_rows(list(

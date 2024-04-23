@@ -114,6 +114,7 @@ roll_call_full <- rename(roll_call_full, c("party" = "Party")) %>%
 
 
 roll_call_full <- roll_call_full %>% relocate(BioID, GovtrackID)
-# view(roll_call_full)
+
+view(roll_call_full)
 # write df as csv
 write.csv(roll_call_full, "data/cleaned/roll_call.csv", row.names = FALSE)

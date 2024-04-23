@@ -7,8 +7,8 @@ source("src/cleaning/utils/rep_cleaning_functions.R")
 # read in cleaned data
 roll_call <- read_csv("data/cleaned/roll_call.csv", show_col_types = FALSE)
 contributions <- read_csv("data/cleaned/contribs_wide.csv", show_col_types = FALSE)
-# view(roll_call)
-# view(contributions)
+view(roll_call)
+view(contributions)
 
 # Initial join on BioID
 df_1 <- left_join(roll_call, contributions, by = c("BioID" = "bioguide_id"))
@@ -85,6 +85,14 @@ df_2 <- combine_columns(df_2, "Contribution_6_minus")
 df_2 <- combine_columns(df_2, "Contribution_6_plus")
 df_2 <- combine_columns(df_2, "Contribution_7_minus")
 df_2 <- combine_columns(df_2, "Contribution_7_plus")
+df_2 <- combine_columns(df_2, "seniority_113")
+df_2 <- combine_columns(df_2, "seniority_114")
+df_2 <- combine_columns(df_2, "seniority_115")
+df_2 <- combine_columns(df_2, "seniority_116")
+df_2 <- combine_columns(df_2, "seniority_117")
+df_2 <- combine_columns(df_2, "birthday")
+df_2$birthday <- as.Date(df_2$birthday)
+df_2 <- combine_columns(df_2, "gender")
 # view(df_2)
 
 # transform to numeric.

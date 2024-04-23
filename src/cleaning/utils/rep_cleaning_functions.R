@@ -2,6 +2,7 @@
 source("src/cleaning/utils/combine_columns.R")
 # install.packages("fedmatch")
 library(fedmatch)
+library(glue)
 
 # clean names, by removing all special symbols and making all names lowercase, cols need to be "last_name", and "first"
 clean_names <- function(dataset) {
@@ -93,15 +94,16 @@ add_seniority <- function(df, current_congress_number) {
     for (i in 1:nrow(df)) {
         congresses <- fromJSON(df$congresses[i]) %>%
             filter(congressNumber <= current_congress_number)
-
-        df$seniority[i] <- nrow(congresses)
+        current_congress_number <- as.character(current_congress_number)
+        col_name <- glue("seniority_{current_congress_number}")
+        df[[col_name]][i] <- nrow(congresses)
     }
     return(df)
 }
 
 keep_ids <- function(rep) {
     rep <- rep %>% select(
-        id, seniority, birthYear
+        id
     )
     rep <- right_join(full_reps, rep, by = c("bioguide_id" = "id"))
     rep <- rep %>% filter(!is.na(opensecrets_id))
