@@ -1,14 +1,30 @@
+# setup
+source("src/cleaning/utils/rep_cleaning_functions.R")
+library(tidyverse)
+library(jsonlite)
+
+
 # import historical and current congress members
 hist_reps <- read_delim("data/original/representatives/hist_reps.csv", show_col_types = FALSE)
 curr_reps <- read_delim("data/original/representatives/curr_reps.csv", show_col_types = FALSE)
 reps_113_117 <- read_delim("data/original/representatives/rep_113-117_bioguide.csv", show_col_types = FALSE)
+
+
+# when reading in the bioguide data, we have all cols except for one in CSV format,
+# the remaining in JSON, contains all congresses which representative participated in.
 rep_113 <- read_delim("data/original/representatives/rep_113.csv", show_col_types = FALSE)
-# view(rep_113)
 rep_114 <- read_delim("data/original/representatives/rep_114.csv", show_col_types = FALSE)
-# view(rep_114)
 rep_115 <- read_delim("data/original/representatives/rep_115.csv", show_col_types = FALSE)
 rep_116 <- read_delim("data/original/representatives/rep_116.csv", show_col_types = FALSE)
 rep_117 <- read_delim("data/original/representatives/rep_117.csv", show_col_types = FALSE)
+
+# extract only the important information from the JSON column, aka add seniority variables
+rep_113 <- add_seniority(rep_113, 113)
+rep_114 <- add_seniority(rep_114, 114)
+rep_115 <- add_seniority(rep_115, 115)
+rep_116 <- add_seniority(rep_116, 116)
+rep_117 <- add_seniority(rep_117, 117)
+
 
 # create full congress members df, with all congress members, choose only reps
 full_reps <- bind_rows(hist_reps, curr_reps)
@@ -19,36 +35,18 @@ full_reps <- full_reps %>% dplyr::filter(type == "rep")
 # DO THIS THE CORRECT WAY, INSIDE JOIN!
 full_reps <- full_reps %>% select(
     last_name, first_name, birthday,
-    gender, type, state, district, bioguide_id, opensecrets_id
+    gender, type, state, district, bioguide_id, opensecrets_id, govtrack_id, icpsr_id
 )
 reps_113_117 <- reps_113_117 %>% select(id)
 
 full_reps <- right_join(full_reps, reps_113_117, by = c("bioguide_id" = "id"))
+# view(full_reps)
 
-# DRY! DO THIS BETTER
-# 113th congress
-rep_113 <- rep_113 %>% select(id)
-rep_113 <- right_join(full_reps, rep_113, by = c("bioguide_id" = "id"))
-# before writing to csv, remove NA matches, those are reps who became senators
-rep_113 <- rep_113 %>% filter(!is.na(opensecrets_id))
-# 114th congress
-rep_114 <- rep_114 %>% select(id)
-rep_114 <- right_join(full_reps, rep_114, by = c("bioguide_id" = "id"))
-rep_114 <- rep_114 %>% filter(!is.na(opensecrets_id))
-# 115th congress
-rep_115 <- rep_115 %>% select(id)
-rep_115 <- right_join(full_reps, rep_115, by = c("bioguide_id" = "id"))
-rep_115 <- rep_115 %>% filter(!is.na(opensecrets_id))
-# 116th congress
-rep_116 <- rep_116 %>% select(id)
-rep_116 <- right_join(full_reps, rep_116, by = c("bioguide_id" = "id"))
-rep_116 <- rep_116 %>% filter(!is.na(opensecrets_id))
-# 117th congress
-rep_117 <- rep_117 %>% select(id)
-rep_117 <- right_join(full_reps, rep_117, by = c("bioguide_id" = "id"))
-rep_117 <- rep_117 %>% filter(!is.na(opensecrets_id))
-
-
+rep_113 <- keep_ids(rep_113)
+rep_114 <- keep_ids(rep_114)
+rep_115 <- keep_ids(rep_115)
+rep_116 <- keep_ids(rep_116)
+rep_117 <- keep_ids(rep_117)
 
 # write to csv
 write.csv(full_reps, "data/cleaned/bioguide_full_reps.csv", row.names = FALSE)

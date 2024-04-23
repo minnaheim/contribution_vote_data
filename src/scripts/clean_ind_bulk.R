@@ -4,7 +4,7 @@ library(tidyverse)
 source("src/cleaning/utils/bulk_cleaning_functions.R")
 
 if (length(args) != 1) {
-    stop("Usage: clean_bulk.R <input_file>")
+    stop("Usage: clean_ind_bulk.R <input_file>")
 }
 
 input_file <- args[1]

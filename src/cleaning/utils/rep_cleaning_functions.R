@@ -85,3 +85,25 @@ name_match <- function(dataset) {
 }
 
 # using the function stringsim, we calculate the similarities of the name matches, and then choose the best match, acc. to the highest probability
+
+# function that goes through each row and reads out congressNumber, creates new variabl "seniority",
+# for each congress number less than suffix from variable name, adds number of congresses to seniority
+# returns df with new variables
+add_seniority <- function(df, current_congress_number) {
+    for (i in 1:nrow(df)) {
+        congresses <- fromJSON(df$congresses[i]) %>%
+            filter(congressNumber <= current_congress_number)
+
+        df$seniority[i] <- nrow(congresses)
+    }
+    return(df)
+}
+
+keep_ids <- function(rep) {
+    rep <- rep %>% select(
+        id, seniority, birthYear
+    )
+    rep <- right_join(full_reps, rep, by = c("bioguide_id" = "id"))
+    rep <- rep %>% filter(!is.na(opensecrets_id))
+    return(rep)
+}
