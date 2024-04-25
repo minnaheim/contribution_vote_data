@@ -44,8 +44,8 @@
 The United States has seen a dramatic increase in wealth and income gaps in
 recent decades, with the wealthy and powerful seeking to shape the political
 environment @skocpol2016koch. Additionally, the US bipartisan system has
-recently become more @polarisation. The public's perceptions mirror these
-trends: 84 percent of US residents think that money influences politics
+recently become more polarised @polarisation. The public's perceptions mirror
+these trends: 84 percent of US residents think that money influences politics
 excessively and express a desire to see changes made to the campaign finance
 system to lessen the influence of wealthy donors @bonica p.1.
 
@@ -55,7 +55,7 @@ On the one hand, they shape the "mindset" of the US population through organised
 groups, think-tanks and networks of other mega-donors with similar political and
 social ideologies, such as the Koch Network @Hertel-Fernandez_Skocpol_Sclar_2018
 p.1.
-
+//  i know the quote is wrong..
 #set quote(block: true)
 #quote(
   attribution: [Skocpol @skocpol2016koch p.8],
@@ -92,8 +92,8 @@ contributions to the US congress could mean for US environmental policies.
 
 These questions will be analysed in this paper, i.e. examining the influence of
 energy (fossil fuel and environmental related) contributions on the voting
-behavior of US House members on methane pollution bills.The Analysis is based on
-the Paper of Thomas Stratmann @stratmann-2002, who exploits the time series
+behavior of US House members on methane pollution bills. The Analysis is based
+on the Paper of Thomas Stratmann @stratmann-2002, who exploits the time series
 nature of contribution and votes to approach a causal identification strategy to
 measure the effect of financial contributions on rollcall votes. Regarding
 campaign contribution, however, @stratmann-2002 uses the aggregate contributions
@@ -109,7 +109,7 @@ behind analysing environmental legislation and the methane pollution rollcall
 votes in particular, and presents the hypotheses regarding the effect of
 contribution on voting decisions. Chapter 4 presents the data types and
 processing for the analysis, and chapter 5 presents the models used. Chapter 6
-reports the results, Chapter 7 provides the discussion of these, and chapter 8
+reports the results, chapter 7 provides the discussion of these, and chapter 8
 concludes the paper.
 
 #pagebreak()
@@ -151,8 +151,8 @@ One of the main reasons for the noted increase in not only total campaign
 contributions over the last 30 years, but also the average campaign contribuions
 per representative might be attributable to the change in legislature. In 2010,
 the US Supreme Court passed the landmark court case Citizens United v. Federal
-Election Commission (FEC), treated the question of whether Congress has the
-authority to limit independent expenditures by corporations.Campaign
+Election Commission (FEC), which treated the question of whether Congress has
+the authority to limit independent expenditures by corporations. Campaign
 contributions are usually structured as individual and Political Action Comittee
 (PAC) contributions in OpenSecrets data, with the former stemming from natural
 persons, and the latter from comittees representing corporation or labor
@@ -175,19 +175,20 @@ to attract more votes @Weschle_2022c p.24.
 // Reason for Contribution
 Although it is clear that candidates need contributions to fund their campaigns,
 the question remains: why would corporations via PACs or individuals give money
-to candidates which they will not return? Stratmann makes the assumption that "firms
-are profit-maximizing and don’t make contributions for reasons that do not
-benefit their bottom line", meaning that companies' campaign spending is
-strategic @stratmann-2017 @Denzau-Munger-1986 @Weschle_2022c p.25. What these
-companies receive in return for their contribution, however, is unclear
-@stratmann-2017. Stratmann defines three types of goals for contributions, the
-first is access to the candidate, the second is to influence election and the
-third is to contribute to the candidate most likely to win @stratmann-2005 p.146
-@stratmann-2017 p.13. Weschle determines that what campaign donors receive in
-return to contributing to candidates is either influence, meaning they change
-the opinion of the candidate by contributing to their campaign, or the support
-of a candidate that has your interest at heart. Specifically small scale
-contributors follow both methods @Weschle_2022c pp.26-28.
+to candidates which these will not return? Stratmann makes the assumption that
+since corporations are inherently for-profit, they
+"don’t make contributions for reasons that do not benefit their bottom line",
+meaning that companies' campaign spending is strategic @stratmann-2017
+@Denzau-Munger-1986 @Weschle_2022c p.25. What these companies receive in return
+for their contribution, however, is unclear @stratmann-2017. Stratmann defines
+three types of goals for contributions, the first is access to the candidate,
+the second is to influence election and the third is to contribute to the
+candidate most likely to win @stratmann-2005 p.146 @stratmann-2017 p.13. Weschle
+determines that what campaign donors receive in return to contributing to
+candidates is either influence, meaning they change the opinion of the candidate
+by contributing to their campaign, or the support of a candidate that has your
+interest at heart. Specifically small scale contributors follow both methods
+@Weschle_2022c pp.26-28.
 
 // Überleitung, reason for contribution to correlation between 2 vars
 Besides the literatur dicussing the reasons for campaign spending, the question
@@ -199,6 +200,7 @@ successful election can be assumed.
 == Correlation Contributions & Candidate's election sucess
 // -> CHANGE THIS SECTION - NOT CONTRIBUTION AND VOTE SHARES, BUT CONTRIBUTION AND VOTES IN CONTRIBUTORS INTEREST
 // can we assume correlation?
+// keep this section?
 
 One would assume that receiving more campaign contributions would relate to a
 higher chance of getting elected, yet there is no clear correlation between
@@ -232,6 +234,16 @@ In general, consensus that there is no link between PAC contributions and votes
 in that PACs favor @Selling2023 p.1 @fellowes-wolf2004 p.315, @fiorina1999new
 p.216
 
+- correlation between contributions and votes is given due to the support
+of similar interests, so we have simultaneous equation bias @stratmann-2002 p.1
+@burris2001two @chappell. (can be found in the section below)
+
+- One major issue arises due to
+possible reverse causality, meaning that while contributions have an impact on
+roll call votes, it is also possible that legislators who cast roll call votes
+which are favorable to interest groups receive contributions from these groups."
+@stratmann-2017 p.14 (can be found in the section below)
+
 == Causal Effect of Campaign Contributions on Representatives' Voting Decisions.
 Even if we have correlation between campaign contributions and the votes in the
 contributers interest, it is still important to determine from which side the
@@ -258,9 +270,9 @@ Stratmann analysed the timing of contributions, and instead of analysing how the
 contributions of the previous cycle relates to the voting behaviour of
 politicians, Stratmann took the contributions from current election cylces,
 since short term contributions are more relevant for voting behavior, according
-to him @stratmann-1995. Betrand also researches lobbying companies provide
-special interest groups access to politicians when contributing (as opposed to
-giving only issue specific information to congress members), and finds indirect
+to him @stratmann-1995. Betrand deduces that lobbying companies provide special
+interest groups access to politicians when contributing (as opposed to giving
+only issue specific information to congress members), and finds indirect
 evidence of this @Bertrand @matter. Baldwin and Magee also find linkages of
 rollcall votes on specific trade agreement related bills and the contributions
 from businesses and labor groups @baldwinmagee. McAlexander, in his paper on the
@@ -279,16 +291,17 @@ identify "the causal direction of donations on legislators’ voting decisions"
 @matter p.6. Part of the reason there is no academic consensus on causal
 relationships is because of the nature of the studies, which are cross-sectional
 in design, where correlation between contributions and votes is given due to the
-support of similar interests, so we have simultaneousequation bias
+support of similar interests, so we have simultaneous equation bias
 @stratmann-2002 p.1 @burris2001two @chappell.
 
 The studies which found causal links between campaign contributions and voting
-behaviour are to be found to have a common denominator: research in particular
-fields or legislation, e.g. @baldwinmagee who analysed trade agreement related
-bills, @stratmann-2002 who analysed financial bills @stratmann-1995 @kang2015
-@stratmann-1995 and the timing of financial contributions. Hence, one needs to
-analyse "specific votes and a rather narrow policy setting" @kang2015
-@stratmann-1991 p.607 @chappell.
+behaviour have a common denominator: research in particular fields or
+legislation. Baldwin and Magee, for example, @baldwinmagee analysed trade
+agreement related bills, @stratmann-2002 analysed financial bills
+@stratmann-1995 @kang2015 @stratmann-1995 and the timing of financial
+contributions, and found significant effects. Hence, one needs to analyse "specific
+votes and a rather narrow policy setting" @kang2015 @stratmann-1991 p.607
+@chappell.
 
 Moreover, Stratmann critisises that most studies done in the field lack "a
 convincing identification strategy to estimate the causal effect of campaign
@@ -319,22 +332,43 @@ in the environmental context.
 #pagebreak()
 
 = Research Design
-== Type of Votes
-* Stratmann paper defines: vote preconditions*
-> repeate votes to measure change...
-+ change in voting behaviour @KauKeenanRubin p.276
-+ winners & losers clearly defined
-+ no vote before/ after repeated → aka only these votes (first vote as a
-  benchmark)
-+ “legislators do not typically take clearly articulated positions in their voting
-  campaigns”
-+ financial contributions the highest contributors per interest group (doesn’t
-  hold for energy/nat resources, only about 9th, not
-  1st)[https://www.opensecrets.org/industries?cycle=2020]
-+ substantial amount of legislators receive money from oil&gas interest groups
-  (here: 114: 406 /435, 115: 397/ 435, and 116: 408/435) ?
+This section will deal with the reasoning behind the chosen votes and
+contirbutions for the analysis, and the hypothesis which are set up for the
+analysis.
 
-\
+== Type of Votes
+Thomas Stratmann @stratmann-2002, who in his 2002 paper follows a similar
+methodology to determine the causal relationship between campaign contributions
+and the representative's vote shares, defines the following rollcall votes
+preconditions for his research: the votes are not only repeated but also exhibit
+changes in voting behaviour @KauKeenanRubin p.276 @stratmann-2002. Moreover, the
+winners and losers of the votes need to be defined, the precise subject voted on
+should not be repeated again, this way patterns in contribution and voting
+behaviour can be deduced more easily. These conditions are met in this analysis.
+There are six roll call votes which are related to methane pollution safeguards
+(i.e. the methane emissions of fossil fuel companies), and these are not
+repeated to this date, since the vote relates to the acceptance or rejection of
+an increase in environmental regulation, the winners and losers of the votes are
+clearly defined.
+
+There are conditions, however, which Stratmann sets up which are not met in this
+paper. On the one hand, he stipulates that the research should treat a topic
+where representatives "do not typically take clearly articulated positions in
+their voting campaigns” @stratmann-2002 p.4. This is not met here, since
+environmental positions are polarising, and most legislators have clear
+positions on environment, due to their party line, or also their personal
+conviction @McAlexander2020. Stratmann also states that substantial amounts of
+representatives should receive campaign contributions from the relevant interest
+group, here pro- and anti environmental and fossil fuel related contributions.
+This is split in this paper, since a substantial amount of legilators receive
+more from fossil fuel industry, and the Energy and natural resources interest
+groups was the 9th biggest interest group contributor in 2022 with a total of
+196 Billion USD contributed over the 2022 congressional election. The
+environmental contributions, on the other hand, are a fraction of this
+@OpenSecretsInterestGroups. Thus, it is more difficult to compare the
+contribution sizes of these interest groups. Lastly, Stratmann determines that
+there need to be changes in voting behaviours of the representatives, yet in
+this case, only 23 representatives out of 529 change their vote over time.// insert mind changers plot here (confirm 23/529?)
 
 == Topic of Votes (Methane Pollution Safeguard)
 *why this topic?*
