@@ -1,0 +1,58 @@
+State,Standard,Postal,Geographical
+Alabama,Ala.,AL,SO
+Alaska,Alaska,AK,WE
+Arizona,Ariz.,AZ,WE
+Arkansas,Ark.,AR,SO
+California,Calif.,CA,WE
+Canal Zone,C.Z.,CZ,NA
+Colorado,Colo.,CO,WE
+Connecticut,Conn.,CT,NE
+Delaware,Del.,DE,SO
+District of Columbia,D.C.,DC,NA
+Florida,Fla.,FL,SO
+Georgia,Ga.,GA,SO
+Guam,Guam,GU,NA
+Hawaii,Hawaii,HI,WE
+Idaho,Idaho,ID,WE
+Illinois,Ill.,IL,MW
+Indiana,Ind.,IN,MW
+Iowa,Iowa,IA,MW
+Kansas,Kan.,KS,MW
+Kentucky,Ky.,KY,SO
+Louisiana,La.,LA,SO
+Maine,Maine,ME,NE
+Maryland,Md.,MD,MD
+Massachusetts,Mass.,MA,NE
+Michigan,Mich.,MI,MW
+Minnesota,Minn.,MN,MW
+Mississippi,Miss.,MS,SO
+Missouri,Mo.,MO,MW
+Montana,Mont.,MT,WE
+Nebraska,Neb.,NE,MW
+Nevada,Nev.,NV,WE
+New Hampshire,N.H.,NH,NE
+New Jersey,N.J.,NJ,NE
+New Mexico,N.M.,NM,WE
+New York,N.Y.,NY,NE
+North Carolina,N.C.,NC,SO
+North Dakota,N.D.,ND,MW
+Ohio,Ohio,OH,NW
+Oklahoma,Okla.,OK,SO
+Oregon,Ore.,OR,WE
+Pennsylvania,Pa.,PA,NE
+Puerto Rico,P.R.,PR,NA
+Rhode Island,R.I.,RI,NE
+South Carolina,S.C.,SC,SO
+South Dakota,S.D.,SD,MW
+Tennessee,Tenn.,TN,SO
+Texas,Texas,TX,SO
+Utah,Utah,UT,WE
+Vermont,Vt.,VT,NE
+Virgin Islands,V.I.,VI,NA
+Virginia,Va.,VA,SO
+Washington,Wash.,WA,WE
+West Virginia,W.Va.,WV,SO
+Wisconsin,Wis.,WI,MW
+Wyoming,Wyo.,WY,WE
+Northern Mariana Islands,Mar.,MP,NA
+American Samoa," AS.",AS,NA

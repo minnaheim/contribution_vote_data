@@ -51,6 +51,27 @@ rep_115 <- keep_ids(rep_115)
 rep_116 <- keep_ids(rep_116)
 rep_117 <- keep_ids(rep_117)
 
+
+# add DW-Nominate Information for every representative in every session
+session_numbers <- c(113, 114, 115, 116, 117)
+dataframes <- list()
+
+for (session_num in session_numbers) {
+    file_path <- paste0("data/original/control_variables/H", session_num, "_members.csv")
+    dataframes[[paste0("dw_", session_num)]] <- read_csv(file_path, show_col_types = FALSE) %>%
+        filter(chamber == "House") %>%
+        select(c("bioguide_id", "nominate_dim1", "nominate_dim2"))
+}
+view(dataframes$dw_113)
+view(dataframes$dw_114)
+# add DW-Nominate Information for every representative in panel df
+rep_113 <- left_join(rep_113, dataframes$dw_113, by = "bioguide_id")
+rep_114 <- left_join(rep_114, dataframes$dw_114, by = "bioguide_id")
+rep_115 <- left_join(rep_115, dataframes$dw_115, by = "bioguide_id")
+rep_116 <- left_join(rep_116, dataframes$dw_116, by = "bioguide_id")
+rep_117 <- left_join(rep_117, dataframes$dw_117, by = "bioguide_id")
+
+
 # write to csv
 # full_reps and rep_11* are the same!
 write.csv(full_reps, "data/cleaned/bioguide_full_reps.csv", row.names = FALSE)

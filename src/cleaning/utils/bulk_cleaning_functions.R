@@ -133,32 +133,21 @@ summarise_contribs <- function(contributions) {
     contributions_summarized <- contributions %>%
         group_by(
             last_name, first_name, state, opensecrets_id, bioguide_id, Industry_Type,
-            district, birthday, gender, seniority_113, seniority_114, seniority_115, seniority_116, seniority_117
+            district, birthday, gender, seniority_113, seniority_114, seniority_115, seniority_116,
+            seniority_117, nominate_dim1, nominate_dim2
         ) %>%
         summarise(total = sum(Amount)) %>%
         ungroup() %>%
         select(
             last_name, first_name, state, opensecrets_id, bioguide_id, Industry_Type,
-            district, birthday, gender, seniority_113, seniority_114, seniority_115, seniority_116, seniority_117, total
+            district, birthday, gender, seniority_113, seniority_114, seniority_115,
+            seniority_116, seniority_117, nominate_dim1, nominate_dim2, total
         ) %>%
-        group_by(last_name, first_name, state, opensecrets_id, bioguide_id, district, birthday, gender) %>%
-        complete(Industry_Type = c("-", "+"), seniority_113, seniority_114, seniority_115, seniority_116, seniority_117, fill = list(total = 0)) %>%
+        group_by(last_name, first_name, state, opensecrets_id, bioguide_id, district, birthday, gender, nominate_dim1, nominate_dim2) %>%
+        complete(
+            Industry_Type = c("-", "+"), seniority_113, seniority_114, seniority_115, seniority_116,
+            seniority_117, fill = list(total = 0)
+        ) %>%
         ungroup()
     return(contributions_summarized)
 }
-
-# summarise_contribs <- function(contributions) {
-#     contributions_summarized <- contributions %>%
-#         group_by(
-#             last_name, first_name, state, opensecrets_id, bioguide_id, Industry_Type,
-#             district, birthday, gender
-#         ) %>%
-#         summarise(total = sum(Amount)) %>%
-#         ungroup() %>%
-#         select(last_name, first_name, state, opensecrets_id, bioguide_id, Industry_Type,
-#                district, birthday, gender, starts_with("seniority_11"), total) %>%
-#         group_by(last_name, first_name, state, opensecrets_id, bioguide_id, district, birthday, gender) %>%
-#         complete(Industry_Type = c("-", "+"), fill = list(total = 0)) %>%
-#         ungroup()
-#     return(contributions_summarized)
-# }

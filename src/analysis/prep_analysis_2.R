@@ -11,6 +11,44 @@ df <- read.csv("data/cleaned/df.csv")
 df <- analysis_prep(df)
 # view(df)
 
+# CONTROL VARIABLES
+# add dummy for majority party leadership
+df["Dmajority_113"] <- 0
+df["Dmajority_114"] <- 0
+df["Dmajority_115"] <- 0
+df["Dmajority_116"] <- 1
+df["Dmajority_117"] <- 1
+
+# add state dummies (categorised acc. to US Census Data -> https://www2.census.gov/geo/pdfs/reference/GARM/Ch6GARM.pdf)
+state_abbreviation <- read_csv("data/original/control_variables/state_abbreviations.csv", show_col_types = FALSE) %>%
+    select(Postal, Geographical) %>%
+    filter(!is.na(Geographical))
+
+df["Geographical"] <- NA
+add_state_category <- function(df) {
+    for (i in seq_len(nrow(df))) {
+        for (j in seq_len(nrow(state_abbreviation))) {
+            if (df$state[i] == state_abbreviation$Postal[j]) {
+                df$Geographical[i] <- state_abbreviation$Geographical[j]
+            }
+        }
+    }
+    return(df)
+}
+df <- add_state_category(df)
+
+
+# view(df)
+
+
+
+
+
+
+
+
+
+
 # filter for each session
 df_vote_3 <- filter_session_data_2(df, 3)
 # dry...

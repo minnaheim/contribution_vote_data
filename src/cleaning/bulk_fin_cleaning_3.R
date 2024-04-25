@@ -21,8 +21,8 @@ contribs12 <- clean_contribs_for_vote(rep_113, "03-19-2013")
 
 # determine what to do with reps that received no contributions, i.e. in contribs12, for Vote3, 26 reps received no contributions.
 # Alma Adams, e.g. only got swapped in shortly after the vote.
-# view(contribs12)
-# view(contribs14)
+view(contribs12)
+view(contribs14)
 
 
 contribs20 <- determine_industry(contribs20)

@@ -28,6 +28,7 @@ methane_116 <- read_csv("data/original/roll_call/methane-pollution-safeguards-11
     show_col_types = FALSE
 )
 
+
 # 2021 vote
 # manually removed spaced within cols, to snakecase
 methane_117 <- lcv_2021 %>% select(District, Party, Member_of_Congress, BioID, GovtrackID, Repealing)
