@@ -370,25 +370,128 @@ contribution sizes of these interest groups. Lastly, Stratmann determines that
 there need to be changes in voting behaviours of the representatives, yet in
 this case, only 23 representatives out of 529 change their vote over time.// insert mind changers plot here (confirm 23/529?)
 
-== Topic of Votes (Methane Pollution Safeguard)
-*why this topic?*
-- fossil fuel industry as a significant contributor of campaign contributions (as
-  shown above)
-- most voter bases have predetermined positions, which legislators are likely to
-  keep, see @stratmann-2002 preconditions
-#quote(
-  attribution: [McAlexander @McAlexander2020],
-)[ As most environmental policies impose concentrated costs on industries to
-  protect the broader public from harm (e.g., Aidt, 1998), it is typically the
-  case that the public prefers stronger environmental policies than the average
-  interest group ]
-- topic of incredible relevance (interest of mine?), many votes... relevance means
-  large amount of votes
-- american public and even more so, congress members have become more polarised on
-  env. issues @McAlexander2020
-- environmental issue is important enough, that candidates still need to
-  articulate positions, dep. on the average voter @list2006elections
-*why these bills?*
+== Topic of Votes (Methane Pollution Safeguards)
+
+Although as shown in the section above, the rollcall bills do not fit the
+preconditions stipulated by Stratmann in @stratmann-2002, analysing
+environmental policy and the propensity for representatives to deviate based on
+contributions is still a relevant topic and has significant reprecussions for
+democracy if a causal relationship does exist.
+
+Although environmental subjects are polarising for the public and for
+representatives, which might indicate that representatives have less incentives
+to change their opinions, McAlexander @McAlexander2020 has found that most
+environmental policies direct the cost of a sound environmental to industries,
+so the public has a generally more favorable environmental opinion than an
+average interest group, which indicates that if campaign contributions could
+change the voting behaviour of representatives, then representatives would
+prefer to take up positions that favour the interest groups more, i.e. less
+strong environmental positions @McAlexander2020.
+
+Moreover, the reason to choose these bills for the analysis can be attributed to
+the fact that, as stated above, the energy and natural resources interest groups
+are some of the biggest contributors to congressional elections
+@OpenSecretsInterestGroups and thus also have the biggest potential to be
+analysed, since these contributions are not only large in volume but also in
+distribution, as stated in the Introduction.
+
+//  plot about number of representatives who receive contribution
+
+The reasoning behind choosing these six environmental bills:
+
+- The 2013, 113th congressional session Rollcall Vote 601 of Bill Number: H. R.
+  2728, the Protecting States' Rights to Promote American Energy Security Act. It
+  would preserve the Department of the Interior's ability to reduce methane
+  emissions from oil and gas drilling operations on public lands. @lcv2013
+- The 2016, 114th congressional session Roll Call 434 of Bill Number: H. R. 5538,
+  the Department of the Interior, Environment, and Related Agencies Appropriations
+  Act, 2017, would include a rider into the main bill to stop the EPA from
+  enforcing its recently determined methane pollution regulations, which are the
+  first-ever caps on methane emissions from new and altered sources in the oil and
+  gas industry. @lcv2016
+- The 2017, 115th congressional session Roll Call 488 of Bill Number: H. R. 3354,
+  which would hinder the Environmental Protection Agency's efforts to control
+  methane emissions from newly created and altered sources inside the oil and gas
+  industry. @lcv2017
+- The 2018, 115th congressional session Roll Call 346 Bill Number H. R. 6147:
+
+- *Bill Number: H. R. 2728, Roll Call 601 (2013) -> 113th Congress*
+"Representative Rush Holt (D-NJ) offered an amendment to H.R. 2728, the
+*Protecting States' Rights to Promote American Energy Security Act, which would
+preserve the Department of the Interior’s ability to reduce methane emissions
+from oil and gas drilling operations on public lands*. Methane is a super
+pollutant, a short-lived but potent climate pollutant whose impact,
+pound-for-pound, is over 20 times greater than carbon dioxide. Methane is also
+the second most prevalent greenhouse gas emitted by human activities in the
+United States, and natural gas and petroleum production is the largest
+industrial source of these emissions. In addition to their role in warming our
+atmosphere, fugitive methane emissions contribute to smog that threatens public
+health by triggering asthma attacks and aggravating other respiratory
+conditions."
+- *Bill Number: H. R. 5538, Roll Call 434 (2016) -> 114th Congress*
+"Representative Jared Polis (D-CO) offered an amendment to H.R. 5538, the
+*Department of the Interior, Environment, and Related Agencies Appropriations
+Act, 2017, which would strike a rider in the underlying bill that prevents the
+Environmental Protection Agency (EPA) from implementing its recently finalized
+methane pollution standards, the first-ever limits on methane pollution from new
+and modified sources in the oil and gas industry*. The EPA’s methane standard
+for new and modified sources requires low-cost, *proven safeguards that are
+critical to reducing methane’s contributions* to climate change, with climate
+benefits of 170 million by 2025, while also curbing toxic air pollutants that
+contribute to smog and jeopardize the health of nearby communities. On July 13,
+the House rejected the Polis amendment by a vote of 187-240 (House roll call
+vote 434)."
+- *Bill Number: H. R. 3354, Roll Call 488 (2017) -> 115th Congress*
+"Representative Markwayne Mullin (R-OK) offered an amendment to H.R. 3354, *the
+Department of the Interior, Environment, and Related Agencies Appropriations
+Act, 2018, which would prevent the Environmental Protection Agency (EPA) from
+implementing its standards to reduce methane pollution from new and modified
+sources in the oil and gas industry. The EPA’s methane standard requires
+compliance with low-cost, proven safeguards*that are critical to reducing
+methane’s contributions to climate change. The climate benefits are estimated to
+reach 170 million by 2025 while also curbing toxic air pollutants that
+contribute to smog and jeopardize the health of nearby communities. On September
+13, the House approved the Mullin amendment by a vote of 218-195 (House roll
+call vote 488)."
+- *Bill Number: H. R. 6147, Roll Call 346 (2018) -> 115th Congress*
+"Representative Markwayne Mullin (R-OK) offered an amendment to H.R. 6147,*the
+Department of the Interior, Environment, and Related Agencies Appropriations
+Act, 2019, which would prevent the Environmental Protection Agency (EPA) from
+implementing its standards to reduce methane pollution from new and modified
+sources in the oil and gas industry. The EPA’s methane standard requires
+compliance with low-cost, proven safeguards that are critical to reducing
+methane’s contributions to climate change.* The climate benefits are estimated
+to reach 170 million by 2025 while also
+curbing toxic air pollutants that contribute to smog and jeopardize the health
+of nearby communities. On July 18, the House approved the Mullin amendment by a
+vote of 215-194"
+- *Bill Number: H. R. 3055, Roll Call 385 (2019) -> 116th Congress*
+"Representative Markwayne Mullin (R-OK) offered an amendment to H.R. 3055, an
+appropriations bill funding various government agencies, which would
+have*prevented the Environmental Protection Agency (EPA) from implementing
+standards to reduce methane pollution from new and modified sources in the oil
+and gas industry. The EPA’s methane pollution rule would have required
+compliance with low-cost, proven safeguard*s that are critical to reducing
+methane’s contributions to climate change. The climate benefits were estimated
+to reach 170 million by 2025 while also curbing toxic air pollutants that
+contribute to smog and jeopardize the health of nearby communities, particularly
+the health of low income communities, communities of color, and Indigenous
+peoples who already bear a disproportionate burden of pollution. On June 20, the
+House rejected the Mullin amendment by a vote of 191-241 (House roll call vote
+385)"
+
+- *Bill Number: S. J. Res. 14, Roll Call 185 (2021) -> 117th Congress*
+"the *Congressional Review Act Resolution of Disapproval of the Environmental
+Protection Agency’s (EPA) rule to roll back the 2016 methane standards for new
+and modified sources in the oil and gas industry. The oil and gas industry is
+the largest source of industrial methane pollution*, causing almost 25% of the
+climate change we currently experience. S.J. Res. 14 eliminated this dangerous
+rule and allowed the EPA to move quickly on stronger safeguards against methane
+pollution, which will slow climate change and mitigate hazardous air pollutants
+that affect our communities, especially low-income communities and communities
+of color living on the frontlines of oil and gas drilling and processing." - LCV
+Scorecard
+
 - all amend the funding/resources allocated to the EPA, which is "the Congress
   plays a central role in the formulation of federal environmental policy. The
   authority of the executive wing and the Environmental Protection Agency (EPA) to
