@@ -1,0 +1,72 @@
+---
+title: "Data Analysis of Campaign Contributions and Voting Behavior"
+format: html
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(plm)
+library(fastDummies)
+
+source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_prep_functions.R")
+df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
+df_no_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_no_change.csv")
+df_vote_3 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_3.csv")
+df_vote_4 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4.csv")
+df_vote_4_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4_2.csv")
+df_vote_51 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_51.csv")
+df_vote_52 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_52.csv")
+df_vote_6 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_6.csv")
+df_vote_7 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_7.csv")
+```
+
+# Linear Probability Model with (unit and time) Fixed Effects
+
+This is a simple linear probability model with unit and time fixed effects. The model only includes representatives who did not change their opinions (across all votes) during the time period. this way a positive vote can be regressed with contributions and the control variables. 
+We remove birthday (too specific...), seniority (NA values, multicolinear?), Majority (NA values)
+```{r}
+# include time fixed effects ? can we do that here?
+view(df_no_change)
+df_no_change <- df_no_change %>% select(-c(state, birthday, seniority_114, seniority_115, seniority_116, seniority_117, Dmajority_113, Dmajority_114, Dmajority_115, Dmajority_116, Dmajority_117))
+
+no_change_ols_minus <- lm(all_votes_minus ~ . - all_votes_plus, data = df_no_change)
+summary(no_change_ols_minus)
+
+no_change_ols_plus <- lm(all_votes_plus ~ . - all_votes_minus, data = df_no_change)
+summary(no_change_ols_plus)
+```
+
+When grouping contributions into positive and negative, we get one coefficient not defined because of singularities, i.e. too strong of a correlation between two variables. 
+
+# sessionized Linear Probability Model with Fixed Effects
+## time specific contributions 
+```{r}
+# Vote 3
+view(df_vote_3)
+ols_3 <- lm(Vote3_plus ~ . - state - BioID - Vote3_minus - birthday - Vote3 - Vote_change_dummy, data = df_vote_3)
+summary(ols_3)
+
+# # Vote 4
+# ols_4 <- lm(Vote4_plus ~ . - Vote4_minus - Vote4 - Vote_change_dummy, data = df_vote_4)
+# summary(ols_4)
+
+# # Vote 51
+# ols_51 <- lm(Vote51_plus ~ . - Vote51_minus - Vote51 - Vote_change_dummy, data = df_vote_51)
+# summary(ols_51)
+
+# ols_52 <- lm(Vote52_plus ~ . - Vote52_minus - Vote52 - Vote_change_dummy, data = df_vote_52)
+# summary(ols_52)
+
+# ols_6 <- lm(Vote6_plus ~ . - Vote6_minus - Vote6 - Vote_change_dummy, data = df_vote_6)
+# summary(ols_6)
+
+# ols_7 <- lm(Vote7_plus ~ . - Vote7_minus - Vote7 - Vote_change_dummy, data = df_vote_7)
+# summary(ols_7)
+
+
+```
+
+# Two way fixed effects model
+
+# Logit / Probit Model 

@@ -59,8 +59,6 @@ df_2 <- fuzzy_left_join(
 # df_2 <- combine_columns(df_2, "name")
 df_2 <- select(df_2, name.x, name.y, everything())
 
-
-
 # left_join(unmerged, unassigned_contribs, by = c("state", "first_name", "last_name", "district"))
 
 # combine columns
@@ -91,8 +89,11 @@ df_2 <- combine_columns(df_2, "seniority_115")
 df_2 <- combine_columns(df_2, "seniority_116")
 df_2 <- combine_columns(df_2, "seniority_117")
 df_2 <- combine_columns(df_2, "birthday")
+df_2 <- combine_columns(df_2, "nominate_dim1")
+df_2 <- combine_columns(df_2, "nominate_dim2")
 df_2$birthday <- as.Date(df_2$birthday)
 df_2 <- combine_columns(df_2, "gender")
+
 # view(df_2)
 
 # transform to numeric.

@@ -9,7 +9,7 @@ df <- read.csv("data/cleaned/df.csv")
 
 # remove representatives who voted only once, whose party isnt R,D,
 df <- analysis_prep(df)
-# view(df)
+view(df)
 
 # CONTROL VARIABLES
 # add dummy for majority party leadership
@@ -39,14 +39,6 @@ df <- add_state_category(df)
 
 
 # view(df)
-
-
-
-
-
-
-
-
 
 
 # filter for each session
