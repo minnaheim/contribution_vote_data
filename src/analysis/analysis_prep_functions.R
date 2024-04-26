@@ -115,20 +115,12 @@ filter_session_data_2 <- function(df, vote) {
 
 # function that filters the data based on the session
 filter_all_pre_session_data <- function(df, vote) {
-    if (vote == 3) {
-        # Select columns based on conditions
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote3", "Contribution_3_minus", "Contribution_3_plus",
-        )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^vote|^amount", names(df), value = TRUE, invert = TRUE)
-        # excluded_cols <- grep("^(?!Vote*3|amount.*113$)", names(df), value = TRUE, perl = TRUE)
-    }
     if (vote == 4) {
         selected_cols <- c(
             "party", "Vote_change_dummy",
-            "Vote4", "Contribution_3_minus", "Contribution_3_plus", "Contribution_4_minus", "Contribution_4_plus"
+            "Vote4", "Contribution_3_minus", "Contribution_3_plus", "Contribution_4_minus",
+            "Contribution_4_plus", "state", "BioID", "seniority_114", "birthday",
+            "Geographical", "nominate_dim1", "nominate_dim2"
         )
         df <- df[, c(selected_cols)]
         # excluded_cols <- grep("^(?!Vote*4|amount.*114$)", names(df), value = TRUE, perl = TRUE)
@@ -138,7 +130,8 @@ filter_all_pre_session_data <- function(df, vote) {
             "party", "Vote_change_dummy",
             "Vote51", "Contribution_3_minus", "Contribution_3_plus",
             "Contribution_4_minus", "Contribution_4_plus",
-            "Contribution_51_minus", "Contribution_51_plus"
+            "Contribution_51_minus", "Contribution_51_plus", "state", "BioID", "seniority_115", "birthday",
+            "Geographical", "nominate_dim1", "nominate_dim2"
         )
         df <- df[, c(selected_cols)]
         # excluded_cols <- grep("^(?!Vote*51|amount.*115$)", names(df), value = TRUE, perl = TRUE)
@@ -149,7 +142,9 @@ filter_all_pre_session_data <- function(df, vote) {
             "Vote52", "Contribution_3_minus", "Contribution_3_plus",
             "Contribution_4_minus", "Contribution_4_plus",
             "Contribution_51_minus", "Contribution_51_plus",
-            "Contribution_52_minus", "Contribution_52_plus"
+            "Contribution_52_minus", "Contribution_52_plus",
+            "state", "BioID", "seniority_115", "birthday",
+            "Geographical", "nominate_dim1", "nominate_dim2"
         )
         df <- df[, c(selected_cols)]
         # excluded_cols <- grep("^(?!Vote*52|amount.*115$)", names(df), value = TRUE, perl = TRUE)
@@ -161,7 +156,9 @@ filter_all_pre_session_data <- function(df, vote) {
             "Contribution_4_minus", "Contribution_4_plus",
             "Contribution_51_minus", "Contribution_51_plus",
             "Contribution_52_minus", "Contribution_52_plus",
-            "Contribution_6_minus", "Contribution_6_plus"
+            "Contribution_6_minus", "Contribution_6_plus",
+            "state", "BioID", "seniority_116", "birthday",
+            "Geographical", "nominate_dim1", "nominate_dim2"
         )
         df <- df[, c(selected_cols)]
         # excluded_cols <- grep("^(?!Vote*6|amount.*116$)", names(df), value = TRUE, perl = TRUE)
@@ -174,7 +171,9 @@ filter_all_pre_session_data <- function(df, vote) {
             "Contribution_51_minus", "Contribution_51_plus",
             "Contribution_52_minus", "Contribution_52_plus",
             "Contribution_6_minus", "Contribution_6_plus",
-            "Contribution_7_minus", "Contribution_7_plus"
+            "Contribution_7_minus", "Contribution_7_plus",
+            "state", "BioID", "seniority_117", "birthday",
+            "Geographical", "nominate_dim1", "nominate_dim2"
         )
         df <- df[, c(selected_cols)]
         # view(df)

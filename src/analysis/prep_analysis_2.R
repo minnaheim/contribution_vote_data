@@ -86,11 +86,32 @@ df_vote_7 <- df_vote_7 %>% rename("Vote7_minus" = "Vote7_-")
 # out of 802, only 553 remain
 
 
-# get all votes leading up to the vote, to see if votes before have impact for next relevant vote
+# get all contributions leading up to the vote, to see if votes before have impact for next relevant vote
+
 df_vote_4_2 <- filter_all_pre_session_data(df, 4)
 df_vote_4_2 <- dummy_cols(df_vote_4_2, select_columns = "Vote4")
 df_vote_4_2 <- df_vote_4_2 %>% rename("Vote4_plus" = "Vote4_+")
 df_vote_4_2 <- df_vote_4_2 %>% rename("Vote4_minus" = "Vote4_-")
+
+df_vote_51_2 <- filter_all_pre_session_data(df, 51)
+df_vote_51_2 <- dummy_cols(df_vote_51_2, select_columns = "Vote51")
+df_vote_51_2 <- df_vote_51_2 %>% rename("Vote51_plus" = "Vote51_+")
+df_vote_51_2 <- df_vote_51_2 %>% rename("Vote51_minus" = "Vote51_-")
+
+df_vote_52_2 <- filter_all_pre_session_data(df, 52)
+df_vote_52_2 <- dummy_cols(df_vote_52_2, select_columns = "Vote52")
+df_vote_52_2 <- df_vote_52_2 %>% rename("Vote52_plus" = "Vote52_+")
+df_vote_52_2 <- df_vote_52_2 %>% rename("Vote52_minus" = "Vote52_-")
+
+df_vote_6_2 <- filter_all_pre_session_data(df, 6)
+df_vote_6_2 <- dummy_cols(df_vote_6_2, select_columns = "Vote6")
+df_vote_6_2 <- df_vote_6_2 %>% rename("Vote6_plus" = "Vote6_+")
+df_vote_6_2 <- df_vote_6_2 %>% rename("Vote6_minus" = "Vote6_-")
+
+df_vote_7_2 <- filter_all_pre_session_data(df, 7)
+df_vote_7_2 <- dummy_cols(df_vote_7_2, select_columns = "Vote7")
+df_vote_7_2 <- df_vote_7_2 %>% rename("Vote7_plus" = "Vote7_+")
+df_vote_7_2 <- df_vote_7_2 %>% rename("Vote7_minus" = "Vote7_-")
 
 # get all reps who voted only pos. or only neg. and regress with all contributions
 df_no_change <- df %>% filter(Vote_change_dummy == 0)
@@ -157,6 +178,10 @@ write.csv(df_no_change, "data/analysis/df_no_change.csv", row.names = FALSE)
 write.csv(df_vote_3, "data/analysis/df_vote_3.csv", row.names = FALSE)
 write.csv(df_vote_4, "data/analysis/df_vote_4.csv", row.names = FALSE)
 write.csv(df_vote_4_2, "data/analysis/df_vote_4_2.csv", row.names = FALSE)
+write.csv(df_vote_51_2, "data/analysis/df_vote_51_2.csv", row.names = FALSE)
+write.csv(df_vote_52_2, "data/analysis/df_vote_52_2.csv", row.names = FALSE)
+write.csv(df_vote_6_2, "data/analysis/df_vote_6_2.csv", row.names = FALSE)
+write.csv(df_vote_7_2, "data/analysis/df_vote_7_2.csv", row.names = FALSE)
 write.csv(df_vote_51, "data/analysis/df_vote_51.csv", row.names = FALSE)
 write.csv(df_vote_52, "data/analysis/df_vote_52.csv", row.names = FALSE)
 write.csv(df_vote_6, "data/analysis/df_vote_6.csv", row.names = FALSE)
