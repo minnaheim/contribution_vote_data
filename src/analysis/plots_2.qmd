@@ -1,0 +1,47 @@
+---
+title: "Plots for the paper"
+format: html
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(lubridate)
+```
+
+With a function such as this one you can plot the contributions in dataset, i.e. for each election, how many contributions were made in line with the cutoff date, also plotted.
+
+```{r}
+# ADD TO PLOTS FILE
+# plot the distribution of the amount of E contributions by date
+# indivs20_filtered_e <- indivs20 %>%
+#     filter(str_detect(RealCode, "^E"))
+# cutoff_date_1 <- "06-25-2020"
+
+# plot_E_1y_prior <- indivs20_filtered_e %>%
+#     ggplot(aes(x = Date, y = RealCode)) +
+#     geom_point() +
+#     geom_smooth() +
+#     labs(
+#         title = "Amount of E contributions by date - 1 year prior to vote is the line",
+#         x = "Date",
+#         y = "Amount"
+#     ) +
+#     geom_vline(xintercept = as.numeric(cutoff_date_1)) # Add a vertical line for the cutoff date
+
+# plot_E_1y_prior
+
+
+# cutoff_date_2 <- "12-25-2020"
+# plot_E_6mo_prior <- indivs20_filtered_e %>%
+#     ggplot(aes(x = Date, y = RealCode)) +
+#     geom_point() +
+#     geom_smooth() +
+#     labs(
+#         title = "Amount of E contributions by date - 16 months prior to vote is the line",
+#         x = "Date",
+#         y = "Amount"
+#     ) +
+#     geom_vline(xintercept = as.numeric(cutoff_date_2)) # Add a vertical line for the cutoff date
+
+# plot_E_6mo_prior
+```
