@@ -28,11 +28,11 @@ df_vote_7_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/
 # Linear Probability Model with (unit and time) Fixed Effects
 
 This is a simple linear probability model with unit and time fixed effects. The model only includes representatives who did not change their opinions (across all votes) during the time period. this way a positive vote can be regressed with contributions and the control variables. 
-We remove birthday (too specific...), seniority (NA values, multicolinear?), Majority (NA values)
+We remo (too specific...), seniority (NA values, multicolinear?), Majority (NA values)
 ```{r}
 # include time fixed effects ? can we do that here?
 # view(df_no_change)
-df_no_change <- df_no_change %>% select(-c(state, birthday, seniority_114, seniority_115, seniority_116, seniority_117, Dmajority_113, Dmajority_114, Dmajority_115, Dmajority_116, Dmajority_117))
+df_no_change <- df_no_change %>% select(-c(state, seniority_114, seniority_115, seniority_116, seniority_117, Dmajority_113, Dmajority_114, Dmajority_115, Dmajority_116, Dmajority_117))
 view(df_no_change)
 
 # all Votes
@@ -46,14 +46,16 @@ summary(no_change_ols_plus)
 
 ```{r}
 # try the same regression as above with a log transformation of all contributions
-#  log transodemation doenst work yet.
-# df_no_change <- df_no_change %>% mutate(across(starts_with("Contribution")), ~ log(.))
-# view(df_no_change)
-# # all Votes log transformed
-# no_change_ols_minus_log <- lm(all_votes_minus ~ . - all_votes_plus, data = df_no_change)
-# summary(no_change_ols_minus_log)
+cols <- c("Contribution_3_plus", "Contribution_3_minus", "Contribution_4_plus", "Contribution_4_minus", "Contribution_51_plus", "Contribution_51_minus", "Contribution_52_plus", "Contribution_52_minus", "Contribution_6_plus", "Contribution_6_minus", "Contribution_7_plus", "Contribution_7_minus")
+df_no_change[cols] <- lapply(df_no_change[cols], function(x) log(x + 1))
+
+# all Votes log transformed
+no_change_ols_minus_log <- lm(all_votes_minus ~ . - all_votes_plus, data = df_no_change)
+summary(no_change_ols_minus_log)
 
 ```
+
+When applying a log transformation to the ols above, the adjusted R squared decreases.
 
 When grouping contributions into positive and negative, we get one coefficient not defined because of singularities, i.e. too strong of a correlation between two variables. 
 
@@ -63,24 +65,24 @@ When grouping contributions into positive and negative, we get one coefficient n
 ```{r}
 # Vote 3
 view(df_vote_3)
-ols_3 <- lm(Vote3_plus ~ . - state - BioID - Vote3_minus - birthday - Vote3 - Vote_change_dummy, data = df_vote_3)
+ols_3 <- lm(Vote3_minus ~ . - state - BioID - Vote3_plus - Vote3 - Vote_change_dummy, data = df_vote_3)
 summary(ols_3)
 
 # Vote 4
-ols_4 <- lm(Vote4_plus ~ . - state - BioID - birthday - Vote4_minus - Vote4 - Vote_change_dummy, data = df_vote_4)
+ols_4 <- lm(Vote4_minus ~ . - state - BioID - Vote4_plus - Vote4 - Vote_change_dummy, data = df_vote_4)
 summary(ols_4)
 
 # Vote 51
-ols_51 <- lm(Vote51_plus ~ . - state - BioID - birthday - Vote51_minus - Vote51 - Vote_change_dummy, data = df_vote_51)
+ols_51 <- lm(Vote51_minus ~ . - state - BioID - Vote51_plus - Vote51 - Vote_change_dummy, data = df_vote_51)
 summary(ols_51)
 
-ols_52 <- lm(Vote52_plus ~ . - state - BioID - birthday - Vote52_minus - Vote52 - Vote_change_dummy, data = df_vote_52)
+ols_52 <- lm(Vote52_minus ~ . - state - BioID - Vote52_plus - Vote52 - Vote_change_dummy, data = df_vote_52)
 summary(ols_52)
 
-ols_6 <- lm(Vote6_plus ~ . - state - BioID - birthday - Vote6_minus - Vote6 - Vote_change_dummy, data = df_vote_6)
+ols_6 <- lm(Vote6_minus ~ . - state - BioID - Vote6_plus - Vote6 - Vote_change_dummy, data = df_vote_6)
 summary(ols_6)
 
-ols_7 <- lm(Vote7_plus ~ . - state - BioID - birthday - Vote7_minus - Vote7 - Vote_change_dummy, data = df_vote_7)
+ols_7 <- lm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy, data = df_vote_7)
 summary(ols_7)
 
 
@@ -89,23 +91,23 @@ summary(ols_7)
 ### vote and all contributions leading up to the vote
 ```{r}
 # Vote 4_2
-ols_4_2 <- lm(Vote4_plus ~ . - state - BioID - birthday - Vote4_minus - Vote4 - Vote_change_dummy - Vote4_NA, data = df_vote_4_2)
+ols_4_2 <- lm(Vote4_minus ~ . - state - BioID - Vote4_plus - Vote4 - Vote_change_dummy - Vote4_NA, data = df_vote_4_2)
 summary(ols_4_2)
 
 # Vote 51_2
-ols_51_2 <- lm(Vote51_plus ~ . - state - BioID - birthday - Vote51_minus - Vote51 - Vote_change_dummy - Vote51_NA, data = df_vote_51_2)
+ols_51_2 <- lm(Vote51_minus ~ . - state - BioID - Vote51_plus - Vote51 - Vote_change_dummy - Vote51_NA, data = df_vote_51_2)
 summary(ols_51_2)
 
 # Vote 52_2
-ols_52_2 <- lm(Vote52_plus ~ . - state - BioID - birthday - Vote52_minus - Vote52 - Vote_change_dummy - Vote52_NA, data = df_vote_52_2)
+ols_52_2 <- lm(Vote52_minus ~ . - state - BioID - Vote52_plus - Vote52 - Vote_change_dummy - Vote52_NA, data = df_vote_52_2)
 summary(ols_52_2)
 
 # Vote 6_2
-ols_6_2 <- lm(Vote6_plus ~ . - state - BioID - birthday - Vote6_minus - Vote6 - Vote_change_dummy - Vote6_NA, data = df_vote_6_2)
+ols_6_2 <- lm(Vote6_minus ~ . - state - BioID - Vote6_plus - Vote6 - Vote_change_dummy - Vote6_NA, data = df_vote_6_2)
 summary(ols_6_2)
 
 # Vote 7_2
-ols_7_2 <- lm(Vote7_plus ~ . - state - BioID - birthday - Vote7_minus - Vote7 - Vote_change_dummy - Vote7_NA, data = df_vote_7_2)
+ols_7_2 <- lm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy - Vote7_NA, data = df_vote_7_2)
 summary(ols_7_2)
 
 ```

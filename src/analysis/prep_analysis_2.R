@@ -9,8 +9,15 @@ df <- read.csv("data/cleaned/df.csv")
 
 # remove representatives who voted only once, whose party isnt R,D,
 df <- analysis_prep(df)
+
+# change birthdays to only include years, and group into decades
+# why does lubridate not work?
+df$birthday <- as.Date(df$birthday, format = "%Y-%m-%d")
+df$birthday <- as.numeric(format(df$birthday, "%Y"))
 view(df)
 
+
+# view(df)
 # CONTROL VARIABLES
 # add dummy for majority party leadership
 df["Dmajority_113"] <- 0
@@ -169,7 +176,7 @@ df_sub <- relocate(df_sub, vote_change_to_anti, .after = vote_change_to_pro)
 
 # view(df_sub)
 
-# create person fixed effects df.
+
 
 
 
