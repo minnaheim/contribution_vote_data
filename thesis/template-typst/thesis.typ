@@ -336,8 +336,8 @@ This section will deal with the reasoning behind the chosen votes (and
 contributions) for the analysis, and the hypothesis which are set up for the
 analysis.
 
-== Vote Specifications from Stratmann, 2002
-// Vote repition, winners & losers defined, 
+== Roll Call Vote Specifications from Stratmann <vote_spec>
+// Conditions met: Vote repition, winners & losers defined,
 Thomas Stratmann @stratmann-2002, who in his 2002 paper follows a similar
 methodology to determine the causal relationship between campaign contributions
 and the representative's vote shares, defines the following rollcall votes
@@ -352,6 +352,7 @@ repeated to this date, since the vote relates to the acceptance or rejection of
 an increase in environmental regulation, the winners and losers of the votes are
 clearly defined.
 
+// Conditions not met: clearly articulated positions, contribution industry size
 There are conditions, however, which Stratmann sets up which are not met in this
 paper. On the one hand, he stipulates that the research should treat a topic
 where representatives "do not typically take clearly articulated positions in
@@ -371,7 +372,7 @@ contribution sizes of these interest groups. Lastly, Stratmann determines that
 there need to be changes in voting behaviours of the representatives, yet in
 this case, only 23 representatives out of 529 change their vote over time.// insert mind changers plot here (confirm 23/529?)
 
-== Topic of Votes (Methane Pollution Safeguards)
+== Topic of Roll call Votes (Methane Pollution Safeguards) <rollcall-subject>
 
 Although as shown in the section above, the rollcall bills do not fit the
 preconditions stipulated by Stratmann in @stratmann-2002, analysing
@@ -424,44 +425,84 @@ back on the EPA 2016 methane standards for both new and modified sources from
 the oil and gas industry @lcv2021.
 
 The reasoning behind choosing these six bills is that they all amend the
-resources allocated to the Environmental Protection Agency (EPA) and the Department of Interior. Since the legislation enacted by Congress governs the executive wing and the EPA @McAlexander2020 p.43, these rollcall votes are fundamental in gauging the environmental opinions of representatives. Moreover, the bills are quite similar in nature, since they not only all concern the same departments, but also precisely the methane pollutions and -emissions, not just any environmental pollution, and these bills specify the methane pollution generated through the oil and gas industries, and are thus industry specific.
+resources allocated to the Environmental Protection Agency (EPA) and the
+Department of Interior. Since the legislation enacted by Congress governs the
+executive wing and the EPA @McAlexander2020 p.43, these rollcall votes are
+fundamental in gauging the environmental opinions of representatives. Moreover,
+the bills are quite similar in nature, since they not only all concern the same
+departments, but also precisely the methane pollutions and -emissions, not just
+any environmental pollution, and these bills specify the methane pollution
+generated through the oil and gas industries, and are thus industry specific.
 
-Although in @stratmann-2002's paper the two rollcall votes all pertained to the amendment of the same bill, this paper uses multiple, closely related, rollcall votes, and thus ensures that there is more variation in voting behaviour than there would be, if only two rollcall votes were available. Moreover, the fact that these rollcall votes are closely paced, i.e. 2013, 2016, 2017, 2018, 2019, 2021, means that there is a higher chance that representatives participate in more than one vote, unlike in @stratmann-2002's paper, where the two rollcall votes were in 1991(102nd congress) and 1998 (105th congress), and thus the chance of a representative partaking in multiple votes decreased substantially. 
+#figure(table(
+  columns: 3,
+  stroke: none,
+  [],
+  [*No Change in Voting*],
+  [*Change in Voting*],
+  [*Pro-Environmental Vote*],
+  [259],
+  [8],
+  [*Anti-Environmental Vote*],
+  [278],
+  [23],
+), caption: [Representative's Voting Positions]) <mind-changers>
 
-
-
-// *how to change study/assumptions from above*
-// - legislators do not take clear positions on topics (even before, with Glass
-//   Stagall Act, this was a stretch, here it is definetly given) -> individual FE to
-//   account for this.
-// - financial contributions from these industries are the highest & similar in size
-//   (not given here, large but not largest, not similar in size.
-//   - *plot* difference in contributions - from Opensecrets stats by industry.)
-// - large amount of mind changers (incl. plot) ... no, still enough
-// - Stratmann works with campaign contributions from the electoral campaigns of
-//   house members, i analyse these too, and additionally include votes of only 6 mo.
-//   prior to vote, to accomplish 2 things: acct for 2 votes on methane pollution
-//   safeguards in 115th congress and bec. more accurate, acc to @stratmann-1995 not
-//   only election period before, but current one, next one (all overlap in time of
-//   contribution.)
-//   - *plot* contributions from before (e.g. relevant contributions over time, with
-//     cutoff date, 2012 (misses vote 6mo. prior completely, 2014 right in the middle,
-//     2016 in between))
-//   - *plot* stats of the composition of the 6 mo. prior to vote contributions i.e.
-//     2012 0 contribs, 2014 3000, 2016 2000...
+Although in @stratmann-2002's paper the two rollcall votes all pertained to the
+amendment of the same bill. This paper uses multiple, closely related, rollcall
+votes, and thus ensures that there is more variation in voting behaviour than
+there would be, if only two rollcall votes were available. Out of 568
+representatives who voted on more than one of the six rollcall votes, only 23
+representatives changed their voting behaviour, and of these 23 representatives,
+there were 31 vote changes in total, as seen in @mind-changers. Moreover, the
+fact that these rollcall votes are closely paced, i.e. 2013, 2016, 2017, 2018,
+2019, 2021, means that there is a higher chance that representatives participate
+in more than one vote, unlike in @stratmann-2002's paper, where the two rollcall
+votes were in 1991 and 1998, which are 3 congressional sessions apart. Thus, the
+chance of a representative partaking in multiple votes decreased substantially.
 
 == Hypotheses
-- Effects usually minimal, if significant @stratmann-2002 ?
-- change in votes is positively related with change in contributions (if little)
-- more time relevant votes have a more significant effect on votes, than the
-  aggregate contributions, @stratmann-1995
+
+Given the topics of the rollcall votes, see @rollcall-subject, which are
+environmental in nature, and the fact that environmental issues are topics which
+are usually of public interest indicates that most representatives have
+predetermined environmental positions and are less likely to change these
+throughout their time in office @McAlexander2020. This can also be seen in the
+data from the rollcall votes @mind-changers. Hence, this paper predicts that the
+effects of pro-environmental or anti-environmental contributions on the
+enviornmental voting behaviour of representatives will be minimal, if
+significant.
+
+@stratmann-2002 shows that for junior representatives, the marginal effect of
+contribution was greater, whereas senior representatives were more steadfast in
+their positions. Similarly, this paper/model predicts that legislators that are
+in their first to third session are more likely to change their voting.// change if dummy seniority, not 1-3 if necessary!!!
+
+Given the differences in contribution sizes from the various interest groups,
+see @vote_spec, i.e. oil and gas (thus anti-environmental) individuals and
+interest groups contribute significantly more to congressional elections than
+pro-environmental individuals and interest groups, the third hypothesis states
+that changes from pro-env. to anti-env. votes will be more positively related
+with anti-environmental contributions, and the pro-env. votes being less
+significant and less "effective", given their lessened propensity to contribute
+to representatives.
+
+Lastly, since @stratmann-1995 stipulated that contributions which are given
+shortly before the vote have higher impacts on congressional voting behavior
+than contributions from the past election cylce. Taking this into consideration,
+the fourth hypothesis is that votes in a time frame of six months prior to the
+vote will have more significant effects on voting behaviour than contributions
+from the congressional session before.
+
+// causal hypothesis where?
 
 #pagebreak()
 = Data
 == Data Types
 === representative data
 - source: github dataframe (of current and historical legislators) and bioguide,
-  not https://sunlightlabs.github.io/datacommons/bulk_data.html because only goes till 2014..
+  not https://sunlightlabs.github.io/datacommons/bulk_data.html because only goes
+  till 2014..
 - why not DIME...
 - why not Sunlightlabs
 - needed to use representative data to match with contributions. Since
@@ -478,6 +519,18 @@ Although in @stratmann-2002's paper the two rollcall votes all pertained to the 
 === contribution data
 *Determine which financial data to use for analysis - time related or aggregate,
 the non-used analyses can be found in the Appendix*
+
+// - Stratmann works with campaign contributions from the electoral campaigns of
+//   house members, i analyse these too, and additionally include votes of only 6 mo.
+//   prior to vote, to accomplish 2 things: acct for 2 votes on methane pollution
+//   safeguards in 115th congress and bec. more accurate, acc to @stratmann-1995 not
+//   only election period before, but current one, next one (all overlap in time of
+//   contribution.)
+//   - *plot* contributions from before (e.g. relevant contributions over time, with
+//     cutoff date, 2012 (misses vote 6mo. prior completely, 2014 right in the middle,
+//     2016 in between))
+//   - *plot* stats of the composition of the 6 mo. prior to vote contributions i.e.
+//     2012 0 contribs, 2014 3000, 2016 2000...
 - sources: opensecrets bulkdata campaign contributions (election data 2012-2022)
 - data were PAC contributions to candidates and individual contributions (to PACs,
   candidates, etc.) -> source: opensecrets bulk data documentation

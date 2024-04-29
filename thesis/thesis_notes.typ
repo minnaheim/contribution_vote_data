@@ -1,4 +1,11 @@
-Things to put into thesis (potentially) ->
+Things to put into thesis (potentially) -> Ch 3.2
+// *how to change study/assumptions from above*
+// - legislators do not take clear positions on topics (even before, with Glass
+//   Stagall Act, this was a stretch, here it is definetly given) -> individual FE to
+//   account for this.
+// - financial contributions from these industries are the highest & similar in size
+//   (not given here, large but not largest, not similar in size.
+//   - *plot* difference in contributions - from Opensecrets stats by industry.)
 - tradeoff for congressmen, vote acc. to voter base (get re-elected) and vote acc.
 - industry specific results, specific legislation, p.27.28 @Weschle_2022c
 - Economic Literature states that the campaign contributions received depend on:
