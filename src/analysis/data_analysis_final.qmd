@@ -8,6 +8,9 @@ library(tidyverse)
 library(ggplot2)
 library(plm)
 library(fastDummies)
+library(Amelia)
+library(lfe)
+library(broom)
 
 source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_prep_functions.R")
 df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
@@ -23,9 +26,10 @@ df_vote_6 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/an
 df_vote_6_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_6_2.csv")
 df_vote_7 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_7.csv")
 df_vote_7_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_7_2.csv")
+df_subsample <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_sub.csv")
 ```
 
-# Linear Probability Model with (unit and time) Fixed Effects
+# Linear Probability Model without Fixed Effects
 
 This is a simple linear probability model with unit and time fixed effects. The model only includes representatives who did not change their opinions (across all votes) during the time period. this way a positive vote can be regressed with contributions and the control variables. 
 We remo (too specific...), seniority (NA values, multicolinear?), Majority (NA values)
@@ -33,7 +37,7 @@ We remo (too specific...), seniority (NA values, multicolinear?), Majority (NA v
 # include time fixed effects ? can we do that here?
 # view(df_no_change)
 df_no_change <- df_no_change %>% select(-c(state, seniority_114, seniority_115, seniority_116, seniority_117, Dmajority_113, Dmajority_114, Dmajority_115, Dmajority_116, Dmajority_117))
-view(df_no_change)
+# view(df_no_change)
 
 # all Votes
 no_change_ols_minus <- lm(all_votes_minus ~ . - all_votes_plus, data = df_no_change)
@@ -59,12 +63,19 @@ When applying a log transformation to the ols above, the adjusted R squared decr
 
 When grouping contributions into positive and negative, we get one coefficient not defined because of singularities, i.e. too strong of a correlation between two variables. 
 
-# sessionized Linear Probability Model with Fixed Effects
+# Linear Probability Model with (time and individual) Fixed Effects
+
+```{r}
+
+```
+
+
+# sessionized Linear Probability Model without Fixed Effects
 ## time specific contributions 
 ### contribution and corresponding vote
 ```{r}
 # Vote 3
-view(df_vote_3)
+# view(df_vote_3)
 ols_3 <- lm(Vote3_minus ~ . - state - BioID - Vote3_plus - Vote3 - Vote_change_dummy, data = df_vote_3)
 summary(ols_3)
 
@@ -112,6 +123,104 @@ summary(ols_7_2)
 
 ```
 
-# Two way fixed effects model
+## Subsample Analysis (of only vote changers)
+here I only look at those who did change their voting behavior. For this I created a seperate df out of the original df, where i only included representatives who changed their minds. I marked the changes, where from pro-environment vote "+" to anti-environment "-" = 0, and from anti-environment to pro-environment = 1. 
 
-# Logit / Probit Model 
+
+```{r}
+knitr::kable(df_subsample, format = "html")
+
+
+df_subsample_1 <- df_subsample %>% select(party, vote_change_to_anti, year, Contribution_3_minus, Contribution_3_plus, Contribution_4_minus, Contribution_4_plus, Contribution_51_minus, Contribution_51_plus, Contribution_52_minus, Contribution_52_plus, Contribution_6_minus, Contribution_6_plus, Contribution_7_minus, Contribution_7_plus)
+# view(df_subsample_1)
+
+# Vote Changes including contributions
+ols_subsample <- lm(vote_change_to_anti ~ ., data = df_subsample_1)
+summary(ols_subsample)
+```
+
+NAs for all above Contributions > 51...
+
+
+```{r}
+# modified df_subsample
+df_subsample <- df_subsample %>% filter(!is.na(Vote6))
+view(df_subsample)
+df_subsample_2 <- df_subsample %>% select(party, vote_change_to_anti, year, Contribution_3_minus, Contribution_3_plus, Contribution_4_minus, Contribution_4_plus, Contribution_51_minus, Contribution_51_plus, Contribution_52_minus, Contribution_52_plus, Contribution_6_minus, Contribution_6_plus, Contribution_7_minus, Contribution_7_plus, nominate_dim1, nominate_dim2, birthday, seniority_113, first_contribution_minus, first_contribution_plus)
+
+# Vote Changes including contributions only for those who are present for vote 6,7
+ols_subsample_2 <- lm(vote_change_to_anti ~ ., data = df_subsample_2)
+summary(ols_subsample)
+
+```
+
+even when removing the NAs, cannot predict the coefficients, since 11/23 representatives have NA values, vs. in the beginning, i.e. vote 3, only 6/23 representatives have NA values since they weren't present for the vote. Makes a big difference in estimation. 
+
+
+### Subsample analysis with state and time fixed effects
+```{r}
+# remove cols not necessary for analysis
+df_subsample <- df_subsample %>% select(-c(
+    last_name, first_name, name, district, Vote_count, Vote_change,
+    first_contribution_minus, first_contribution_plus, Vote_change, Vote_change_dummy, GovtrackID, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Dmajority_113, Dmajority_114, Dmajority_115, Dmajority_116, Dmajority_117, seniority_113, seniority_114, seniority_115, seniority_116, seniority_117, vote_change_to_pro, vote_change_type, opensecrets_id, vote_change_year, gender, BioID
+))
+view(df_subsample)
+
+fixed <- plm(vote_change_to_anti ~ ., data = df_subsample, index = c("Geographical", "year"), model = "within") # fixed model
+summary(fixed)
+```
+
+12 coefficients dropped because of singularities...
+
+# Two way fixed effects model
+```{r}
+view(df_no_change)
+two_way_model <- felm(all_votes_minus ~ Geographical + Contribution_3_minus + Contribution_3_plus | Geographical | 0 | 0, data = df_no_change)
+summary(two_way_model)
+
+```
+
+# Logit and Probit Models 
+## all representatives who did not change their opinion
+```{r}
+missmap(df_no_change, main = "Missing values vs observed")
+# all_votes_minus ~ . - all_votes_plus, data = df_no_change)
+
+logit <- glm(all_votes_minus ~ . - all_votes_plus, family = binomial(link = "logit"), data = df_no_change)
+summary(logit)
+
+probit <- glm(all_votes_minus ~ . - all_votes_plus, family = binomial(link = "probit"), data = df_no_change)
+summary(probit)
+
+```
+
+Here Probit better than Logit, Akaike lower, so Probit is more parsimonious.
+
+Sessionized Models:
+```{r, include = FALSE}
+# # Vote 3 Logit
+# ols_3 <- glm(Vote3_minus ~ . - state - BioID - Vote3_plus - Vote3 - Vote_change_dummy, family = binomial(link = "logit"), data = df_vote_3)
+# summary(ols_3)
+
+# # Vote 3 Probit
+# ols_3 <- glm(Vote3_minus ~ . - state - BioID - Vote3_plus - Vote3 - Vote_change_dummy, family = binomial(link = "probit"), data = df_vote_3)
+# summary(ols_3)
+
+# # Vote 7 Logit
+# ols_7 <- glm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy, family = binomial(link = "logit"), data = df_vote_7)
+# summary(ols_7)
+
+# # Vote 7 Probit
+# ols_7 <- glm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy, family = binomial(link = "probit"), data = df_vote_7)
+# summary(ols_7)
+
+# # Vote 7_2 Logit
+# ols_7_2 <- glm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy - Vote7_NA, family = binomial(link = "logit"), data = df_vote_7_2)
+# summary(ols_7_2)
+
+# # Vote 7_2 Probit
+# ols_7_2 <- glm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy - Vote7_NA, family = binomial(link = "probit"), data = df_vote_7_2)
+# summary(ols_7_2)
+```
+
+Sessionizing not useful, as the p values are super high.
