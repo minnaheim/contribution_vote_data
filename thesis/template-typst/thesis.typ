@@ -332,11 +332,12 @@ in the environmental context.
 #pagebreak()
 
 = Research Design
-This section will deal with the reasoning behind the chosen votes and
-contirbutions for the analysis, and the hypothesis which are set up for the
+This section will deal with the reasoning behind the chosen votes (and
+contributions) for the analysis, and the hypothesis which are set up for the
 analysis.
 
-== Type of Votes
+== Vote Specifications from Stratmann, 2002
+// Vote repition, winners & losers defined, 
 Thomas Stratmann @stratmann-2002, who in his 2002 paper follows a similar
 methodology to determine the causal relationship between campaign contributions
 and the representative's vote shares, defines the following rollcall votes
@@ -397,128 +398,57 @@ distribution, as stated in the Introduction.
 
 //  plot about number of representatives who receive contribution
 
-The reasoning behind choosing these six environmental bills:
+The six bills chosen for this paper are the following: The 2013, 113th
+congressional session Rollcall Vote 601 of Bill Number: H. R. 2728, the
+Protecting States' Rights to Promote American Energy Security Act, would
+preserve the Department of the Interior's ability to reduce methane emissions
+from oil and gas drilling operations on public lands. @lcv2013 The 2016, 114th
+congressional session Roll Call 434 of Bill Number: H. R. 5538, the Department
+of the Interior, Environment, and Related Agencies Appropriations Act, 2017,
+would include a rider into the main bill to stop the EPA from enforcing its
+recently determined methane pollution regulations, which are the first-ever caps
+on methane emissions from new and altered sources in the oil and gas industry.
+@lcv2016 The 2017, 115th congressional session Roll Call 488 of Bill Number: H.
+R. 3354, would hinder the Environmental Protection Agency's efforts to control
+methane emissions from newly created and altered sources inside the oil and gas
+industry. @lcv2017 The 2018, 115th congressional session Roll Call 346 Bill
+Number H. R. 6147, would hinder the Environmental Protection Agency's (EPA)
+efforts to decrease methane emissions in the oil and gas industry from both new
+and modified sources from the oil and gas industry @lcv2018 The 2019, 116th
+congressional session Roll Call 385, Bill Number H.R. 3055, would hinder the
+Environmental Protection Agency's (EPA) from implementing standards to reduce
+methane emissions from both new and modified sources from the oil and gas
+industry @lcv2019. The 2021, 117th congressional session, Roll Call 185 Senate
+Joint Resolution 14, (taken up by both the house and senate) would have rolled
+back on the EPA 2016 methane standards for both new and modified sources from
+the oil and gas industry @lcv2021.
 
-- The 2013, 113th congressional session Rollcall Vote 601 of Bill Number: H. R.
-  2728, the Protecting States' Rights to Promote American Energy Security Act. It
-  would preserve the Department of the Interior's ability to reduce methane
-  emissions from oil and gas drilling operations on public lands. @lcv2013
-- The 2016, 114th congressional session Roll Call 434 of Bill Number: H. R. 5538,
-  the Department of the Interior, Environment, and Related Agencies Appropriations
-  Act, 2017, would include a rider into the main bill to stop the EPA from
-  enforcing its recently determined methane pollution regulations, which are the
-  first-ever caps on methane emissions from new and altered sources in the oil and
-  gas industry. @lcv2016
-- The 2017, 115th congressional session Roll Call 488 of Bill Number: H. R. 3354,
-  which would hinder the Environmental Protection Agency's efforts to control
-  methane emissions from newly created and altered sources inside the oil and gas
-  industry. @lcv2017
-- The 2018, 115th congressional session Roll Call 346 Bill Number H. R. 6147:
+The reasoning behind choosing these six bills is that they all amend the
+resources allocated to the Environmental Protection Agency (EPA) and the Department of Interior. Since the legislation enacted by Congress governs the executive wing and the EPA @McAlexander2020 p.43, these rollcall votes are fundamental in gauging the environmental opinions of representatives. Moreover, the bills are quite similar in nature, since they not only all concern the same departments, but also precisely the methane pollutions and -emissions, not just any environmental pollution, and these bills specify the methane pollution generated through the oil and gas industries, and are thus industry specific.
 
-- *Bill Number: H. R. 2728, Roll Call 601 (2013) -> 113th Congress*
-"Representative Rush Holt (D-NJ) offered an amendment to H.R. 2728, the
-*Protecting States' Rights to Promote American Energy Security Act, which would
-preserve the Department of the Interior’s ability to reduce methane emissions
-from oil and gas drilling operations on public lands*. Methane is a super
-pollutant, a short-lived but potent climate pollutant whose impact,
-pound-for-pound, is over 20 times greater than carbon dioxide. Methane is also
-the second most prevalent greenhouse gas emitted by human activities in the
-United States, and natural gas and petroleum production is the largest
-industrial source of these emissions. In addition to their role in warming our
-atmosphere, fugitive methane emissions contribute to smog that threatens public
-health by triggering asthma attacks and aggravating other respiratory
-conditions."
-- *Bill Number: H. R. 5538, Roll Call 434 (2016) -> 114th Congress*
-"Representative Jared Polis (D-CO) offered an amendment to H.R. 5538, the
-*Department of the Interior, Environment, and Related Agencies Appropriations
-Act, 2017, which would strike a rider in the underlying bill that prevents the
-Environmental Protection Agency (EPA) from implementing its recently finalized
-methane pollution standards, the first-ever limits on methane pollution from new
-and modified sources in the oil and gas industry*. The EPA’s methane standard
-for new and modified sources requires low-cost, *proven safeguards that are
-critical to reducing methane’s contributions* to climate change, with climate
-benefits of 170 million by 2025, while also curbing toxic air pollutants that
-contribute to smog and jeopardize the health of nearby communities. On July 13,
-the House rejected the Polis amendment by a vote of 187-240 (House roll call
-vote 434)."
-- *Bill Number: H. R. 3354, Roll Call 488 (2017) -> 115th Congress*
-"Representative Markwayne Mullin (R-OK) offered an amendment to H.R. 3354, *the
-Department of the Interior, Environment, and Related Agencies Appropriations
-Act, 2018, which would prevent the Environmental Protection Agency (EPA) from
-implementing its standards to reduce methane pollution from new and modified
-sources in the oil and gas industry. The EPA’s methane standard requires
-compliance with low-cost, proven safeguards*that are critical to reducing
-methane’s contributions to climate change. The climate benefits are estimated to
-reach 170 million by 2025 while also curbing toxic air pollutants that
-contribute to smog and jeopardize the health of nearby communities. On September
-13, the House approved the Mullin amendment by a vote of 218-195 (House roll
-call vote 488)."
-- *Bill Number: H. R. 6147, Roll Call 346 (2018) -> 115th Congress*
-"Representative Markwayne Mullin (R-OK) offered an amendment to H.R. 6147,*the
-Department of the Interior, Environment, and Related Agencies Appropriations
-Act, 2019, which would prevent the Environmental Protection Agency (EPA) from
-implementing its standards to reduce methane pollution from new and modified
-sources in the oil and gas industry. The EPA’s methane standard requires
-compliance with low-cost, proven safeguards that are critical to reducing
-methane’s contributions to climate change.* The climate benefits are estimated
-to reach 170 million by 2025 while also
-curbing toxic air pollutants that contribute to smog and jeopardize the health
-of nearby communities. On July 18, the House approved the Mullin amendment by a
-vote of 215-194"
-- *Bill Number: H. R. 3055, Roll Call 385 (2019) -> 116th Congress*
-"Representative Markwayne Mullin (R-OK) offered an amendment to H.R. 3055, an
-appropriations bill funding various government agencies, which would
-have*prevented the Environmental Protection Agency (EPA) from implementing
-standards to reduce methane pollution from new and modified sources in the oil
-and gas industry. The EPA’s methane pollution rule would have required
-compliance with low-cost, proven safeguard*s that are critical to reducing
-methane’s contributions to climate change. The climate benefits were estimated
-to reach 170 million by 2025 while also curbing toxic air pollutants that
-contribute to smog and jeopardize the health of nearby communities, particularly
-the health of low income communities, communities of color, and Indigenous
-peoples who already bear a disproportionate burden of pollution. On June 20, the
-House rejected the Mullin amendment by a vote of 191-241 (House roll call vote
-385)"
+Although in @stratmann-2002's paper the two rollcall votes all pertained to the amendment of the same bill, this paper uses multiple, closely related, rollcall votes, and thus ensures that there is more variation in voting behaviour than there would be, if only two rollcall votes were available. Moreover, the fact that these rollcall votes are closely paced, i.e. 2013, 2016, 2017, 2018, 2019, 2021, means that there is a higher chance that representatives participate in more than one vote, unlike in @stratmann-2002's paper, where the two rollcall votes were in 1991(102nd congress) and 1998 (105th congress), and thus the chance of a representative partaking in multiple votes decreased substantially. 
 
-- *Bill Number: S. J. Res. 14, Roll Call 185 (2021) -> 117th Congress*
-"the *Congressional Review Act Resolution of Disapproval of the Environmental
-Protection Agency’s (EPA) rule to roll back the 2016 methane standards for new
-and modified sources in the oil and gas industry. The oil and gas industry is
-the largest source of industrial methane pollution*, causing almost 25% of the
-climate change we currently experience. S.J. Res. 14 eliminated this dangerous
-rule and allowed the EPA to move quickly on stronger safeguards against methane
-pollution, which will slow climate change and mitigate hazardous air pollutants
-that affect our communities, especially low-income communities and communities
-of color living on the frontlines of oil and gas drilling and processing." - LCV
-Scorecard
 
-- all amend the funding/resources allocated to the EPA, which is "the Congress
-  plays a central role in the formulation of federal environmental policy. The
-  authority of the executive wing and the Environmental Protection Agency (EPA) to
-  regulate behavior is based on legislation enacted by the Congress"
-  @McAlexander2020
-- repeated 6 times, where 2 are the same bill, and 5 out of 6 are exactly the same
-  topic, only 113th bill is a tad bit different
-- more detail on the bills, why revoted, why in different sessions...
-*how to change study/assumptions from above*
-- legislators do not take clear positions on topics (even before, with Glass
-  Stagall Act, this was a stretch, here it is definetly given) -> individual FE to
-  account for this.
-- financial contributions from these industries are the highest & similar in size
-  (not given here, large but not largest, not similar in size.
-  - *plot* difference in contributions - from Opensecrets stats by industry.)
-- large amount of mind changers (incl. plot) ... no, still enough
-- Stratmann works with campaign contributions from the electoral campaigns of
-  house members, i analyse these too, and additionally include votes of only 6 mo.
-  prior to vote, to accomplish 2 things: acct for 2 votes on methane pollution
-  safeguards in 115th congress and bec. more accurate, acc to @stratmann-1995 not
-  only election period before, but current one, next one (all overlap in time of
-  contribution.)
-  - *plot* contributions from before (e.g. relevant contributions over time, with
-    cutoff date, 2012 (misses vote 6mo. prior completely, 2014 right in the middle,
-    2016 in between))
-  - *plot* stats of the composition of the 6 mo. prior to vote contributions i.e.
-    2012 0 contribs, 2014 3000, 2016 2000...
+
+// *how to change study/assumptions from above*
+// - legislators do not take clear positions on topics (even before, with Glass
+//   Stagall Act, this was a stretch, here it is definetly given) -> individual FE to
+//   account for this.
+// - financial contributions from these industries are the highest & similar in size
+//   (not given here, large but not largest, not similar in size.
+//   - *plot* difference in contributions - from Opensecrets stats by industry.)
+// - large amount of mind changers (incl. plot) ... no, still enough
+// - Stratmann works with campaign contributions from the electoral campaigns of
+//   house members, i analyse these too, and additionally include votes of only 6 mo.
+//   prior to vote, to accomplish 2 things: acct for 2 votes on methane pollution
+//   safeguards in 115th congress and bec. more accurate, acc to @stratmann-1995 not
+//   only election period before, but current one, next one (all overlap in time of
+//   contribution.)
+//   - *plot* contributions from before (e.g. relevant contributions over time, with
+//     cutoff date, 2012 (misses vote 6mo. prior completely, 2014 right in the middle,
+//     2016 in between))
+//   - *plot* stats of the composition of the 6 mo. prior to vote contributions i.e.
+//     2012 0 contribs, 2014 3000, 2016 2000...
 
 == Hypotheses
 - Effects usually minimal, if significant @stratmann-2002 ?
@@ -531,8 +461,9 @@ Scorecard
 == Data Types
 === representative data
 - source: github dataframe (of current and historical legislators) and bioguide,
-  not https://sunlightlabs.github.io/datacommons/bulk_data.html because only goes
-  till 2014..
+  not https://sunlightlabs.github.io/datacommons/bulk_data.html because only goes till 2014..
+- why not DIME...
+- why not Sunlightlabs
 - needed to use representative data to match with contributions. Since
   contributions always were to everyone, and/or to house candidates, needed to
   keep only those who then made it to the house.

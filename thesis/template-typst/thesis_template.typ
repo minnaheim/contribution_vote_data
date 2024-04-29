@@ -43,7 +43,7 @@
   set par(leading: 1em)
 
   // --- Citations ---
-  set cite(style: "alphanumeric")
+  set cite(style: "annual-reviews-author-date")
 
   // --- Figures ---
   show figure: set text(size: 0.85em)
