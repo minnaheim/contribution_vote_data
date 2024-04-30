@@ -331,7 +331,7 @@ in the environmental context.
 
 #pagebreak()
 
-= Research Design
+= Research Design <research-design>
 This section will deal with the reasoning behind the chosen votes (and
 contributions) for the analysis, and the hypothesis which are set up for the
 analysis.
@@ -498,8 +498,16 @@ from the congressional session before.
 
 #pagebreak()
 = Data
-== Data Types
-=== representative data
+
+The empirical framework stipulated in @research-design requires the comparison
+of voting behaviour and the corresponding campaign contributions. Hence, the
+data for the analysis consists of multiple different data frames joined
+together. The following @data-sources-types consists of the description of the
+data types, where they were sourced, and the @data-processing will detail how
+the data was cleaned, merged, etc. for the analysis.
+
+== Data Sources & Types <data-sources-types>
+=== Representative data <rep-data>
 - source: github dataframe (of current and historical legislators) and bioguide,
   not https://sunlightlabs.github.io/datacommons/bulk_data.html because only goes
   till 2014..
@@ -510,13 +518,13 @@ from the congressional session before.
   keep only those who then made it to the house.
 - moreover, needed to import representative data from github to get the IDs to
   then match rollcall and contribution data together.
-=== rollcall data
+=== Rollcall data
 - stratmann prerequisites: uses cross-sectional panel data (panel data erhoben
   multiple times, like ts.) → only works w/ similar bills
   - yes, methane bills (6 different kinds -> from LCV Scorecard)
   - why kind of votes? what kind of bills?
 
-=== contribution data
+=== Contribution data <contrib-data>
 *Determine which financial data to use for analysis - time related or aggregate,
 the non-used analyses can be found in the Appendix*
 
@@ -567,7 +575,7 @@ Validate Decision on which types of contributions to use based on:
 - also tried with taking entire election period...difficult if votes are within
   the same congressional session (i.e. 115th session two methane votes)
 
-== Data Processing
+== Data Processing <data-processing>
 You can find the entire data processing, plots and analysis on my github
 profile.
 
