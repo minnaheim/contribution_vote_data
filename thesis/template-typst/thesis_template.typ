@@ -43,7 +43,7 @@
   set par(leading: 1em)
 
   // --- Citations ---
-  set cite(style: "annual-reviews-author-date")
+  set cite(style: "american-psychological-association")
 
   // --- Figures ---
   show figure: set text(size: 0.85em)
