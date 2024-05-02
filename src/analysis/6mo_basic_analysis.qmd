@@ -1,6 +1,6 @@
 ---
 title: "Testing differences in contribution style on voting behavior"
-format: html
+format: pdf
 ---
 
 ```{r setup, include=FALSE}
