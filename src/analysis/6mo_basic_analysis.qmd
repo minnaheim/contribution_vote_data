@@ -1,0 +1,57 @@
+---
+title: "Testing differences in contribution style on voting behavior"
+format: html
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(ggplot2)
+library(plm)
+library(fastDummies)
+library(Amelia)
+library(lfe)
+library(broom)
+
+source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_prep_functions.R")
+df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
+df_no_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_no_change.csv")
+df_vote_3 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_3.csv")
+df_vote_4 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4.csv")
+df_vote_4_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4_2.csv")
+df_vote_51 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_51.csv")
+df_vote_51_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_51_2.csv")
+df_vote_52 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_52.csv")
+df_vote_52_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_52_2.csv")
+df_vote_6 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_6.csv")
+df_vote_6_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_6_2.csv")
+df_vote_7 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_7.csv")
+df_vote_7_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_7_2.csv")
+df_subsample <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_sub.csv")
+```
+
+
+# Linear Probability Model without Fixed Effects
+
+## all votes, without changes
+```{r}
+df_no_change_1 <- df_no_change %>% select(-c(state, seniority_114, seniority_115, seniority_116, seniority_117, Dmajority_113, Dmajority_114, Dmajority_115, Dmajority_116, Dmajority_117, Geographical, seniority_113, nominate_dim1, nominate_dim2, birthday, gender))
+
+no_change_ols_minus <- lm(all_votes_minus ~ . - all_votes_plus, data = df_no_change_1)
+summary(no_change_ols_minus)
+```
+
+## each vote separately
+```{r}
+# Vote 3 comparison
+ols_3_1 <- lm(Vote3_minus ~ . - state - BioID - Vote3_plus - Vote3 - Vote_change_dummy - Geographical - birthday - seniority_113 - nominate_dim1 - nominate_dim2, data = df_vote_3)
+summary(ols_3_1)
+```
+
+## subsample analysis, only those who changed votes
+```{r}
+df_subsample_1 <- df_subsample %>% select(party, vote_change_to_anti, year, Contribution_3_minus, Contribution_3_plus, Contribution_4_minus, Contribution_4_plus, Contribution_51_minus, Contribution_51_plus, Contribution_52_minus, Contribution_52_plus, Contribution_6_minus, Contribution_6_plus, Contribution_7_minus, Contribution_7_plus)
+
+ols_subsample_2 <- lm(vote_change_to_anti ~ . - year, data = df_subsample_1)
+summary(ols_subsample_2)
+
+```

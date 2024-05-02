@@ -47,7 +47,6 @@ no_change_ols_plus <- lm(all_votes_plus ~ . - all_votes_minus, data = df_no_chan
 summary(no_change_ols_plus)
 ```
 
-
 ```{r}
 # try the same regression as above with a log transformation of all contributions
 cols <- c("Contribution_3_plus", "Contribution_3_minus", "Contribution_4_plus", "Contribution_4_minus", "Contribution_51_plus", "Contribution_51_minus", "Contribution_52_plus", "Contribution_52_minus", "Contribution_6_plus", "Contribution_6_minus", "Contribution_7_plus", "Contribution_7_minus")
@@ -95,8 +94,6 @@ summary(ols_6)
 
 ols_7 <- lm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy, data = df_vote_7)
 summary(ols_7)
-
-
 ```
 
 ### vote and all contributions leading up to the vote
@@ -140,7 +137,6 @@ summary(ols_subsample)
 ```
 
 NAs for all above Contributions > 51...
-
 
 ```{r}
 # modified df_subsample

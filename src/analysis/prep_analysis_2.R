@@ -14,7 +14,7 @@ df <- analysis_prep(df)
 # why does lubridate not work?
 df$birthday <- as.Date(df$birthday, format = "%Y-%m-%d")
 df$birthday <- as.numeric(format(df$birthday, "%Y"))
-view(df)
+# view(df)
 
 
 # view(df)

@@ -21,8 +21,8 @@ contribs12 <- clean_contribs_for_vote(rep_113, "03-19-2013")
 
 # determine what to do with reps that received no contributions, i.e. in contribs12, for Vote3, 26 reps received no contributions.
 # Alma Adams, e.g. only got swapped in shortly after the vote.
-view(contribs12)
-view(contribs14)
+# view(contribs12)
+# view(contribs14)
 
 
 contribs20 <- determine_industry(contribs20)
@@ -31,7 +31,7 @@ contribs16_2 <- determine_industry(contribs16_2)
 contribs16 <- determine_industry(contribs16)
 contribs14 <- determine_industry(contribs14)
 contribs12 <- determine_industry(contribs12)
-view(contribs12)
+# view(contribs12)
 
 
 contribs12_summarized <- summarise_contribs(contribs12)
@@ -40,7 +40,7 @@ contribs16_summarized <- summarise_contribs(contribs16)
 contribs16_2_summarized <- summarise_contribs(contribs16_2)
 contribs18_summarized <- summarise_contribs(contribs18)
 contribs20_summarized <- summarise_contribs(contribs20)
-view(contribs12_summarized)
+# view(contribs12_summarized)
 
 # merge together wide format, to merge with rollcall data
 contribs_long <- bind_rows(list(
