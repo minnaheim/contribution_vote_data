@@ -115,42 +115,41 @@ lm(formula = all_votes_minus ~ . - all_votes_plus, data = df_no_change)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.36073 -0.06616 -0.01084  0.02434  0.96456 
+-0.35634 -0.06433 -0.01262  0.02571  0.96355 
 
 Coefficients:
                         Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept)           -6.757e+00  4.680e+00  -1.444   0.1515  
-district              -3.016e-04  2.114e-03  -0.143   0.8868  
-partyR                 9.690e-02  1.522e-01   0.637   0.5255  
-birthday               3.391e-03  2.387e-03   1.421   0.1580  
-genderM               -2.174e-03  4.354e-02  -0.050   0.9603  
-nominate_dim1         -1.084e-01  1.682e-01  -0.644   0.5206  
-nominate_dim2         -1.254e-01  7.767e-02  -1.614   0.1092  
-seniority_113          2.515e-03  5.722e-03   0.440   0.6610  
-Contribution_3_minus  -7.095e-07  1.277e-06  -0.556   0.5795  
-Contribution_3_plus   -1.073e-05  1.110e-05  -0.967   0.3356  
-Contribution_4_minus  -1.227e-06  1.587e-06  -0.773   0.4410  
-Contribution_4_plus   -1.895e-05  1.083e-05  -1.750   0.0827 .
-Contribution_51_minus  6.482e-06  3.945e-06   1.643   0.1030  
-Contribution_51_plus   2.362e-05  1.917e-05   1.232   0.2202  
-Contribution_52_minus -1.026e-06  3.473e-06  -0.295   0.7681  
-Contribution_52_plus  -2.028e-05  1.782e-05  -1.138   0.2573  
-Contribution_6_minus   2.422e-06  1.490e-06   1.626   0.1066  
-Contribution_6_plus   -5.693e-06  1.983e-05  -0.287   0.7745  
-Contribution_7_minus  -2.008e-06  1.277e-06  -1.573   0.1184  
-Contribution_7_plus   -7.597e-07  1.632e-05  -0.047   0.9629  
-GeographicalMW         8.936e-02  1.137e-01   0.786   0.4336  
-GeographicalNE         4.355e-02  1.105e-01   0.394   0.6943  
-GeographicalNW         6.707e-02  1.166e-01   0.575   0.5661  
-GeographicalSO         6.656e-02  1.060e-01   0.628   0.5311  
-GeographicalWE         5.774e-02  1.090e-01   0.530   0.5972  
+(Intercept)           -6.813e+00  4.659e+00  -1.462   0.1463  
+district              -3.428e-04  2.101e-03  -0.163   0.8707  
+partyR                 1.007e-01  1.511e-01   0.666   0.5066  
+birthday               3.420e-03  2.376e-03   1.439   0.1526  
+genderM               -2.313e-03  4.337e-02  -0.053   0.9576  
+nominate_dim1         -1.132e-01  1.669e-01  -0.679   0.4987  
+nominate_dim2         -1.267e-01  7.724e-02  -1.641   0.1035  
+seniority_113          2.403e-03  5.688e-03   0.422   0.6735  
+Contribution_3_minus  -7.458e-07  1.266e-06  -0.589   0.5570  
+Contribution_3_plus   -1.102e-05  1.101e-05  -1.001   0.3189  
+Contribution_4_minus  -1.197e-06  1.578e-06  -0.759   0.4495  
+Contribution_4_plus   -1.850e-05  1.069e-05  -1.731   0.0861 .
+Contribution_51_minus  6.531e-06  3.927e-06   1.663   0.0989 .
+Contribution_51_plus   2.378e-05  1.909e-05   1.246   0.2153  
+Contribution_52_minus -1.123e-06  3.445e-06  -0.326   0.7451  
+Contribution_52_plus  -1.991e-05  1.771e-05  -1.124   0.2631  
+Contribution_6_minus   2.419e-06  1.484e-06   1.630   0.1057  
+Contribution_6_plus   -5.637e-06  1.975e-05  -0.285   0.7759  
+Contribution_7_minus  -1.996e-06  1.271e-06  -1.570   0.1190  
+Contribution_7_plus   -3.228e-07  1.619e-05  -0.020   0.9841  
+GeographicalMW         7.958e-02  1.087e-01   0.732   0.4655  
+GeographicalNE         4.113e-02  1.098e-01   0.374   0.7088  
+GeographicalSO         6.636e-02  1.056e-01   0.629   0.5307  
+GeographicalWE         5.664e-02  1.085e-01   0.522   0.6026  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1935 on 119 degrees of freedom
+Residual standard error: 0.1927 on 120 degrees of freedom
   (388 observations deleted due to missingness)
-Multiple R-squared:  0.3312,    Adjusted R-squared:  0.1963 
-F-statistic: 2.456 on 24 and 119 DF,  p-value: 0.0007644</code></pre>
+Multiple R-squared:  0.3307,    Adjusted R-squared:  0.2024 
+F-statistic: 2.578 on 23 and 120 DF,  p-value: 0.0004714</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>no_change_ols_plus <span class="ot">&lt;-</span> <span class="fu">lm</span>(all_votes_plus <span class="sc">~</span> . <span class="sc">-</span> all_votes_minus, <span class="at">data =</span> df_no_change)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(no_change_ols_plus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -161,42 +160,41 @@ lm(formula = all_votes_plus ~ . - all_votes_minus, data = df_no_change)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.96456 -0.02434  0.01084  0.06616  0.36073 
+-0.96355 -0.02571  0.01262  0.06433  0.35634 
 
 Coefficients:
                         Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept)            7.757e+00  4.680e+00   1.657   0.1001  
-district               3.016e-04  2.114e-03   0.143   0.8868  
-partyR                -9.690e-02  1.522e-01  -0.637   0.5255  
-birthday              -3.391e-03  2.387e-03  -1.421   0.1580  
-genderM                2.174e-03  4.354e-02   0.050   0.9603  
-nominate_dim1          1.084e-01  1.682e-01   0.644   0.5206  
-nominate_dim2          1.254e-01  7.767e-02   1.614   0.1092  
-seniority_113         -2.515e-03  5.722e-03  -0.440   0.6610  
-Contribution_3_minus   7.095e-07  1.277e-06   0.556   0.5795  
-Contribution_3_plus    1.073e-05  1.110e-05   0.967   0.3356  
-Contribution_4_minus   1.227e-06  1.587e-06   0.773   0.4410  
-Contribution_4_plus    1.895e-05  1.083e-05   1.750   0.0827 .
-Contribution_51_minus -6.482e-06  3.945e-06  -1.643   0.1030  
-Contribution_51_plus  -2.362e-05  1.917e-05  -1.232   0.2202  
-Contribution_52_minus  1.026e-06  3.473e-06   0.295   0.7681  
-Contribution_52_plus   2.028e-05  1.782e-05   1.138   0.2573  
-Contribution_6_minus  -2.422e-06  1.490e-06  -1.626   0.1066  
-Contribution_6_plus    5.693e-06  1.983e-05   0.287   0.7745  
-Contribution_7_minus   2.008e-06  1.277e-06   1.573   0.1184  
-Contribution_7_plus    7.597e-07  1.632e-05   0.047   0.9629  
-GeographicalMW        -8.936e-02  1.137e-01  -0.786   0.4336  
-GeographicalNE        -4.355e-02  1.105e-01  -0.394   0.6943  
-GeographicalNW        -6.707e-02  1.166e-01  -0.575   0.5661  
-GeographicalSO        -6.656e-02  1.060e-01  -0.628   0.5311  
-GeographicalWE        -5.774e-02  1.090e-01  -0.530   0.5972  
+(Intercept)            7.813e+00  4.659e+00   1.677   0.0962 .
+district               3.428e-04  2.101e-03   0.163   0.8707  
+partyR                -1.007e-01  1.511e-01  -0.666   0.5066  
+birthday              -3.420e-03  2.376e-03  -1.439   0.1526  
+genderM                2.313e-03  4.337e-02   0.053   0.9576  
+nominate_dim1          1.132e-01  1.669e-01   0.679   0.4987  
+nominate_dim2          1.267e-01  7.724e-02   1.641   0.1035  
+seniority_113         -2.403e-03  5.688e-03  -0.422   0.6735  
+Contribution_3_minus   7.458e-07  1.266e-06   0.589   0.5570  
+Contribution_3_plus    1.102e-05  1.101e-05   1.001   0.3189  
+Contribution_4_minus   1.197e-06  1.578e-06   0.759   0.4495  
+Contribution_4_plus    1.850e-05  1.069e-05   1.731   0.0861 .
+Contribution_51_minus -6.531e-06  3.927e-06  -1.663   0.0989 .
+Contribution_51_plus  -2.378e-05  1.909e-05  -1.246   0.2153  
+Contribution_52_minus  1.123e-06  3.445e-06   0.326   0.7451  
+Contribution_52_plus   1.991e-05  1.771e-05   1.124   0.2631  
+Contribution_6_minus  -2.419e-06  1.484e-06  -1.630   0.1057  
+Contribution_6_plus    5.637e-06  1.975e-05   0.285   0.7759  
+Contribution_7_minus   1.996e-06  1.271e-06   1.570   0.1190  
+Contribution_7_plus    3.228e-07  1.619e-05   0.020   0.9841  
+GeographicalMW        -7.958e-02  1.087e-01  -0.732   0.4655  
+GeographicalNE        -4.113e-02  1.098e-01  -0.374   0.7088  
+GeographicalSO        -6.636e-02  1.056e-01  -0.629   0.5307  
+GeographicalWE        -5.664e-02  1.085e-01  -0.522   0.6026  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1935 on 119 degrees of freedom
+Residual standard error: 0.1927 on 120 degrees of freedom
   (388 observations deleted due to missingness)
-Multiple R-squared:  0.3312,    Adjusted R-squared:  0.1963 
-F-statistic: 2.456 on 24 and 119 DF,  p-value: 0.0007644</code></pre>
+Multiple R-squared:  0.3307,    Adjusted R-squared:  0.2024 
+F-statistic: 2.578 on 23 and 120 DF,  p-value: 0.0004714</code></pre>
 </div>
 </div>
 <div class="cell">
@@ -214,40 +212,39 @@ lm(formula = all_votes_minus ~ . - all_votes_plus, data = df_no_change)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.25799 -0.09818 -0.02610  0.02587  0.89644 
+-0.25712 -0.09625 -0.02005  0.02326  0.89627 
 
 Coefficients:
                         Estimate Std. Error t value Pr(&gt;|t|)
-(Intercept)           -7.6279619  4.9325855  -1.546    0.125
-district               0.0003900  0.0023794   0.164    0.870
-partyR                 0.2033241  0.1688705   1.204    0.231
-birthday               0.0038012  0.0025177   1.510    0.134
-genderM                0.0027063  0.0517746   0.052    0.958
-nominate_dim1         -0.1664233  0.1916123  -0.869    0.387
-nominate_dim2         -0.1076244  0.0922076  -1.167    0.245
-seniority_113          0.0001453  0.0063313   0.023    0.982
-Contribution_3_minus   0.0010216  0.0101242   0.101    0.920
-Contribution_3_plus   -0.0038564  0.0066793  -0.577    0.565
-Contribution_4_minus  -0.0058520  0.0128178  -0.457    0.649
-Contribution_4_plus    0.0033198  0.0069890   0.475    0.636
-Contribution_51_minus  0.0017984  0.0230888   0.078    0.938
-Contribution_51_plus   0.0103316  0.0100803   1.025    0.307
-Contribution_52_minus  0.0055176  0.0150953   0.366    0.715
-Contribution_52_plus  -0.0060302  0.0095393  -0.632    0.529
-Contribution_6_minus   0.0049215  0.0103724   0.474    0.636
-Contribution_6_plus    0.0120598  0.0082187   1.467    0.145
-Contribution_7_minus   0.0048931  0.0077014   0.635    0.526
-Contribution_7_plus   -0.0034844  0.0084901  -0.410    0.682
-GeographicalMW        -0.0163309  0.1331354  -0.123    0.903
-GeographicalNE        -0.0149847  0.1270667  -0.118    0.906
-GeographicalNW         0.0462074  0.1375768   0.336    0.738
-GeographicalSO         0.0659989  0.1237220   0.533    0.595
-GeographicalWE         0.0135450  0.1264130   0.107    0.915
+(Intercept)           -7.3268036  4.9062439  -1.493    0.138
+district               0.0004272  0.0023744   0.180    0.858
+partyR                 0.1914536  0.1677795   1.141    0.256
+birthday               0.0036444  0.0025039   1.456    0.148
+genderM                0.0019066  0.0516645   0.037    0.971
+nominate_dim1         -0.1482094  0.1896483  -0.781    0.436
+nominate_dim2         -0.1003938  0.0915090  -1.097    0.275
+seniority_113          0.0002562  0.0063174   0.041    0.968
+Contribution_3_minus   0.0012310  0.0101010   0.122    0.903
+Contribution_3_plus   -0.0033025  0.0066242  -0.499    0.619
+Contribution_4_minus  -0.0050959  0.0127522  -0.400    0.690
+Contribution_4_plus    0.0024237  0.0068692   0.353    0.725
+Contribution_51_minus  0.0028113  0.0230039   0.122    0.903
+Contribution_51_plus   0.0086804  0.0098093   0.885    0.378
+Contribution_52_minus  0.0056736  0.0150650   0.377    0.707
+Contribution_52_plus  -0.0057336  0.0095126  -0.603    0.548
+Contribution_6_minus   0.0050780  0.0103504   0.491    0.625
+Contribution_6_plus    0.0124400  0.0081868   1.520    0.131
+Contribution_7_minus   0.0040470  0.0076007   0.532    0.595
+Contribution_7_plus   -0.0033956  0.0084731  -0.401    0.689
+GeographicalMW         0.0097208  0.1281087   0.076    0.940
+GeographicalNE        -0.0105575  0.1266825  -0.083    0.934
+GeographicalSO         0.0633626  0.1234344   0.513    0.609
+GeographicalWE         0.0133836  0.1261717   0.106    0.916
 
-Residual standard error: 0.2191 on 119 degrees of freedom
+Residual standard error: 0.2187 on 120 degrees of freedom
   (388 observations deleted due to missingness)
-Multiple R-squared:  0.1424,    Adjusted R-squared:  -0.03052 
-F-statistic: 0.8235 on 24 and 119 DF,  p-value: 0.701</code></pre>
+Multiple R-squared:  0.1385,    Adjusted R-squared:  -0.02659 
+F-statistic: 0.8389 on 23 and 120 DF,  p-value: 0.677</code></pre>
 </div>
 </div>
 <p>When applying a log transformation to the ols above, the adjusted R squared decreases.</p>
@@ -275,30 +272,29 @@ lm(formula = Vote3_minus ~ . - state - BioID - Vote3_plus - Vote3 -
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.14868 -0.04341 -0.01437  0.01979  0.89508 
+-0.14826 -0.04218 -0.01430  0.01628  0.89536 
 
 Coefficients:
                        Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)           6.119e-01  1.479e+00   0.414 0.679397    
-partyR                7.668e-01  4.881e-02  15.710  &lt; 2e-16 ***
-Contribution_3_minus  2.379e-07  2.481e-07   0.959 0.338340    
-Contribution_3_plus  -3.107e-06  2.998e-06  -1.036 0.300922    
-seniority_113         2.092e-03  1.971e-03   1.061 0.289338    
-birthday             -2.725e-04  7.526e-04  -0.362 0.717532    
-GeographicalMW        4.422e-02  4.604e-02   0.961 0.337500    
-GeographicalNE        3.252e-02  4.597e-02   0.707 0.479832    
-GeographicalNW        1.516e-02  5.285e-02   0.287 0.774426    
-GeographicalSO        3.034e-02  4.499e-02   0.674 0.500582    
-GeographicalWE        3.539e-02  4.485e-02   0.789 0.430706    
-nominate_dim1         2.063e-01  5.389e-02   3.827 0.000155 ***
-nominate_dim2         1.497e-01  2.640e-02   5.670 3.15e-08 ***
+(Intercept)           5.660e-01  1.478e+00   0.383 0.701990    
+partyR                7.644e-01  4.872e-02  15.691  &lt; 2e-16 ***
+Contribution_3_minus  2.321e-07  2.479e-07   0.936 0.349883    
+Contribution_3_plus  -3.049e-06  2.997e-06  -1.017 0.309735    
+seniority_113         2.135e-03  1.970e-03   1.084 0.279232    
+birthday             -2.487e-04  7.518e-04  -0.331 0.741049    
+GeographicalMW        3.857e-02  4.557e-02   0.846 0.397906    
+GeographicalNE        3.260e-02  4.596e-02   0.709 0.478559    
+GeographicalSO        3.089e-02  4.497e-02   0.687 0.492698    
+GeographicalWE        3.531e-02  4.483e-02   0.787 0.431562    
+nominate_dim1         2.086e-01  5.381e-02   3.876 0.000128 ***
+nominate_dim2         1.472e-01  2.624e-02   5.611 4.29e-08 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1132 on 326 degrees of freedom
+Residual standard error: 0.1132 on 327 degrees of freedom
   (20 observations deleted due to missingness)
-Multiple R-squared:  0.9504,    Adjusted R-squared:  0.9486 
-F-statistic:   521 on 12 and 326 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.9503,    Adjusted R-squared:  0.9487 
+F-statistic: 568.7 on 11 and 327 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 4</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>ols_4 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote4_minus <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote4_plus <span class="sc">-</span> Vote4 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_4)</span>
@@ -311,30 +307,29 @@ lm(formula = Vote4_minus ~ . - state - BioID - Vote4_plus - Vote4 -
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.86590 -0.03665 -0.00009  0.04130  0.93859 
+-0.86602 -0.03603 -0.00054  0.03848  0.93869 
 
 Coefficients:
                        Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)           2.293e+00  1.690e+00   1.357    0.176    
-partyR                6.370e-01  5.547e-02  11.483  &lt; 2e-16 ***
-Contribution_4_minus  2.863e-07  2.844e-07   1.006    0.315    
-Contribution_4_plus  -2.832e-06  3.559e-06  -0.796    0.427    
-seniority_114         1.940e-03  2.256e-03   0.860    0.390    
-birthday             -1.106e-03  8.595e-04  -1.287    0.199    
-GeographicalMW        5.771e-02  5.671e-02   1.018    0.310    
-GeographicalNE        5.787e-03  5.646e-02   0.102    0.918    
-GeographicalNW        3.407e-02  6.494e-02   0.525    0.600    
-GeographicalSO        2.012e-02  5.579e-02   0.361    0.719    
-GeographicalWE        2.931e-02  5.559e-02   0.527    0.598    
-nominate_dim1         3.360e-01  6.081e-02   5.526 6.14e-08 ***
-nominate_dim2         1.573e-01  3.122e-02   5.038 7.33e-07 ***
+(Intercept)           2.281e+00  1.688e+00   1.351    0.178    
+partyR                6.362e-01  5.541e-02  11.482  &lt; 2e-16 ***
+Contribution_4_minus  2.846e-07  2.842e-07   1.001    0.317    
+Contribution_4_plus  -2.684e-06  3.547e-06  -0.757    0.450    
+seniority_114         1.928e-03  2.254e-03   0.855    0.393    
+birthday             -1.099e-03  8.587e-04  -1.280    0.201    
+GeographicalMW        5.346e-02  5.622e-02   0.951    0.342    
+GeographicalNE        5.906e-03  5.641e-02   0.105    0.917    
+GeographicalSO        2.064e-02  5.573e-02   0.370    0.711    
+GeographicalWE        2.933e-02  5.555e-02   0.528    0.598    
+nominate_dim1         3.366e-01  6.075e-02   5.540 5.70e-08 ***
+nominate_dim2         1.556e-01  3.107e-02   5.009 8.44e-07 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1413 on 374 degrees of freedom
+Residual standard error: 0.1411 on 375 degrees of freedom
   (28 observations deleted due to missingness)
-Multiple R-squared:  0.9221,    Adjusted R-squared:  0.9196 
-F-statistic: 368.7 on 12 and 374 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.922, Adjusted R-squared:  0.9197 
+F-statistic: 402.9 on 11 and 375 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 51</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>ols_51 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote51_minus <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote51_plus <span class="sc">-</span> Vote51 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_51)</span>
@@ -347,30 +342,29 @@ lm(formula = Vote51_minus ~ . - state - BioID - Vote51_plus -
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.90239 -0.04073  0.00940  0.07020  0.83761 
+-0.90337 -0.04069  0.01025  0.07081  0.83874 
 
 Coefficients:
                         Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)            2.945e+00  1.985e+00   1.484   0.1388    
-partyR                 4.976e-01  6.767e-02   7.353 1.24e-12 ***
-Contribution_51_minus  7.440e-07  3.837e-07   1.939   0.0532 .  
-Contribution_51_plus  -4.565e-06  2.998e-06  -1.523   0.1286    
-seniority_115          2.597e-03  2.596e-03   1.000   0.3179    
-birthday              -1.420e-03  1.010e-03  -1.406   0.1606    
-GeographicalMW         8.712e-02  6.419e-02   1.357   0.1755    
-GeographicalNE        -2.748e-02  6.365e-02  -0.432   0.6663    
-GeographicalNW         3.946e-02  7.520e-02   0.525   0.6000    
-GeographicalSO         2.606e-02  6.281e-02   0.415   0.6785    
-GeographicalWE         2.183e-02  6.255e-02   0.349   0.7273    
-nominate_dim1          4.538e-01  7.497e-02   6.054 3.45e-09 ***
-nominate_dim2          1.827e-01  3.644e-02   5.015 8.21e-07 ***
+(Intercept)            2.914e+00  1.985e+00   1.468   0.1430    
+partyR                 4.990e-01  6.765e-02   7.375 1.07e-12 ***
+Contribution_51_minus  6.845e-07  3.786e-07   1.808   0.0714 .  
+Contribution_51_plus  -3.971e-06  2.933e-06  -1.354   0.1765    
+seniority_115          2.529e-03  2.595e-03   0.974   0.3305    
+birthday              -1.404e-03  1.010e-03  -1.390   0.1653    
+GeographicalMW         7.814e-02  6.350e-02   1.231   0.2193    
+GeographicalNE        -2.798e-02  6.365e-02  -0.440   0.6604    
+GeographicalSO         2.660e-02  6.280e-02   0.424   0.6721    
+GeographicalWE         2.179e-02  6.255e-02   0.348   0.7278    
+nominate_dim1          4.521e-01  7.494e-02   6.033 3.87e-09 ***
+nominate_dim2          1.814e-01  3.641e-02   4.982 9.64e-07 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1691 on 373 degrees of freedom
+Residual standard error: 0.1691 on 374 degrees of freedom
   (25 observations deleted due to missingness)
-Multiple R-squared:  0.8893,    Adjusted R-squared:  0.8858 
-F-statistic: 249.8 on 12 and 373 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.8891,    Adjusted R-squared:  0.8858 
+F-statistic: 272.5 on 11 and 374 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>ols_52 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote52_minus <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote52_plus <span class="sc">-</span> Vote52 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_52)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_52)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -382,30 +376,29 @@ lm(formula = Vote52_minus ~ . - state - BioID - Vote52_plus -
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.92743 -0.04332  0.01709  0.07551  0.80558 
+-0.92220 -0.04543  0.01778  0.07857  0.80662 
 
 Coefficients:
                         Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)            4.327e+00  2.061e+00   2.099   0.0365 *  
-partyR                 4.661e-01  7.172e-02   6.499 2.65e-10 ***
-Contribution_52_minus  5.725e-07  3.167e-07   1.808   0.0714 .  
-Contribution_52_plus  -9.718e-06  2.039e-06  -4.767 2.70e-06 ***
-seniority_115         -1.038e-03  2.684e-03  -0.387   0.6992    
-birthday              -2.097e-03  1.048e-03  -2.000   0.0463 *  
-GeographicalMW         4.999e-02  7.106e-02   0.704   0.4822    
-GeographicalNE        -4.010e-02  7.071e-02  -0.567   0.5710    
-GeographicalNW         2.167e-02  8.245e-02   0.263   0.7928    
-GeographicalSO        -2.161e-03  6.981e-02  -0.031   0.9753    
-GeographicalWE         2.460e-02  6.984e-02   0.352   0.7249    
-nominate_dim1          4.876e-01  7.908e-02   6.166 1.84e-09 ***
-nominate_dim2          2.061e-01  3.852e-02   5.352 1.54e-07 ***
+(Intercept)            4.283e+00  2.058e+00   2.082   0.0381 *  
+partyR                 4.669e-01  7.163e-02   6.518 2.35e-10 ***
+Contribution_52_minus  5.492e-07  3.135e-07   1.752   0.0806 .  
+Contribution_52_plus  -9.550e-06  2.014e-06  -4.743 3.02e-06 ***
+seniority_115         -1.070e-03  2.681e-03  -0.399   0.6900    
+birthday              -2.074e-03  1.047e-03  -1.982   0.0482 *  
+GeographicalMW         4.514e-02  7.044e-02   0.641   0.5220    
+GeographicalNE        -4.004e-02  7.064e-02  -0.567   0.5712    
+GeographicalSO        -1.482e-03  6.974e-02  -0.021   0.9831    
+GeographicalWE         2.484e-02  6.977e-02   0.356   0.7221    
+nominate_dim1          4.866e-01  7.898e-02   6.161 1.90e-09 ***
+nominate_dim2          2.048e-01  3.841e-02   5.333 1.69e-07 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1769 on 367 degrees of freedom
+Residual standard error: 0.1768 on 368 degrees of freedom
   (27 observations deleted due to missingness)
-Multiple R-squared:  0.879, Adjusted R-squared:  0.8751 
-F-statistic: 222.2 on 12 and 367 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.8789,    Adjusted R-squared:  0.8753 
+F-statistic: 242.8 on 11 and 368 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>ols_6 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote6_minus <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote6_plus <span class="sc">-</span> Vote6 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_6)</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_6)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -417,30 +410,29 @@ lm(formula = Vote6_minus ~ . - state - BioID - Vote6_plus - Vote6 -
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.90075 -0.02562  0.01566  0.05746  0.84342 
+-0.90060 -0.02598  0.01613  0.05765  0.84304 
 
 Coefficients:
                        Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)           2.997e+00  1.625e+00   1.845  0.06588 .  
-partyR                5.900e-01  5.573e-02  10.588  &lt; 2e-16 ***
-Contribution_6_minus  2.907e-07  2.883e-07   1.008  0.31397    
-Contribution_6_plus  -2.270e-06  7.179e-06  -0.316  0.75204    
-seniority_116         2.464e-04  2.263e-03   0.109  0.91333    
-birthday             -1.453e-03  8.252e-04  -1.761  0.07910 .  
-GeographicalMW        2.366e-02  5.918e-02   0.400  0.68958    
-GeographicalNE       -3.997e-02  5.867e-02  -0.681  0.49613    
-GeographicalNW        5.156e-02  6.862e-02   0.751  0.45293    
-GeographicalSO       -4.955e-03  5.815e-02  -0.085  0.93213    
-GeographicalWE        2.480e-02  5.812e-02   0.427  0.66987    
-nominate_dim1         3.911e-01  6.178e-02   6.330    7e-10 ***
-nominate_dim2         8.171e-02  2.661e-02   3.070  0.00229 ** 
+(Intercept)           3.043e+00  1.622e+00   1.876  0.06148 .  
+partyR                5.915e-01  5.564e-02  10.632  &lt; 2e-16 ***
+Contribution_6_minus  2.940e-07  2.880e-07   1.021  0.30797    
+Contribution_6_plus  -2.313e-06  7.174e-06  -0.322  0.74728    
+seniority_116         2.906e-04  2.260e-03   0.129  0.89777    
+birthday             -1.476e-03  8.238e-04  -1.792  0.07389 .  
+GeographicalMW        2.822e-02  5.873e-02   0.480  0.63121    
+GeographicalNE       -3.983e-02  5.863e-02  -0.679  0.49725    
+GeographicalSO       -5.420e-03  5.810e-02  -0.093  0.92573    
+GeographicalWE        2.485e-02  5.807e-02   0.428  0.66900    
+nominate_dim1         3.907e-01  6.173e-02   6.328 7.06e-10 ***
+nominate_dim2         8.257e-02  2.656e-02   3.109  0.00202 ** 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1474 on 375 degrees of freedom
+Residual standard error: 0.1473 on 376 degrees of freedom
   (17 observations deleted due to missingness)
-Multiple R-squared:  0.915, Adjusted R-squared:  0.9123 
-F-statistic: 336.5 on 12 and 375 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.9149,    Adjusted R-squared:  0.9124 
+F-statistic: 367.6 on 11 and 376 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ols_7 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote7_minus <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote7_plus <span class="sc">-</span> Vote7 <span class="sc">-</span> Vote_change_dummy, <span class="at">data =</span> df_vote_7)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -452,30 +444,29 @@ lm(formula = Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 -
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.90082 -0.01491  0.01797  0.04237  0.15562 
+-0.90515 -0.01284  0.01875  0.04163  0.15434 
 
 Coefficients:
                        Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)           4.006e+00  1.517e+00   2.642 0.008653 ** 
-partyR                7.691e-01  5.267e-02  14.601  &lt; 2e-16 ***
-Contribution_7_minus -7.253e-08  2.867e-07  -0.253 0.800443    
-Contribution_7_plus   5.796e-06  6.076e-06   0.954 0.340822    
-seniority_117        -1.750e-03  2.139e-03  -0.818 0.413715    
-birthday             -1.995e-03  7.702e-04  -2.590 0.010023 *  
-GeographicalMW        1.261e-02  5.510e-02   0.229 0.819080    
-GeographicalNE       -2.861e-02  5.455e-02  -0.524 0.600341    
-GeographicalNW        3.048e-02  6.304e-02   0.484 0.629024    
-GeographicalSO       -7.005e-03  5.395e-02  -0.130 0.896771    
-GeographicalWE        6.719e-03  5.403e-02   0.124 0.901122    
-nominate_dim1         2.114e-01  5.890e-02   3.589 0.000383 ***
-nominate_dim2         6.804e-02  2.481e-02   2.742 0.006449 ** 
+(Intercept)           4.012e+00  1.515e+00   2.649 0.008463 ** 
+partyR                7.688e-01  5.261e-02  14.613  &lt; 2e-16 ***
+Contribution_7_minus -7.455e-08  2.863e-07  -0.260 0.794729    
+Contribution_7_plus   5.824e-06  6.068e-06   0.960 0.337918    
+seniority_117        -1.655e-03  2.127e-03  -0.778 0.436882    
+birthday             -1.999e-03  7.692e-04  -2.598 0.009801 ** 
+GeographicalMW        1.581e-02  5.460e-02   0.290 0.772332    
+GeographicalNE       -2.849e-02  5.449e-02  -0.523 0.601485    
+GeographicalSO       -7.368e-03  5.388e-02  -0.137 0.891318    
+GeographicalWE        6.764e-03  5.397e-02   0.125 0.900341    
+nominate_dim1         2.127e-01  5.876e-02   3.620 0.000341 ***
+nominate_dim2         6.890e-02  2.472e-02   2.788 0.005617 ** 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1271 on 324 degrees of freedom
+Residual standard error: 0.1269 on 325 degrees of freedom
   (15 observations deleted due to missingness)
-Multiple R-squared:  0.9359,    Adjusted R-squared:  0.9336 
-F-statistic: 394.5 on 12 and 324 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.9359,    Adjusted R-squared:  0.9337 
+F-statistic: 431.4 on 11 and 325 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </section>
@@ -493,32 +484,31 @@ lm(formula = Vote4_minus ~ . - state - BioID - Vote4_plus - Vote4 -
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.89214 -0.03557 -0.00487  0.02954  0.91351 
+-0.89257 -0.03569 -0.00569  0.02727  0.91376 
 
 Coefficients:
                        Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)          -3.876e-01  1.677e+00  -0.231    0.817    
-partyR                7.128e-01  5.554e-02  12.833  &lt; 2e-16 ***
-Contribution_3_minus  3.325e-07  3.610e-07   0.921    0.358    
-Contribution_3_plus  -2.618e-06  3.396e-06  -0.771    0.441    
-Contribution_4_minus  1.624e-07  3.333e-07   0.487    0.627    
-Contribution_4_plus  -2.651e-06  3.445e-06  -0.770    0.442    
-seniority_114         1.902e-03  2.238e-03   0.850    0.396    
-birthday              2.459e-04  8.528e-04   0.288    0.773    
-GeographicalMW        5.141e-02  5.164e-02   0.996    0.320    
-GeographicalNE        2.110e-02  5.146e-02   0.410    0.682    
-GeographicalNW        2.592e-02  5.922e-02   0.438    0.662    
-GeographicalSO        3.073e-02  5.050e-02   0.609    0.543    
-GeographicalWE        2.759e-02  5.044e-02   0.547    0.585    
-nominate_dim1         2.482e-01  6.092e-02   4.074 5.84e-05 ***
-nominate_dim2         1.383e-01  2.998e-02   4.613 5.76e-06 ***
+(Intercept)          -4.288e-01  1.675e+00  -0.256    0.798    
+partyR                7.109e-01  5.543e-02  12.826  &lt; 2e-16 ***
+Contribution_3_minus  3.217e-07  3.603e-07   0.893    0.373    
+Contribution_3_plus  -2.580e-06  3.393e-06  -0.760    0.448    
+Contribution_4_minus  1.673e-07  3.330e-07   0.502    0.616    
+Contribution_4_plus  -2.504e-06  3.435e-06  -0.729    0.467    
+seniority_114         1.947e-03  2.235e-03   0.871    0.384    
+birthday              2.671e-04  8.515e-04   0.314    0.754    
+GeographicalMW        4.639e-02  5.107e-02   0.908    0.364    
+GeographicalNE        2.116e-02  5.142e-02   0.412    0.681    
+GeographicalSO        3.125e-02  5.046e-02   0.619    0.536    
+GeographicalWE        2.747e-02  5.039e-02   0.545    0.586    
+nominate_dim1         2.499e-01  6.082e-02   4.109 5.05e-05 ***
+nominate_dim2         1.362e-01  2.980e-02   4.571 6.97e-06 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1268 on 317 degrees of freedom
+Residual standard error: 0.1267 on 318 degrees of freedom
   (223 observations deleted due to missingness)
-Multiple R-squared:  0.9384,    Adjusted R-squared:  0.9357 
-F-statistic:   345 on 14 and 317 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.9383,    Adjusted R-squared:  0.9358 
+F-statistic: 372.1 on 13 and 318 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 51_2</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>ols_51_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote51_minus <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote51_plus <span class="sc">-</span> Vote51 <span class="sc">-</span> Vote_change_dummy <span class="sc">-</span> Vote51_NA, <span class="at">data =</span> df_vote_51_2)</span>
@@ -531,34 +521,33 @@ lm(formula = Vote51_minus ~ . - state - BioID - Vote51_plus -
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.89988 -0.03306  0.00122  0.04300  0.78792 
+-0.90450 -0.03276  0.00067  0.04229  0.79272 
 
 Coefficients:
                         Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)            2.353e-01  1.779e+00   0.132  0.89488    
-partyR                 6.794e-01  6.193e-02  10.970  &lt; 2e-16 ***
-Contribution_3_minus   7.271e-07  4.700e-07   1.547  0.12308    
-Contribution_3_plus   -4.425e-06  4.156e-06  -1.065  0.28800    
-Contribution_4_minus  -2.741e-07  4.744e-07  -0.578  0.56386    
-Contribution_4_plus   -1.177e-05  3.835e-06  -3.068  0.00238 ** 
-Contribution_51_minus  5.344e-07  3.800e-07   1.406  0.16082    
-Contribution_51_plus   1.894e-06  2.780e-06   0.681  0.49636    
-seniority_115          3.480e-03  2.375e-03   1.465  0.14398    
-birthday              -8.300e-05  9.043e-04  -0.092  0.92694    
-GeographicalMW         8.248e-02  5.444e-02   1.515  0.13093    
-GeographicalNE         3.801e-02  5.405e-02   0.703  0.48253    
-GeographicalNW         3.700e-02  6.133e-02   0.603  0.54684    
-GeographicalSO         2.109e-02  5.294e-02   0.398  0.69067    
-GeographicalWE         3.769e-02  5.296e-02   0.712  0.47727    
-nominate_dim1          2.868e-01  6.773e-02   4.234 3.17e-05 ***
-nominate_dim2          1.512e-01  3.179e-02   4.756 3.26e-06 ***
+(Intercept)            1.288e-01  1.778e+00   0.072  0.94230    
+partyR                 6.794e-01  6.197e-02  10.963  &lt; 2e-16 ***
+Contribution_3_minus   6.934e-07  4.695e-07   1.477  0.14085    
+Contribution_3_plus   -4.635e-06  4.155e-06  -1.115  0.26570    
+Contribution_4_minus  -1.943e-07  4.698e-07  -0.414  0.67950    
+Contribution_4_plus   -1.150e-05  3.831e-06  -3.003  0.00293 ** 
+Contribution_51_minus  4.381e-07  3.713e-07   1.180  0.23902    
+Contribution_51_plus   2.473e-06  2.738e-06   0.903  0.36714    
+seniority_115          3.461e-03  2.376e-03   1.457  0.14638    
+birthday              -2.823e-05  9.037e-04  -0.031  0.97510    
+GeographicalMW         7.174e-02  5.370e-02   1.336  0.18266    
+GeographicalNE         3.688e-02  5.408e-02   0.682  0.49585    
+GeographicalSO         2.146e-02  5.297e-02   0.405  0.68569    
+GeographicalWE         3.688e-02  5.299e-02   0.696  0.48708    
+nominate_dim1          2.858e-01  6.778e-02   4.217 3.40e-05 ***
+nominate_dim2          1.478e-01  3.168e-02   4.666 4.88e-06 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1225 on 264 degrees of freedom
+Residual standard error: 0.1226 on 265 degrees of freedom
   (274 observations deleted due to missingness)
-Multiple R-squared:  0.9436,    Adjusted R-squared:  0.9401 
-F-statistic: 275.8 on 16 and 264 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.9433,    Adjusted R-squared:  0.9401 
+F-statistic: 293.7 on 15 and 265 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 52_2</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ols_52_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote52_minus <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote52_plus <span class="sc">-</span> Vote52 <span class="sc">-</span> Vote_change_dummy <span class="sc">-</span> Vote52_NA, <span class="at">data =</span> df_vote_52_2)</span>
@@ -571,36 +560,35 @@ lm(formula = Vote52_minus ~ . - state - BioID - Vote52_plus -
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.93784 -0.03883  0.00815  0.05326  0.84268 
+-0.94179 -0.03855  0.00931  0.05347  0.84196 
 
 Coefficients:
                         Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)            1.047e+00  2.254e+00   0.464  0.64280    
-partyR                 6.844e-01  8.166e-02   8.382 3.88e-15 ***
-Contribution_3_minus   2.658e-08  6.384e-07   0.042  0.96682    
-Contribution_3_plus   -2.436e-06  5.303e-06  -0.459  0.64641    
-Contribution_4_minus  -7.592e-07  6.272e-07  -1.210  0.22724    
-Contribution_4_plus    5.301e-06  4.988e-06   1.063  0.28899    
-Contribution_51_minus  3.370e-06  1.459e-06   2.309  0.02174 *  
-Contribution_51_plus   9.955e-06  4.274e-06   2.329  0.02065 *  
-Contribution_52_minus -2.156e-06  1.210e-06  -1.781  0.07612 .  
-Contribution_52_plus  -1.338e-05  2.523e-06  -5.306 2.48e-07 ***
-seniority_115         -7.589e-04  3.017e-03  -0.252  0.80161    
-birthday              -4.742e-04  1.146e-03  -0.414  0.67936    
-GeographicalMW         2.321e-03  7.351e-02   0.032  0.97483    
-GeographicalNE         1.428e-02  7.313e-02   0.195  0.84539    
-GeographicalNW         1.744e-02  8.143e-02   0.214  0.83055    
-GeographicalSO         2.805e-02  7.144e-02   0.393  0.69496    
-GeographicalWE         3.513e-02  7.217e-02   0.487  0.62689    
-nominate_dim1          2.517e-01  8.952e-02   2.811  0.00532 ** 
-nominate_dim2          2.055e-01  4.104e-02   5.007 1.05e-06 ***
+(Intercept)            1.094e+00  2.245e+00   0.487  0.62649    
+partyR                 6.841e-01  8.150e-02   8.393 3.53e-15 ***
+Contribution_3_minus   3.783e-08  6.362e-07   0.059  0.95264    
+Contribution_3_plus   -2.371e-06  5.290e-06  -0.448  0.65435    
+Contribution_4_minus  -7.882e-07  6.190e-07  -1.273  0.20413    
+Contribution_4_plus    5.218e-06  4.972e-06   1.049  0.29501    
+Contribution_51_minus  3.386e-06  1.456e-06   2.326  0.02080 *  
+Contribution_51_plus   9.782e-06  4.230e-06   2.313  0.02156 *  
+Contribution_52_minus -2.141e-06  1.207e-06  -1.773  0.07737 .  
+Contribution_52_plus  -1.340e-05  2.517e-06  -5.325 2.25e-07 ***
+seniority_115         -7.511e-04  3.011e-03  -0.249  0.80325    
+birthday              -4.983e-04  1.141e-03  -0.437  0.66274    
+GeographicalMW         5.982e-03  7.243e-02   0.083  0.93424    
+GeographicalNE         1.456e-02  7.299e-02   0.199  0.84206    
+GeographicalSO         2.784e-02  7.131e-02   0.390  0.69652    
+GeographicalWE         3.535e-02  7.204e-02   0.491  0.62409    
+nominate_dim1          2.523e-01  8.934e-02   2.824  0.00512 ** 
+nominate_dim2          2.067e-01  4.078e-02   5.069 7.80e-07 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1524 on 249 degrees of freedom
+Residual standard error: 0.1522 on 250 degrees of freedom
   (287 observations deleted due to missingness)
-Multiple R-squared:  0.9135,    Adjusted R-squared:  0.9072 
-F-statistic:   146 on 18 and 249 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.9134,    Adjusted R-squared:  0.9075 
+F-statistic: 155.1 on 17 and 250 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 6_2</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ols_6_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote6_minus <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote6_plus <span class="sc">-</span> Vote6 <span class="sc">-</span> Vote_change_dummy <span class="sc">-</span> Vote6_NA, <span class="at">data =</span> df_vote_6_2)</span>
@@ -613,38 +601,37 @@ lm(formula = Vote6_minus ~ . - state - BioID - Vote6_plus - Vote6 -
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.58499 -0.02805 -0.00255  0.01896  0.93569 
+-0.59040 -0.02726 -0.00220  0.02037  0.93619 
 
 Coefficients:
                         Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)            2.078e+00  1.440e+00   1.442 0.150709    
-partyR                 9.146e-01  4.994e-02  18.315  &lt; 2e-16 ***
-Contribution_3_minus  -1.365e-06  4.192e-07  -3.256 0.001322 ** 
-Contribution_3_plus   -1.001e-06  3.569e-06  -0.281 0.779361    
-Contribution_4_minus  -2.746e-07  4.122e-07  -0.666 0.506129    
-Contribution_4_plus    5.225e-06  3.050e-06   1.713 0.088243 .  
-Contribution_51_minus  3.626e-06  9.824e-07   3.691 0.000287 ***
-Contribution_51_plus  -9.735e-07  4.548e-06  -0.214 0.830721    
-Contribution_52_minus -2.031e-06  8.352e-07  -2.432 0.015904 *  
-Contribution_52_plus   1.879e-07  4.251e-06   0.044 0.964780    
-Contribution_6_minus  -4.315e-08  4.014e-07  -0.108 0.914495    
-Contribution_6_plus    6.569e-07  6.404e-06   0.103 0.918395    
-seniority_116         -2.700e-03  1.902e-03  -1.419 0.157391    
-birthday              -1.024e-03  7.326e-04  -1.397 0.163839    
-GeographicalMW        -3.621e-02  4.330e-02  -0.836 0.404005    
-GeographicalNE        -3.802e-03  4.249e-02  -0.090 0.928772    
-GeographicalNW        -9.261e-03  4.770e-02  -0.194 0.846251    
-GeographicalSO        -1.840e-02  4.134e-02  -0.445 0.656722    
-GeographicalWE         6.167e-03  4.152e-02   0.149 0.882081    
-nominate_dim1          7.711e-02  5.506e-02   1.400 0.162892    
-nominate_dim2          9.396e-02  2.540e-02   3.699 0.000278 ***
+(Intercept)            2.197e+00  1.433e+00   1.533 0.126806    
+partyR                 9.159e-01  4.989e-02  18.356  &lt; 2e-16 ***
+Contribution_3_minus  -1.330e-06  4.171e-07  -3.188 0.001660 ** 
+Contribution_3_plus   -7.384e-07  3.555e-06  -0.208 0.835642    
+Contribution_4_minus  -3.186e-07  4.090e-07  -0.779 0.437010    
+Contribution_4_plus    5.069e-06  3.044e-06   1.665 0.097371 .  
+Contribution_51_minus  3.695e-06  9.788e-07   3.775 0.000210 ***
+Contribution_51_plus  -1.250e-06  4.535e-06  -0.276 0.783126    
+Contribution_52_minus -2.052e-06  8.344e-07  -2.459 0.014760 *  
+Contribution_52_plus   3.848e-08  4.245e-06   0.009 0.992778    
+Contribution_6_minus  -5.489e-08  4.010e-07  -0.137 0.891260    
+Contribution_6_plus    7.811e-07  6.399e-06   0.122 0.902966    
+seniority_116         -2.714e-03  1.901e-03  -1.427 0.155050    
+birthday              -1.085e-03  7.289e-04  -1.489 0.138026    
+GeographicalMW        -2.859e-02  4.242e-02  -0.674 0.501060    
+GeographicalNE        -2.438e-03  4.244e-02  -0.057 0.954236    
+GeographicalSO        -1.850e-02  4.132e-02  -0.448 0.654742    
+GeographicalWE         6.953e-03  4.149e-02   0.168 0.867089    
+nominate_dim1          7.692e-02  5.503e-02   1.398 0.163677    
+nominate_dim2          9.526e-02  2.534e-02   3.759 0.000223 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.08655 on 203 degrees of freedom
+Residual standard error: 0.08651 on 204 degrees of freedom
   (331 observations deleted due to missingness)
-Multiple R-squared:  0.9726,    Adjusted R-squared:  0.9699 
-F-statistic:   360 on 20 and 203 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.9725,    Adjusted R-squared:  0.9699 
+F-statistic: 379.3 on 19 and 204 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 7_2</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ols_7_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote7_minus <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote7_plus <span class="sc">-</span> Vote7 <span class="sc">-</span> Vote_change_dummy <span class="sc">-</span> Vote7_NA, <span class="at">data =</span> df_vote_7_2)</span>
@@ -657,40 +644,39 @@ lm(formula = Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 -
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.53548 -0.02690  0.00159  0.02750  0.27031 
+-0.53486 -0.02480  0.00073  0.02855  0.28832 
 
 Coefficients:
                         Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)            3.406e+00  1.544e+00   2.207 0.028786 *  
-partyR                 9.663e-01  4.977e-02  19.413  &lt; 2e-16 ***
-Contribution_3_minus  -1.267e-06  4.591e-07  -2.760 0.006478 ** 
-Contribution_3_plus    1.383e-08  3.801e-06   0.004 0.997102    
-Contribution_4_minus  -2.161e-06  5.018e-07  -4.306 2.93e-05 ***
-Contribution_4_plus   -1.824e-05  3.211e-06  -5.681 6.38e-08 ***
-Contribution_51_minus  5.835e-06  9.845e-07   5.927 1.91e-08 ***
-Contribution_51_plus  -4.094e-06  4.567e-06  -0.896 0.371489    
-Contribution_52_minus -3.222e-06  9.225e-07  -3.493 0.000622 ***
-Contribution_52_plus   7.040e-06  3.990e-06   1.764 0.079646 .  
-Contribution_6_minus   8.509e-07  5.114e-07   1.664 0.098167 .  
-Contribution_6_plus    5.785e-07  6.980e-06   0.083 0.934055    
-Contribution_7_minus  -1.134e-07  4.376e-07  -0.259 0.795907    
-Contribution_7_plus    5.669e-06  5.374e-06   1.055 0.293079    
-seniority_117         -2.216e-03  1.996e-03  -1.111 0.268456    
-birthday              -1.704e-03  7.856e-04  -2.169 0.031575 *  
-GeographicalMW        -2.751e-02  4.307e-02  -0.639 0.524015    
-GeographicalNE        -4.286e-02  4.206e-02  -1.019 0.309803    
-GeographicalNW         6.480e-03  4.633e-02   0.140 0.888955    
-GeographicalSO        -4.261e-02  4.084e-02  -1.043 0.298476    
-GeographicalWE        -1.762e-02  4.096e-02  -0.430 0.667557    
-nominate_dim1          2.797e-02  5.578e-02   0.501 0.616763    
-nominate_dim2          6.004e-02  2.572e-02   2.334 0.020854 *  
+(Intercept)            3.471e+00  1.544e+00   2.247 0.026001 *  
+partyR                 9.617e-01  4.968e-02  19.357  &lt; 2e-16 ***
+Contribution_3_minus  -1.197e-06  4.557e-07  -2.626 0.009494 ** 
+Contribution_3_plus    4.860e-07  3.784e-06   0.128 0.897986    
+Contribution_4_minus  -2.229e-06  4.991e-07  -4.466 1.52e-05 ***
+Contribution_4_plus   -1.852e-05  3.206e-06  -5.778 3.95e-08 ***
+Contribution_51_minus  5.920e-06  9.830e-07   6.023 1.17e-08 ***
+Contribution_51_plus  -4.508e-06  4.559e-06  -0.989 0.324250    
+Contribution_52_minus -3.255e-06  9.232e-07  -3.526 0.000553 ***
+Contribution_52_plus   6.888e-06  3.993e-06   1.725 0.086495 .  
+Contribution_6_minus   8.439e-07  5.120e-07   1.648 0.101328    
+Contribution_6_plus    7.809e-07  6.986e-06   0.112 0.911144    
+Contribution_7_minus  -1.251e-07  4.380e-07  -0.285 0.775637    
+Contribution_7_plus    5.436e-06  5.376e-06   1.011 0.313498    
+seniority_117         -2.074e-03  1.994e-03  -1.040 0.299903    
+birthday              -1.737e-03  7.860e-04  -2.210 0.028529 *  
+GeographicalMW        -1.642e-02  4.208e-02  -0.390 0.696898    
+GeographicalNE        -4.070e-02  4.207e-02  -0.967 0.334839    
+GeographicalSO        -4.248e-02  4.089e-02  -1.039 0.300476    
+GeographicalWE        -1.615e-02  4.099e-02  -0.394 0.694015    
+nominate_dim1          3.445e-02  5.558e-02   0.620 0.536285    
+nominate_dim2          6.296e-02  2.563e-02   2.456 0.015120 *  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.0768 on 156 degrees of freedom
+Residual standard error: 0.07689 on 157 degrees of freedom
   (376 observations deleted due to missingness)
-Multiple R-squared:  0.9786,    Adjusted R-squared:  0.9756 
-F-statistic: 324.6 on 22 and 156 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.9784,    Adjusted R-squared:  0.9755 
+F-statistic: 339.1 on 21 and 157 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </section>
@@ -2634,26 +2620,25 @@ Call:
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--0.5591 -0.3343 -0.2074  0.5156  1.0038 
+-0.5561 -0.3267 -0.2174  0.5168  0.9932 
 
 Coefficients:
                       Estimate Std. Error t value Pr(&gt;|t|)    
 GeographicalMW             NaN         NA     NaN      NaN    
 GeographicalNE             NaN         NA     NaN      NaN    
-GeographicalNW             NaN         NA     NaN      NaN    
 GeographicalSO             NaN         NA     NaN      NaN    
 GeographicalWE             NaN         NA     NaN      NaN    
-Contribution_3_minus  0.048504   0.009826   4.936 1.28e-06 ***
-Contribution_3_plus  -0.003453   0.007346  -0.470    0.639    
+Contribution_3_minus  0.047339   0.009817   4.822 2.18e-06 ***
+Contribution_3_plus  -0.003503   0.007361  -0.476    0.634    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.4363 on 324 degrees of freedom
+Residual standard error: 0.4372 on 325 degrees of freedom
   (200 observations deleted due to missingness)
-Multiple R-squared(full model): 0.1225   Adjusted R-squared: 0.1036 
-Multiple R-squared(proj model): 0.07057   Adjusted R-squared: 0.05049 
-F-statistic(full model):6.463 on 7 and 324 DF, p-value: 3.864e-07 
-F-statistic(proj model): 3.514 on 7 and 324 DF, p-value: 0.00119 </code></pre>
+Multiple R-squared(full model): 0.1162   Adjusted R-squared: 0.09983 
+Multiple R-squared(proj model): 0.06734   Adjusted R-squared: 0.05012 
+F-statistic(full model):7.118 on 6 and 325 DF, p-value: 3.851e-07 
+F-statistic(proj model): 3.911 on 6 and 325 DF, p-value: 0.0008681 </code></pre>
 </div>
 </div>
 </section>
@@ -2674,9 +2659,12 @@ F-statistic(proj model): 3.514 on 7 and 324 DF, p-value: 0.00119 </code></pre>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>logit <span class="ot">&lt;-</span> <span class="fu">glm</span>(all_votes_minus <span class="sc">~</span> . <span class="sc">-</span> all_votes_plus, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_no_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
+<pre><code>Warning: glm.fit: algorithm did not converge</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
 <pre><code>Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2684,53 +2672,52 @@ glm(formula = all_votes_minus ~ . - all_votes_plus, family = binomial(link = "lo
     data = df_no_change)
 
 Deviance Residuals: 
-   Min      1Q  Median      3Q     Max  
- -8.49    0.00    0.00    0.00    8.49  
+       Min          1Q      Median          3Q         Max  
+-6.641e-04  -2.000e-08  -2.000e-08  -2.000e-08   6.910e-04  
 
 Coefficients:
-                        Estimate Std. Error   z value Pr(&gt;|z|)    
-(Intercept)           -4.564e+16  1.511e+09 -30206447   &lt;2e-16 ***
-district              -1.827e+13  7.289e+05 -25071872   &lt;2e-16 ***
-partyR                 3.180e+15  5.173e+07  61466817   &lt;2e-16 ***
-birthday               1.985e+13  7.712e+05  25740081   &lt;2e-16 ***
-genderM                3.231e+14  1.586e+07  20371960   &lt;2e-16 ***
-nominate_dim1         -1.722e+15  5.870e+07 -29334724   &lt;2e-16 ***
-nominate_dim2         -2.123e+15  2.825e+07 -75161940   &lt;2e-16 ***
-seniority_113         -1.007e+13  1.939e+06  -5192147   &lt;2e-16 ***
-Contribution_3_minus   1.553e+14  3.101e+06  50083345   &lt;2e-16 ***
-Contribution_3_plus   -1.042e+13  2.046e+06  -5092812   &lt;2e-16 ***
-Contribution_4_minus  -4.486e+13  3.926e+06 -11425765   &lt;2e-16 ***
-Contribution_4_plus    6.478e+12  2.141e+06   3025820   &lt;2e-16 ***
-Contribution_51_minus  2.209e+14  7.073e+06  31235850   &lt;2e-16 ***
-Contribution_51_plus   9.676e+13  3.088e+06  31336497   &lt;2e-16 ***
-Contribution_52_minus -1.017e+14  4.624e+06 -21997994   &lt;2e-16 ***
-Contribution_52_plus  -1.020e+14  2.922e+06 -34920318   &lt;2e-16 ***
-Contribution_6_minus  -5.909e+13  3.177e+06 -18598240   &lt;2e-16 ***
-Contribution_6_plus    2.297e+14  2.518e+06  91246212   &lt;2e-16 ***
-Contribution_7_minus   1.825e+14  2.359e+06  77369044   &lt;2e-16 ***
-Contribution_7_plus   -8.883e+13  2.601e+06 -34156816   &lt;2e-16 ***
-GeographicalMW         4.181e+14  4.078e+07  10250946   &lt;2e-16 ***
-GeographicalNE         7.205e+14  3.892e+07  18509799   &lt;2e-16 ***
-GeographicalNW        -2.034e+14  4.214e+07  -4825199   &lt;2e-16 ***
-GeographicalSO         4.184e+14  3.790e+07  11040226   &lt;2e-16 ***
-GeographicalWE        -5.703e+14  3.872e+07 -14727846   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+                        Estimate Std. Error z value Pr(&gt;|z|)
+(Intercept)            -86772.05 2643203.58  -0.033    0.974
+district                  -23.19    1038.57  -0.022    0.982
+partyR                    602.19   37575.31   0.016    0.987
+birthday                   40.24    1218.15   0.033    0.974
+genderM                   147.44  354158.27   0.000    1.000
+nominate_dim1             180.39   32509.98   0.006    0.996
+nominate_dim2            -690.38   26029.57  -0.027    0.979
+seniority_113             103.14    3316.64   0.031    0.975
+Contribution_3_minus      -53.28    3220.76  -0.017    0.987
+Contribution_3_plus       -54.69    2226.35  -0.025    0.980
+Contribution_4_minus      -35.99    3393.66  -0.011    0.992
+Contribution_4_plus       -53.73    2125.96  -0.025    0.980
+Contribution_51_minus    -392.41   13956.62  -0.028    0.978
+Contribution_51_plus      109.80    4044.21   0.027    0.978
+Contribution_52_minus     -50.74    3073.77  -0.017    0.987
+Contribution_52_plus      -81.35    3013.43  -0.027    0.978
+Contribution_6_minus     1102.94   34130.20   0.032    0.974
+Contribution_6_plus       -72.78    2344.16  -0.031    0.975
+Contribution_7_minus       73.82    3129.49   0.024    0.981
+Contribution_7_plus      -106.45    3517.58  -0.030    0.976
+GeographicalMW            283.99   83689.29   0.003    0.997
+GeographicalNE            -47.71   88740.83  -0.001    1.000
+GeographicalSO            133.62   83735.20   0.002    0.999
+GeographicalWE            103.87  364269.95   0.000    1.000
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance:  55.989  on 143  degrees of freedom
-Residual deviance: 576.698  on 119  degrees of freedom
+    Null deviance: 5.5989e+01  on 143  degrees of freedom
+Residual deviance: 3.9194e-06  on 120  degrees of freedom
   (388 observations deleted due to missingness)
-AIC: 626.7
+AIC: 48
 
-Number of Fisher Scoring iterations: 15</code></pre>
+Number of Fisher Scoring iterations: 25</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>probit <span class="ot">&lt;-</span> <span class="fu">glm</span>(all_votes_minus <span class="sc">~</span> . <span class="sc">-</span> all_votes_plus, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>), <span class="at">data =</span> df_no_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>probit <span class="ot">&lt;-</span> <span class="fu">glm</span>(all_votes_minus <span class="sc">~</span> . <span class="sc">-</span> all_votes_plus, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>), <span class="at">data =</span> df_no_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
+<pre><code>Warning: glm.fit: algorithm did not converge
+
+Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(probit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(probit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2738,45 +2725,42 @@ glm(formula = all_votes_minus ~ . - all_votes_plus, family = binomial(link = "pr
     data = df_no_change)
 
 Deviance Residuals: 
-   Min      1Q  Median      3Q     Max  
- -8.49    0.00    0.00    0.00    8.49  
+       Min          1Q      Median          3Q         Max  
+-8.413e-04  -2.000e-08  -2.000e-08  -2.000e-08   8.471e-04  
 
 Coefficients:
-                        Estimate Std. Error   z value Pr(&gt;|z|)    
-(Intercept)           -5.511e+16  1.511e+09 -36470115   &lt;2e-16 ***
-district              -2.309e+13  7.289e+05 -31674433   &lt;2e-16 ***
-partyR                 1.112e+15  5.173e+07  21492761   &lt;2e-16 ***
-birthday               2.563e+13  7.712e+05  33234546   &lt;2e-16 ***
-genderM                1.903e+14  1.586e+07  12000767   &lt;2e-16 ***
-nominate_dim1         -6.995e+14  5.870e+07 -11917803   &lt;2e-16 ***
-nominate_dim2         -1.887e+15  2.825e+07 -66794989   &lt;2e-16 ***
-seniority_113          2.062e+13  1.939e+06  10629932   &lt;2e-16 ***
-Contribution_3_minus   6.787e+13  3.101e+06  21882272   &lt;2e-16 ***
-Contribution_3_plus   -4.730e+13  2.046e+06 -23119683   &lt;2e-16 ***
-Contribution_4_minus  -9.570e+13  3.926e+06 -24372070   &lt;2e-16 ***
-Contribution_4_plus    5.646e+13  2.141e+06  26370214   &lt;2e-16 ***
-Contribution_51_minus -9.543e+13  7.073e+06 -13492913   &lt;2e-16 ***
-Contribution_51_plus   8.039e+13  3.088e+06  26032372   &lt;2e-16 ***
-Contribution_52_minus  1.320e+14  4.624e+06  28540427   &lt;2e-16 ***
-Contribution_52_plus  -1.129e+14  2.922e+06 -38639335   &lt;2e-16 ***
-Contribution_6_minus   2.500e+14  3.177e+06  78688636   &lt;2e-16 ***
-Contribution_6_plus    9.134e+13  2.518e+06  36279582   &lt;2e-16 ***
-Contribution_7_minus   4.883e+13  2.359e+06  20696997   &lt;2e-16 ***
-Contribution_7_plus   -2.422e+13  2.601e+06  -9311702   &lt;2e-16 ***
-GeographicalMW        -8.858e+13  4.078e+07  -2171955   &lt;2e-16 ***
-GeographicalNE        -7.135e+14  3.892e+07 -18330234   &lt;2e-16 ***
-GeographicalNW         8.340e+14  4.214e+07  19790326   &lt;2e-16 ***
-GeographicalSO         8.417e+14  3.790e+07  22207676   &lt;2e-16 ***
-GeographicalWE        -2.879e+14  3.872e+07  -7435680   &lt;2e-16 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+                        Estimate Std. Error z value Pr(&gt;|z|)
+(Intercept)            -27755.53 1214680.63  -0.023    0.982
+district                   -7.41     152.33  -0.049    0.961
+partyR                    190.62    5550.11   0.034    0.973
+birthday                   12.88     188.82   0.068    0.946
+genderM                    45.58 1144767.50   0.000    1.000
+nominate_dim1              59.28    4069.58   0.015    0.988
+nominate_dim2            -219.77    3785.47  -0.058    0.954
+seniority_113              32.93     515.12   0.064    0.949
+Contribution_3_minus      -16.95     396.04  -0.043    0.966
+Contribution_3_plus       -17.39     313.05  -0.056    0.956
+Contribution_4_minus      -11.23     488.42  -0.023    0.982
+Contribution_4_plus       -17.22     307.14  -0.056    0.955
+Contribution_51_minus    -126.02    2059.84  -0.061    0.951
+Contribution_51_plus       35.01     597.79   0.059    0.953
+Contribution_52_minus     -15.99     450.09  -0.036    0.972
+Contribution_52_plus      -25.93     430.79  -0.060    0.952
+Contribution_6_minus      352.49    5288.04   0.067    0.947
+Contribution_6_plus       -23.28     364.59  -0.064    0.949
+Contribution_7_minus       23.42     481.31   0.049    0.961
+Contribution_7_plus       -34.05     573.97  -0.059    0.953
+GeographicalMW             88.90   15592.90   0.006    0.995
+GeographicalNE            -15.84   16737.52  -0.001    0.999
+GeographicalSO             40.76   15564.59   0.003    0.998
+GeographicalWE             30.02 1144875.55   0.000    1.000
 
 (Dispersion parameter for binomial family taken to be 1)
 
-    Null deviance:  55.989  on 143  degrees of freedom
-Residual deviance: 504.611  on 119  degrees of freedom
+    Null deviance: 5.5989e+01  on 143  degrees of freedom
+Residual deviance: 6.4644e-06  on 120  degrees of freedom
   (388 observations deleted due to missingness)
-AIC: 554.61
+AIC: 48
 
 Number of Fisher Scoring iterations: 25</code></pre>
 </div>

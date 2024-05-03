@@ -101,7 +101,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="all-votes-without-changes" class="level2">
 <h2 class="anchored" data-anchor-id="all-votes-without-changes">all votes, without changes</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df_no_change_1 <span class="ot">&lt;-</span> df_no_change <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(state, seniority_114, seniority_115, seniority_116, seniority_117, Dmajority_113, Dmajority_114, Dmajority_115, Dmajority_116, Dmajority_117, Geographical, seniority_113, nominate_dim1, nominate_dim2, birthday, gender))</span>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>df_no_change_1 <span class="ot">&lt;-</span> df_no_change <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(state, seniority_114, seniority_115, seniority_116, seniority_117, Dmajority_113, Dmajority_114, Dmajority_115, Dmajority_116, Dmajority_117, seniority_113, nominate_dim1, nominate_dim2, birthday, gender))</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>no_change_ols_minus <span class="ot">&lt;-</span> <span class="fu">lm</span>(all_votes_minus <span class="sc">~</span> . <span class="sc">-</span> all_votes_plus, <span class="at">data =</span> df_no_change_1)</span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(no_change_ols_minus)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -112,32 +112,36 @@ lm(formula = all_votes_minus ~ . - all_votes_plus, data = df_no_change_1)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.33086 -0.05694 -0.00574  0.01907  0.97769 
+-0.34085 -0.05971 -0.00743  0.02060  0.99061 
 
 Coefficients:
                         Estimate Std. Error t value Pr(&gt;|t|)  
-(Intercept)           -3.720e-03  3.009e-02  -0.124   0.9018  
-district              -8.456e-04  1.891e-03  -0.447   0.6555  
-partyR                 7.086e-03  3.910e-02   0.181   0.8565  
-Contribution_3_minus  -9.390e-07  1.224e-06  -0.767   0.4444  
-Contribution_3_plus   -1.238e-05  1.061e-05  -1.166   0.2456  
-Contribution_4_minus  -1.627e-06  1.509e-06  -1.078   0.2829  
-Contribution_4_plus   -1.666e-05  9.999e-06  -1.666   0.0981 .
-Contribution_51_minus  6.404e-06  3.710e-06   1.726   0.0867 .
-Contribution_51_plus   2.231e-05  1.846e-05   1.208   0.2292  
-Contribution_52_minus -5.076e-07  3.263e-06  -0.156   0.8766  
-Contribution_52_plus  -1.538e-05  1.678e-05  -0.917   0.3610  
-Contribution_6_minus   1.817e-06  1.391e-06   1.306   0.1939  
-Contribution_6_plus   -1.869e-06  1.859e-05  -0.101   0.9201  
-Contribution_7_minus  -1.842e-06  1.209e-06  -1.524   0.1300  
-Contribution_7_plus    7.650e-06  1.517e-05   0.504   0.6150  
+(Intercept)           -6.869e-02  1.006e-01  -0.683   0.4958  
+district              -9.832e-04  1.983e-03  -0.496   0.6210  
+partyR                 3.395e-03  4.304e-02   0.079   0.9373  
+Contribution_3_minus  -9.066e-07  1.249e-06  -0.726   0.4693  
+Contribution_3_plus   -1.388e-05  1.086e-05  -1.278   0.2036  
+Contribution_4_minus  -1.572e-06  1.535e-06  -1.024   0.3076  
+Contribution_4_plus   -1.868e-05  1.057e-05  -1.767   0.0796 .
+Contribution_51_minus  6.700e-06  3.804e-06   1.761   0.0806 .
+Contribution_51_plus   2.140e-05  1.880e-05   1.138   0.2572  
+Contribution_52_minus -7.530e-07  3.337e-06  -0.226   0.8218  
+Contribution_52_plus  -1.480e-05  1.707e-05  -0.867   0.3878  
+Contribution_6_minus   1.885e-06  1.428e-06   1.320   0.1893  
+Contribution_6_plus   -1.408e-06  1.891e-05  -0.074   0.9408  
+Contribution_7_minus  -1.848e-06  1.230e-06  -1.503   0.1354  
+Contribution_7_plus    6.761e-06  1.549e-05   0.436   0.6634  
+GeographicalMW         8.865e-02  1.055e-01   0.840   0.4025  
+GeographicalNE         6.548e-02  1.076e-01   0.609   0.5439  
+GeographicalSO         5.521e-02  1.043e-01   0.529   0.5974  
+GeographicalWE         7.480e-02  1.067e-01   0.701   0.4846  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1902 on 129 degrees of freedom
+Residual standard error: 0.1924 on 125 degrees of freedom
   (388 observations deleted due to missingness)
-Multiple R-squared:  0.2996,    Adjusted R-squared:  0.2235 
-F-statistic: 3.941 on 14 and 129 DF,  p-value: 1.324e-05</code></pre>
+Multiple R-squared:  0.3053,    Adjusted R-squared:  0.2053 
+F-statistic: 3.052 on 18 and 125 DF,  p-value: 0.0001344</code></pre>
 </div>
 </div>
 </section>
@@ -145,39 +149,43 @@ F-statistic: 3.941 on 14 and 129 DF,  p-value: 1.324e-05</code></pre>
 <h2 class="anchored" data-anchor-id="each-vote-separately">each vote separately</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 3 comparison</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ols_3_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote3_minus <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote3_plus <span class="sc">-</span> Vote3 <span class="sc">-</span> Vote_change_dummy <span class="sc">-</span> Geographical <span class="sc">-</span> birthday <span class="sc">-</span> seniority_113 <span class="sc">-</span> nominate_dim1 <span class="sc">-</span> nominate_dim2, <span class="at">data =</span> df_vote_3)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>ols_3_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote3_minus <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote3_plus <span class="sc">-</span> Vote3 <span class="sc">-</span> Vote_change_dummy <span class="sc">-</span> birthday <span class="sc">-</span> seniority_113 <span class="sc">-</span> nominate_dim1 <span class="sc">-</span> nominate_dim2, <span class="at">data =</span> df_vote_3)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_3_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
 lm(formula = Vote3_minus ~ . - state - BioID - Vote3_plus - Vote3 - 
-    Vote_change_dummy - Geographical - birthday - seniority_113 - 
-    nominate_dim1 - nominate_dim2, data = df_vote_3)
+    Vote_change_dummy - birthday - seniority_113 - nominate_dim1 - 
+    nominate_dim2, data = df_vote_3)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.06825 -0.03086 -0.01970  0.00618  0.97024 
+-0.07385 -0.02860 -0.01397  0.00154  0.96310 
 
 Coefficients:
                        Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)           2.937e-02  9.785e-03   3.001  0.00289 ** 
-partyR                9.568e-01  1.431e-02  66.860  &lt; 2e-16 ***
-Contribution_3_minus  5.184e-07  2.500e-07   2.073  0.03890 *  
-Contribution_3_plus  -3.500e-06  3.051e-06  -1.147  0.25216    
+(Intercept)          -4.817e-03  4.544e-02  -0.106   0.9156    
+partyR                9.470e-01  1.504e-02  62.982   &lt;2e-16 ***
+Contribution_3_minus  5.094e-07  2.513e-07   2.027   0.0434 *  
+Contribution_3_plus  -2.698e-06  3.117e-06  -0.866   0.3873    
+GeographicalMW        4.144e-02  4.793e-02   0.865   0.3878    
+GeographicalNE        1.866e-02  4.819e-02   0.387   0.6988    
+GeographicalSO        5.623e-02  4.720e-02   1.191   0.2344    
+GeographicalWE        2.944e-02  4.725e-02   0.623   0.5337    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1194 on 335 degrees of freedom
+Residual standard error: 0.1193 on 331 degrees of freedom
   (20 observations deleted due to missingness)
-Multiple R-squared:  0.9433,    Adjusted R-squared:  0.9428 
-F-statistic:  1858 on 3 and 335 DF,  p-value: &lt; 2.2e-16</code></pre>
+Multiple R-squared:  0.9441,    Adjusted R-squared:  0.9429 
+F-statistic: 798.8 on 7 and 331 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
 </div>
 </section>
 <section id="subsample-analysis-only-those-who-changed-votes" class="level2">
 <h2 class="anchored" data-anchor-id="subsample-analysis-only-those-who-changed-votes">subsample analysis, only those who changed votes</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_subsample_1 <span class="ot">&lt;-</span> df_subsample <span class="sc">%&gt;%</span> <span class="fu">select</span>(party, vote_change_to_anti, year, Contribution_3_minus, Contribution_3_plus, Contribution_4_minus, Contribution_4_plus, Contribution_51_minus, Contribution_51_plus, Contribution_52_minus, Contribution_52_plus, Contribution_6_minus, Contribution_6_plus, Contribution_7_minus, Contribution_7_plus)</span>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df_subsample_1 <span class="ot">&lt;-</span> df_subsample <span class="sc">%&gt;%</span> <span class="fu">select</span>(party, vote_change_to_anti, year, Contribution_3_minus, Contribution_3_plus, Contribution_4_minus, Contribution_4_plus, Contribution_51_minus, Contribution_51_plus, Contribution_52_minus, Contribution_52_plus, Contribution_6_minus, Contribution_6_plus, Contribution_7_minus, Contribution_7_plus, Geographical)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>ols_subsample_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_anti <span class="sc">~</span> . <span class="sc">-</span> year, <span class="at">data =</span> df_subsample_1)</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_subsample_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -190,7 +198,7 @@ Residuals:
     Min      1Q  Median      3Q     Max 
 -0.5000 -0.3333  0.0000  0.5000  0.6667 
 
-Coefficients: (7 not defined because of singularities)
+Coefficients: (10 not defined because of singularities)
                         Estimate Std. Error t value Pr(&gt;|t|)
 (Intercept)            7.275e-01  1.018e+00   0.715    0.502
 partyR                 1.175e+00  2.122e+01   0.055    0.958
@@ -206,6 +214,9 @@ Contribution_6_minus          NA         NA      NA       NA
 Contribution_6_plus           NA         NA      NA       NA
 Contribution_7_minus          NA         NA      NA       NA
 Contribution_7_plus           NA         NA      NA       NA
+GeographicalNE                NA         NA      NA       NA
+GeographicalSO                NA         NA      NA       NA
+GeographicalWE                NA         NA      NA       NA
 
 Residual standard error: 0.6009 on 6 degrees of freedom
   (18 observations deleted due to missingness)
