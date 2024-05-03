@@ -1,6 +1,6 @@
 ---
 title: "Data Analysis of Roll Call Data"
-format: html
+format: pdf
 ---
 The summary statistics and plots of the data can be found in the plots.qmd file in the same directory.
 ```{r setup, include=FALSE}
@@ -48,22 +48,48 @@ view(df_no_change)
 
 ols_1 <- lm(all_votes_minus ~ . - all_votes - all_votes_plus - state, data = df_no_change)
 summary(ols_1)
-
-
 ```
 
 # LPM per session 
 ```{r}
+# Vote 3
 df_113 <- filter_session_data(df, "113")
-ols_113 <- lm(Vote_change_dummy ~ ., data = df_113)
+ols_113 <- lm(Vote3_minus ~ . - Vote3 - Vote3_plus, data = df_113)
 summary(ols_113)
+
+# Vote 4
+df_114 <- filter_session_data(df, "114")
+ols_114 <- lm(Vote4_minus ~ . - Vote4 - Vote4_plus, data = df_114)
+summary(ols_114)
+
+# Vote 51
+df_1151 <- filter_session_data(df, "1151")
+ols_1151 <- lm(Vote51_minus ~ . - Vote51 - Vote51_plus, data = df_1151)
+summary(ols_1151)
+
+# Vote 52
+df_1152 <- filter_session_data(df, "1152")
+ols_1152 <- lm(Vote52_minus ~ . - Vote52 - Vote52_plus, data = df_1152)
+summary(ols_1152)
+
+# Vote 6
+df_116 <- filter_session_data(df, "116")
+ols_116 <- lm(Vote6_minus ~ . - Vote6 - Vote6_plus, data = df_116)
+summary(ols_116)
+
+# Vote 7
+df_117 <- filter_session_data(df, "117")
+ols_117 <- lm(Vote7_minus ~ . - Vote7 - Vote7_plus, data = df_117)
+summary(ols_117)
+
+
 ```
 
 # LPM of only mind changers 
 ```{r}
 df_subsample <- df_subsample %>% select(-c(
     last_name, first_name, name, District, Vote_count, Vote_change,
-    Vote_change, Vote_change_dummy, votes, member_id, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, state
+    Vote_change, Vote_change_dummy, votes, member_id, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, state, change, vote_change_to_pro
 ))
 # view(df_subsample)
 

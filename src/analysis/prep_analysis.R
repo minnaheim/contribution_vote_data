@@ -62,6 +62,8 @@ view(df)
 
 # general DF
 df_gen <- analysis_prep(df)
+df_gen <- group_columns(df_gen)
+
 # view(df_gen)
 
 # summarize contributions

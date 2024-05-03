@@ -2,7 +2,7 @@
 library(tidyverse)
 library(ggplot2)
 library(glue)
-
+library(fastDummies)
 # DF FOR ANALYSIS
 analysis_prep <- function(df) {
     # parties only incl. R, D, no I
@@ -55,52 +55,76 @@ filter_session_data <- function(df, session) {
     if (session == 113) {
         # Select columns based on conditions
         selected_cols <- c(
-            "party", "Vote_change_dummy",
+            "party", "anti_env.113", "pro_env.113", "Geographical",
             "Vote3", grep("^amount.*113$", names(df), value = TRUE)
         )
         df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^vote|^amount", names(df), value = TRUE, invert = TRUE)
-        # excluded_cols <- grep("^(?!Vote*3|amount.*113$)", names(df), value = TRUE, perl = TRUE)
+        df <- df %>% filter(!is.na(Vote3))
+        df <- dummy_cols(df, select_columns = "Vote3")
+        df <- df %>%
+            rename("Vote3_plus" = "Vote3_+") %>%
+            rename("Vote3_minus" = "Vote3_-")
     }
     if (session == 114) {
         selected_cols <- c(
-            "party", "Vote_change_dummy",
+            "party", "anti_env.114", "pro_env.114", "Geographical",
             "Vote4", grep("^amount.*114$", names(df), value = TRUE)
         )
         df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*4|amount.*114$)", names(df), value = TRUE, perl = TRUE)
+        df <- df %>% filter(!is.na(Vote4))
+        df <- dummy_cols(df, select_columns = "Vote4")
+        df <- df %>%
+            rename("Vote4_plus" = "Vote4_+") %>%
+            rename("Vote4_minus" = "Vote4_-")
     }
     if (session == 1151) {
         selected_cols <- c(
-            "party", "Vote_change_dummy",
+            "party", "anti_env.115", "pro_env.115", "Geographical",
             "Vote51", grep("^amount.*115$", names(df), value = TRUE)
         )
         df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*51|amount.*115$)", names(df), value = TRUE, perl = TRUE)
+
+        df <- df %>% filter(!is.na(Vote51))
+        df <- dummy_cols(df, select_columns = "Vote51")
+        df <- df %>%
+            rename("Vote51_plus" = "Vote51_+") %>%
+            rename("Vote51_minus" = "Vote51_-")
     }
     if (session == 1152) {
         selected_cols <- c(
-            "party", "Vote_change_dummy",
+            "party", "anti_env.115", "pro_env.115", "Geographical",
             "Vote52", grep("^amount.*115$", names(df), value = TRUE)
         )
         df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*52|amount.*115$)", names(df), value = TRUE, perl = TRUE)
+        df <- df %>% filter(!is.na(Vote52))
+        df <- dummy_cols(df, select_columns = "Vote52")
+        df <- df %>%
+            rename("Vote52_plus" = "Vote52_+") %>%
+            rename("Vote52_minus" = "Vote52_-")
     }
     if (session == 116) {
         selected_cols <- c(
-            "party", "Vote_change_dummy",
+            "party", "anti_env.116", "pro_env.116", "Geographical",
             "Vote6", grep("^amount.*116$", names(df), value = TRUE)
         )
         df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*6|amount.*116$)", names(df), value = TRUE, perl = TRUE)
+        df <- df %>% filter(!is.na(Vote6))
+        df <- dummy_cols(df, select_columns = "Vote6")
+        df <- df %>%
+            rename("Vote6_plus" = "Vote6_+") %>%
+            rename("Vote6_minus" = "Vote6_-")
     }
     if (session == 117) {
         selected_cols <- c(
-            "party", "Vote_change_dummy",
+            "party", "anti_env.117", "pro_env.117", "Geographical",
             "Vote7", grep("^amount.*117$", names(df), value = TRUE)
         )
         df <- df[, c(selected_cols)]
-        # view(df)
+        df <- df %>% filter(!is.na(Vote7))
+        df <- dummy_cols(df, select_columns = "Vote7")
+        df <- df %>%
+            rename("Vote7_plus" = "Vote7_+") %>%
+            rename("Vote7_minus" = "Vote7_-")
     }
     return(df)
 }
