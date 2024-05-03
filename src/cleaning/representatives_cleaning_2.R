@@ -9,11 +9,12 @@ hist_reps <- read_delim("data/original/representatives/hist_reps.csv", show_col_
 curr_reps <- read_delim("data/original/representatives/curr_reps.csv", show_col_types = FALSE)
 reps_113_117 <- read_delim("data/original/representatives/rep_113-117_bioguide.csv", show_col_types = FALSE)
 
-reps_113_117 <- add_seniority(reps_113_117, 113)
-reps_113_117 <- add_seniority(reps_113_117, 114)
-reps_113_117 <- add_seniority(reps_113_117, 115)
-reps_113_117 <- add_seniority(reps_113_117, 116)
-reps_113_117 <- add_seniority(reps_113_117, 117)
+reps_113_117 <- add_seniority(reps_113_117, 3)
+reps_113_117 <- add_seniority(reps_113_117, 4)
+reps_113_117 <- add_seniority(reps_113_117, 51)
+reps_113_117 <- add_seniority(reps_113_117, 52)
+reps_113_117 <- add_seniority(reps_113_117, 6)
+reps_113_117 <- add_seniority(reps_113_117, 7)
 
 # when reading in the bioguide data, we have all cols except for one in CSV format,
 # the remaining in JSON, contains all congresses which representative participated in.
@@ -39,11 +40,13 @@ reps_113_117 <- reps_113_117 %>% select(id, birthYear, starts_with("seniority_11
 
 full_reps <- right_join(full_reps, reps_113_117, by = c("bioguide_id" = "id"))
 
-rep_113 <- add_seniority(rep_113, 113)
-rep_114 <- add_seniority(rep_114, 114)
-rep_115 <- add_seniority(rep_115, 115)
-rep_116 <- add_seniority(rep_116, 116)
-rep_117 <- add_seniority(rep_117, 117)
+rep_113 <- add_seniority(rep_113, 3)
+view(rep_113)
+rep_114 <- add_seniority(rep_114, 4)
+rep_1151 <- add_seniority(rep_115, 5)
+rep_1152 <- add_seniority(rep_115, 51)
+rep_116 <- add_seniority(rep_116, 6)
+rep_117 <- add_seniority(rep_117, 7)
 # merges rep_11* with full_reps -> adds ids, and other control vars
 rep_113 <- keep_ids(rep_113)
 rep_114 <- keep_ids(rep_114)

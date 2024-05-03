@@ -9,6 +9,10 @@ df <- read.csv("data/cleaned/df.csv")
 
 # remove representatives who voted only once, whose party isnt R,D,
 df <- analysis_prep(df)
+# change vote to dummy vars
+df <- dummy_vote(df)
+# view(df)
+
 
 # change birthdays to only include years, and group into decades
 # why does lubridate not work?
@@ -20,16 +24,19 @@ df$birthday <- as.numeric(format(df$birthday, "%Y"))
 # view(df)
 # CONTROL VARIABLES
 # add dummy for majority party leadership
-df["Dmajority_113"] <- 0
-df["Dmajority_114"] <- 0
-df["Dmajority_115"] <- 0
-df["Dmajority_116"] <- 1
-df["Dmajority_117"] <- 1
+df["Dmajority_3"] <- 0
+df["Dmajority_4"] <- 0
+df["Dmajority_51"] <- 0
+df["Dmajority_52"] <- 0
+df["Dmajority_6"] <- 1
+df["Dmajority_7"] <- 1
 
 # add state dummies (categorised acc. to US Census Data -> https://www2.census.gov/geo/pdfs/reference/GARM/Ch6GARM.pdf)
 state_abbreviation <- read_csv("data/original/control_variables/state_abbreviations.csv", show_col_types = FALSE) %>%
     select(Postal, Geographical) %>%
     filter(!is.na(Geographical))
+
+table(state_abbreviation$Geographical)
 
 df["Geographical"] <- NA
 add_state_category <- function(df) {
@@ -43,8 +50,7 @@ add_state_category <- function(df) {
     return(df)
 }
 df <- add_state_category(df)
-
-
+df <- df %>% dplyr::filter(!is.na(df$Geographical))
 # view(df)
 
 
@@ -175,10 +181,7 @@ df_sub <- relocate(df_sub, vote_change_to_pro, .after = vote_change_type)
 df_sub <- relocate(df_sub, vote_change_to_anti, .after = vote_change_to_pro)
 
 # view(df_sub)
-
-
-
-
+# view(df)
 
 write.csv(df, "data/analysis/df.csv", row.names = FALSE)
 write.csv(df_no_change, "data/analysis/df_no_change.csv", row.names = FALSE)

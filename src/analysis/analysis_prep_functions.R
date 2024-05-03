@@ -24,6 +24,13 @@ analysis_prep <- function(df) {
     df <- relocate(df, "Vote_change_dummy", .after = "Vote_change")
 }
 
+# change all votes in vote columns to be 0 for - and 1 for +
+dummy_vote <- function(df) {
+    for (vote in vote_columns) {
+        df[vote] <- ifelse(df[vote] == "+", 1, 0)
+    }
+    return(df)
+}
 
 # DF WHERE CONTRIBUTION COLUMNS ARE MUTATED TOGETHER (summarised)
 summarise_contributions <- function(df) {

@@ -1,4 +1,4 @@
-# run Rscript src/scripts/clean_ind_bulk.R.R ./data/original/contributions/CampaignFin12/indivs12.txt
+# run Rscript src/scripts/clean_ind_bulk.R ./data/original/contributions/CampaignFin12/indivs12.txt
 # for all files in ./data/original/contributions/CampaignFin*/indivs*.txt 
 
 echo "Cleaning individual contributions"
@@ -14,7 +14,7 @@ do
     continue
   fi
 
-  Rscript src/scripts/clean_ind_bulk.R.R $file
+  Rscript src/scripts/clean_ind_bulk.R $file
 done
 
 # print separator
