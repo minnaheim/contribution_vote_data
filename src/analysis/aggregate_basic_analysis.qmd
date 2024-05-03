@@ -40,7 +40,7 @@ df_no_change <- df_no_change %>%
     rename("all_votes_minus" = "all_votes_-")
 
 df_no_change <- df_no_change %>% select(-c(
-    last_name, first_name, name, District, Vote_count, Vote_change,
+    last_name, first_name, name, Vote_count, Vote_change,
     Vote_change, Vote_change_dummy, member_id, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7
 ))
 
@@ -88,7 +88,7 @@ summary(ols_117)
 # LPM of only mind changers 
 ```{r}
 df_subsample <- df_subsample %>% select(-c(
-    last_name, first_name, name, District, Vote_count, Vote_change,
+    last_name, first_name, name, Vote_count, Vote_change,
     Vote_change, Vote_change_dummy, votes, member_id, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, state, change, vote_change_to_pro
 ))
 # view(df_subsample)

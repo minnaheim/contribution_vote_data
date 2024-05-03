@@ -55,7 +55,7 @@ filter_session_data <- function(df, session) {
     if (session == 113) {
         # Select columns based on conditions
         selected_cols <- c(
-            "party", "anti_env.113", "pro_env.113", "Geographical",
+            "party", "anti_env.113", "pro_env.113", "Geographical", "District",
             "Vote3", grep("^amount.*113$", names(df), value = TRUE)
         )
         df <- df[, c(selected_cols)]
@@ -67,7 +67,7 @@ filter_session_data <- function(df, session) {
     }
     if (session == 114) {
         selected_cols <- c(
-            "party", "anti_env.114", "pro_env.114", "Geographical",
+            "party", "anti_env.114", "pro_env.114", "Geographical", "District",
             "Vote4", grep("^amount.*114$", names(df), value = TRUE)
         )
         df <- df[, c(selected_cols)]
@@ -79,7 +79,7 @@ filter_session_data <- function(df, session) {
     }
     if (session == 1151) {
         selected_cols <- c(
-            "party", "anti_env.115", "pro_env.115", "Geographical",
+            "party", "anti_env.115", "pro_env.115", "Geographical", "District",
             "Vote51", grep("^amount.*115$", names(df), value = TRUE)
         )
         df <- df[, c(selected_cols)]
@@ -92,7 +92,7 @@ filter_session_data <- function(df, session) {
     }
     if (session == 1152) {
         selected_cols <- c(
-            "party", "anti_env.115", "pro_env.115", "Geographical",
+            "party", "anti_env.115", "pro_env.115", "Geographical", "District",
             "Vote52", grep("^amount.*115$", names(df), value = TRUE)
         )
         df <- df[, c(selected_cols)]
@@ -104,7 +104,7 @@ filter_session_data <- function(df, session) {
     }
     if (session == 116) {
         selected_cols <- c(
-            "party", "anti_env.116", "pro_env.116", "Geographical",
+            "party", "anti_env.116", "pro_env.116", "Geographical", "District",
             "Vote6", grep("^amount.*116$", names(df), value = TRUE)
         )
         df <- df[, c(selected_cols)]
@@ -116,7 +116,7 @@ filter_session_data <- function(df, session) {
     }
     if (session == 117) {
         selected_cols <- c(
-            "party", "anti_env.117", "pro_env.117", "Geographical",
+            "party", "anti_env.117", "pro_env.117", "Geographical", "District",
             "Vote7", grep("^amount.*117$", names(df), value = TRUE)
         )
         df <- df[, c(selected_cols)]

@@ -77,7 +77,10 @@ roll_call_full <- rename(roll_call_full, c("party" = "Party")) %>%
 roll_call_full <- fuzzy_join_representative_id(roll_call_full)
 roll_call_full <- combine_columns(roll_call_full, "name")
 
-# view(roll_call_full)
+
+# extract only the number of the district from the district column, i.e. "AL-01" -> "01"
+roll_call_full$District <- str_extract(roll_call_full$District, "\\d+")
+roll_call_full$District <- as.numeric(roll_call_full$District)
 
 # write df as csv
 write.csv(roll_call_full, "data/cleaned/roll_call.csv", row.names = FALSE)

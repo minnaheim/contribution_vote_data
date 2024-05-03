@@ -17,7 +17,7 @@ clean_names <- function(dataset) {
 
 rep_cleaning <- function(dataset) {
     trimws(dataset)
-    colnames(dataset) <- c("last_name", "first_name", "state", "party", "chamber")
+    colnames(dataset) <- c("last_name", "first_name", "state", "party", "chamber", "district")
     dataset <- dataset %>% dplyr::filter(chamber != "Senate")
     # dataset <- clean_names(dataset)
     return(dataset)
