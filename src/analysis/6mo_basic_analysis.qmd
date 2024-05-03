@@ -16,7 +16,9 @@ source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_
 df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
 df_no_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_no_change.csv")
 df_vote_3 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_3.csv")
+view(df_vote_3)
 df_vote_4 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4.csv")
+view(df_vote_4)
 df_vote_4_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4_2.csv")
 df_vote_51 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_51.csv")
 df_vote_51_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_51_2.csv")
@@ -45,6 +47,26 @@ summary(no_change_ols_minus)
 # Vote 3 comparison
 ols_3_1 <- lm(Vote3_minus ~ . - state - BioID - Vote3_plus - Vote3 - Vote_change_dummy - birthday - seniority_113 - nominate_dim1 - nominate_dim2, data = df_vote_3)
 summary(ols_3_1)
+
+# Vote 4 comparison
+ols_4_1 <- lm(Vote4_minus ~ . - state - BioID - Vote4_plus - Vote4 - Vote_change_dummy - birthday - seniority_114 - nominate_dim1 - nominate_dim2, data = df_vote_4)
+summary(ols_4_1)
+
+# Vote 51 comparison
+ols_51_1 <- lm(Vote51_minus ~ . - state - BioID - Vote51_plus - Vote51 - Vote_change_dummy - birthday - seniority_115 - nominate_dim1 - nominate_dim2, data = df_vote_51)
+summary(ols_51_1)
+
+# Vote 52 comparison
+ols_52_1 <- lm(Vote52_minus ~ . - state - BioID - Vote52_plus - Vote52 - Vote_change_dummy - birthday - seniority_115 - nominate_dim1 - nominate_dim2, data = df_vote_52)
+summary(ols_52_1)
+
+# Vote 6 comparison
+ols_6_1 <- lm(Vote6_minus ~ . - state - BioID - Vote6_plus - Vote6 - Vote_change_dummy - birthday - seniority_116 - nominate_dim1 - nominate_dim2, data = df_vote_6)
+summary(ols_6_1)
+
+# Vote 7 comparison
+ols_7_1 <- lm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy - birthday - seniority_117 - nominate_dim1 - nominate_dim2, data = df_vote_7)
+summary(ols_7_1)
 ```
 
 ## subsample analysis, only those who changed votes
