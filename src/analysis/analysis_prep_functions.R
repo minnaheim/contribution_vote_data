@@ -2,6 +2,8 @@
 library(tidyverse)
 library(ggplot2)
 library(glue)
+library(fastDummies)
+library(glue)
 
 # DF FOR ANALYSIS
 analysis_prep <- function(df) {
@@ -59,138 +61,48 @@ summarise_contributions <- function(df) {
 
 # function that filters the data based on the session
 filter_session_data_2 <- function(df, vote) {
-    if (vote == 3) {
-        # Select columns based on conditions
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote3", "Contribution_3_minus", "Contribution_3_plus", "state", "BioID", "seniority_113", "birthday",
-            "Geographical", "nominate_dim1", "nominate_dim2"
-        )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^vote|^amount", names(df), value = TRUE, invert = TRUE)
-        # excluded_cols <- grep("^(?!Vote*3|amount.*113$)", names(df), value = TRUE, perl = TRUE)
-    }
-    if (vote == 4) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote4", "Contribution_4_minus", "Contribution_4_plus", "state", "BioID", "seniority_114",
-            "birthday", "Geographical", "nominate_dim1", "nominate_dim2"
-        )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*4|amount.*114$)", names(df), value = TRUE, perl = TRUE)
-    }
-    if (vote == 51) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote51", "Contribution_51_minus", "Contribution_51_plus", "state", "BioID", "seniority_115",
-            "birthday", "Geographical", "nominate_dim1", "nominate_dim2"
-        )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*51|amount.*115$)", names(df), value = TRUE, perl = TRUE)
-    }
-    if (vote == 52) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote52", "Contribution_52_minus", "Contribution_52_plus", "state", "BioID", "seniority_115",
-            "birthday", "Geographical", "nominate_dim1", "nominate_dim2"
-        )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*52|amount.*115$)", names(df), value = TRUE, perl = TRUE)
-    }
-    if (vote == 6) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote6", "Contribution_6_minus", "Contribution_6_plus", "state", "BioID", "seniority_116",
-            "birthday", "Geographical", "nominate_dim1", "nominate_dim2"
-        )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*6|amount.*116$)", names(df), value = TRUE, perl = TRUE)
-    }
-    if (vote == 7) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote7", "Contribution_7_minus", "Contribution_7_plus", "state", "BioID", "seniority_117",
-            "birthday", "Geographical", "nominate_dim1", "nominate_dim2"
-        )
-        df <- df[, c(selected_cols)]
-        # view(df)
-    }
-
-
+    selected_cols <- c(
+        "party", "Vote_change_dummy",
+        glue("Vote{vote}"), glue("Contribution_{vote}_minus"), glue("Contribution_{vote}_plus"),
+        "state", "BioID", glue("seniority_11{vote}"), "birthday",
+        "Geographical", "nominate_dim1", "nominate_dim2"
+    )
+    df <- df[, c(selected_cols)]
+    df <- df %>% filter(!is.na(glue("Vote{vote}")))
+    df <- dummy_cols(df, select_columns = glue("Vote{vote}"))
+    df <- df %>% rename_with(~ glue("Vote{vote}_plus"), .cols = glue("Vote{vote}_1"))
+    df <- df %>% rename_with(~ glue("Vote{vote}_minus"), .cols = glue("Vote{vote}_0"))
     return(df)
 }
 
 # function that filters the data based on the session
 filter_all_pre_session_data <- function(df, vote) {
-    if (vote == 4) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote4", "Contribution_3_minus", "Contribution_3_plus", "Contribution_4_minus",
-            "Contribution_4_plus", "state", "BioID", "seniority_114", "birthday",
-            "Geographical", "nominate_dim1", "nominate_dim2"
+    all_votes <- c(3, 4, 51, 52, 6, 7)
+    # include not only current vote but that of all votes before
+    votes_before <- all_votes[all_votes <= vote]
+    contribution_cols <- c()
+    for (v in votes_before) {
+        contribution_cols <- c(
+            contribution_cols,
+            glue("Contribution_{v}_minus"),
+            glue("Contribution_{v}_plus")
         )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*4|amount.*114$)", names(df), value = TRUE, perl = TRUE)
     }
-    if (vote == 51) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote51", "Contribution_3_minus", "Contribution_3_plus",
-            "Contribution_4_minus", "Contribution_4_plus",
-            "Contribution_51_minus", "Contribution_51_plus", "state", "BioID", "seniority_115", "birthday",
-            "Geographical", "nominate_dim1", "nominate_dim2"
-        )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*51|amount.*115$)", names(df), value = TRUE, perl = TRUE)
-    }
-    if (vote == 52) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote52", "Contribution_3_minus", "Contribution_3_plus",
-            "Contribution_4_minus", "Contribution_4_plus",
-            "Contribution_51_minus", "Contribution_51_plus",
-            "Contribution_52_minus", "Contribution_52_plus",
-            "state", "BioID", "seniority_115", "birthday",
-            "Geographical", "nominate_dim1", "nominate_dim2"
-        )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*52|amount.*115$)", names(df), value = TRUE, perl = TRUE)
-    }
-    if (vote == 6) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote6", "Contribution_3_minus", "Contribution_3_plus",
-            "Contribution_4_minus", "Contribution_4_plus",
-            "Contribution_51_minus", "Contribution_51_plus",
-            "Contribution_52_minus", "Contribution_52_plus",
-            "Contribution_6_minus", "Contribution_6_plus",
-            "state", "BioID", "seniority_116", "birthday",
-            "Geographical", "nominate_dim1", "nominate_dim2"
-        )
-        df <- df[, c(selected_cols)]
-        # excluded_cols <- grep("^(?!Vote*6|amount.*116$)", names(df), value = TRUE, perl = TRUE)
-    }
-    if (vote == 7) {
-        selected_cols <- c(
-            "party", "Vote_change_dummy",
-            "Vote7", "Contribution_3_minus", "Contribution_3_plus",
-            "Contribution_4_minus", "Contribution_4_plus",
-            "Contribution_51_minus", "Contribution_51_plus",
-            "Contribution_52_minus", "Contribution_52_plus",
-            "Contribution_6_minus", "Contribution_6_plus",
-            "Contribution_7_minus", "Contribution_7_plus",
-            "state", "BioID", "seniority_117", "birthday",
-            "Geographical", "nominate_dim1", "nominate_dim2"
-        )
-        df <- df[, c(selected_cols)]
-        # view(df)
-    }
-
-
+    # select relevant columns
+    selected_cols <- c(
+        "party", "Vote_change_dummy",
+        glue("Vote{vote}"),
+        contribution_cols,
+        "state", "BioID", glue("seniority_11{vote}"), "birthday",
+        "Geographical", "nominate_dim1", "nominate_dim2"
+    )
+    df <- df[, c(selected_cols)]
+    df <- df %>% filter(!is.na(glue("Vote{vote}")))
+    df <- dummy_cols(df, select_columns = glue("Vote{vote}"))
+    df <- df %>% rename_with(~ glue("Vote{vote}_plus"), .cols = glue("Vote{vote}_1"))
+    df <- df %>% rename_with(~ glue("Vote{vote}_minus"), .cols = glue("Vote{vote}_0"))
     return(df)
 }
-
-
 
 # DF for SUBSAMPLE ANALYSIS
 vote_columns <- c("Vote3", "Vote4", "Vote51", "Vote52", "Vote6", "Vote7")

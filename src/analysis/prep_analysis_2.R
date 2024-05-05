@@ -11,6 +11,7 @@ df <- read.csv("data/cleaned/df.csv")
 df <- analysis_prep(df)
 # change vote to dummy vars
 df <- dummy_vote(df)
+
 # view(df)
 
 
@@ -24,12 +25,12 @@ df$birthday <- as.numeric(format(df$birthday, "%Y"))
 # view(df)
 # CONTROL VARIABLES
 # add dummy for majority party leadership
-df["Dmajority_3"] <- 0
-df["Dmajority_4"] <- 0
-df["Dmajority_51"] <- 0
-df["Dmajority_52"] <- 0
-df["Dmajority_6"] <- 1
-df["Dmajority_7"] <- 1
+# df["Dmajority_3"] <- 0
+# df["Dmajority_4"] <- 0
+# df["Dmajority_51"] <- 0
+# df["Dmajority_52"] <- 0
+# df["Dmajority_6"] <- 1
+# df["Dmajority_7"] <- 1
 
 # add state dummies (categorised acc. to US Census Data -> https://www2.census.gov/geo/pdfs/reference/GARM/Ch6GARM.pdf)
 state_abbreviation <- read_csv("data/original/control_variables/state_abbreviations.csv", show_col_types = FALSE) %>%
@@ -51,96 +52,112 @@ add_state_category <- function(df) {
 }
 df <- add_state_category(df)
 df <- df %>% dplyr::filter(!is.na(df$Geographical))
+
+
+# dummy variable for pro and anti environmental contributions, i.e. has the person ever
+# received any pro or anti environmental contributions?
+df$pro_env_dummy <- "0"
+df$anti_env_dummy <- "0"
+
+for (i in 1:nrow(df)) {
+    if (any(df[i, c(
+        "Contribution_3_plus", "Contribution_4_plus", "Contribution_51_plus",
+        "Contribution_52_plus", "Contribution_6_plus", "Contribution_7_plus"
+    )] > 1, na.rm = TRUE)) {
+        df$pro_env_dummy[i] <- 1
+    }
+    # Check if any contributions minus are greater than 1
+    if (any(df[i, c(
+        "Contribution_3_minus", "Contribution_4_minus", "Contribution_51_minus",
+        "Contribution_52_minus", "Contribution_6_minus", "Contribution_7_minus"
+    )] > 1, na.rm = TRUE)) {
+        df$anti_env_dummy[i] <- 1
+    }
+}
+view(df)
+
+
+# pivot table longer
+df_long <- df
+df_long$seniority_115_2 <- df_long$seniority_115
+df_long <- df_long %>%
+    rename("seniority_3" = "seniority_113") %>%
+    rename("seniority_4" = "seniority_114") %>%
+    rename("seniority_51" = "seniority_115") %>%
+    rename("seniority_52" = "seniority_115_2") %>%
+    rename("seniority_6" = "seniority_116") %>%
+    rename("seniority_7" = "seniority_117") %>%
+    rename("Contribution_minus_3" = "Contribution_3_minus") %>%
+    rename("Contribution_plus_3" = "Contribution_3_plus") %>%
+    rename("Contribution_minus_4" = "Contribution_4_minus") %>%
+    rename("Contribution_plus_4" = "Contribution_4_plus") %>%
+    rename("Contribution_minus_51" = "Contribution_51_minus") %>%
+    rename("Contribution_plus_51" = "Contribution_51_plus") %>%
+    rename("Contribution_minus_52" = "Contribution_52_minus") %>%
+    rename("Contribution_plus_52" = "Contribution_52_plus") %>%
+    rename("Contribution_minus_6" = "Contribution_6_minus") %>%
+    rename("Contribution_plus_6" = "Contribution_6_plus") %>%
+    rename("Contribution_minus_7" = "Contribution_7_minus") %>%
+    rename("Contribution_plus_7" = "Contribution_7_plus")
+
+# Define columns to keep as identifiers
+id_vars <- c(
+    "BioID", "GovtrackID", "opensecrets_id", "first_name", "last_name", "state", "district",
+    "party", "name", "birthday", "Geographical", "nominate_dim1", "nominate_dim2"
+)
+
+# Perform a single pivot_longer operation
+df_long <- df_long %>%
+    pivot_longer(
+        cols = -all_of(id_vars), # Exclude identifier columns from pivoting
+        names_to = c(".value", "Instance"), # .value keeps the metric name, Instance extracts the number
+        names_pattern = "([a-zA-Z_]+)([0-9]+)$", # Separates the metric name and instance number
+        # values_transform = list(
+        #     vote = as.numeric, contribution_plus = as.numeric,
+        #     contribution_minus = as.numeric, seniority = as.numeric
+        # ) # Convert to numeric if needed
+    )
+df_long <- df_long %>% filter(!is.na(Instance))
+# view(df_long)
+
+
+# add 2nd
+df$seniority_1152 <- df$seniority_115
+df <- df %>% rename("seniority_1151" = "seniority_115")
 # view(df)
 
 
 # filter for each session
 df_vote_3 <- filter_session_data_2(df, 3)
-# dry...
-df_vote_3 <- df_vote_3 %>% filter(!is.na(Vote3))
-df_vote_3 <- dummy_cols(df_vote_3, select_columns = "Vote3")
-df_vote_3 <- df_vote_3 %>% rename("Vote3_plus" = "Vote3_+")
-df_vote_3 <- df_vote_3 %>% rename("Vote3_minus" = "Vote3_-")
-
 df_vote_4 <- filter_session_data_2(df, 4)
-
-df_vote_4 <- df_vote_4 %>% filter(!is.na(Vote4))
-df_vote_4 <- dummy_cols(df_vote_4, select_columns = "Vote4")
-df_vote_4 <- df_vote_4 %>% rename("Vote4_plus" = "Vote4_+")
-df_vote_4 <- df_vote_4 %>% rename("Vote4_minus" = "Vote4_-")
-
 df_vote_51 <- filter_session_data_2(df, 51)
-df_vote_51 <- df_vote_51 %>% filter(!is.na(Vote51))
-df_vote_51 <- dummy_cols(df_vote_51, select_columns = "Vote51")
-df_vote_51 <- df_vote_51 %>% rename("Vote51_plus" = "Vote51_+")
-df_vote_51 <- df_vote_51 %>% rename("Vote51_minus" = "Vote51_-")
-
 df_vote_52 <- filter_session_data_2(df, 52)
-df_vote_52 <- df_vote_52 %>% filter(!is.na(Vote52))
-df_vote_52 <- dummy_cols(df_vote_52, select_columns = "Vote52")
-df_vote_52 <- df_vote_52 %>% rename("Vote52_minus" = "Vote52_-")
-df_vote_52 <- df_vote_52 %>% rename("Vote52_plus" = "Vote52_+")
-
 df_vote_6 <- filter_session_data_2(df, 6)
-
-df_vote_6 <- df_vote_6 %>% filter(!is.na(Vote6))
-df_vote_6 <- dummy_cols(df_vote_6, select_columns = "Vote6")
-df_vote_6 <- df_vote_6 %>% rename("Vote6_plus" = "Vote6_+")
-df_vote_6 <- df_vote_6 %>% rename("Vote6_minus" = "Vote6_-")
-
 df_vote_7 <- filter_session_data_2(df, 7)
 
-df_vote_7 <- df_vote_7 %>% filter(!is.na(Vote7))
-df_vote_7 <- dummy_cols(df_vote_7, select_columns = "Vote7")
-df_vote_7 <- df_vote_7 %>% rename("Vote7_plus" = "Vote7_+")
-df_vote_7 <- df_vote_7 %>% rename("Vote7_minus" = "Vote7_-")
-
-# view(df_vote_3)
-# out of 802, only 553 remain
-
-
 # get all contributions leading up to the vote, to see if votes before have impact for next relevant vote
-
 df_vote_4_2 <- filter_all_pre_session_data(df, 4)
-df_vote_4_2 <- dummy_cols(df_vote_4_2, select_columns = "Vote4")
-df_vote_4_2 <- df_vote_4_2 %>% rename("Vote4_plus" = "Vote4_+")
-df_vote_4_2 <- df_vote_4_2 %>% rename("Vote4_minus" = "Vote4_-")
-
 df_vote_51_2 <- filter_all_pre_session_data(df, 51)
-df_vote_51_2 <- dummy_cols(df_vote_51_2, select_columns = "Vote51")
-df_vote_51_2 <- df_vote_51_2 %>% rename("Vote51_plus" = "Vote51_+")
-df_vote_51_2 <- df_vote_51_2 %>% rename("Vote51_minus" = "Vote51_-")
-
 df_vote_52_2 <- filter_all_pre_session_data(df, 52)
-df_vote_52_2 <- dummy_cols(df_vote_52_2, select_columns = "Vote52")
-df_vote_52_2 <- df_vote_52_2 %>% rename("Vote52_plus" = "Vote52_+")
-df_vote_52_2 <- df_vote_52_2 %>% rename("Vote52_minus" = "Vote52_-")
-
 df_vote_6_2 <- filter_all_pre_session_data(df, 6)
-df_vote_6_2 <- dummy_cols(df_vote_6_2, select_columns = "Vote6")
-df_vote_6_2 <- df_vote_6_2 %>% rename("Vote6_plus" = "Vote6_+")
-df_vote_6_2 <- df_vote_6_2 %>% rename("Vote6_minus" = "Vote6_-")
-
 df_vote_7_2 <- filter_all_pre_session_data(df, 7)
-df_vote_7_2 <- dummy_cols(df_vote_7_2, select_columns = "Vote7")
-df_vote_7_2 <- df_vote_7_2 %>% rename("Vote7_plus" = "Vote7_+")
-df_vote_7_2 <- df_vote_7_2 %>% rename("Vote7_minus" = "Vote7_-")
 
 # get all reps who voted only pos. or only neg. and regress with all contributions
 df_no_change <- df %>% filter(Vote_change_dummy == 0)
 df_no_change$"all_votes" <- 0
 # create a col that indicates if the rep voted all pos or neg. votes
 for (i in 1:nrow(df_no_change)) {
-    if (!is.na(any(df_no_change[i, c("Vote3", "Vote4", "Vote51", "Vote52", "Vote6", "Vote7")] == "+"))) {
-        df_no_change[i, "all_votes"] <- "+"
-    } else if (!is.na(any(df_no_change[i, c("Vote3", "Vote4", "Vote51", "Vote52", "Vote6", "Vote7")] == "-"))) {
-        df_no_change[i, "all_votes"] <- "-"
+    if (!is.na(any(df_no_change[i, c("Vote3", "Vote4", "Vote51", "Vote52", "Vote6", "Vote7")] == "1"))) {
+        df_no_change[i, "all_votes"] <- "1"
+    } else if (!is.na(any(df_no_change[i, c("Vote3", "Vote4", "Vote51", "Vote52", "Vote6", "Vote7")] == "0"))) {
+        df_no_change[i, "all_votes"] <- "0"
     }
 }
 
 df_no_change <- dummy_cols(df_no_change, select_columns = "all_votes")
-df_no_change <- df_no_change %>% rename("all_votes_plus" = "all_votes_+")
-df_no_change <- df_no_change %>% rename("all_votes_minus" = "all_votes_-")
+# view(df_no_change)
+df_no_change <- df_no_change %>% rename("all_votes_plus" = "all_votes_1")
+df_no_change <- df_no_change %>% rename("all_votes_minus" = "all_votes_0")
 df_no_change <- df_no_change %>% select(-c(
     all_votes, Vote_change_dummy, Vote_change, Vote_count,
     Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, BioID, GovtrackID, opensecrets_id,
@@ -180,10 +197,8 @@ df_sub$vote_change_to_anti[df_sub$vote_change_type == 1] <- 0
 df_sub <- relocate(df_sub, vote_change_to_pro, .after = vote_change_type)
 df_sub <- relocate(df_sub, vote_change_to_anti, .after = vote_change_to_pro)
 
-# view(df_sub)
-# view(df)
-
 write.csv(df, "data/analysis/df.csv", row.names = FALSE)
+write.csv(df_long, "data/analysis/df_long.csv", row.names = FALSE)
 write.csv(df_no_change, "data/analysis/df_no_change.csv", row.names = FALSE)
 write.csv(df_vote_3, "data/analysis/df_vote_3.csv", row.names = FALSE)
 write.csv(df_vote_4, "data/analysis/df_vote_4.csv", row.names = FALSE)
