@@ -11,10 +11,12 @@ library(fastDummies)
 library(Amelia)
 library(lfe)
 library(broom)
+library(kableExtra)
 
 source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_prep_functions.R")
 df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
 df_no_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_no_change.csv")
+df_long <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_long.csv")
 df_vote_3 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_3.csv")
 df_vote_4 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4.csv")
 df_vote_4_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4_2.csv")
@@ -29,14 +31,81 @@ df_vote_7_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/
 df_subsample <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_sub.csv")
 ```
 
-# Linear Probability Model without Fixed Effects
+# LPM of the Entire Dataset 
+
+The reason for using a LPM for this analysis despite popular opinion in academa that the model is not always accurate (see Ch.5 in my paper), is that the LPM is ideal for binary outcomes, i.e. pro environmental or anti environmental vote.
+
+<!-- recheck whether seniority ist aussagekräftig..? -->
+
+## with control variables 
+
+This is the most basic model, which includes all representatives (who can be associated with the R or D party, not I or Libertarian) in panel and who participated in at least 2 votes (to be able to track changes in voting behaviour). This means the dataset encompasses 574 (?) Representatives.
+
+```{r}
+# remove ID type columns
+df_long <- df_long %>% select(-c(BioID, GovtrackID, opensecrets_id, first_name, last_name, state, name))
+view(df_long)
+full_ols <- lm(Vote ~ ., data = df_long)
+summary(full_ols)
+```
+
+The ols regresses the pro and anti environmental contributions with the control variables used: party, district, birthday, seniority (number of terms served prior to vote), the DW-Nominate Scores from the 1st and second dimensions, geographical region (i.e. States categorised into regions (South, West, North-East and Midwest)), and the majority party in the house at the time of the vote.
+
+### with log transformed contributions
+```{r}
+cols <- c("Contribution_plus", "Contribution_minus")
+df_long[cols] <- lapply(df_long[cols], function(x) log(x + 1))
+
+full_ols_log <- lm(Vote ~ ., data = df_long)
+summary(full_ols_log)
+``` 
+
+transforming the contribution variables logarithmically does not change the adjusted R-squared of the model by much. It also decreases the significance of the coefficients. 
+
+The reason for transforming the contribution variables is to account for differences in contributions which representatives might receive, i.e. AOC vs. Kevin McCarthy. 
+
+#### checking differences in party
+```{r}
+df_long_D <- df_long %>%
+    filter(party == "D") %>%
+    select(-party)
+View(df_long)
+full_ols_D <- lm(Vote ~ ., data = df_long)
+summary(full_ols_D)
+
+df_long_R <- df_long %>%
+    filter(party == "R") %>%
+    select(-party)
+View(df_long)
+full_ols_R <- lm(Vote ~ ., data = df_long)
+summary(full_ols_R)
+```
+
+Not much difference in the coefficients between the two parties.
+
+## with state & year fixed effects 
+
+### once with geographical 
+```{r}
+ols_state_fe <- plm(Vote ~ .,
+    data = df_long, index = c("Geographical", "Instance"), model = "within",
+    effect = "twoways"
+)
+summary(ols_state_fe)
+```
+
+### once with state
+
+
+## with individual & year fixed effects
+
 
 This is a simple linear probability model with unit and time fixed effects. The model only includes representatives who did not change their opinions (across all votes) during the time period. this way a positive vote can be regressed with contributions and the control variables. 
 We remo (too specific...), seniority (NA values, multicolinear?), Majority (NA values)
 ```{r}
 # include time fixed effects ? can we do that here?
 # view(df_no_change)
-df_no_change <- df_no_change %>% select(-c(state, seniority_114, seniority_115, seniority_116, seniority_117, Dmajority_113, Dmajority_114, Dmajority_115, Dmajority_116, Dmajority_117))
+df_no_change <- df_no_change %>% select(-c(state, seniority_114, seniority_1151, seniority_116, seniority_117))
 # view(df_no_change)
 
 # all Votes
@@ -125,28 +194,28 @@ here I only look at those who did change their voting behavior. For this I creat
 
 
 ```{r}
-knitr::kable(df_subsample, format = "html")
+kable(df_subsample, format = "html")
 
+# df_subsample_1 <- df_subsample %>% select(party, vote_change_to_anti, year, Contribution_3_minus, Contribution_3_plus, Contribution_4_minus, Contribution_4_plus, Contribution_51_minus, Contribution_51_plus, Contribution_52_minus, Contribution_52_plus, Contribution_6_minus, Contribution_6_plus, Contribution_7_minus, Contribution_7_plus)
+# # view(df_subsample_1)
 
-df_subsample_1 <- df_subsample %>% select(party, vote_change_to_anti, year, Contribution_3_minus, Contribution_3_plus, Contribution_4_minus, Contribution_4_plus, Contribution_51_minus, Contribution_51_plus, Contribution_52_minus, Contribution_52_plus, Contribution_6_minus, Contribution_6_plus, Contribution_7_minus, Contribution_7_plus)
-# view(df_subsample_1)
-
-# Vote Changes including contributions
-ols_subsample <- lm(vote_change_to_anti ~ ., data = df_subsample_1)
-summary(ols_subsample)
+# # Vote Changes including contributions
+# ols_subsample <- lm(vote_change_to_anti ~ ., data = df_subsample_1)
+# summary(ols_subsample)
 ```
 
 NAs for all above Contributions > 51...
 
 ```{r}
 # modified df_subsample
-df_subsample <- df_subsample %>% filter(!is.na(Vote6))
-view(df_subsample)
-df_subsample_2 <- df_subsample %>% select(party, vote_change_to_anti, year, Contribution_3_minus, Contribution_3_plus, Contribution_4_minus, Contribution_4_plus, Contribution_51_minus, Contribution_51_plus, Contribution_52_minus, Contribution_52_plus, Contribution_6_minus, Contribution_6_plus, Contribution_7_minus, Contribution_7_plus, nominate_dim1, nominate_dim2, birthday, seniority_113, first_contribution_minus, first_contribution_plus)
+# view(df_subsample_2)
+# df_subsample <- df_subsample %>% filter(!is.na(Vote6))
+# df_subsample_2 <- df_subsample %>% select(party, vote_change_to_anti, year, Contribution_3_minus, Contribution_3_plus, Contribution_4_minus, Contribution_4_plus, Contribution_51_minus, Contribution_51_plus, Contribution_52_minus, Contribution_52_plus, Contribution_6_minus, Contribution_6_plus, Contribution_7_minus, Contribution_7_plus, nominate_dim1, nominate_dim2, birthday, seniority_113, first_contribution_minus, first_contribution_plus)
+# view(df_subsample_2)
 
-# Vote Changes including contributions only for those who are present for vote 6,7
-ols_subsample_2 <- lm(vote_change_to_anti ~ ., data = df_subsample_2)
-summary(ols_subsample)
+# # Vote Changes including contributions only for those who are present for vote 6,7
+# ols_subsample_2 <- lm(vote_change_to_anti ~ ., data = df_subsample_2)
+# summary(ols_subsample)
 
 ```
 
@@ -158,12 +227,12 @@ even when removing the NAs, cannot predict the coefficients, since 11/23 represe
 # remove cols not necessary for analysis
 df_subsample <- df_subsample %>% select(-c(
     last_name, first_name, name, district, Vote_count, Vote_change,
-    first_contribution_minus, first_contribution_plus, Vote_change, Vote_change_dummy, GovtrackID, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, Dmajority_113, Dmajority_114, Dmajority_115, Dmajority_116, Dmajority_117, seniority_113, seniority_114, seniority_115, seniority_116, seniority_117, vote_change_to_pro, vote_change_type, opensecrets_id, vote_change_year, gender, BioID
+    first_contribution_minus, first_contribution_plus, Vote_change, Vote_change_dummy, GovtrackID, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, seniority_113, seniority_114, seniority_1151, seniority_116, seniority_117, vote_change_to_pro, vote_change_type, opensecrets_id, vote_change_year, gender, BioID
 ))
-view(df_subsample)
+# view(df_subsample)
 
-fixed <- plm(vote_change_to_anti ~ ., data = df_subsample, index = c("Geographical", "year"), model = "within") # fixed model
-summary(fixed)
+# fixed <- plm(vote_change_to_anti ~ ., data = df_subsample, index = c("Geographical", "year"), model = "within") # fixed model
+# summary(fixed)
 ```
 
 12 coefficients dropped because of singularities...

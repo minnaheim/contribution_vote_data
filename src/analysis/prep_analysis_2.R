@@ -25,12 +25,12 @@ df$birthday <- as.numeric(format(df$birthday, "%Y"))
 # view(df)
 # CONTROL VARIABLES
 # add dummy for majority party leadership
-# df["Dmajority_3"] <- 0
-# df["Dmajority_4"] <- 0
-# df["Dmajority_51"] <- 0
-# df["Dmajority_52"] <- 0
-# df["Dmajority_6"] <- 1
-# df["Dmajority_7"] <- 1
+df["Dmajority_3"] <- 0
+df["Dmajority_4"] <- 0
+df["Dmajority_51"] <- 0
+df["Dmajority_52"] <- 0
+df["Dmajority_6"] <- 1
+df["Dmajority_7"] <- 1
 
 # add state dummies (categorised acc. to US Census Data -> https://www2.census.gov/geo/pdfs/reference/GARM/Ch6GARM.pdf)
 state_abbreviation <- read_csv("data/original/control_variables/state_abbreviations.csv", show_col_types = FALSE) %>%
@@ -105,20 +105,16 @@ id_vars <- c(
     "BioID", "GovtrackID", "opensecrets_id", "first_name", "last_name", "state", "district",
     "party", "name", "birthday", "Geographical", "nominate_dim1", "nominate_dim2"
 )
-
+view(df_long)
 # Perform a single pivot_longer operation
 df_long <- df_long %>%
     pivot_longer(
         cols = -all_of(id_vars), # Exclude identifier columns from pivoting
         names_to = c(".value", "Instance"), # .value keeps the metric name, Instance extracts the number
-        names_pattern = "([a-zA-Z_]+)([0-9]+)$", # Separates the metric name and instance number
-        # values_transform = list(
-        #     vote = as.numeric, contribution_plus = as.numeric,
-        #     contribution_minus = as.numeric, seniority = as.numeric
-        # ) # Convert to numeric if needed
+        names_pattern = "(.*?)(?:_)?(\\d+)$", # Separates the metric name and instance number
     )
 df_long <- df_long %>% filter(!is.na(Instance))
-# view(df_long)
+view(df_long)
 
 
 # add 2nd
