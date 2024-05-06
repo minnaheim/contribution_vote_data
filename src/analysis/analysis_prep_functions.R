@@ -65,7 +65,7 @@ filter_session_data_2 <- function(df, vote) {
         "party", "Vote_change_dummy",
         glue("Vote{vote}"), glue("Contribution_{vote}_minus"), glue("Contribution_{vote}_plus"),
         "state", "BioID", glue("seniority_11{vote}"), "birthday",
-        "Geographical", "nominate_dim1", "nominate_dim2"
+        "Geographical", "nominate_dim1", "nominate_dim2", "gender", "pro_env_dummy", "anti_env_dummy"
     )
     df <- df[, c(selected_cols)]
     df <- df %>% filter(!is.na(glue("Vote{vote}")))
@@ -78,15 +78,17 @@ filter_session_data_2 <- function(df, vote) {
 # function that filters the data based on the session
 filter_all_pre_session_data <- function(df, vote) {
     all_votes <- c(3, 4, 51, 52, 6, 7)
-    # include not only current vote but that of all votes before
-    votes_before <- all_votes[all_votes <= vote]
-    contribution_cols <- c()
-    for (v in votes_before) {
-        contribution_cols <- c(
-            contribution_cols,
-            glue("Contribution_{v}_minus"),
-            glue("Contribution_{v}_plus")
-        )
+    for (i in all_votes) {
+        # include not only current vote but that of all votes before
+        votes_before <- all_votes[1:(which(all_votes == i))]
+        contribution_cols <- c()
+        for (v in votes_before) {
+            contribution_cols <- c(
+                contribution_cols,
+                glue("Contribution_{v}_minus"),
+                glue("Contribution_{v}_plus")
+            )
+        }
     }
     # select relevant columns
     selected_cols <- c(
@@ -94,7 +96,7 @@ filter_all_pre_session_data <- function(df, vote) {
         glue("Vote{vote}"),
         contribution_cols,
         "state", "BioID", glue("seniority_11{vote}"), "birthday",
-        "Geographical", "nominate_dim1", "nominate_dim2"
+        "Geographical", "nominate_dim1", "nominate_dim2", "gender", "pro_env_dummy", "anti_env_dummy", "district"
     )
     df <- df[, c(selected_cols)]
     df <- df %>% filter(!is.na(glue("Vote{vote}")))
@@ -214,16 +216,3 @@ first_contribution_plus <- function(row) {
     }
     return(NA)
 }
-
-
-# # based on first contribution, find the corresponding contributions
-base_amount_plus <- function(row) {
-    base_amount_plus <- NA
-    base_amount_plus <- mutate(base_amount_plus = str_extract(glue("Contribution_{first_vote}_plus"), "\\d+"))
-    return(base_amount_plus)
-}
-# base_amount_minus <- function(row) {
-#     base_amount_minus <- NA
-#     base_amount_minus <- mutate(base_amount_minus = str_extract(glue("Contribution_{session}_minus"), "\\d+"))
-#     return(base_amount_minus)
-# }

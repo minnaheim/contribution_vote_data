@@ -103,9 +103,10 @@ df_long <- df_long %>%
 # Define columns to keep as identifiers
 id_vars <- c(
     "BioID", "GovtrackID", "opensecrets_id", "first_name", "last_name", "state", "district",
-    "party", "name", "birthday", "Geographical", "nominate_dim1", "nominate_dim2"
+    "party", "name", "birthday", "gender", "pro_env_dummy", "anti_env_dummy",
+    "Geographical", "nominate_dim1", "nominate_dim2", "Vote_change_dummy", "Vote_change"
 )
-view(df_long)
+# view(df_long)
 # Perform a single pivot_longer operation
 df_long <- df_long %>%
     pivot_longer(
@@ -114,7 +115,7 @@ df_long <- df_long %>%
         names_pattern = "(.*?)(?:_)?(\\d+)$", # Separates the metric name and instance number
     )
 df_long <- df_long %>% filter(!is.na(Instance))
-view(df_long)
+# view(df_long)
 
 
 # add 2nd
