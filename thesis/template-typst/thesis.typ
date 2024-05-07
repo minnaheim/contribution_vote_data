@@ -154,13 +154,13 @@ the US Supreme Court passed the landmark court case Citizens United v. Federal
 Election Commission (FEC), which treated the question of whether Congress has
 the authority to limit independent expenditures by corporations. Campaign
 contributions are usually structured as individual and Political Action Comittee
-(PAC) contributions in OpenSecrets data, with the former stemming from natural
-persons, and the latter from comittees representing corporation or labor
+(PAC) contributions in OpenSecrets data. Contributions over 200 USD by natural persons(or their family members) who work in the industry are individual contributions @griers. whereby PACs are comittees representing corporation or labor
 interests @OpenSecretspac. The Citizens United v. FEC case declared that natural
 and legal persons, i.e. persons and corporations have the same campaign spending
 rights when it comes to the US congress @foreman p.194. In essence, this case
 enabled independent expenditures which are election related to become unlimited
 @citizen.
+
 
 // why do candidates need contributions?  -  improve election values
 That campaign contributions have increased over the years, and one of the
@@ -263,7 +263,7 @@ analysied how the voting behavior of politicians changed when they did not stand
 for re-election. Ideally, politicians should represent their ideology, even
 without facing threat of re-election, yet if their vote is "bought" then their
 contributions and voting behaviour changes, since the cost of shirking decreases
-@bronars-lott-1997 p.319.
+@bronars-lott-1997 p.319. @Ansolabehere analysed 40 empirical papers and concluded in a seminal paper that there is limited evidence indicating interest group contributions have an impact on roll-call votes @griers.
 
 Others, however, have found that contributions change voting behaviour:
 Stratmann analysed the timing of contributions, and instead of analysing how the
@@ -314,7 +314,7 @@ which are favorable to interest groups receive contributions from these groups."
 Common criticism in the field is attributed not only to studies whose analysis
 does not focus on a specific legistlation or account for reverse causality, but
 also those who do not control for individual counties and geographical areas
-@stratmann-2005 p.142. Moreover, by looking at repeated votes and thus changes
+@stratmann-2005 p.142 @griers. Moreover, by looking at repeated votes and thus changes
 in voting behaviour, a link can be determined between contribution and voting
 @stratmann-2005 p.143-144 @stratmann-2002. Considering a closer time-frame for
 contribution has also proven to increase plausibility @stratmann-1995.
@@ -578,6 +578,7 @@ distance from one another, while the variables Party and District need to be
 identical to match.
 
 == Contribution data <contrib-data>
+=== Time Frame of Contributions
 
 // decision 6mo vs. aggregate.
 // CHANGE ANALYSIS - IN AGGREGATE, TO MATCH THIS. FIRST VOTE = POST VOTE ELECTION
@@ -612,38 +613,44 @@ not specific election periods, i.e. current or previous, but relevant
 contributions that roll in shortly before the vote. This is based on the
 hypothesis 4 stipulated in @hypothesis, that contributions are time related.
 
-When looking closely at what kinds of contributions are included in the six
-months prior, the following pattern emerges:
+  //   stroke: (x, y) => (
+  //   y: 1pt,
+  //   left: if x > 0 { 0pt } else { 1pt },
+  //   right: if (x + 1) == [] { 1pt } else { 0pt },
+  // ),
+//  change stroke, to cover 2 boxes if belong together, and 1 if not, and add 16_2
+#figure(
+  table(
+    columns: 4,
+    stroke: none,
+    table.header[*Vote Date*][*Cutoff Date*][*Cycle*][*Nr. of Contributions*],
+    [June 25th 2021],[Dec 25th 2020],[2022],[4965],
+    [],[],[2020],[34],
+    [June 20th 2019],[Dec 19th 2018],[2020],[5191],
+    [],[],[2018],[30],
+    [Sep 13th 2017],[Feb 12th 2017],[2018],[7148],
+    [Jul 13th 2016],[Jan 12th 2016],[2018],[1], 
+    [],[],[2016],[7142],
+    [Nov 20th 2013],[Mar 19th 2013],[2014],[7085],
+  ),
+  caption: [Consolidated contribution data with vote and cutoff dates]
+)
 
-// table for contributions (2013 vote = 2012, 2010, 2014...)
-// plot for cutoff date and contributions.
+// plot for cutoff date and contributions. with cutoff data vertically and the amount of contributions (in plots_2.qmd)
 
-//     2012 0 contribs, 2014 3000, 2016 2000...
+When looking at what kinds of contributions are included in the six
+months prior, the following pattern emerges: since most votes are quite late in the respective congressional sessions, the contributions 6 months prior usually include contributions from the current congresses, and sometimes those of the previous one. 
+
+Discussing these two types of campaign contributions, i.e. aggregate contributions from the previous election, and the use of contributions from current elections shows that in these two papers, both the entire contributions of an industry to candidates in one election are given and that merely the time of relevance is different @stratmann-1995 @stratmann-2002. Yet what these two papers, and many with similar methodology neglect to analyse is whether more timely contributions are more effective in affecting the voting behaviour of candidates. After all, most contributors who are profit-maximizing contribute strategically and in close temporal proximity to roll calls to maximize their influence on voting behaviour @Selling2023 and thus contribute closer to the vote, in order to assure that representatives do not back out of their promises to support the special interst groups' causes @stratmann-1998. By including a more restricted time frame for contribution, such as six months prior to the vote, these trends can be captured @griers, without extending the time frame to such an extent that the contributions of the closely paced votes (SEP 13, 2017 and JUL 18, 2018)in the 115th congressional session overlap.
+Which is why, albeit analysing both strategies in this paper,for the main analysis, only the contributions within six months prior to the votes will be included. #footnote("A comparison of both the aggregate and the timely contributions included in the models can be found in the appendix.")
+
+=== Contribution Data Sources and Processing
+
 // - sources: opensecrets bulkdata campaign contributions (election data 2012-2022)
 // - data were PAC contributions to candidates and individual contributions (to PACs,
 //   candidates, etc.) -> source: opensecrets bulk data documentation
 
-Validate Decision on which types of contributions to use based on:
-#quote(
-  attribution: [@Selling2023],
-)[
-  Finally, there is the question of time lag. What is the temporal relation
-  between contributions (cause) and roll call votes (effect)? Some recommend using
-  short time intervals, like months or even weeks (Stratmann 1998; Wawro 2001).
-  They argue that firms make contributions in close temporal proximity to roll
-  calls to maximize influence. Yet, the dominant view is that donor-legislator
-  relationships develop over longer periods (Clawson, Neustadtl, and Weller 1998;
-  Gordon 2005; Peoples 2010; Romer and Snyder 1994).
-]
-- decided on taking only 6 mo. prior to vote contributions of individual and PAC
-  contributions to all candidates of house, and all individual contributions in
-  general.
-  - *plots* of when looking at 6 mo. prior to vote, which election periods are
-    relevant (i.e. 2013 vote, 2014 and 2016 elections most relevant)
-  - regardless of for which election the contributions were, only the time
-  committed mattered @stratmann-1995, argues that if we only consider the
-  contributions of the previous election cycle, not that of the current cycls,
-  p.1.
+
   - why such strong recency focus? (because votes were
   closely paced)
 - also tried with taking entire election period...difficult if votes are within
@@ -651,7 +658,7 @@ Validate Decision on which types of contributions to use based on:
 
 // *Determine which financial data to use for analysis - time related or aggregate,
 // the non-used analyses can be found in the Appendix*
-
+// cite Center for Responsive Politics. 2021. Open Secrets. https:// www.opensecrets.org. -> for data
 //   not https://sunlightlabs.github.io/datacommons/bulk_data.html because only goes
 //   till 2014..
 // - why not DIME...
@@ -715,7 +722,7 @@ Validate Decision on which types of contributions to use based on:
 - (changes in congress from house to senate, github df then shows as only assen,
   not rep history)
 
-=== Final Dataframe for Analysis
+*Final Dataframe for Analysis*
 - only R, D, no Liberatrians, Independents
 - only vote repeaters
 - pivot longer (for FE df)
@@ -747,6 +754,7 @@ Why not 2SLS -> @stratmann-2002 p.1
   - argue why the important effects are included.
   - confounding effects -> needed for causal econometrics
   - deterine through literature what needs to be included:
+
 
 variables we control for (using fixed effects):
 - party
@@ -784,6 +792,9 @@ variables we control for (using fixed effects):
 - control for individual (how to include individual, if not ID, doesnt work well)
 - log transformation of contribution..
 
+- which fixed effects used? 
+"By using fixed effects, we control for unobservable factors that are constant over time. Thus, we only use the change in contributions within a district or for a given member to identify the effect of contributions on changes in voting." @griers
+"Finally, Stratmann (2002) uses incumbent fixed effects to study the effect of interest group contributions on financial services legislation" @griers
 confounding vars from statmann: @stratmann-2002 p.12-13
 - employment in banking, insurance nad investment industries
 - indicator for party majority in the house
@@ -868,6 +879,7 @@ What to improve, work on or touch upon with more resources:
   IN FOOTNOTES WITH ROBUSTNESS/ MODEL
 - this can lead to OVB, since "has no good measure for whether a challenger poses
   a threat" -> by using 2SLS we can overcome this @stratmann-2017 p.9
+- "We also investigate two additional channels that interest groups can use to give money to House mem- bers. First, many members have Leadership PACs and donors can contribute to these PACs. Members can use this money for travel and to hire staff, among other things. There are also the so-called Super-PACs, and we looked at the ones that focused on a single candidate (where the connection between donor and beneficiary is clear)" @griers p.341
 
 #pagebreak()
 = Conclusion
