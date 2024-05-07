@@ -10,6 +10,7 @@ state_abbreviation <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/cod
     select(Postal, Geographical) %>%
     filter(!is.na(Geographical))
 
+
 df["Geographical"] <- NA
 view(df)
 add_state_category <- function(df) {
