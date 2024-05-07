@@ -154,13 +154,14 @@ the US Supreme Court passed the landmark court case Citizens United v. Federal
 Election Commission (FEC), which treated the question of whether Congress has
 the authority to limit independent expenditures by corporations. Campaign
 contributions are usually structured as individual and Political Action Comittee
-(PAC) contributions in OpenSecrets data. Contributions over 200 USD by natural persons(or their family members) who work in the industry are individual contributions @griers. whereby PACs are comittees representing corporation or labor
-interests @OpenSecretspac. The Citizens United v. FEC case declared that natural
-and legal persons, i.e. persons and corporations have the same campaign spending
-rights when it comes to the US congress @foreman p.194. In essence, this case
-enabled independent expenditures which are election related to become unlimited
-@citizen.
-
+(PAC) contributions in OpenSecrets data. Contributions over 200 USD by natural
+persons(or their family members) who work in the industry are individual
+contributions @griers. whereby PACs are comittees representing corporation or
+labor interests @OpenSecretspac. The Citizens United v. FEC case declared that
+natural and legal persons, i.e. persons and corporations have the same campaign
+spending rights when it comes to the US congress @foreman p.194. In essence,
+this case enabled independent expenditures which are election related to become
+unlimited @citizen.
 
 // why do candidates need contributions?  -  improve election values
 That campaign contributions have increased over the years, and one of the
@@ -263,7 +264,9 @@ analysied how the voting behavior of politicians changed when they did not stand
 for re-election. Ideally, politicians should represent their ideology, even
 without facing threat of re-election, yet if their vote is "bought" then their
 contributions and voting behaviour changes, since the cost of shirking decreases
-@bronars-lott-1997 p.319. @Ansolabehere analysed 40 empirical papers and concluded in a seminal paper that there is limited evidence indicating interest group contributions have an impact on roll-call votes @griers.
+@bronars-lott-1997 p.319. @Ansolabehere analysed 40 empirical papers and
+concluded in a seminal paper that there is limited evidence indicating interest
+group contributions have an impact on roll-call votes @griers.
 
 Others, however, have found that contributions change voting behaviour:
 Stratmann analysed the timing of contributions, and instead of analysing how the
@@ -314,10 +317,11 @@ which are favorable to interest groups receive contributions from these groups."
 Common criticism in the field is attributed not only to studies whose analysis
 does not focus on a specific legistlation or account for reverse causality, but
 also those who do not control for individual counties and geographical areas
-@stratmann-2005 p.142 @griers. Moreover, by looking at repeated votes and thus changes
-in voting behaviour, a link can be determined between contribution and voting
-@stratmann-2005 p.143-144 @stratmann-2002. Considering a closer time-frame for
-contribution has also proven to increase plausibility @stratmann-1995.
+@stratmann-2005 p.142 @griers. Moreover, by looking at repeated votes and thus
+changes in voting behaviour, a link can be determined between contribution and
+voting @stratmann-2005 p.143-144 @stratmann-2002. Considering a closer
+time-frame for contribution has also proven to increase plausibility
+@stratmann-1995.
 
 // - model setup: must allow for endogeneity of contributions, dichotomus nature of
 //   dependent vote variable (yes/no) and non-negativity of campaign comntributions.
@@ -613,88 +617,119 @@ not specific election periods, i.e. current or previous, but relevant
 contributions that roll in shortly before the vote. This is based on the
 hypothesis 4 stipulated in @hypothesis, that contributions are time related.
 
-  //   stroke: (x, y) => (
-  //   y: 1pt,
-  //   left: if x > 0 { 0pt } else { 1pt },
-  //   right: if (x + 1) == [] { 1pt } else { 0pt },
-  // ),
+//   stroke: (x, y) => (
+//   y: 1pt,
+//   left: if x > 0 { 0pt } else { 1pt },
+//   right: if (x + 1) == [] { 1pt } else { 0pt },
+// ),
 //  change stroke, to cover 2 boxes if belong together, and 1 if not, and add 16_2
 #figure(
   table(
     columns: 4,
     stroke: none,
     table.header[*Vote Date*][*Cutoff Date*][*Cycle*][*Nr. of Contributions*],
-    [June 25th 2021],[Dec 25th 2020],[2022],[4965],
-    [],[],[2020],[34],
-    [June 20th 2019],[Dec 19th 2018],[2020],[5191],
-    [],[],[2018],[30],
-    [Sep 13th 2017],[Feb 12th 2017],[2018],[7148],
-    [Jul 13th 2016],[Jan 12th 2016],[2018],[1], 
-    [],[],[2016],[7142],
-    [Nov 20th 2013],[Mar 19th 2013],[2014],[7085],
+    [June 25th 2021],
+    [Dec 25th 2020],
+    [2022],
+    [4965],
+    [],
+    [],
+    [2020],
+    [34],
+    [June 20th 2019],
+    [Dec 19th 2018],
+    [2020],
+    [5191],
+    [],
+    [],
+    [2018],
+    [30],
+    [Sep 13th 2017],
+    [Feb 12th 2017],
+    [2018],
+    [7148],
+    [Jul 13th 2016],
+    [Jan 12th 2016],
+    [2018],
+    [1],
+    [],
+    [],
+    [2016],
+    [7142],
+    [Nov 20th 2013],
+    [Mar 19th 2013],
+    [2014],
+    [7085],
   ),
-  caption: [Consolidated contribution data with vote and cutoff dates]
+  caption: [Consolidated contribution data with vote and cutoff dates],
 )
-
+//   *plot* contributions from before (e.g. relevant contributions over time, with
+//   cutoff date, 2012 (misses vote 6mo. prior completely, 2014 right in the middle,
+//   2016 in between))
 // plot for cutoff date and contributions. with cutoff data vertically and the amount of contributions (in plots_2.qmd)
 
-When looking at what kinds of contributions are included in the six
-months prior, the following pattern emerges: since most votes are quite late in the respective congressional sessions, the contributions 6 months prior usually include contributions from the current congresses, and sometimes those of the previous one. 
+When looking at what kinds of contributions are included in the six months
+prior, the following pattern emerges: since most votes are quite late in the
+respective congressional sessions, the contributions 6 months prior usually
+include contributions from the current congresses, and sometimes those of the
+previous one.
 
-Discussing these two types of campaign contributions, i.e. aggregate contributions from the previous election, and the use of contributions from current elections shows that in these two papers, both the entire contributions of an industry to candidates in one election are given and that merely the time of relevance is different @stratmann-1995 @stratmann-2002. Yet what these two papers, and many with similar methodology neglect to analyse is whether more timely contributions are more effective in affecting the voting behaviour of candidates. After all, most contributors who are profit-maximizing contribute strategically and in close temporal proximity to roll calls to maximize their influence on voting behaviour @Selling2023 and thus contribute closer to the vote, in order to assure that representatives do not back out of their promises to support the special interst groups' causes @stratmann-1998. By including a more restricted time frame for contribution, such as six months prior to the vote, these trends can be captured @griers, without extending the time frame to such an extent that the contributions of the closely paced votes (SEP 13, 2017 and JUL 18, 2018)in the 115th congressional session overlap.
-Which is why, albeit analysing both strategies in this paper,for the main analysis, only the contributions within six months prior to the votes will be included. #footnote("A comparison of both the aggregate and the timely contributions included in the models can be found in the appendix.")
+Discussing these two types of campaign contributions, i.e. aggregate
+contributions from the previous election, and the use of contributions from
+current elections shows that in these two papers, both the entire contributions
+of an industry to candidates in one election are given and that merely the time
+of relevance is different @stratmann-1995 @stratmann-2002. Yet what these two
+papers, and many with similar methodology neglect to analyse is whether more
+timely contributions are more effective in affecting the voting behaviour of
+candidates. After all, most contributors who are profit-maximizing contribute
+strategically and in close temporal proximity to roll calls to maximize their
+influence on voting behaviour @Selling2023 and thus contribute closer to the
+vote, in order to assure that representatives do not back out of their promises
+to support the special interst groups' causes @stratmann-1998. By including a
+more restricted time frame for contribution, such as six months prior to the
+vote, these trends can be captured @griers, without extending the time frame to
+such an extent that the contributions of the closely paced votes (SEP 13, 2017
+and JUL 18, 2018)in the 115th congressional session overlap. Which is why,
+albeit analysing both strategies in this paper,for the main analysis, only the
+contributions within six months prior to the votes will be included. #footnote(
+  "A comparison of both the aggregate and the timely contributions included in the models can be found in the appendix.",
+)
 
 === Contribution Data Sources and Processing
 
-// - sources: opensecrets bulkdata campaign contributions (election data 2012-2022)
-// - data were PAC contributions to candidates and individual contributions (to PACs,
-//   candidates, etc.) -> source: opensecrets bulk data documentation
+Campaign contribution data is readily available through a multitude of open
+source platforms #footnote(
+  "such as Sunlightlabs: https://sunlightlabs.github.io/datacommons/bulk_data.html and the Database on Ideology, Money in Politics, and Elections (DIME), but which were not suitable for this analysis",
+). Among those is the Center for Responsive Politics which provides contribution
+data through its Bulk Data#footnote(
+  "The bulkdata can be accessed through https://www.opensecrets.org/open-data/bulk-data",
+), which includes PAC contributions to US representative candidates and
+individual contributions to candidates, PACs, etc.
 
+To clean the aggregate contribution data, the relevant contribution data was
+imported. The oil&gas-, methane-, natural gas-, coal-, environmental- and
+alternative energy contributions were imported for all incumbents, and then
+these were cleaned and categorized into pro-environmental and anti-environmental
+contributions,and joined with a list of all representatives per session.
 
-  - why such strong recency focus? (because votes were
-  closely paced)
-- also tried with taking entire election period...difficult if votes are within
-  the same congressional session (i.e. 115th session two methane votes)
+Cleaning the bulk data for the timely contributions was more complex because of
+the size of the files and the comparatively small 8 GB RAM I had available.
+Given that the PAC and individual contribution text files had over 2 million
+rows and were over 15 GB large at times, made the importing let alone processing
+tedious, even when including built in @tidyverse tools and functions, such as
+piping and lazyloading. To resolve this, I wrote several shell scripts which
+check whether a cleaned file exists, and if not cleans the file anew. This saved
+time and RAM space in two ways: On the one hand, cleaned files would not be
+re-cleaned uselessly, and on the other hand, shell scripting ensures a better
+utilization of RAM space when working with large files, such as these of
+individual and PAC campaign contributions.
 
-// *Determine which financial data to use for analysis - time related or aggregate,
-// the non-used analyses can be found in the Appendix*
-// cite Center for Responsive Politics. 2021. Open Secrets. https:// www.opensecrets.org. -> for data
-//   not https://sunlightlabs.github.io/datacommons/bulk_data.html because only goes
-//   till 2014..
-// - why not DIME...
-// - why not Sunlightlabs
-// - Stratmann works with campaign contributions from the electoral campaigns of
-//   house members, i analyse these too, and additionally include votes of only 6 mo.
-//   prior to vote, to accomplish 2 things: acct for 2 votes on methane pollution
-//   safeguards in 115th congress and bec. more accurate, acc to @stratmann-1995 not
-//   only election period before, but current one, next one (all overlap in time of
-//   contribution.)
-//   - *plot* contributions from before (e.g. relevant contributions over time, with
-//     cutoff date, 2012 (misses vote 6mo. prior completely, 2014 right in the middle,
-//     2016 in between))
-//   - *plot* stats of the composition of the 6 mo. prior to vote contributions i.e.
-
-- *data processing:*
-- created scripts!
-  - aggregate: import all industry/sector data for each election (to all house
-    candidates), then join together, by reps - include only house members. join
-    together to create wide format panel data. Final step: categorize by pro-env
-    contributions and anti-env contributions
-  - bulkdata: use only individual and PAC data, select only members of congress and
-    then for the RealCodes choose only relevant ones, e.g. E (energy related) and
-    oil, etc. related -> source bulkdata documentation for industry summarize all
-    pro-env realcode contribs per rep into +/- env contributions
-- *problems:* contributions in aggregate form quite clean, in time-related form,
-  quite difficult to import due to size and small RAM
-- to clean bulk data, created a script used shell bec. easier access to files,
-  could run it one by one, also used lazyload, then piping. -> all bec. of small
-  RAM and large files avoiding to use the raw data, aka pre-cleaning makes it
-  bearable but time intensive.
-- in aggregate form, just need to join together relevant contributions (clean and
-  dirty energy per representative)
-- useful libraries like congress package not used, because did not use API to get
-  data
-- same with tidycensus, also API based
+After the pre-cleaning process through the scripts, only Individual and PAC
+contributions were kept which were allocated to incumbents. Using the
+OpenSecrets RealCodes #footnote(
+  "which can be found under https://www.opensecrets.org/downloads/crp/CRP_Categories.txt",
+), only relevant pro-environmental and anti-environmental (fossil fuel)
+contributions were kept. Moreover, only non-negative contributions were kept.
 
 == Merging <merging>
 - about 60% mergable based on ID
@@ -755,7 +790,6 @@ Why not 2SLS -> @stratmann-2002 p.1
   - confounding effects -> needed for causal econometrics
   - deterine through literature what needs to be included:
 
-
 variables we control for (using fixed effects):
 - party
 - legislator fixed effects (aka)
@@ -792,9 +826,13 @@ variables we control for (using fixed effects):
 - control for individual (how to include individual, if not ID, doesnt work well)
 - log transformation of contribution..
 
-- which fixed effects used? 
-"By using fixed effects, we control for unobservable factors that are constant over time. Thus, we only use the change in contributions within a district or for a given member to identify the effect of contributions on changes in voting." @griers
-"Finally, Stratmann (2002) uses incumbent fixed effects to study the effect of interest group contributions on financial services legislation" @griers
+- which fixed effects used?
+"By using fixed effects, we control for unobservable factors that are constant
+over time. Thus, we only use the change in contributions within a district or
+for a given member to identify the effect of contributions on changes in
+voting." @griers
+"Finally, Stratmann (2002) uses incumbent fixed effects to study the effect of
+interest group contributions on financial services legislation" @griers
 confounding vars from statmann: @stratmann-2002 p.12-13
 - employment in banking, insurance nad investment industries
 - indicator for party majority in the house
@@ -863,6 +901,7 @@ What to improve, work on or touch upon with more resources:
 - use more open source software and data (congress APIs
   (https://github.com/LibraryOfCongress/api.congress.gov/)) and congress
   packages(https://github.com/IPPSR/congress)
+- same with tidycensus, also API based
 - analyse difference in congress person's age, experience, etc. (are young/old
   legislators more likely to change their votes given contributions)
 - analyse not the contributions to the candidate/representative themselves, but to
@@ -879,10 +918,16 @@ What to improve, work on or touch upon with more resources:
   IN FOOTNOTES WITH ROBUSTNESS/ MODEL
 - this can lead to OVB, since "has no good measure for whether a challenger poses
   a threat" -> by using 2SLS we can overcome this @stratmann-2017 p.9
-- "We also investigate two additional channels that interest groups can use to give money to House mem- bers. First, many members have Leadership PACs and donors can contribute to these PACs. Members can use this money for travel and to hire staff, among other things. There are also the so-called Super-PACs, and we looked at the ones that focused on a single candidate (where the connection between donor and beneficiary is clear)" @griers p.341
+- "We also investigate two additional channels that interest groups can use to
+  give money to House mem- bers. First, many members have Leadership PACs and
+  donors can contribute to these PACs. Members can use this money for travel and
+  to hire staff, among other things. There are also the so-called Super-PACs, and
+  we looked at the ones that focused on a single candidate (where the connection
+  between donor and beneficiary is clear)" @griers p.341
 
 #pagebreak()
 = Conclusion
+yappa yappa
 
 // -------------- CRAP LINE ------------------------
 // == Legislation
