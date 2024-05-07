@@ -79,8 +79,6 @@ summary(ols_116)
 df_117 <- filter_session_data(df, "117")
 ols_117 <- lm(Vote7_minus ~ . - Vote7 - Vote7_plus, data = df_117)
 summary(ols_117)
-
-
 ```
 
 # LPM of only mind changers 
@@ -93,7 +91,4 @@ df_subsample <- df_subsample %>% select(-c(
 
 ols_subsample <- lm(vote_change_to_anti ~ ., data = df_subsample)
 summary(ols_subsample)
-
 ```
-
-Why warning message?

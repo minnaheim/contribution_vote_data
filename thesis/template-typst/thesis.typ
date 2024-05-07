@@ -40,7 +40,7 @@
   submissionDate: submissionDate,
 )
 #pagebreak()
-= Introduction
+= Introduction <intro>
 The United States has seen a dramatic increase in wealth and income gaps in
 recent decades, with the wealthy and powerful seeking to shape the political
 environment @skocpol2016koch. Additionally, the US bipartisan system has
@@ -114,7 +114,7 @@ concludes the paper.
 
 #pagebreak()
 
-= Money in Politics
+= Money in Politics <moneyinpolitics>
 
 // three types of money in politics
 To understand the relationship between campaign contributions and
@@ -461,7 +461,7 @@ in more than one vote, unlike in @stratmann-2002's paper, where the two rollcall
 votes were in 1991 and 1998, which are 3 congressional sessions apart. Thus, the
 chance of a representative partaking in multiple votes decreased substantially.
 
-== Hypotheses
+== Hypotheses <hypothesis>
 
 Given the topics of the rollcall votes, see @rollcall-subject, which are
 environmental in nature, and the fact that environmental issues are topics which
@@ -492,7 +492,8 @@ shortly before the vote have higher impacts on congressional voting behavior
 than contributions from the past election cylce. Taking this into consideration,
 the fourth hypothesis is that votes in a time frame of six months prior to the
 vote will have more significant effects on voting behaviour than contributions
-from the congressional session before.
+from the congressional session before, since the amount of contributions change
+compared to the timing of votes @stratmann-1998.
 
 // causal hypothesis where?
 
@@ -577,37 +578,54 @@ distance from one another, while the variables Party and District need to be
 identical to match.
 
 == Contribution data <contrib-data>
-*Determine which financial data to use for analysis - time related or aggregate,
-the non-used analyses can be found in the Appendix*
 
-//   not https://sunlightlabs.github.io/datacommons/bulk_data.html because only goes
-//   till 2014..
-// - why not DIME...
-// - why not Sunlightlabs
-// - Stratmann works with campaign contributions from the electoral campaigns of
-//   house members, i analyse these too, and additionally include votes of only 6 mo.
-//   prior to vote, to accomplish 2 things: acct for 2 votes on methane pollution
-//   safeguards in 115th congress and bec. more accurate, acc to @stratmann-1995 not
-//   only election period before, but current one, next one (all overlap in time of
-//   contribution.)
-//   - *plot* contributions from before (e.g. relevant contributions over time, with
-//     cutoff date, 2012 (misses vote 6mo. prior completely, 2014 right in the middle,
-//     2016 in between))
-//   - *plot* stats of the composition of the 6 mo. prior to vote contributions i.e.
+// decision 6mo vs. aggregate.
+// CHANGE ANALYSIS - IN AGGREGATE, TO MATCH THIS. FIRST VOTE = POST VOTE ELECTION
+As discussed in @intro, Stratmann uses two different approaches to measuring the
+effect of campaign contributions on voting behaviour. In his @stratmann-1995
+paper, Stratmann explores whether contributions closer to the vote are more
+important in determining voting behaviour than contributions of previous
+congressional elections. He concludes that current election contributions in his
+case of dairy legislation, are more determining for voting behaviour than that
+of the previous election. In the @stratmann-2002 paper, Stratmann uses the
+aggregate campaign contributions allocated to representatives in the election
+post and prior to the congressional session, i.e. contributions from the
+1989-1990 and 1995-96 vote to explain the 1991 and 1998 vote and the
+contributions from the election happening paralell to the vote i.e. Stratmann
+uses the 1991-92 and 1997-98 contributions to guage whether there are
+punishments or rewards for the representative's voting behaviors. In both cases,
+he finds positive correlation between contributions of current and prior
+elections from special interest groups and a vote in their favor, of which one
+can conclude, that multiple congressional election contributions should be taken
+into account for each vote.
+
+To account for these differences in campaign contribution selection, I explored
+both options: On the one hand, I calculated the contribution variables based on
+the previous election cycle, based on several academic papers who take the same
+approach @stratmann-2002 @Selling2023 @KauKeenanRubin @chappell @stratmann-1991
+to guage whether aggregate contributions from election cylces may influence the
+voting behaviour of representatives in the environmental context. On the other
+hand, I included only the campaign contributions from individuals and interest
+groups which supported a pro or anti environmental vote, which were given to
+representatives 6 months prior to the relevant vote. This means that I include
+not specific election periods, i.e. current or previous, but relevant
+contributions that roll in shortly before the vote. This is based on the
+hypothesis 4 stipulated in @hypothesis, that contributions are time related.
+
+When looking closely at what kinds of contributions are included in the six
+months prior, the following pattern emerges:
+
+// table for contributions (2013 vote = 2012, 2010, 2014...)
+// plot for cutoff date and contributions.
+
 //     2012 0 contribs, 2014 3000, 2016 2000...
-- sources: opensecrets bulkdata campaign contributions (election data 2012-2022)
-- data were PAC contributions to candidates and individual contributions (to PACs,
-  candidates, etc.) -> source: opensecrets bulk data documentation
-- stratmann prerequisites: votes in 1991 and 1998, contributions in 1991-1992 and
-  1995-1996. use contributions from 1991-92 as a base year, since no prior
-  legislation done.1991-1992 contributions taken either as reward of vote in 1991
-  or as punishment,but… maybe timing or “rewarding” or “punishing” contributions
-  are not momentary,so also take 1989-1990 and 1995-1996 and 1991-1992 to
-  1997-1998 into account.
+// - sources: opensecrets bulkdata campaign contributions (election data 2012-2022)
+// - data were PAC contributions to candidates and individual contributions (to PACs,
+//   candidates, etc.) -> source: opensecrets bulk data documentation
 
 Validate Decision on which types of contributions to use based on:
 #quote(
-  attribution: [Skocpol @skocpol2016koch p.8],
+  attribution: [@Selling2023],
 )[
   Finally, there is the question of time lag. What is the temporal relation
   between contributions (cause) and roll call votes (effect)? Some recommend using
@@ -630,6 +648,24 @@ Validate Decision on which types of contributions to use based on:
   closely paced)
 - also tried with taking entire election period...difficult if votes are within
   the same congressional session (i.e. 115th session two methane votes)
+
+// *Determine which financial data to use for analysis - time related or aggregate,
+// the non-used analyses can be found in the Appendix*
+
+//   not https://sunlightlabs.github.io/datacommons/bulk_data.html because only goes
+//   till 2014..
+// - why not DIME...
+// - why not Sunlightlabs
+// - Stratmann works with campaign contributions from the electoral campaigns of
+//   house members, i analyse these too, and additionally include votes of only 6 mo.
+//   prior to vote, to accomplish 2 things: acct for 2 votes on methane pollution
+//   safeguards in 115th congress and bec. more accurate, acc to @stratmann-1995 not
+//   only election period before, but current one, next one (all overlap in time of
+//   contribution.)
+//   - *plot* contributions from before (e.g. relevant contributions over time, with
+//     cutoff date, 2012 (misses vote 6mo. prior completely, 2014 right in the middle,
+//     2016 in between))
+//   - *plot* stats of the composition of the 6 mo. prior to vote contributions i.e.
 
 - *data processing:*
 - created scripts!
