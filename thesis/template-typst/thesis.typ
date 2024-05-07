@@ -500,34 +500,90 @@ from the congressional session before.
 = Data
 
 The empirical framework stipulated in @research-design requires the comparison
-of voting behaviour and the corresponding campaign contributions. Hence, the
-data for the analysis consists of multiple different data frames joined
-together. The following @data-sources-types consists of the description of the
-data types, where they were sourced, and the @data-processing will detail how
-the data was cleaned, merged, etc. for the analysis.
+of voting behaviour of the US representatives and the campaign contributions
+which these received. Hence, the data for the analysis consists of three data
+types joined together: Data on the Representatives, their contribution data and
+the rollcall data. The following chapters consists of the description of the
+data types, where they were sourced, and the data processing for the analysis.
 
-== Data Sources & Types <data-sources-types>
-=== Representative data <rep-data>
-- source: github dataframe (of current and historical legislators) and bioguide,
-  not https://sunlightlabs.github.io/datacommons/bulk_data.html because only goes
-  till 2014..
-- why not DIME...
-- why not Sunlightlabs
-- needed to use representative data to match with contributions. Since
-  contributions always were to everyone, and/or to house candidates, needed to
-  keep only those who then made it to the house.
-- moreover, needed to import representative data from github to get the IDs to
-  then match rollcall and contribution data together.
-=== Rollcall data
-- stratmann prerequisites: uses cross-sectional panel data (panel data erhoben
-  multiple times, like ts.) → only works w/ similar bills
-  - yes, methane bills (6 different kinds -> from LCV Scorecard)
-  - why kind of votes? what kind of bills?
+== Representative data <rep-data>
 
-=== Contribution data <contrib-data>
+To be able to conduct the analysis, a comprehensive dataset of all US
+representatives who participated in the relevant congressional sessions
+(113th-117th) was needed, which includes biographical information, to be able to
+control for age, gender, etc. in the analysis. Moreover, identification was
+needed, to be able to assign each rollcall vote and contribution definetly to a
+certain representative, and not have to deal with matching issues.
+
+Given these requirements, the data on the US representatives was sourced from
+the github repository congress-legislators, which is created and managed by a
+shared commons, and includes detailed information for all historical and current
+US congressional members, including various IDs they have across US legislative
+data providing platforms. Since the above data is not ordered according to
+congressional sessions which each representative partook in, data from @bioguide
+was used match the data on current and historical legilsators with a list of the
+representatives participating in each seperate congress.
+
+== Rollcall data
+
+As @stratmann-2002 stipulated in his paper, to be able to analyse changes in
+voting behaviour, the cross-sectionality of panel data needs to be exploited,
+and the votes need to be categorised clearly into winners and losers. This also
+means, that one needs to be able to deduce from the votes which candidates voted
+pro- one special interest group, and anti- the other one.
+
+Due to this specification, the data from the League of Conservation Votes
+Scorecard was used throughout this paper. The website is predetermines which
+rollcall votes are pro-environmental and which are anti-environmental. One of
+the major downsides of using this data, however, was that the LCV Scorecard did
+not use IDs to prior to 2021, meaning that only in the last vote were IDs
+matched to each representative. Although approximately 60% of representatives
+present in the last rollcall vote, were also present in the votes prior and thus
+were able to be matched by IDs, about 40% of the representatives had to be
+matched by first and lastnames, parties and states, only, which caused merging
+errors, which will be detailed more in @merging.
+
+Considering these circumstances, utilizing one of the many other rollcall data
+providing websites, such as Govtrack US, Congress.gov and C-Span would have been
+more useful, since these match representatives with a unique identifier. This
+was not possible, however, because these websites do not publish all rollcall
+votes but only the most relevant, i.e. the votes which passed a bill. For this
+analysis, however, the environmentally related rollcall votes are to be
+analysed, and these are often not published on the aforementioned websites.
+Thus, the LCV Scorecard Website was used to source rollcall data, despite their
+incomplete use of IDs for representatives.
+
+// Data Processing & Cleaning
+Considering the circumstance that the 2021 votes had a different format than the
+2013-2019 votes, the representative's names were often different, and thus could
+not be joined easily to create an aggregate rollcall dataframe.
+
+```r
+fuzzy_match <- function(x, y, max_dist = 5) {
+    return(stringdist::stringdist(x, y) <= max_dist)
+}
+roll_call_full_<- fuzzy_full_join(
+    methane_116,
+    methane_117,
+    by = c("name", "Party", "District"),
+    match_fun = list(fuzzy_match, `==`, `==`)
+)
+```
+To overcome this, the R package fuzzyjoin @fuzzjoin was used. Using the function
+fuzzy_match and fuzzy_full_join, a maximum distance between two values can be
+determined, here 5 characters. in the fuzzy_full_join, I defined that the names
+between the two dataframes can be matched if they are at most 5 characters
+distance from one another, while the variables Party and District need to be
+identical to match.
+
+== Contribution data <contrib-data>
 *Determine which financial data to use for analysis - time related or aggregate,
 the non-used analyses can be found in the Appendix*
 
+//   not https://sunlightlabs.github.io/datacommons/bulk_data.html because only goes
+//   till 2014..
+// - why not DIME...
+// - why not Sunlightlabs
 // - Stratmann works with campaign contributions from the electoral campaigns of
 //   house members, i analyse these too, and additionally include votes of only 6 mo.
 //   prior to vote, to accomplish 2 things: acct for 2 votes on methane pollution
@@ -575,43 +631,8 @@ Validate Decision on which types of contributions to use based on:
 - also tried with taking entire election period...difficult if votes are within
   the same congressional session (i.e. 115th session two methane votes)
 
-== Data Processing <data-processing>
-You can find the entire data processing, plots and analysis on my github
-profile.
-
-=== Cleaning
-==== Representatives
-- imported Bioguide Representative Data (important for bio data, party, district,
-  etc. weren't so extensive in rollcall and contribution data)
-- *problems:* LCV scorecard did not have IDs for all votes, just the last one,
-  only from 2021 onwards. Thus merge was difficult later. But... used regardless
-  because predetermined which votes were pro-environmental and which were
-  anti-environmental, and they only showed those which were env. related rollcalls
-  which is all of what it is about.
-- had I used GOVTRACK ID, i would have had an easier time with the merge of IDs,
-  but the rollcall votes are not relevant, since not env. relevant, not all
-  amendments to bills are environmentally related, esp. for bills such as these,
-  where many insititutions are mentioned. and since environmental votes are the
-  main part of the study, this was most important.
-- used clean strings to remove special characters and case-sensitivtity, merge
-  with fuzzyjoin to include all reps with max. distance of 4 (i.e. Micheal and
-  Mike) in the names, perfect match in state, district, etc.
-- changes in members halfway, i.e. shows up in representative list, but not in
-  rollcall, or in contributions, etc.
-- (changes in congress from house to senate, github df then shows as only assen,
-  not rep history)
-==== Rollcall data
-- because i used LCV scorecard, already predetermined which were pro-environmental
-  votes, which were anti-environmental votes, drawback of no merge with ID.
-- merge together rollcall votes, determine vote changes, vote counts, to make
-  analysis easier
-- *problems:* rollcall data from 2013-2019 was uniform, same names, cols, etc.
-  vote from 2021 had different format, names were different, had Bioguide ID so
-  when concatinating all rollcalls of the the 6 votes together, the last one didnt
-  match, i.e. couldnt "join" based on names (had to fuzzyjoin and merge based on
-  party, district, etc.)
-==== Campaign Contributions
-- data processing:
+- *data processing:*
+- created scripts!
   - aggregate: import all industry/sector data for each election (to all house
     candidates), then join together, by reps - include only house members. join
     together to create wide format panel data. Final step: categorize by pro-env
@@ -631,7 +652,8 @@ profile.
 - useful libraries like congress package not used, because did not use API to get
   data
 - same with tidycensus, also API based
-=== Merging
+
+== Merging <merging>
 - about 60% mergable based on ID
   - github df with govtrack ID, bioguide ID, opensecrets ID from reputable sources
   - from 2021 vote onwards, LCV has bioguide ID
@@ -643,6 +665,19 @@ profile.
   and case-sensitivtity, merge with fuzzyjoin to include all reps with max.
   distance of 4 (i.e. Micheal and Mike) in the names, perfect match in state,
   district, etc. -> insert code block?
+
+- had I used GOVTRACK ID, i would have had an easier time with the merge of IDs,
+  but the rollcall votes are not relevant, since not env. relevant, not all
+  amendments to bills are environmentally related, esp. for bills such as these,
+  where many insititutions are mentioned. and since environmental votes are the
+  main part of the study, this was most important.
+- used clean strings to remove special characters and case-sensitivtity, merge
+  with fuzzyjoin to include all reps with max. distance of 4 (i.e. Micheal and
+  Mike) in the names, perfect match in state, district, etc.
+- changes in members halfway, i.e. shows up in representative list, but not in
+  rollcall, or in contributions, etc.
+- (changes in congress from house to senate, github df then shows as only assen,
+  not rep history)
 
 === Final Dataframe for Analysis
 - only R, D, no Liberatrians, Independents
