@@ -12,17 +12,13 @@ df <- analysis_prep(df)
 # change vote to dummy vars
 df <- dummy_vote(df)
 
-# view(df)
 
 
 # change birthdays to only include years, and group into decades
 # why does lubridate not work?
 df$birthday <- as.Date(df$birthday, format = "%Y-%m-%d")
 df$birthday <- as.numeric(format(df$birthday, "%Y"))
-# view(df)
 
-
-# view(df)
 # CONTROL VARIABLES
 # add dummy for majority party leadership
 df["Dmajority_3"] <- 0
@@ -76,52 +72,25 @@ for (i in 1:nrow(df)) {
 }
 view(df)
 
+# before pivoting df, i will create a copy which only includes vote changers & then apply the pivot_longer function
+df_vote_change <- df %>% filter(Vote_change_dummy == 1)
+df_vote_change <- create_vote_change_dataframe(df_vote_change)
+# relocate cols
+df_vote_change <- relocate(df_vote_change, "first_vote", .after = "vote_change_year")
+df_vote_change$vote_change_type <- as.numeric(df_vote_change$vote_change_type)
+df_vote_change <- df_vote_change %>% mutate(year = str_extract(vote_change_year, "(?<=-).*"))
+df_vote_change <- relocate(df_vote_change, "year", .after = vote_change_year)
+# apply add_vote_dummy function to get dummy for each vote change
+df_vote_change <- add_vote_dummy(df_vote_change)
+# view(df_vote_change)
+
 
 # pivot table longer
-df_long <- df
-df_long$seniority_115_2 <- df_long$seniority_115
-df_long <- df_long %>%
-    rename("seniority_3" = "seniority_113") %>%
-    rename("seniority_4" = "seniority_114") %>%
-    rename("seniority_51" = "seniority_115") %>%
-    rename("seniority_52" = "seniority_115_2") %>%
-    rename("seniority_6" = "seniority_116") %>%
-    rename("seniority_7" = "seniority_117") %>%
-    rename("Contribution_minus_3" = "Contribution_3_minus") %>%
-    rename("Contribution_plus_3" = "Contribution_3_plus") %>%
-    rename("Contribution_minus_4" = "Contribution_4_minus") %>%
-    rename("Contribution_plus_4" = "Contribution_4_plus") %>%
-    rename("Contribution_minus_51" = "Contribution_51_minus") %>%
-    rename("Contribution_plus_51" = "Contribution_51_plus") %>%
-    rename("Contribution_minus_52" = "Contribution_52_minus") %>%
-    rename("Contribution_plus_52" = "Contribution_52_plus") %>%
-    rename("Contribution_minus_6" = "Contribution_6_minus") %>%
-    rename("Contribution_plus_6" = "Contribution_6_plus") %>%
-    rename("Contribution_minus_7" = "Contribution_7_minus") %>%
-    rename("Contribution_plus_7" = "Contribution_7_plus")
-
-# Define columns to keep as identifiers
-id_vars <- c(
-    "BioID", "GovtrackID", "opensecrets_id", "first_name", "last_name", "state", "district",
-    "party", "name", "birthday", "gender", "pro_env_dummy", "anti_env_dummy",
-    "Geographical", "nominate_dim1", "nominate_dim2", "Vote_change_dummy", "Vote_change"
-)
-# view(df_long)
-# Perform a single pivot_longer operation
-df_long <- df_long %>%
-    pivot_longer(
-        cols = -all_of(id_vars), # Exclude identifier columns from pivoting
-        names_to = c(".value", "Instance"), # .value keeps the metric name, Instance extracts the number
-        names_pattern = "(.*?)(?:_)?(\\d+)$", # Separates the metric name and instance number
-    )
-df_long <- df_long %>% filter(!is.na(Instance))
+df_long <- aggregate_pivot_longer_function(df)
+df_vote_change <- aggregate_pivot_longer_function(df_vote_change)
+view(df_vote_change)
 # view(df_long)
 
-
-# add 2nd
-df$seniority_1152 <- df$seniority_115
-df <- df %>% rename("seniority_1151" = "seniority_115")
-# view(df)
 
 
 # filter for each session
@@ -164,38 +133,23 @@ df_no_change <- df_no_change %>% select(-c(
 # create df for subsample analysis (incl. fixed effects)
 df_fe <- df %>% dplyr::filter(Vote_change_dummy == 1)
 # view(df_fe)
-df_fe$vote_change_type <- apply(df_fe[, vote_columns], 1, detect_changes)
-df_fe <- df_fe %>% relocate(vote_change_type, .after = Vote_change)
-df_fe$vote_change_year <- apply(df_fe[, vote_columns], 1, detect_year_of_changes)
-df_fe <- df_fe %>% relocate(vote_change_year, .after = vote_change_type)
-df_fe$first_vote <- apply(df_fe[, vote_columns], 1, base_year)
-df_fe$first_contribution_minus <- apply(df_fe, 1, first_contribution_minus)
-df_fe$first_contribution_plus <- apply(df_fe, 1, first_contribution_plus)
-df_fe <- df_fe %>%
-    # Convert to long format by splitting 'vote_change_type' and 'vote_change_year' strings into multiple rows
-    separate_rows(vote_change_type, vote_change_year, sep = ",") %>%
-    # Optionally, you can trim whitespace if necessary
-    mutate(
-        vote_change_type = trimws(vote_change_type),
-        vote_change_year = trimws(vote_change_year)
-    )
+
+# vote_change_type and vote_change_year columns using detect_changes and detect_year_of_changes functions
+df_fe <- create_vote_change_dataframe(df_fe)
+# view(df_fe)
+
 # relocate cols
 df_fe <- relocate(df_fe, "first_vote", .after = "vote_change_year")
 df_fe$vote_change_type <- as.numeric(df_fe$vote_change_type)
 df_fe <- df_fe %>% mutate(year = str_extract(vote_change_year, "(?<=-).*"))
 df_sub <- relocate(df_fe, "year", .after = vote_change_year)
 
-# create dummy for vote change... 1 or 0 vote!! > von + -> - = 0, von - -> + = 1 (manually, use package for this)
-df_sub$vote_change_to_pro <- df_sub$vote_change_type
-df_sub$vote_change_to_pro[df_sub$vote_change_to_pro == 1] <- 1
-df_sub$vote_change_to_anti <- df_sub$vote_change_type
-df_sub$vote_change_to_anti[df_sub$vote_change_type == 0] <- 1
-df_sub$vote_change_to_anti[df_sub$vote_change_type == 1] <- 0
-df_sub <- relocate(df_sub, vote_change_to_pro, .after = vote_change_type)
-df_sub <- relocate(df_sub, vote_change_to_anti, .after = vote_change_to_pro)
+# apply add_vote_dummy function to get dummy for each vote change
+df_sub <- add_vote_dummy(df_sub)
 
 write.csv(df, "data/analysis/df.csv", row.names = FALSE)
 write.csv(df_long, "data/analysis/df_long.csv", row.names = FALSE)
+write.csv(df_vote_change, "data/analysis/df_vote_change.csv", row.names = FALSE)
 write.csv(df_no_change, "data/analysis/df_no_change.csv", row.names = FALSE)
 write.csv(df_vote_3, "data/analysis/df_vote_3.csv", row.names = FALSE)
 write.csv(df_vote_4, "data/analysis/df_vote_4.csv", row.names = FALSE)

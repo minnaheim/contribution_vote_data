@@ -1892,17 +1892,621 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 </section>
 <section id="lpm-with-vote-changing-representatives" class="level1">
 <h1>LPM with vote changing Representatives</h1>
-<section id="with-control-variables-2" class="level2">
-<h2 class="anchored" data-anchor-id="with-control-variables-2">with control variables</h2>
-<p>Using the same model as above with the same specifications (control varaibels, then generous FE (state, year), then strict FE (individuals)) but using only those representatives that changed their voting behavior over time.</p>
+<p>Here is what this dataframe looks like</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df_long_change <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Vote_change_dummy <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Vote_change_dummy, Vote_change))</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_long_change)</span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>ols_change <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> anti_env_dummy, <span class="at">data =</span> df_long_change)</span>
-<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(df_long_change[<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, ], <span class="at">format =</span> <span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">BioID</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">state</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">district</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">party</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">birthday</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">nominate_dim1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">nominate_dim2</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Geographical</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">pro_env_dummy</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">anti_env_dummy</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Instance</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Vote</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">seniority</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Contribution_minus</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Contribution_plus</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Dmajority</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">10.090589</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">10.968215</td>
+<td style="text-align: right;">7.601402</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">10.511921</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">10.997941</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">10.221978</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">10.778977</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B000490</td>
+<td style="text-align: left;">GA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">1947</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.285</td>
+<td style="text-align: right;">0.454</td>
+<td style="text-align: left;">SO</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">9.903538</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B000490</td>
+<td style="text-align: left;">GA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">1947</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.285</td>
+<td style="text-align: right;">0.454</td>
+<td style="text-align: left;">SO</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">12</td>
+<td style="text-align: right;">9.770013</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B000490</td>
+<td style="text-align: left;">GA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">1947</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.285</td>
+<td style="text-align: right;">0.454</td>
+<td style="text-align: left;">SO</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">9.510519</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B000490</td>
+<td style="text-align: left;">GA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">1947</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.285</td>
+<td style="text-align: right;">0.454</td>
+<td style="text-align: left;">SO</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">13</td>
+<td style="text-align: right;">9.798183</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">B000490</td>
+<td style="text-align: left;">GA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">1947</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.285</td>
+<td style="text-align: right;">0.454</td>
+<td style="text-align: left;">SO</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">8.922792</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">B000490</td>
+<td style="text-align: left;">GA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: right;">1947</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.285</td>
+<td style="text-align: right;">0.454</td>
+<td style="text-align: left;">SO</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">8.517393</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U000031</td>
+<td style="text-align: left;">MI</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.320</td>
+<td style="text-align: right;">-0.355</td>
+<td style="text-align: left;">MW</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">11.815627</td>
+<td style="text-align: right;">6.908755</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">U000031</td>
+<td style="text-align: left;">MI</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.320</td>
+<td style="text-align: right;">-0.355</td>
+<td style="text-align: left;">MW</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">11.867897</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U000031</td>
+<td style="text-align: left;">MI</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.320</td>
+<td style="text-align: right;">-0.355</td>
+<td style="text-align: left;">MW</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">10.247113</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">U000031</td>
+<td style="text-align: left;">MI</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.320</td>
+<td style="text-align: right;">-0.355</td>
+<td style="text-align: left;">MW</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">11.459008</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">U000031</td>
+<td style="text-align: left;">MI</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.320</td>
+<td style="text-align: right;">-0.355</td>
+<td style="text-align: left;">MW</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">10.854933</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">U000031</td>
+<td style="text-align: left;">MI</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.320</td>
+<td style="text-align: right;">-0.355</td>
+<td style="text-align: left;">MW</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">10.411329</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">S000522</td>
+<td style="text-align: left;">NJ</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.178</td>
+<td style="text-align: right;">-0.173</td>
+<td style="text-align: left;">NE</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">14</td>
+<td style="text-align: right;">7.313887</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S000522</td>
+<td style="text-align: left;">NJ</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.178</td>
+<td style="text-align: right;">-0.173</td>
+<td style="text-align: left;">NE</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">15</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">S000522</td>
+<td style="text-align: left;">NJ</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.178</td>
+<td style="text-align: right;">-0.173</td>
+<td style="text-align: left;">NE</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">8.999619</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S000522</td>
+<td style="text-align: left;">NJ</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.178</td>
+<td style="text-align: right;">-0.173</td>
+<td style="text-align: left;">NE</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;">8.999619</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">S000522</td>
+<td style="text-align: left;">NJ</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.178</td>
+<td style="text-align: right;">-0.173</td>
+<td style="text-align: left;">NE</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">9.304650</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">S000522</td>
+<td style="text-align: left;">NJ</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1953</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.178</td>
+<td style="text-align: right;">-0.173</td>
+<td style="text-align: left;">NE</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">18</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R000585</td>
+<td style="text-align: left;">NY</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1971</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.269</td>
+<td style="text-align: right;">0.120</td>
+<td style="text-align: left;">NE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">11.359203</td>
+<td style="text-align: right;">8.354909</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R000585</td>
+<td style="text-align: left;">NY</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1971</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.269</td>
+<td style="text-align: right;">0.120</td>
+<td style="text-align: left;">NE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">11.255785</td>
+<td style="text-align: right;">9.798183</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R000585</td>
+<td style="text-align: left;">NY</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1971</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.269</td>
+<td style="text-align: right;">0.120</td>
+<td style="text-align: left;">NE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">10.619521</td>
+<td style="text-align: right;">6.216606</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R000585</td>
+<td style="text-align: left;">NY</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1971</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.269</td>
+<td style="text-align: right;">0.120</td>
+<td style="text-align: left;">NE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">10.386716</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">R000585</td>
+<td style="text-align: left;">NY</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1971</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.269</td>
+<td style="text-align: right;">0.120</td>
+<td style="text-align: left;">NE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">10.720819</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">R000585</td>
+<td style="text-align: left;">NY</td>
+<td style="text-align: right;">23</td>
+<td style="text-align: left;">R</td>
+<td style="text-align: right;">1971</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">0.269</td>
+<td style="text-align: right;">0.120</td>
+<td style="text-align: left;">NE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">9.495594</td>
+<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">1</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+</div>
+<section id="with-control-variables-2" class="level2">
+<h2 class="anchored" data-anchor-id="with-control-variables-2">with control variables</h2>
+<p>Using the same model as above with the same specifications (control varaibels, then generous FE (state, year), then strict FE (individuals)) but using only those representatives that changed their voting behavior over time.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>ols_change <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> anti_env_dummy, <span class="at">data =</span> df_long_change)</span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1946,8 +2550,8 @@ F-statistic: 3.067 on 15 and 72 DF,  p-value: 0.0007355</code></pre>
 <section id="with-geography-year-fes" class="level2">
 <h2 class="anchored" data-anchor-id="with-geography-year-fes">with geography &amp; year FEs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>ols_change_fe <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(Geographical) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> Dmajority <span class="sc">+</span> district, <span class="at">data =</span> df_long_change)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ols_change_fe <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(Geographical) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> Dmajority <span class="sc">+</span> district, <span class="at">data =</span> df_long_change)</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1994,30 +2598,89 @@ F-statistic: 2.641 on 18 and 69 DF,  p-value: 0.002037</code></pre>
 <section id="checking-differences-in-party-1" class="level3">
 <h3 class="anchored" data-anchor-id="checking-differences-in-party-1">checking differences in party</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_long_change)</span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># df_long_change_D &lt;- df_long_change %&gt;%</span></span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     filter(party == "D") %&gt;%</span></span>
-<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     select(-c(state, party, BioID, opensecrets_id, first_name, last_name, name, district, Vote_change_dummy, Vote_change))</span></span>
-<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="co"># df_long_change_R &lt;- df_long_change %&gt;%</span></span>
-<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co">#     filter(party == "R") %&gt;%</span></span>
-<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co">#     select(-c(state, party, BioID,  opensecrets_id, first_name, last_name, name, district, Vote_change_dummy, Vote_change))</span></span>
-<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_long_change_D)</span></span>
-<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ols_change_D &lt;- lm(Vote ~ ., data = df_long_change_D)</span></span>
-<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(ols_change_D)</span></span>
-<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="co"># ols_change_R &lt;- lm(Vote ~ ., data = df_long_change_R)</span></span>
-<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(ols_change_R)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ols_change_D <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> party <span class="sc">-</span> BioID <span class="sc">-</span> district <span class="sc">-</span> anti_env_dummy, <span class="at">data =</span> df_long_change)</span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_D)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Vote ~ . - state - party - BioID - district - anti_env_dummy, 
+    data = df_long_change)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.96375 -0.27583  0.03763  0.29328  0.73415 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        16.0802339 16.3110427   0.986 0.327419    
+birthday           -0.0078235  0.0082539  -0.948 0.346292    
+genderM            -0.3679240  0.2025149  -1.817 0.073301 .  
+nominate_dim1      -1.1612622  0.3772937  -3.078 0.002923 ** 
+nominate_dim2      -0.7555507  0.3194999  -2.365 0.020664 *  
+GeographicalNE     -0.0402935  0.1981862  -0.203 0.839450    
+GeographicalSO     -0.0553394  0.2090006  -0.265 0.791914    
+GeographicalWE     -0.0365427  0.2367051  -0.154 0.877730    
+pro_env_dummy       0.0660696  0.1304835   0.506 0.614120    
+Instance            0.0109476  0.0023629   4.633 1.51e-05 ***
+seniority          -0.0154235  0.0173315  -0.890 0.376399    
+Contribution_minus -0.0008452  0.0195783  -0.043 0.965680    
+Contribution_plus   0.0040795  0.0175225   0.233 0.816549    
+Dmajority           0.5886900  0.1521221   3.870 0.000233 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4268 on 74 degrees of freedom
+  (50 observations deleted due to missingness)
+Multiple R-squared:  0.3871,    Adjusted R-squared:  0.2794 
+F-statistic: 3.595 on 13 and 74 DF,  p-value: 0.0002178</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>ols_change_R <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> party <span class="sc">-</span> BioID <span class="sc">-</span> district <span class="sc">-</span> anti_env_dummy, <span class="at">data =</span> df_long_change)</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = Vote ~ . - state - party - BioID - district - anti_env_dummy, 
+    data = df_long_change)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.96375 -0.27583  0.03763  0.29328  0.73415 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)        16.0802339 16.3110427   0.986 0.327419    
+birthday           -0.0078235  0.0082539  -0.948 0.346292    
+genderM            -0.3679240  0.2025149  -1.817 0.073301 .  
+nominate_dim1      -1.1612622  0.3772937  -3.078 0.002923 ** 
+nominate_dim2      -0.7555507  0.3194999  -2.365 0.020664 *  
+GeographicalNE     -0.0402935  0.1981862  -0.203 0.839450    
+GeographicalSO     -0.0553394  0.2090006  -0.265 0.791914    
+GeographicalWE     -0.0365427  0.2367051  -0.154 0.877730    
+pro_env_dummy       0.0660696  0.1304835   0.506 0.614120    
+Instance            0.0109476  0.0023629   4.633 1.51e-05 ***
+seniority          -0.0154235  0.0173315  -0.890 0.376399    
+Contribution_minus -0.0008452  0.0195783  -0.043 0.965680    
+Contribution_plus   0.0040795  0.0175225   0.233 0.816549    
+Dmajority           0.5886900  0.1521221   3.870 0.000233 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4268 on 74 degrees of freedom
+  (50 observations deleted due to missingness)
+Multiple R-squared:  0.3871,    Adjusted R-squared:  0.2794 
+F-statistic: 3.595 on 13 and 74 DF,  p-value: 0.0002178</code></pre>
+</div>
+</div>
+<p>We remove anti_env_dummy because of singularities, since all representatives have received contributions from anti environmental groups.</p>
 <p>Already here we can see that the coefficients are less significant on average with only instance being significant, with 0.01 units more likely to change their vote from anti to pro environmental vote, further during the years. Moreover, we see that for a change in vote from anti-environmental to pro-environmental</p>
 </section>
 </section>
 <section id="with-individual-year-fes" class="level2">
 <h2 class="anchored" data-anchor-id="with-individual-year-fes">with individual &amp; year FEs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ols_change_ind_fe <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(BioID) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus, <span class="at">data =</span> df_long_change)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_ind_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_long_change)</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>ols_change_ind_fe <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(BioID) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus, <span class="at">data =</span> df_long_change)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_ind_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -4617,7 +5280,7 @@ missmap(df_no_change, main = "Missing values vs observed")
 ```
 
 ::: {.cell-output-display}
-![](data_analysis_final_files/figure-html/unnamed-chunk-24-1.png){width=672}
+![](data_analysis_final_files/figure-html/unnamed-chunk-25-1.png){width=672}
 :::
 
 ```{.r .cell-code}

@@ -106,6 +106,27 @@ filter_all_pre_session_data <- function(df, vote) {
     return(df)
 }
 
+
+# create dummy for vote change... 1 or 0 vote!! > von + -> - = 0, von - -> + = 1 (manually, use package for this)
+add_vote_dummy <- function(df) {
+    # create cols for vote change to pro and anti
+    vote_change_to_pro <- c()
+    vote_change_to_anti <- c()
+    for (i in 1:nrow(df)) {
+        if (!is.na(df$vote_change_type[i] == 1)) {
+            vote_change_to_pro[i] <- 1
+        } else if (!!is.na(df$vote_change_type[i] == 0)) {
+            vote_change_to_anti[i] <- 0
+        }
+    }
+    df$vote_change_to_pro <- vote_change_to_pro
+    df$vote_change_to_anti <- vote_change_to_anti
+    df <- relocate(df, vote_change_to_pro, .after = vote_change_type)
+    df <- relocate(df, vote_change_to_anti, .after = vote_change_to_pro)
+    return(df)
+}
+
+
 # DF for SUBSAMPLE ANALYSIS
 vote_columns <- c("Vote3", "Vote4", "Vote51", "Vote52", "Vote6", "Vote7")
 
@@ -117,30 +138,16 @@ detect_changes <- function(row) {
             current_vote <- row[vote_columns[i]]
             next_vote <- row[vote_columns[i + 1]]
             if (!is.na(current_vote != next_vote)) {
-                if (current_vote == "+" && next_vote == "-") {
+                if (current_vote == "1" && next_vote == "0") {
                     changes <- c(changes, "0")
                 }
-                if (current_vote == "-" && next_vote == "+") {
+                if (current_vote == "0" && next_vote == "1") {
                     changes <- c(changes, "1")
                 }
             }
         }
     }
     paste(changes, collapse = ",")
-}
-
-# pivot longer function
-pivot_longer_function <- function(df) {
-    df <- df %>%
-        separate(vote_change_type, paste0("change", c(1:4)), sep = ",")
-
-    df <- pivot_longer(df, c(change1, change2, change3, change4),
-        names_to = "votes", values_to = "change", values_drop_na = TRUE
-    ) %>%
-        relocate(change, .after = name) %>%
-        relocate(votes, .after = change)
-
-    return(df)
 }
 
 # FIXED EFFECTS DF
@@ -165,6 +172,90 @@ detect_year_of_changes <- function(row) {
     paste(year_change, collapse = ", ")
 }
 
+# aggregate function that creates vote_change_type and vote_change_year columns using the 2 above functions
+create_vote_change_dataframe <- function(df) {
+    df <- df %>%
+        mutate(vote_change_type = apply(.[, vote_columns], 1, detect_changes)) %>%
+        relocate(vote_change_type, .after = Vote_change) %>%
+        mutate(vote_change_year = apply(.[, vote_columns], 1, detect_year_of_changes)) %>%
+        relocate(vote_change_year, .after = vote_change_type) %>%
+        mutate(
+            first_vote = apply(.[, vote_columns], 1, base_year), # base_year function needs to be defined
+            first_contribution_minus = apply(., 1, first_contribution_minus), # function needs to be defined
+            first_contribution_plus = apply(., 1, first_contribution_plus) # function needs to be defined
+        ) %>%
+        separate_rows(vote_change_type, vote_change_year, sep = ",") %>%
+        mutate(
+            vote_change_type = trimws(vote_change_type),
+            vote_change_year = trimws(vote_change_year)
+        )
+
+    return(df)
+}
+
+
+# pivot longer function
+pivot_longer_function <- function(df) {
+    df <- df %>%
+        separate(vote_change_type, paste0("change", c(1:4)), sep = ",")
+
+    df <- pivot_longer(df, c(change1, change2, change3, change4),
+        names_to = "votes", values_to = "change", values_drop_na = TRUE
+    ) %>%
+        relocate(change, .after = name) %>%
+        relocate(votes, .after = change)
+
+    return(df)
+}
+
+
+aggregate_pivot_longer_function <- function(df) {
+    # create copy of seniority_115 to pivot easier
+    df$seniority_115_2 <- df$seniority_115
+
+    # Perform renaming operations to align with the desired naming convention
+    # dry!!! - redo this part
+    df <- df %>%
+        rename(
+            seniority_3 = "seniority_113",
+            seniority_4 = "seniority_114",
+            seniority_51 = "seniority_115",
+            seniority_52 = "seniority_115_2",
+            seniority_6 = "seniority_116",
+            seniority_7 = "seniority_117",
+            Contribution_minus_3 = "Contribution_3_minus",
+            Contribution_plus_3 = "Contribution_3_plus",
+            Contribution_minus_4 = "Contribution_4_minus",
+            Contribution_plus_4 = "Contribution_4_plus",
+            Contribution_minus_51 = "Contribution_51_minus",
+            Contribution_plus_51 = "Contribution_51_plus",
+            Contribution_minus_52 = "Contribution_52_minus",
+            Contribution_plus_52 = "Contribution_52_plus",
+            Contribution_minus_6 = "Contribution_6_minus",
+            Contribution_plus_6 = "Contribution_6_plus",
+            Contribution_minus_7 = "Contribution_7_minus",
+            Contribution_plus_7 = "Contribution_7_plus"
+        )
+
+    # Define columns to keep as identifiers
+    id_vars <- c(
+        "BioID", "GovtrackID", "opensecrets_id", "first_name", "last_name", "state",
+        "district", "party", "name", "birthday", "gender", "pro_env_dummy",
+        "anti_env_dummy", "Geographical", "nominate_dim1", "nominate_dim2",
+        "Vote_change_dummy", "Vote_change"
+    )
+
+    # Perform a single pivot_longer operation to reshape the data
+    df <- df %>%
+        pivot_longer(
+            cols = -all_of(id_vars), # Exclude identifier columns from pivoting
+            names_to = c(".value", "Instance"), # .value keeps the metric name, Instance extracts the number
+            names_pattern = "(.*?)(?:_)?(\\d+)$" # Separates the metric name and instance number
+        ) %>%
+        filter(!is.na(Instance))
+
+    return(df)
+}
 
 vote_columns <- c("Vote3", "Vote4", "Vote51", "Vote52", "Vote6", "Vote7")
 session_columns <- c("3", "4", "51", "52", "6", "7")
