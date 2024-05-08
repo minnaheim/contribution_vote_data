@@ -529,7 +529,7 @@ congressional sessions which each representative partook in, data from @bioguide
 was used match the data on current and historical legilsators with a list of the
 representatives participating in each seperate congress.
 
-== Rollcall data
+== Rollcall data <rollcall>
 
 As @stratmann-2002 stipulated in his paper, to be able to analyse changes in
 voting behaviour, the cross-sectionality of panel data needs to be exploited,
@@ -554,7 +554,7 @@ more useful, since these match representatives with a unique identifier. This
 was not possible, however, because these websites do not publish all rollcall
 votes but only the most relevant, i.e. the votes which passed a bill. For this
 analysis, however, the environmentally related rollcall votes are to be
-analysed, and these are often not published on the aforementioned websites.
+used and these are often not published on the aforementioned websites.
 Thus, the LCV Scorecard Website was used to source rollcall data, despite their
 incomplete use of IDs for representatives.
 
@@ -573,9 +573,8 @@ roll_call_full_<- fuzzy_full_join(
     by = c("name", "Party", "District"),
     match_fun = list(fuzzy_match, `==`, `==`)
 )
-```
-To overcome this, the R package fuzzyjoin @fuzzjoin was used. Using the function
-fuzzy_match and fuzzy_full_join, a maximum distance between two values can be
+``` 
+To overcome this, the R package fuzzyjoin @fuzzjoin was used. Using the functions clean_strings to remove special characters and fuzzy_match and fuzzy_full_join to join, a maximum distance between two values can be
 determined, here 5 characters. in the fuzzy_full_join, I defined that the names
 between the two dataframes can be matched if they are at most 5 characters
 distance from one another, while the variables Party and District need to be
@@ -732,35 +731,15 @@ OpenSecrets RealCodes #footnote(
 contributions were kept. Moreover, only non-negative contributions were kept.
 
 == Merging <merging>
-- about 60% mergable based on ID
-  - github df with govtrack ID, bioguide ID, opensecrets ID from reputable sources
-  - from 2021 vote onwards, LCV has bioguide ID
-  - why not take non-LCV votes? aka votes from govtrack, with ID? didnt have all
-    roll-call votes, i.e. usually not those with relevant environmental amendments
-    to bills.
-- 40% of the data are representatives who were not there in 117th congress, had to
-  merge manually, i.e. merge by name using fedmatch to remove special characters
-  and case-sensitivtity, merge with fuzzyjoin to include all reps with max.
-  distance of 4 (i.e. Micheal and Mike) in the names, perfect match in state,
-  district, etc. -> insert code block?
 
-- had I used GOVTRACK ID, i would have had an easier time with the merge of IDs,
-  but the rollcall votes are not relevant, since not env. relevant, not all
-  amendments to bills are environmentally related, esp. for bills such as these,
-  where many insititutions are mentioned. and since environmental votes are the
-  main part of the study, this was most important.
-- used clean strings to remove special characters and case-sensitivtity, merge
-  with fuzzyjoin to include all reps with max. distance of 4 (i.e. Micheal and
-  Mike) in the names, perfect match in state, district, etc.
-- changes in members halfway, i.e. shows up in representative list, but not in
-  rollcall, or in contributions, etc.
-- (changes in congress from house to senate, github df then shows as only assen,
-  not rep history)
+To merge the three types of aforementioned data together, two types of merges (or joins, synonymous in R) were done. About 60% of the data was able to be merged together based on a set of Unique Identifiers, which was Bioguide ID for the rollcall data. Post primary merge, the rest of the data, which was not able to be merged was filtered out and merged based on the @fedmatch functions fuzzy_match and fuzzy_join functions as shown in the code block in @rollcall. Finally, the two merged dataframes were concatinated.
 
-*Final Dataframe for Analysis*
-- only R, D, no Liberatrians, Independents
-- only vote repeaters
-- pivot longer (for FE df)
+Finally, only about 30 representatives were not able to be merged and thus removed. The reason for this is because these anomalies either joined or left congress halfway through the session or switched from the US house of representatives to the senate, and thus these members appeared in some dataframe, but not in the others, i.e. are marked as representatives but were not included in the vote and did not receive contribution, since they were not part of a regular election. 
+
+For the final dataframe used for analysis, the 731 representatives (over 113th-117th congresses) were further decreased, to only include representatives relevant to the analysis. This includes only representatives, who voted on more than one relevant bill. Without this specification, one couldn't analyse differences in voting behaviour. Moreover, only Republicans and Democrats were included, since Independent and Libertarians are too few to be able to compare.
+
+// relevant?
+// Lastly, to make the dataframe suitable for analysis, I used the pivot_longer function to pivot the dataframe to include only the Vote, Contributions (pro-environmental and anti environmental seperately) and the 
 
 #pagebreak()
 
