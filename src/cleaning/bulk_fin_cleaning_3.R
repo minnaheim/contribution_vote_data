@@ -1,5 +1,6 @@
 library(tidyverse)
 library(conflicted)
+library(stats)
 source("src/cleaning/utils/combine_columns.R")
 source("src/cleaning/utils/bulk_cleaning_functions.R")
 
@@ -19,11 +20,16 @@ contribs16 <- clean_contribs_for_vote(rep_115, "12-02-2017")
 contribs14 <- clean_contribs_for_vote(rep_114, "01-12-2016")
 contribs12 <- clean_contribs_for_vote(rep_113, "03-19-2013")
 
-# determine what to do with reps that received no contributions, i.e. in contribs12, for Vote3, 26 reps received no contributions.
-# Alma Adams, e.g. only got swapped in shortly after the vote.
-# view(contribs12)
-# view(contribs14)
 
+# before determining whether the industry is pro environmental or anti environmental,
+# use k-means to associate contributions without my biases.
+# view(contribs12)
+# contribs12 <- contribs12 %>%
+#     select(c("RealCode", "total")) %>%
+#     mutate_all(as.numeric) %>%
+#     na.omit()
+# df <- df %>%
+#     kmeans(contribs12$total, centers = 2) # 1 = pro, 2 = anti
 
 contribs20 <- determine_industry(contribs20)
 contribs18 <- determine_industry(contribs18)
@@ -77,11 +83,12 @@ write.csv(contribs20_summarized, "data/cleaned/contribs20_summarized.csv", row.n
 write.csv(contribs_wide, "data/cleaned/contribs_wide.csv", row.names = FALSE)
 write.csv(contribs_long, "data/cleaned/contribs_long.csv", row.names = FALSE)
 
+view(contribs16_2)
 # determine number of appearance of each cycle
-# contribs20 %>%
-#     group_by(Cycle) %>%
-#     summarise(n = n()) %>%
-#     arrange(desc(n))
+contribs16_2 %>%
+    group_by(Cycle) %>%
+    summarise(n = n()) %>%
+    arrange(desc(n))
 
 # 20
 #   Cycle     n
@@ -94,6 +101,13 @@ write.csv(contribs_long, "data/cleaned/contribs_long.csv", row.names = FALSE)
 #   <dbl> <int>
 # 1  2020  5191
 # 2  2018    30
+
+# 16_2
+# A tibble: 2 × 2
+#   Cycle     n
+#   <dbl> <int>
+# 1  2018  7749
+# 2    NA    44
 
 # 16
 #   Cycle     n

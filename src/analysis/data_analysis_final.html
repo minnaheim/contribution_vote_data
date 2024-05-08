@@ -1894,20 +1894,23 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h1>LPM with vote changing Representatives</h1>
 <p>Here is what this dataframe looks like</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>df_long_change <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Vote_change_dummy <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Vote_change_dummy, Vote_change))</span>
-<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(df_long_change[<span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, ], <span class="at">format =</span> <span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(df_vote_change[<span class="dv">1</span><span class="sc">:</span><span class="dv">25</span>, ], <span class="at">format =</span> <span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">BioID</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">GovtrackID</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">opensecrets_id</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">first_name</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">last_name</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">state</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">district</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">party</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Vote_change</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Vote_change_dummy</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">birthday</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">gender</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">nominate_dim1</th>
@@ -1926,9 +1929,16 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
 <td style="text-align: left;">CA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">1952</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">-0.196</td>
@@ -1939,15 +1949,22 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">5</td>
-<td style="text-align: right;">10.090589</td>
-<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">24114</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
 <td style="text-align: left;">CA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">1952</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">-0.196</td>
@@ -1958,15 +1975,22 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">6</td>
-<td style="text-align: right;">10.968215</td>
-<td style="text-align: right;">7.601402</td>
+<td style="text-align: right;">58000</td>
+<td style="text-align: right;">2000</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
 <td style="text-align: left;">CA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">1952</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">-0.196</td>
@@ -1977,15 +2001,22 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <td style="text-align: right;">51</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: right;">7</td>
-<td style="text-align: right;">10.511921</td>
-<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">36750</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
 <td style="text-align: left;">CA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">1952</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">-0.196</td>
@@ -1996,15 +2027,22 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <td style="text-align: right;">52</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">7</td>
-<td style="text-align: right;">10.997941</td>
-<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">59750</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
 <td style="text-align: left;">CA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">1952</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">-0.196</td>
@@ -2015,15 +2053,22 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">8</td>
-<td style="text-align: right;">10.221978</td>
-<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">27500</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
 <td style="text-align: left;">CA</td>
 <td style="text-align: right;">NA</td>
 <td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">1952</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">-0.196</td>
@@ -2034,15 +2079,334 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <td style="text-align: right;">7</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">9</td>
-<td style="text-align: right;">10.778977</td>
-<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">48000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">24114</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">58000</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">36750</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">59750</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">27500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">48000</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">24114</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">58000</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">36750</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">52</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">59750</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">0</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">6</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;">27500</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">C001059</td>
+<td style="text-align: right;">400618</td>
+<td style="text-align: left;">N00026341</td>
+<td style="text-align: left;">Jim</td>
+<td style="text-align: left;">Costa</td>
+<td style="text-align: left;">CA</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">costa jim</td>
+<td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1952</td>
+<td style="text-align: left;">M</td>
+<td style="text-align: right;">-0.196</td>
+<td style="text-align: right;">0.458</td>
+<td style="text-align: left;">WE</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">7</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">9</td>
+<td style="text-align: right;">48000</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">B000490</td>
+<td style="text-align: right;">400030</td>
+<td style="text-align: left;">N00002674</td>
+<td style="text-align: left;">Sanford D.,Sanford</td>
+<td style="text-align: left;">Bishop</td>
 <td style="text-align: left;">GA</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: left;">D</td>
+<td style="text-align: left;">bishop sanford d,bishop sanford</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">1947</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">-0.285</td>
@@ -2053,15 +2417,22 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">11</td>
-<td style="text-align: right;">9.903538</td>
-<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">20000</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">B000490</td>
+<td style="text-align: right;">400030</td>
+<td style="text-align: left;">N00002674</td>
+<td style="text-align: left;">Sanford D.,Sanford</td>
+<td style="text-align: left;">Bishop</td>
 <td style="text-align: left;">GA</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: left;">D</td>
+<td style="text-align: left;">bishop sanford d,bishop sanford</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">1947</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">-0.285</td>
@@ -2072,15 +2443,22 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">12</td>
-<td style="text-align: right;">9.770013</td>
-<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">17500</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">B000490</td>
+<td style="text-align: right;">400030</td>
+<td style="text-align: left;">N00002674</td>
+<td style="text-align: left;">Sanford D.,Sanford</td>
+<td style="text-align: left;">Bishop</td>
 <td style="text-align: left;">GA</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: left;">D</td>
+<td style="text-align: left;">bishop sanford d,bishop sanford</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">1947</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">-0.285</td>
@@ -2091,15 +2469,22 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <td style="text-align: right;">51</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">13</td>
-<td style="text-align: right;">9.510519</td>
-<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">13500</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">B000490</td>
+<td style="text-align: right;">400030</td>
+<td style="text-align: left;">N00002674</td>
+<td style="text-align: left;">Sanford D.,Sanford</td>
+<td style="text-align: left;">Bishop</td>
 <td style="text-align: left;">GA</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: left;">D</td>
+<td style="text-align: left;">bishop sanford d,bishop sanford</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">1947</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">-0.285</td>
@@ -2110,15 +2495,22 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <td style="text-align: right;">52</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">13</td>
-<td style="text-align: right;">9.798183</td>
-<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">18000</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">B000490</td>
+<td style="text-align: right;">400030</td>
+<td style="text-align: left;">N00002674</td>
+<td style="text-align: left;">Sanford D.,Sanford</td>
+<td style="text-align: left;">Bishop</td>
 <td style="text-align: left;">GA</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: left;">D</td>
+<td style="text-align: left;">bishop sanford d,bishop sanford</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">1947</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">-0.285</td>
@@ -2129,15 +2521,22 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">14</td>
-<td style="text-align: right;">8.922792</td>
-<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">7500</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">B000490</td>
+<td style="text-align: right;">400030</td>
+<td style="text-align: left;">N00002674</td>
+<td style="text-align: left;">Sanford D.,Sanford</td>
+<td style="text-align: left;">Bishop</td>
 <td style="text-align: left;">GA</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: left;">D</td>
+<td style="text-align: left;">bishop sanford d,bishop sanford</td>
+<td style="text-align: right;">4</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: right;">1947</td>
 <td style="text-align: left;">M</td>
 <td style="text-align: right;">-0.285</td>
@@ -2148,351 +2547,35 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <td style="text-align: right;">7</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">15</td>
-<td style="text-align: right;">8.517393</td>
-<td style="text-align: right;">0.000000</td>
+<td style="text-align: right;">5000</td>
+<td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">U000031</td>
-<td style="text-align: left;">MI</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1953</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.320</td>
-<td style="text-align: right;">-0.355</td>
-<td style="text-align: left;">MW</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">11.815627</td>
-<td style="text-align: right;">6.908755</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">U000031</td>
-<td style="text-align: left;">MI</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1953</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.320</td>
-<td style="text-align: right;">-0.355</td>
-<td style="text-align: left;">MW</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
+<td style="text-align: left;">B000490</td>
+<td style="text-align: right;">400030</td>
+<td style="text-align: left;">N00002674</td>
+<td style="text-align: left;">Sanford D.,Sanford</td>
+<td style="text-align: left;">Bishop</td>
+<td style="text-align: left;">GA</td>
+<td style="text-align: right;">2</td>
+<td style="text-align: left;">D</td>
+<td style="text-align: left;">bishop sanford d,bishop sanford</td>
 <td style="text-align: right;">4</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">15</td>
-<td style="text-align: right;">11.867897</td>
-<td style="text-align: right;">0.000000</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">U000031</td>
-<td style="text-align: left;">MI</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1953</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1947</td>
 <td style="text-align: left;">M</td>
-<td style="text-align: right;">0.320</td>
-<td style="text-align: right;">-0.355</td>
-<td style="text-align: left;">MW</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">51</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">10.247113</td>
-<td style="text-align: right;">0.000000</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">U000031</td>
-<td style="text-align: left;">MI</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1953</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.320</td>
-<td style="text-align: right;">-0.355</td>
-<td style="text-align: left;">MW</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">52</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">11.459008</td>
-<td style="text-align: right;">0.000000</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">U000031</td>
-<td style="text-align: left;">MI</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1953</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.320</td>
-<td style="text-align: right;">-0.355</td>
-<td style="text-align: left;">MW</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">17</td>
-<td style="text-align: right;">10.854933</td>
-<td style="text-align: right;">0.000000</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">U000031</td>
-<td style="text-align: left;">MI</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1953</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.320</td>
-<td style="text-align: right;">-0.355</td>
-<td style="text-align: left;">MW</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">18</td>
-<td style="text-align: right;">10.411329</td>
-<td style="text-align: right;">0.000000</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">S000522</td>
-<td style="text-align: left;">NJ</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1953</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.178</td>
-<td style="text-align: right;">-0.173</td>
-<td style="text-align: left;">NE</td>
+<td style="text-align: right;">-0.285</td>
+<td style="text-align: right;">0.454</td>
+<td style="text-align: left;">SO</td>
 <td style="text-align: right;">0</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">3</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">11</td>
+<td style="text-align: right;">20000</td>
 <td style="text-align: right;">0</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;">7.313887</td>
-<td style="text-align: right;">0.000000</td>
 <td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">S000522</td>
-<td style="text-align: left;">NJ</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1953</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.178</td>
-<td style="text-align: right;">-0.173</td>
-<td style="text-align: left;">NE</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">15</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">S000522</td>
-<td style="text-align: left;">NJ</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1953</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.178</td>
-<td style="text-align: right;">-0.173</td>
-<td style="text-align: left;">NE</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">51</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">8.999619</td>
-<td style="text-align: right;">0.000000</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">S000522</td>
-<td style="text-align: left;">NJ</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1953</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.178</td>
-<td style="text-align: right;">-0.173</td>
-<td style="text-align: left;">NE</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">52</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">16</td>
-<td style="text-align: right;">8.999619</td>
-<td style="text-align: right;">0.000000</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">S000522</td>
-<td style="text-align: left;">NJ</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1953</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.178</td>
-<td style="text-align: right;">-0.173</td>
-<td style="text-align: left;">NE</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">17</td>
-<td style="text-align: right;">9.304650</td>
-<td style="text-align: right;">0.000000</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">S000522</td>
-<td style="text-align: left;">NJ</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1953</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.178</td>
-<td style="text-align: right;">-0.173</td>
-<td style="text-align: left;">NE</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">18</td>
-<td style="text-align: right;">0.000000</td>
-<td style="text-align: right;">0.000000</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">R000585</td>
-<td style="text-align: left;">NY</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1971</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.269</td>
-<td style="text-align: right;">0.120</td>
-<td style="text-align: left;">NE</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;">11.359203</td>
-<td style="text-align: right;">8.354909</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">R000585</td>
-<td style="text-align: left;">NY</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1971</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.269</td>
-<td style="text-align: right;">0.120</td>
-<td style="text-align: left;">NE</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;">11.255785</td>
-<td style="text-align: right;">9.798183</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">R000585</td>
-<td style="text-align: left;">NY</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1971</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.269</td>
-<td style="text-align: right;">0.120</td>
-<td style="text-align: left;">NE</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">51</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">10.619521</td>
-<td style="text-align: right;">6.216606</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">R000585</td>
-<td style="text-align: left;">NY</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1971</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.269</td>
-<td style="text-align: right;">0.120</td>
-<td style="text-align: left;">NE</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">52</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;">10.386716</td>
-<td style="text-align: right;">0.000000</td>
-<td style="text-align: right;">0</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">R000585</td>
-<td style="text-align: left;">NY</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1971</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.269</td>
-<td style="text-align: right;">0.120</td>
-<td style="text-align: left;">NE</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">6</td>
-<td style="text-align: right;">10.720819</td>
-<td style="text-align: right;">0.000000</td>
-<td style="text-align: right;">1</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">R000585</td>
-<td style="text-align: left;">NY</td>
-<td style="text-align: right;">23</td>
-<td style="text-align: left;">R</td>
-<td style="text-align: right;">1971</td>
-<td style="text-align: left;">M</td>
-<td style="text-align: right;">0.269</td>
-<td style="text-align: right;">0.120</td>
-<td style="text-align: left;">NE</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">9.495594</td>
-<td style="text-align: right;">0.000000</td>
-<td style="text-align: right;">1</td>
 </tr>
 </tbody>
 </table>
@@ -2505,43 +2588,8 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h2 class="anchored" data-anchor-id="with-control-variables-2">with control variables</h2>
 <p>Using the same model as above with the same specifications (control varaibels, then generous FE (state, year), then strict FE (individuals)) but using only those representatives that changed their voting behavior over time.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>ols_change <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> anti_env_dummy, <span class="at">data =</span> df_long_change)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = Vote ~ . - state - BioID - anti_env_dummy, data = df_long_change)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.92153 -0.27442  0.03709  0.28273  0.77624 
-
-Coefficients:
-                    Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)        17.639882  16.965029   1.040 0.301922    
-district           -0.001233   0.007217  -0.171 0.864844    
-partyR              0.373077   0.648938   0.575 0.567148    
-birthday           -0.008765   0.008654  -1.013 0.314550    
-genderM            -0.358623   0.220999  -1.623 0.109017    
-nominate_dim1      -1.550272   0.789923  -1.963 0.053562 .  
-nominate_dim2      -0.723684   0.329919  -2.194 0.031500 *  
-GeographicalNE     -0.064638   0.204902  -0.315 0.753324    
-GeographicalSO      0.060250   0.291773   0.206 0.836986    
-GeographicalWE     -0.037467   0.240788  -0.156 0.876781    
-pro_env_dummy       0.099862   0.153998   0.648 0.518747    
-Instance            0.011231   0.002443   4.597 1.79e-05 ***
-seniority          -0.018374   0.018595  -0.988 0.326418    
-Contribution_minus  0.003553   0.021493   0.165 0.869163    
-Contribution_plus   0.003461   0.018350   0.189 0.850924    
-Dmajority           0.602915   0.156350   3.856 0.000248 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.4317 on 72 degrees of freedom
-  (50 observations deleted due to missingness)
-Multiple R-squared:  0.3899,    Adjusted R-squared:  0.2628 
-F-statistic: 3.067 on 15 and 72 DF,  p-value: 0.0007355</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ols_change &lt;- lm(Vote ~ . - state - BioID - anti_env_dummy, data = df_long_change)</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(ols_change)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Compared to before we see multiple things, on the one hand the Adjusted R^2 is lower than in the other models where it averages to about 0.91, here only 0.25. This is because the model is more specific, i.e.&nbsp;only includes those representatives who changed their voting behavior, which are only 23 in total our ot 574 (?), whereas there are 31 changes in votes to be seen in total.</p>
 <p>So, we need to take all these results with caution, since 23 out of 547 (?) is not an incredibly small sample size, and thus makes the model less robust.</p>
@@ -2550,126 +2598,16 @@ F-statistic: 3.067 on 15 and 72 DF,  p-value: 0.0007355</code></pre>
 <section id="with-geography-year-fes" class="level2">
 <h2 class="anchored" data-anchor-id="with-geography-year-fes">with geography &amp; year FEs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ols_change_fe <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(Geographical) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> Dmajority <span class="sc">+</span> district, <span class="at">data =</span> df_long_change)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = Vote ~ as.factor(Geographical) + as.factor(Instance) + 
-    district + party + birthday + nominate_dim1 + nominate_dim2 + 
-    seniority + Contribution_minus + Contribution_plus + gender + 
-    pro_env_dummy + Dmajority + district, data = df_long_change)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.86106 -0.28998  0.02509  0.26894  0.83514 
-
-Coefficients: (1 not defined because of singularities)
-                           Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)               18.922971  17.312402   1.093 0.278182    
-as.factor(Geographical)NE -0.069686   0.206340  -0.338 0.736594    
-as.factor(Geographical)SO  0.053046   0.294156   0.180 0.857421    
-as.factor(Geographical)WE -0.048823   0.243047  -0.201 0.841386    
-as.factor(Instance)4       0.188642   0.151411   1.246 0.217017    
-as.factor(Instance)6       0.781174   0.204553   3.819 0.000290 ***
-as.factor(Instance)7       0.703711   0.216224   3.255 0.001761 ** 
-as.factor(Instance)51      0.583370   0.162826   3.583 0.000629 ***
-as.factor(Instance)52      0.702571   0.167217   4.202  7.8e-05 ***
-district                  -0.001682   0.007301  -0.230 0.818525    
-partyR                     0.379572   0.655782   0.579 0.564603    
-birthday                  -0.009433   0.008837  -1.067 0.289490    
-nominate_dim1             -1.585873   0.799727  -1.983 0.051347 .  
-nominate_dim2             -0.742310   0.332753  -2.231 0.028947 *  
-seniority                 -0.020389   0.018943  -1.076 0.285535    
-Contribution_minus         0.001717   0.021970   0.078 0.937918    
-Contribution_plus          0.002868   0.018544   0.155 0.877535    
-genderM                   -0.348517   0.223077  -1.562 0.122788    
-pro_env_dummy              0.103608   0.155575   0.666 0.507649    
-Dmajority                        NA         NA      NA       NA    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.4344 on 69 degrees of freedom
-  (50 observations deleted due to missingness)
-Multiple R-squared:  0.4079,    Adjusted R-squared:  0.2534 
-F-statistic: 2.641 on 18 and 69 DF,  p-value: 0.002037</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ols_change_fe &lt;- lm(Vote ~ as.factor(Geographical) + as.factor(Instance) + district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + Dmajority + district, data = df_long_change)</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(ols_change_fe)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="checking-differences-in-party-1" class="level3">
 <h3 class="anchored" data-anchor-id="checking-differences-in-party-1">checking differences in party</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ols_change_D <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> party <span class="sc">-</span> BioID <span class="sc">-</span> district <span class="sc">-</span> anti_env_dummy, <span class="at">data =</span> df_long_change)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_D)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = Vote ~ . - state - party - BioID - district - anti_env_dummy, 
-    data = df_long_change)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.96375 -0.27583  0.03763  0.29328  0.73415 
-
-Coefficients:
-                     Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)        16.0802339 16.3110427   0.986 0.327419    
-birthday           -0.0078235  0.0082539  -0.948 0.346292    
-genderM            -0.3679240  0.2025149  -1.817 0.073301 .  
-nominate_dim1      -1.1612622  0.3772937  -3.078 0.002923 ** 
-nominate_dim2      -0.7555507  0.3194999  -2.365 0.020664 *  
-GeographicalNE     -0.0402935  0.1981862  -0.203 0.839450    
-GeographicalSO     -0.0553394  0.2090006  -0.265 0.791914    
-GeographicalWE     -0.0365427  0.2367051  -0.154 0.877730    
-pro_env_dummy       0.0660696  0.1304835   0.506 0.614120    
-Instance            0.0109476  0.0023629   4.633 1.51e-05 ***
-seniority          -0.0154235  0.0173315  -0.890 0.376399    
-Contribution_minus -0.0008452  0.0195783  -0.043 0.965680    
-Contribution_plus   0.0040795  0.0175225   0.233 0.816549    
-Dmajority           0.5886900  0.1521221   3.870 0.000233 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.4268 on 74 degrees of freedom
-  (50 observations deleted due to missingness)
-Multiple R-squared:  0.3871,    Adjusted R-squared:  0.2794 
-F-statistic: 3.595 on 13 and 74 DF,  p-value: 0.0002178</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>ols_change_R <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> party <span class="sc">-</span> BioID <span class="sc">-</span> district <span class="sc">-</span> anti_env_dummy, <span class="at">data =</span> df_long_change)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = Vote ~ . - state - party - BioID - district - anti_env_dummy, 
-    data = df_long_change)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.96375 -0.27583  0.03763  0.29328  0.73415 
-
-Coefficients:
-                     Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)        16.0802339 16.3110427   0.986 0.327419    
-birthday           -0.0078235  0.0082539  -0.948 0.346292    
-genderM            -0.3679240  0.2025149  -1.817 0.073301 .  
-nominate_dim1      -1.1612622  0.3772937  -3.078 0.002923 ** 
-nominate_dim2      -0.7555507  0.3194999  -2.365 0.020664 *  
-GeographicalNE     -0.0402935  0.1981862  -0.203 0.839450    
-GeographicalSO     -0.0553394  0.2090006  -0.265 0.791914    
-GeographicalWE     -0.0365427  0.2367051  -0.154 0.877730    
-pro_env_dummy       0.0660696  0.1304835   0.506 0.614120    
-Instance            0.0109476  0.0023629   4.633 1.51e-05 ***
-seniority          -0.0154235  0.0173315  -0.890 0.376399    
-Contribution_minus -0.0008452  0.0195783  -0.043 0.965680    
-Contribution_plus   0.0040795  0.0175225   0.233 0.816549    
-Dmajority           0.5886900  0.1521221   3.870 0.000233 ***
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.4268 on 74 degrees of freedom
-  (50 observations deleted due to missingness)
-Multiple R-squared:  0.3871,    Adjusted R-squared:  0.2794 
-F-statistic: 3.595 on 13 and 74 DF,  p-value: 0.0002178</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ols_change_D &lt;- lm(Vote ~ . - state - party - BioID - district - anti_env_dummy, data = df_long_change)</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(ols_change_D)</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># ols_change_R &lt;- lm(Vote ~ . - state - party - BioID - district - anti_env_dummy, data = df_long_change)</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(ols_change_R)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>We remove anti_env_dummy because of singularities, since all representatives have received contributions from anti environmental groups.</p>
 <p>Already here we can see that the coefficients are less significant on average with only instance being significant, with 0.01 units more likely to change their vote from anti to pro environmental vote, further during the years. Moreover, we see that for a change in vote from anti-environmental to pro-environmental</p>
@@ -2678,59 +2616,9 @@ F-statistic: 3.595 on 13 and 74 DF,  p-value: 0.0002178</code></pre>
 <section id="with-individual-year-fes" class="level2">
 <h2 class="anchored" data-anchor-id="with-individual-year-fes">with individual &amp; year FEs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_long_change)</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>ols_change_ind_fe <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(BioID) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus, <span class="at">data =</span> df_long_change)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_ind_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Call:
-lm(formula = Vote ~ as.factor(BioID) + as.factor(Instance) + 
-    Contribution_minus + Contribution_plus, data = df_long_change)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.90684 -0.31008  0.05125  0.27070  0.80673 
-
-Coefficients:
-                          Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)             -0.0357678  0.3463536  -0.103 0.918057    
-as.factor(BioID)C001059 -0.0835960  0.2758848  -0.303 0.762821    
-as.factor(BioID)C001063 -0.3714990  0.2643916  -1.405 0.164609    
-as.factor(BioID)C001077 -0.3411944  0.3211090  -1.063 0.291801    
-as.factor(BioID)C001106 -0.0089839  0.3485125  -0.026 0.979511    
-as.factor(BioID)G000410  0.2944105  0.3172617   0.928 0.356752    
-as.factor(BioID)G000578 -0.4903202  0.3238563  -1.514 0.134728    
-as.factor(BioID)G000581 -0.1292361  0.2947518  -0.438 0.662465    
-as.factor(BioID)H001051  0.3430353  0.4088506   0.839 0.404440    
-as.factor(BioID)K000387 -0.3640542  0.3363005  -1.083 0.282899    
-as.factor(BioID)L000567 -0.3016220  0.2938657  -1.026 0.308397    
-as.factor(BioID)M001181 -0.1070456  0.3384016  -0.316 0.752738    
-as.factor(BioID)R000435  0.3466896  0.3787542   0.915 0.363295    
-as.factor(BioID)R000578 -0.0215192  0.3572548  -0.060 0.952148    
-as.factor(BioID)R000580 -0.3196933  0.3005927  -1.064 0.291354    
-as.factor(BioID)R000585 -0.5321086  0.2709637  -1.964 0.053709 .  
-as.factor(BioID)S000051 -0.0283929  0.3045260  -0.093 0.925994    
-as.factor(BioID)S000522 -0.0666088  0.2806597  -0.237 0.813125    
-as.factor(BioID)S001196  0.0241102  0.3192134   0.076 0.940018    
-as.factor(BioID)U000031 -0.2071118  0.2639900  -0.785 0.435486    
-as.factor(BioID)V000131  0.1514552  0.2606195   0.581 0.563099    
-as.factor(BioID)V000132  0.1676808  0.2634969   0.636 0.526705    
-as.factor(BioID)W000823 -0.4041040  0.3774666  -1.071 0.288205    
-as.factor(Instance)4     0.1984412  0.1527919   1.299 0.198476    
-as.factor(Instance)6     0.7201317  0.1879810   3.831 0.000284 ***
-as.factor(Instance)7     0.7449227  0.1922727   3.874 0.000246 ***
-as.factor(Instance)51    0.5465703  0.1596588   3.423 0.001059 ** 
-as.factor(Instance)52    0.6996432  0.1601842   4.368 4.46e-05 ***
-Contribution_minus       0.0231273  0.0268827   0.860 0.392690    
-Contribution_plus        0.0008682  0.0190610   0.046 0.963805    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.4504 on 67 degrees of freedom
-  (41 observations deleted due to missingness)
-Multiple R-squared:  0.4381,    Adjusted R-squared:  0.1949 
-F-statistic: 1.801 on 29 and 67 DF,  p-value: 0.02467</code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_long_change)</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ols_change_ind_fe &lt;- lm(Vote ~ as.factor(BioID) + as.factor(Instance) + Contribution_minus + Contribution_plus, data = df_long_change)</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(ols_change_ind_fe)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>To make this work, we have to remove the control variables from before, i.e.&nbsp;party, district, Geographical and state, gender, nominate_dim1&amp;2, and pro- and anti_env_dummy and birthday since these are already included in the individual fixed effects, i.e.&nbsp;these dont chance over time in an individual. Also, seniority and Dmajority are just NAs since this sample size is too small.</p>
 <p>What is interesting to see here, is the fact that instances are highly significant. Meaning that for a change in vote, the instance of change is most likely with 0.74 units for vote7 and then 0.72 units for vote 6, and then 53. This is interesting since it shows that the instance of change is more likely to happen in the later votes.</p>
@@ -3270,9 +3158,8 @@ kable(df_subsample, format = "html")
 <th style="text-align: left;" data-quarto-table-cell-role="th">name</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">Vote_count</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">Vote_change</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">vote_change_type</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">vote_change_to_pro</th>
-<th style="text-align: left;" data-quarto-table-cell-role="th">vote_change_to_anti</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">vote_change_type</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">vote_change_to_pro</th>
 <th style="text-align: left;" data-quarto-table-cell-role="th">vote_change_year</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">year</th>
 <th style="text-align: right;" data-quarto-table-cell-role="th">first_vote</th>
@@ -3331,9 +3218,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">costa jim</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">3</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2013-2016</td>
 <td style="text-align: right;">2016</td>
 <td style="text-align: right;">3</td>
@@ -3390,9 +3276,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">costa jim</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">3</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2018-2019</td>
 <td style="text-align: right;">2019</td>
 <td style="text-align: right;">3</td>
@@ -3449,9 +3334,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">costa jim</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">3</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2019-2021</td>
 <td style="text-align: right;">2021</td>
 <td style="text-align: right;">3</td>
@@ -3508,9 +3392,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">bishop sanford d,bishop sanford</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">4</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2013-2016</td>
 <td style="text-align: right;">2016</td>
 <td style="text-align: right;">3</td>
@@ -3567,9 +3450,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">bishop sanford d,bishop sanford</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">4</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2016-2017</td>
 <td style="text-align: right;">2017</td>
 <td style="text-align: right;">3</td>
@@ -3626,9 +3508,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">bishop sanford d,bishop sanford</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">4</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2017-2018</td>
 <td style="text-align: right;">2018</td>
 <td style="text-align: right;">3</td>
@@ -3685,9 +3566,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">bishop sanford d,bishop sanford</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">4</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2018-2019</td>
 <td style="text-align: right;">2019</td>
 <td style="text-align: right;">3</td>
@@ -3744,9 +3624,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">upton fred</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2017-2018</td>
 <td style="text-align: right;">2018</td>
 <td style="text-align: right;">3</td>
@@ -3803,9 +3682,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">smith christopher h,smith christopher</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2016-2017</td>
 <td style="text-align: right;">2017</td>
 <td style="text-align: right;">3</td>
@@ -3862,9 +3740,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">smith christopher h,smith christopher</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2019-2021</td>
 <td style="text-align: right;">2021</td>
 <td style="text-align: right;">3</td>
@@ -3921,9 +3798,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">reed tom</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2019-2021</td>
 <td style="text-align: right;">2021</td>
 <td style="text-align: right;">3</td>
@@ -3980,9 +3856,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">cuellar henry</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2018-2019</td>
 <td style="text-align: right;">2019</td>
 <td style="text-align: right;">3</td>
@@ -4039,9 +3914,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">veasey marc a,veasey marc</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2013-2016</td>
 <td style="text-align: right;">2016</td>
 <td style="text-align: right;">3</td>
@@ -4098,9 +3972,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">veasey marc a,veasey marc</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2016-2017</td>
 <td style="text-align: right;">2017</td>
 <td style="text-align: right;">3</td>
@@ -4157,9 +4030,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">vela filemon</td>
 <td style="text-align: right;">6</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2013-2016</td>
 <td style="text-align: right;">2016</td>
 <td style="text-align: right;">3</td>
@@ -4216,9 +4088,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">stefanik elise</td>
 <td style="text-align: right;">5</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2019-2021</td>
 <td style="text-align: right;">2021</td>
 <td style="text-align: right;">4</td>
@@ -4275,9 +4146,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">gaetz matt</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2019-2021</td>
 <td style="text-align: right;">2021</td>
 <td style="text-align: right;">51</td>
@@ -4334,9 +4204,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">gonzalez vicente</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2017-2018</td>
 <td style="text-align: right;">2018</td>
 <td style="text-align: right;">51</td>
@@ -4393,9 +4262,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">waltz michael</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2019-2021</td>
 <td style="text-align: right;">2021</td>
 <td style="text-align: right;">6</td>
@@ -4452,9 +4320,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">mike coffman</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2017-2018</td>
 <td style="text-align: right;">2018</td>
 <td style="text-align: right;">3</td>
@@ -4511,9 +4378,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">ileana ros lehtinen</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2013-2016</td>
 <td style="text-align: right;">2016</td>
 <td style="text-align: right;">3</td>
@@ -4570,9 +4436,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">peter j roskam,peter roskam</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2017-2018</td>
 <td style="text-align: right;">2018</td>
 <td style="text-align: right;">3</td>
@@ -4629,9 +4494,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">leonard lance</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2017-2018</td>
 <td style="text-align: right;">2018</td>
 <td style="text-align: right;">3</td>
@@ -4688,9 +4552,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">richard hanna</td>
 <td style="text-align: right;">2</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2013-2016</td>
 <td style="text-align: right;">2016</td>
 <td style="text-align: right;">3</td>
@@ -4747,9 +4610,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">patrick meehan</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2016-2017</td>
 <td style="text-align: right;">2017</td>
 <td style="text-align: right;">3</td>
@@ -4806,9 +4668,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">mark sanford,marshall sanford</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2016-2017</td>
 <td style="text-align: right;">2017</td>
 <td style="text-align: right;">3</td>
@@ -4865,9 +4726,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">gene green</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2013-2016</td>
 <td style="text-align: right;">2016</td>
 <td style="text-align: right;">3</td>
@@ -4924,9 +4784,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">dave reichert,david reichert</td>
 <td style="text-align: right;">4</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2016-2017</td>
 <td style="text-align: right;">2017</td>
 <td style="text-align: right;">3</td>
@@ -4983,9 +4842,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">steve knight</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2016-2017</td>
 <td style="text-align: right;">2017</td>
 <td style="text-align: right;">4</td>
@@ -5042,9 +4900,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">steve knight</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">2</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">0</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2017-2018</td>
 <td style="text-align: right;">2018</td>
 <td style="text-align: right;">4</td>
@@ -5101,9 +4958,8 @@ kable(df_subsample, format = "html")
 <td style="text-align: left;">ryan costello</td>
 <td style="text-align: right;">3</td>
 <td style="text-align: right;">1</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
 <td style="text-align: left;">2016-2017</td>
 <td style="text-align: right;">2017</td>
 <td style="text-align: right;">4</td>

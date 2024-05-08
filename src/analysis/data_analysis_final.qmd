@@ -246,8 +246,8 @@ kable(df_vote_change[1:25, ], format = "html")
 Using the same model as above with the same specifications (control varaibels, then generous FE (state, year), then strict FE (individuals)) but using only those representatives that changed their voting behavior over time.
 
 ```{r}
-ols_change <- lm(Vote ~ . - state - BioID - anti_env_dummy, data = df_long_change)
-summary(ols_change)
+# ols_change <- lm(Vote ~ . - state - BioID - anti_env_dummy, data = df_long_change)
+# summary(ols_change)
 ```
 
 Compared to before we see multiple things, on the one hand the Adjusted R^2 is lower than in the other models where it averages to about 0.91, here only 0.25. This is because the model is more specific, i.e. only includes those representatives who changed their voting behavior, which are only 23 in total our ot 574 (?), whereas there are 31 changes in votes to be seen in total.
@@ -258,17 +258,17 @@ Here, we need to remove the anti_env_dummy because of singularities, because all
 
 ## with geography & year FEs
 ```{r}
-ols_change_fe <- lm(Vote ~ as.factor(Geographical) + as.factor(Instance) + district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + Dmajority + district, data = df_long_change)
-summary(ols_change_fe)
+# ols_change_fe <- lm(Vote ~ as.factor(Geographical) + as.factor(Instance) + district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + Dmajority + district, data = df_long_change)
+# summary(ols_change_fe)
 ```
 
 
 ### checking differences in party
 ```{r}
-ols_change_D <- lm(Vote ~ . - state - party - BioID - district - anti_env_dummy, data = df_long_change)
-summary(ols_change_D)
-ols_change_R <- lm(Vote ~ . - state - party - BioID - district - anti_env_dummy, data = df_long_change)
-summary(ols_change_R)
+# ols_change_D <- lm(Vote ~ . - state - party - BioID - district - anti_env_dummy, data = df_long_change)
+# summary(ols_change_D)
+# ols_change_R <- lm(Vote ~ . - state - party - BioID - district - anti_env_dummy, data = df_long_change)
+# summary(ols_change_R)
 ```
 
 We remove anti_env_dummy because of singularities, since all representatives have received contributions from anti environmental groups.
