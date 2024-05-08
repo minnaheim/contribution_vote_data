@@ -744,7 +744,12 @@ For the final dataframe used for analysis, the 731 representatives (over 113th-1
 #pagebreak()
 
 = Models
-Why use which models? first LPM because....
+Academic discussion about which models to use...
+
+what is an LPM? 
+Linear probability models (LPM), i.e. linear regression used with binary dependent variables, also yield results in terms of probability changes. In linear regression, we estimate the effects on the observed dependent variable, so coefficients are comparable over models, groups, etc. Using LPM is almost unthinkable in sociology, while it is common in economics. @mood
+
+first LPM because....
 #quote(
   attribution: [Selling @Selling2023],
 )[Another aspect to consider is that the outcome variable is dichotomous. That
@@ -756,6 +761,8 @@ Why use which models? first LPM because....
   solution to this problem is to run linear probability models (LPMs). LPMs
   usually fit about as well as logistic models, even in the case of nonlinearities
   (Long 1997).]
+
+- logit is not only difficult to interpret but also affected by OVB @mood
 
 Why not 2SLS -> @stratmann-2002 p.1
 
@@ -853,7 +860,17 @@ http://congressdata.joshuamccrain.com/models.html
 + all contribs prior to vote OLS
 + mind-changers OLS
 
+problems with LPM:
+(1) The possibility of predicted probabilities higher than 1 or lower than 0, i.e. out of range. -> overcome this with logit
+(2) Heteroscedastic and non-normal residuals, leading to inefficiency and invalid standard errors, and
+(3) Misspecified functional form.
+
+why logit/probit?
+"Many sociologists are familiar with the problems of bias in effect estimates that arise if omitted variables are correlated with the observed independent variables, as this is the case in ordinary least squares (OLS) regression" @mood
+
+
 == Logit / Probit (which Stratmann used)
+- use as robustness checks...
 - literature on why OLS is bad, and logit/probit is good. (since LPM not 0-1, so
   negative effects nicht schätzbar?)
 - as Robustness Checks, since OLS sometimes over/underestimates @stratmann-2005
@@ -866,8 +883,12 @@ http://congressdata.joshuamccrain.com/models.html
 + all contribs prior to vote OLS
 + mind-changers OLS
 
+- DW Nominate
+
 #pagebreak()
 = Results
+- potential OVB?
+The problems stem from unobservables, or the fact that we can seldom include in a model all variables that affect an outcome. Unobserved heterogeneity is the variation in the dependent variable that is caused by variables that are not observed (i.e. omitted variables) @mood
 
 #pagebreak()
 = Discussion
