@@ -152,14 +152,14 @@
 "Boustany","Charles","charles boustany,charles w boustany","R","LA","B001255","-","-",NA,NA,NA,NA,3,2,0,0,"SO",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Fleming","John","john fleming","R","LA","F000456","-","-",NA,NA,NA,NA,4,2,0,0,"SO",13200,223000,16400,206100,NA,NA,NA,NA,NA,NA
 "Pingree","Chellie M.","chellie m pingree,chellie pingree","D","ME","P000597","+","+","+","+","+","+",1,6,0,0,"NE",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Harris","Andy","andy harris","R","MD","H001052","-","-","-","-","-","-",1,6,0,0,"MD",6900,69760,0,49250,250,29500,0,18750,0,13808
-"Ruppersberger","C.A. Dutch","c a dutch ruppersberger","D","MD","R000576","+","+","+","+","+","+",2,6,0,0,"MD",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Sarbanes","John P.","john p sarbanes","D","MD","S001168","+","+","+","+","+","+",3,6,0,0,"MD",5250,2000,5000,3000,2800,2100,2700,1003,0,1009
-"Edwards","Donna","donna edwards,donna f edwards","D","MD","E000290","+","+",NA,NA,NA,NA,4,2,0,0,"MD",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Hoyer","Steny H.","steny h hoyer","D","MD","H000874","+","+","+",NA,"+","+",5,5,0,0,"MD",13250,59000,14000,64250,6788,55500,6500,53250,11125,68000
-"Delaney","John K.","john k delaney","D","MD","D000620","+","+","+","+",NA,NA,6,4,0,0,"MD",20995,0,5000,5000,11438,7000,NA,NA,NA,NA
-"Cummings","Elijah E.","elijah e cummings","D","MD","C000984","+","+","+","+","+",NA,7,5,0,0,"MD",500,3750,3850,6850,5052,5000,2050,3088,1205,2098
-"Van Hollen","Chris","chris van hollen","D","MD","V000128","+","+",NA,NA,NA,NA,8,2,0,0,"MD",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Harris","Andy","andy harris","R","MD","H001052","-","-","-","-","-","-",1,6,0,0,"SO",6900,69760,0,49250,250,29500,0,18750,0,13808
+"Ruppersberger","C.A. Dutch","c a dutch ruppersberger","D","MD","R000576","+","+","+","+","+","+",2,6,0,0,"SO",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Sarbanes","John P.","john p sarbanes","D","MD","S001168","+","+","+","+","+","+",3,6,0,0,"SO",5250,2000,5000,3000,2800,2100,2700,1003,0,1009
+"Edwards","Donna","donna edwards,donna f edwards","D","MD","E000290","+","+",NA,NA,NA,NA,4,2,0,0,"SO",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Hoyer","Steny H.","steny h hoyer","D","MD","H000874","+","+","+",NA,"+","+",5,5,0,0,"SO",13250,59000,14000,64250,6788,55500,6500,53250,11125,68000
+"Delaney","John K.","john k delaney","D","MD","D000620","+","+","+","+",NA,NA,6,4,0,0,"SO",20995,0,5000,5000,11438,7000,NA,NA,NA,NA
+"Cummings","Elijah E.","elijah e cummings","D","MD","C000984","+","+","+","+","+",NA,7,5,0,0,"SO",500,3750,3850,6850,5052,5000,2050,3088,1205,2098
+"Van Hollen","Chris","chris van hollen","D","MD","V000128","+","+",NA,NA,NA,NA,8,2,0,0,"SO",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Neal","Richard E.","richard e neal","D","MA","N000015","+","+","+","+","+","+",1,6,0,0,"NE",250,13000,1000,12500,1000,10500,9000,53400,70175,50850
 "McGovern","Jim","jim mcgovern","D","MA",NA,"+","+","+","+","+","+",2,6,0,0,"NE",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Tsongas","Niki","niki tsongas","D","MA","T000465","+","+","+","+",NA,NA,3,4,0,0,"NE",12750,2500,6000,0,11058,4700,0,1,NA,NA
@@ -457,8 +457,8 @@
 "Comer","James","james comer","R","KY","C001108",NA,NA,"-","-","-","-",1,4,0,0,"SO",NA,NA,NA,NA,0,57852,11000,17250,0,26500
 "Higgins","Clay","clay higgins","R","LA","H001077",NA,NA,"-","-","-","-",3,4,0,0,"SO",NA,NA,NA,NA,0,7750,0,87800,0,50489
 "Johnson","Mike","mike johnson","R","LA","J000299",NA,NA,"-","-","-",NA,4,3,0,0,"SO",NA,NA,NA,NA,8100,68300,0,105150,0,90525
-"Brown","Anthony","anthony brown,anthony g brown","D","MD","B001304",NA,NA,"+","+","+","+",4,4,0,0,"MD",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
-"Raskin","Jamie","jamie raskin","D","MD","R000606",NA,NA,"+","+","+","+",8,4,0,0,"MD",NA,NA,NA,NA,25784,0,5665,0,13936,3
+"Brown","Anthony","anthony brown,anthony g brown","D","MD","B001304",NA,NA,"+","+","+","+",4,4,0,0,"SO",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"Raskin","Jamie","jamie raskin","D","MD","R000606",NA,NA,"+","+","+","+",8,4,0,0,"SO",NA,NA,NA,NA,25784,0,5665,0,13936,3
 "Bergman","Jack","jack bergman","R","MI","B001301",NA,NA,"-","-","-","-",1,4,0,0,"MW",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Mitchell","Paul","paul mitchell","R","MI",NA,NA,NA,"-","-","-",NA,10,3,0,0,"MW",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
 "Lewis","Jason","jason lewis","R","MN","L000587",NA,NA,"-","-",NA,NA,2,2,0,0,"MW",NA,NA,NA,NA,0,14900,2700,112327,NA,NA
