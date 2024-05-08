@@ -23,6 +23,7 @@
   set text(font: body-font, size: 12pt, lang: "en")
 
   show math.equation: set text(weight: 400)
+  set math.equation(numbering: "(1)")
 
   // --- Headings ---
   show heading: set block(below: 0.85em, above: 1.75em)

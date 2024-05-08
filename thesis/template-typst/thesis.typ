@@ -766,50 +766,50 @@ included, since Independent and Libertarians are too few to be able to compare.
 
 In order to test the for the changes in voting behaviour due to campaign
 contributions, the model setup must allow for a dichotomous dependent variable,
-i.e. pro-environmental vote (1) or anti-enviornmental vote (0). Moreover, the
-two types of models, Linear Probability Model (LPM) and Logit/Probit are applied
-with varying degrees of specifications, from most generous by using only control
-variables, to most strict by using fixed effects.
+i.e. pro-environmental vote (1) or anti-enviornmental vote (0) and for
+non-negativity of contributions @stratmann-1991 @stratmann-2002 @chappell.
 
-Both the LPM and the Logit are used in the literature, but both come with their
-up and downsides. The first model used is the Linear Probability Model, which is
-an ordinary least squared linear regression with binary dependent variables. The
-benefits of using a LPM to analyse the effect of campaign contributions on
+Two types of models that come into question for these are the LPM and the Logit,
+which are both frequently used in economic literature, but both come with their
+up- and downsides. The first model used is the Linear Probability Model, which
+is an ordinary least squared linear regression with binary dependent variables.
+The benefits of using a LPM to analyse the effect of campaign contributions on
 voting behaviour is the fact that the linear regression can be used to estimate
 the effects on the observed dependent variable, so coefficients are comparable
 over models and groups @mood. One downside, however, is that there is a
 possibilities for the predicted probability to be out of range, by being either
-higher than 1 or lower than 0. In order to counter this, one can use the
-logistical regession or logit model, which also measures dichotomous dependent
-variables but the predicted probability will always stay within range of #range(2) \. Nevertheless,
+higher than 1 or lower than 0.
+
+In order to counter this, one can use the logistical regession or logit model,
+which also measures dichotomous dependent variables but the predicted
+probability will always stay within range of #range(2) \. Nevertheless,
 comparing models with various independent variables or significantly
 interpreting the results is challenging when using logistic regression, even
 more so when interpreting the results of a logistic regression, given that the
 distribution of the logistic regression is non-linear. Moreover, @mood explains
 that logistic effect measures can capture unobserved heterogeneity even in cases
 where there is no correlation between the omitted variables and the independent
-variables @Selling2023. Althoug the linear regression sometimes predicts
-probabilities outside of range, LPMs usually fit about as well as logit models,
-even in cases of nonlinearities @long1997regression @Selling2023, and their
-results are easier to predict than those of logit models @mood, which is why the
-LPM will be used as a main model for this paper. To encompass the major
-downsides of the LPM, however, a Logit Model will be included as a robustness
-check.
+variables @Selling2023.
+
+Although the linear regression sometimes predicts probabilities outside of
+range, LPMs usually fit about as well as logit models, even in cases of
+nonlinearities @long1997regression @Selling2023, and their results are easier to
+predict than those of logit models @mood, which is why the LPM will be used as a
+main model for this paper. To encompass the major downsides of the LPM, however,
+a Logit Model will be included as a robustness check.
 
 // Why not 2SLS -> @stratmann-2002 p.1
 // say that OBV in logit & LPM? @mood?
 
-// - model setup: must allow for endogeneity of contributions, dichotomus nature of
-//   dependent vote variable (yes/no) and non-negativity of campaign comntributions.
-//   @stratmann-1991 p.606
-
 == Model specification
-+ confounding variables
-  - argue why the important effects are included.
-  - confounding effects -> needed for causal econometrics
-  - deterine through literature what needs to be included:
 
-variables we control for (using fixed effects):
+In general the models go from most generous (including only control variables)
+to most strict, including fixed effects.// + confounding variables
+//   - argue why the important effects are included.
+//   - confounding effects -> needed for causal econometrics
+//   - determine through literature what needs to be included:
+
+*variables we control for:*
 - party
 - legislator fixed effects (aka)
 - state (geoographical area) ?
@@ -845,7 +845,7 @@ variables we control for (using fixed effects):
 - control for individual (how to include individual, if not ID, doesnt work well)
 - log transformation of contribution..
 
-- which fixed effects used?
+*which fixed effects used?*
 "By using fixed effects, we control for unobservable factors that are constant
 over time. Thus, we only use the change in contributions within a district or
 for a given member to identify the effect of contributions on changes in
@@ -860,7 +860,22 @@ confounding vars from statmann: @stratmann-2002 p.12-13
 
 - still use Logit/Probit for robustness...
 
-== Linear Probability Model with Individual Fixed Effects
+- bill fixed effects: -> we assume all votes are on the same bill since so
+  similar..
+Because the 2013 and 2018 amendments were quite similar, we treat them as
+repeated votes on the same issue and then use district fixed effects to
+eliminate any unobserved district level confounders.
+
+== Linear Probability Model
+
+we define:
+
+$ "Vote"#sub[i,t] = alpha + beta#sub[1]"Contributions"#super[pro-env] + beta#sub[2]"Contributions"#super[anti-env] + gamma#sub[i] + delta#sub[t] + X + epsilon $ <lpm>
+
+add control variable matrix
+
+-> *base yourself on Stratmann paper* -> stratmann uses a (conditional) fixed
+effects logit model
 - takes into account that dichotomous nature of votes, and non-negativity
   constraint of votes @chappell p.77
 - compare results aggregate contributions and time related contributions (6 mo.
@@ -885,15 +900,16 @@ confounding vars from statmann: @stratmann-2002 p.12-13
 
 - When arguing why use unit and time fixed effects ...
 @Imai-Kim-2019
-== Two-way Fixed Effects model
-Argue why use this with @Imai_Kim_2021 -> use this vorlage:
-http://congressdata.joshuamccrain.com/models.html
-+ basic OLS
-+ sessionized OLS
-+ all contribs prior to vote OLS
-+ mind-changers OLS
+// == Two-way Fixed Effects model
+// Argue why use this with @Imai_Kim_2021 -> use this vorlage:
+// http://congressdata.joshuamccrain.com/models.html
+// + basic OLS
+// + sessionized OLS
+// + all contribs prior to vote OLS
+// + mind-changers OLS
 
 == Logit / Probit (which Stratmann used)
+*check stratmanns used logit/probit*
 - use as robustness checks...
 - literature on why OLS is bad, and logit/probit is good. (since LPM not 0-1, so
   negative effects nicht schätzbar?)
