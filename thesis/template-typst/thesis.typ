@@ -553,10 +553,10 @@ providing websites, such as Govtrack US, Congress.gov and C-Span would have been
 more useful, since these match representatives with a unique identifier. This
 was not possible, however, because these websites do not publish all rollcall
 votes but only the most relevant, i.e. the votes which passed a bill. For this
-analysis, however, the environmentally related rollcall votes are to be
-used and these are often not published on the aforementioned websites.
-Thus, the LCV Scorecard Website was used to source rollcall data, despite their
-incomplete use of IDs for representatives.
+analysis, however, the environmentally related rollcall votes are to be used and
+these are often not published on the aforementioned websites. Thus, the LCV
+Scorecard Website was used to source rollcall data, despite their incomplete use
+of IDs for representatives.
 
 // Data Processing & Cleaning
 Considering the circumstance that the 2021 votes had a different format than the
@@ -573,8 +573,10 @@ roll_call_full_<- fuzzy_full_join(
     by = c("name", "Party", "District"),
     match_fun = list(fuzzy_match, `==`, `==`)
 )
-``` 
-To overcome this, the R package fuzzyjoin @fuzzjoin was used. Using the functions clean_strings to remove special characters and fuzzy_match and fuzzy_full_join to join, a maximum distance between two values can be
+```
+To overcome this, the R package fuzzyjoin @fuzzjoin was used. Using the
+functions clean_strings to remove special characters and fuzzy_match and
+fuzzy_full_join to join, a maximum distance between two values can be
 determined, here 5 characters. in the fuzzy_full_join, I defined that the names
 between the two dataframes can be matched if they are at most 5 characters
 distance from one another, while the variables Party and District need to be
@@ -732,39 +734,70 @@ contributions were kept. Moreover, only non-negative contributions were kept.
 
 == Merging <merging>
 
-To merge the three types of aforementioned data together, two types of merges (or joins, synonymous in R) were done. About 60% of the data was able to be merged together based on a set of Unique Identifiers, which was Bioguide ID for the rollcall data. Post primary merge, the rest of the data, which was not able to be merged was filtered out and merged based on the @fedmatch functions fuzzy_match and fuzzy_join functions as shown in the code block in @rollcall. Finally, the two merged dataframes were concatinated.
+To merge the three types of aforementioned data together, two types of merges
+(or joins, synonymous in R) were done. About 60% of the data was able to be
+merged together based on a set of Unique Identifiers, which was Bioguide ID for
+the rollcall data. Post primary merge, the rest of the data, which was not able
+to be merged was filtered out and merged based on the @fedmatch functions
+fuzzy_match and fuzzy_join functions as shown in the code block in @rollcall.
+Finally, the two merged dataframes were concatinated.
 
-Finally, only about 30 representatives were not able to be merged and thus removed. The reason for this is because these anomalies either joined or left congress halfway through the session or switched from the US house of representatives to the senate, and thus these members appeared in some dataframe, but not in the others, i.e. are marked as representatives but were not included in the vote and did not receive contribution, since they were not part of a regular election. 
+Finally, only about 30 representatives were not able to be merged and thus
+removed. The reason for this is because these anomalies either joined or left
+congress halfway through the session or switched from the US house of
+representatives to the senate, and thus these members appeared in some
+dataframe, but not in the others, i.e. are marked as representatives but were
+not included in the vote and did not receive contribution, since they were not
+part of a regular election.
 
-For the final dataframe used for analysis, the 731 representatives (over 113th-117th congresses) were further decreased, to only include representatives relevant to the analysis. This includes only representatives, who voted on more than one relevant bill. Without this specification, one couldn't analyse differences in voting behaviour. Moreover, only Republicans and Democrats were included, since Independent and Libertarians are too few to be able to compare.
+For the final dataframe used for analysis, the 731 representatives (over
+113th-117th congresses) were further decreased, to only include representatives
+relevant to the analysis. This includes only representatives, who voted on more
+than one relevant bill. Without this specification, one couldn't analyse
+differences in voting behaviour. Moreover, only Republicans and Democrats were
+included, since Independent and Libertarians are too few to be able to compare.
 
 // relevant?
-// Lastly, to make the dataframe suitable for analysis, I used the pivot_longer function to pivot the dataframe to include only the Vote, Contributions (pro-environmental and anti environmental seperately) and the 
+// Lastly, to make the dataframe suitable for analysis, I used the pivot_longer function to pivot the dataframe to include only the Vote, Contributions (pro-environmental and anti environmental seperately) and the
 
 #pagebreak()
 
 = Models
-Academic discussion about which models to use...
 
-what is an LPM? 
-Linear probability models (LPM), i.e. linear regression used with binary dependent variables, also yield results in terms of probability changes. In linear regression, we estimate the effects on the observed dependent variable, so coefficients are comparable over models, groups, etc. Using LPM is almost unthinkable in sociology, while it is common in economics. @mood
+In order to test the for the changes in voting behaviour due to campaign
+contributions, the model setup must allow for a dichotomous dependent variable,
+i.e. pro-environmental vote (1) or anti-enviornmental vote (0). Moreover, the
+two types of models, Linear Probability Model (LPM) and Logit/Probit are applied
+with varying degrees of specifications, from most generous by using only control
+variables, to most strict by using fixed effects.
 
-first LPM because....
-#quote(
-  attribution: [Selling @Selling2023],
-)[Another aspect to consider is that the outcome variable is dichotomous. That
-  calls for the use of logistic regressions. However, logistic regression makes it
-  difficult to interpret results substantially or compare models with different
-  independent variables. That is because, as Mood (2010) tells us, logistic effect
-  measures reflect unobserved heterogeneity, even when the omitted variables are
-  uncorrelated with the independent variables. According to her, a possible
-  solution to this problem is to run linear probability models (LPMs). LPMs
-  usually fit about as well as logistic models, even in the case of nonlinearities
-  (Long 1997).]
+Both the LPM and the Logit are used in the literature, but both come with their
+up and downsides. The first model used is the Linear Probability Model, which is
+an ordinary least squared linear regression with binary dependent variables. The
+benefits of using a LPM to analyse the effect of campaign contributions on
+voting behaviour is the fact that the linear regression can be used to estimate
+the effects on the observed dependent variable, so coefficients are comparable
+over models and groups @mood. One downside, however, is that there is a
+possibilities for the predicted probability to be out of range, by being either
+higher than 1 or lower than 0. In order to counter this, one can use the
+logistical regession or logit model, which also measures dichotomous dependent
+variables but the predicted probability will always stay within range of #range(2) \. Nevertheless,
+comparing models with various independent variables or significantly
+interpreting the results is challenging when using logistic regression, even
+more so when interpreting the results of a logistic regression, given that the
+distribution of the logistic regression is non-linear. Moreover, @mood explains
+that logistic effect measures can capture unobserved heterogeneity even in cases
+where there is no correlation between the omitted variables and the independent
+variables @Selling2023. Althoug the linear regression sometimes predicts
+probabilities outside of range, LPMs usually fit about as well as logit models,
+even in cases of nonlinearities @long1997regression @Selling2023, and their
+results are easier to predict than those of logit models @mood, which is why the
+LPM will be used as a main model for this paper. To encompass the major
+downsides of the LPM, however, a Logit Model will be included as a robustness
+check.
 
-- logit is not only difficult to interpret but also affected by OVB @mood
-
-Why not 2SLS -> @stratmann-2002 p.1
+// Why not 2SLS -> @stratmann-2002 p.1
+// say that OBV in logit & LPM? @mood?
 
 // - model setup: must allow for endogeneity of contributions, dichotomus nature of
 //   dependent vote variable (yes/no) and non-negativity of campaign comntributions.
@@ -860,15 +893,6 @@ http://congressdata.joshuamccrain.com/models.html
 + all contribs prior to vote OLS
 + mind-changers OLS
 
-problems with LPM:
-(1) The possibility of predicted probabilities higher than 1 or lower than 0, i.e. out of range. -> overcome this with logit
-(2) Heteroscedastic and non-normal residuals, leading to inefficiency and invalid standard errors, and
-(3) Misspecified functional form.
-
-why logit/probit?
-"Many sociologists are familiar with the problems of bias in effect estimates that arise if omitted variables are correlated with the observed independent variables, as this is the case in ordinary least squares (OLS) regression" @mood
-
-
 == Logit / Probit (which Stratmann used)
 - use as robustness checks...
 - literature on why OLS is bad, and logit/probit is good. (since LPM not 0-1, so
@@ -888,7 +912,10 @@ why logit/probit?
 #pagebreak()
 = Results
 - potential OVB?
-The problems stem from unobservables, or the fact that we can seldom include in a model all variables that affect an outcome. Unobserved heterogeneity is the variation in the dependent variable that is caused by variables that are not observed (i.e. omitted variables) @mood
+The problems stem from unobservables, or the fact that we can seldom include in
+a model all variables that affect an outcome. Unobserved heterogeneity is the
+variation in the dependent variable that is caused by variables that are not
+observed (i.e. omitted variables) @mood
 
 #pagebreak()
 = Discussion
