@@ -866,38 +866,6 @@ Because the 2013 and 2018 amendments were quite similar, we treat them as
 repeated votes on the same issue and then use district fixed effects to
 eliminate any unobserved district level confounders.
 
-== Linear Probability Model
-
-we define:
-
-$ "Vote"#sub[i,t] = alpha + beta#sub[1]"Contributions"#super[pro-env] + beta#sub[2]"Contributions"#super[anti-env] + gamma#sub[i] + delta#sub[t] + X + epsilon $ <lpm>
-
-add control variable matrix
-
--> *base yourself on Stratmann paper* -> stratmann uses a (conditional) fixed
-effects logit model
-- takes into account that dichotomous nature of votes, and non-negativity
-  constraint of votes @chappell p.77
-- compare results aggregate contributions and time related contributions (6 mo.
-  prior to vote)
-- Altough most basic model, needed to estimate the linear relationship between ALL
-  contributions and votes.
-+ basic OLS
-  - votes: pro-env/anti-env
-  - contributions: all / grouped env/non-env
-  - no FE / with FE -> differences?
-+ sessionized OLS
-  - one regression for each vote (vote ~ contribution from election cylce/6 mo.
-    prior)
-+ all contribs prior to vote
-  - this way we avoid recency bias and see whether long term relationships matter
-    after all...@stratmann-1995
-+ mind-changers OLS
-  - df FE (base year, pivot longer, ∆contribution, person-FE)
-  - only incl. mind changers (only variations in voting behavior are relevant
-    @stratmann-2002 p.11)
-  - vote change in which direction (pro -> contra env = 0?) & vice versa
-
 - When arguing why use unit and time fixed effects ...
 @Imai-Kim-2019
 // == Two-way Fixed Effects model
@@ -908,8 +876,47 @@ effects logit model
 // + all contribs prior to vote OLS
 // + mind-changers OLS
 
+== Linear Probability Model
+
+Concept: from most generous to most strict. This way we can see the most basic model and conditions and then specify.
+
++ *LPM with entire Sample*
+  Reasoning: most generous model, include all votes, non-discriminatory based on voting behaviour, largest sample.
+
+  $ "Vote"#sub[i,t] = alpha + beta#sub[1]"Contributions"#super[pro-env] + beta#sub[2]"Contributions"#super[anti-env] + gamma#sub[i] + delta#sub[t] + X + epsilon $ <lpm>
+  add control variable matrix
+    - control variables
+    - log transformed
+    - geo & state fixed effects
+    - indidividual fixed effects 
++ *sessionized OLS*
+  Reasoning: although we assume that all rollcall votes are of the same bill, hold these fixed, this way we can also analyse each vote and see which contributions have the strongest correlation with the vote, were more significant or effects in voting.. maybe time does play an important effect.
+    - one regression for each vote (vote ~ contribution from election cylce/6 mo.
+      prior contributions)
+    - this way we avoid recency bias and see whether long term relationships matter
+      after all...@stratmann-1995
+
++ *LPM with only consistent representatives* 
+  Reasoning: it is important to include representatives who did not change their votes, even if that is the main analysis. It is also important to the see the "simple" relation between voting and contributions.
+
++ *LPM with only vote changers*
+  - df FE (base year, pivot longer, ∆contribution, person-FE)
+  - only incl. mind changers (only variations in voting behavior are relevant
+    @stratmann-2002 p.11)
+  - vote change in which direction (pro -> contra env = 0?) & vice versa
+
 == Logit / Probit (which Stratmann used)
 *check stratmanns used logit/probit*
+
++ *logit with entire sample*
+
++ *logit per session*
+
++ *logit with only consistent representatives*
+
++ *logit with only mind changers*
+-> stratmann uses a (conditional) fixed
+effects logit model
 - use as robustness checks...
 - literature on why OLS is bad, and logit/probit is good. (since LPM not 0-1, so
   negative effects nicht schätzbar?)
