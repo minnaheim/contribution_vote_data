@@ -14,10 +14,12 @@ library(Amelia)
 library(lfe)
 library(broom)
 library(kableExtra)
+library(bife)
 
 source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_prep_functions.R")
 df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
 df_no_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_no_change.csv")
+view(df_no_change)
 df_long <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_long.csv")
 df_vote_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_change.csv")
 df_vote_3 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_3.csv")
@@ -238,7 +240,7 @@ For this, since fixing individuals is so specific, we need to remove the anti an
 Here is what this dataframe looks like 
 
 ```{r}
-kable(df_vote_change[1:25, ], format = "html")
+kable(df_vote_change[1:10, ], format = "html")
 ```
 
 ## with control variables
@@ -246,174 +248,133 @@ kable(df_vote_change[1:25, ], format = "html")
 Using the same model as above with the same specifications (control varaibels, then generous FE (state, year), then strict FE (individuals)) but using only those representatives that changed their voting behavior over time.
 
 ```{r}
-# ols_change <- lm(Vote ~ . - state - BioID - anti_env_dummy, data = df_long_change)
-# summary(ols_change)
+df_vote_change <- df_vote_change %>% select(-c(GovtrackID, opensecrets_id, Vote_change_dummy, Vote_change, first_name, last_name, name))
+view(df_vote_change)
+ols_change <- lm(Vote ~ . - state - anti_env_dummy - BioID, data = df_vote_change)
+summary(ols_change)
 ```
 
 Compared to before we see multiple things, on the one hand the Adjusted R^2 is lower than in the other models where it averages to about 0.91, here only 0.25. This is because the model is more specific, i.e. only includes those representatives who changed their voting behavior, which are only 23 in total our ot 574 (?), whereas there are 31 changes in votes to be seen in total.
 
 So, we need to take all these results with caution, since 23 out of 547 (?) is not an incredibly small sample size, and thus makes the model less robust.
 
-Here, we need to remove the anti_env_dummy because of singularities, because all have received anti_env contributions, so the coefficient is not defined.
+Here, we need to remove the anti_env_dummy and district because of singularities, because all have received anti_env contributions, so the coefficient is not defined. -> remove district too, too few obs.
 
 ## with geography & year FEs
 ```{r}
-# ols_change_fe <- lm(Vote ~ as.factor(Geographical) + as.factor(Instance) + district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + Dmajority + district, data = df_long_change)
-# summary(ols_change_fe)
+ols_change_fe <- lm(Vote ~ as.factor(Geographical) + as.factor(Instance) + party + birthday + district + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy, data = df_vote_change)
+summary(ols_change_fe)
 ```
 
+Here remove majority because it is a singularity...
 
 ### checking differences in party
 ```{r}
-# ols_change_D <- lm(Vote ~ . - state - party - BioID - district - anti_env_dummy, data = df_long_change)
-# summary(ols_change_D)
-# ols_change_R <- lm(Vote ~ . - state - party - BioID - district - anti_env_dummy, data = df_long_change)
-# summary(ols_change_R)
+ols_change_D <- lm(Vote ~ . - party - Geographical - anti_env_dummy - BioID, data = df_vote_change)
+summary(ols_change_D)
+ols_change_R <- lm(Vote ~ . - party - Geographical - anti_env_dummy - BioID, data = df_vote_change)
+summary(ols_change_R)
 ```
 
-We remove anti_env_dummy because of singularities, since all representatives have received contributions from anti environmental groups.
+We remove anti_env_dummy because of singularities, since all representatives have received contributions from anti environmental groups. 
 
 Already here we can see that the coefficients are less significant on average with only instance being significant, with 0.01 units more likely to change their vote from anti to pro environmental vote, further during the years. Moreover, we see that for a change in vote from anti-environmental to pro-environmental 
 
 ## with individual & year FEs
 ```{r}
-# view(df_long_change)
-# ols_change_ind_fe <- lm(Vote ~ as.factor(BioID) + as.factor(Instance) + Contribution_minus + Contribution_plus, data = df_long_change)
-# summary(ols_change_ind_fe)
+view(df_vote_change)
+ols_change_ind_fe <- lm(Vote ~ as.factor(BioID) + as.factor(Instance) + Contribution_minus + Contribution_plus, data = df_vote_change)
+summary(ols_change_ind_fe)
 ```
 
 To make this work, we have to remove the control variables from before, i.e. party, district, Geographical and state, gender, nominate_dim1&2,  and pro- and anti_env_dummy and birthday since these are already included in the individual fixed effects, i.e. these dont chance over time in an individual. Also, seniority and Dmajority are just NAs since this sample size is too small.
 
 What is interesting to see here, is the fact that instances are highly significant. Meaning that for a change in vote, the instance of change is most likely with 0.74 units for vote7 and then 0.72 units for vote 6, and then 53. This is interesting since it shows that the instance of change is more likely to happen in the later votes.
 
-<!-- This is a simple linear probability model with unit and time fixed effects. The model only includes representatives who did not change their opinions (across all votes) during the time period. this way a positive vote can be regressed with contributions and the control variables. 
-We remo (too specific...), seniority (NA values, multicolinear?), Majority (NA values)
+
+# Logit of all Representatives
+
+## all representatives
+### with control variables
 ```{r}
-# include time fixed effects ? can we do that here?
-# view(df_no_change)
-df_no_change <- df_no_change %>% select(-c(state, seniority_114, seniority_1151, seniority_116, seniority_117))
-# view(df_no_change)
-
-# all Votes
-no_change_ols_minus <- lm(all_votes_minus ~ . - all_votes_plus, data = df_no_change)
-summary(no_change_ols_minus)
-
-no_change_ols_plus <- lm(all_votes_plus ~ . - all_votes_minus, data = df_no_change)
-summary(no_change_ols_plus)
+full_logit <- glm(Vote ~ . - state - BioID - Vote_change_dummy, family = binomial(link = "logit"), data = df_long)
+summary(full_logit)
 ```
 
+### with log transformed contributions
 ```{r}
-# try the same regression as above with a log transformation of all contributions
-cols <- c("Contribution_3_plus", "Contribution_3_minus", "Contribution_4_plus", "Contribution_4_minus", "Contribution_51_plus", "Contribution_51_minus", "Contribution_52_plus", "Contribution_52_minus", "Contribution_6_plus", "Contribution_6_minus", "Contribution_7_plus", "Contribution_7_minus")
-df_no_change[cols] <- lapply(df_no_change[cols], function(x) log(x + 1))
+cols <- c("Contribution_plus", "Contribution_minus")
+df_long[cols] <- lapply(df_long[cols], function(x) log(x + 1))
 
-# all Votes log transformed
-no_change_ols_minus_log <- lm(all_votes_minus ~ . - all_votes_plus, data = df_no_change)
-summary(no_change_ols_minus_log)
-
+full_logit_log <- glm(Vote ~ . - state - BioID - Vote_change_dummy, family = binomial(link = "logit"), data = df_long)
+summary(full_logit_log)
 ```
 
-When applying a log transformation to the ols above, the adjusted R squared decreases.
+### with geographical & year FEs
 
-When grouping contributions into positive and negative, we get one coefficient not defined because of singularities, i.e. too strong of a correlation between two variables. 
+use the package {bife} to use fixed effects in a logit model, since the glm function does not allow for fixed effects in a logit model, it is only for linear models.
 
-# Linear Probability Model with (time and individual) Fixed Effects
-
-# sessionized Linear Probability Model without Fixed Effects
-## time specific contributions 
-### contribution and corresponding vote
 ```{r}
-# Vote 3
-# view(df_vote_3)
-ols_3 <- lm(Vote3_minus ~ . - state - BioID - Vote3_plus - Vote3 - Vote_change_dummy, data = df_vote_3)
-summary(ols_3)
+full_logit_geo <- bife(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy + as.factor(Instance) | Geographical,
+    data = df_long,
+    model = "logit"
+)
+summary(full_logit_geo)
+```
 
-# Vote 4
-ols_4 <- lm(Vote4_minus ~ . - state - BioID - Vote4_plus - Vote4 - Vote_change_dummy, data = df_vote_4)
-summary(ols_4)
+### with state & year fixed effects
 
-# Vote 51
-ols_51 <- lm(Vote51_minus ~ . - state - BioID - Vote51_plus - Vote51 - Vote_change_dummy, data = df_vote_51)
-summary(ols_51)
-
-ols_52 <- lm(Vote52_minus ~ . - state - BioID - Vote52_plus - Vote52 - Vote_change_dummy, data = df_vote_52)
-summary(ols_52)
-
-ols_6 <- lm(Vote6_minus ~ . - state - BioID - Vote6_plus - Vote6 - Vote_change_dummy, data = df_vote_6)
-summary(ols_6)
-
-ols_7 <- lm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy, data = df_vote_7)
-summary(ols_7)
+```{r}
+full_logit_state <- bife(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy + factor(Instance) | state,
+    data = df_long,
+    model = "logit"
+)
+summary(full_logit_state)
 ```
 
 
-## Subsample Analysis (of only vote changers)
-here I only look at those who did change their voting behavior. For this I created a seperate df out of the original df, where i only included representatives who changed their minds. I marked the changes, where from pro-environment vote "+" to anti-environment "-" = 0, and from anti-environment to pro-environment = 1. 
-
-
+# Logit per Vote 
+**doesnt work yet, why?**
 ```{r}
-kable(df_subsample, format = "html")
+# # Vote 4_2
+# view(df_vote_4_2)
+# logit_4_2 <- bife(gender ~ Contribution_3_minus + Contribution_4_minus + Contribution_4_plus | party,
+#     data = df_vote_4_2,
+#     model = "logit"
+# )
+# summary(logit_4_2)
+# # + seniority_114 + gender + pro_env_dummy
+# # Vote4_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + seniority_114 + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + anti_env_dummy
+# # nominate_dim1 + nominate_dim2
 
-# df_subsample_1 <- df_subsample %>% select(party, vote_change_to_anti, year, Contribution_3_minus, Contribution_3_plus, Contribution_4_minus, Contribution_4_plus, Contribution_51_minus, Contribution_51_plus, Contribution_52_minus, Contribution_52_plus, Contribution_6_minus, Contribution_6_plus, Contribution_7_minus, Contribution_7_plus)
-# # view(df_subsample_1)
-
-# # Vote Changes including contributions
-# ols_subsample <- lm(vote_change_to_anti ~ ., data = df_subsample_1)
-# summary(ols_subsample)
+# # Vote 51_2
+# logit_51_2 <- bife(Vote51_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + Contribution_51_minus + Contribution_51_plus + seniority_1151 + party + gender + pro_env_dummy + anti_env_dummy | state,
+#     data = df_vote_51_2,
+#     model = "logit"
+# )
 ```
 
-NAs for all above Contributions > 51...
+need to remove dw-nominate scores, since they create a glm.fit error - too accurate 0 or 1 values.
 
+need to remove anti_env_dummy and district because of singularities, since all have received anti_env contributions, so the coefficient is not defined.
+
+### individual and year fixed effects
 ```{r}
-# modified df_subsample
-# view(df_subsample_2)
-# df_subsample <- df_subsample %>% filter(!is.na(Vote6))
-# df_subsample_2 <- df_subsample %>% select(party, vote_change_to_anti, year, Contribution_3_minus, Contribution_3_plus, Contribution_4_minus, Contribution_4_plus, Contribution_51_minus, Contribution_51_plus, Contribution_52_minus, Contribution_52_plus, Contribution_6_minus, Contribution_6_plus, Contribution_7_minus, Contribution_7_plus, nominate_dim1, nominate_dim2, birthday, seniority_113, first_contribution_minus, first_contribution_plus)
-# view(df_subsample_2)
-
-# # Vote Changes including contributions only for those who are present for vote 6,7
-# ols_subsample_2 <- lm(vote_change_to_anti ~ ., data = df_subsample_2)
-# summary(ols_subsample)
-
+logit_ind_fe <- bife(Vote ~ Contribution_minus + Contribution_plus + Dmajority | BioID, data = df_long, model = "logit")
+summary(logit_ind_fe)
 ```
 
-even when removing the NAs, cannot predict the coefficients, since 11/23 representatives have NA values, vs. in the beginning, i.e. vote 3, only 6/23 representatives have NA values since they weren't present for the vote. Makes a big difference in estimation. 
-
-
-### Subsample analysis with state and time fixed effects
-```{r}
-# remove cols not necessary for analysis
-df_subsample <- df_subsample %>% select(-c(
-    last_name, first_name, name, district, Vote_count, Vote_change,
-    first_contribution_minus, first_contribution_plus, Vote_change, Vote_change_dummy, GovtrackID, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, seniority_113, seniority_114, seniority_1151, seniority_116, seniority_117, vote_change_to_pro, vote_change_type, opensecrets_id, vote_change_year, gender, BioID
-))
-# view(df_subsample)
-
-# fixed <- plm(vote_change_to_anti ~ ., data = df_subsample, index = c("Geographical", "year"), model = "within") # fixed model
-# summary(fixed)
-```
-
-12 coefficients dropped because of singularities...
-
-# Two way fixed effects model
-```{r}
-view(df_no_change)
-two_way_model <- felm(all_votes_minus ~ Geographical + Contribution_3_minus + Contribution_3_plus | Geographical | 0 | 0, data = df_no_change)
-summary(two_way_model)
-
-```
-
-# Logit and Probit Models 
 ## all representatives who did not change their opinion
+
 ```{r}
-missmap(df_no_change, main = "Missing values vs observed")
-# all_votes_minus ~ . - all_votes_plus, data = df_no_change)
+# missmap(df_no_change, main = "Missing values vs observed")
+# # all_votes_minus ~ . - all_votes_plus, data = df_no_change)
 
-logit <- glm(all_votes_minus ~ . - all_votes_plus, family = binomial(link = "logit"), data = df_no_change)
-summary(logit)
+# logit <- glm(all_votes_minus ~ . - all_votes_plus, family = binomial(link = "logit"), data = df_no_change)
+# summary(logit)
 
-probit <- glm(all_votes_minus ~ . - all_votes_plus, family = binomial(link = "probit"), data = df_no_change)
-summary(probit)
+# probit <- glm(all_votes_minus ~ . - all_votes_plus, family = binomial(link = "probit"), data = df_no_change)
+# summary(probit)
 
 ```
 

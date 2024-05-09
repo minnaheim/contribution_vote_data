@@ -6,12 +6,10 @@ library(glue)
 source("src/analysis/analysis_prep_functions.R")
 df <- read.csv("data/cleaned/df.csv")
 
-
 # remove representatives who voted only once, whose party isnt R,D,
 df <- analysis_prep(df)
 # change vote to dummy vars
 df <- dummy_vote(df)
-
 
 
 # change birthdays to only include years, and group into decades
@@ -70,7 +68,7 @@ for (i in 1:nrow(df)) {
         df$anti_env_dummy[i] <- 1
     }
 }
-view(df)
+# view(df)
 
 # before pivoting df, i will create a copy which only includes vote changers & then apply the pivot_longer function
 df_vote_change <- df %>% filter(Vote_change_dummy == 1)
@@ -80,8 +78,15 @@ df_vote_change <- relocate(df_vote_change, "first_vote", .after = "vote_change_y
 df_vote_change$vote_change_type <- as.numeric(df_vote_change$vote_change_type)
 df_vote_change <- df_vote_change %>% mutate(year = str_extract(vote_change_year, "(?<=-).*"))
 df_vote_change <- relocate(df_vote_change, "year", .after = vote_change_year)
+print("relocation done")
 # apply add_vote_dummy function to get dummy for each vote change
-df_vote_change <- add_vote_dummy(df_vote_change)
+df_vote_change <- dummy_cols(df_vote_change, select_columns = "vote_change_type")
+df_vote_change <- df_vote_change %>%
+    relocate(vote_change_type_1, .after = vote_change_type) %>%
+    relocate(vote_change_type_0, .after = vote_change_type_1) %>%
+    rename("vote_change_to_pro" = "vote_change_type_1") %>%
+    rename("vote_change_to_anti" = "vote_change_type_0") %>%
+    select(-c(vote_change_type))
 # view(df_vote_change)
 
 
@@ -91,7 +96,13 @@ df_vote_change <- aggregate_pivot_longer_function(df_vote_change)
 view(df_vote_change)
 # view(df_long)
 
-
+# duplicate seniority_115 and rename seniority cols
+df$seniority_1152 <- df$seniority_115
+df$seniority_1151 <- df$seniority_115
+df <- df %>% select(-c(seniority_115))
+df <- df %>% relocate("seniority_1151", .after = "seniority_114")
+df <- df %>% relocate("seniority_1152", .after = "seniority_1151")
+# view(df)
 
 # filter for each session
 df_vote_3 <- filter_session_data_2(df, 3)

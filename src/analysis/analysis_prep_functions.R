@@ -106,27 +106,6 @@ filter_all_pre_session_data <- function(df, vote) {
     return(df)
 }
 
-
-# create dummy for vote change... 1 or 0 vote!! > von + -> - = 0, von - -> + = 1 (manually, use package for this)
-add_vote_dummy <- function(df) {
-    # create cols for vote change to pro and anti
-    vote_change_to_pro <- c()
-    vote_change_to_anti <- c()
-    for (i in 1:nrow(df)) {
-        if (!is.na(df$vote_change_type[i] == 1)) {
-            vote_change_to_pro[i] <- 1
-        } else if (!!is.na(df$vote_change_type[i] == 0)) {
-            vote_change_to_anti[i] <- 0
-        }
-    }
-    df$vote_change_to_pro <- vote_change_to_pro
-    df$vote_change_to_anti <- vote_change_to_anti
-    df <- relocate(df, vote_change_to_pro, .after = vote_change_type)
-    df <- relocate(df, vote_change_to_anti, .after = vote_change_to_pro)
-    return(df)
-}
-
-
 # DF for SUBSAMPLE ANALYSIS
 vote_columns <- c("Vote3", "Vote4", "Vote51", "Vote52", "Vote6", "Vote7")
 
@@ -243,6 +222,7 @@ aggregate_pivot_longer_function <- function(df) {
         "district", "party", "name", "birthday", "gender", "pro_env_dummy",
         "anti_env_dummy", "Geographical", "nominate_dim1", "nominate_dim2",
         "Vote_change_dummy", "Vote_change"
+        # ,"vote_change_to_pro", "vote_change_to_anti"
     )
 
     # Perform a single pivot_longer operation to reshape the data
