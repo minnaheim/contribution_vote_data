@@ -784,7 +784,6 @@ a Logit Model will be included as a robustness check.
 
 == Model specification
 
-
 Measuring the relationship between campaign contributions from pro and anti-environmental sources and environmental voting behaviour is difficult, since many other factors are at play to determine voting behaviour @Selling2023. Because of this, this paper will incude models which range from using the most generous conditions, such as using control variables and most strict, using individual fixed effects. 
 
 To control for confounding influence factors between a treatment and an outcome and approach a consistent causal interpretation @control,the following control variables are used: the legislator's party and whether their party had House Majority during that term @McAlexander2020 @stratmann-2002, these control variables are used since party is a good determinant for a legislator's ideological leaning, and whether their party has the majority determines the power which the group has over the house of representatives. 
@@ -794,45 +793,15 @@ Using the birthyear and seniority, which is number of terms in house the represe
 Based on roll-call records, the DW-Nominates are a widely used indicator of a representative's policy opinion in a multidimensional policy space, which serve as a strong predictor of the voting decisions of representatives @rosenthalpoole @matter.  By including the absolute value of the first and second dimension of the DW-Nominate#footnote("accessible under https://voteview.com") as control variables, we control for differences in ideology that might explain voting behaviour. Regarding the rollcall votes, the six rollcall votes included do not all pertain to the same bills, but I make the assumption that they are all the same bill considering they all touch upon the same topic and institutions, see @rollcall, and thus I will not control for differences in bills @griers.
 
 
-By including control variables, we are able to fix certain factors that we can measure and assume have confounding effects on the predicted probability. Using fixed effects, however, we account for unobservable elements that remain constant across time, and thus remove time invariant confounding @griers. In this paper, two types of fixed effects are used: On the one hand, 
+By including control variables, we are able to fix certain factors that we can measure and assume have confounding effects on the predicted probability. Using two-way fixed effects (FE) @Imai-Kim-2019, however, we account for unobservable elements that remain constant across time, and thus remove time invariant confounding @griers. In this paper, three types of fixed effects are used: In the more generous version, I fix for the variables geographical region and year, since this measures only the change in contributions within a year and same geographical location. 
+// find reasoning for fixing for state and year.. why those?
+In a more strict version, I fix for year and state. This provides more accurate results on the geographical level.  
+// explain this more...
+Lastly, in the strictest model, I fix for both legislators and years. The reason behind fixing for something as large as the representative, is because it gives the able to control for omitted variables which are constant over time for each legislator such as the representative's background, which is complex and high dimensional and bound to affect the individuals voting behaviour @Huntington @stratmann-2002. Not only am I thus able to address the omitted variable bias which I was not able to address through my control variables since they are difficult to measure @griers, such as the representative's eloquence and negotiation skills, proximity to the fossil fuel industry and/or environmental industry, etc. but I am able to remove previous FEs, such as the state or geographical fixed effects, since these usualy do not change within a representative over time.
 
-
-Therefore, to determine the impact of donations on voting changes, we only utilise the change in contributions within a year, state or for a specific member, and thus can predict the effect of contribution more accurately @griers
-
--> eliminate time invariant confounding with fixed effects (year)
-
-
-"Finally, Stratmann (2002) uses incumbent fixed effects to study the effect of
-interest group contributions on financial services legislation" @griers
-confounding vars from statmann: @stratmann-2002 p.12-13
-- employment in banking, insurance nad investment industries
-- indicator for party majority in the house
-- percentage of last popular votes which members received
-- DW-Nominates absolute deviation from the party mean
-
-n this model the legislator indicators control for legislator specific effects, i.e. they control for omitted variables that are constant over time for each legislator @stratmann-2002
-
-- still use Logit/Probit for robustness...
-
-- bill fixed effects: -> we assume all votes are on the same bill since so
-  similar..
-Because the 2013 and 2018 amendments were quite similar, we treat them as
-repeated votes on the same issue and then use district fixed effects to
-eliminate any unobserved district level confounders.
-
-- When arguing why use unit and time fixed effects ...
-@Imai-Kim-2019
-// == Two-way Fixed Effects model
-// Argue why use this with @Imai_Kim_2021 -> use this vorlage:
-// http://congressdata.joshuamccrain.com/models.html
-// + basic OLS
-// + sessionized OLS
-// + all contribs prior to vote OLS
-// + mind-changers OLS
+// Therefore, to determine the impact of donations on voting changes, we only utilise the change in contributions within a year, state or for a specific member, and thus can predict the effect of contribution more accurately @griers
 
 == Linear Probability Model
-
-Concept: from most generous to most strict. This way we can see the most basic model and conditions and then specify.
 
 + *LPM with entire Sample*
   Reasoning: most generous model, include all votes, non-discriminatory based on voting behaviour, largest sample.
@@ -858,6 +827,8 @@ Concept: from most generous to most strict. This way we can see the most basic m
   - only incl. mind changers (only variations in voting behavior are relevant
     @stratmann-2002 p.11)
   - vote change in which direction (pro -> contra env = 0?) & vice versa
+
+=== two-way linear fixed effects models
 
 == Logit / Probit (which Stratmann used)
 *check stratmanns used logit/probit*
