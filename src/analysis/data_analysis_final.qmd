@@ -15,6 +15,9 @@ library(lfe)
 library(broom)
 library(kableExtra)
 library(bife)
+library(moments)
+install.packages("corrplot", repos = "https://stat.ethz.ch/CRAN/")
+library(corrplot)
 
 source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_prep_functions.R")
 df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
@@ -35,6 +38,13 @@ df_vote_7 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/an
 df_vote_7_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_7_2.csv")
 df_subsample <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_sub.csv")
 state_makeup <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/state_makeup.csv")
+
+# add log transformed variables to dfs
+df_long_log <- df_long %>%
+    mutate(Contribution_plus_log = log(Contribution_plus + 1)) %>%
+    mutate(Contribution_minus_log = log(Contribution_minus + 1)) %>%
+    select(-c(Contribution_plus, Contribution_minus))
+
 ```
 
 # LPM of all Representatives
@@ -43,16 +53,41 @@ The reason for using a LPM for this analysis despite popular opinion in academa 
 
 <!-- recheck whether seniority ist aussagekräftig..? -->
 
+##
+
+
 ## with control variables 
 
 This is the most basic model, which includes all representatives (who can be associated with the R or D party, not I or Libertarian) in panel and who participated in at least 2 votes (to be able to track changes in voting behaviour). This means the dataset encompasses 574 (?) Representatives.
 
 ```{r}
 # remove ID type columns
-df_long <- df_long %>% select(-c(GovtrackID, opensecrets_id, first_name, last_name, name))
+df_long <- df_long %>% select(-c(GovtrackID, opensecrets_id, first_name, last_name, name, Vote_change_dummy))
 view(df_long)
-full_ols <- lm(Vote ~ . - state - BioID - Vote_change_dummy, data = df_long)
+## with control variables & no contrib, only dummy
+full_ols_dummy <- lm(Vote ~ . - state - BioID - Contribution_minus - Contribution_plus, data = df_long)
+summary(full_ols_dummy)
+
+## with control variables and contribs
+full_ols <- lm(Vote ~ . - state - BioID, data = df_long)
 summary(full_ols)
+
+
+# same thing again with log transformed contributions
+df_long_log <- df_long_log %>% select(-c(GovtrackID, opensecrets_id, first_name, last_name, name))
+full_ols_log <- lm(Vote ~ . - state - BioID - nominate_dim1 - nominate_dim2, data = df_long_log)
+summary(full_ols_log)
+
+```
+
+Why such high adjusted R-squared, use corrtest to see if multicollinearity is present.
+```{r}
+# select only numeric variables
+str(df_long)
+df_long_num <- df_long %>%
+    select_if(is.numeric) %>%
+    filter(complete.cases(.))
+corrplot(cor(df_long_num))
 ```
 
 The ols regresses the pro and anti environmental contributions with the control variables used: 
@@ -66,16 +101,15 @@ The ols regresses the pro and anti environmental contributions with the control 
 - Geographical region (i.e. States categorised into regions (South, West, North-East and Midwest))
 - majority party in the house at the time of the vote.
 
-### with log transformed contributions
+transforming the contribution variables logarithmically does not change the adjusted R-squared of the model by much. It also decreases the significance of the contribution coefficients, which is strange, given that the contribution variables are highly skewed and thus should be transformed logarithmically.
+
 ```{r}
-cols <- c("Contribution_plus", "Contribution_minus")
-df_long[cols] <- lapply(df_long[cols], function(x) log(x + 1))
+df_long <- df_long %>% filter(complete.cases(Contribution_plus))
+skewness(df_long$Contribution_plus)
 
-full_ols_log <- lm(Vote ~ . - state - BioID - Vote_change_dummy, data = df_long)
-summary(full_ols_log)
-``` 
-
-transforming the contribution variables logarithmically does not change the adjusted R-squared of the model by much. It also decreases the significance of the coefficients. 
+df_long_log <- df_long_log %>% filter(complete.cases(Contribution_plus_log))
+skewness(df_long_log$Contribution_plus_log)
+```
 
 The reason for transforming the contribution variables is to account for differences in contributions which representatives might receive, i.e. AOC vs. Kevin McCarthy. 
 
@@ -83,14 +117,14 @@ The reason for transforming the contribution variables is to account for differe
 ```{r}
 df_long_D <- df_long %>%
     filter(party == "D") %>%
-    select(-c(state, party, BioID, Vote_change_dummy))
+    select(-c(state, party, BioID))
 
 full_ols_D <- lm(Vote ~ ., data = df_long_D)
 summary(full_ols_D)
 
 df_long_R <- df_long %>%
     filter(party == "R") %>%
-    select(-c(state, party, BioID, Vote_change_dummy))
+    select(-c(state, party, BioID))
 
 full_ols_R <- lm(Vote ~ ., data = df_long_R)
 summary(full_ols_R)
@@ -110,6 +144,11 @@ Since only 96 instances of non-anti environmental contributions exist, this mean
 ```{r}
 ols_geo <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(Geographical) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
 summary(ols_geo)
+
+# same thing with log
+ols_geo_log <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(Geographical) + as.factor(Instance) + seniority + Contribution_minus_log + Contribution_plus_log + gender + pro_env_dummy + anti_env_dummy, data = df_long_log)
+summary(ols_geo_log)
+
 ```
 
 Explain the following in the paper:
@@ -127,6 +166,10 @@ summary(ols_state_fe)
 # same thing again with plm
 ols_state_fe_plm <- plm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long, index = c("state", "Instance"), model = "within")
 summary(ols_state_fe_plm)
+
+# same thing again with log
+ols_state_fe_log <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(state) + as.factor(Instance) + seniority + Contribution_minus_log + Contribution_plus_log + gender + pro_env_dummy + anti_env_dummy, data = df_long_log)
+summary(ols_state_fe_log)
 ```
 
 using state instead of geographical region means that we can more accurately determine the differences in voting behavior between representatives from different states, not just regions. this makes sense, when we look at the states which are significant in the model, i.e. NY, SC, NJ, NH, FL, CT, AZ, they are not all from the same region, manye from the north east and the south and west, but no real patterns...
@@ -145,12 +188,18 @@ here, the model is getting stricter than before, since I am not only fixing for 
 
 ## with individual & year fixed effects
 ```{r}
-ols_ind_fe <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(Instance) + as.factor(BioID) + seniority + Contribution_minus + Contribution_plus + Dmajority, data = df_long)
+ols_ind_fe <- lm(Vote ~ as.factor(Instance) + as.factor(BioID) + seniority + pro_env_dummy + anti_env_dummy, data = df_long)
 summary(ols_ind_fe)
+# Contribution_minus + Contribution_plus
 
 # same thing again with plm
 ols_ind_fe_plm <- plm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + Dmajority, data = df_long, index = c("BioID", "Instance"), model = "within")
 summary(ols_ind_fe_plm)
+
+# same thing again with log
+ols_ind_fe_log <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(Instance) + as.factor(BioID) + seniority + Contribution_minus_log + Contribution_plus_log + Dmajority, data = df_long_log)
+summary(ols_ind_fe_log)
+
 ```
 
 The difference between the ols before and this ols is the individual fixed effects instead of state effects. so we are fixing for individiuals so we dont include person specific changes in the analysis and for the same person can see how their voting changes. 
@@ -220,8 +269,8 @@ Why dont the anti_env_dummy coefficients show up? Are they singularities?
 ## with control variables
 ```{r}
 df_long_no_change <- df_long %>%
-    filter(Vote_change_dummy == 0) %>%
-    select(-c(Vote_change_dummy, Vote_change))
+    filter(Vote_change == 0) %>%
+    select(-Vote_change)
 
 ols_no_change <- lm(Vote ~ . - state - BioID, data = df_long_no_change)
 summary(ols_no_change)
@@ -305,7 +354,7 @@ What is interesting to see here, is the fact that instances are highly significa
 ## all representatives
 ### with control variables
 ```{r}
-full_logit <- glm(Vote ~ . - state - BioID - Vote_change_dummy, family = binomial(link = "logit"), data = df_long)
+full_logit <- glm(Vote ~ . - state - BioID, family = binomial(link = "logit"), data = df_long)
 summary(full_logit)
 ```
 
@@ -314,7 +363,7 @@ summary(full_logit)
 cols <- c("Contribution_plus", "Contribution_minus")
 df_long[cols] <- lapply(df_long[cols], function(x) log(x + 1))
 
-full_logit_log <- glm(Vote ~ . - state - BioID - Vote_change_dummy, family = binomial(link = "logit"), data = df_long)
+full_logit_log <- glm(Vote ~ . - state - BioID, family = binomial(link = "logit"), data = df_long)
 summary(full_logit_log)
 ```
 

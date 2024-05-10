@@ -6,9 +6,62 @@ format: html
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(lubridate)
+library(ggplot2)
+library(e1071)
+df <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv", show_col_types = FALSE)
+view(df)
+df_long <- read_csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_long.csv", show_col_types = FALSE)
+view(df_long)
 ```
 
 With a function such as this one you can plot the contributions in dataset, i.e. for each election, how many contributions were made in line with the cutoff date, also plotted.
+
+```{r}
+# plot contributions and votes
+df_long_1 <- df_long %>%
+    filter(complete.cases(Vote)) %>%
+    filter(complete.cases(Contribution_plus)) %>%
+    filter(complete.cases(Contribution_minus)) %>%
+    filter(Contribution_plus > 0) %>%
+    filter(Contribution_minus > 0)
+# pro environmental contributions
+env_contribs <- ggplot(df_long_1, aes(as.factor(Vote), Contribution_plus)) +
+    geom_boxplot() +
+    scale_y_continuous(limits = c(0, 100000))
+env_contribs
+
+# anti environmental contributions
+anti_env_contribs <- ggplot(df_long_1, aes(as.factor(Vote), Contribution_minus)) +
+    geom_boxplot() +
+    scale_y_continuous(limits = c(0, 100000))
+anti_env_contribs
+
+```
+
+Notice how this is scaled the same way, the average contribution from anti_env is higher than the pro_env contributions. The reason behind this, is that many get 0, when removing 0, still looks like this.
+
+```{r}
+# check skewness of contribution data to see whether we need to apply the log transformation
+
+# pro environmental contributions
+df_long <- df_long %>% filter(complete.cases(Contribution_plus))
+skewness(df_long$Contribution_plus)
+
+# anti environmental contributions
+df_long <- df_long %>% filter(complete.cases(Contribution_minus))
+skewness(df_long$Contribution_minus)
+```
+
+Interpretation: both very much skewed, so we need to apply log transformation to the contributions.
+```{r}
+
+df_long <- df_long %>%
+    mutate(Contribution_plus_log = log(Contribution_plus + 1)) %>%
+    mutate(Contribution_minus_log = log(Contribution_minus + 1))
+
+skewness(df_long$Contribution_plus_log)
+
+```
 
 ```{r}
 # ADD TO PLOTS FILE
