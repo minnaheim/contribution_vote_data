@@ -791,13 +791,17 @@ To control for confounding influence factors between a treatment and an outcome 
 
 Using the birthyear and seniority, which is number of terms in house the representative served, are used to be able to control for the difference in age and experience which might distort the voting behaviour @stratmann-2002. By controlling for differences in geographical residence of the representatives, using state, geographical #footnote("the variable Geographical has the 50 US states grouped into four categories: Northwest (NW), South (SO), West (WE), Midwest (MW), according to the United States Census Bureau under https://www2.census.gov/geo/pdfs/reference/GARM/Ch6GARM.pd") and the district level we remove possible differences in voting behaviour attributed to the location of representatives. 
 
-Based on roll-call records, the DW-Nominates are a widely used indicator of a representative's policy opinion in a multidimensional policy space, which serve as a strong predictor of the voting decisions of representatives @rosenthalpoole @matter.  By including the absolute value of the first and second dimension of the DW-Nominate#footnote("accessible under https://voteview.com") as control variables, we control for differences in ideology that might explain voting behaviour. Regarding the rollcall votes, the six rollcall votes included do not all pertain to the same bills, but I make the assumption that they are all the same bill considering they all touch upon the same topic and institutions, see @rollcall, and thus I will not control for differences in bills.
+Based on roll-call records, the DW-Nominates are a widely used indicator of a representative's policy opinion in a multidimensional policy space, which serve as a strong predictor of the voting decisions of representatives @rosenthalpoole @matter.  By including the absolute value of the first and second dimension of the DW-Nominate#footnote("accessible under https://voteview.com") as control variables, we control for differences in ideology that might explain voting behaviour. Regarding the rollcall votes, the six rollcall votes included do not all pertain to the same bills, but I make the assumption that they are all the same bill considering they all touch upon the same topic and institutions, see @rollcall, and thus I will not control for differences in bills @griers.
 
-*which fixed effects used?*
-"By using fixed effects, we control for unobservable factors that are constant
-over time. Thus, we only use the change in contributions within a district or
-for a given member to identify the effect of contributions on changes in
-voting." @griers
+
+By including control variables, we are able to fix certain factors that we can measure and assume have confounding effects on the predicted probability. Using fixed effects, however, we account for unobservable elements that remain constant across time, and thus remove time invariant confounding @griers. In this paper, two types of fixed effects are used: On the one hand, 
+
+
+Therefore, to determine the impact of donations on voting changes, we only utilise the change in contributions within a year, state or for a specific member, and thus can predict the effect of contribution more accurately @griers
+
+-> eliminate time invariant confounding with fixed effects (year)
+
+
 "Finally, Stratmann (2002) uses incumbent fixed effects to study the effect of
 interest group contributions on financial services legislation" @griers
 confounding vars from statmann: @stratmann-2002 p.12-13
