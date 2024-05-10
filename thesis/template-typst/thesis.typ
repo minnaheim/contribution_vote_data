@@ -583,7 +583,7 @@ distance from one another, while the variables Party and District need to be
 identical to match.
 
 == Contribution data <contrib-data>
-=== Time Frame of Contributions
+=== Time Frame of Contributions <contribs-choice>
 
 // decision 6mo vs. aggregate.
 // CHANGE ANALYSIS - IN AGGREGATE, TO MATCH THIS. FIRST VOTE = POST VOTE ELECTION
@@ -624,29 +624,50 @@ hypothesis 4 stipulated in @hypothesis, that contributions are time related.
 //   right: if (x + 1) == [] { 1pt } else { 0pt },
 // ),
 //  change stroke, to cover 2 boxes if belong together, and 1 if not, and add 16_2
-#figure(
-  table(
-    columns: 4,
-    stroke: none,
-    [*Vote Date*],[*Cutoff Date*],[*Cycle*],[*Nr. of Contributions*],
-    [June 25th 2021],[Dec 25th 2020],[2022],[4965],
-    [],[],[2020],[34],
-    [June 20th 2019],[Dec 19th 2018],[2020],[5191],
-    [],[],[2018],[30],
-    [Jul 18th, 2018],[Jan 17th 2018], [2018], [7749],
-    [Sep 13th 2017],[Feb 12th 2017],[2018],[7148],
-    [Jul 13th 2016],[Jan 12th 2016],[2018],[1],
-    [],
-    [],
-    [2016],
-    [7142],
-    [Nov 20th 2013],
-    [Mar 19th 2013],
-    [2014],
-    [7085],
-  ),
-  caption: [Consolidated contribution data with vote and cutoff dates],
-)
+#figure(table(
+  columns: 4,
+  stroke: none,
+  [*Vote Date*],
+  [*Cutoff Date*],
+  [*Cycle*],
+  [*Nr. of Contributions*],
+  [June 25th 2021],
+  [Dec 25th 2020],
+  [2022],
+  [4965],
+  [],
+  [],
+  [2020],
+  [34],
+  [June 20th 2019],
+  [Dec 19th 2018],
+  [2020],
+  [5191],
+  [],
+  [],
+  [2018],
+  [30],
+  [Jul 18th, 2018],
+  [Jan 17th 2018],
+  [2018],
+  [7749],
+  [Sep 13th 2017],
+  [Feb 12th 2017],
+  [2018],
+  [7148],
+  [Jul 13th 2016],
+  [Jan 12th 2016],
+  [2018],
+  [1],
+  [],
+  [],
+  [2016],
+  [7142],
+  [Nov 20th 2013],
+  [Mar 19th 2013],
+  [2014],
+  [7085],
+), caption: [Consolidated contribution data with vote and cutoff dates])
 //   *plot* contributions from before (e.g. relevant contributions over time, with
 //   cutoff date, 2012 (misses vote 6mo. prior completely, 2014 right in the middle,
 //   2016 in between))
@@ -752,23 +773,25 @@ contributions, the model setup must allow for a dichotomous dependent variable,
 i.e. pro-environmental vote (1) or anti-enviornmental vote (0) and for the
 non-negativity of contributions @stratmann-1991 @stratmann-2002 @chappell.
 
-Two types of models that come into question for these are the Linear Probability Model (LPM) and the Logit,
-which are both frequently used in economic literature, but both come with their
-up- and downsides. The LPM
-is an ordinary least squared linear regression with binary dependent variables.
-The benefits of using a LPM to analyse the effect of campaign contributions on
-voting behaviour is the fact that the linear regression can be used to estimate
-the effects on the observed dependent variable, so coefficients are comparable
-over models and groups @mood. One downside, however, is that there is a
-possibility for the predicted probability to be out of range, by being either
-higher than 1 or lower than 0.
+Two types of models that come into question for these are the Linear Probability
+Model (LPM) and the Logit, which are both frequently used in economic
+literature, but both come with their up- and downsides. The LPM is an ordinary
+least squared linear regression with binary dependent variables. The benefits of
+using a LPM to analyse the effect of campaign contributions on voting behaviour
+is the fact that the linear regression can be used to estimate the effects on
+the observed dependent variable, so coefficients are comparable over models and
+groups @mood. One downside, however, is that there is a possibility for the
+predicted probability to be out of range, by being either higher than 1 or lower
+than 0.
 
 In order to counter this, one can use the logistical regession or logit model,
 which also measures dichotomous dependent variables but the predicted
-probability will always stay within range of #range(2) \. Comparing models with various independent variables or significantly
-interpreting the results is challenging when using logistic regression since the
-distribution of the logistic regression is non-linear and thus changes in log-oods are not as intuitive to interpret as direct probabilities. Moreover, @mood explains
-that logistic effect measures can capture unobserved heterogeneity even in cases
+probability will always stay within range of #range(2) \. Comparing models with
+various independent variables or significantly interpreting the results is
+challenging when using logistic regression since the distribution of the
+logistic regression is non-linear and thus changes in log-oods are not as
+intuitive to interpret as direct probabilities. Moreover, @mood explains that
+logistic effect measures can capture unobserved heterogeneity even in cases
 where there is no correlation between the omitted variables and the independent
 variables @Selling2023.
 
@@ -782,82 +805,122 @@ a Logit Model will be included as a robustness check.
 // Why not 2SLS -> @stratmann-2002 p.1
 // say that OBV in logit & LPM? @mood?
 
-== Model specification
+== Model specification <model-spec>
 
-Measuring the relationship between campaign contributions from pro and anti-environmental sources and environmental voting behaviour is difficult, since many other factors are at play to determine voting behaviour @Selling2023. Because of this, this paper will incude models which range from using the most generous conditions, such as using control variables and most strict, using individual fixed effects. 
+Measuring the relationship between campaign contributions from pro and
+anti-environmental sources and environmental voting behaviour is difficult,
+since many other factors are at play to determine voting behaviour @Selling2023.
+Because of this, this paper will incude models which range from using the most
+generous conditions, such as using control variables and most strict, using
+individual fixed effects.
 
-To control for confounding influence factors between a treatment and an outcome and approach a consistent causal interpretation @control,the following control variables are used: the legislator's party and whether their party had House Majority during that term @McAlexander2020 @stratmann-2002, these control variables are used since party is a good determinant for a legislator's ideological leaning, and whether their party has the majority determines the power which the group has over the house of representatives. 
+To control for confounding influence factors between a treatment and an outcome
+and approach a consistent causal interpretation @control,the following control
+variables are used: the legislator's party and whether their party had House
+Majority during that term @McAlexander2020 @stratmann-2002, these control
+variables are used since party is a good determinant for a legislator's
+ideological leaning, and whether their party has the majority determines the
+power which the group has over the house of representatives.
 
-Using the birthyear and seniority, which is number of terms in house the representative served, are used to be able to control for the difference in age and experience which might distort the voting behaviour @stratmann-2002. By controlling for differences in geographical residence of the representatives, using state, geographical #footnote("the variable Geographical has the 50 US states grouped into four categories: Northwest (NW), South (SO), West (WE), Midwest (MW), according to the United States Census Bureau under https://www2.census.gov/geo/pdfs/reference/GARM/Ch6GARM.pd") and the district level we remove possible differences in voting behaviour attributed to the location of representatives. 
+Using the birthyear and seniority, which is number of terms in house the
+representative served, are used to be able to control for the difference in age
+and experience which might distort the voting behaviour @stratmann-2002. By
+controlling for differences in geographical residence of the representatives,
+using state, geographical #footnote(
+  "the variable Geographical has the 50 US states grouped into four categories: Northwest (NW), South (SO), West (WE), Midwest (MW), according to the United States Census Bureau under https://www2.census.gov/geo/pdfs/reference/GARM/Ch6GARM.pd",
+) and the district level we remove possible differences in voting behaviour
+attributed to the location of representatives.
 
-Based on roll-call records, the DW-Nominates are a widely used indicator of a representative's policy opinion in a multidimensional policy space, which serve as a strong predictor of the voting decisions of representatives @rosenthalpoole @matter.  By including the absolute value of the first and second dimension of the DW-Nominate#footnote("accessible under https://voteview.com") as control variables, we control for differences in ideology that might explain voting behaviour. Regarding the rollcall votes, the six rollcall votes included do not all pertain to the same bills, but I make the assumption that they are all the same bill considering they all touch upon the same topic and institutions, see @rollcall, and thus I will not control for differences in bills @griers.
+Based on roll-call records, the DW-Nominates are a widely used indicator of a
+representative's policy opinion in a multidimensional policy space, which serve
+as a strong predictor of the voting decisions of representatives @rosenthalpoole
+@matter. By including the absolute value of the first and second dimension of
+the DW-Nominate#footnote("accessible under https://voteview.com") as control
+variables, we control for differences in ideology that might explain voting
+behaviour. Regarding the rollcall votes, the six rollcall votes included do not
+all pertain to the same bills, but I make the assumption that they are all the
+same bill considering they all touch upon the same topic and institutions, see
+@rollcall, and thus I will not control for differences in bills @griers.
 
+By including control variables, we are able to fix certain factors that we can
+measure and assume have confounding effects on the predicted probability. Using
+two-way fixed effects (FE) @Imai-Kim-2019, however, we account for unobservable
+elements that remain constant across time, and thus remove time invariant
+confounding @griers. In this paper, three types of fixed effects are used: In
+the more generous version, I fix for the variables geographical region and year,
+since this measures only the change in contributions within a year and same
+geographical location.// why fix for geo region
 
-By including control variables, we are able to fix certain factors that we can measure and assume have confounding effects on the predicted probability. Using two-way fixed effects (FE) @Imai-Kim-2019, however, we account for unobservable elements that remain constant across time, and thus remove time invariant confounding @griers. In this paper, three types of fixed effects are used: In the more generous version, I fix for the variables geographical region and year, since this measures only the change in contributions within a year and same geographical location. // why fix for geo region
+In a stricter version, I fix for year and state. This provides more accurate
+results on the geographical level.By controling for states, possible differences
+in state ties to the fossil fuel industries and severely environmentally
+affected states are not compared to one another, since these differences are
+important enough to influence both contributions and voting behaviour. By
+controlin for years, on the other hand, time-variant differences such as
+environmental perception or enviornmental disasters are not taken out of context
+and compared with years with little environmental happenings.
 
+// mention fixing for party!!
 
-In a stricter version, I fix for year and state. This provides more accurate results on the geographical level.By controling for states, possible differences in state ties to the fossil fuel industries and severely environmentally affected states are not compared to one another, since these differences are important enough to influence both contributions and voting behaviour. By controlin for years, on the other hand, time-variant differences such as environmental perception or enviornmental disasters are not taken out of context and compared with years with little environmental happenings.
-
-
-Lastly, in the strictest model, I fix for both legislators and years. The reason behind fixing for something as large as the representative, is because it gives the able to control for omitted variables which are constant over time for each legislator such as the representative's background, which is complex and high dimensional and bound to affect the individuals voting behaviour @Huntington @stratmann-2002. Not only am I thus able to address the omitted variable bias which I was not able to address through my control variables since they are difficult to measure @griers, such as the representative's eloquence and negotiation skills, proximity to the fossil fuel industry and/or environmental industry, etc. but I am able to remove previous FEs, such as the state or geographical fixed effects, since these usualy do not change within a representative over time.
+Lastly, in the strictest model, I fix for both legislators and years. The reason
+behind fixing for something as large as the representative, is because it gives
+the able to control for omitted variables which are constant over time for each
+legislator such as the representative's background, which is complex and high
+dimensional and bound to affect the individuals voting behaviour @Huntington
+@stratmann-2002. Not only am I thus able to address the omitted variable bias
+which I was not able to address through my control variables since they are
+difficult to measure @griers, such as the representative's eloquence and
+negotiation skills, proximity to the fossil fuel industry and/or environmental
+industry, etc. but I am able to remove previous FEs, such as the state or
+geographical fixed effects, since these usualy do not change within a
+representative over time.
 
 // Therefore, to determine the impact of donations on voting changes, we only utilise the change in contributions within a year, state or for a specific member, and thus can predict the effect of contribution more accurately @griers
 
 == Linear Probability Model
 
-+ *LPM with entire Sample*
-  Reasoning: most generous model, include all votes, non-discriminatory based on voting behaviour, largest sample.
+As mentioned in @model-spec, the most generous model is the linear probability
+model shown in @lpm.
 
-  $ "Vote"#sub[i,t] = alpha + beta#sub[1]"Contributions"#super[pro-env] + beta#sub[2]"Contributions"#super[anti-env] + gamma#sub[i] + delta#sub[t] + X + epsilon $ <lpm>
-  add control variable matrix
-    - control variables
-    - log transformed
-    - geo & state fixed effects
-    - indidividual fixed effects 
-+ *sessionized OLS*
-  Reasoning: although we assume that all rollcall votes are of the same bill, hold these fixed, this way we can also analyse each vote and see which contributions have the strongest correlation with the vote, were more significant or effects in voting.. maybe time does play an important effect.
-    - one regression for each vote (vote ~ contribution from election cylce/6 mo.
-      prior contributions)
-    - this way we avoid recency bias and see whether long term relationships matter
-      after all...@stratmann-1995
+$ "Vote"#sub[i,t] = alpha + beta#sub[1t]"Contributions"#super[pro-env] + beta#sub[2t]"Contributions"#super[anti-env] \ + gamma#sub[i] + delta#sub[t] + X + epsilon $ <lpm>
 
-+ *LPM with only consistent representatives* 
-  Reasoning: it is important to include representatives who did not change their votes, even if that is the main analysis. It is also important to the see the "simple" relation between voting and contributions.
+This model includes the entire sample of representatives who voted more than
+once on the set of the six roll call votes, it is non-discriminatory based on
+voting behaviour, where $beta$ are the explanatory variables of interest,
+Contributions from pro and anti-environmental sources, $X$ is the matrix of
+control variables, $delta#sub[t]$ are the time fixed effects and $gamma#sub[i]$ are
+the individual fixed effects, all of which are detailed in @model-spec.
 
-+ *LPM with only vote changers*
-  - df FE (base year, pivot longer, ∆contribution, person-FE)
-  - only incl. mind changers (only variations in voting behavior are relevant
-    @stratmann-2002 p.11)
-  - vote change in which direction (pro -> contra env = 0?) & vice versa
+Using @lpm as a basis, I explored different variations of measuring the
+relationship between voting behaviour and contributions. One version is to
+isolate each vote, and include all relevant contributions from previous votes
+and those of the current vote. This way, the assumptions made in
+@contribs-choice are put to the test, and not only the short term contributions
+when an environmentally relevant vote is upcoming, but the previous
+contirbutions on similar topics are taken into consideration, to measure whether
+contributions are more long-term afterall.// badly written...
 
-=== two-way linear fixed effects models
+To address the hypotheses made in @hypothesis, the @lpm model was also used to
+measure the relationship which contributions have on voting in general, to the
+see the "simple" relation between voting and contributions.// rewrite this..
+In return, the LPM model was also applied to only those representatives who
+changed their voting over the course of the six rollcall votes. This way the
+causal identification strategy is approached, since only with variations in
+voting can these conlcusions can be drawn @stratmann-2002
 
-== Logit / Probit (which Stratmann used)
-*check stratmanns used logit/probit*
+== Logit and Probit
 
-+ *logit with entire sample*
+As robustness checks, the entire above process will be repeated with the logit
+and probit models, which, as mentioned in @model-spec have different uses than
+the LPM model.
 
-+ *logit per session*
+$ "Vote"#sub[i,t] = alpha + beta#sub[1t]"Contributions"#super[pro-env] + beta#sub[2t]"Contributions"#super[anti-env] \ + gamma#sub[i] + delta#sub[t] + X + epsilon $ <logit>
 
-+ *logit with only consistent representatives*
+P = exp(F(grs))/sumk expl(grs)
 
-+ *logit with only mind changers*
--> stratmann uses a (conditional) fixed
-effects logit model
-- use as robustness checks...
-- literature on why OLS is bad, and logit/probit is good. (since LPM not 0-1, so
-  negative effects nicht schätzbar?)
-- as Robustness Checks, since OLS sometimes over/underestimates @stratmann-2005
-  p.143
-- Stratmann uses a conditional fixed effects logit model @Allison @Chamberlin
-  @stratmann-2002
-- Stratmann uses probit model (only those who changed mind)
-+ basic OLS
-+ sessionized OLS
-+ all contribs prior to vote OLS
-+ mind-changers OLS
-
-- DW Nominate
+// if use conditional logit model -> as
+// -> stratmann uses a (conditional) fixed effects logit model @Allison @Chamberlin
+//   @stratmann-2002
 
 #pagebreak()
 = Results
