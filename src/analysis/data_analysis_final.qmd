@@ -123,6 +123,10 @@ for ols_geo_1 since I are being stricter than in the model before, since I am us
 ```{r}
 ols_state_fe <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(state) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
 summary(ols_state_fe)
+
+# same thing again with plm
+ols_state_fe_plm <- plm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long, index = c("state", "Instance"), model = "within")
+summary(ols_state_fe_plm)
 ```
 
 using state instead of geographical region means that we can more accurately determine the differences in voting behavior between representatives from different states, not just regions. this makes sense, when we look at the states which are significant in the model, i.e. NY, SC, NJ, NH, FL, CT, AZ, they are not all from the same region, manye from the north east and the south and west, but no real patterns...
@@ -141,8 +145,12 @@ here, the model is getting stricter than before, since I am not only fixing for 
 
 ## with individual & year fixed effects
 ```{r}
-ols_ind_fe <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + Instance + as.factor(BioID) + seniority + Contribution_minus + Contribution_plus + Dmajority, data = df_long)
+ols_ind_fe <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(Instance) + as.factor(BioID) + seniority + Contribution_minus + Contribution_plus + Dmajority, data = df_long)
 summary(ols_ind_fe)
+
+# same thing again with plm
+ols_ind_fe_plm <- plm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + Dmajority, data = df_long, index = c("BioID", "Instance"), model = "within")
+summary(ols_ind_fe_plm)
 ```
 
 The difference between the ols before and this ols is the individual fixed effects instead of state effects. so we are fixing for individiuals so we dont include person specific changes in the analysis and for the same person can see how their voting changes. 

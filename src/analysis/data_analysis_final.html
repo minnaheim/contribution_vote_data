@@ -507,10 +507,54 @@ Residual standard error: 0.1468 on 1836 degrees of freedom
 Multiple R-squared:  0.9166,    Adjusted R-squared:  0.9137 
 F-statistic: 315.3 on 64 and 1836 DF,  p-value: &lt; 2.2e-16</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same thing again with plm</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>ols_state_fe_plm <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">data =</span> df_long, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"Instance"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in pdata.frame(data, index): duplicate couples (id-time) in resulting pdata.frame
+ to find out which, use, e.g., table(index(your_pdataframe), useNA = "ifany")</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_state_fe_plm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Oneway (individual) effect Within Model
+
+Call:
+plm(formula = Vote ~ district + party + birthday + nominate_dim1 + 
+    nominate_dim2 + seniority + Contribution_minus + Contribution_plus + 
+    gender + pro_env_dummy + anti_env_dummy, data = df_long, 
+    model = "within", index = c("state", "Instance"))
+
+Unbalanced Panel: n = 49, T = 2-174, N = 1901
+
+Residuals:
+      Min.    1st Qu.     Median    3rd Qu.       Max. 
+-0.9298438 -0.0478465 -0.0066088  0.0307131  0.9385498 
+
+Coefficients:
+                      Estimate  Std. Error  t-value  Pr(&gt;|t|)    
+district            0.00086559  0.00053781   1.6095 0.1076818    
+partyR             -0.65279439  0.02774696 -23.5267 &lt; 2.2e-16 ***
+birthday            0.00139151  0.00039004   3.5676 0.0003695 ***
+nominate_dim1      -0.30677132  0.03148596  -9.7431 &lt; 2.2e-16 ***
+nominate_dim2      -0.11237575  0.01517585  -7.4049 1.987e-13 ***
+seniority           0.00059684  0.00104773   0.5697 0.5689842    
+Contribution_minus -0.00198223  0.00140741  -1.4084 0.1591757    
+Contribution_plus   0.00203979  0.00118772   1.7174 0.0860744 .  
+genderM            -0.00862471  0.00956370  -0.9018 0.3672719    
+pro_env_dummy       0.00422918  0.00879718   0.4807 0.6307566    
+anti_env_dummy      0.01515139  0.06956320   0.2178 0.8276032    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Total Sum of Squares:    328.71
+Residual Sum of Squares: 40.043
+R-Squared:      0.87818
+Adj. R-Squared: 0.87428
+F-statistic: 1206.5 on 11 and 1841 DF, p-value: &lt; 2.22e-16</code></pre>
+</div>
 </div>
 <p>using state instead of geographical region means that we can more accurately determine the differences in voting behavior between representatives from different states, not just regions. this makes sense, when we look at the states which are significant in the model, i.e.&nbsp;NY, SC, NJ, NH, FL, CT, AZ, they are not all from the same region, manye from the north east and the south and west, but no real patterns…</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(state_makeup), <span class="at">format =</span> <span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(state_makeup), <span class="at">format =</span> <span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <table data-quarto-postprocess="true" class="table table-sm table-striped small">
@@ -551,8 +595,8 @@ F-statistic: 315.3 on 64 and 1836 DF,  p-value: &lt; 2.2e-16</code></pre>
 
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean(state_makeup$Number)</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># boxplot(state_makeup$Number)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean(state_makeup$Number)</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># boxplot(state_makeup$Number)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Discuss… maybe makeup of states also important for the coefficient. If you have only</p>
 <p>The average amount of representatives for each state is 8.7 , with the highest number of representatives from California (52) and the lowest from Wyoming, Vermont, Alaska, etc. (1).</p>
@@ -562,502 +606,544 @@ F-statistic: 315.3 on 64 and 1836 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="with-individual-year-fixed-effects" class="level2">
 <h2 class="anchored" data-anchor-id="with-individual-year-fixed-effects">with individual &amp; year fixed effects</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>ols_ind_fe <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> Instance <span class="sc">+</span> <span class="fu">as.factor</span>(BioID) <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> Dmajority, <span class="at">data =</span> df_long)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_ind_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>ols_ind_fe <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> <span class="fu">as.factor</span>(BioID) <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> Dmajority, <span class="at">data =</span> df_long)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_ind_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
 lm(formula = Vote ~ district + party + birthday + nominate_dim1 + 
-    nominate_dim2 + Instance + as.factor(BioID) + seniority + 
-    Contribution_minus + Contribution_plus + Dmajority, data = df_long)
+    nominate_dim2 + as.factor(Instance) + as.factor(BioID) + 
+    seniority + Contribution_minus + Contribution_plus + Dmajority, 
+    data = df_long)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.81404 -0.01076 -0.00438  0.01481  0.81782 
+-0.81706 -0.01092 -0.00389  0.01325  0.82121 
 
-Coefficients: (5 not defined because of singularities)
-                          Estimate Std. Error t value Pr(&gt;|t|)    
-(Intercept)             -2.5452904 11.2821615  -0.226 0.821542    
-district                 0.0219559  0.0853898   0.257 0.797119    
-partyR                  -0.9468213  0.5986138  -1.582 0.113941    
-birthday                 0.0017423  0.0056380   0.309 0.757339    
-nominate_dim1           -0.0632711  0.5871839  -0.108 0.914206    
-nominate_dim2           -0.0984036  0.3530076  -0.279 0.780471    
-Instance                 0.0005559  0.0002481   2.240 0.025229 *  
-as.factor(BioID)A000367 -0.0849194  0.2662267  -0.319 0.749793    
-as.factor(BioID)A000369  0.0458031  0.1484349   0.309 0.757690    
-as.factor(BioID)A000370 -0.1726109  0.7115486  -0.243 0.808362    
-as.factor(BioID)A000372 -0.1301687  0.5464016  -0.238 0.811738    
-as.factor(BioID)A000374  0.0070153  0.0950529   0.074 0.941177    
-as.factor(BioID)A000375 -0.3521205  1.3336667  -0.264 0.791799    
-as.factor(BioID)A000376 -0.6051685  2.3326973  -0.259 0.795342    
-as.factor(BioID)A000377  0.0520083  0.2401716   0.217 0.828593    
-as.factor(BioID)A000378  0.0634030  0.3413376   0.186 0.852668    
-as.factor(BioID)B000213 -0.0437957  0.2224934  -0.197 0.843980    
-as.factor(BioID)B000287 -0.7068817  2.7664183  -0.256 0.798356    
-as.factor(BioID)B000490 -0.2559648  0.3752773  -0.682 0.495306    
-as.factor(BioID)B000574 -0.0536638  0.1891703  -0.284 0.776697    
-as.factor(BioID)B000755 -0.0871305  0.3240531  -0.269 0.788063    
-as.factor(BioID)B000911  0.0058562  0.1381005   0.042 0.966182    
-as.factor(BioID)B001227  0.0814820  0.2966031   0.275 0.783573    
-as.factor(BioID)B001248 -0.5037454  1.9467646  -0.259 0.795857    
-as.factor(BioID)B001250  0.0763531  0.2782506   0.274 0.783814    
-as.factor(BioID)B001251  0.0807439  0.3151771   0.256 0.797844    
-as.factor(BioID)B001255  0.0537420  0.1320528   0.407 0.684089    
-as.factor(BioID)B001257 -0.2042164  0.8134149  -0.251 0.801803    
-as.factor(BioID)B001260 -0.2836079  1.1614535  -0.244 0.807124    
-as.factor(BioID)B001269 -0.1278351  0.6359121  -0.201 0.840707    
-as.factor(BioID)B001270 -0.7463979  2.9605555  -0.252 0.800989    
-as.factor(BioID)B001271  0.0738699  0.2011118   0.367 0.713444    
-as.factor(BioID)B001273  0.0053050  0.1436853   0.037 0.970553    
-as.factor(BioID)B001274 -0.0543113  0.2118540  -0.256 0.797708    
-as.factor(BioID)B001275 -0.0729057  0.3604941  -0.202 0.839759    
-as.factor(BioID)B001278  0.0198170  0.1163027   0.170 0.864726    
-as.factor(BioID)B001281  0.0262204  0.1060336   0.247 0.804724    
-as.factor(BioID)B001282 -0.0449292  0.2178931  -0.206 0.836665    
-as.factor(BioID)B001283  0.0461341  0.1968585   0.234 0.814746    
-as.factor(BioID)B001284 -0.0138405  0.1765247  -0.078 0.937516    
-as.factor(BioID)B001285 -0.4678538  1.8406478  -0.254 0.799394    
-as.factor(BioID)B001286 -0.2808100  1.0895732  -0.258 0.796656    
-as.factor(BioID)B001289  0.0962254  0.3487944   0.276 0.782680    
-as.factor(BioID)B001290 -0.0886482  0.3187208  -0.278 0.780947    
-as.factor(BioID)B001291 -0.6716285  2.6355708  -0.255 0.798889    
-as.factor(BioID)B001292 -0.0887387  0.3864793  -0.230 0.818429    
-as.factor(BioID)B001293 -0.0955970  0.4343289  -0.220 0.825822    
-as.factor(BioID)B001294  0.0268018  0.1306873   0.205 0.837536    
-as.factor(BioID)B001295 -0.1899349  0.7975038  -0.238 0.811790    
-as.factor(BioID)B001297 -0.0389775  0.1494170  -0.261 0.794235    
-as.factor(BioID)B001298  0.0301944  0.1207958   0.250 0.802652    
-as.factor(BioID)B001299 -0.0118394  0.1201206  -0.099 0.921499    
-as.factor(BioID)B001300 -0.9403001  3.6146913  -0.260 0.794799    
-as.factor(BioID)B001301  0.0759801  0.2690687   0.282 0.777692    
-as.factor(BioID)B001302 -0.0691792  0.2001870  -0.346 0.729715    
-as.factor(BioID)B001303  0.0546463  0.2788685   0.196 0.844672    
-as.factor(BioID)B001304 -0.0189660  0.1269187  -0.149 0.881232    
-as.factor(BioID)B001306 -0.1780329  0.7155808  -0.249 0.803555    
-as.factor(BioID)B001307  0.0719712  0.2292529   0.314 0.753614    
-as.factor(BioID)B001309 -0.0044010  0.0986003  -0.045 0.964404    
-as.factor(BioID)C000266  0.0370929  0.1981538   0.187 0.851536    
-as.factor(BioID)C000537 -0.0273979  0.1367095  -0.200 0.841189    
-as.factor(BioID)C000714 -0.2464250  1.0209816  -0.241 0.809310    
-as.factor(BioID)C000754 -0.0379209  0.1477415  -0.257 0.797470    
-as.factor(BioID)C000984 -0.1029915  0.3612377  -0.285 0.775603    
-as.factor(BioID)C001036 -0.4346844  1.7570245  -0.247 0.804636    
-as.factor(BioID)C001037 -0.0939054  0.4053311  -0.232 0.816823    
-as.factor(BioID)C001038 -0.2532128  0.9595432  -0.264 0.791904    
-as.factor(BioID)C001045  0.0452039  0.1526574   0.296 0.767186    
-as.factor(BioID)C001048 -0.0384318  0.2125489  -0.181 0.856539    
-as.factor(BioID)C001051 -0.5284842  2.1336766  -0.248 0.804412    
-as.factor(BioID)C001053  0.0261889  0.1219755   0.215 0.830027    
-as.factor(BioID)C001055  0.0597352  0.3289276   0.182 0.855918    
-as.factor(BioID)C001061 -0.0169412  0.1249616  -0.136 0.892179    
-as.factor(BioID)C001063 -1.1372571  1.8239622  -0.624 0.533049    
-as.factor(BioID)C001066 -0.2448819  0.9407030  -0.260 0.794656    
-as.factor(BioID)C001067 -0.1757562  0.6805796  -0.258 0.796255    
-as.factor(BioID)C001068 -0.1415252  0.5473168  -0.259 0.795996    
-as.factor(BioID)C001069  0.0407755  0.1996551   0.204 0.838203    
-as.factor(BioID)C001072 -0.1024722  0.3942864  -0.260 0.794984    
-as.factor(BioID)C001076 -0.0037353  0.0997973  -0.037 0.970148    
-as.factor(BioID)C001077  0.1882213  0.3089773   0.609 0.542505    
-as.factor(BioID)C001078 -0.1526649  0.5933755  -0.257 0.796998    
-as.factor(BioID)C001083  0.0962467  0.3448386   0.279 0.780203    
-as.factor(BioID)C001084  0.0264211  0.1433868   0.184 0.853832    
-as.factor(BioID)C001087  0.0719472  0.2537680   0.284 0.776822    
-as.factor(BioID)C001091 -0.3937441  1.5080743  -0.261 0.794060    
-as.factor(BioID)C001092 -0.4774373  1.9836136  -0.241 0.809829    
-as.factor(BioID)C001093 -0.1084703  0.4353719  -0.249 0.803285    
-as.factor(BioID)C001094 -0.0491044  0.3610577  -0.136 0.891839    
-as.factor(BioID)C001097 -0.5666616  2.2032904  -0.257 0.797070    
-as.factor(BioID)C001101 -0.0810995  0.3017221  -0.269 0.788131    
-as.factor(BioID)C001103  0.0968050  0.3430308   0.282 0.777827    
-as.factor(BioID)C001105 -0.1133706  0.5639361  -0.201 0.840700    
-as.factor(BioID)C001106  0.5695593  0.4611027   1.235 0.216955    
-as.factor(BioID)C001107  0.4478227  2.2182939   0.202 0.840041    
-as.factor(BioID)C001108  0.0337771  0.1867392   0.181 0.856489    
-as.factor(BioID)C001109  0.1353471  0.4900028   0.276 0.782421    
-as.factor(BioID)C001110 -0.9086026  3.5096890  -0.259 0.795762    
-as.factor(BioID)C001111 -0.1898452  0.7182547  -0.264 0.791576    
-as.factor(BioID)C001112 -0.4479233  1.7096622  -0.262 0.793363    
-as.factor(BioID)C001114  0.0215222  0.1014657   0.212 0.832049    
-as.factor(BioID)C001117 -0.0420313  0.2628081  -0.160 0.872958    
-as.factor(BioID)C001118 -0.0846177  0.2761784  -0.306 0.759354    
-as.factor(BioID)C001119  0.0793265  0.4230466   0.188 0.851285    
-as.factor(BioID)C001120  0.0146959  0.1273974   0.115 0.908180    
-as.factor(BioID)C001121 -0.0687176  0.2867743  -0.240 0.810657    
-as.factor(BioID)D000096 -0.0971078  0.3797723  -0.256 0.798219    
-as.factor(BioID)D000191 -0.0266928  0.0889274  -0.300 0.764096    
-as.factor(BioID)D000197  0.0059267  0.1223835   0.048 0.961383    
-as.factor(BioID)D000216 -0.0070402  0.0929386  -0.076 0.939628    
-as.factor(BioID)D000533 -0.0091141  0.1472482  -0.062 0.950654    
-as.factor(BioID)D000598 -1.0795861  4.1916722  -0.258 0.796787    
-as.factor(BioID)D000604 -0.2755302  1.1656373  -0.236 0.813174    
-as.factor(BioID)D000612 -0.1388522  0.6347760  -0.219 0.826882    
-as.factor(BioID)D000614 -0.1063393  0.4054651  -0.262 0.793155    
-as.factor(BioID)D000615  0.0026801  0.0929130   0.029 0.976992    
-as.factor(BioID)D000616 -0.0149232  0.0881643  -0.169 0.865612    
-as.factor(BioID)D000617  0.0346345  0.2115498   0.164 0.869976    
-as.factor(BioID)D000619 -0.2189156  0.9249568  -0.237 0.812942    
-as.factor(BioID)D000620 -0.0432669  0.2241755  -0.193 0.846983    
-as.factor(BioID)D000621 -0.0753770  0.2946590  -0.256 0.798134    
-as.factor(BioID)D000625 -0.1589644  0.7558337  -0.210 0.833451    
-as.factor(BioID)D000626 -0.1412047  0.4983493  -0.283 0.776954    
-as.factor(BioID)D000627 -0.1400655  0.5327724  -0.263 0.792666    
-as.factor(BioID)D000628  0.0773893  0.2739220   0.283 0.777583    
-as.factor(BioID)D000629  0.0078636  0.2542775   0.031 0.975333    
-as.factor(BioID)D000630 -0.3337857  1.2585552  -0.265 0.790883    
-as.factor(BioID)D000631 -0.0212466  0.1383478  -0.154 0.877968    
-as.factor(BioID)E000179 -0.2904464  1.0813000  -0.269 0.788270    
-as.factor(BioID)E000288 -0.1054249  0.4177867  -0.252 0.800813    
-as.factor(BioID)E000290 -0.0328402  0.2417744  -0.136 0.891975    
-as.factor(BioID)E000291  0.0746156  0.1791635   0.416 0.677131    
-as.factor(BioID)E000293 -0.0293639  0.1680502  -0.175 0.861314    
-as.factor(BioID)E000294 -0.0639610  0.2959808  -0.216 0.828942    
-as.factor(BioID)E000297 -0.2362778  0.9500362  -0.249 0.803625    
-as.factor(BioID)E000298  0.0089187  0.0904196   0.099 0.921441    
-as.factor(BioID)E000299 -0.3310078  1.2476679  -0.265 0.790816    
-as.factor(BioID)F000030 -0.3579124  1.4580594  -0.245 0.806126    
-as.factor(BioID)F000372 -0.1952641  0.8246538  -0.237 0.812859    
-as.factor(BioID)F000448 -0.0612398  0.2901869  -0.211 0.832889    
-as.factor(BioID)F000449  0.0284451  0.1421309   0.200 0.841405    
-as.factor(BioID)F000450  0.0155057  0.0922653   0.168 0.866563    
-as.factor(BioID)F000451 -0.1197792  0.6410661  -0.187 0.851810    
-as.factor(BioID)F000454 -0.1698872  0.6387333  -0.266 0.790297    
-as.factor(BioID)F000455 -0.1572537  0.6656925  -0.236 0.813291    
-as.factor(BioID)F000456  0.0301185  0.0977209   0.308 0.757968    
-as.factor(BioID)F000458 -0.0811930  0.4060546  -0.200 0.841544    
-as.factor(BioID)F000459  0.0418804  0.1316914   0.318 0.750517    
-as.factor(BioID)F000460 -0.5035559  2.0135281  -0.250 0.802556    
-as.factor(BioID)F000461 -0.2509910  1.0332333  -0.243 0.808104    
-as.factor(BioID)F000462 -0.3925010  1.5615856  -0.251 0.801581    
-as.factor(BioID)F000464  0.6588367  1.4455571   0.456 0.648627    
-as.factor(BioID)F000465  0.0230848  0.1430710   0.161 0.871839    
-as.factor(BioID)F000468 -0.0240722  0.2614380  -0.092 0.926650    
-as.factor(BioID)G000289 -0.0599815  0.2459905  -0.244 0.807392    
-as.factor(BioID)G000377 -0.1604577  0.6745669  -0.238 0.812018    
-as.factor(BioID)G000410 -0.7587373  1.9767005  -0.384 0.701154    
-as.factor(BioID)G000535 -0.0506191  0.1888261  -0.268 0.788682    
-as.factor(BioID)G000546 -0.0559481  0.2389416  -0.234 0.814902    
-as.factor(BioID)G000548 -0.0316594  0.1793562  -0.177 0.859913    
-as.factor(BioID)G000552  0.0266117  0.1647513   0.162 0.871702    
-as.factor(BioID)G000553 -0.0828419  0.3727333  -0.222 0.824147    
-as.factor(BioID)G000556 -0.1378756  0.6132178  -0.225 0.822136    
-as.factor(BioID)G000558  0.0428165  0.1516512   0.282 0.777727    
-as.factor(BioID)G000560 -0.2373082  0.8769781  -0.271 0.786740    
-as.factor(BioID)G000563 -0.0376438  0.2326349  -0.162 0.871474    
-as.factor(BioID)G000566 -0.0050121  0.0800719  -0.063 0.950098    
-as.factor(BioID)G000568 -0.1539297  0.6043503  -0.255 0.798989    
-as.factor(BioID)G000571 -0.0175630  0.1759360  -0.100 0.920496    
-as.factor(BioID)G000576 -0.0606932  0.2564949  -0.237 0.812981    
-as.factor(BioID)G000577 -0.0726305  0.3147111  -0.231 0.817515    
-as.factor(BioID)G000578  0.2880450  0.1213619   2.373 0.017755 *  
-as.factor(BioID)G000579 -0.1467744  0.5360584  -0.274 0.784276    
-as.factor(BioID)G000583 -0.0271807  0.2428559  -0.112 0.910901    
-as.factor(BioID)G000584  0.0788925  0.2836975   0.278 0.780986    
-as.factor(BioID)G000585 -0.7410965  2.8324390  -0.262 0.793632    
-as.factor(BioID)G000586 -0.0992021  0.3560926  -0.279 0.780603    
-as.factor(BioID)G000587 -0.5295911  2.1815003  -0.243 0.808223    
-as.factor(BioID)G000588 -0.3050904  1.2052729  -0.253 0.800204    
-as.factor(BioID)G000589 -0.0655055  0.2174258  -0.301 0.763247    
-as.factor(BioID)G000590 -0.0739952  0.2776108  -0.267 0.789860    
-as.factor(BioID)G000591  0.0045721  0.0982537   0.047 0.962891    
-as.factor(BioID)G000592  0.0458796  0.4136279   0.111 0.911695    
-as.factor(BioID)H000324 -0.3436126  1.3664012  -0.251 0.801485    
-as.factor(BioID)H000636 -0.1917319  0.8308252  -0.231 0.817524    
-as.factor(BioID)H000874 -0.0180442  0.0891384  -0.202 0.839610    
-as.factor(BioID)H001034 -0.3123540  1.3162412  -0.237 0.812452    
-as.factor(BioID)H001036 -0.0162142  0.0955358  -0.170 0.865255    
-as.factor(BioID)H001038 -0.5057082  1.9254289  -0.263 0.792860    
-as.factor(BioID)H001045  0.0631250  0.1675661   0.377 0.706440    
-as.factor(BioID)H001047 -0.0414783  0.1616350  -0.257 0.797511    
-as.factor(BioID)H001048 -1.0399485  4.0206040  -0.259 0.795939    
-as.factor(BioID)H001050  0.0787425  0.2740733   0.287 0.773921    
-as.factor(BioID)H001051  0.0983720  1.7558378   0.056 0.955329    
-as.factor(BioID)H001052  0.0321628  0.1670052   0.193 0.847311    
-as.factor(BioID)H001053  0.0088108  0.0673745   0.131 0.895973    
-as.factor(BioID)H001055  0.0169932  0.1381173   0.123 0.902097    
-as.factor(BioID)H001056 -0.0491541  0.1927586  -0.255 0.798757    
-as.factor(BioID)H001057  0.0313778  0.1545679   0.203 0.839161    
-as.factor(BioID)H001059 -0.2411432  0.9661536  -0.250 0.802939    
-as.factor(BioID)H001063 -0.8942508  3.5573801  -0.251 0.801557    
-as.factor(BioID)H001064 -0.1343593  0.5445917  -0.247 0.805164    
-as.factor(BioID)H001066 -0.0129873  0.1741033  -0.075 0.940547    
-as.factor(BioID)H001068 -0.0273898  0.1172959  -0.234 0.815399    
-as.factor(BioID)H001071 -0.1455050  0.5334014  -0.273 0.785056    
-as.factor(BioID)H001072  0.0616374  0.1994705   0.309 0.757362    
-as.factor(BioID)H001073 -0.4432335  1.7808515  -0.249 0.803483    
-as.factor(BioID)H001074 -0.1912314  0.7047679  -0.271 0.786169    
-as.factor(BioID)H001077 -0.0160206  0.0738104  -0.217 0.828200    
-as.factor(BioID)H001078 -0.0315009  0.1819100  -0.173 0.862544    
-as.factor(BioID)H001081 -0.0649669  0.2528795  -0.257 0.797286    
-as.factor(BioID)H001085 -0.0337168  0.2224769  -0.152 0.879562    
-as.factor(BioID)H001088  0.0811255  0.3042261   0.267 0.789768    
-as.factor(BioID)I000057  0.0193893  0.1266761   0.153 0.878371    
-as.factor(BioID)J000032 -0.3191763  1.2125630  -0.263 0.792415    
-as.factor(BioID)J000126 -0.5491875  2.1652687  -0.254 0.799814    
-as.factor(BioID)J000174  0.0779660  0.2894005   0.269 0.787657    
-as.factor(BioID)J000288 -0.0175450  0.1039736  -0.169 0.866022    
-as.factor(BioID)J000289 -0.0306763  0.0954954  -0.321 0.748080    
-as.factor(BioID)J000290  0.0335644  0.1169060   0.287 0.774073    
-as.factor(BioID)J000292 -0.0253724  0.1908345  -0.133 0.894248    
-as.factor(BioID)J000294 -0.1298897  0.5078914  -0.256 0.798186    
-as.factor(BioID)J000295 -0.2088329  0.9306898  -0.224 0.822490    
-as.factor(BioID)J000297  0.0359498  0.1163273   0.309 0.757336    
-as.factor(BioID)J000298 -0.1485619  0.5975656  -0.249 0.803697    
-as.factor(BioID)J000299 -0.0335721  0.1199106  -0.280 0.779536    
-as.factor(BioID)J000301  0.0572798  0.2588767   0.221 0.824919    
-as.factor(BioID)J000302 -0.2011251  0.7964685  -0.253 0.800675    
-as.factor(BioID)K000009 -0.1160568  0.3943629  -0.294 0.768579    
-as.factor(BioID)K000188 -0.0140241  0.1425170  -0.098 0.921626    
-as.factor(BioID)K000210  0.0203096  0.1941528   0.105 0.916703    
-as.factor(BioID)K000362  0.0282660  0.1077489   0.262 0.793103    
-as.factor(BioID)K000363  0.0785238  0.2229735   0.352 0.724765    
-as.factor(BioID)K000375 -0.1185637  0.4640952  -0.255 0.798395    
-as.factor(BioID)K000378 -0.2826955  1.1651451  -0.243 0.808329    
-as.factor(BioID)K000379 -0.0654205  0.2518483  -0.260 0.795085    
-as.factor(BioID)K000381 -0.0770089  0.2937818  -0.262 0.793259    
-as.factor(BioID)K000382  0.0403973  0.2001369   0.202 0.840064    
-as.factor(BioID)K000385  0.0311682  0.1233800   0.253 0.800599    
-as.factor(BioID)K000386  0.5278621  1.9252949   0.274 0.783992    
-as.factor(BioID)K000387 -0.1303355  1.8717345  -0.070 0.944495    
-as.factor(BioID)K000388  0.0804443  0.3302049   0.244 0.807560    
-as.factor(BioID)K000389 -0.3588072  1.3588914  -0.264 0.791784    
-as.factor(BioID)K000390 -0.0265222  0.2007488  -0.132 0.894911    
-as.factor(BioID)K000391 -0.1234738  0.4507030  -0.274 0.784156    
-as.factor(BioID)K000392 -0.0750615  0.3123076  -0.240 0.810097    
-as.factor(BioID)K000394  0.0024522  0.2236465   0.011 0.991253    
-as.factor(BioID)K000395 -0.1812951  0.7205024  -0.252 0.801368    
-as.factor(BioID)L000263 -0.1048751  0.4158329  -0.252 0.800919    
-as.factor(BioID)L000287 -0.0648918  0.2696999  -0.241 0.809894    
-as.factor(BioID)L000480 -0.3019681  1.1376798  -0.265 0.790721    
-as.factor(BioID)L000491  0.0196361  0.1139247   0.172 0.863178    
-as.factor(BioID)L000554  0.0168477  0.2350354   0.072 0.942865    
-as.factor(BioID)L000557  0.0535296  0.2368873   0.226 0.821256    
-as.factor(BioID)L000559  0.0202913  0.1821812   0.111 0.911331    
-as.factor(BioID)L000560  0.0244922  0.2055150   0.119 0.905154    
-as.factor(BioID)L000562 -0.0985247  0.3627675  -0.272 0.785975    
-as.factor(BioID)L000563  0.0183345  0.2231007   0.082 0.934515    
-as.factor(BioID)L000564  0.0031253  0.0849943   0.037 0.970673    
-as.factor(BioID)L000565  0.0489399  0.2185865   0.224 0.822873    
-as.factor(BioID)L000566 -0.0039366  0.0850359  -0.046 0.963083    
-as.factor(BioID)L000567  0.1530647  0.4746340   0.322 0.747129    
-as.factor(BioID)L000569  0.0426503  0.1322079   0.323 0.747045    
-as.factor(BioID)L000573  0.0070886  0.1187416   0.060 0.952405    
-as.factor(BioID)L000576 -0.0405754  0.2225093  -0.182 0.855331    
-as.factor(BioID)L000578  0.0627662  0.2210277   0.284 0.776471    
-as.factor(BioID)L000579 -0.9664702  3.7965068  -0.255 0.799093    
-as.factor(BioID)L000580  0.0729277  0.2888041   0.253 0.800678    
-as.factor(BioID)L000581 -0.2322770  0.9210472  -0.252 0.800932    
-as.factor(BioID)L000583 -0.1578303  0.6038874  -0.261 0.793855    
-as.factor(BioID)L000584 -0.0344624  0.1489941  -0.231 0.817115    
-as.factor(BioID)L000586 -0.0039268  0.1325675  -0.030 0.976374    
-as.factor(BioID)L000587  0.0248371  0.1262241   0.197 0.844035    
-as.factor(BioID)L000590  0.0394379  0.2803695   0.141 0.888155    
-as.factor(BioID)L000591  0.0584691  0.3828932   0.153 0.878654    
-as.factor(BioID)L000592 -0.1871917  0.6994663  -0.268 0.789030    
-as.factor(BioID)L000593 -1.0102473  3.8915479  -0.260 0.795209    
-as.factor(BioID)M000087 -0.2177098  0.7866672  -0.277 0.782012    
-as.factor(BioID)M000312 -0.0255979  0.1094489  -0.234 0.815111    
-as.factor(BioID)M000404 -0.0827248  0.4489015  -0.184 0.853818    
-as.factor(BioID)M000689 -0.0422500  0.2834022  -0.149 0.881510    
-as.factor(BioID)M001137 -0.0510008  0.1709633  -0.298 0.765507    
-as.factor(BioID)M001143 -0.0352619  0.1322346  -0.267 0.789768    
-as.factor(BioID)M001144  0.0871090  0.3169264   0.275 0.783467    
-as.factor(BioID)M001150 -0.1321427  0.6497582  -0.203 0.838873    
-as.factor(BioID)M001151 -0.2996064  1.2920948  -0.232 0.816667    
-as.factor(BioID)M001156 -0.1624852  0.5967045  -0.272 0.785427    
-as.factor(BioID)M001157 -0.1459789  0.5902688  -0.247 0.804704    
-as.factor(BioID)M001158 -0.4214241  1.6543914  -0.255 0.798968    
-as.factor(BioID)M001159 -0.0488416  0.1989074  -0.246 0.806066    
-as.factor(BioID)M001160 -0.0420503  0.1822578  -0.231 0.817566    
-as.factor(BioID)M001166 -0.1182751  0.4493372  -0.263 0.792418    
-as.factor(BioID)M001180  0.0816376  0.2541010   0.321 0.748045    
-as.factor(BioID)M001181  0.2679821  0.4365436   0.614 0.539397    
-as.factor(BioID)M001182 -0.0693243  0.2848339  -0.243 0.807742    
-as.factor(BioID)M001184 -0.0917600  0.2883986  -0.318 0.750402    
-as.factor(BioID)M001187 -0.1720477  0.6834544  -0.252 0.801284    
-as.factor(BioID)M001188 -0.0989793  0.3684073  -0.269 0.788224    
-as.factor(BioID)M001189 -0.0668476  0.2828340  -0.236 0.813196    
-as.factor(BioID)M001191 -0.3258369  1.2780705  -0.255 0.798803    
-as.factor(BioID)M001193  0.0217150  0.1427653   0.152 0.879127    
-as.factor(BioID)M001195 -0.0024235  0.0622217  -0.039 0.968936    
-as.factor(BioID)M001196 -0.0840597  0.3160498  -0.266 0.790301    
-as.factor(BioID)M001200 -0.0186958  0.1278852  -0.146 0.883790    
-as.factor(BioID)M001201 -0.1205651  0.5254854  -0.229 0.818563    
-as.factor(BioID)M001202 -0.0851791  0.3351914  -0.254 0.799439    
-as.factor(BioID)M001203 -0.0694409  0.2905810  -0.239 0.811161    
-as.factor(BioID)M001204 -0.1064486  0.4426265  -0.240 0.809983    
-as.factor(BioID)M001206 -0.4559317  1.7571685  -0.259 0.795310    
-as.factor(BioID)N000015  0.0318088  0.2041501   0.156 0.876204    
-as.factor(BioID)N000127 -0.1005544  0.4419446  -0.228 0.820046    
-as.factor(BioID)N000181 -0.4180396  1.6168251  -0.259 0.796015    
-as.factor(BioID)N000182 -0.2712965  1.1575369  -0.234 0.814728    
-as.factor(BioID)N000184  0.0843084  0.2964703   0.284 0.776165    
-as.factor(BioID)N000185 -0.1216988  0.6246175  -0.195 0.845548    
-as.factor(BioID)N000188  0.0852990  0.3314862   0.257 0.796967    
-as.factor(BioID)N000189  0.0229846  0.1187156   0.194 0.846508    
-as.factor(BioID)N000190 -0.0381986  0.1287934  -0.297 0.766824    
-as.factor(BioID)N000191 -0.0333533  0.1756622  -0.190 0.849437    
-as.factor(BioID)O000168 -0.3801238  1.4987631  -0.254 0.799822    
-as.factor(BioID)O000170 -0.3150583  1.1987978  -0.263 0.792733    
-as.factor(BioID)O000171  0.1034714  0.4369499   0.237 0.812843    
-as.factor(BioID)O000172 -0.3741119  1.2968051  -0.288 0.773015    
-as.factor(BioID)O000173 -0.1609466  0.5088399  -0.316 0.751820    
-as.factor(BioID)P000034 -0.0885210  0.2791896  -0.317 0.751241    
-as.factor(BioID)P000096 -0.1015389  0.3956553  -0.257 0.797498    
-as.factor(BioID)P000258 -0.7382523  0.2185131  -3.379 0.000748 ***
-as.factor(BioID)P000373 -0.2322772  1.0093227  -0.230 0.818022    
-as.factor(BioID)P000523 -0.0085914  0.0830613  -0.103 0.917633    
-as.factor(BioID)P000588  0.0507533  0.1920426   0.264 0.791601    
-as.factor(BioID)P000591 -0.0323881  0.2030205  -0.160 0.873273    
-as.factor(BioID)P000592  0.0547935  0.2040866   0.268 0.788367    
-as.factor(BioID)P000593 -0.0592453  0.2404855  -0.246 0.805441    
-as.factor(BioID)P000594 -0.0134767  0.1488435  -0.091 0.927869    
-as.factor(BioID)P000597  0.0211130  0.1162700   0.182 0.855934    
-as.factor(BioID)P000598 -0.0527610  0.1848972  -0.285 0.775415    
-as.factor(BioID)P000599 -0.1115630  0.4750700  -0.235 0.814370    
-as.factor(BioID)P000601  0.0151977  0.1061332   0.143 0.886156    
-as.factor(BioID)P000602  0.0312744  0.1150486   0.272 0.785787    
-as.factor(BioID)P000604 -0.1625855  0.6496507  -0.250 0.802418    
-as.factor(BioID)P000606 -0.0563340  0.3297313  -0.171 0.864367    
-as.factor(BioID)P000607 -0.0398207  0.1674294  -0.238 0.812043    
-as.factor(BioID)P000609 -0.0235153  0.1338784  -0.176 0.860597    
-as.factor(BioID)P000611  0.0270948  0.1416584   0.191 0.848342    
-as.factor(BioID)P000614  0.0606211  0.3984197   0.152 0.879087    
-as.factor(BioID)P000615 -0.0356614  0.1988639  -0.179 0.857707    
-as.factor(BioID)P000616  0.0198810  0.2211335   0.090 0.928375    
-as.factor(BioID)P000617 -0.1937203  0.6564276  -0.295 0.767950    
-as.factor(BioID)Q000023 -0.0563810  0.2049543  -0.275 0.783286    
-as.factor(BioID)R000053 -0.2114436  0.8967646  -0.236 0.813633    
-as.factor(BioID)R000395 -0.0236640  0.2087197  -0.113 0.909747    
-as.factor(BioID)R000409 -1.0091941  3.8717040  -0.261 0.794393    
-as.factor(BioID)R000435  0.1088840  2.2144827   0.049 0.960791    
-as.factor(BioID)R000486 -0.8189213  3.1545099  -0.260 0.795207    
-as.factor(BioID)R000487 -0.8020616  3.0820835  -0.260 0.794721    
-as.factor(BioID)R000515  0.0205955  0.1671050   0.123 0.901927    
-as.factor(BioID)R000575  0.0311560  0.1170361   0.266 0.790117    
-as.factor(BioID)R000576  0.0609555  0.2705891   0.225 0.821802    
-as.factor(BioID)R000577 -0.2247989  0.8308222  -0.271 0.786758    
-as.factor(BioID)R000578  0.2266898  0.5786466   0.392 0.695295    
-as.factor(BioID)R000580  0.1912417  0.2852660   0.670 0.502712    
-as.factor(BioID)R000582  0.0808717  0.2696475   0.300 0.764284    
-as.factor(BioID)R000583 -0.2993668  1.2399838  -0.241 0.809258    
-as.factor(BioID)R000585 -0.2858249  1.8048598  -0.158 0.874192    
-as.factor(BioID)R000586 -0.2560079  1.0946357  -0.234 0.815115    
-as.factor(BioID)R000587 -0.0984759  0.4734603  -0.208 0.835265    
-as.factor(BioID)R000588  0.0363650  0.1947203   0.187 0.851879    
-as.factor(BioID)R000591  0.0619921  0.2087574   0.297 0.766542    
-as.factor(BioID)R000592 -0.0299404  0.1351466  -0.222 0.824703    
-as.factor(BioID)R000593 -0.2306242  0.9634383  -0.239 0.810848    
-as.factor(BioID)R000597 -0.0883929  0.3637548  -0.243 0.808039    
-as.factor(BioID)R000598 -0.1782316  0.7497935  -0.238 0.812142    
-as.factor(BioID)R000601  0.0039419  0.1079010   0.037 0.970862    
-as.factor(BioID)R000602 -0.0089177  0.1524893  -0.058 0.953374    
-as.factor(BioID)R000603 -0.0686390  0.2787040  -0.246 0.805501    
-as.factor(BioID)R000604 -0.0559178  0.2509715  -0.223 0.823719    
-as.factor(BioID)R000606 -0.1396493  0.5410443  -0.258 0.796359    
-as.factor(BioID)R000607  0.6243427  1.4845996   0.421 0.674150    
-as.factor(BioID)R000610 -0.2712560  1.0238645  -0.265 0.791099    
-as.factor(BioID)R000612 -0.0417728  0.1861192  -0.224 0.822446    
-as.factor(BioID)R000614 -0.4491269  1.6288669  -0.276 0.782796    
-as.factor(BioID)S000018 -0.0252775  0.2004729  -0.126 0.899679    
-as.factor(BioID)S000030 -0.9304617  3.6324318  -0.256 0.797869    
-as.factor(BioID)S000051  0.4966907  0.1088447   4.563 5.47e-06 ***
-as.factor(BioID)S000185  0.0022842  0.0879680   0.026 0.979288    
-as.factor(BioID)S000248 -0.2943552  1.1113634  -0.265 0.791156    
-as.factor(BioID)S000364 -0.2553455  1.0218324  -0.250 0.802708    
-as.factor(BioID)S000480 -0.4567546  1.8090269  -0.252 0.800701    
-as.factor(BioID)S000510 -0.1618250  0.5333054  -0.303 0.761600    
-as.factor(BioID)S000522  0.5269542  0.3363446   1.567 0.117404    
-as.factor(BioID)S000583 -0.3828906  1.5078920  -0.254 0.799590    
-as.factor(BioID)S001145 -0.1477043  0.6178349  -0.239 0.811087    
-as.factor(BioID)S001148  0.0494382  0.1894968   0.261 0.794213    
-as.factor(BioID)S001154 -0.1098891  0.4721776  -0.233 0.816006    
-as.factor(BioID)S001156 -0.8062034  3.0947860  -0.261 0.794513    
-as.factor(BioID)S001157 -0.1752714  0.6813481  -0.257 0.797029    
-as.factor(BioID)S001165 -0.0906803  0.3470420  -0.261 0.793903    
-as.factor(BioID)S001168 -0.0112855  0.0887729  -0.127 0.898857    
-as.factor(BioID)S001170  0.0635143  0.2521037   0.252 0.801126    
-as.factor(BioID)S001172  0.0142936  0.0818057   0.175 0.861319    
-as.factor(BioID)S001175 -0.2581849  0.9989588  -0.258 0.796094    
-as.factor(BioID)S001176  0.0614350  0.2455960   0.250 0.802510    
-as.factor(BioID)S001180 -0.0065514  0.1408462  -0.047 0.962907    
-as.factor(BioID)S001185 -0.0525277  0.2530762  -0.208 0.835605    
-as.factor(BioID)S001187 -0.2482978  1.0365268  -0.240 0.810715    
-as.factor(BioID)S001188  0.0093499  0.1350839   0.069 0.944828    
-as.factor(BioID)S001189 -0.0769707  0.3300701  -0.233 0.815643    
-as.factor(BioID)S001190 -0.1496736  0.5417549  -0.276 0.782376    
-as.factor(BioID)S001192  0.0493908  0.1683780   0.293 0.769310    
-as.factor(BioID)S001195 -0.1004478  0.3886919  -0.258 0.796116    
-as.factor(BioID)S001196  0.3546378  1.7458321   0.203 0.839059    
-as.factor(BioID)S001200 -0.1416281  0.5136346  -0.276 0.782790    
-as.factor(BioID)S001201  0.0196334  0.2169229   0.091 0.927896    
-as.factor(BioID)S001205 -0.0503007  0.2200614  -0.229 0.819231    
-as.factor(BioID)S001207 -0.1553012  0.5796735  -0.268 0.788806    
-as.factor(BioID)S001209 -0.0663790  0.3198056  -0.208 0.835602    
-as.factor(BioID)S001212 -0.1312159  0.5295401  -0.248 0.804331    
-as.factor(BioID)S001213  0.0164195  0.1295729   0.127 0.899180    
-as.factor(BioID)S001214 -0.3438903  1.2600338  -0.273 0.784953    
-as.factor(BioID)S001215 -0.1776223  0.6734215  -0.264 0.792002    
-as.factor(BioID)S001216 -0.0607747  0.3148210  -0.193 0.846951    
-as.factor(BioID)T000193  0.0550738  0.2391807   0.230 0.817922    
-as.factor(BioID)T000238 -0.1897544  0.7338450  -0.259 0.796000    
-as.factor(BioID)T000462 -0.1955886  0.8359658  -0.234 0.815044    
-as.factor(BioID)T000463 -0.1461927  0.6227425  -0.235 0.814431    
-as.factor(BioID)T000465  0.0140376  0.0764175   0.184 0.854278    
-as.factor(BioID)T000468  0.0569672  0.2380578   0.239 0.810907    
-as.factor(BioID)T000469 -0.3728722  1.4730709  -0.253 0.800207    
-as.factor(BioID)T000470  0.0146974  0.0868283   0.169 0.865608    
-as.factor(BioID)T000474 -0.6981296  2.6926906  -0.259 0.795465    
-as.factor(BioID)T000475 -0.1416143  0.6490572  -0.218 0.827316    
-as.factor(BioID)T000477  0.0011612  0.0915898   0.013 0.989886    
-as.factor(BioID)T000479 -0.0235584  0.1086061  -0.217 0.828304    
-as.factor(BioID)T000480 -0.0353126  0.1544585  -0.229 0.819195    
-as.factor(BioID)T000482 -0.0333226  0.1580564  -0.211 0.833052    
-as.factor(BioID)U000031  0.3767065  0.4656990   0.809 0.418704    
-as.factor(BioID)U000040 -0.2439503  0.9626050  -0.253 0.799975    
-as.factor(BioID)V000081 -0.1362459  0.4879742  -0.279 0.780126    
-as.factor(BioID)V000108  0.0659289  0.3183065   0.207 0.835943    
-as.factor(BioID)V000131 -0.8043501  2.4733493  -0.325 0.745072    
-as.factor(BioID)V000132 -0.7975895  2.4641551  -0.324 0.746230    
-as.factor(BioID)V000133  1.0663325  0.2851718   3.739 0.000192 ***
-as.factor(BioID)W000187 -0.8835518  3.4552303  -0.256 0.798208    
-as.factor(BioID)W000413  0.0947733  0.2866269   0.331 0.740957    
-as.factor(BioID)W000791  0.0120674  0.1238026   0.097 0.922364    
-as.factor(BioID)W000795  0.0585310  0.2235618   0.262 0.793504    
-as.factor(BioID)W000796  0.0710210  0.2148786   0.331 0.741058    
-as.factor(BioID)W000799  0.0738499  0.3208829   0.230 0.818011    
-as.factor(BioID)W000804  0.0467912  0.1807440   0.259 0.795764    
-as.factor(BioID)W000808 -0.4294751  1.7317973  -0.248 0.804175    
-as.factor(BioID)W000809  0.0651957  0.1899572   0.343 0.731489    
-as.factor(BioID)W000810 -0.1052658  0.3865680  -0.272 0.785424    
-as.factor(BioID)W000812  0.0520308  0.1575426   0.330 0.741248    
-as.factor(BioID)W000813  0.0587865  0.1781237   0.330 0.741424    
-as.factor(BioID)W000814 -0.2004191  0.7913915  -0.253 0.800112    
-as.factor(BioID)W000815  0.0669098  0.2217469   0.302 0.762894    
-as.factor(BioID)W000816 -0.4410728  1.7574858  -0.251 0.801875    
-as.factor(BioID)W000820 -0.8972741  3.5505976  -0.253 0.800528    
-as.factor(BioID)W000821  0.0102096  0.0890157   0.115 0.908703    
-as.factor(BioID)W000822 -0.1946015  0.8387160  -0.232 0.816553    
-as.factor(BioID)W000823  0.4027738  0.3663579   1.099 0.271779    
-as.factor(BioID)W000825 -0.1298734  0.5127174  -0.253 0.800070    
-as.factor(BioID)W000826 -0.0353622  0.2246760  -0.157 0.874958    
-as.factor(BioID)Y000033  0.0805131  0.3489758   0.231 0.817571    
-as.factor(BioID)Y000062         NA         NA      NA       NA    
-as.factor(BioID)Y000063         NA         NA      NA       NA    
-as.factor(BioID)Y000065         NA         NA      NA       NA    
-as.factor(BioID)Y000066         NA         NA      NA       NA    
-as.factor(BioID)Z000017         NA         NA      NA       NA    
-seniority                0.0026497  0.0067186   0.394 0.693362    
-Contribution_minus       0.0005374  0.0014410   0.373 0.709243    
-Contribution_plus       -0.0008591  0.0011028  -0.779 0.436097    
-Dmajority                0.0222729  0.0201355   1.106 0.268848    
+Coefficients: (6 not defined because of singularities)
+                          Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept)             -1.363e+01  3.093e+01  -0.441    0.660  
+district                 8.689e-02  1.905e-01   0.456    0.648  
+partyR                  -4.942e-01  1.340e+00  -0.369    0.712  
+birthday                 7.133e-03  1.510e-02   0.473    0.637  
+nominate_dim1           -5.039e-01  1.305e+00  -0.386    0.699  
+nominate_dim2           -6.001e-01  1.363e+00  -0.440    0.660  
+as.factor(Instance)4    -1.474e-02  5.693e-02  -0.259    0.796  
+as.factor(Instance)6    -3.433e-02  1.697e-01  -0.202    0.840  
+as.factor(Instance)7    -6.216e-02  2.263e-01  -0.275    0.784  
+as.factor(Instance)51   -1.551e-02  1.131e-01  -0.137    0.891  
+as.factor(Instance)52   -9.821e-03  1.132e-01  -0.087    0.931  
+as.factor(BioID)A000367 -4.607e-01  1.016e+00  -0.453    0.650  
+as.factor(BioID)A000369  2.156e-01  4.658e-01   0.463    0.644  
+as.factor(BioID)A000370 -5.805e-01  1.285e+00  -0.452    0.651  
+as.factor(BioID)A000372 -3.475e-01  7.897e-01  -0.440    0.660  
+as.factor(BioID)A000374  1.433e-01  3.714e-01   0.386    0.700  
+as.factor(BioID)A000375 -1.281e+00  2.778e+00  -0.461    0.645  
+as.factor(BioID)A000376 -2.082e+00  4.519e+00  -0.461    0.645  
+as.factor(BioID)A000377  3.209e-01  7.422e-01   0.432    0.666  
+as.factor(BioID)A000378  5.557e-01  1.337e+00   0.416    0.678  
+as.factor(BioID)B000213 -3.569e-01  8.507e-01  -0.419    0.675  
+as.factor(BioID)B000287 -2.993e+00  6.601e+00  -0.453    0.650  
+as.factor(BioID)B000490  6.461e-02  9.240e-01   0.070    0.944  
+as.factor(BioID)B000574 -3.937e-01  9.109e-01  -0.432    0.666  
+as.factor(BioID)B000755 -3.610e-01  7.903e-01  -0.457    0.648  
+as.factor(BioID)B000911 -5.509e-02  2.154e-01  -0.256    0.798  
+as.factor(BioID)B001227  3.180e-01  6.890e-01   0.462    0.644  
+as.factor(BioID)B001248 -2.047e+00  4.494e+00  -0.456    0.649  
+as.factor(BioID)B001250  2.828e-01  6.070e-01   0.466    0.641  
+as.factor(BioID)B001251  3.864e-01  8.618e-01   0.448    0.654  
+as.factor(BioID)B001255  1.633e-01  3.132e-01   0.521    0.602  
+as.factor(BioID)B001257 -8.466e-01  1.873e+00  -0.452    0.651  
+as.factor(BioID)B001260 -1.185e+00  2.639e+00  -0.449    0.653  
+as.factor(BioID)B001269 -4.808e-01  1.127e+00  -0.427    0.670  
+as.factor(BioID)B001270 -2.945e+00  6.483e+00  -0.454    0.650  
+as.factor(BioID)B001271  2.130e-01  4.137e-01   0.515    0.607  
+as.factor(BioID)B001273  4.980e-02  1.834e-01   0.272    0.786  
+as.factor(BioID)B001274 -2.486e-01  5.540e-01  -0.449    0.654  
+as.factor(BioID)B001275 -2.272e-01  5.442e-01  -0.417    0.676  
+as.factor(BioID)B001278  7.950e-02  1.949e-01   0.408    0.683  
+as.factor(BioID)B001281  2.072e-01  4.851e-01   0.427    0.669  
+as.factor(BioID)B001282 -1.028e-01  2.653e-01  -0.388    0.698  
+as.factor(BioID)B001283  1.669e-01  3.734e-01   0.447    0.655  
+as.factor(BioID)B001284 -3.355e-02  1.847e-01  -0.182    0.856  
+as.factor(BioID)B001285 -1.723e+00  3.770e+00  -0.457    0.648  
+as.factor(BioID)B001286 -9.739e-01  2.117e+00  -0.460    0.646  
+as.factor(BioID)B001289  4.924e-01  1.098e+00   0.449    0.654  
+as.factor(BioID)B001290 -3.220e-01  6.870e-01  -0.469    0.639  
+as.factor(BioID)B001291 -2.531e+00  5.545e+00  -0.457    0.648  
+as.factor(BioID)B001292 -2.563e-01  5.850e-01  -0.438    0.661  
+as.factor(BioID)B001293 -3.442e-01  7.832e-01  -0.439    0.660  
+as.factor(BioID)B001294  3.838e-02  1.339e-01   0.287    0.774  
+as.factor(BioID)B001295 -7.217e-01  1.609e+00  -0.449    0.654  
+as.factor(BioID)B001297 -1.579e-01  3.466e-01  -0.456    0.649  
+as.factor(BioID)B001298  1.768e-01  3.982e-01   0.444    0.657  
+as.factor(BioID)B001299  9.158e-02  2.972e-01   0.308    0.758  
+as.factor(BioID)B001300 -3.622e+00  7.905e+00  -0.458    0.647  
+as.factor(BioID)B001301  3.976e-01  8.798e-01   0.452    0.651  
+as.factor(BioID)B001302 -2.159e-01  4.349e-01  -0.496    0.620  
+as.factor(BioID)B001303  3.515e-01  8.275e-01   0.425    0.671  
+as.factor(BioID)B001304  7.011e-02  2.663e-01   0.263    0.792  
+as.factor(BioID)B001306 -5.752e-01  1.267e+00  -0.454    0.650  
+as.factor(BioID)B001307  5.032e-01  1.149e+00   0.438    0.661  
+as.factor(BioID)B001309  5.110e-02  1.736e-01   0.294    0.768  
+as.factor(BioID)C000266  4.873e-02  2.004e-01   0.243    0.808  
+as.factor(BioID)C000537 -1.108e-01  2.565e-01  -0.432    0.666  
+as.factor(BioID)C000714 -1.256e+00  2.842e+00  -0.442    0.659  
+as.factor(BioID)C000754 -1.193e-01  2.556e-01  -0.467    0.641  
+as.factor(BioID)C000984 -4.772e-01  1.042e+00  -0.458    0.647  
+as.factor(BioID)C001036 -1.839e+00  4.078e+00  -0.451    0.652  
+as.factor(BioID)C001037 -4.592e-01  1.040e+00  -0.442    0.659  
+as.factor(BioID)C001038 -1.047e+00  2.289e+00  -0.457    0.648  
+as.factor(BioID)C001045  9.957e-02  2.061e-01   0.483    0.629  
+as.factor(BioID)C001048 -1.540e-01  3.711e-01  -0.415    0.678  
+as.factor(BioID)C001051 -2.008e+00  4.431e+00  -0.453    0.650  
+as.factor(BioID)C001053  1.029e-01  2.318e-01   0.444    0.657  
+as.factor(BioID)C001055  4.032e-01  9.600e-01   0.420    0.675  
+as.factor(BioID)C001061 -4.275e-02  1.424e-01  -0.300    0.764  
+as.factor(BioID)C001063 -2.308e+00  3.569e+00  -0.647    0.518  
+as.factor(BioID)C001066 -9.199e-01  2.001e+00  -0.460    0.646  
+as.factor(BioID)C001067 -7.442e-01  1.639e+00  -0.454    0.650  
+as.factor(BioID)C001068 -5.739e-01  1.258e+00  -0.456    0.648  
+as.factor(BioID)C001069  2.432e-01  5.684e-01   0.428    0.669  
+as.factor(BioID)C001072 -3.734e-01  8.077e-01  -0.462    0.644  
+as.factor(BioID)C001076 -9.216e-02  2.527e-01  -0.365    0.715  
+as.factor(BioID)C001077 -6.596e-02  7.378e-01  -0.089    0.929  
+as.factor(BioID)C001078 -5.164e-01  1.123e+00  -0.460    0.646  
+as.factor(BioID)C001083  4.062e-01  8.849e-01   0.459    0.646  
+as.factor(BioID)C001084  1.257e-01  2.982e-01   0.422    0.673  
+as.factor(BioID)C001087  3.565e-01  7.867e-01   0.453    0.650  
+as.factor(BioID)C001091 -1.487e+00  3.238e+00  -0.459    0.646  
+as.factor(BioID)C001092 -1.860e+00  4.136e+00  -0.450    0.653  
+as.factor(BioID)C001093 -3.483e-01  7.641e-01  -0.456    0.649  
+as.factor(BioID)C001094 -1.677e-01  4.795e-01  -0.350    0.727  
+as.factor(BioID)C001097 -2.147e+00  4.693e+00  -0.457    0.647  
+as.factor(BioID)C001101 -2.995e-01  6.456e-01  -0.464    0.643  
+as.factor(BioID)C001103  5.162e-01  1.154e+00   0.447    0.655  
+as.factor(BioID)C001105 -3.784e-01  8.966e-01  -0.422    0.673  
+as.factor(BioID)C001106  2.239e-01  1.018e+00   0.220    0.826  
+as.factor(BioID)C001107 -1.288e+00  5.059e+00  -0.255    0.799  
+as.factor(BioID)C001108  2.100e-01  4.975e-01   0.422    0.673  
+as.factor(BioID)C001109  7.776e-01  1.752e+00   0.444    0.657  
+as.factor(BioID)C001110 -3.358e+00  7.318e+00  -0.459    0.646  
+as.factor(BioID)C001111 -5.355e-01  1.156e+00  -0.463    0.643  
+as.factor(BioID)C001112 -1.576e+00  3.416e+00  -0.461    0.645  
+as.factor(BioID)C001114  1.864e-01  4.423e-01   0.421    0.673  
+as.factor(BioID)C001117  3.041e-02  3.236e-01   0.094    0.925  
+as.factor(BioID)C001118 -2.165e-01  4.433e-01  -0.488    0.625  
+as.factor(BioID)C001119  6.485e-01  1.554e+00   0.417    0.677  
+as.factor(BioID)C001120  1.866e-01  4.665e-01   0.400    0.689  
+as.factor(BioID)C001121 -3.734e-02  2.993e-01  -0.125    0.901  
+as.factor(BioID)D000096 -4.724e-01  1.055e+00  -0.448    0.654  
+as.factor(BioID)D000191 -1.922e-01  4.402e-01  -0.437    0.662  
+as.factor(BioID)D000197 -6.353e-02  2.175e-01  -0.292    0.770  
+as.factor(BioID)D000216 -9.573e-02  2.455e-01  -0.390    0.697  
+as.factor(BioID)D000533 -2.812e-01  7.277e-01  -0.386    0.699  
+as.factor(BioID)D000598 -4.274e+00  9.364e+00  -0.456    0.648  
+as.factor(BioID)D000604 -1.229e+00  2.763e+00  -0.445    0.657  
+as.factor(BioID)D000612 -5.646e-01  1.287e+00  -0.439    0.661  
+as.factor(BioID)D000614 -4.304e-01  9.409e-01  -0.457    0.647  
+as.factor(BioID)D000615  5.427e-02  1.641e-01   0.331    0.741  
+as.factor(BioID)D000616 -4.429e-02  1.163e-01  -0.381    0.703  
+as.factor(BioID)D000617  2.075e-01  5.020e-01   0.413    0.679  
+as.factor(BioID)D000619 -8.669e-01  1.938e+00  -0.447    0.655  
+as.factor(BioID)D000620 -5.611e-02  2.264e-01  -0.248    0.804  
+as.factor(BioID)D000621 -2.801e-01  6.134e-01  -0.457    0.648  
+as.factor(BioID)D000625 -6.418e-01  1.477e+00  -0.434    0.664  
+as.factor(BioID)D000626 -5.400e-01  1.157e+00  -0.467    0.641  
+as.factor(BioID)D000627 -3.808e-01  8.258e-01  -0.461    0.645  
+as.factor(BioID)D000628  4.777e-01  1.081e+00   0.442    0.659  
+as.factor(BioID)D000629  2.798e-01  7.603e-01   0.368    0.713  
+as.factor(BioID)D000630 -1.064e+00  2.288e+00  -0.465    0.642  
+as.factor(BioID)D000631  6.826e-02  2.714e-01   0.251    0.801  
+as.factor(BioID)E000179 -1.251e+00  2.738e+00  -0.457    0.648  
+as.factor(BioID)E000288 -5.446e-01  1.225e+00  -0.445    0.657  
+as.factor(BioID)E000290 -2.475e-01  6.131e-01  -0.404    0.686  
+as.factor(BioID)E000291  2.919e-01  5.946e-01   0.491    0.624  
+as.factor(BioID)E000293 -3.249e-02  1.683e-01  -0.193    0.847  
+as.factor(BioID)E000294 -2.346e-01  5.395e-01  -0.435    0.664  
+as.factor(BioID)E000297 -8.733e-01  1.923e+00  -0.454    0.650  
+as.factor(BioID)E000298  1.680e-01  4.242e-01   0.396    0.692  
+as.factor(BioID)E000299 -1.223e+00  2.652e+00  -0.461    0.645  
+as.factor(BioID)F000030 -1.586e+00  3.535e+00  -0.449    0.654  
+as.factor(BioID)F000372 -9.897e-01  2.244e+00  -0.441    0.659  
+as.factor(BioID)F000448 -2.572e-01  5.894e-01  -0.436    0.663  
+as.factor(BioID)F000449  2.202e-02  1.437e-01   0.153    0.878  
+as.factor(BioID)F000450  1.025e-01  2.438e-01   0.421    0.674  
+as.factor(BioID)F000451 -6.614e-01  1.562e+00  -0.423    0.672  
+as.factor(BioID)F000454 -6.166e-01  1.333e+00  -0.463    0.644  
+as.factor(BioID)F000455 -5.855e-01  1.305e+00  -0.449    0.654  
+as.factor(BioID)F000456  8.855e-02  1.793e-01   0.494    0.622  
+as.factor(BioID)F000458 -3.283e-01  7.645e-01  -0.429    0.668  
+as.factor(BioID)F000459  2.512e-01  5.622e-01   0.447    0.655  
+as.factor(BioID)F000460 -1.992e+00  4.395e+00  -0.453    0.650  
+as.factor(BioID)F000461 -9.040e-01  2.001e+00  -0.452    0.651  
+as.factor(BioID)F000462 -1.464e+00  3.216e+00  -0.455    0.649  
+as.factor(BioID)F000464 -3.479e-01  3.016e+00  -0.115    0.908  
+as.factor(BioID)F000465  2.541e-01  6.210e-01   0.409    0.682  
+as.factor(BioID)F000468  2.468e-01  7.584e-01   0.325    0.745  
+as.factor(BioID)G000289 -3.637e-01  8.334e-01  -0.436    0.663  
+as.factor(BioID)G000377 -6.833e-01  1.531e+00  -0.446    0.655  
+as.factor(BioID)G000410 -2.209e+00  4.283e+00  -0.516    0.606  
+as.factor(BioID)G000535 -3.400e-01  7.790e-01  -0.436    0.663  
+as.factor(BioID)G000546 -2.693e-01  6.083e-01  -0.443    0.658  
+as.factor(BioID)G000548 -2.359e-01  5.650e-01  -0.418    0.676  
+as.factor(BioID)G000552  3.453e-02  1.660e-01   0.208    0.835  
+as.factor(BioID)G000553 -2.395e-01  5.539e-01  -0.432    0.666  
+as.factor(BioID)G000556 -6.282e-01  1.424e+00  -0.441    0.659  
+as.factor(BioID)G000558  2.155e-01  4.755e-01   0.453    0.651  
+as.factor(BioID)G000560 -8.881e-01  1.916e+00  -0.464    0.643  
+as.factor(BioID)G000563 -8.408e-02  2.641e-01  -0.318    0.750  
+as.factor(BioID)G000566  2.115e-02  1.054e-01   0.201    0.841  
+as.factor(BioID)G000568 -6.615e-01  1.465e+00  -0.452    0.652  
+as.factor(BioID)G000571 -2.933e-02  1.778e-01  -0.165    0.869  
+as.factor(BioID)G000576 -2.097e-01  4.688e-01  -0.447    0.655  
+as.factor(BioID)G000577 -2.612e-01  5.847e-01  -0.447    0.655  
+as.factor(BioID)G000578  1.294e-01  4.358e-01   0.297    0.766  
+as.factor(BioID)G000579 -5.158e-01  1.107e+00  -0.466    0.641  
+as.factor(BioID)G000583  1.470e-01  5.212e-01   0.282    0.778  
+as.factor(BioID)G000584  3.898e-01  8.620e-01   0.452    0.651  
+as.factor(BioID)G000585 -2.877e+00  6.277e+00  -0.458    0.647  
+as.factor(BioID)G000586 -4.159e-01  9.059e-01  -0.459    0.646  
+as.factor(BioID)G000587 -1.923e+00  4.260e+00  -0.451    0.652  
+as.factor(BioID)G000588 -1.103e+00  2.418e+00  -0.456    0.648  
+as.factor(BioID)G000589 -1.066e-01  2.424e-01  -0.440    0.660  
+as.factor(BioID)G000590 -1.404e-01  3.289e-01  -0.427    0.669  
+as.factor(BioID)G000591  1.450e-01  3.791e-01   0.382    0.702  
+as.factor(BioID)G000592  4.957e-01  1.255e+00   0.395    0.693  
+as.factor(BioID)H000324 -1.404e+00  3.100e+00  -0.453    0.651  
+as.factor(BioID)H000636 -7.686e-01  1.724e+00  -0.446    0.656  
+as.factor(BioID)H000874 -1.226e-01  2.879e-01  -0.426    0.670  
+as.factor(BioID)H001034 -1.424e+00  3.200e+00  -0.445    0.656  
+as.factor(BioID)H001036 -6.163e-02  1.518e-01  -0.406    0.685  
+as.factor(BioID)H001038 -1.950e+00  4.247e+00  -0.459    0.646  
+as.factor(BioID)H001045  2.992e-01  6.361e-01   0.470    0.638  
+as.factor(BioID)H001047 -1.018e-01  2.238e-01  -0.455    0.649  
+as.factor(BioID)H001048 -4.095e+00  8.961e+00  -0.457    0.648  
+as.factor(BioID)H001050  3.765e-01  8.210e-01   0.459    0.647  
+as.factor(BioID)H001051 -1.240e+00  3.929e+00  -0.316    0.752  
+as.factor(BioID)H001052  1.113e-01  2.652e-01   0.420    0.675  
+as.factor(BioID)H001053  9.458e-02  2.325e-01   0.407    0.684  
+as.factor(BioID)H001055 -1.323e-02  1.615e-01  -0.082    0.935  
+as.factor(BioID)H001056 -2.377e-01  5.323e-01  -0.447    0.655  
+as.factor(BioID)H001057  3.750e-02  1.555e-01   0.241    0.809  
+as.factor(BioID)H001059 -9.637e-01  2.128e+00  -0.453    0.651  
+as.factor(BioID)H001063 -3.596e+00  7.928e+00  -0.454    0.650  
+as.factor(BioID)H001064 -4.488e-01  9.864e-01  -0.455    0.649  
+as.factor(BioID)H001066  9.851e-02  3.397e-01   0.290    0.772  
+as.factor(BioID)H001068 -1.376e-01  3.118e-01  -0.441    0.659  
+as.factor(BioID)H001071 -5.027e-01  1.077e+00  -0.467    0.641  
+as.factor(BioID)H001072  3.439e-01  7.644e-01   0.450    0.653  
+as.factor(BioID)H001073 -1.726e+00  3.804e+00  -0.454    0.650  
+as.factor(BioID)H001074 -7.530e-01  1.634e+00  -0.461    0.645  
+as.factor(BioID)H001077 -1.071e-02  7.472e-02  -0.143    0.886  
+as.factor(BioID)H001078  2.298e-02  2.299e-01   0.100    0.920  
+as.factor(BioID)H001081 -1.066e-01  2.744e-01  -0.388    0.698  
+as.factor(BioID)H001085  1.384e-01  5.049e-01   0.274    0.784  
+as.factor(BioID)H001088  4.952e-01  1.124e+00   0.441    0.660  
+as.factor(BioID)I000057  2.735e-02  1.289e-01   0.212    0.832  
+as.factor(BioID)J000032 -1.274e+00  2.781e+00  -0.458    0.647  
+as.factor(BioID)J000126 -2.200e+00  4.837e+00  -0.455    0.649  
+as.factor(BioID)J000174  2.563e-01  5.490e-01   0.467    0.641  
+as.factor(BioID)J000288 -3.669e-02  1.153e-01  -0.318    0.750  
+as.factor(BioID)J000289 -1.186e-01  2.492e-01  -0.476    0.634  
+as.factor(BioID)J000290  1.181e-01  2.499e-01   0.473    0.637  
+as.factor(BioID)J000292 -5.244e-02  2.051e-01  -0.256    0.798  
+as.factor(BioID)J000294 -4.593e-01  1.001e+00  -0.459    0.646  
+as.factor(BioID)J000295 -7.962e-01  1.804e+00  -0.441    0.659  
+as.factor(BioID)J000297  1.966e-01  4.355e-01   0.451    0.652  
+as.factor(BioID)J000298 -6.114e-01  1.354e+00  -0.451    0.652  
+as.factor(BioID)J000299 -3.006e-02  1.205e-01  -0.249    0.803  
+as.factor(BioID)J000301  3.524e-01  8.137e-01   0.433    0.665  
+as.factor(BioID)J000302 -6.719e-01  1.472e+00  -0.456    0.648  
+as.factor(BioID)K000009 -5.062e-01  1.093e+00  -0.463    0.643  
+as.factor(BioID)K000188 -5.824e-02  1.809e-01  -0.322    0.748  
+as.factor(BioID)K000210 -9.938e-02  3.711e-01  -0.268    0.789  
+as.factor(BioID)K000362  1.165e-01  2.558e-01   0.455    0.649  
+as.factor(BioID)K000363  2.455e-01  4.890e-01   0.502    0.616  
+as.factor(BioID)K000375 -3.890e-01  8.469e-01  -0.459    0.646  
+as.factor(BioID)K000378 -1.104e+00  2.450e+00  -0.450    0.652  
+as.factor(BioID)K000379 -2.283e-01  4.920e-01  -0.464    0.643  
+as.factor(BioID)K000381 -1.899e-01  4.147e-01  -0.458    0.647  
+as.factor(BioID)K000382  2.626e-01  6.172e-01   0.425    0.671  
+as.factor(BioID)K000385  1.997e-01  4.584e-01   0.436    0.663  
+as.factor(BioID)K000386 -8.906e-01  4.192e+00  -0.212    0.832  
+as.factor(BioID)K000387 -1.455e+00  3.945e+00  -0.369    0.712  
+as.factor(BioID)K000388  4.623e-01  1.058e+00   0.437    0.662  
+as.factor(BioID)K000389 -1.362e+00  2.959e+00  -0.460    0.645  
+as.factor(BioID)K000390  8.098e-02  3.501e-01   0.231    0.817  
+as.factor(BioID)K000391 -3.351e-01  7.134e-01  -0.470    0.639  
+as.factor(BioID)K000392 -1.198e-01  3.344e-01  -0.358    0.720  
+as.factor(BioID)K000394  2.354e-01  6.532e-01   0.360    0.719  
+as.factor(BioID)K000395 -5.757e-01  1.263e+00  -0.456    0.649  
+as.factor(BioID)L000263 -5.325e-01  1.194e+00  -0.446    0.656  
+as.factor(BioID)L000287 -4.395e-01  1.017e+00  -0.432    0.666  
+as.factor(BioID)L000480 -1.295e+00  2.839e+00  -0.456    0.648  
+as.factor(BioID)L000491  3.433e-02  1.202e-01   0.286    0.775  
+as.factor(BioID)L000554 -2.096e-01  6.434e-01  -0.326    0.745  
+as.factor(BioID)L000557  1.982e-01  4.483e-01   0.442    0.658  
+as.factor(BioID)L000559  1.253e-01  3.332e-01   0.376    0.707  
+as.factor(BioID)L000560  1.607e-01  4.154e-01   0.387    0.699  
+as.factor(BioID)L000562 -3.614e-01  7.765e-01  -0.465    0.642  
+as.factor(BioID)L000563  1.865e-01  5.000e-01   0.373    0.709  
+as.factor(BioID)L000564  9.785e-02  2.619e-01   0.374    0.709  
+as.factor(BioID)L000565  2.558e-01  5.879e-01   0.435    0.664  
+as.factor(BioID)L000566  3.506e-02  1.313e-01   0.267    0.790  
+as.factor(BioID)L000567 -2.340e-01  1.125e+00  -0.208    0.835  
+as.factor(BioID)L000569  2.039e-01  4.398e-01   0.464    0.643  
+as.factor(BioID)L000573 -3.861e-02  1.681e-01  -0.230    0.818  
+as.factor(BioID)L000576 -8.669e-02  2.537e-01  -0.342    0.733  
+as.factor(BioID)L000578  2.896e-01  6.321e-01   0.458    0.647  
+as.factor(BioID)L000579 -3.812e+00  8.375e+00  -0.455    0.649  
+as.factor(BioID)L000580  3.929e-01  8.895e-01   0.442    0.659  
+as.factor(BioID)L000581 -8.108e-01  1.774e+00  -0.457    0.648  
+as.factor(BioID)L000583 -5.276e-01  1.140e+00  -0.463    0.644  
+as.factor(BioID)L000584 -1.022e-01  2.303e-01  -0.444    0.657  
+as.factor(BioID)L000586  1.961e-01  5.431e-01   0.361    0.718  
+as.factor(BioID)L000587  1.308e-01  3.013e-01   0.434    0.664  
+as.factor(BioID)L000590  4.235e-01  1.047e+00   0.404    0.686  
+as.factor(BioID)L000591  5.299e-01  1.297e+00   0.408    0.683  
+as.factor(BioID)L000592 -7.038e-01  1.527e+00  -0.461    0.645  
+as.factor(BioID)L000593 -3.800e+00  8.285e+00  -0.459    0.647  
+as.factor(BioID)M000087 -9.569e-01  2.090e+00  -0.458    0.647  
+as.factor(BioID)M000312 -2.278e-01  5.402e-01  -0.422    0.673  
+as.factor(BioID)M000404 -5.654e-01  1.344e+00  -0.421    0.674  
+as.factor(BioID)M000689 -3.111e-01  7.619e-01  -0.408    0.683  
+as.factor(BioID)M001137 -2.355e-01  5.113e-01  -0.461    0.645  
+as.factor(BioID)M001143 -1.781e-01  3.973e-01  -0.448    0.654  
+as.factor(BioID)M001144  2.995e-01  6.338e-01   0.473    0.637  
+as.factor(BioID)M001150 -6.650e-01  1.544e+00  -0.431    0.667  
+as.factor(BioID)M001151 -1.278e+00  2.878e+00  -0.444    0.657  
+as.factor(BioID)M001156 -6.386e-01  1.383e+00  -0.462    0.644  
+as.factor(BioID)M001157 -5.952e-01  1.320e+00  -0.451    0.652  
+as.factor(BioID)M001158 -1.635e+00  3.587e+00  -0.456    0.649  
+as.factor(BioID)M001159 -2.211e-01  4.948e-01  -0.447    0.655  
+as.factor(BioID)M001160 -2.068e-01  4.695e-01  -0.441    0.660  
+as.factor(BioID)M001166 -4.203e-01  9.095e-01  -0.462    0.644  
+as.factor(BioID)M001180  3.284e-01  6.894e-01   0.476    0.634  
+as.factor(BioID)M001181 -3.565e-03  8.422e-01  -0.004    0.997  
+as.factor(BioID)M001182 -3.782e-01  8.585e-01  -0.440    0.660  
+as.factor(BioID)M001184 -4.611e-01  1.010e+00  -0.456    0.648  
+as.factor(BioID)M001187 -6.743e-01  1.484e+00  -0.454    0.650  
+as.factor(BioID)M001188 -3.499e-01  7.516e-01  -0.466    0.642  
+as.factor(BioID)M001189 -2.585e-01  5.775e-01  -0.448    0.655  
+as.factor(BioID)M001191 -1.219e+00  2.664e+00  -0.458    0.647  
+as.factor(BioID)M001193  1.172e-01  2.861e-01   0.410    0.682  
+as.factor(BioID)M001195  8.144e-03  6.820e-02   0.119    0.905  
+as.factor(BioID)M001196 -2.021e-01  4.383e-01  -0.461    0.645  
+as.factor(BioID)M001200  7.641e-02  2.823e-01   0.271    0.787  
+as.factor(BioID)M001201 -3.497e-01  7.989e-01  -0.438    0.662  
+as.factor(BioID)M001202 -1.086e-01  3.401e-01  -0.319    0.750  
+as.factor(BioID)M001203 -5.086e-02  2.950e-01  -0.172    0.863  
+as.factor(BioID)M001204 -2.638e-01  6.076e-01  -0.434    0.664  
+as.factor(BioID)M001206 -1.592e+00  3.458e+00  -0.460    0.645  
+as.factor(BioID)N000015  2.485e-02  2.049e-01   0.121    0.903  
+as.factor(BioID)N000127 -3.850e-01  8.680e-01  -0.444    0.657  
+as.factor(BioID)N000181 -1.673e+00  3.666e+00  -0.456    0.648  
+as.factor(BioID)N000182 -1.074e+00  2.403e+00  -0.447    0.655  
+as.factor(BioID)N000184  3.826e-01  8.383e-01   0.456    0.648  
+as.factor(BioID)N000185 -5.161e-01  1.211e+00  -0.426    0.670  
+as.factor(BioID)N000188  5.028e-01  1.148e+00   0.438    0.662  
+as.factor(BioID)N000189  1.662e-01  3.904e-01   0.426    0.670  
+as.factor(BioID)N000190 -5.091e-02  1.335e-01  -0.381    0.703  
+as.factor(BioID)N000191 -1.615e-02  1.822e-01  -0.089    0.929  
+as.factor(BioID)O000168 -1.426e+00  3.124e+00  -0.456    0.648  
+as.factor(BioID)O000170 -1.225e+00  2.667e+00  -0.459    0.646  
+as.factor(BioID)O000171  6.544e-01  1.510e+00   0.434    0.665  
+as.factor(BioID)O000172 -1.491e+00  3.200e+00  -0.466    0.641  
+as.factor(BioID)O000173 -6.504e-01  1.379e+00  -0.472    0.637  
+as.factor(BioID)P000034 -4.783e-01  1.057e+00  -0.453    0.651  
+as.factor(BioID)P000096 -4.057e-01  8.900e-01  -0.456    0.649  
+as.factor(BioID)P000258 -5.581e-01  5.257e-01  -1.062    0.289  
+as.factor(BioID)P000373 -1.046e+00  2.363e+00  -0.443    0.658  
+as.factor(BioID)P000523 -9.178e-02  2.312e-01  -0.397    0.691  
+as.factor(BioID)P000588  1.871e-01  4.007e-01   0.467    0.641  
+as.factor(BioID)P000591 -1.872e-01  4.549e-01  -0.411    0.681  
+as.factor(BioID)P000592  1.919e-01  4.116e-01   0.466    0.641  
+as.factor(BioID)P000593 -1.348e-01  3.105e-01  -0.434    0.664  
+as.factor(BioID)P000594 -1.546e-01  4.035e-01  -0.383    0.702  
+as.factor(BioID)P000597  6.779e-02  1.691e-01   0.401    0.689  
+as.factor(BioID)P000598 -2.827e-01  6.261e-01  -0.452    0.652  
+as.factor(BioID)P000599 -5.052e-01  1.139e+00  -0.444    0.657  
+as.factor(BioID)P000601  1.831e-01  4.525e-01   0.405    0.686  
+as.factor(BioID)P000602  1.488e-01  3.281e-01   0.453    0.650  
+as.factor(BioID)P000604 -6.064e-01  1.333e+00  -0.455    0.649  
+as.factor(BioID)P000606 -1.202e-01  3.714e-01  -0.324    0.746  
+as.factor(BioID)P000607 -2.125e-01  4.836e-01  -0.440    0.660  
+as.factor(BioID)P000609  3.211e-02  1.978e-01   0.162    0.871  
+as.factor(BioID)P000611  6.444e-02  1.707e-01   0.378    0.706  
+as.factor(BioID)P000614  5.143e-01  1.259e+00   0.409    0.683  
+as.factor(BioID)P000615  1.539e-03  2.197e-01   0.007    0.994  
+as.factor(BioID)P000616  3.028e-01  7.766e-01   0.390    0.697  
+as.factor(BioID)P000617 -7.888e-01  1.692e+00  -0.466    0.641  
+as.factor(BioID)Q000023 -1.922e-01  4.093e-01  -0.469    0.639  
+as.factor(BioID)R000053 -1.078e+00  2.444e+00  -0.441    0.659  
+as.factor(BioID)R000395 -2.452e-01  6.202e-01  -0.395    0.693  
+as.factor(BioID)R000409 -4.207e+00  9.236e+00  -0.456    0.649  
+as.factor(BioID)R000435 -1.825e+00  5.534e+00  -0.330    0.742  
+as.factor(BioID)R000486 -3.328e+00  7.296e+00  -0.456    0.648  
+as.factor(BioID)R000487 -3.347e+00  7.353e+00  -0.455    0.649  
+as.factor(BioID)R000515 -4.230e-03  1.786e-01  -0.024    0.981  
+as.factor(BioID)R000575  1.395e-01  3.052e-01   0.457    0.648  
+as.factor(BioID)R000576  3.256e-01  7.462e-01   0.436    0.663  
+as.factor(BioID)R000577 -8.249e-01  1.777e+00  -0.464    0.643  
+as.factor(BioID)R000578 -2.575e-01  1.402e+00  -0.184    0.854  
+as.factor(BioID)R000580 -2.885e-02  6.460e-01  -0.045    0.964  
+as.factor(BioID)R000582  3.205e-01  6.818e-01   0.470    0.638  
+as.factor(BioID)R000583 -1.250e+00  2.786e+00  -0.449    0.654  
+as.factor(BioID)R000585 -1.661e+00  4.036e+00  -0.412    0.681  
+as.factor(BioID)R000586 -1.022e+00  2.290e+00  -0.446    0.656  
+as.factor(BioID)R000587 -4.745e-01  1.104e+00  -0.430    0.667  
+as.factor(BioID)R000588  2.613e-01  6.236e-01   0.419    0.675  
+as.factor(BioID)R000591  3.548e-01  7.966e-01   0.445    0.656  
+as.factor(BioID)R000592 -1.386e-01  3.157e-01  -0.439    0.661  
+as.factor(BioID)R000593 -8.965e-01  1.994e+00  -0.450    0.653  
+as.factor(BioID)R000597 -3.481e-01  7.749e-01  -0.449    0.653  
+as.factor(BioID)R000598 -6.850e-01  1.528e+00  -0.448    0.654  
+as.factor(BioID)R000601  1.408e-01  3.784e-01   0.372    0.710  
+as.factor(BioID)R000602  1.163e-01  3.642e-01   0.319    0.750  
+as.factor(BioID)R000603 -1.528e-01  3.550e-01  -0.430    0.667  
+as.factor(BioID)R000604 -2.181e-01  4.940e-01  -0.442    0.659  
+as.factor(BioID)R000606 -4.854e-01  1.056e+00  -0.460    0.646  
+as.factor(BioID)R000607 -5.177e-01  3.339e+00  -0.155    0.877  
+as.factor(BioID)R000610 -9.736e-01  2.109e+00  -0.462    0.644  
+as.factor(BioID)R000612 -4.805e-03  2.091e-01  -0.023    0.982  
+as.factor(BioID)R000614 -1.719e+00  3.708e+00  -0.464    0.643  
+as.factor(BioID)S000018 -1.989e-01  5.063e-01  -0.393    0.695  
+as.factor(BioID)S000030 -3.745e+00  8.223e+00  -0.455    0.649  
+as.factor(BioID)S000051  3.455e-01  4.120e-01   0.839    0.402  
+as.factor(BioID)S000185 -3.662e-02  1.334e-01  -0.275    0.784  
+as.factor(BioID)S000248 -1.348e+00  2.976e+00  -0.453    0.651  
+as.factor(BioID)S000364 -1.108e+00  2.458e+00  -0.451    0.652  
+as.factor(BioID)S000480 -1.956e+00  4.329e+00  -0.452    0.651  
+as.factor(BioID)S000510 -6.615e-01  1.410e+00  -0.469    0.639  
+as.factor(BioID)S000522  5.782e-02  1.279e+00   0.045    0.964  
+as.factor(BioID)S000583 -1.699e+00  3.764e+00  -0.451    0.652  
+as.factor(BioID)S001145 -7.072e-01  1.593e+00  -0.444    0.657  
+as.factor(BioID)S001148  1.488e-01  3.193e-01   0.466    0.641  
+as.factor(BioID)S001154 -4.612e-01  1.036e+00  -0.445    0.656  
+as.factor(BioID)S001156 -3.228e+00  7.061e+00  -0.457    0.648  
+as.factor(BioID)S001157 -6.022e-01  1.309e+00  -0.460    0.646  
+as.factor(BioID)S001165 -2.822e-01  6.110e-01  -0.462    0.644  
+as.factor(BioID)S001168 -2.841e-02  9.860e-02  -0.288    0.773  
+as.factor(BioID)S001170  3.014e-01  6.674e-01   0.452    0.652  
+as.factor(BioID)S001172  8.541e-02  2.033e-01   0.420    0.674  
+as.factor(BioID)S001175 -1.057e+00  2.322e+00  -0.455    0.649  
+as.factor(BioID)S001176  2.676e-01  5.941e-01   0.450    0.652  
+as.factor(BioID)S001180  1.152e-01  3.510e-01   0.328    0.743  
+as.factor(BioID)S001185 -3.610e-02  2.572e-01  -0.140    0.888  
+as.factor(BioID)S001187 -9.627e-01  2.143e+00  -0.449    0.653  
+as.factor(BioID)S001188 -5.739e-03  1.404e-01  -0.041    0.967  
+as.factor(BioID)S001189 -2.124e-01  4.838e-01  -0.439    0.661  
+as.factor(BioID)S001190 -4.450e-01  9.445e-01  -0.471    0.638  
+as.factor(BioID)S001192  2.647e-01  5.868e-01   0.451    0.652  
+as.factor(BioID)S001195 -3.026e-01  6.568e-01  -0.461    0.645  
+as.factor(BioID)S001196 -1.006e+00  3.972e+00  -0.253    0.800  
+as.factor(BioID)S001200 -3.611e-01  7.690e-01  -0.469    0.639  
+as.factor(BioID)S001201  2.984e-01  7.648e-01   0.390    0.696  
+as.factor(BioID)S001205 -8.280e-02  2.364e-01  -0.350    0.726  
+as.factor(BioID)S001207 -3.423e-01  7.576e-01  -0.452    0.651  
+as.factor(BioID)S001209  2.260e-02  3.984e-01   0.057    0.955  
+as.factor(BioID)S001212 -4.639e-01  1.025e+00  -0.453    0.651  
+as.factor(BioID)S001213  1.614e-01  3.994e-01   0.404    0.686  
+as.factor(BioID)S001214 -1.277e+00  2.753e+00  -0.464    0.643  
+as.factor(BioID)S001215 -4.807e-01  1.040e+00  -0.462    0.644  
+as.factor(BioID)S001216  3.419e-02  4.027e-01   0.085    0.932  
+as.factor(BioID)T000193  2.384e-01  5.384e-01   0.443    0.658  
+as.factor(BioID)T000238 -7.881e-01  1.730e+00  -0.455    0.649  
+as.factor(BioID)T000462 -9.163e-01  2.068e+00  -0.443    0.658  
+as.factor(BioID)T000463 -6.205e-01  1.394e+00  -0.445    0.656  
+as.factor(BioID)T000465  4.925e-02  1.205e-01   0.409    0.683  
+as.factor(BioID)T000468  2.898e-01  6.559e-01   0.442    0.659  
+as.factor(BioID)T000469 -1.478e+00  3.253e+00  -0.455    0.650  
+as.factor(BioID)T000470  4.803e-02  1.218e-01   0.394    0.694  
+as.factor(BioID)T000474 -2.620e+00  5.710e+00  -0.459    0.646  
+as.factor(BioID)T000475 -5.027e-01  1.148e+00  -0.438    0.662  
+as.factor(BioID)T000477  6.509e-02  1.899e-01   0.343    0.732  
+as.factor(BioID)T000479 -3.212e-02  1.116e-01  -0.288    0.773  
+as.factor(BioID)T000480  1.796e-02  2.084e-01   0.086    0.931  
+as.factor(BioID)T000482 -1.190e-02  1.680e-01  -0.071    0.944  
+as.factor(BioID)U000031 -2.514e-01  1.714e+00  -0.147    0.883  
+as.factor(BioID)U000040 -7.646e-01  1.669e+00  -0.458    0.647  
+as.factor(BioID)V000081 -6.922e-01  1.536e+00  -0.451    0.652  
+as.factor(BioID)V000108  2.183e-01  5.150e-01   0.424    0.672  
+as.factor(BioID)V000131 -2.520e+00  5.131e+00  -0.491    0.623  
+as.factor(BioID)V000132 -2.460e+00  5.006e+00  -0.491    0.623  
+as.factor(BioID)V000133  1.336e+00  7.599e-01   1.758    0.079 .
+as.factor(BioID)W000187 -3.629e+00  7.987e+00  -0.454    0.650  
+as.factor(BioID)W000413  1.971e-01  3.839e-01   0.513    0.608  
+as.factor(BioID)W000791 -7.059e-02  2.507e-01  -0.282    0.778  
+as.factor(BioID)W000795  2.185e-01  4.733e-01   0.462    0.644  
+as.factor(BioID)W000796  2.761e-01  5.787e-01   0.477    0.633  
+as.factor(BioID)W000799  3.621e-01  8.225e-01   0.440    0.660  
+as.factor(BioID)W000804  1.633e-01  3.527e-01   0.463    0.644  
+as.factor(BioID)W000808 -1.635e+00  3.605e+00  -0.453    0.650  
+as.factor(BioID)W000809  3.714e-01  8.218e-01   0.452    0.651  
+as.factor(BioID)W000810 -4.200e-01  9.100e-01  -0.461    0.645  
+as.factor(BioID)W000812  2.687e-01  5.863e-01   0.458    0.647  
+as.factor(BioID)W000813  3.046e-01  6.660e-01   0.457    0.647  
+as.factor(BioID)W000814 -6.999e-01  1.532e+00  -0.457    0.648  
+as.factor(BioID)W000815  3.565e-01  7.887e-01   0.452    0.651  
+as.factor(BioID)W000816 -1.670e+00  3.673e+00  -0.455    0.649  
+as.factor(BioID)W000820 -3.488e+00  7.666e+00  -0.455    0.649  
+as.factor(BioID)W000821  1.707e-01  4.304e-01   0.397    0.692  
+as.factor(BioID)W000822 -7.433e-01  1.666e+00  -0.446    0.655  
+as.factor(BioID)W000823  1.803e-01  6.916e-01   0.261    0.794  
+as.factor(BioID)W000825 -2.688e-01  6.285e-01  -0.428    0.669  
+as.factor(BioID)W000826  1.104e-01  4.452e-01   0.248    0.804  
+as.factor(BioID)Y000033  1.226e-01  3.649e-01   0.336    0.737  
+as.factor(BioID)Y000062         NA         NA      NA       NA  
+as.factor(BioID)Y000063         NA         NA      NA       NA  
+as.factor(BioID)Y000065         NA         NA      NA       NA  
+as.factor(BioID)Y000066         NA         NA      NA       NA  
+as.factor(BioID)Z000017         NA         NA      NA       NA  
+seniority                2.425e-02  5.673e-02   0.427    0.669  
+Contribution_minus       4.834e-04  1.442e-03   0.335    0.738  
+Contribution_plus       -8.799e-04  1.104e-03  -0.797    0.426  
+Dmajority                       NA         NA      NA       NA  
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.1124 on 1432 degrees of freedom
+Residual standard error: 0.1125 on 1429 degrees of freedom
   (1417 observations deleted due to missingness)
 Multiple R-squared:  0.9619,    Adjusted R-squared:  0.9494 
-F-statistic: 77.18 on 468 and 1432 DF,  p-value: &lt; 2.2e-16</code></pre>
+F-statistic: 76.61 on 471 and 1429 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same thing again with plm</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ols_ind_fe_plm <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> Dmajority, <span class="at">data =</span> df_long, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"BioID"</span>, <span class="st">"Instance"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in pdata.frame(data, index): at least one NA in at least one index dimension in resulting pdata.frame
+ to find out which, use, e.g., table(index(your_pdataframe), useNA = "ifany")</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_ind_fe_plm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Oneway (individual) effect Within Model
+
+Call:
+plm(formula = Vote ~ district + party + birthday + nominate_dim1 + 
+    nominate_dim2 + seniority + Contribution_minus + Contribution_plus + 
+    Dmajority, data = df_long, model = "within", index = c("BioID", 
+    "Instance"))
+
+Unbalanced Panel: n = 464, T = 1-6, N = 1901
+
+Residuals:
+      Min.    1st Qu.     Median    3rd Qu.       Max. 
+-0.8237431 -0.0075810 -0.0033010  0.0076459  0.8122798 
+
+Coefficients:
+                      Estimate  Std. Error t-value  Pr(&gt;|t|)    
+seniority           0.01497402  0.00386212  3.8771 0.0001105 ***
+Contribution_minus  0.00049963  0.00144288  0.3463 0.7291903    
+Contribution_plus  -0.00062465  0.00109934 -0.5682 0.5699860    
+Dmajority          -0.01629004  0.01046080 -1.5572 0.1196330    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Total Sum of Squares:    18.417
+Residual Sum of Squares: 18.155
+R-Squared:      0.01423
+Adj. R-Squared: -0.30702
+F-statistic: 5.17139 on 4 and 1433 DF, p-value: 0.00038846</code></pre>
 </div>
 </div>
 <p>The difference between the ols before and this ols is the individual fixed effects instead of state effects. so we are fixing for individiuals so we dont include person specific changes in the analysis and for the same person can see how their voting changes.</p>
@@ -1091,14 +1177,14 @@ F-statistic: 77.18 on 468 and 1432 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>We do this because we want to see how prior contributions in similar votes could affect the voting. ### vote and all contributions leading up to the vote with state FEs</p>
 <p>can fix for states here, but not for instances, since this is already just that, and not for year and individuals, since these are all the same too.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 4_2</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_vote_4_2)</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>ols_4_2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote4_minus <span class="sc">~</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> Contribution_4_minus <span class="sc">+</span> Contribution_4_plus <span class="sc">+</span> seniority_114 <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">data =</span> df_vote_4_2, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"party"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 4_2</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_vote_4_2)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>ols_4_2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote4_minus <span class="sc">~</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> Contribution_4_minus <span class="sc">+</span> Contribution_4_plus <span class="sc">+</span> seniority_114 <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">data =</span> df_vote_4_2, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"party"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in pdata.frame(data, index): duplicate couples (id-time) in resulting pdata.frame
  to find out which, use, e.g., table(index(your_pdataframe), useNA = "ifany")</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_4_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_4_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Oneway (individual) effect Within Model
 
@@ -1135,9 +1221,9 @@ R-Squared:      0.87594
 Adj. R-Squared: 0.85175
 F-statistic: 217.305 on 9 and 277 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 51_2</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ols_51_2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote51_minus <span class="sc">~</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> Contribution_4_minus <span class="sc">+</span> Contribution_4_plus <span class="sc">+</span> Contribution_51_minus <span class="sc">+</span> Contribution_51_plus <span class="sc">+</span> seniority_1151 <span class="sc">+</span> party <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">data =</span> df_vote_51_2, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_51_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 51_2</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>ols_51_2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote51_minus <span class="sc">~</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> Contribution_4_minus <span class="sc">+</span> Contribution_4_plus <span class="sc">+</span> Contribution_51_minus <span class="sc">+</span> Contribution_51_plus <span class="sc">+</span> seniority_1151 <span class="sc">+</span> party <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">data =</span> df_vote_51_2, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_51_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Oneway (individual) effect Within Model
 
@@ -1177,9 +1263,9 @@ R-Squared:      0.93156
 Adj. R-Squared: 0.91445
 F-statistic: 254.081 on 12 and 224 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 52_2</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>ols_52_2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote52_minus <span class="sc">~</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> Contribution_4_minus <span class="sc">+</span> Contribution_4_plus <span class="sc">+</span> Contribution_51_minus <span class="sc">+</span> Contribution_51_plus <span class="sc">+</span> Contribution_52_minus <span class="sc">+</span> Contribution_52_plus <span class="sc">+</span> seniority_1152 <span class="sc">+</span> party <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">data =</span> df_vote_52_2, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_52_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 52_2</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>ols_52_2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote52_minus <span class="sc">~</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> Contribution_4_minus <span class="sc">+</span> Contribution_4_plus <span class="sc">+</span> Contribution_51_minus <span class="sc">+</span> Contribution_51_plus <span class="sc">+</span> Contribution_52_minus <span class="sc">+</span> Contribution_52_plus <span class="sc">+</span> seniority_1152 <span class="sc">+</span> party <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">data =</span> df_vote_52_2, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_52_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Oneway (individual) effect Within Model
 
@@ -1222,9 +1308,9 @@ R-Squared:      0.88847
 Adj. R-Squared: 0.85751
 F-statistic: 118.919 on 14 and 209 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 6_2</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>ols_6_2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote6_minus <span class="sc">~</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> Contribution_4_minus <span class="sc">+</span> Contribution_4_plus <span class="sc">+</span> Contribution_51_minus <span class="sc">+</span> Contribution_51_plus <span class="sc">+</span> Contribution_52_minus <span class="sc">+</span> Contribution_52_plus <span class="sc">+</span> Contribution_6_minus <span class="sc">+</span> Contribution_6_plus <span class="sc">+</span> seniority_116 <span class="sc">+</span> party <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">data =</span> df_vote_6_2, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_6_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 6_2</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>ols_6_2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote6_minus <span class="sc">~</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> Contribution_4_minus <span class="sc">+</span> Contribution_4_plus <span class="sc">+</span> Contribution_51_minus <span class="sc">+</span> Contribution_51_plus <span class="sc">+</span> Contribution_52_minus <span class="sc">+</span> Contribution_52_plus <span class="sc">+</span> Contribution_6_minus <span class="sc">+</span> Contribution_6_plus <span class="sc">+</span> seniority_116 <span class="sc">+</span> party <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">data =</span> df_vote_6_2, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_6_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Oneway (individual) effect Within Model
 
@@ -1269,10 +1355,10 @@ R-Squared:      0.96583
 Adj. R-Squared: 0.95409
 F-statistic: 293.223 on 16 and 166 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 7_2</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_vote_7_2)</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>ols_7_2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote7_minus <span class="sc">~</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> Contribution_4_minus <span class="sc">+</span> Contribution_4_plus <span class="sc">+</span> Contribution_51_minus <span class="sc">+</span> Contribution_51_plus <span class="sc">+</span> Contribution_52_minus <span class="sc">+</span> Contribution_52_plus <span class="sc">+</span> Contribution_6_minus <span class="sc">+</span> Contribution_6_plus <span class="sc">+</span> Contribution_7_minus <span class="sc">+</span> Contribution_7_plus <span class="sc">+</span> seniority_117 <span class="sc">+</span> party <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2, <span class="at">data =</span> df_vote_7_2, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_7_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 7_2</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_vote_7_2)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>ols_7_2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote7_minus <span class="sc">~</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> Contribution_4_minus <span class="sc">+</span> Contribution_4_plus <span class="sc">+</span> Contribution_51_minus <span class="sc">+</span> Contribution_51_plus <span class="sc">+</span> Contribution_52_minus <span class="sc">+</span> Contribution_52_plus <span class="sc">+</span> Contribution_6_minus <span class="sc">+</span> Contribution_6_plus <span class="sc">+</span> Contribution_7_minus <span class="sc">+</span> Contribution_7_plus <span class="sc">+</span> seniority_117 <span class="sc">+</span> party <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2, <span class="at">data =</span> df_vote_7_2, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>), <span class="at">model =</span> <span class="st">"within"</span>)</span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_7_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Oneway (individual) effect Within Model
 
@@ -1328,12 +1414,12 @@ F-statistic: 241.422 on 18 and 123 DF, p-value: &lt; 2.22e-16</code></pre>
 <section id="with-control-variables-1" class="level2">
 <h2 class="anchored" data-anchor-id="with-control-variables-1">with control variables</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>df_long_no_change <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Vote_change_dummy <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Vote_change_dummy, Vote_change))</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>ols_no_change <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID, <span class="at">data =</span> df_long_no_change)</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_no_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>df_long_no_change <span class="ot">&lt;-</span> df_long <span class="sc">%&gt;%</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(Vote_change_dummy <span class="sc">==</span> <span class="dv">0</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(Vote_change_dummy, Vote_change))</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>ols_no_change <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID, <span class="at">data =</span> df_long_no_change)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_no_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1375,8 +1461,8 @@ F-statistic:  3975 on 16 and 1796 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="with-state-year-fe" class="level2">
 <h2 class="anchored" data-anchor-id="with-state-year-fe">with state &amp; year FE</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>ols_no_change_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(Geographical) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">data =</span> df_long_no_change)</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_no_change_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>ols_no_change_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(Geographical) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">data =</span> df_long_no_change)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_no_change_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1425,8 +1511,8 @@ F-statistic:  3345 on 19 and 1793 DF,  p-value: &lt; 2.2e-16</code></pre>
 <section id="with-individual-fes" class="level2">
 <h2 class="anchored" data-anchor-id="with-individual-fes">with individual FEs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>ols_no_change_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> Instance <span class="sc">+</span> <span class="fu">as.factor</span>(BioID) <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> Dmajority, <span class="at">data =</span> df_long_no_change)</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_no_change_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>ols_no_change_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> Instance <span class="sc">+</span> <span class="fu">as.factor</span>(BioID) <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> Dmajority, <span class="at">data =</span> df_long_no_change)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_no_change_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -1909,7 +1995,7 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h1>LPM with vote changing Representatives</h1>
 <p>Here is what this dataframe looks like</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(df_vote_change[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, ], <span class="at">format =</span> <span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(df_vote_change[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, ], <span class="at">format =</span> <span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <table data-quarto-postprocess="true" class="table table-sm table-striped small">
@@ -2213,10 +2299,10 @@ F-statistic:  1845 on 447 and 1365 DF,  p-value: &lt; 2.2e-16</code></pre>
 <h2 class="anchored" data-anchor-id="with-control-variables-2">with control variables</h2>
 <p>Using the same model as above with the same specifications (control varaibels, then generous FE (state, year), then strict FE (individuals)) but using only those representatives that changed their voting behavior over time.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>df_vote_change <span class="ot">&lt;-</span> df_vote_change <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(GovtrackID, opensecrets_id, Vote_change_dummy, Vote_change, first_name, last_name, name))</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_vote_change)</span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>ols_change <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> anti_env_dummy <span class="sc">-</span> BioID, <span class="at">data =</span> df_vote_change)</span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>df_vote_change <span class="ot">&lt;-</span> df_vote_change <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span><span class="fu">c</span>(GovtrackID, opensecrets_id, Vote_change_dummy, Vote_change, first_name, last_name, name))</span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_vote_change)</span>
+<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>ols_change <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> anti_env_dummy <span class="sc">-</span> BioID, <span class="at">data =</span> df_vote_change)</span>
+<span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2260,8 +2346,8 @@ F-statistic: 3.945 on 15 and 104 DF,  p-value: 1.387e-05</code></pre>
 <section id="with-geography-year-fes" class="level2">
 <h2 class="anchored" data-anchor-id="with-geography-year-fes">with geography &amp; year FEs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>ols_change_fe <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(Geographical) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> district <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy, <span class="at">data =</span> df_vote_change)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>ols_change_fe <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(Geographical) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> district <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy, <span class="at">data =</span> df_vote_change)</span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2308,8 +2394,8 @@ F-statistic: 3.359 on 18 and 101 DF,  p-value: 5.445e-05</code></pre>
 <section id="checking-differences-in-party-1" class="level3">
 <h3 class="anchored" data-anchor-id="checking-differences-in-party-1">checking differences in party</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>ols_change_D <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> party <span class="sc">-</span> Geographical <span class="sc">-</span> anti_env_dummy <span class="sc">-</span> BioID, <span class="at">data =</span> df_vote_change)</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_D)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>ols_change_D <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> party <span class="sc">-</span> Geographical <span class="sc">-</span> anti_env_dummy <span class="sc">-</span> BioID, <span class="at">data =</span> df_vote_change)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_D)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2353,8 +2439,8 @@ Residual standard error: 0.4275 on 97 degrees of freedom
 Multiple R-squared:  0.4032,    Adjusted R-squared:  0.2678 
 F-statistic: 2.978 on 22 and 97 DF,  p-value: 0.0001225</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>ols_change_R <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> party <span class="sc">-</span> Geographical <span class="sc">-</span> anti_env_dummy <span class="sc">-</span> BioID, <span class="at">data =</span> df_vote_change)</span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>ols_change_R <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> party <span class="sc">-</span> Geographical <span class="sc">-</span> anti_env_dummy <span class="sc">-</span> BioID, <span class="at">data =</span> df_vote_change)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2406,9 +2492,9 @@ F-statistic: 2.978 on 22 and 97 DF,  p-value: 0.0001225</code></pre>
 <section id="with-individual-year-fes" class="level2">
 <h2 class="anchored" data-anchor-id="with-individual-year-fes">with individual &amp; year FEs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_vote_change)</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>ols_change_ind_fe <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(BioID) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus, <span class="at">data =</span> df_vote_change)</span>
-<span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_ind_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_vote_change)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>ols_change_ind_fe <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(BioID) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus, <span class="at">data =</span> df_vote_change)</span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_ind_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2471,8 +2557,8 @@ F-statistic: 2.106 on 29 and 109 DF,  p-value: 0.003118</code></pre>
 <section id="with-control-variables-3" class="level3">
 <h3 class="anchored" data-anchor-id="with-control-variables-3">with control variables</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>full_logit <span class="ot">&lt;-</span> <span class="fu">glm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote_change_dummy, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_long)</span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>full_logit <span class="ot">&lt;-</span> <span class="fu">glm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote_change_dummy, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_long)</span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2520,11 +2606,11 @@ Number of Fisher Scoring iterations: 15</code></pre>
 <section id="with-log-transformed-contributions-1" class="level3">
 <h3 class="anchored" data-anchor-id="with-log-transformed-contributions-1">with log transformed contributions</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Contribution_plus"</span>, <span class="st">"Contribution_minus"</span>)</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>df_long[cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df_long[cols], <span class="cf">function</span>(x) <span class="fu">log</span>(x <span class="sc">+</span> <span class="dv">1</span>))</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>full_logit_log <span class="ot">&lt;-</span> <span class="fu">glm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote_change_dummy, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_long)</span>
-<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>cols <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Contribution_plus"</span>, <span class="st">"Contribution_minus"</span>)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>df_long[cols] <span class="ot">&lt;-</span> <span class="fu">lapply</span>(df_long[cols], <span class="cf">function</span>(x) <span class="fu">log</span>(x <span class="sc">+</span> <span class="dv">1</span>))</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>full_logit_log <span class="ot">&lt;-</span> <span class="fu">glm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> state <span class="sc">-</span> BioID <span class="sc">-</span> Vote_change_dummy, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_long)</span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -2573,11 +2659,11 @@ Number of Fisher Scoring iterations: 15</code></pre>
 <h3 class="anchored" data-anchor-id="with-geographical-year-fes">with geographical &amp; year FEs</h3>
 <p>use the package {bife} to use fixed effects in a logit model, since the glm function does not allow for fixed effects in a logit model, it is only for linear models.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>full_logit_geo <span class="ot">&lt;-</span> <span class="fu">bife</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">|</span> Geographical,</span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_long,</span>
-<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="st">"logit"</span></span>
-<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_geo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>full_logit_geo <span class="ot">&lt;-</span> <span class="fu">bife</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">|</span> Geographical,</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_long,</span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="st">"logit"</span></span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_geo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>binomial - logit link
 
@@ -2621,11 +2707,11 @@ Average individual fixed effect= 32.14</code></pre>
 <section id="with-state-year-fixed-effects-1" class="level3">
 <h3 class="anchored" data-anchor-id="with-state-year-fixed-effects-1">with state &amp; year fixed effects</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>full_logit_state <span class="ot">&lt;-</span> <span class="fu">bife</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> <span class="fu">factor</span>(Instance) <span class="sc">|</span> state,</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_long,</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="st">"logit"</span></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_state)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>full_logit_state <span class="ot">&lt;-</span> <span class="fu">bife</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> <span class="fu">factor</span>(Instance) <span class="sc">|</span> state,</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_long,</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="st">"logit"</span></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_state)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>binomial - logit link
 
@@ -2673,30 +2759,30 @@ Average individual fixed effect= 38.868</code></pre>
 <h1>Logit per Vote</h1>
 <p><strong>doesnt work yet, why?</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # Vote 4_2</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_vote_4_2)</span></span>
-<span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a><span class="co"># logit_4_2 &lt;- bife(gender ~ Contribution_3_minus + Contribution_4_minus + Contribution_4_plus | party,</span></span>
-<span id="cb56-4"><a href="#cb56-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     data = df_vote_4_2,</span></span>
-<span id="cb56-5"><a href="#cb56-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     model = "logit"</span></span>
-<span id="cb56-6"><a href="#cb56-6" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
-<span id="cb56-7"><a href="#cb56-7" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(logit_4_2)</span></span>
-<span id="cb56-8"><a href="#cb56-8" aria-hidden="true" tabindex="-1"></a><span class="co"># # + seniority_114 + gender + pro_env_dummy</span></span>
-<span id="cb56-9"><a href="#cb56-9" aria-hidden="true" tabindex="-1"></a><span class="co"># # Vote4_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + seniority_114 + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + anti_env_dummy</span></span>
-<span id="cb56-10"><a href="#cb56-10" aria-hidden="true" tabindex="-1"></a><span class="co"># # nominate_dim1 + nominate_dim2</span></span>
-<span id="cb56-11"><a href="#cb56-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb56-12"><a href="#cb56-12" aria-hidden="true" tabindex="-1"></a><span class="co"># # Vote 51_2</span></span>
-<span id="cb56-13"><a href="#cb56-13" aria-hidden="true" tabindex="-1"></a><span class="co"># logit_51_2 &lt;- bife(Vote51_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + Contribution_51_minus + Contribution_51_plus + seniority_1151 + party + gender + pro_env_dummy + anti_env_dummy | state,</span></span>
-<span id="cb56-14"><a href="#cb56-14" aria-hidden="true" tabindex="-1"></a><span class="co">#     data = df_vote_51_2,</span></span>
-<span id="cb56-15"><a href="#cb56-15" aria-hidden="true" tabindex="-1"></a><span class="co">#     model = "logit"</span></span>
-<span id="cb56-16"><a href="#cb56-16" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="co"># # Vote 4_2</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_vote_4_2)</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="co"># logit_4_2 &lt;- bife(gender ~ Contribution_3_minus + Contribution_4_minus + Contribution_4_plus | party,</span></span>
+<span id="cb64-4"><a href="#cb64-4" aria-hidden="true" tabindex="-1"></a><span class="co">#     data = df_vote_4_2,</span></span>
+<span id="cb64-5"><a href="#cb64-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     model = "logit"</span></span>
+<span id="cb64-6"><a href="#cb64-6" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb64-7"><a href="#cb64-7" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(logit_4_2)</span></span>
+<span id="cb64-8"><a href="#cb64-8" aria-hidden="true" tabindex="-1"></a><span class="co"># # + seniority_114 + gender + pro_env_dummy</span></span>
+<span id="cb64-9"><a href="#cb64-9" aria-hidden="true" tabindex="-1"></a><span class="co"># # Vote4_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + seniority_114 + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + anti_env_dummy</span></span>
+<span id="cb64-10"><a href="#cb64-10" aria-hidden="true" tabindex="-1"></a><span class="co"># # nominate_dim1 + nominate_dim2</span></span>
+<span id="cb64-11"><a href="#cb64-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb64-12"><a href="#cb64-12" aria-hidden="true" tabindex="-1"></a><span class="co"># # Vote 51_2</span></span>
+<span id="cb64-13"><a href="#cb64-13" aria-hidden="true" tabindex="-1"></a><span class="co"># logit_51_2 &lt;- bife(Vote51_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + Contribution_51_minus + Contribution_51_plus + seniority_1151 + party + gender + pro_env_dummy + anti_env_dummy | state,</span></span>
+<span id="cb64-14"><a href="#cb64-14" aria-hidden="true" tabindex="-1"></a><span class="co">#     data = df_vote_51_2,</span></span>
+<span id="cb64-15"><a href="#cb64-15" aria-hidden="true" tabindex="-1"></a><span class="co">#     model = "logit"</span></span>
+<span id="cb64-16"><a href="#cb64-16" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>need to remove dw-nominate scores, since they create a glm.fit error - too accurate 0 or 1 values.</p>
 <p>need to remove anti_env_dummy and district because of singularities, since all have received anti_env contributions, so the coefficient is not defined.</p>
 <section id="individual-and-year-fixed-effects" class="level3">
 <h3 class="anchored" data-anchor-id="individual-and-year-fixed-effects">individual and year fixed effects</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>logit_ind_fe <span class="ot">&lt;-</span> <span class="fu">bife</span>(Vote <span class="sc">~</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> Dmajority <span class="sc">|</span> BioID, <span class="at">data =</span> df_long, <span class="at">model =</span> <span class="st">"logit"</span>)</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_ind_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>logit_ind_fe <span class="ot">&lt;-</span> <span class="fu">bife</span>(Vote <span class="sc">~</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> Dmajority <span class="sc">|</span> BioID, <span class="at">data =</span> df_long, <span class="at">model =</span> <span class="st">"logit"</span>)</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_ind_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>binomial - logit link
 
@@ -2726,14 +2812,14 @@ Average individual fixed effect= 0.003</code></pre>
 <section id="all-representatives-who-did-not-change-their-opinion" class="level2">
 <h2 class="anchored" data-anchor-id="all-representatives-who-did-not-change-their-opinion">all representatives who did not change their opinion</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># missmap(df_no_change, main = "Missing values vs observed")</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="co"># # all_votes_minus ~ . - all_votes_plus, data = df_no_change)</span></span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a><span class="co"># logit &lt;- glm(all_votes_minus ~ . - all_votes_plus, family = binomial(link = "logit"), data = df_no_change)</span></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(logit)</span></span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a><span class="co"># probit &lt;- glm(all_votes_minus ~ . - all_votes_plus, family = binomial(link = "probit"), data = df_no_change)</span></span>
-<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(probit)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># missmap(df_no_change, main = "Missing values vs observed")</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co"># # all_votes_minus ~ . - all_votes_plus, data = df_no_change)</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># logit &lt;- glm(all_votes_minus ~ . - all_votes_plus, family = binomial(link = "logit"), data = df_no_change)</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(logit)</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a><span class="co"># probit &lt;- glm(all_votes_minus ~ . - all_votes_plus, family = binomial(link = "probit"), data = df_no_change)</span></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(probit)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Here Probit better than Logit, Akaike lower, so Probit is more parsimonious.</p>
 <p>Sessionized Models:</p>
