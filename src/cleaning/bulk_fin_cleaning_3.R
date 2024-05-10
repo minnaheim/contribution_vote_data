@@ -37,7 +37,7 @@ contribs16_2 <- determine_industry(contribs16_2)
 contribs16 <- determine_industry(contribs16)
 contribs14 <- determine_industry(contribs14)
 contribs12 <- determine_industry(contribs12)
-# view(contribs12)
+view(contribs12)
 
 
 contribs12_summarized <- summarise_contribs(contribs12)

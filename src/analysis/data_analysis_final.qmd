@@ -53,9 +53,6 @@ The reason for using a LPM for this analysis despite popular opinion in academa 
 
 <!-- recheck whether seniority ist aussagekräftig..? -->
 
-##
-
-
 ## with control variables 
 
 This is the most basic model, which includes all representatives (who can be associated with the R or D party, not I or Libertarian) in panel and who participated in at least 2 votes (to be able to track changes in voting behaviour). This means the dataset encompasses 574 (?) Representatives.
@@ -65,17 +62,17 @@ This is the most basic model, which includes all representatives (who can be ass
 df_long <- df_long %>% select(-c(GovtrackID, opensecrets_id, first_name, last_name, name, Vote_change_dummy))
 view(df_long)
 ## with control variables & no contrib, only dummy
-full_ols_dummy <- lm(Vote ~ . - state - BioID - Contribution_minus - Contribution_plus, data = df_long)
+full_ols_dummy <- lm(Vote ~ . - state - BioID - Contribution_minus - Contribution_plus - Vote_change, data = df_long)
 summary(full_ols_dummy)
 
 ## with control variables and contribs
-full_ols <- lm(Vote ~ . - state - BioID, data = df_long)
+full_ols <- lm(Vote ~ . - state - BioID - Vote_change, data = df_long)
 summary(full_ols)
 
 
 # same thing again with log transformed contributions
 df_long_log <- df_long_log %>% select(-c(GovtrackID, opensecrets_id, first_name, last_name, name))
-full_ols_log <- lm(Vote ~ . - state - BioID - nominate_dim1 - nominate_dim2, data = df_long_log)
+full_ols_log <- lm(Vote ~ . - state - BioID - nominate_dim1 - nominate_dim2 - Vote_change, data = df_long_log)
 summary(full_ols_log)
 
 ```
@@ -83,7 +80,6 @@ summary(full_ols_log)
 Why such high adjusted R-squared, use corrtest to see if multicollinearity is present.
 ```{r}
 # select only numeric variables
-str(df_long)
 df_long_num <- df_long %>%
     select_if(is.numeric) %>%
     filter(complete.cases(.))
@@ -117,14 +113,14 @@ The reason for transforming the contribution variables is to account for differe
 ```{r}
 df_long_D <- df_long %>%
     filter(party == "D") %>%
-    select(-c(state, party, BioID))
+    select(-c(state, party, BioID, Vote_change))
 
 full_ols_D <- lm(Vote ~ ., data = df_long_D)
 summary(full_ols_D)
 
 df_long_R <- df_long %>%
     filter(party == "R") %>%
-    select(-c(state, party, BioID))
+    select(-c(state, party, BioID, Vote_change))
 
 full_ols_R <- lm(Vote ~ ., data = df_long_R)
 summary(full_ols_R)
@@ -137,6 +133,13 @@ table(df_long_R$anti_env_dummy)
 ```
 
 Since only 96 instances of non-anti environmental contributions exist, this means that only 96/6 = 16 representatives never received contributions from anti environmental groups. hence why there are probably NAs for this variable.
+
+## with party & year fixed effects
+
+```{r}
+ols_party <- lm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + as.factor(party) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
+summary(ols_party)
+```
 
 ## with state & year fixed effects 
 
@@ -160,15 +163,15 @@ for ols_geo_1 since I are being stricter than in the model before, since I am us
 
 ### once with state
 ```{r}
-ols_state_fe <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(state) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
+ols_state_fe <- lm(Vote ~ party + birthday + nominate_dim1 + nominate_dim2 + as.factor(state) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
 summary(ols_state_fe)
 
 # same thing again with plm
-ols_state_fe_plm <- plm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long, index = c("state", "Instance"), model = "within")
+ols_state_fe_plm <- plm(Vote ~ party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long, index = c("state", "Instance"), model = "within")
 summary(ols_state_fe_plm)
 
 # same thing again with log
-ols_state_fe_log <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(state) + as.factor(Instance) + seniority + Contribution_minus_log + Contribution_plus_log + gender + pro_env_dummy + anti_env_dummy, data = df_long_log)
+ols_state_fe_log <- lm(Vote ~ party + birthday + nominate_dim1 + nominate_dim2 + as.factor(state) + as.factor(Instance) + seniority + Contribution_minus_log + Contribution_plus_log + gender + pro_env_dummy + anti_env_dummy, data = df_long_log)
 summary(ols_state_fe_log)
 ```
 
@@ -188,12 +191,12 @@ here, the model is getting stricter than before, since I am not only fixing for 
 
 ## with individual & year fixed effects
 ```{r}
-ols_ind_fe <- lm(Vote ~ as.factor(Instance) + as.factor(BioID) + seniority + pro_env_dummy + anti_env_dummy, data = df_long)
+ols_ind_fe <- lm(Vote ~ nominate_dim1 + nominate_dim2 + as.factor(Instance) + as.factor(BioID) + seniority + pro_env_dummy + anti_env_dummy, data = df_long)
 summary(ols_ind_fe)
 # Contribution_minus + Contribution_plus
 
 # same thing again with plm
-ols_ind_fe_plm <- plm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + Dmajority, data = df_long, index = c("BioID", "Instance"), model = "within")
+ols_ind_fe_plm <- plm(Vote ~ nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + Dmajority, data = df_long, index = c("BioID", "Instance"), model = "within")
 summary(ols_ind_fe_plm)
 
 # same thing again with log

@@ -63,7 +63,8 @@ for (session_num in session_numbers) {
     file_path <- paste0("data/original/control_variables/H", session_num, "_members.csv")
     dataframes[[paste0("dw_", session_num)]] <- read_csv(file_path, show_col_types = FALSE) %>%
         filter(chamber == "House") %>%
-        select(c("bioguide_id", "nominate_dim1", "nominate_dim2"))
+        select(c("bioguide_id", "nominate_dim1", "nominate_dim2")) %>%
+        mutate(nominate_dim1 = abs(nominate_dim1), nominate_dim2 = abs(nominate_dim2))
 }
 view(dataframes$dw_113)
 view(dataframes$dw_114)
