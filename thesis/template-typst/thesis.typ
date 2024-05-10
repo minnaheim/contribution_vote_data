@@ -628,31 +628,14 @@ hypothesis 4 stipulated in @hypothesis, that contributions are time related.
   table(
     columns: 4,
     stroke: none,
-    table.header[*Vote Date*][*Cutoff Date*][*Cycle*][*Nr. of Contributions*],
-    [June 25th 2021],
-    [Dec 25th 2020],
-    [2022],
-    [4965],
-    [],
-    [],
-    [2020],
-    [34],
-    [June 20th 2019],
-    [Dec 19th 2018],
-    [2020],
-    [5191],
-    [],
-    [],
-    [2018],
-    [30],
-    [Sep 13th 2017],
-    [Feb 12th 2017],
-    [2018],
-    [7148],
-    [Jul 13th 2016],
-    [Jan 12th 2016],
-    [2018],
-    [1],
+    [*Vote Date*],[*Cutoff Date*],[*Cycle*],[*Nr. of Contributions*],
+    [June 25th 2021],[Dec 25th 2020],[2022],[4965],
+    [],[],[2020],[34],
+    [June 20th 2019],[Dec 19th 2018],[2020],[5191],
+    [],[],[2018],[30],
+    [Jul 18th, 2018],[Jan 17th 2018], [2018], [7749],
+    [Sep 13th 2017],[Feb 12th 2017],[2018],[7148],
+    [Jul 13th 2016],[Jan 12th 2016],[2018],[1],
     [],
     [],
     [2016],
@@ -766,27 +749,25 @@ included, since Independent and Libertarians are too few to be able to compare.
 
 In order to test the for the changes in voting behaviour due to campaign
 contributions, the model setup must allow for a dichotomous dependent variable,
-i.e. pro-environmental vote (1) or anti-enviornmental vote (0) and for
+i.e. pro-environmental vote (1) or anti-enviornmental vote (0) and for the
 non-negativity of contributions @stratmann-1991 @stratmann-2002 @chappell.
 
-Two types of models that come into question for these are the LPM and the Logit,
+Two types of models that come into question for these are the Linear Probability Model (LPM) and the Logit,
 which are both frequently used in economic literature, but both come with their
-up- and downsides. The first model used is the Linear Probability Model, which
+up- and downsides. The LPM
 is an ordinary least squared linear regression with binary dependent variables.
 The benefits of using a LPM to analyse the effect of campaign contributions on
 voting behaviour is the fact that the linear regression can be used to estimate
 the effects on the observed dependent variable, so coefficients are comparable
 over models and groups @mood. One downside, however, is that there is a
-possibilities for the predicted probability to be out of range, by being either
+possibility for the predicted probability to be out of range, by being either
 higher than 1 or lower than 0.
 
 In order to counter this, one can use the logistical regession or logit model,
 which also measures dichotomous dependent variables but the predicted
-probability will always stay within range of #range(2) \. Nevertheless,
-comparing models with various independent variables or significantly
-interpreting the results is challenging when using logistic regression, even
-more so when interpreting the results of a logistic regression, given that the
-distribution of the logistic regression is non-linear. Moreover, @mood explains
+probability will always stay within range of #range(2) \. Comparing models with various independent variables or significantly
+interpreting the results is challenging when using logistic regression since the
+distribution of the logistic regression is non-linear and thus changes in log-oods are not as intuitive to interpret as direct probabilities. Moreover, @mood explains
 that logistic effect measures can capture unobserved heterogeneity even in cases
 where there is no correlation between the omitted variables and the independent
 variables @Selling2023.
@@ -803,47 +784,14 @@ a Logit Model will be included as a robustness check.
 
 == Model specification
 
-In general the models go from most generous (including only control variables)
-to most strict, including fixed effects.// + confounding variables
-//   - argue why the important effects are included.
-//   - confounding effects -> needed for causal econometrics
-//   - determine through literature what needs to be included:
 
-*variables we control for:*
-- party
-- legislator fixed effects (aka)
-- state (geoographical area) ?
-- district (for robustness)
-- age of legislators
-- party which had majority during session @McAlexander2020 p.47 @stratmann-2002
-- the LCV data include a variable indicating the issue the bill relates to, so
-  that we can control for cross-issue variation that may drive the results.
-  @McAlexander2020 p.48 -> all the same for me? drilling...
-- DW-Nominates (dynamic weighted Nominates)
-  - DW Nominates are are a broadly applied measure of a representative’s policy
-    position in a multi-dimensional policy space that are computed based on
-    roll-call records @matter p.40
-  - @rosenthalpoole "It is widely acknowledged that DW-Nominate
-  scores are strong predictors of representatives’ voting behavior
-  - Data on DW-Nominate scores is provided by voteview.com.
-  - gives the propensity of each representative to vote yes/no given given their
-    first and second dimension DW-Nominate score values of the respective congress
-  - "Ideological positions are calculated using the DW-NOMINATE (Dynamic Weighted
-    NOMINAl Three-step Estimation). This procedure was developed by Poole and
-    Rosenthal in the 1980s and is a "scaling procedure", representing legislators on
-    a spatial map. In this sense, a spatial map is much like a road map--the
-    closeness of two legislators on the map shows how similar their voting records
-    are. Using this measure of distance, DW-NOMINATE is able to recover the "dimensions"
-    that inform congressional voting behavior. The primary dimension through most of
-    American history has been "liberal" vs. "conservative" (also referred to as "left"
-    vs. "right"). A second dimension picks up differences within the major political
-    parties over slavery, currency, nativism, civil rights, and lifestyle issues
-    during periods of American history." @voteview
-  - here how to do it in R ->
-    http://congressdata.joshuamccrain.com/visualization.html (create abs(), )
-- environmental catastrophy?
-- control for individual (how to include individual, if not ID, doesnt work well)
-- log transformation of contribution..
+Measuring the relationship between campaign contributions from pro and anti-environmental sources and environmental voting behaviour is difficult, since many other factors are at play to determine voting behaviour @Selling2023. Because of this, this paper will incude models which range from using the most generous conditions, such as using control variables and most strict, using individual fixed effects. 
+
+To control for confounding influence factors between a treatment and an outcome and approach a consistent causal interpretation @control,the following control variables are used: the legislator's party and whether their party had House Majority during that term @McAlexander2020 @stratmann-2002, these control variables are used since party is a good determinant for a legislator's ideological leaning, and whether their party has the majority determines the power which the group has over the house of representatives. 
+
+Using the birthyear and seniority, which is number of terms in house the representative served, are used to be able to control for the difference in age and experience which might distort the voting behaviour @stratmann-2002. By controlling for differences in geographical residence of the representatives, using state, geographical #footnote("the variable Geographical has the 50 US states grouped into four categories: Northwest (NW), South (SO), West (WE), Midwest (MW), according to the United States Census Bureau under https://www2.census.gov/geo/pdfs/reference/GARM/Ch6GARM.pd") and the district level we remove possible differences in voting behaviour attributed to the location of representatives. 
+
+Based on roll-call records, the DW-Nominates are a widely used indicator of a representative's policy opinion in a multidimensional policy space, which serve as a strong predictor of the voting decisions of representatives @rosenthalpoole @matter.  By including the absolute value of the first and second dimension of the DW-Nominate#footnote("accessible under https://voteview.com") as control variables, we control for differences in ideology that might explain voting behaviour. Regarding the rollcall votes, the six rollcall votes included do not all pertain to the same bills, but I make the assumption that they are all the same bill considering they all touch upon the same topic and institutions, see @rollcall, and thus I will not control for differences in bills.
 
 *which fixed effects used?*
 "By using fixed effects, we control for unobservable factors that are constant
@@ -857,6 +805,8 @@ confounding vars from statmann: @stratmann-2002 p.12-13
 - indicator for party majority in the house
 - percentage of last popular votes which members received
 - DW-Nominates absolute deviation from the party mean
+
+n this model the legislator indicators control for legislator specific effects, i.e. they control for omitted variables that are constant over time for each legislator @stratmann-2002
 
 - still use Logit/Probit for robustness...
 
