@@ -72,7 +72,7 @@ summary(full_ols)
 
 # same thing again with log transformed contributions
 df_long_log <- df_long_log %>% select(-c(GovtrackID, opensecrets_id, first_name, last_name, name))
-full_ols_log <- lm(Vote ~ . - state - BioID - nominate_dim1 - nominate_dim2 - Vote_change, data = df_long_log)
+full_ols_log <- lm(Vote ~ . - state - BioID - Vote_change, data = df_long_log)
 summary(full_ols_log)
 
 ```

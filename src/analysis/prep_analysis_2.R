@@ -11,6 +11,12 @@ df <- analysis_prep(df)
 # change vote to dummy vars
 df <- dummy_vote(df)
 
+# add abs value to nominates - cant be bothered to change the original source (rep_cleaning)
+df <- df %>% mutate(
+    nominate_dim1 = abs(nominate_dim1),
+    nominate_dim2 = abs(nominate_dim2)
+)
+
 
 # change birthdays to only include years, and group into decades
 # why does lubridate not work?
@@ -154,9 +160,6 @@ df_fe <- relocate(df_fe, "first_vote", .after = "vote_change_year")
 df_fe$vote_change_type <- as.numeric(df_fe$vote_change_type)
 df_fe <- df_fe %>% mutate(year = str_extract(vote_change_year, "(?<=-).*"))
 df_sub <- relocate(df_fe, "year", .after = vote_change_year)
-
-# apply add_vote_dummy function to get dummy for each vote change
-df_sub <- add_vote_dummy(df_sub)
 
 write.csv(df, "data/analysis/df.csv", row.names = FALSE)
 write.csv(df_long, "data/analysis/df_long.csv", row.names = FALSE)
