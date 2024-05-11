@@ -1,13 +1,14 @@
-#
-#
-#
-#
-#
-#
-#
-#
+---
+title: "Data Analysis of Campaign Contributions and Voting Behavior"
+format: pdf
+#   html:
+#     toc: true
+---
+
+```{r setup, include=FALSE}
 library(tidyverse)
 library(ggplot2)
+library(car)
 library(plm)
 library(fastDummies)
 library(Amelia)
@@ -20,23 +21,17 @@ install.packages("corrplot", repos = "https://stat.ethz.ch/CRAN/")
 library(corrplot)
 
 source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_prep_functions.R")
+
 df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
-df_no_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_no_change.csv")
-view(df_no_change)
 df_long <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_long.csv")
+df_no_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_no_change.csv")
 df_vote_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_change.csv")
-# df_vote_3 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_3.csv")
-# df_vote_4 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4.csv")
 df_vote_4_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4_2.csv")
-df_vote_51 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_51.csv")
 df_vote_51_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_51_2.csv")
-df_vote_52 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_52.csv")
 df_vote_52_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_52_2.csv")
-# df_vote_6 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_6.csv")
 df_vote_6_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_6_2.csv")
-# df_vote_7 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_7.csv")
 df_vote_7_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_7_2.csv")
-df_subsample <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_sub.csv")
+df_sum <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_sum.csv")
 state_makeup <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/state_makeup.csv")
 
 # add log transformed variables to dfs
@@ -44,25 +39,24 @@ df_long_log <- df_long %>%
     mutate(Contribution_plus_log = log(Contribution_plus + 1)) %>%
     mutate(Contribution_minus_log = log(Contribution_minus + 1)) %>%
     select(-c(Contribution_plus, Contribution_minus))
+```
 
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
+# LPM of all Representatives
+
+The reason for using a LPM for this analysis despite popular opinion in academa that the model is not always accurate (see Ch.5 in my paper), is that the LPM is ideal for binary outcomes, i.e. pro environmental or anti environmental vote.
+
+<!-- recheck whether seniority ist aussagekräftig..? -->
+
+## with control variables 
+
+This is the most basic model, which includes all representatives (who can be associated with the R or D party, not I or Libertarian) in panel and who participated in at least 2 votes (to be able to track changes in voting behaviour). This means the dataset encompasses 574 (?) Representatives.
+
+```{r}
 # remove ID type columns
 df_long <- df_long %>% select(-c(GovtrackID, opensecrets_id, first_name, last_name, name, Vote_change_dummy))
 view(df_long)
 ## with control variables & no contrib, only dummy
-full_ols_dummy <- lm(Vote ~ . - state - BioID - Contribution_minus - Contribution_plus - Vote_change, data = df_long)
+full_ols_dummy <- lm(Vote ~ . - state - BioID - Vote_change, data = df_long)
 summary(full_ols_dummy)
 
 ## with control variables and contribs
@@ -75,42 +69,50 @@ df_long_log <- df_long_log %>% select(-c(GovtrackID, opensecrets_id, first_name,
 full_ols_log <- lm(Vote ~ . - state - BioID - Vote_change, data = df_long_log)
 summary(full_ols_log)
 
-#
-#
-#
-#
+```
+
+Why such high adjusted R-squared, use corrtest to see if multicollinearity is present.
+```{r}
 # select only numeric variables
 df_long_num <- df_long %>%
     select_if(is.numeric) %>%
     filter(complete.cases(.))
-corrplot(cor(df_long_num))
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
+corrplot(cor(df_long_num), method = "number")
+```
+
+The ols regresses the pro and anti environmental contributions with the control variables used: 
+
+- party
+- district
+- birthday
+- state (alt. to Geographical)
+- Seniority (number of terms served prior to vote)
+- DW-Nominate Scores from the 1st and second dimensions
+- Geographical region (i.e. States categorised into regions (South, West, North-East and Midwest))
+- majority party in the house at the time of the vote.
+
+transforming the contribution variables logarithmically does not change the adjusted R-squared of the model by much. It also decreases the significance of the contribution coefficients, which is strange, given that the contribution variables are highly skewed and thus should be transformed logarithmically.
+
+### check for multicolinarity in model 
+
+```{r}
+vif(full_ols)
+```
+
+shows that multicolinearity is not of a real concern here, all VIF values are below 5, most of which between 1 and 1.25.
+
+```{r}
 df_long <- df_long %>% filter(complete.cases(Contribution_plus))
 skewness(df_long$Contribution_plus)
 
 df_long_log <- df_long_log %>% filter(complete.cases(Contribution_plus_log))
 skewness(df_long_log$Contribution_plus_log)
-#
-#
-#
-#
-#
-#
+```
+
+The reason for transforming the contribution variables is to account for differences in contributions which representatives might receive, i.e. AOC vs. Kevin McCarthy. 
+
+#### checking differences in party
+```{r}
 df_long_D <- df_long %>%
     filter(party == "D") %>%
     select(-c(state, party, BioID, Vote_change))
@@ -124,27 +126,27 @@ df_long_R <- df_long %>%
 
 full_ols_R <- lm(Vote ~ ., data = df_long_R)
 summary(full_ols_R)
-#
-#
-#
-#
-#
+```
+
+Not much difference in the coefficients between the two parties.
+Why NA in anti_env_dummy ? because all received contributions? lets see...
+```{r}
 table(df_long_R$anti_env_dummy)
-#
-#
-#
-#
-#
-#
-#
+```
+
+Since only 96 instances of non-anti environmental contributions exist, this means that only 96/6 = 16 representatives never received contributions from anti environmental groups. hence why there are probably NAs for this variable.
+
+## with party & year fixed effects
+
+```{r}
 ols_party <- lm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + as.factor(party) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
 summary(ols_party)
-#
-#
-#
-#
-#
-#
+```
+
+## with state & year fixed effects 
+
+### once with geographical 
+```{r}
 ols_geo <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(Geographical) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
 summary(ols_geo)
 
@@ -152,17 +154,17 @@ summary(ols_geo)
 ols_geo_log <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(Geographical) + as.factor(Instance) + seniority + Contribution_minus_log + Contribution_plus_log + gender + pro_env_dummy + anti_env_dummy, data = df_long_log)
 summary(ols_geo_log)
 
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
+```
+
+Explain the following in the paper:
+
+- why bill fixed effects (environmental occurances/perception may influence voting)
+- why state fixed effects (D-CA != D-TX or so. avg. rep from states different)
+
+for ols_geo_1 since I are being stricter than in the model before, since I am using fixed effects for the geographical region and the (year). This means that the model is more robust, but also more specific.
+
+### once with state
+```{r}
 ols_state_fe <- lm(Vote ~ party + birthday + nominate_dim1 + nominate_dim2 + as.factor(state) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
 summary(ols_state_fe)
 
@@ -173,27 +175,27 @@ summary(ols_state_fe_plm)
 # same thing again with log
 ols_state_fe_log <- lm(Vote ~ party + birthday + nominate_dim1 + nominate_dim2 + as.factor(state) + as.factor(Instance) + seniority + Contribution_minus_log + Contribution_plus_log + gender + pro_env_dummy + anti_env_dummy, data = df_long_log)
 summary(ols_state_fe_log)
-#
-#
-#
-#
-#
+```
+
+using state instead of geographical region means that we can more accurately determine the differences in voting behavior between representatives from different states, not just regions. this makes sense, when we look at the states which are significant in the model, i.e. NY, SC, NJ, NH, FL, CT, AZ, they are not all from the same region, manye from the north east and the south and west, but no real patterns...
+
+```{r}
 kable(head(state_makeup), format = "html")
 # mean(state_makeup$Number)
 # boxplot(state_makeup$Number)
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-ols_ind_fe <- lm(Vote ~ nominate_dim1 + nominate_dim2 + as.factor(Instance) + as.factor(BioID) + seniority + pro_env_dummy + anti_env_dummy, data = df_long)
+```
+
+Discuss... maybe makeup of states also important for the coefficient. If you have only
+
+The average amount of representatives for each state is 8.7 , with the highest number of representatives from California (52) and the lowest from Wyoming, Vermont, Alaska, etc. (1).
+
+here, the model is getting stricter than before, since I am not only fixing for state and year (instance) but also for party, also i cannot include the dummy variables for anti and pro environmental contributions
+
+## with individual & year fixed effects
+```{r}
+ols_ind_fe <- lm(Vote ~ nominate_dim1 + nominate_dim2 + as.factor(Instance) + as.factor(BioID) + seniority + Contribution_minus + Contribution_plus, data = df_long)
 summary(ols_ind_fe)
-# Contribution_minus + Contribution_plus
+
 
 # same thing again with plm
 ols_ind_fe_plm <- plm(Vote ~ nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + Dmajority, data = df_long, index = c("BioID", "Instance"), model = "within")
@@ -203,46 +205,49 @@ summary(ols_ind_fe_plm)
 ols_ind_fe_log <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(Instance) + as.factor(BioID) + seniority + Contribution_minus_log + Contribution_plus_log + Dmajority, data = df_long_log)
 summary(ols_ind_fe_log)
 
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
+```
+
+Using actual contributions instead of pro_env and anti_env dummy makes the coefficients more significant!
+
+
+The difference between the ols before and this ols is the individual fixed effects instead of state effects. so we are fixing for individiuals so we dont include person specific changes in the analysis and for the same person can see how their voting changes. 
+
+this is very useful since this way we account for changes that previously we could not account for, since they are either immesurable or just endogenous in this analysis that change the amount of contributions representatives receive, such as:
+
+- difference in eloquence between representatives
+- difference in connections to special interest groups
+- difference in the amount of time spent on the campaign trail
+- difference in the amount of time spent in office
+- professional history with contributions (i.e. previous profession, previous income, etc. before history in office)
+- high explanation of the model (multiple R^2 = 0.96) 
+
+Downsides of this model are however that the model is incredibly strict, so:
+
+- cannot include 2 FEs that are strict, i.e. state (50 states) and individuals (about 570 individuals)
+- cannot include time fixed effects, since the model is already too strict
+- not much significance
+
+Interpretation: 
+
+We are fixing for individuals to determine whether changes in contributions can be associated with changes in voting behavior for each representative. Only few representatives are significant, i.e. 
+V000133, S000051, P00025, G000578... out of these 4 representatives with significant coefficients, two changed their voting behavior once. 
+
+- Marshall (Mark) Sanfordfrom anti -> pro environment (which means that when you hold constant for this reperesentative, then a change in from anti to pro env means 0.49 units more likely to change their vote?)
+-  Mark Gaetz from anti to pro envrionmental vote. (for Gaetz, this is 0.2880450 units more likely to change their vote from anti to pro environmental vote)
+
+# LPM per Vote
+
+This LPM is more specific since it only includes the each seperate vote, but all contributions of the votes leading up to it. E.g. In ols_4_2 I include not only the vote 4, but also the contributions of the vote 3 which is on the same topic. this way it is easier to analyse whether the contributions from the previous relevant votes have an effect on the voting behavior of the representatives. -> **remove recency bias** attached to the 6mo prior vote
+
+Does this change the coefficients? Since in the previous model we were fixing for instances, this shouldnt change anything, we could not see how the coefficients change over time.
+Why use this format - if we could fix year in model before ?
+
+We do this because we want to see how prior contributions in similar votes could affect the voting.
+### vote and all contributions leading up to the vote with state FEs
+
+can fix for states here, but not for instances, since this is already just that, and not for year and individuals, since these are all the same too.
+
+```{r}
 # Vote 4_2
 view(df_vote_4_2)
 ols_4_2 <- plm(Vote4_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + seniority_114 + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + anti_env_dummy, data = df_vote_4_2, index = c("state", "party"), model = "within")
@@ -264,138 +269,138 @@ summary(ols_6_2)
 view(df_vote_7_2)
 ols_7_2 <- plm(Vote7_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + Contribution_51_minus + Contribution_51_plus + Contribution_52_minus + Contribution_52_plus + Contribution_6_minus + Contribution_6_plus + Contribution_7_minus + Contribution_7_plus + seniority_117 + party + gender + pro_env_dummy + anti_env_dummy + nominate_dim1 + nominate_dim2, data = df_vote_7_2, index = c("state"), model = "within")
 summary(ols_7_2)
-#
-#
-#
-#
-#
-#
-#
+```
+
+Why dont the anti_env_dummy coefficients show up? Are they singularities?
+
+# LPM with consistent Representatives 
+## with control variables
+```{r}
 df_long_no_change <- df_long %>%
     filter(Vote_change == 0) %>%
     select(-Vote_change)
 
 ols_no_change <- lm(Vote ~ . - state - BioID, data = df_long_no_change)
 summary(ols_no_change)
-#
-#
-#
-#
+```
+
+## with state & year FE
+```{r}
 ols_no_change_2 <- lm(Vote ~ as.factor(Geographical) + as.factor(Instance) + district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long_no_change)
 summary(ols_no_change_2)
-#
-#
-#
-#
-#
-#
+```
+
+Here, using geographical regions instead of state fixed effects creates more significant results. Also, need to remove Majority because too specific?
+
+## with individual FEs
+```{r}
 ols_no_change_3 <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + Instance + as.factor(BioID) + seniority + Contribution_minus + Contribution_plus + Dmajority, data = df_long_no_change)
 summary(ols_no_change_3)
-#
-#
-#
-#
-#
-#
-#
-#
-#
+```
+
+For this, since fixing individuals is so specific, we need to remove the anti and pro env. dummy, since they are already included in the individual fixed effects. (if a rep receives contribution once, this is automatically 1, i.e. never changes for an individual).
+
+# LPM with vote changing Representatives
+
+Here is what this dataframe looks like 
+
+```{r}
 kable(df_vote_change[1:10, ], format = "html")
-#
-#
-#
-#
-#
-#
-#
+```
+
+## with control variables
+
+Using the same model as above with the same specifications (control varaibels, then generous FE (state, year), then strict FE (individuals)) but using only those representatives that changed their voting behavior over time.
+
+```{r}
 df_vote_change <- df_vote_change %>% select(-c(GovtrackID, opensecrets_id, Vote_change_dummy, Vote_change, first_name, last_name, name))
 view(df_vote_change)
 ols_change <- lm(Vote ~ . - state - anti_env_dummy - BioID, data = df_vote_change)
 summary(ols_change)
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
+```
+
+Compared to before we see multiple things, on the one hand the Adjusted R^2 is lower than in the other models where it averages to about 0.91, here only 0.25. This is because the model is more specific, i.e. only includes those representatives who changed their voting behavior, which are only 23 in total our ot 574 (?), whereas there are 31 changes in votes to be seen in total.
+
+So, we need to take all these results with caution, since 23 out of 547 (?) is not an incredibly small sample size, and thus makes the model less robust.
+
+Here, we need to remove the anti_env_dummy and district because of singularities, because all have received anti_env contributions, so the coefficient is not defined. -> remove district too, too few obs.
+
+## with geography & year FEs
+```{r}
 ols_change_fe <- lm(Vote ~ as.factor(Geographical) + as.factor(Instance) + party + birthday + district + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy, data = df_vote_change)
 summary(ols_change_fe)
-#
-#
-#
-#
-#
-#
+```
+
+Here remove majority because it is a singularity...
+
+### checking differences in party
+```{r}
 ols_change_D <- lm(Vote ~ . - party - Geographical - anti_env_dummy - BioID, data = df_vote_change)
 summary(ols_change_D)
 ols_change_R <- lm(Vote ~ . - party - Geographical - anti_env_dummy - BioID, data = df_vote_change)
 summary(ols_change_R)
-#
-#
-#
-#
-#
-#
-#
-#
+```
+
+We remove anti_env_dummy because of singularities, since all representatives have received contributions from anti environmental groups. 
+
+Already here we can see that the coefficients are less significant on average with only instance being significant, with 0.01 units more likely to change their vote from anti to pro environmental vote, further during the years. Moreover, we see that for a change in vote from anti-environmental to pro-environmental 
+
+## with individual & year FEs
+```{r}
 view(df_vote_change)
 ols_change_ind_fe <- lm(Vote ~ as.factor(BioID) + as.factor(Instance) + Contribution_minus + Contribution_plus, data = df_vote_change)
 summary(ols_change_ind_fe)
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
+```
+
+To make this work, we have to remove the control variables from before, i.e. party, district, Geographical and state, gender, nominate_dim1&2,  and pro- and anti_env_dummy and birthday since these are already included in the individual fixed effects, i.e. these dont chance over time in an individual. Also, seniority and Dmajority are just NAs since this sample size is too small.
+
+What is interesting to see here, is the fact that instances are highly significant. Meaning that for a change in vote, the instance of change is most likely with 0.74 units for vote7 and then 0.72 units for vote 6, and then 53. This is interesting since it shows that the instance of change is more likely to happen in the later votes.
+
+
+# Logit of all Representatives
+
+## all representatives
+### with control variables
+```{r}
 full_logit <- glm(Vote ~ . - state - BioID, family = binomial(link = "logit"), data = df_long)
 summary(full_logit)
-#
-#
-#
-#
+```
+
+### with log transformed contributions
+```{r}
 cols <- c("Contribution_plus", "Contribution_minus")
 df_long[cols] <- lapply(df_long[cols], function(x) log(x + 1))
 
 full_logit_log <- glm(Vote ~ . - state - BioID, family = binomial(link = "logit"), data = df_long)
 summary(full_logit_log)
-#
-#
-#
-#
-#
-#
-#
+```
+
+### with geographical & year FEs
+
+use the package {bife} to use fixed effects in a logit model, since the glm function does not allow for fixed effects in a logit model, it is only for linear models.
+
+```{r}
 full_logit_geo <- bife(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy + as.factor(Instance) | Geographical,
     data = df_long,
     model = "logit"
 )
 summary(full_logit_geo)
-#
-#
-#
-#
-#
+```
+
+### with state & year fixed effects
+
+```{r}
 full_logit_state <- bife(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy + factor(Instance) | state,
     data = df_long,
     model = "logit"
 )
 summary(full_logit_state)
-#
-#
-#
-#
-#
-#
+```
+
+
+# Logit per Vote 
+**doesnt work yet, why?**
+```{r}
 # # Vote 4_2
 # view(df_vote_4_2)
 # logit_4_2 <- bife(gender ~ Contribution_3_minus + Contribution_4_minus + Contribution_4_plus | party,
@@ -412,21 +417,21 @@ summary(full_logit_state)
 #     data = df_vote_51_2,
 #     model = "logit"
 # )
-#
-#
-#
-#
-#
-#
-#
-#
+```
+
+need to remove dw-nominate scores, since they create a glm.fit error - too accurate 0 or 1 values.
+
+need to remove anti_env_dummy and district because of singularities, since all have received anti_env contributions, so the coefficient is not defined.
+
+### individual and year fixed effects
+```{r}
 logit_ind_fe <- bife(Vote ~ Contribution_minus + Contribution_plus + Dmajority | BioID, data = df_long, model = "logit")
 summary(logit_ind_fe)
-#
-#
-#
-#
-#
+```
+
+## all representatives who did not change their opinion
+
+```{r}
 # missmap(df_no_change, main = "Missing values vs observed")
 # # all_votes_minus ~ . - all_votes_plus, data = df_no_change)
 
@@ -436,12 +441,12 @@ summary(logit_ind_fe)
 # probit <- glm(all_votes_minus ~ . - all_votes_plus, family = binomial(link = "probit"), data = df_no_change)
 # summary(probit)
 
-#
-#
-#
-#
-#
-#
+```
+
+Here Probit better than Logit, Akaike lower, so Probit is more parsimonious.
+
+Sessionized Models:
+```{r, include = FALSE}
 # # Vote 3 Logit
 # ols_3 <- glm(Vote3_minus ~ . - state - BioID - Vote3_plus - Vote3 - Vote_change_dummy, family = binomial(link = "logit"), data = df_vote_3)
 # summary(ols_3)
@@ -465,9 +470,6 @@ summary(logit_ind_fe)
 # # Vote 7_2 Probit
 # ols_7_2 <- glm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy - Vote7_NA, family = binomial(link = "probit"), data = df_vote_7_2)
 # summary(ols_7_2)
-#
-#
-#
-#
-#
-#
+```
+
+Sessionizing not useful, as the p values are super high. -->
