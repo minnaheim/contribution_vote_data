@@ -34,6 +34,50 @@ dummy_vote <- function(df) {
     return(df)
 }
 
+# function which checks for each row in df if the contribution_minus column > 0 then set anti_env_dummy to 1,
+# if contribution_plus > 0 then set pro_env_dummy to 1 in dplyr
+add_contrib_dummy <- function(df) {
+    df$anti_env_dummy <- rep(0, nrow(df))
+    df$pro_env_dummy <- rep(0, nrow(df))
+
+    for (i in 1:nrow(df)) {
+        # Check Contribution_minus condition
+        if (!is.na(df$Contribution_minus[i]) && df$Contribution_minus[i] > 0) {
+            # print(df$Contribution_minus[i])
+            df$anti_env_dummy[i] <- 1
+        }
+        # Check Contribution_plus condition
+        if (!is.na(df$Contribution_plus[i]) && df$Contribution_plus[i] > 0) {
+            # print(df$Contribution_plus[i])
+            df$pro_env_dummy[i] <- 1
+        }
+    }
+    return(df)
+}
+
+
+add_contrib_dummy_per_session <- function(df, current_vote) {
+    df$anti_env_dummy <- rep(0, nrow(df))
+    df$pro_env_dummy <- rep(0, nrow(df))
+
+    for (i in 1:nrow(df)) {
+        # Construct column names dynamically
+        minus_col_name <- glue("Contribution_{current_vote}_minus")
+        plus_col_name <- glue("Contribution_{current_vote}_plus")
+
+        # Check Contribution_minus condition
+        if (!is.na(df[[minus_col_name]][i]) && df[[minus_col_name]][i] > 0) {
+            df$anti_env_dummy[i] <- 1
+        }
+        # Check Contribution_plus condition
+        if (!is.na(df[[plus_col_name]][i]) && df[[plus_col_name]][i] > 0) {
+            df$pro_env_dummy[i] <- 1
+        }
+    }
+    return(df)
+}
+
+
 # DF WHERE CONTRIBUTION COLUMNS ARE MUTATED TOGETHER (summarised)
 summarise_contributions <- function(df) {
     df_sum <- df %>%
@@ -57,22 +101,6 @@ summarise_contributions <- function(df) {
     ))
 
     return(df_sum)
-}
-
-# function that filters the data based on the session
-filter_session_data_2 <- function(df, vote) {
-    selected_cols <- c(
-        "party", "Vote_change_dummy",
-        glue("Vote{vote}"), glue("Contribution_{vote}_minus"), glue("Contribution_{vote}_plus"),
-        "state", "BioID", glue("seniority_11{vote}"), "birthday",
-        "Geographical", "nominate_dim1", "nominate_dim2", "gender", "pro_env_dummy", "anti_env_dummy"
-    )
-    df <- df[, c(selected_cols)]
-    df <- df %>% filter(!is.na(glue("Vote{vote}")))
-    df <- dummy_cols(df, select_columns = glue("Vote{vote}"))
-    df <- df %>% rename_with(~ glue("Vote{vote}_plus"), .cols = glue("Vote{vote}_1"))
-    df <- df %>% rename_with(~ glue("Vote{vote}_minus"), .cols = glue("Vote{vote}_0"))
-    return(df)
 }
 
 # function that filters the data based on the session
@@ -106,6 +134,11 @@ filter_all_pre_session_data <- function(df, vote) {
     return(df)
 }
 
+process_session_data <- function(df, vote) {
+    df <- add_contrib_dummy_per_session(df, vote)
+    df <- filter_all_pre_session_data(df, vote)
+    return(df)
+}
 # DF for SUBSAMPLE ANALYSIS
 vote_columns <- c("Vote3", "Vote4", "Vote51", "Vote52", "Vote6", "Vote7")
 
@@ -219,10 +252,10 @@ aggregate_pivot_longer_function <- function(df) {
     # Define columns to keep as identifiers
     id_vars <- c(
         "BioID", "GovtrackID", "opensecrets_id", "first_name", "last_name", "state",
-        "district", "party", "name", "birthday", "gender", "pro_env_dummy",
-        "anti_env_dummy", "Geographical", "nominate_dim1", "nominate_dim2",
+        "district", "party", "name", "birthday", "gender", "Geographical", "nominate_dim1", "nominate_dim2",
         "Vote_change_dummy", "Vote_change"
         # ,"vote_change_to_pro", "vote_change_to_anti"
+        # "pro_env_dummy", "anti_env_dummy"
     )
 
     # Perform a single pivot_longer operation to reshape the data

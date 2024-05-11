@@ -54,28 +54,6 @@ df <- add_state_category(df)
 df <- df %>% dplyr::filter(!is.na(df$Geographical))
 
 
-# dummy variable for pro and anti environmental contributions, i.e. has the person ever
-# received any pro or anti environmental contributions?
-df$pro_env_dummy <- "0"
-df$anti_env_dummy <- "0"
-
-for (i in 1:nrow(df)) {
-    if (any(df[i, c(
-        "Contribution_3_plus", "Contribution_4_plus", "Contribution_51_plus",
-        "Contribution_52_plus", "Contribution_6_plus", "Contribution_7_plus"
-    )] > 1, na.rm = TRUE)) {
-        df$pro_env_dummy[i] <- 1
-    }
-    # Check if any contributions minus are greater than 1
-    if (any(df[i, c(
-        "Contribution_3_minus", "Contribution_4_minus", "Contribution_51_minus",
-        "Contribution_52_minus", "Contribution_6_minus", "Contribution_7_minus"
-    )] > 1, na.rm = TRUE)) {
-        df$anti_env_dummy[i] <- 1
-    }
-}
-# view(df)
-
 # before pivoting df, i will create a copy which only includes vote changers & then apply the pivot_longer function
 df_vote_change <- df %>% filter(Vote_change_dummy == 1)
 df_vote_change <- create_vote_change_dataframe(df_vote_change)
@@ -99,8 +77,13 @@ df_vote_change <- df_vote_change %>%
 # pivot table longer
 df_long <- aggregate_pivot_longer_function(df)
 df_vote_change <- aggregate_pivot_longer_function(df_vote_change)
-view(df_vote_change)
+# view(df_vote_change)
 # view(df_long)
+
+# add dummy for pro and anti environmental contributions per vote.
+df_long <- add_contrib_dummy(df_long)
+df_vote_change <- add_contrib_dummy(df_vote_change)
+
 
 # duplicate seniority_115 and rename seniority cols
 df$seniority_1152 <- df$seniority_115
@@ -110,20 +93,12 @@ df <- df %>% relocate("seniority_1151", .after = "seniority_114")
 df <- df %>% relocate("seniority_1152", .after = "seniority_1151")
 # view(df)
 
-# filter for each session
-df_vote_3 <- filter_session_data_2(df, 3)
-df_vote_4 <- filter_session_data_2(df, 4)
-df_vote_51 <- filter_session_data_2(df, 51)
-df_vote_52 <- filter_session_data_2(df, 52)
-df_vote_6 <- filter_session_data_2(df, 6)
-df_vote_7 <- filter_session_data_2(df, 7)
-
 # get all contributions leading up to the vote, to see if votes before have impact for next relevant vote
-df_vote_4_2 <- filter_all_pre_session_data(df, 4)
-df_vote_51_2 <- filter_all_pre_session_data(df, 51)
-df_vote_52_2 <- filter_all_pre_session_data(df, 52)
-df_vote_6_2 <- filter_all_pre_session_data(df, 6)
-df_vote_7_2 <- filter_all_pre_session_data(df, 7)
+df_vote_4_2 <- process_session_data(df, 4)
+df_vote_51_2 <- process_session_data(df, 51)
+df_vote_52_2 <- process_session_data(df, 52)
+df_vote_6_2 <- process_session_data(df, 6)
+df_vote_7_2 <- process_session_data(df, 7)
 
 # get all reps who voted only pos. or only neg. and regress with all contributions
 df_no_change <- df %>% filter(Vote_change_dummy == 0)
@@ -165,15 +140,9 @@ write.csv(df, "data/analysis/df.csv", row.names = FALSE)
 write.csv(df_long, "data/analysis/df_long.csv", row.names = FALSE)
 write.csv(df_vote_change, "data/analysis/df_vote_change.csv", row.names = FALSE)
 write.csv(df_no_change, "data/analysis/df_no_change.csv", row.names = FALSE)
-write.csv(df_vote_3, "data/analysis/df_vote_3.csv", row.names = FALSE)
-write.csv(df_vote_4, "data/analysis/df_vote_4.csv", row.names = FALSE)
 write.csv(df_vote_4_2, "data/analysis/df_vote_4_2.csv", row.names = FALSE)
 write.csv(df_vote_51_2, "data/analysis/df_vote_51_2.csv", row.names = FALSE)
 write.csv(df_vote_52_2, "data/analysis/df_vote_52_2.csv", row.names = FALSE)
 write.csv(df_vote_6_2, "data/analysis/df_vote_6_2.csv", row.names = FALSE)
 write.csv(df_vote_7_2, "data/analysis/df_vote_7_2.csv", row.names = FALSE)
-write.csv(df_vote_51, "data/analysis/df_vote_51.csv", row.names = FALSE)
-write.csv(df_vote_52, "data/analysis/df_vote_52.csv", row.names = FALSE)
-write.csv(df_vote_6, "data/analysis/df_vote_6.csv", row.names = FALSE)
-write.csv(df_vote_7, "data/analysis/df_vote_7.csv", row.names = FALSE)
 write.csv(df_sub, "data/analysis/df_sub.csv", row.names = FALSE)
