@@ -111,6 +111,22 @@ skewness(df_long_log$Contribution_plus_log)
 
 The reason for transforming the contribution variables is to account for differences in contributions which representatives might receive, i.e. AOC vs. Kevin McCarthy. 
 
+### check for contribution ~ independent variable relationship
+```{r}
+contrib_plus <- lm(Contribution_plus ~ . - BioID - Geographical - pro_env_dummy, data = df_long)
+summary(contrib_plus)
+
+contrib_plus_dummy <- lm(pro_env_dummy ~ . - BioID - Geographical - Contribution_plus, data = df_long)
+summary(contrib_plus_dummy)
+
+contrib_minus <- lm(Contribution_minus ~ . - BioID - Geographical - anti_env_dummy, data = df_long)
+summary(contrib_minus)
+
+contrib_minus_dummy <- lm(anti_env_dummy ~ . - BioID - Geographical - Contribution_minus, data = df_long)
+summary(contrib_minus_dummy)
+
+```
+
 #### checking differences in party
 ```{r}
 df_long_D <- df_long %>%
@@ -284,6 +300,12 @@ ols_no_change <- lm(Vote ~ . - state - BioID, data = df_long_no_change)
 summary(ols_no_change)
 ```
 
+## party & year FE
+```{r}
+ols_party_no_change <- lm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + as.factor(party) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
+summary(ols_party_no_change)
+```
+
 ## with state & year FE
 ```{r}
 ols_no_change_2 <- lm(Vote ~ as.factor(Geographical) + as.factor(Instance) + district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long_no_change)
@@ -294,7 +316,7 @@ Here, using geographical regions instead of state fixed effects creates more sig
 
 ## with individual FEs
 ```{r}
-ols_no_change_3 <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + Instance + as.factor(BioID) + seniority + Contribution_minus + Contribution_plus + Dmajority, data = df_long_no_change)
+ols_no_change_3 <- lm(Vote ~ nominate_dim1 + nominate_dim2 + as.factor(Instance) + as.factor(BioID) + seniority + Contribution_minus + Contribution_plus + Dmajority, data = df_long_no_change)
 summary(ols_no_change_3)
 ```
 
@@ -333,6 +355,20 @@ summary(ols_change_fe)
 
 Here remove majority because it is a singularity...
 
+## with party & year FEs
+
+```{r}
+ols_party_change <- lm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + as.factor(party) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
+
+summary(ols_party_change)
+```
+
+## with state & year FEs
+```{r}
+ols_change_state <- lm(Vote ~ as.factor(state) + as.factor(Instance) + party + birthday + district + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy, data = df_vote_change)
+
+```
+
 ### checking differences in party
 ```{r}
 ols_change_D <- lm(Vote ~ . - party - Geographical - anti_env_dummy - BioID, data = df_vote_change)
@@ -347,7 +383,7 @@ Already here we can see that the coefficients are less significant on average wi
 
 ## with individual & year FEs
 ```{r}
-view(df_vote_change)
+# view(df_vote_change)
 ols_change_ind_fe <- lm(Vote ~ as.factor(BioID) + as.factor(Instance) + Contribution_minus + Contribution_plus, data = df_vote_change)
 summary(ols_change_ind_fe)
 ```
@@ -425,7 +461,7 @@ need to remove anti_env_dummy and district because of singularities, since all h
 
 ### individual and year fixed effects
 ```{r}
-logit_ind_fe <- bife(Vote ~ Contribution_minus + Contribution_plus + Dmajority | BioID, data = df_long, model = "logit")
+logit_ind_fe <- bife(Vote ~ nominate_dim1 + nominate_dim2 + Contribution_minus + Contribution_plus | BioID, data = df_long, model = "logit")
 summary(logit_ind_fe)
 ```
 
