@@ -766,7 +766,7 @@ included, since Independent and Libertarians are too few to be able to compare.
 
 #pagebreak()
 
-= Models
+= Econometric Models
 
 In order to test the for the changes in voting behaviour due to campaign
 contributions, the model setup must allow for a dichotomous dependent variable,
@@ -842,6 +842,12 @@ all pertain to the same bills, but I make the assumption that they are all the
 same bill considering they all touch upon the same topic and institutions, see
 @rollcall, and thus I will not control for differences in bills @griers.
 
+// - potential OVB?
+// The problems stem from unobservables, or the fact that we can seldom include in
+// a model all variables that affect an outcome. Unobserved heterogeneity is the
+// variation in the dependent variable that is caused by variables that are not
+// observed (i.e. omitted variables) @mood
+
 By including control variables, we are able to fix certain factors that we can
 measure and assume have confounding effects on the predicted probability. Using
 two-way fixed effects (FE) @Imai-Kim-2019, however, we account for unobservable
@@ -882,7 +888,7 @@ representative over time.
 As mentioned in @model-spec, the most generous model is the linear probability
 model shown in @lpm.
 
-$ "Vote"#sub[i,t] = alpha + beta#sub[1t]"Contributions"#super[pro-env] + beta#sub[2t]"Contributions"#super[anti-env] \ + gamma#sub[i] + delta#sub[t] + X + epsilon $ <lpm>
+$ "Vote"#sub[i,t] = alpha + beta#sub[1t]"Contributions"#super[pro-env] + beta#sub[2t]"Contributions"#super[anti-env] \ + gamma#sub[i] + delta#sub[t] + x + epsilon $ <lpm>
 
 This model includes the entire sample of representatives who voted more than
 once on the set of the six roll call votes, it is non-discriminatory based on
@@ -914,9 +920,7 @@ As robustness checks, the entire above process will be repeated with the logit
 and probit models, which, as mentioned in @model-spec have different uses than
 the LPM model.
 
-$ "Vote"#sub[i,t] = alpha + beta#sub[1t]"Contributions"#super[pro-env] + beta#sub[2t]"Contributions"#super[anti-env] \ + gamma#sub[i] + delta#sub[t] + X + epsilon $ <logit>
-
-P = exp(F(grs))/sumk expl(grs)
+$ P(y#sub[it] = 1|x, beta#sub[1,2], gamma#sub[i] + delta#sub[t]) = F(beta#sub[1,2]'x#sub[it], gamma#sub[i] + delta#sub[t]) $ <logit>
 
 // if use conditional logit model -> as
 // -> stratmann uses a (conditional) fixed effects logit model @Allison @Chamberlin
@@ -924,11 +928,37 @@ P = exp(F(grs))/sumk expl(grs)
 
 #pagebreak()
 = Results
-- potential OVB?
-The problems stem from unobservables, or the fact that we can seldom include in
-a model all variables that affect an outcome. Unobserved heterogeneity is the
-variation in the dependent variable that is caused by variables that are not
-observed (i.e. omitted variables) @mood
+
+Hypothesis:
+- effect of contribs on voting minimal, if significant
+  - contribution plus more significiant than minus, because of more targeted
+    contributions, less means, etc.
+  - log transformation because of contributions are skewed, even that doesnt change
+  - added pro and anti env dummy - to see whether amount matters more or just the
+    tatsache
+  - no change LPMs show -> even without changes
+- junior reps marginal effect of contrib greater
+  - discuss correlation with seniority and birthyear (remove one or the other)
+  - only seniority ->
+  - only birthyear ->
+- changes from pro to anti more pos. correlated with anti-env contribs & pro env
+  less effective
+  - take it with a grain of salt, only 23 in sample! only natural that there would
+    be no conclusion
+  - nothing significant
+- more recent contributions higher effect than less recent
+  - not really... same
+  - if we take vote sessionised, we see this too, all same magnitude
+
+control vars -> legislator FEs:
+- control vars, most generous, most significance of coefficients
+- state/geo FEs -> still significant
+- party FEs to see whether diff party people react differently
+- individual & year -> still significant
+
+Logit/Probit:
+- significant results when ....
+- most strict version -> individual and year FE
 
 #pagebreak()
 = Discussion
