@@ -822,8 +822,8 @@ variables are used since party is a good determinant for a legislator's
 ideological leaning, and whether their party has the majority determines the
 power which the group has over the house of representatives.
 
-Using the birthyear and seniority, which is number of terms in house the
-representative served, are used to be able to control for the difference in age
+To control for the junior/senior legislators stipulated in @hypothesis, I decided to add both the birthyear and seniority, which is number of terms in house the
+representative served,to control for the difference in age
 and experience which might distort the voting behaviour @stratmann-2002. By
 controlling for differences in geographical residence of the representatives,
 using state, geographical #footnote(
@@ -929,13 +929,70 @@ $ P(y#sub[it] = 1|x, beta#sub[1,2], gamma#sub[i] + delta#sub[t]) = F(beta#sub[1,
 #pagebreak()
 = Results
 
+== Hypothesis 1
+One of the hypothesis stated in @hypothesis is that the effect of pro and anti
+environmental campaign contributions would be minimal, if significant. As
+visible form the regression outputs in the appendix, this was not the case. From
+using control variables to state and year fixed effects in the LPM with all
+representatives, the campaign contributions from environmental sources and
+non-environmental sources were highly significant.
+
+// LPM all representatives with control variables & log transformed
+For the most LPM shown in @lpm including control variables showed that when
+increasing the pro environmental contribution to representatives by one USD, the
+probability of the representative voting pro-environmentally increases by
+0.00007214 percent on average, holding all else constant. In return, when
+increasing anti-environmental contribution by one USD, the probability of a
+representative voting pro environmentally decreases by an average of 0.000006
+percent, holding all else constant. Both of these coefficients are significant
+on a 0 level. Given that the contributions from both anti and pro-environment
+are highly skewed, I applied a logistical transformation on the contribution
+variables, and found that although the adjusted $R^2$ increases from 0.91 to 0.92 and the effect of the anti-environmental contribution variable increases to -0.0121 holding all else constant and with the same significance level, the sigifnicance of the pro-environmental contirubiont vairbale is est. to be an average of 0.011, holding all else constant, but the significance level of the estimator decreases. 
+
+// fixed effects
+When fixing the LPM model by US state and year, the adjusted $R^2$ stays at 0.91 and the contribution coefficients remain highly significant with a one USD increase in pro-environmental contribution increasing the probability of a pro-environmental vote by 0.0000698 percent and a one USD increase in anti-environmental contribution decreasing the probability of a pro-environmental vote by 0.0000048 percent. Only when applying legislator and year fixed effects does the significance of the pro-environmental contributions decrease to a 0.01 level, with a one USD increase in pro-environmental contribution increasing the probability of a pro-environmental vote by 0.0000361 percent on average, holding all else constant. The anti-environmental contribution coefficient however is not significant at all, yet the predictors are very good in explaining variations in the dependent variable, with an adjusted $R^2$ of 0.953. 
+
+
+// Interpretation of coefficients 
+- relatively high value of coefficients, given that the pro and anti env. contributions are distributed in the following way.. (show boxplots of contributions)
+- in general, pro-env contributions a lot less in amount and a lot less reps get them on avg. than anti-env contributions (thus explains significance of variables... the pro-env contributions are more "targeted" and effective, since they might have less budget to start with)
+
+
+// Interpretation of these validity of the results
+Althoug these adjusted $R^2$ values are very high and might raise suspicion of multicoloinearity within the predictor variables, the VIF values of all variables are below 5, with most of them being between 1 and 1.25, and a correlation plot shows similar results, that no variables are suspiciously highly correlated with one another. This means that the high adjusted $R^2$ values are not due to multicolinearity, but rather due to the high explanatory power of the model, which can be attributed to the fact that most of the control variables are highly significant and have a high explanatory power on their own, such as the representative's party and DW-Nominate dimensions which are already very good predictors of the representatives voting decisions on their own. Hence, the first hypothesis from this paper can be rejected, since the effect of pro and anti environmental contributions on voting behaviour is not minimal, considering each effect is measured on a per USD scale and is also rather highly significant.
+
+// add logit/probit results
+
+
+== Hypothesis 2
+
+// no multicolinearity
+The second hypothesis stated in @hypothesis is that junior representatives are more likely to change their voting behaviour due to campaign contributions than senior representatives, given that they are not experienced enough to have stable opinions on the matter. To analyse this, I added the afore mentioned in @model-spec seniority and birthday (birthyear) control variables into the regressions. Since seniority details the number of terms the representative has partaken in and the birthyear represents the age of the legislator, I also checked that the correlation between the two variables would not be high enough to cause multicolinearity, which it was not, with a correlation of -0.57, and a VIF of 1.27 and 1.28 respectively.
+
+// general LPM and logit/probit 
+When looking at the LPM model with all representatives, the seniority variable was not significant, and the birthyear variable was significant at a 0.01 level, with a one year increase in birthyear increasing the probability of a pro-environmental vote by 0.007 percent on average, holding all else constant. The same trends were found when fixing the model by state and year, with the birthyear variable being significant at a 0.001 level and having an effect of 0.013 percent increase in pro-environemtnal voting for a one year increase in birthyear, and the seniority variable being significant only at a 0.05 level with a one term increase in seniority increasing the environmental voting probability by 0.018 percent. When fixing the model by legislator and year (using plm instead of lm), the birthyear variable was not significant at all, and the seniority variable was significant at a 0.01 level, with a one term increase in seniority decreasing the probability of a pro-environmental vote by 0.0001 percent on average, holding all else constant. Similar results and significance for the birthday variable emerge when fixing the legislator, whereas the seniority variable is not significant at all.
+
+// Interpretation
+- since only birthyeear is mostly significant and seniority is not, can conclude that younger representatives are more likely to vote pos, even more so than pro-env contributions are to affect the voting behaviour of representatives
+- seniority affects voting only when fixing for state and year, meaning more experience more prone to env. voting. 
+
+// mind changers
+
+
+== Hypothesis 3
+
+== Hypothesis 4
+
 Hypothesis:
 - effect of contribs on voting minimal, if significant
   - contribution plus more significiant than minus, because of more targeted
     contributions, less means, etc.
   - log transformation because of contributions are skewed, even that doesnt change
   - added pro and anti env dummy - to see whether amount matters more or just the
-    tatsache
+    tatsache (using a dummy for each session more accurate than using a dummy for
+    whether they received any in total, doenst increase Adj. R sqr of the model, is
+    not significant)
+    - significant only log transformed contributions
   - no change LPMs show -> even without changes
 - junior reps marginal effect of contrib greater
   - discuss correlation with seniority and birthyear (remove one or the other)
