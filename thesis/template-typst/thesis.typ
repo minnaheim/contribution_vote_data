@@ -770,6 +770,7 @@ included, since Independent and Libertarians are too few to be able to compare.
 
 = Econometric Models
 
+// give information about why remove some variables -> LPM control -> FEs
 In order to test the for the changes in voting behaviour due to campaign
 contributions, the model setup must allow for a dichotomous dependent variable,
 i.e. pro-environmental vote (1) or anti-enviornmental vote (0) and for the
@@ -859,6 +860,7 @@ the more generous version, I fix for the variables geographical region and year,
 since this measures only the change in contributions within a year and same
 geographical location.// why fix for geo region
 
+// mention here that by fixing for state we fix for economic conditions, population differences, etc. and many other things which influence contribution - see above mentioned papers -> size of ggovernment, closeness of race, etc.
 In a stricter version, I fix for year and state. This provides more accurate
 results on the geographical level.By controling for states, possible differences
 in state ties to the fossil fuel industries and severely environmentally
@@ -869,6 +871,7 @@ environmental perception or enviornmental disasters are not taken out of context
 and compared with years with little environmental happenings.
 
 // mention fixing for party!!
+// party & year FEs: adjusts for the influence that political party alignment might have on the results, along with the same temporal factors as before. This might capture differences in policies, ideologies, or priorities that vary systematically between parties.
 
 Lastly, in the strictest model, I fix for both legislators and years. The reason
 behind fixing for something as large as the representative, is because it gives
@@ -927,6 +930,7 @@ $ P(y#sub[it] = 1|x, beta#sub[1,2], gamma#sub[i] + delta#sub[t]) = F(beta#sub[1,
 // if use conditional logit model -> as
 // -> stratmann uses a (conditional) fixed effects logit model @Allison @Chamberlin
 //   @stratmann-2002
+// mention using the stratmann specifications for the logit model - aka a conditional logit model with legislator fixed effects -> modeling this with bife function.
 
 #pagebreak()
 = Results
@@ -993,43 +997,10 @@ Still, although these results show the propensity of younger representatives to 
 
 In the fourth hypothesis, the effect of contributions on voting behaviour is stated to be more significant for republican representatives than for democratic representatives.
 
-- check this by including party FEs... (all reps & vote change LPM, same for logit)
+To check whether this might be the case I fixed not only year but also party in the two way fixed effects LPM and Logit/Probit models. The results show that when fixing for these two effects for the LPM of all representatives the results are highly significant, as before. More interestingly, however, even when fixing party and year in the two subsamples, where only representatives are included who did (not) change their voting, the contribution coefficients are highly significant, which can not be said when including other two way fixed effects such as state and year, or legislator and year. This could be the case because on the one hand, party is a dummy variable, and all other fixed effects have more than 2 specifications, and are thus stricter models. Alternatively, since the predicted variable is a pro-environmental vote, which in nature is affected by ideology and politics, it is understandable as to why fixing for differences in party lines and ideology would be more significant than fixing for other variables.
+
 // should i even include this hypothesis, if its just that 6mo > aggregate, already talked about this, shouldn't be a topic. 
-
-
-// Hypothesis:
-// - effect of contribs on voting minimal, if significant
-//   - contribution plus more significiant than minus, because of more targeted
-//     contributions, less means, etc.
-//   - log transformation because of contributions are skewed, even that doesnt change
-//   - added pro and anti env dummy - to see whether amount matters more or just the
-//     tatsache (using a dummy for each session more accurate than using a dummy for
-//     whether they received any in total, doenst increase Adj. R sqr of the model, is
-//     not significant)
-//     - significant only log transformed contributions
-//   - no change LPMs show -> even without changes
-// - junior reps marginal effect of contrib greater
-//   - discuss correlation with seniority and birthyear (remove one or the other)
-//   - only seniority ->
-//   - only birthyear ->
-// - changes from pro to anti more pos. correlated with anti-env contribs & pro env
-//   less effective
-//   - take it with a grain of salt, only 23 in sample! only natural that there would
-//     be no conclusion
-//   - nothing significant
-// - more recent contributions higher effect than less recent
-//   - not really... same
-//   - if we take vote sessionised, we see this too, all same magnitude
-
-// control vars -> legislator FEs:
-// - control vars, most generous, most significance of coefficients
-// - state/geo FEs -> still significant
-// - party FEs to see whether diff party people react differently
-// - individual & year -> still significant
-
-// Logit/Probit:
-// - significant results when ....
-// - most strict version -> individual and year FE
+//  add recency -> vote 4,5,6 with all prior contributions, to see whether more recent contributions have higher effect than less recent ones.. (6mo prior vs. aggregate?)
 
 // COMPARE RESULTS, ADJ R^2 ETC. WITH THE STRATMANN MODEL
 // mention no-change results -> no contribution coefficient is significant...
