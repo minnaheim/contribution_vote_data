@@ -26,7 +26,6 @@ df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/
 df_long <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_long.csv")
 df_no_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_no_change.csv")
 df_vote_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_change.csv")
-df_vote_change_wide <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_change_wide.csv")
 df_vote_4_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4_2.csv")
 df_vote_51_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_51_2.csv")
 df_vote_52_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_52_2.csv")
@@ -328,10 +327,7 @@ For this, since fixing individuals is so specific, we need to remove the anti an
 Here is what this dataframe looks like 
 
 ```{r}
-kable(df_vote_change[1:10, ], format = "html")
-
-df_vote_change_wide <- df_vote_change_wide %>% select(-c(GovtrackID, opensecrets_id, Vote_change_dummy, Vote_change, first_name, last_name, name, Vote_count, Vote_change, vote_change_year, seniority_113, seniority_114, seniority_115, seniority_116, seniority_117, first_vote, first_contribution_minus, first_contribution_plus, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, district, state))
-kable(df_vote_change_wide[1:10, ], format = "html")
+kable(df_vote_change[1:15, ], format = "html")
 ```
 
 ## with control variables
@@ -341,14 +337,14 @@ Using the same model as above with the same specifications (control varaibels, t
 ```{r}
 df_vote_change <- df_vote_change %>% select(-c(GovtrackID, opensecrets_id, Vote_change_dummy, Vote_change, first_name, last_name, name))
 view(df_vote_change)
-ols_change <- lm(Vote ~ . - state - anti_env_dummy - BioID, data = df_vote_change)
+ols_change <- lm(Vote ~ . - state - anti_env_dummy - BioID - vote_change_to_pro - vote_change_to_anti, data = df_vote_change)
 summary(ols_change)
 
-# same with the wide format one:
-
-# ols_change_wide <- lm(vote_change_to_pro ~ . - vote_change_to_anti - BioID, data = df_vote_change_wide)
-# summary(ols_change_wide)
+# instead of vote, use vote_change_to_pro and vote_change_to_anti...
+ols_change_2 <- lm(vote_change_to_anti ~ . - state - BioID - vote_change_to_pro, data = df_vote_change)
+summary(ols_change_2)
 ```
+
 
 Compared to before we see multiple things, on the one hand the Adjusted R^2 is lower than in the other models where it averages to about 0.91, here only 0.25. This is because the model is more specific, i.e. only includes those representatives who changed their voting behavior, which are only 23 in total our ot 574 (?), whereas there are 31 changes in votes to be seen in total.
 
@@ -360,6 +356,10 @@ Here, we need to remove the anti_env_dummy and district because of singularities
 ```{r}
 ols_change_fe <- lm(Vote ~ as.factor(Geographical) + as.factor(Instance) + party + birthday + district + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy, data = df_vote_change)
 summary(ols_change_fe)
+
+# same thing with vote_change_to_anti
+ols_change_fe_2 <- lm(vote_change_to_anti ~ as.factor(Geographical) + as.factor(Instance) + party + birthday + district + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy, data = df_vote_change)
+summary(ols_change_fe_2)
 ```
 
 Here remove majority because it is a singularity...
@@ -368,15 +368,24 @@ Here remove majority because it is a singularity...
 
 ```{r}
 ols_party_change <- lm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + as.factor(party) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
-
 summary(ols_party_change)
+
+# same thing with vote_change_to_anti
+ols_party_change_2 <- lm(vote_change_to_anti ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + as.factor(party) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy, data = df_vote_change)
+summary(ols_party_change_2)
 ```
 
 ## with state & year FEs
 ```{r}
-ols_change_state <- lm(Vote ~ as.factor(state) + as.factor(Instance) + party + birthday + district + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy, data = df_vote_change)
+ols_change_state <- lm(Vote ~ as.factor(state) + as.factor(Instance) + birthday + district + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy, data = df_vote_change)
+summary(ols_change_state)
 
+# same thing with vote_change_to_anti
+ols_change_state_2 <- lm(vote_change_to_anti ~ as.factor(state) + as.factor(Instance) + birthday + district + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy, data = df_vote_change)
+summary(ols_change_state_2)
 ```
+
+remove party due to singularities.
 
 ### checking differences in party
 ```{r}
@@ -395,12 +404,15 @@ Already here we can see that the coefficients are less significant on average wi
 # view(df_vote_change)
 ols_change_ind_fe <- lm(Vote ~ as.factor(BioID) + as.factor(Instance) + Contribution_minus + Contribution_plus, data = df_vote_change)
 summary(ols_change_ind_fe)
+
+# same thing with vote_change_to_anti
+ols_change_ind_fe_2 <- lm(vote_change_to_anti ~ as.factor(BioID) + as.factor(Instance) + Contribution_minus + Contribution_plus, data = df_vote_change)
+summary(ols_change_ind_fe_2)
 ```
 
 To make this work, we have to remove the control variables from before, i.e. party, district, Geographical and state, gender, nominate_dim1&2,  and pro- and anti_env_dummy and birthday since these are already included in the individual fixed effects, i.e. these dont chance over time in an individual. Also, seniority and Dmajority are just NAs since this sample size is too small.
 
 What is interesting to see here, is the fact that instances are highly significant. Meaning that for a change in vote, the instance of change is most likely with 0.74 units for vote7 and then 0.72 units for vote 6, and then 53. This is interesting since it shows that the instance of change is more likely to happen in the later votes.
-
 
 # Logit of all Representatives
 

@@ -221,7 +221,7 @@ pivot_longer_function <- function(df) {
 }
 
 
-aggregate_pivot_longer_function <- function(df, extra_id_vars = NULL) {
+aggregate_pivot_longer_function <- function(df) {
     # create copy of seniority_115 to pivot easier
     df$seniority_115_2 <- df$seniority_115
 
@@ -252,8 +252,8 @@ aggregate_pivot_longer_function <- function(df, extra_id_vars = NULL) {
     # Define columns to keep as identifiers
     id_vars <- c(
         "BioID", "GovtrackID", "opensecrets_id", "first_name", "last_name", "state",
-        "district", "party", "name", "birthday", "gender", "Geographical", "nominate_dim1", "nominate_dim2",
-        "Vote_change_dummy", "Vote_change", extra_id_vars
+        "district", "party", "name", "birthday", "gender", "Geographical", "nominate_dim1",
+        "nominate_dim2", "Vote_change_dummy", "Vote_change"
         # ,"vote_change_to_pro", "vote_change_to_anti"
         # "pro_env_dummy", "anti_env_dummy"
     )
@@ -269,6 +269,20 @@ aggregate_pivot_longer_function <- function(df, extra_id_vars = NULL) {
 
     return(df)
 }
+# this function creates the dummy cols vote_change_to_pro and vote_change_to_anti
+create_vote_change_dummies <- function(df) {
+    # Assuming 'data' is your dataframe name
+    df <- df %>%
+        arrange(BioID, Instance) %>%
+        group_by(BioID) %>%
+        mutate(
+            vote_change_to_pro = ifelse(lag(Vote) == 0 & Vote == 1, 1, 0),
+            vote_change_to_anti = ifelse(lag(Vote) == 1 & Vote == 0, 1, 0)
+        )
+
+    return(df)
+}
+
 
 vote_columns <- c("Vote3", "Vote4", "Vote51", "Vote52", "Vote6", "Vote7")
 session_columns <- c("3", "4", "51", "52", "6", "7")

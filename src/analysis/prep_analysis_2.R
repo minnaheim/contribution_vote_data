@@ -54,33 +54,14 @@ df <- add_state_category(df)
 df <- df %>% dplyr::filter(!is.na(df$Geographical))
 
 
-# before pivoting df, i will create a copy which only includes vote changers & then apply the pivot_longer function
-df_vote_change <- df %>% filter(Vote_change_dummy == 1)
-df_vote_change <- create_vote_change_dataframe(df_vote_change)
-# relocate cols
-df_vote_change <- relocate(df_vote_change, "first_vote", .after = "vote_change_year")
-df_vote_change$vote_change_type <- as.numeric(df_vote_change$vote_change_type)
-df_vote_change <- df_vote_change %>% mutate(year = str_extract(vote_change_year, "(?<=-).*"))
-df_vote_change <- relocate(df_vote_change, "year", .after = vote_change_year)
-print("relocation done")
-# apply add_vote_dummy function to get dummy for each vote change
-df_vote_change <- dummy_cols(df_vote_change, select_columns = "vote_change_type")
-df_vote_change <- df_vote_change %>%
-    relocate(vote_change_type_1, .after = vote_change_type) %>%
-    relocate(vote_change_type_0, .after = vote_change_type_1) %>%
-    rename("vote_change_to_pro" = "vote_change_type_1") %>%
-    rename("vote_change_to_anti" = "vote_change_type_0") %>%
-    select(-c(vote_change_type))
-view(df_vote_change)
-df_vote_change_wide <- df_vote_change
-
-
-
 # pivot table longer
 df_long <- aggregate_pivot_longer_function(df)
-df_vote_change <- aggregate_pivot_longer_function(df_vote_change, c("vote_change_to_pro", "vote_change_to_anti"))
-view(df_vote_change)
 view(df_long)
+
+# create vote_change cols
+df_vote_change <- df_long %>% filter(Vote_change_dummy == 1)
+df_vote_change <- create_vote_change_dummies(df_vote_change)
+# view(df_vote_change)
 
 # add dummy for pro and anti environmental contributions per vote.
 df_long <- add_contrib_dummy(df_long)
@@ -141,7 +122,6 @@ df_sub <- relocate(df_fe, "year", .after = vote_change_year)
 write.csv(df, "data/analysis/df.csv", row.names = FALSE)
 write.csv(df_long, "data/analysis/df_long.csv", row.names = FALSE)
 write.csv(df_vote_change, "data/analysis/df_vote_change.csv", row.names = FALSE)
-write.csv(df_vote_change_wide, "data/analysis/df_vote_change_wide.csv", row.names = FALSE)
 write.csv(df_no_change, "data/analysis/df_no_change.csv", row.names = FALSE)
 write.csv(df_vote_4_2, "data/analysis/df_vote_4_2.csv", row.names = FALSE)
 write.csv(df_vote_51_2, "data/analysis/df_vote_51_2.csv", row.names = FALSE)
