@@ -143,7 +143,7 @@ there are not comparable to 2022 yet.
 ]) <avg-contributions>
 
 #figure(image("figures/total_contrib_congress.jpg", width: 100%), caption: [
-  Total Cost of Election, 1990-2022 @OpenSecretscostofelections
+  Total Cost of Election, where $*$ stands for a Presidential Election Cycle, 1990-2022 @OpenSecretscostofelections
 ])
 
 // legislative background
@@ -246,6 +246,9 @@ which are favorable to interest groups receive contributions from these groups."
 @stratmann-2017 p.14 (can be found in the section below)
 
 == Causal Effect of Campaign Contributions on Representatives' Voting Decisions.
+
+// One of the most vexing problems in the literature on campaign financing is establishing causality in the case of a positive correlation between contributions and roll call votes. Two rival causal explanations challenge the money-in-exchange-for-votes proposition. First, donors generally give to members and parties already disposed to favor their policy positions (Burris 2001). Second, there is the possibility that contributions primarily serve as rewards for past roll call votes rather than stimuli for future voting (Peoples 2010; Stratmann 1991). In the first scenario, the relationship between money and votes is spurious, with the legislator’s ideology as the confounding variable. In the second scenario, there is reverse causality. @selling2023
+
 Even if we have correlation between campaign contributions and the votes in the
 contributers interest, it is still important to determine from which side the
 causation runs. Do incumbents cater to wishes of special interest groups,
@@ -377,6 +380,8 @@ there need to be changes in voting behaviours of the representatives, yet in
 this case, only 23 representatives out of 529 change their vote over time.// insert mind changers plot here (confirm 23/529?)
 
 == Topic of Roll call Votes (Methane Pollution Safeguards) <rollcall-subject>
+
+// what are methane pollution safeguards, what are methane emissions and why are they important, why related to oil & gas industry.
 
 Although as shown in the section above, the rollcall bills do not fit the
 preconditions stipulated by Stratmann in @stratmann-2002, analysing
@@ -611,6 +616,8 @@ elections from special interest groups and a vote in their favor, of which one
 can conclude, that multiple congressional election contributions should be taken
 into account for each vote.
 
+// although some researchers believe that rollcall serve as rewards or punishments @stratmann-1991, taking only
+
 To account for these differences in campaign contribution selection, I explored
 both options: On the one hand, I calculated the contribution variables based on
 the previous election cycle, based on several academic papers who take the same
@@ -835,9 +842,13 @@ house the representative served,to control for the difference in age and
 experience which might distort the voting behaviour @stratmann-2002. By
 controlling for differences in geographical residence of the representatives,
 using state, geographical #footnote(
-  "the variable Geographical has the 50 US states grouped into four categories: Northwest (NW), South (SO), West (WE), Midwest (MW), according to the United States Census Bureau under https://www2.census.gov/geo/pdfs/reference/GARM/Ch6GARM.pd",
+  "the variable Geographical has the 50 US states grouped into four categories: Northwest (NW), South (SO), West (WE), Midwest (MW), according to the United States Census Bureau under https://www2.census.gov/geo/pdfs/reference/GARM/Ch6GARM.pdf",
 ) and the district level we remove possible differences in voting behaviour
 attributed to the location of representatives.
+
+//  by including a variable for legislator ideology, thereby removing the variance in roll call voting attributable to the legislator’s ideological predisposition, helps establish causality.
+//  A meta-analysis comparing these two approaches concluded that “the only effective way to control for the impact of friendly giving is to include an ideology variable in the equation” (Roscoe and Jenkins 2005, 63)
+
 
 Based on roll-call records, the DW-Nominates are a widely used indicator of a
 representative's policy opinion in a multidimensional policy space, which serve
@@ -939,6 +950,7 @@ $ P(y#sub[it] = 1|x, beta#sub[1,2], gamma#sub[i] + delta#sub[t]) = F(beta#sub[1,
 
 #pagebreak()
 = Results
+// rename hypothesis stuff.
 
 == Hypothesis 1
 One of the hypothesis stated in @hypothesis is that the effect of pro and anti
@@ -1032,6 +1044,10 @@ results from the LPM with legislator and year fixed effects, for example.
 
 //  add regression results from contribs ~ other variables, to show that pro-env contributions are more targeted...
 
+//  add regression results here from vote_change_to_pro ~ contributions (all were insiginificant, but still, should mention that both the actual vote and the vote change was regressed)
+
+// hypothesis proven? if yes, then the results... corroborate the hypotheses
+
 == Hypothesis 3
 
 // no multicolinearity
@@ -1111,51 +1127,33 @@ variables.
 
 //  final result: relation between contributions and votes can be confirmed, but not the whether contributions are the actual reason for vote changes.. so no causal conclusion to be drawn from these results.
 
-#pagebreak()
-= Discussion
-- Not only does this have dire consequences for democracy (e.g. wealthy donors
-  being able to influence policy) @Weschle_2022b
-== Limitations
-Describe limitations and threats to validity of your evaluation, e.g.
-reliability, generalizability, selection bias, researcher bias, i.e. differences
-with Strattman due to difference in legislation and more close paced than his
-votes.
-- The data is limited to the 113th-117th congresses, and thus the results might
-  not be generalizable to other congresses, since the voting behaviour of
-  representatives might have changed over time, and the level of contributions
-  might have changed as well.
-== Future Work
-What to improve, work on or touch upon with more resources:
-- use more open source software and data (congress APIs
-  (https://github.com/LibraryOfCongress/api.congress.gov/)) and congress
-  packages(https://github.com/IPPSR/congress)
-- same with tidycensus, also API based
-- analyse difference in congress person's age, experience, etc. (are young/old
-  legislators more likely to change their votes given contributions)
-- analyse not the contributions to the candidate/representative themselves, but to
-  their party, given strong partisan split, and that reps want to keep within
-  party lines @Selling2023
-- differences in voting behaviour on environmental issues given system of voting
-  in house (lastnames A-Z), members with last names at the end of the alpahabet
-  more likely to deviate from party lines given vote is already won/lost.
-- contributions act as rewards for past votes, not to incentivise future votes
-  @stratmann-1991
-- include models from @stratmann-1995, that work with time related data and not
-  just aggregate electoral data, like in @stratmann-2002
-- use DW-Nominate to make study more robust... compare partisan lines -> MENTION
-  IN FOOTNOTES WITH ROBUSTNESS/ MODEL
-- this can lead to OVB, since "has no good measure for whether a challenger poses
-  a threat" -> by using 2SLS we can overcome this @stratmann-2017 p.9
-- "We also investigate two additional channels that interest groups can use to
-  give money to House mem- bers. First, many members have Leadership PACs and
-  donors can contribute to these PACs. Members can use this money for travel and
-  to hire staff, among other things. There are also the so-called Super-PACs, and
-  we looked at the ones that focused on a single candidate (where the connection
-  between donor and beneficiary is clear)" @griers p.341
+
+// be critical of paper (either here or discussion)?
 
 #pagebreak()
-= Conclusion
-yappa yappa
+= Discussion and Conclusion
+
+The main goals for the thesis was to explore the relationship of pro environmental and anti-environmental, specifically fossil-fuel, campaign contributions have on the voting behaviour of US. Representatives on the topic of methane pollution safeguard related rollcall votes. This paper finds that campaign contributions shape how the representatives votes on this particular matter. Elected officials are more likely to vote in agreement with the individual and PAC's contributions, if these interest groups contribute within six months of the vote.
+
+Albeit including variables which track a representative's political ideology through rollcall votes (namely the DW-Nominate dimensions), and including legislator fixed effects to avoid omitted variable bias and thus including important metrics to measure causal relationships @stratmann-2002 @Selling2023, no causal relationship between environmentally related campaign contributions and changes in environmental voting behaviour could be significantly estimated. 
+ 
+An explanations as to why no causal relationship can be concluded from this study, even though @stratmann-2002, whose methodology heavily influenced this paper, has found causality, is due to the small sample size of representatives which changed their votes over the course of the six votes, and the nature of the environmental topic, which is much more polarising and decisive among representative, and thus changes in voting behaviour are rare from the get-go. Moreover, whether his models were causal in the first place should be questioned in the first place, given that his assumptions for choosing the Glass-Stagall Act in the first place are shaky at times, such as that financial legislation is not of public interest and thus representatives have more voting leeway.
+// question methodology by stratmann - old, compared to today?
+
+The implications of these results is that there is a clear relationship between anti(pro) environmental contributions and anti (pro) environmental voting behaviour of representatives and that dependent on the positions which representatives take, they have the possibility to earn their campaigns incredible amounts of donations, from the fossil fuel industry, for example. In a system where legislation should be made with the population in mind, the possibility of incumbents receiving campaign contributions has a bad aftertaste for the health of the american democracy @Weschle_2022b. Moreover, given the steep rise in expenditures for congressional elections over the past 20 years, the effect which moneyed interest will have on votes will likely increase.
+
+While this paper provides valuable insights, it has several limitations, which point to opportunities for future work.
+
+Touched upon briefly in this paper, by regressing the pro enviornmental vote of representatives with the campaign contributions not only six months prior, but also the 6mo. prior to vote contributions of all similar votes before might show that representatives take contributions of previous similar votes as a baseline to determine their current votes. 
+
+As shown in results, methane related voting behaviour can be explained very well given the representative's party and DW-Nominate, meaning that the party line and ideology is a strong influencer for a legislators vote, and that most representatives tend to keep within those party lines. Thus, it would be interesting to analyse the campaign contributions not to individuals but parties themselves, and how this affects the party's votes on certain issues @Selling2023
+
+Another interesting topic for research would be to analyse changes in voting behaviour given by the nature of rollcall votes. Since these happen alphabetically, representatives whose names are further along the alphabet might be incentivised to  deviate from party lines given a vote is already won/lost.
+
+Using different sources of campaign contributions would also be an interesting approach. These include not individual and PAC contributions, but Super PAC contributions, which can be unlimited in size and cannot be directly allocated to a political candidate @griers.
+
+Finally, another improvement to this paper would be to use more of the countless open source resources available to import campaign and representative data by using Application Platform Interfaces (API), which significantly ease the data collection process. Resources such as the congress API #footnote("to be found at: https://github.com/LibraryOfCongress/api.congress.gov/") or the tidycensus R package #footnote("documentation for which can be found at: https://walker-data.com/tidycensus/").
+
 
 // -------------- CRAP LINE ------------------------
 // == Legislation
@@ -1173,203 +1171,3 @@ yappa yappa
 // - spending not accurate representation for campaigning, diff. Montana and LA.
 // #acknowledgement()
 // #abstract_de()
-
-// #cover(
-//   title: titleEnglish,
-//   degree: degree,
-//   program: program,
-//   author: author,
-// )
-
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Introduce the topic of your thesis, e.g. with a little historical
-//   overview.
-// ]
-
-// == Problem
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Describe the problem that you like to address in your thesis to show the
-//   importance of your work. Focus on the negative symptoms of the currently
-//   available solution.
-// ]
-
-// == Motivation
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Motivate scientifically why solving this problem is necessary. What kind
-//   of benefits do we have by solving the problem?
-// ]
-
-// == Objectives
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Describe the research goals and/or research questions and how you address
-//   them by summarizing what you want to achieve in your thesis, e.g. developing a
-//   system and then evaluating it.
-// ]
-
-// == Outline
-// #rect(width: 100%, radius: 10%, stroke: 0.5pt, fill: yellow)[
-//   Note: Describe the outline of your thesis
-// ]
-
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Describe each proven technology / concept shortly that is important to
-//   understand your thesis. Point out why it is interesting for your thesis. Make
-//   sure to incorporate references to important literature here.
-// ]
-// = Related Work
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Describe related work regarding your topic and emphasize your (scientific)
-//   contribution in contrast to existing approaches / concepts / workflows. Related
-//   work is usually current research by others and you defend yourself against the
-//   statement: “Why is your thesis relevant? The problem was al- ready solved by
-//   XYZ.” If you have multiple related works, use subsections to separate them.
-// ]
-
-// == Overview
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Provide a short overview about the purpose, scope, objectives and success
-//   criteria of the system that you like to develop.
-// ]
-
-// == Objectives
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Derive concrete objectives / hypotheses for this evaluation from the
-//   general ones in the introduction.
-// ]
-// == Findings
-// #rect(width: 100%, radius: 10%, stroke: 0.5pt, fill: yellow)[
-//   Note: Interpret the results and conclude interesting findings
-// ]
-
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Summarize the most interesting results of your evaluation (without
-//   interpretation). Additional results can be put into the appendix.
-// ]
-
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-
-// == Limitations
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Describe limitations and threats to validity of your evaluation, e.g.
-//   reliability, generalizability, selection bias, researcher bias
-// ]
-
-// = Summary
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: This chapter includes the status of your thesis, a conclusion and an
-//   outlook about future work.
-// ]
-
-// == Status
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Describe honestly the achieved goals (e.g. the well implemented and tested
-//   use cases) and the open goals here. if you only have achieved goals, you did
-//   something wrong in your analysis.
-// ]
-// === Realized Goals
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Summarize the achieved goals by repeating the realized requirements or use
-//   cases stating how you realized them.
-// ]
-
-// === Open Goals
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Summarize the open goals by repeating the open requirements or use cases
-//   and explaining why you were not able to achieve them. Important: It might be
-//   suspicious, if you do not have open goals. This usually indicates that you did
-//   not thoroughly analyze your problems.
-// ]
-// == Future Work
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Tell us the next steps (that you would do if you have more time). Be
-//   creative, visionary and open-minded here.
-// ]
-// #rect(
-//   width: 100%,
-//   radius: 10%,
-//   stroke: 0.5pt,
-//   fill: yellow,
-// )[
-//   Note: Recap shortly which problem you solved in your thesis and discuss your
-//   *contributions* here.
-// ]
