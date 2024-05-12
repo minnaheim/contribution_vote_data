@@ -221,7 +221,7 @@ pivot_longer_function <- function(df) {
 }
 
 
-aggregate_pivot_longer_function <- function(df) {
+aggregate_pivot_longer_function <- function(df, extra_id_vars = NULL) {
     # create copy of seniority_115 to pivot easier
     df$seniority_115_2 <- df$seniority_115
 
@@ -253,7 +253,7 @@ aggregate_pivot_longer_function <- function(df) {
     id_vars <- c(
         "BioID", "GovtrackID", "opensecrets_id", "first_name", "last_name", "state",
         "district", "party", "name", "birthday", "gender", "Geographical", "nominate_dim1", "nominate_dim2",
-        "Vote_change_dummy", "Vote_change"
+        "Vote_change_dummy", "Vote_change", extra_id_vars
         # ,"vote_change_to_pro", "vote_change_to_anti"
         # "pro_env_dummy", "anti_env_dummy"
     )

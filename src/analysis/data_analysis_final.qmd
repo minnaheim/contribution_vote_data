@@ -1,8 +1,8 @@
 ---
 title: "Data Analysis of Campaign Contributions and Voting Behavior"
-format: pdf
-#   html:
-#     toc: true
+format:
+  html:
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
@@ -26,6 +26,7 @@ df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/
 df_long <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_long.csv")
 df_no_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_no_change.csv")
 df_vote_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_change.csv")
+df_vote_change_wide <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_change_wide.csv")
 df_vote_4_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4_2.csv")
 df_vote_51_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_51_2.csv")
 df_vote_52_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_52_2.csv")
@@ -328,6 +329,9 @@ Here is what this dataframe looks like
 
 ```{r}
 kable(df_vote_change[1:10, ], format = "html")
+
+df_vote_change_wide <- df_vote_change_wide %>% select(-c(GovtrackID, opensecrets_id, Vote_change_dummy, Vote_change, first_name, last_name, name, Vote_count, Vote_change, vote_change_year, seniority_113, seniority_114, seniority_115, seniority_116, seniority_117, first_vote, first_contribution_minus, first_contribution_plus, Vote3, Vote4, Vote51, Vote52, Vote6, Vote7, district, state))
+kable(df_vote_change_wide[1:10, ], format = "html")
 ```
 
 ## with control variables
@@ -339,6 +343,11 @@ df_vote_change <- df_vote_change %>% select(-c(GovtrackID, opensecrets_id, Vote_
 view(df_vote_change)
 ols_change <- lm(Vote ~ . - state - anti_env_dummy - BioID, data = df_vote_change)
 summary(ols_change)
+
+# same with the wide format one:
+
+# ols_change_wide <- lm(vote_change_to_pro ~ . - vote_change_to_anti - BioID, data = df_vote_change_wide)
+# summary(ols_change_wide)
 ```
 
 Compared to before we see multiple things, on the one hand the Adjusted R^2 is lower than in the other models where it averages to about 0.91, here only 0.25. This is because the model is more specific, i.e. only includes those representatives who changed their voting behavior, which are only 23 in total our ot 574 (?), whereas there are 31 changes in votes to be seen in total.
