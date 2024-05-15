@@ -27,18 +27,77 @@ df_long_1 <- df_long %>%
 # pro environmental contributions
 env_contribs <- ggplot(df_long_1, aes(as.factor(Vote), Contribution_plus)) +
     geom_boxplot() +
-    scale_y_continuous(limits = c(0, 100000))
+    scale_y_continuous(limits = c(0, 1000)) +
+    labs(
+        title = "Pro environmental contributions by pro-environmental vote",
+        x = "Pro-environmental Vote",
+        y = "Amount of contribution in 100 USD"
+    )
 env_contribs
 
 # anti environmental contributions
 anti_env_contribs <- ggplot(df_long_1, aes(as.factor(Vote), Contribution_minus)) +
     geom_boxplot() +
-    scale_y_continuous(limits = c(0, 100000))
+    scale_y_continuous(limits = c(0, 1000)) +
+    labs(
+        title = "Anti environmental contributions by pro-environmental vote",
+        x = "Pro-environmental Vote",
+        y = "Amount of contribution in 100 USD"
+    )
 anti_env_contribs
+
+ggsave("env_contribs.svg", plot = env_contribs, width = 6, height = 6, units = "in", dpi = 300)
+ggsave("anti_env_contribs.svg", plot = anti_env_contribs, width = 6, height = 6, units = "in", dpi = 300)
 
 ```
 
 Notice how this is scaled the same way, the average contribution from anti_env is higher than the pro_env contributions. The reason behind this, is that many get 0, when removing 0, still looks like this.
+
+
+```{r}
+# distribution of pro environmental contributions and anti environmental contributions
+# calculate mean of pro environmental contributions
+# df_long <- df_long %>%
+#     group_by(Instance) %>%
+#     mutate(mean_plus = mean(Contribution_plus, na.rm = TRUE)) %>%
+#     mutate(mean_minus = mean(Contribution_minus, na.rm = TRUE))
+
+mean_plus <- df_long %>%
+    summarise(mean_plus = mean(Contribution_plus, na.rm = TRUE)) %>%
+    pull(mean_plus)
+# [1] 9.906063
+mean_minus <- df_long %>%
+    summarise(mean_minus = mean(Contribution_minus, na.rm = TRUE)) %>%
+    pull(mean_minus)
+# [1] 197.9967
+
+pro_plot_contribs <- df_long %>%
+    ggplot(aes(x = Contribution_plus)) +
+    geom_histogram(binwidth = 20) +
+    labs(
+        title = "Distribution of pro environmental contributions",
+        x = "Amount of contribution in 100 USD",
+        y = "Frequency"
+    ) +
+    geom_hline(yintercept = mean_minus, color = "red")
+pro_plot_contribs
+
+
+anti_plot_contribs <- df_long %>%
+    ggplot(aes(x = Contribution_minus)) +
+    geom_histogram(binwidth = 20) +
+    labs(
+        title = "Distribution of anti environmental contributions",
+        x = "Amount of contribution in 100 USD",
+        y = "Frequency"
+    ) +
+    geom_hline(yintercept = mean_plus, color = "red")
+anti_plot_contribs
+
+ggsave("pro_plot_contribs.svg", plot = pro_plot_contribs, width = 6, height = 6, units = "in", dpi = 300)
+ggsave("anti_plot_contribs.svg", plot = anti_plot_contribs, width = 6, height = 6, units = "in", dpi = 300)
+```
+
 
 ```{r}
 # check skewness of contribution data to see whether we need to apply the log transformation
@@ -62,6 +121,7 @@ df_long <- df_long %>%
 skewness(df_long$Contribution_plus_log)
 
 ```
+
 
 ```{r}
 # ADD TO PLOTS FILE
