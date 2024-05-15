@@ -1,3 +1,69 @@
+Things to put into thesis (potentially) -> Ch 3.2
+// *how to change study/assumptions from above*
+// - legislators do not take clear positions on topics (even before, with Glass
+//   Stagall Act, this was a stretch, here it is definetly given) -> individual FE to
+//   account for this.
+// - financial contributions from these industries are the highest & similar in size
+//   (not given here, large but not largest, not similar in size.
+//   - *plot* difference in contributions - from Opensecrets stats by industry.)
+- tradeoff for congressmen, vote acc. to voter base (get re-elected) and vote acc.
+- industry specific results, specific legislation, p.27.28 @Weschle_2022c
+- Economic Literature states that the campaign contributions received depend on:
+  @stratmann-1995 p.128
+
+  // https://www.opensecrets.org/elections-overview/most-expensive-races -> expensive races, most competitive races, etc.
+
+- correlation isnt enough, other factors influence, campaign contributions
+  endogenously determined by a multitude of factors. @bronars-lott-1997 p.318
+
+// figure out how to label axes, make it title and cite sources
+// #import "@preview/cetz:0.2.2"
+// #cetz.canvas({
+//   import cetz.draw: *
+//   import cetz.chart
+//   let data = (
+//     ("1998", 2934),
+//     ("2000", 2860),
+//     ("2002", 3575),
+//     ("2004", 3496),
+//     ("2006", 4143),
+//     ("2008", 6724),
+//     ("2010", 4926),
+//     ("2012", 4710),
+//     ("2014", 4788),
+//     ("2016", 5071),
+//     ("2018", 6724),
+//     ("2020", 9916),
+//     ("2022", 8937),
+//   )
+//   group(name: "a", {
+//     chart.columnchart(size: (13, 5), data)
+//   })
+// })
+
+Bronars & Lott tried to do this....
+- when retire and not standing for re-election, how do they vote, on two similar
+  bills. @bronars-lott-1997 two types, vote buyers, ideological sorting (if vote
+  buy, change contributions & change vote is given, if ideology, then not.)
+  - effect of changes in campaign contributions during a politician's last term in
+    office. more to do with politician's retirement, less their
+    preferences/contributions.
+  - politicians should represent their ideology/votes, ideally (even without threat
+    of re-election)
+  - if not, politicians will deviate from constituent's wishes, cost of shirking
+    decreases. p. 319
+  - evidence: close races, conservative PACs to conservative candidates, and to
+    shift opinion within party,etc. @stratmann-2005 p. 147-148
+
+\
+Stratmann, 1995 - campaign contributions and votes,does the timing of
+contributions matter?
+- main statements: contributions from current election cycles are more relevant
+  that the contributions from previous election cylces (short over long term),
+  PACs conclude different contracts with representatives, not ones that are first
+  contributions in one session and then votes as soon as they are voted, but
+  almost simultaneous votes
+
 = Bachelor Thesis Notes
 #set heading(numbering: "1.")
 #outline(indent: auto)

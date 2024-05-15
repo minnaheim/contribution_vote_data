@@ -68,6 +68,9 @@
     // strong("Start Date: "), startDate,
     strong("Submission Date: "),
     submissionDate,
+    strong("Supervisor: "),
+    supervisor,
+
   ))
 
   pagebreak()
