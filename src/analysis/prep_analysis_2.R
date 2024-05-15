@@ -11,12 +11,15 @@ df <- analysis_prep(df)
 # change vote to dummy vars
 df <- dummy_vote(df)
 
+# divide all contribution columns by 100
+df <- df %>% mutate_at(vars(starts_with("Contribution")), ~ . / 100)
+
+
 # add abs value to nominates - cant be bothered to change the original source (rep_cleaning)
 df <- df %>% mutate(
     nominate_dim1 = abs(nominate_dim1),
     nominate_dim2 = abs(nominate_dim2)
 )
-
 
 # change birthdays to only include years, and group into decades
 # why does lubridate not work?

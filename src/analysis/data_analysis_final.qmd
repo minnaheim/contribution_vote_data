@@ -39,6 +39,7 @@ df_long_log <- df_long %>%
     mutate(Contribution_plus_log = log(Contribution_plus + 1)) %>%
     mutate(Contribution_minus_log = log(Contribution_minus + 1)) %>%
     select(-c(Contribution_plus, Contribution_minus))
+
 ```
 
 # LPM of all Representatives
@@ -62,7 +63,6 @@ summary(full_ols_dummy)
 ## with control variables and contribs
 full_ols <- lm(Vote ~ . - state - BioID - Vote_change, data = df_long)
 summary(full_ols)
-
 
 # same thing again with log transformed contributions
 df_long_log <- df_long_log %>% select(-c(GovtrackID, opensecrets_id, first_name, last_name, name))
@@ -143,11 +143,12 @@ ols_party <- lm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geo
 summary(ols_party)
 
 # same with just anti and pro contribution dummies
-ols_party_dummy <- lm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + as.factor(party) + as.factor(Instance) + seniority + gender + pro_env_dummy + anti_env_dummy, data = df_long)
+ols_party_dummy <- plm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + party + Instance + seniority + gender + Contribution_minus + Contribution_plus + pro_env_dummy + anti_env_dummy, index = c("party", "Instance"), model = "within", data = df_long)
 summary(ols_party_dummy)
 
 # same thing with plm
 ols_party_plm <- plm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + party + Instance + seniority + gender + pro_env_dummy + anti_env_dummy, index = c("Instance", "party"), data = df_long)
+summary(ols_party_plm)
 
 ```
 
@@ -165,6 +166,9 @@ summary(ols_geo_plm)
 # same thing with log
 ols_geo_log <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(Geographical) + as.factor(Instance) + seniority + Contribution_minus_log + Contribution_plus_log + gender + pro_env_dummy + anti_env_dummy, data = df_long_log)
 summary(ols_geo_log)
+
+ols_geo_log_plm <- plm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus_log + Contribution_plus_log + gender + pro_env_dummy + anti_env_dummy, index = c("Geographical", "Instance"), model = "within", data = df_long_log)
+summary(ols_geo_log_plm)
 
 ```
 
@@ -491,17 +495,39 @@ summary(logit_ind_fe)
 ```
 
 # create model summaries
-## LPM models 
-```{r}
-main_ols <- stargazer(full_ols, ols_party_plm, ols_geo_plm, ols_ind_fe_plm, ols_state_fe_plm, type = "text")
-basic_ols <- stargazer(full_ols_dummy, full_ols, full_ols_log, type = "text")
-# party_ols <- stargazer(ols_party, ols_party_dummy, type = "text")
-# geo_ols <- stargazer(ols_geo, ols_geo_log, type = "text")
+```{r, include = FALSE}
+
+# rename models because stargazer doesnt take many long names as inputs
+lpm1 <- full_ols
+lpm2 <- ols_geo_plm
+lpm3 <- ols_party_plm
+lpm4 <- ols_state_fe_plm
+lpm5 <- ols_ind_fe_plm
+lpm6 <- full_ols_dummy
+lpm7 <- full_ols_log
+lpm8 <- ols_party_dummy
+lpm9 <- ols_geo_log_plm
+log1 <- full_logit
+log2 <- full_logit_log
+log3 <- full_logit_geo
+log4 <- full_logit_state
+log5 <- logit_ind_fe
+
+# create model summaries
+main_ols <- stargazer(lpm1, lpm2, lpm3, lpm4, lpm5, type = "html", out = "LPM_main.html")
+basic_ols <- stargazer(lpm6, lpm1, lpm7, type = "html", out = "LPM_basic.html")
+party_ols <- stargazer(lpm3, lpm8, type = "html", out = "LPM_party.html")
+geo_ols <- stargazer(lpm2, lpm7, lpm8, type = "html", out = "LPM_geo.html")
+geo_ols <- stargazer(lpm2, lpm9, type = "html", out = "LPM_geo_log.html")
+state_ols <- stargazer(lpm4, lpm9, type = "html", out = "LPM_state.html")
+main_logit <- stargazer(log1, log5, lpm1, type = "html", out = "LPM_main_2.html")
+
+# summary statistics
+stargazer(df_long, type = "html", title = "Descriptive statistics", out = "summary_stats.html")
+
 # state_ols <- stargazer(ols_state_fe, ols_state_fe_log, ols_state_fe_dummy, type = "text")
 # ind_ols <- stargazer(ols_ind_fe, ols_ind_fe_log, ols_ind_fe_dummy, type = "text")
 # ols_per_vote <- stargazer(ols_4_2, ols_51_2, ols_52_2, ols_6_2, ols_7_2, type = "text")
 # consistent_ols <- stargazer(ols_no_change, ols_party_no_change, ols_no_change_state_fe, ols_no_change_ind_fe, type = "text")
 
 ```
-
-
