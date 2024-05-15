@@ -14,10 +14,10 @@ library(fastDummies)
 library(Amelia)
 library(lfe)
 library(broom)
+library(stargazer)
 library(kableExtra)
 library(bife)
 library(moments)
-install.packages("corrplot", repos = "https://stat.ethz.ch/CRAN/")
 library(corrplot)
 
 source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_prep_functions.R")
@@ -56,7 +56,7 @@ This is the most basic model, which includes all representatives (who can be ass
 df_long <- df_long %>% select(-c(GovtrackID, opensecrets_id, first_name, last_name, name, Vote_change_dummy))
 view(df_long)
 ## with control variables & no contrib, only dummy
-full_ols_dummy <- lm(Vote ~ . - state - BioID - Vote_change, data = df_long)
+full_ols_dummy <- lm(Vote ~ . - state - BioID - Vote_change - Contribution_plus - Contribution_minus, data = df_long)
 summary(full_ols_dummy)
 
 ## with control variables and contribs
@@ -77,7 +77,7 @@ Why such high adjusted R-squared, use corrtest to see if multicollinearity is pr
 df_long_num <- df_long %>%
     select_if(is.numeric) %>%
     filter(complete.cases(.))
-corrplot(cor(df_long_num), method = "number")
+corrplot(cor(df_long_num))
 ```
 
 The ols regresses the pro and anti environmental contributions with the control variables used: 
@@ -111,22 +111,6 @@ skewness(df_long_log$Contribution_plus_log)
 
 The reason for transforming the contribution variables is to account for differences in contributions which representatives might receive, i.e. AOC vs. Kevin McCarthy. 
 
-### check for contribution ~ independent variable relationship
-```{r}
-contrib_plus <- lm(Contribution_plus ~ . - BioID - Geographical - pro_env_dummy, data = df_long)
-summary(contrib_plus)
-
-contrib_plus_dummy <- lm(pro_env_dummy ~ . - BioID - Geographical - Contribution_plus, data = df_long)
-summary(contrib_plus_dummy)
-
-contrib_minus <- lm(Contribution_minus ~ . - BioID - Geographical - anti_env_dummy, data = df_long)
-summary(contrib_minus)
-
-contrib_minus_dummy <- lm(anti_env_dummy ~ . - BioID - Geographical - Contribution_minus, data = df_long)
-summary(contrib_minus_dummy)
-
-```
-
 #### checking differences in party
 ```{r}
 df_long_D <- df_long %>%
@@ -157,6 +141,14 @@ Since only 96 instances of non-anti environmental contributions exist, this mean
 ```{r}
 ols_party <- lm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + as.factor(party) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
 summary(ols_party)
+
+# same with just anti and pro contribution dummies
+ols_party_dummy <- lm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + as.factor(party) + as.factor(Instance) + seniority + gender + pro_env_dummy + anti_env_dummy, data = df_long)
+summary(ols_party_dummy)
+
+# same thing with plm
+ols_party_plm <- plm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + party + Instance + seniority + gender + pro_env_dummy + anti_env_dummy, index = c("Instance", "party"), data = df_long)
+
 ```
 
 ## with state & year fixed effects 
@@ -165,6 +157,10 @@ summary(ols_party)
 ```{r}
 ols_geo <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(Geographical) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
 summary(ols_geo)
+
+# same thing with plm
+ols_geo_plm <- plm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, index = c("Geographical", "Instance"), model = "within", data = df_long)
+summary(ols_geo_plm)
 
 # same thing with log
 ols_geo_log <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(Geographical) + as.factor(Instance) + seniority + Contribution_minus_log + Contribution_plus_log + gender + pro_env_dummy + anti_env_dummy, data = df_long_log)
@@ -191,6 +187,11 @@ summary(ols_state_fe_plm)
 # same thing again with log
 ols_state_fe_log <- lm(Vote ~ party + birthday + nominate_dim1 + nominate_dim2 + as.factor(state) + as.factor(Instance) + seniority + Contribution_minus_log + Contribution_plus_log + gender + pro_env_dummy + anti_env_dummy, data = df_long_log)
 summary(ols_state_fe_log)
+
+# same thing with only dummies
+ols_state_fe_dummy <- lm(Vote ~ party + birthday + nominate_dim1 + nominate_dim2 + as.factor(state) + as.factor(Instance) + seniority + gender + pro_env_dummy + anti_env_dummy, data = df_long)
+summary(ols_state_fe_dummy)
+
 ```
 
 using state instead of geographical region means that we can more accurately determine the differences in voting behavior between representatives from different states, not just regions. this makes sense, when we look at the states which are significant in the model, i.e. NY, SC, NJ, NH, FL, CT, AZ, they are not all from the same region, manye from the north east and the south and west, but no real patterns...
@@ -212,14 +213,17 @@ here, the model is getting stricter than before, since I am not only fixing for 
 ols_ind_fe <- lm(Vote ~ nominate_dim1 + nominate_dim2 + as.factor(Instance) + as.factor(BioID) + seniority + Contribution_minus + Contribution_plus, data = df_long)
 summary(ols_ind_fe)
 
-
 # same thing again with plm
-ols_ind_fe_plm <- plm(Vote ~ nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + Dmajority, data = df_long, index = c("BioID", "Instance"), model = "within")
+ols_ind_fe_plm <- plm(Vote ~ nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus, data = df_long, index = c("BioID", "Instance"), model = "within")
 summary(ols_ind_fe_plm)
 
 # same thing again with log
-ols_ind_fe_log <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(Instance) + as.factor(BioID) + seniority + Contribution_minus_log + Contribution_plus_log + Dmajority, data = df_long_log)
+ols_ind_fe_log <- lm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + as.factor(Instance) + as.factor(BioID) + seniority + Contribution_minus_log + Contribution_plus_log, data = df_long_log)
 summary(ols_ind_fe_log)
+
+# same thing with only dummies
+ols_ind_fe_dummy <- lm(Vote ~ nominate_dim1 + nominate_dim2 + as.factor(Instance) + as.factor(BioID) + seniority + anti_env_dummy + pro_env_dummy, data = df_long)
+summary(ols_ind_fe_dummy)
 
 ```
 
@@ -308,16 +312,16 @@ summary(ols_party_no_change)
 
 ## with state & year FE
 ```{r}
-ols_no_change_2 <- lm(Vote ~ as.factor(Geographical) + as.factor(Instance) + district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long_no_change)
-summary(ols_no_change_2)
+ols_no_change_state_fe <- lm(Vote ~ as.factor(Geographical) + as.factor(Instance) + district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long_no_change)
+summary(ols_no_change_state_fe)
 ```
 
 Here, using geographical regions instead of state fixed effects creates more significant results. Also, need to remove Majority because too specific?
 
 ## with individual FEs
 ```{r}
-ols_no_change_3 <- lm(Vote ~ nominate_dim1 + nominate_dim2 + as.factor(Instance) + as.factor(BioID) + seniority + Contribution_minus + Contribution_plus + Dmajority, data = df_long_no_change)
-summary(ols_no_change_3)
+ols_no_change_ind_fe <- lm(Vote ~ nominate_dim1 + nominate_dim2 + as.factor(Instance) + as.factor(BioID) + seniority + Contribution_minus + Contribution_plus + Dmajority, data = df_long_no_change)
+summary(ols_no_change_ind_fe)
 ```
 
 For this, since fixing individuals is so specific, we need to remove the anti and pro env. dummy, since they are already included in the individual fixed effects. (if a rep receives contribution once, this is automatically 1, i.e. never changes for an individual).
@@ -486,47 +490,18 @@ logit_ind_fe <- bife(Vote ~ nominate_dim1 + nominate_dim2 + Contribution_minus +
 summary(logit_ind_fe)
 ```
 
-## all representatives who did not change their opinion
-
+# create model summaries
+## LPM models 
 ```{r}
-# missmap(df_no_change, main = "Missing values vs observed")
-# # all_votes_minus ~ . - all_votes_plus, data = df_no_change)
-
-# logit <- glm(all_votes_minus ~ . - all_votes_plus, family = binomial(link = "logit"), data = df_no_change)
-# summary(logit)
-
-# probit <- glm(all_votes_minus ~ . - all_votes_plus, family = binomial(link = "probit"), data = df_no_change)
-# summary(probit)
+main_ols <- stargazer(full_ols, ols_party_plm, ols_geo_plm, ols_ind_fe_plm, ols_state_fe_plm, type = "text")
+basic_ols <- stargazer(full_ols_dummy, full_ols, full_ols_log, type = "text")
+# party_ols <- stargazer(ols_party, ols_party_dummy, type = "text")
+# geo_ols <- stargazer(ols_geo, ols_geo_log, type = "text")
+# state_ols <- stargazer(ols_state_fe, ols_state_fe_log, ols_state_fe_dummy, type = "text")
+# ind_ols <- stargazer(ols_ind_fe, ols_ind_fe_log, ols_ind_fe_dummy, type = "text")
+# ols_per_vote <- stargazer(ols_4_2, ols_51_2, ols_52_2, ols_6_2, ols_7_2, type = "text")
+# consistent_ols <- stargazer(ols_no_change, ols_party_no_change, ols_no_change_state_fe, ols_no_change_ind_fe, type = "text")
 
 ```
 
-Here Probit better than Logit, Akaike lower, so Probit is more parsimonious.
 
-Sessionized Models:
-```{r, include = FALSE}
-# # Vote 3 Logit
-# ols_3 <- glm(Vote3_minus ~ . - state - BioID - Vote3_plus - Vote3 - Vote_change_dummy, family = binomial(link = "logit"), data = df_vote_3)
-# summary(ols_3)
-
-# # Vote 3 Probit
-# ols_3 <- glm(Vote3_minus ~ . - state - BioID - Vote3_plus - Vote3 - Vote_change_dummy, family = binomial(link = "probit"), data = df_vote_3)
-# summary(ols_3)
-
-# # Vote 7 Logit
-# ols_7 <- glm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy, family = binomial(link = "logit"), data = df_vote_7)
-# summary(ols_7)
-
-# # Vote 7 Probit
-# ols_7 <- glm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy, family = binomial(link = "probit"), data = df_vote_7)
-# summary(ols_7)
-
-# # Vote 7_2 Logit
-# ols_7_2 <- glm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy - Vote7_NA, family = binomial(link = "logit"), data = df_vote_7_2)
-# summary(ols_7_2)
-
-# # Vote 7_2 Probit
-# ols_7_2 <- glm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy - Vote7_NA, family = binomial(link = "probit"), data = df_vote_7_2)
-# summary(ols_7_2)
-```
-
-Sessionizing not useful, as the p values are super high. -->
