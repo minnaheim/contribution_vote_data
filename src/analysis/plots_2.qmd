@@ -46,8 +46,8 @@ anti_env_contribs <- ggplot(df_long_1, aes(as.factor(Vote), Contribution_minus))
     )
 anti_env_contribs
 
-ggsave("env_contribs.svg", plot = env_contribs, width = 6, height = 6, units = "in", dpi = 300)
-ggsave("anti_env_contribs.svg", plot = anti_env_contribs, width = 6, height = 6, units = "in", dpi = 300)
+ggsave(path = "../../thesis/template-typst/figures", filename = "env_contribs.svg", plot = env_contribs, width = 6, height = 6, units = "in", dpi = 300)
+ggsave(path = "../../thesis/template-typst/figures", filename = "anti_env_contribs.svg", plot = anti_env_contribs, width = 6, height = 6, units = "in", dpi = 300)
 
 ```
 
@@ -94,8 +94,8 @@ anti_plot_contribs <- df_long %>%
     geom_hline(yintercept = mean_plus, color = "red")
 anti_plot_contribs
 
-ggsave("pro_plot_contribs.svg", plot = pro_plot_contribs, width = 6, height = 6, units = "in", dpi = 300)
-ggsave("anti_plot_contribs.svg", plot = anti_plot_contribs, width = 6, height = 6, units = "in", dpi = 300)
+ggsave(path = "../../thesis/template-typst/figures", filename = "pro_plot_contribs.svg", plot = pro_plot_contribs, width = 6, height = 6, units = "in", dpi = 300)
+ggsave(path = "../../thesis/template-typst/figures", filename = "anti_plot_contribs.svg", plot = anti_plot_contribs, width = 6, height = 6, units = "in", dpi = 300)
 ```
 
 

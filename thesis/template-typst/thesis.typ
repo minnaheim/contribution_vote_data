@@ -132,7 +132,7 @@ last 40 years.
   caption: [
     Average Contributions to House Members #footnote(
       " Since the 2024 election cylce is due in November 2024, the contributions
-                                                      there are not comparable to 2022 yet",
+                                                                                                                                                                                    there are not comparable to 2022 yet",
     ), 1990-2022
   ],
 ) <avg-contributions>
@@ -388,8 +388,6 @@ are some of the biggest contributors to congressional elections
 analysed, since these contributions are not only large in volume but also in
 distribution, as stated in the Introduction.
 
-//  plot about number of representatives who receive contribution
-
 The six bills chosen for this paper are the following: The 2013, 113th
 congressional session, Rollcall Vote 601 of Bill Number: H. R. 2728. The
 Protecting States' Rights to Promote American Energy Security Act would preserve
@@ -609,14 +607,6 @@ relevant vote. This means that I include not specific election periods, i.e.
 current or previous, but relevant contributions that roll in shortly before the
 vote. This is based on the hypothesis 4 stipulated in @hypothesis, that
 contributions are time related.
-
-//   stroke: (x, y) => (
-//     y: 1pt,
-//   left: if x == 0 { 1pt } else { 0pt },
-//   right: if (x + 1) == 4 { 1pt } else { 0pt },
-//   top: if y == 2 || y == 4 || y == 9 { 0pt } else { 1pt }, // No top border for the first row of grouped rows
-//   bottom: if y == 3 || y == 5 || y == 10 { 0pt } else { 1pt } // No bottom border for the last row of grouped rows)
-// ),
 
 #figure(table(
   columns: 4,
@@ -1009,9 +999,33 @@ coefficient however is not significant at all, yet the predictors are very good
 in explaining variations in the dependent variable, with an adjusted $R^2$ of
 0.953.
 
-// Interpretation of coefficients
-// - relatively high value of coefficients, given that the pro and anti env. contributions are distributed in the following way.. (show boxplots of contributions)
-// - in general, pro-env contributions a lot less in amount and a lot less reps get them on avg. than anti-env contributions (thus explains significance of variables... the pro-env contributions are more "targeted" and effective, since they might have less budget to start with)
+//  plot about number of representatives who receive contribution
+
+#figure(
+  image("figures/pro_plot_contribs.svg", width: 70%),
+  caption: [Distribution of pro environmental contributions with average anti environmental
+    contribution per representative],
+) <env-contribs>
+
+#figure(
+  image("figures/anti_plot_contribs.svg", width: 70%),
+  caption: [Distribution of anti environmental contributions with average anti environmental
+    contribution per representative vote],
+) <anti-env-contribs>
+
+Examining the figures above reveals distinct differences in the distribution of
+pro and anti-environmental campaign contributions. Pro-environmental
+contributions are generally smaller, while anti-environmental contributions tend
+to be larger and more spread out. This variance is also illustrated by the
+y-intercept line in the plots, which represents the average contribution to
+representatives from both groups. Despite pro-environmental contributions
+increasing environmental voting by 0.00698 percent and anti-environmental
+contributions decreasing it by 0.00048 percent, the impact of anti-environmental
+contributions is likely more effective due to their higher average
+amount—approximately 19,800 USD compared to 1,000 USD for pro-environmental
+contributions. Therefore, anti-environmental contributions appear to have a
+stronger effect on environmental voting, reflecting the disparity in average
+contribution amounts.
 
 // Interpretation of these validity of the results
 Althoug these adjusted $R^2$ values are very high and might raise suspicion of
@@ -1030,7 +1044,10 @@ considering each effect is measured on a per USD scale and is also rather highly
 significant.
 
 // add logit/probit results
-//  add info about pro and anti dummy... ever significant?
+The results from the conditional logit show similar trends as the linear
+probability models above. When regressing Vote against the contribution and
+control variables, we see that for a 100 USD increase in anti environmental
+contribution,//  include interpretation
 
 == Contribution and Vote Changes
 
@@ -1065,7 +1082,10 @@ listed above, including the Vote dummy variable, which signifies a
 pro-environemntal vote at 1, then we can interpret that a pro environmental
 contribution warrants. Interestingly enough, for a change from the democrat to
 the republican party, the pro environmental contributions for a representative
-increase by an average of 1.6 USD, ceteris paribus. Interestingly enough, if democrats have the majority in the house of representatives, the average pro environmental contributions to representatives decrease by 45 USD. These are interesting trends
+increase by an average of 1.6 USD, ceteris paribus. Interestingly enough, if
+democrats have the majority in the house of representatives, the average pro
+environmental contributions to representatives decrease by 45 USD. These are
+interesting trends
 
 //  add regression results here from vote_change_to_pro ~ contributions (all were insiginificant, but still, should mention that both the actual vote and the vote change was regressed)
 
