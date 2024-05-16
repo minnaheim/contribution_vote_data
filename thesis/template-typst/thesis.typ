@@ -132,7 +132,7 @@ last 40 years.
   caption: [
     Average Contributions to House Members #footnote(
       " Since the 2024 election cylce is due in November 2024, the contributions
-                                                                                                                                                                                    there are not comparable to 2022 yet",
+                                                                                                                                                                                                      there are not comparable to 2022 yet",
     ), 1990-2022
   ],
 ) <avg-contributions>
@@ -1046,8 +1046,16 @@ significant.
 // add logit/probit results
 The results from the conditional logit show similar trends as the linear
 probability models above. When regressing Vote against the contribution and
-control variables, we see that for a 100 USD increase in anti environmental
-contribution,//  include interpretation
+control variables, we see that the coefficient for contributions are log-odds.
+In other words, for a 100 USD increase in the anti (pro) environmental , the
+expected change in log odds is -2.135e-05 (9.944e-05), ceteris paribus. These
+results are a bit less significant than these of the LPM, since anti
+environmental contributions are significant on a 0.05 and pro environmental on a
+0.01 level, when only including control variables. When fixing for state and
+years, the estimate coefficients for pro environemtnal contributions are 0.502
+and -0.47 for the anti enviornmental contributions, ceteris paribus, where both
+coefficients are significant on a 0.1 level. When fixing legislator and year,
+however, neither contribution variable is significant.
 
 == Contribution and Vote Changes
 
@@ -1077,15 +1085,15 @@ usually only the pro-environmental contributions are significant, see the
 results from the LPM with legislator and year fixed effects, for example.
 
 // should i include this?
-When regressing the pro-environmental contributions with all other variables
-listed above, including the Vote dummy variable, which signifies a
-pro-environemntal vote at 1, then we can interpret that a pro environmental
-contribution warrants. Interestingly enough, for a change from the democrat to
-the republican party, the pro environmental contributions for a representative
-increase by an average of 1.6 USD, ceteris paribus. Interestingly enough, if
-democrats have the majority in the house of representatives, the average pro
-environmental contributions to representatives decrease by 45 USD. These are
-interesting trends
+// When regressing the pro-environmental contributions with all other variables
+// listed above, including the Vote dummy variable, which signifies a
+// pro-environemntal vote at 1, then we can interpret that a pro environmental
+// contribution warrants. Interestingly enough, for a change from the democrat to
+// the republican party, the pro environmental contributions for a representative
+// increase by an average of 1.6 USD, ceteris paribus. Interestingly enough, if
+// democrats have the majority in the house of representatives, the average pro
+// environmental contributions to representatives decrease by 45 USD. These are
+// interesting trends
 
 //  add regression results here from vote_change_to_pro ~ contributions (all were insiginificant, but still, should mention that both the actual vote and the vote change was regressed)
 
@@ -1162,15 +1170,12 @@ by ideology and politics, it is understandable as to why fixing for differences
 in party lines and ideology would be more significant than fixing for other
 variables.
 
-// should i even include this hypothesis, if its just that 6mo > aggregate, already talked about this, shouldn't be a topic.
 //  add recency -> vote 4,5,6 with all prior contributions, to see whether more recent contributions have higher effect than less recent ones.. (6mo prior vs. aggregate?)
 
 // COMPARE RESULTS, ADJ R^2 ETC. WITH THE STRATMANN MODEL
 // mention no-change results -> no contribution coefficient is significant...
 
 //  final result: relation between contributions and votes can be confirmed, but not the whether contributions are the actual reason for vote changes.. so no causal conclusion to be drawn from these results.
-
-// be critical of paper (either here or discussion)?
 
 #pagebreak()
 = Discussion and Conclusion
