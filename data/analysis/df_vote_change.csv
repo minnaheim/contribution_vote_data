@@ -1,139 +1,139 @@
 "BioID","GovtrackID","opensecrets_id","first_name","last_name","state","district","party","name","Vote_change","Vote_change_dummy","birthday","gender","nominate_dim1","nominate_dim2","Geographical","Instance","Vote","seniority","Contribution_minus","Contribution_plus","Dmajority","vote_change_to_pro","vote_change_to_anti","anti_env_dummy","pro_env_dummy"
-"B000490",400030,"N00002674","Sanford D.,Sanford","Bishop","GA",2,"D","bishop sanford d,bishop sanford",4,1,1947,"M",0.285,0.454,"SO","3",1,11,200,0,0,NA,0,1,0
-"B000490",400030,"N00002674","Sanford D.,Sanford","Bishop","GA",2,"D","bishop sanford d,bishop sanford",4,1,1947,"M",0.285,0.454,"SO","4",0,12,175,0,0,0,1,1,0
-"B000490",400030,"N00002674","Sanford D.,Sanford","Bishop","GA",2,"D","bishop sanford d,bishop sanford",4,1,1947,"M",0.285,0.454,"SO","51",1,13,135,0,0,1,0,1,0
-"B000490",400030,"N00002674","Sanford D.,Sanford","Bishop","GA",2,"D","bishop sanford d,bishop sanford",4,1,1947,"M",0.285,0.454,"SO","52",0,13,180,0,0,0,1,1,0
-"B000490",400030,"N00002674","Sanford D.,Sanford","Bishop","GA",2,"D","bishop sanford d,bishop sanford",4,1,1947,"M",0.285,0.454,"SO","6",1,14,75,0,1,1,0,1,0
-"B000490",400030,"N00002674","Sanford D.,Sanford","Bishop","GA",2,"D","bishop sanford d,bishop sanford",4,1,1947,"M",0.285,0.454,"SO","7",1,15,50,0,1,0,0,1,0
-"C001059",400618,"N00026341","Jim","Costa","CA",NA,"D","costa jim",3,1,1952,"M",0.196,0.458,"WE","3",0,5,241.14,0,0,0,NA,1,0
-"C001059",400618,"N00026341","Jim","Costa","CA",NA,"D","costa jim",3,1,1952,"M",0.196,0.458,"WE","4",1,6,580,20,0,1,0,1,1
-"C001059",400618,"N00026341","Jim","Costa","CA",NA,"D","costa jim",3,1,1952,"M",0.196,0.458,"WE","51",NA,7,367.5,0,0,0,NA,1,0
-"C001059",400618,"N00026341","Jim","Costa","CA",NA,"D","costa jim",3,1,1952,"M",0.196,0.458,"WE","52",1,7,597.5,0,0,NA,0,1,0
-"C001059",400618,"N00026341","Jim","Costa","CA",NA,"D","costa jim",3,1,1952,"M",0.196,0.458,"WE","6",0,8,275,0,1,0,1,1,0
-"C001059",400618,"N00026341","Jim","Costa","CA",NA,"D","costa jim",3,1,1952,"M",0.196,0.458,"WE","7",1,9,480,0,1,1,0,1,0
-"C001063",400657,"N00024978","Henry","Cuellar","TX",28,"D","cuellar henry",1,1,1955,"M",0.227,0.622,"SO","3",0,5,651,0,0,0,NA,1,0
-"C001063",400657,"N00024978","Henry","Cuellar","TX",28,"D","cuellar henry",1,1,1955,"M",0.227,0.622,"SO","4",0,6,437.5,0,0,0,0,1,0
-"C001063",400657,"N00024978","Henry","Cuellar","TX",28,"D","cuellar henry",1,1,1955,"M",0.227,0.622,"SO","51",0,7,539.5,2.5,0,0,0,1,1
-"C001063",400657,"N00024978","Henry","Cuellar","TX",28,"D","cuellar henry",1,1,1955,"M",0.227,0.622,"SO","52",0,7,637,2.5,0,0,0,1,1
-"C001063",400657,"N00024978","Henry","Cuellar","TX",28,"D","cuellar henry",1,1,1955,"M",0.227,0.622,"SO","6",1,8,686.5,0,1,1,0,1,0
-"C001063",400657,"N00024978","Henry","Cuellar","TX",28,"D","cuellar henry",1,1,1955,"M",0.227,0.622,"SO","7",1,9,625.98,0,1,0,0,1,0
-"C001077",NA,"N00024753","Mike","Coffman","CO",6,"R","mike coffman",1,1,1955,"M",0.492,0.213,"WE","3",0,3,990.5,2.5,0,0,NA,1,1
-"C001077",NA,"N00024753","Mike","Coffman","CO",6,"R","mike coffman",1,1,1955,"M",0.492,0.213,"WE","4",0,4,689.11,5,0,0,0,1,1
-"C001077",NA,"N00024753","Mike","Coffman","CO",6,"R","mike coffman",1,1,1955,"M",0.492,0.213,"WE","51",0,5,583,20,0,0,0,1,1
-"C001077",NA,"N00024753","Mike","Coffman","CO",6,"R","mike coffman",1,1,1955,"M",0.492,0.213,"WE","52",1,5,742,605.5,0,1,0,1,1
+"B000490",400030,"N00002674","Sanford D.,Sanford","Bishop","GA",2,"D","bishop sanford d,bishop sanford",4,1,1947,"M",0.285,0.454,"SO","3",1,11,20,0,0,NA,0,1,0
+"B000490",400030,"N00002674","Sanford D.,Sanford","Bishop","GA",2,"D","bishop sanford d,bishop sanford",4,1,1947,"M",0.285,0.454,"SO","4",0,12,17.5,0,0,0,1,1,0
+"B000490",400030,"N00002674","Sanford D.,Sanford","Bishop","GA",2,"D","bishop sanford d,bishop sanford",4,1,1947,"M",0.285,0.454,"SO","51",1,13,13.5,0,0,1,0,1,0
+"B000490",400030,"N00002674","Sanford D.,Sanford","Bishop","GA",2,"D","bishop sanford d,bishop sanford",4,1,1947,"M",0.285,0.454,"SO","52",0,13,18,0,0,0,1,1,0
+"B000490",400030,"N00002674","Sanford D.,Sanford","Bishop","GA",2,"D","bishop sanford d,bishop sanford",4,1,1947,"M",0.285,0.454,"SO","6",1,14,7.5,0,1,1,0,1,0
+"B000490",400030,"N00002674","Sanford D.,Sanford","Bishop","GA",2,"D","bishop sanford d,bishop sanford",4,1,1947,"M",0.285,0.454,"SO","7",1,15,5,0,1,0,0,1,0
+"C001059",400618,"N00026341","Jim","Costa","CA",NA,"D","costa jim",3,1,1952,"M",0.196,0.458,"WE","3",0,5,24.114,0,0,0,NA,1,0
+"C001059",400618,"N00026341","Jim","Costa","CA",NA,"D","costa jim",3,1,1952,"M",0.196,0.458,"WE","4",1,6,58,2,0,1,0,1,1
+"C001059",400618,"N00026341","Jim","Costa","CA",NA,"D","costa jim",3,1,1952,"M",0.196,0.458,"WE","51",NA,7,36.75,0,0,0,NA,1,0
+"C001059",400618,"N00026341","Jim","Costa","CA",NA,"D","costa jim",3,1,1952,"M",0.196,0.458,"WE","52",1,7,59.75,0,0,NA,0,1,0
+"C001059",400618,"N00026341","Jim","Costa","CA",NA,"D","costa jim",3,1,1952,"M",0.196,0.458,"WE","6",0,8,27.5,0,1,0,1,1,0
+"C001059",400618,"N00026341","Jim","Costa","CA",NA,"D","costa jim",3,1,1952,"M",0.196,0.458,"WE","7",1,9,48,0,1,1,0,1,0
+"C001063",400657,"N00024978","Henry","Cuellar","TX",28,"D","cuellar henry",1,1,1955,"M",0.227,0.622,"SO","3",0,5,65.1,0,0,0,NA,1,0
+"C001063",400657,"N00024978","Henry","Cuellar","TX",28,"D","cuellar henry",1,1,1955,"M",0.227,0.622,"SO","4",0,6,43.75,0,0,0,0,1,0
+"C001063",400657,"N00024978","Henry","Cuellar","TX",28,"D","cuellar henry",1,1,1955,"M",0.227,0.622,"SO","51",0,7,53.95,0.25,0,0,0,1,1
+"C001063",400657,"N00024978","Henry","Cuellar","TX",28,"D","cuellar henry",1,1,1955,"M",0.227,0.622,"SO","52",0,7,63.7,0.25,0,0,0,1,1
+"C001063",400657,"N00024978","Henry","Cuellar","TX",28,"D","cuellar henry",1,1,1955,"M",0.227,0.622,"SO","6",1,8,68.65,0,1,1,0,1,0
+"C001063",400657,"N00024978","Henry","Cuellar","TX",28,"D","cuellar henry",1,1,1955,"M",0.227,0.622,"SO","7",1,9,62.598,0,1,0,0,1,0
+"C001077",NA,"N00024753","Mike","Coffman","CO",6,"R","mike coffman",1,1,1955,"M",0.492,0.213,"WE","3",0,3,99.05,0.25,0,0,NA,1,1
+"C001077",NA,"N00024753","Mike","Coffman","CO",6,"R","mike coffman",1,1,1955,"M",0.492,0.213,"WE","4",0,4,68.911,0.5,0,0,0,1,1
+"C001077",NA,"N00024753","Mike","Coffman","CO",6,"R","mike coffman",1,1,1955,"M",0.492,0.213,"WE","51",0,5,58.3,2,0,0,0,1,1
+"C001077",NA,"N00024753","Mike","Coffman","CO",6,"R","mike coffman",1,1,1955,"M",0.492,0.213,"WE","52",1,5,74.2,60.55,0,1,0,1,1
 "C001077",NA,"N00024753","Mike","Coffman","CO",6,"R","mike coffman",1,1,1955,"M",0.492,0.213,"WE","6",NA,5,NA,NA,1,0,NA,0,0
 "C001077",NA,"N00024753","Mike","Coffman","CO",6,"R","mike coffman",1,1,1955,"M",0.492,0.213,"WE","7",NA,5,NA,NA,1,NA,NA,0,0
 "C001106",NA,"N00031064","Ryan","Costello","PA",6,"R","ryan costello",1,1,1976,"M",0.217,0.055,"NE","3",NA,0,NA,NA,0,NA,NA,0,0
-"C001106",NA,"N00031064","Ryan","Costello","PA",6,"R","ryan costello",1,1,1976,"M",0.217,0.055,"NE","4",0,1,362,70,0,0,NA,1,1
-"C001106",NA,"N00031064","Ryan","Costello","PA",6,"R","ryan costello",1,1,1976,"M",0.217,0.055,"NE","51",1,2,140,10,0,1,0,1,1
-"C001106",NA,"N00031064","Ryan","Costello","PA",6,"R","ryan costello",1,1,1976,"M",0.217,0.055,"NE","52",1,2,75,10,0,0,0,1,1
+"C001106",NA,"N00031064","Ryan","Costello","PA",6,"R","ryan costello",1,1,1976,"M",0.217,0.055,"NE","4",0,1,36.2,7,0,0,NA,1,1
+"C001106",NA,"N00031064","Ryan","Costello","PA",6,"R","ryan costello",1,1,1976,"M",0.217,0.055,"NE","51",1,2,14,1,0,1,0,1,1
+"C001106",NA,"N00031064","Ryan","Costello","PA",6,"R","ryan costello",1,1,1976,"M",0.217,0.055,"NE","52",1,2,7.5,1,0,0,0,1,1
 "C001106",NA,"N00031064","Ryan","Costello","PA",6,"R","ryan costello",1,1,1976,"M",0.217,0.055,"NE","6",NA,2,NA,NA,1,0,NA,0,0
 "C001106",NA,"N00031064","Ryan","Costello","PA",6,"R","ryan costello",1,1,1976,"M",0.217,0.055,"NE","7",NA,2,NA,NA,1,NA,NA,0,0
-"G000410",NA,"N00005870","Gene","Green","TX",29,"D","gene green",1,1,1947,"M",0.324,0.453,"SO","3",0,11,465,0,0,0,NA,1,0
-"G000410",NA,"N00005870","Gene","Green","TX",29,"D","gene green",1,1,1947,"M",0.324,0.453,"SO","4",1,12,964.5,25,0,1,0,1,1
+"G000410",NA,"N00005870","Gene","Green","TX",29,"D","gene green",1,1,1947,"M",0.324,0.453,"SO","3",0,11,46.5,0,0,0,NA,1,0
+"G000410",NA,"N00005870","Gene","Green","TX",29,"D","gene green",1,1,1947,"M",0.324,0.453,"SO","4",1,12,96.45,2.5,0,1,0,1,1
 "G000410",NA,"N00005870","Gene","Green","TX",29,"D","gene green",1,1,1947,"M",0.324,0.453,"SO","51",1,13,0,0,0,0,0,0,0
 "G000410",NA,"N00005870","Gene","Green","TX",29,"D","gene green",1,1,1947,"M",0.324,0.453,"SO","52",1,13,0,0,0,0,0,0,0
 "G000410",NA,"N00005870","Gene","Green","TX",29,"D","gene green",1,1,1947,"M",0.324,0.453,"SO","6",NA,13,NA,NA,1,0,NA,0,0
 "G000410",NA,"N00005870","Gene","Green","TX",29,"D","gene green",1,1,1947,"M",0.324,0.453,"SO","7",NA,13,NA,NA,1,NA,NA,0,0
 "G000578",412690,"N00039503","Matt","Gaetz","FL",1,"R","gaetz matt",1,1,1982,"M",0.598,0.646,"SO","3",NA,0,NA,NA,0,NA,NA,0,0
 "G000578",412690,"N00039503","Matt","Gaetz","FL",1,"R","gaetz matt",1,1,1982,"M",0.598,0.646,"SO","4",NA,0,NA,NA,0,NA,NA,0,0
-"G000578",412690,"N00039503","Matt","Gaetz","FL",1,"R","gaetz matt",1,1,1982,"M",0.598,0.646,"SO","51",0,1,54,0,0,0,NA,1,0
-"G000578",412690,"N00039503","Matt","Gaetz","FL",1,"R","gaetz matt",1,1,1982,"M",0.598,0.646,"SO","52",NA,1,81,0,0,NA,0,1,0
-"G000578",412690,"N00039503","Matt","Gaetz","FL",1,"R","gaetz matt",1,1,1982,"M",0.598,0.646,"SO","6",0,2,15,0,1,0,NA,1,0
-"G000578",412690,"N00039503","Matt","Gaetz","FL",1,"R","gaetz matt",1,1,1982,"M",0.598,0.646,"SO","7",1,3,53.91,0,1,1,0,1,0
+"G000578",412690,"N00039503","Matt","Gaetz","FL",1,"R","gaetz matt",1,1,1982,"M",0.598,0.646,"SO","51",0,1,5.4,0,0,0,NA,1,0
+"G000578",412690,"N00039503","Matt","Gaetz","FL",1,"R","gaetz matt",1,1,1982,"M",0.598,0.646,"SO","52",NA,1,8.1,0,0,NA,0,1,0
+"G000578",412690,"N00039503","Matt","Gaetz","FL",1,"R","gaetz matt",1,1,1982,"M",0.598,0.646,"SO","6",0,2,1.5,0,1,0,NA,1,0
+"G000578",412690,"N00039503","Matt","Gaetz","FL",1,"R","gaetz matt",1,1,1982,"M",0.598,0.646,"SO","7",1,3,5.391,0,1,1,0,1,0
 "G000581",412725,"N00038809","Vicente","Gonzalez","TX",NA,"D","gonzalez vicente",1,1,1967,"M",0.388,0.755,"SO","3",NA,0,NA,NA,0,NA,NA,0,0
 "G000581",412725,"N00038809","Vicente","Gonzalez","TX",NA,"D","gonzalez vicente",1,1,1967,"M",0.388,0.755,"SO","4",NA,0,NA,NA,0,NA,NA,0,0
-"G000581",412725,"N00038809","Vicente","Gonzalez","TX",NA,"D","gonzalez vicente",1,1,1967,"M",0.388,0.755,"SO","51",0,1,260,0,0,0,NA,1,0
-"G000581",412725,"N00038809","Vicente","Gonzalez","TX",NA,"D","gonzalez vicente",1,1,1967,"M",0.388,0.755,"SO","52",1,1,240,0,0,1,0,1,0
-"G000581",412725,"N00038809","Vicente","Gonzalez","TX",NA,"D","gonzalez vicente",1,1,1967,"M",0.388,0.755,"SO","6",1,2,185,0,1,0,0,1,0
-"G000581",412725,"N00038809","Vicente","Gonzalez","TX",NA,"D","gonzalez vicente",1,1,1967,"M",0.388,0.755,"SO","7",1,3,567,0,1,0,0,1,0
-"H001051",NA,"N00030197","Richard","Hanna","NY",22,"R","richard hanna",1,1,1951,"M",0.215,0.145,"NE","3",0,2,32.5,0,0,0,NA,1,0
+"G000581",412725,"N00038809","Vicente","Gonzalez","TX",NA,"D","gonzalez vicente",1,1,1967,"M",0.388,0.755,"SO","51",0,1,26,0,0,0,NA,1,0
+"G000581",412725,"N00038809","Vicente","Gonzalez","TX",NA,"D","gonzalez vicente",1,1,1967,"M",0.388,0.755,"SO","52",1,1,24,0,0,1,0,1,0
+"G000581",412725,"N00038809","Vicente","Gonzalez","TX",NA,"D","gonzalez vicente",1,1,1967,"M",0.388,0.755,"SO","6",1,2,18.5,0,1,0,0,1,0
+"G000581",412725,"N00038809","Vicente","Gonzalez","TX",NA,"D","gonzalez vicente",1,1,1967,"M",0.388,0.755,"SO","7",1,3,56.7,0,1,0,0,1,0
+"H001051",NA,"N00030197","Richard","Hanna","NY",22,"R","richard hanna",1,1,1951,"M",0.215,0.145,"NE","3",0,2,3.25,0,0,0,NA,1,0
 "H001051",NA,"N00030197","Richard","Hanna","NY",22,"R","richard hanna",1,1,1951,"M",0.215,0.145,"NE","4",1,3,0,0,0,1,0,0,0
 "H001051",NA,"N00030197","Richard","Hanna","NY",22,"R","richard hanna",1,1,1951,"M",0.215,0.145,"NE","51",NA,3,NA,NA,0,0,NA,0,0
 "H001051",NA,"N00030197","Richard","Hanna","NY",22,"R","richard hanna",1,1,1951,"M",0.215,0.145,"NE","52",NA,3,NA,NA,0,NA,NA,0,0
 "H001051",NA,"N00030197","Richard","Hanna","NY",22,"R","richard hanna",1,1,1951,"M",0.215,0.145,"NE","6",NA,3,NA,NA,1,NA,NA,0,0
 "H001051",NA,"N00030197","Richard","Hanna","NY",22,"R","richard hanna",1,1,1951,"M",0.215,0.145,"NE","7",NA,3,NA,NA,1,NA,NA,0,0
 "K000387",NA,"N00035820","Steve","Knight","CA",25,"R","steve knight",2,1,1966,"M",0.397,0.188,"WE","3",NA,0,NA,NA,0,NA,NA,0,0
-"K000387",NA,"N00035820","Steve","Knight","CA",25,"R","steve knight",2,1,1966,"M",0.397,0.188,"WE","4",0,1,288,0,0,0,NA,1,0
-"K000387",NA,"N00035820","Steve","Knight","CA",25,"R","steve knight",2,1,1966,"M",0.397,0.188,"WE","51",1,2,449.46,52.87,0,1,0,1,1
-"K000387",NA,"N00035820","Steve","Knight","CA",25,"R","steve knight",2,1,1966,"M",0.397,0.188,"WE","52",0,2,606.06,52.87,0,0,1,1,1
+"K000387",NA,"N00035820","Steve","Knight","CA",25,"R","steve knight",2,1,1966,"M",0.397,0.188,"WE","4",0,1,28.8,0,0,0,NA,1,0
+"K000387",NA,"N00035820","Steve","Knight","CA",25,"R","steve knight",2,1,1966,"M",0.397,0.188,"WE","51",1,2,44.946,5.287,0,1,0,1,1
+"K000387",NA,"N00035820","Steve","Knight","CA",25,"R","steve knight",2,1,1966,"M",0.397,0.188,"WE","52",0,2,60.606,5.287,0,0,1,1,1
 "K000387",NA,"N00035820","Steve","Knight","CA",25,"R","steve knight",2,1,1966,"M",0.397,0.188,"WE","6",NA,2,NA,NA,1,NA,0,0,0
 "K000387",NA,"N00035820","Steve","Knight","CA",25,"R","steve knight",2,1,1966,"M",0.397,0.188,"WE","7",NA,2,NA,NA,1,NA,NA,0,0
-"L000567",NA,"N00000898","Leonard","Lance","NJ",7,"R","leonard lance",1,1,1952,"M",0.329,0.237,"NE","3",0,3,60,0,0,0,NA,1,0
-"L000567",NA,"N00000898","Leonard","Lance","NJ",7,"R","leonard lance",1,1,1952,"M",0.329,0.237,"NE","4",0,4,175.75,0,0,0,0,1,0
-"L000567",NA,"N00000898","Leonard","Lance","NJ",7,"R","leonard lance",1,1,1952,"M",0.329,0.237,"NE","51",0,5,282.5,0,0,0,0,1,0
-"L000567",NA,"N00000898","Leonard","Lance","NJ",7,"R","leonard lance",1,1,1952,"M",0.329,0.237,"NE","52",1,5,330,0,0,1,0,1,0
+"L000567",NA,"N00000898","Leonard","Lance","NJ",7,"R","leonard lance",1,1,1952,"M",0.329,0.237,"NE","3",0,3,6,0,0,0,NA,1,0
+"L000567",NA,"N00000898","Leonard","Lance","NJ",7,"R","leonard lance",1,1,1952,"M",0.329,0.237,"NE","4",0,4,17.575,0,0,0,0,1,0
+"L000567",NA,"N00000898","Leonard","Lance","NJ",7,"R","leonard lance",1,1,1952,"M",0.329,0.237,"NE","51",0,5,28.25,0,0,0,0,1,0
+"L000567",NA,"N00000898","Leonard","Lance","NJ",7,"R","leonard lance",1,1,1952,"M",0.329,0.237,"NE","52",1,5,33,0,0,1,0,1,0
 "L000567",NA,"N00000898","Leonard","Lance","NJ",7,"R","leonard lance",1,1,1952,"M",0.329,0.237,"NE","6",NA,5,NA,NA,1,0,NA,0,0
 "L000567",NA,"N00000898","Leonard","Lance","NJ",7,"R","leonard lance",1,1,1952,"M",0.329,0.237,"NE","7",NA,5,NA,NA,1,NA,NA,0,0
-"M001181",NA,"N00031134","Patrick","Meehan","PA",7,"R","patrick meehan",1,1,1955,"M",0.22,0.076,"NE","3",0,2,190,54,0,0,NA,1,1
-"M001181",NA,"N00031134","Patrick","Meehan","PA",7,"R","patrick meehan",1,1,1955,"M",0.22,0.076,"NE","4",0,3,267,65,0,0,0,1,1
-"M001181",NA,"N00031134","Patrick","Meehan","PA",7,"R","patrick meehan",1,1,1955,"M",0.22,0.076,"NE","51",1,4,70,0,0,1,0,1,0
+"M001181",NA,"N00031134","Patrick","Meehan","PA",7,"R","patrick meehan",1,1,1955,"M",0.22,0.076,"NE","3",0,2,19,5.4,0,0,NA,1,1
+"M001181",NA,"N00031134","Patrick","Meehan","PA",7,"R","patrick meehan",1,1,1955,"M",0.22,0.076,"NE","4",0,3,26.7,6.5,0,0,0,1,1
+"M001181",NA,"N00031134","Patrick","Meehan","PA",7,"R","patrick meehan",1,1,1955,"M",0.22,0.076,"NE","51",1,4,7,0,0,1,0,1,0
 "M001181",NA,"N00031134","Patrick","Meehan","PA",7,"R","patrick meehan",1,1,1955,"M",0.22,0.076,"NE","52",NA,4,NA,NA,0,0,NA,0,0
 "M001181",NA,"N00031134","Patrick","Meehan","PA",7,"R","patrick meehan",1,1,1955,"M",0.22,0.076,"NE","6",NA,4,NA,NA,1,NA,NA,0,0
 "M001181",NA,"N00031134","Patrick","Meehan","PA",7,"R","patrick meehan",1,1,1955,"M",0.22,0.076,"NE","7",NA,4,NA,NA,1,NA,NA,0,0
 "R000435",NA,"N00002858","Ileana","Ros-Lehtinen","FL",27,"R","ileana ros lehtinen",1,1,1952,"F",0.244,0.225,"SO","3",0,13,0,0,0,0,NA,0,0
-"R000435",NA,"N00002858","Ileana","Ros-Lehtinen","FL",27,"R","ileana ros lehtinen",1,1,1952,"F",0.244,0.225,"SO","4",1,14,15,0,0,1,0,1,0
+"R000435",NA,"N00002858","Ileana","Ros-Lehtinen","FL",27,"R","ileana ros lehtinen",1,1,1952,"F",0.244,0.225,"SO","4",1,14,1.5,0,0,1,0,1,0
 "R000435",NA,"N00002858","Ileana","Ros-Lehtinen","FL",27,"R","ileana ros lehtinen",1,1,1952,"F",0.244,0.225,"SO","51",NA,15,0,0,0,0,NA,0,0
 "R000435",NA,"N00002858","Ileana","Ros-Lehtinen","FL",27,"R","ileana ros lehtinen",1,1,1952,"F",0.244,0.225,"SO","52",1,15,0,0,0,NA,0,0,0
 "R000435",NA,"N00002858","Ileana","Ros-Lehtinen","FL",27,"R","ileana ros lehtinen",1,1,1952,"F",0.244,0.225,"SO","6",NA,15,NA,NA,1,0,NA,0,0
 "R000435",NA,"N00002858","Ileana","Ros-Lehtinen","FL",27,"R","ileana ros lehtinen",1,1,1952,"F",0.244,0.225,"SO","7",NA,15,NA,NA,1,NA,NA,0,0
-"R000578",NA,"N00026885","Dave,David","Reichert","WA",8,"R","dave reichert,david reichert",1,1,1950,"M",0.224,0.146,"WE","3",0,5,57.5,10,0,0,NA,1,1
-"R000578",NA,"N00026885","Dave,David","Reichert","WA",8,"R","dave reichert,david reichert",1,1,1950,"M",0.224,0.146,"WE","4",0,6,100,65,0,0,0,1,1
+"R000578",NA,"N00026885","Dave,David","Reichert","WA",8,"R","dave reichert,david reichert",1,1,1950,"M",0.224,0.146,"WE","3",0,5,5.75,1,0,0,NA,1,1
+"R000578",NA,"N00026885","Dave,David","Reichert","WA",8,"R","dave reichert,david reichert",1,1,1950,"M",0.224,0.146,"WE","4",0,6,10,6.5,0,0,0,1,1
 "R000578",NA,"N00026885","Dave,David","Reichert","WA",8,"R","dave reichert,david reichert",1,1,1950,"M",0.224,0.146,"WE","51",1,7,0,0,0,1,0,0,0
 "R000578",NA,"N00026885","Dave,David","Reichert","WA",8,"R","dave reichert,david reichert",1,1,1950,"M",0.224,0.146,"WE","52",1,7,NA,NA,0,0,0,0,0
 "R000578",NA,"N00026885","Dave,David","Reichert","WA",8,"R","dave reichert,david reichert",1,1,1950,"M",0.224,0.146,"WE","6",NA,7,NA,NA,1,0,NA,0,0
 "R000578",NA,"N00026885","Dave,David","Reichert","WA",8,"R","dave reichert,david reichert",1,1,1950,"M",0.224,0.146,"WE","7",NA,7,NA,NA,1,NA,NA,0,0
-"R000580",NA,"N00004719","Peter J.,Peter","Roskam","IL",6,"R","peter j roskam,peter roskam",1,1,1961,"M",0.429,0.018,"MW","3",0,4,433,0,0,0,NA,1,0
-"R000580",NA,"N00004719","Peter J.,Peter","Roskam","IL",6,"R","peter j roskam,peter roskam",1,1,1961,"M",0.429,0.018,"MW","4",0,5,208.5,0,0,0,0,1,0
-"R000580",NA,"N00004719","Peter J.,Peter","Roskam","IL",6,"R","peter j roskam,peter roskam",1,1,1961,"M",0.429,0.018,"MW","51",0,6,382.5,32.25,0,0,0,1,1
-"R000580",NA,"N00004719","Peter J.,Peter","Roskam","IL",6,"R","peter j roskam,peter roskam",1,1,1961,"M",0.429,0.018,"MW","52",1,6,353.5,32.25,0,1,0,1,1
+"R000580",NA,"N00004719","Peter J.,Peter","Roskam","IL",6,"R","peter j roskam,peter roskam",1,1,1961,"M",0.429,0.018,"MW","3",0,4,43.3,0,0,0,NA,1,0
+"R000580",NA,"N00004719","Peter J.,Peter","Roskam","IL",6,"R","peter j roskam,peter roskam",1,1,1961,"M",0.429,0.018,"MW","4",0,5,20.85,0,0,0,0,1,0
+"R000580",NA,"N00004719","Peter J.,Peter","Roskam","IL",6,"R","peter j roskam,peter roskam",1,1,1961,"M",0.429,0.018,"MW","51",0,6,38.25,3.225,0,0,0,1,1
+"R000580",NA,"N00004719","Peter J.,Peter","Roskam","IL",6,"R","peter j roskam,peter roskam",1,1,1961,"M",0.429,0.018,"MW","52",1,6,35.35,3.225,0,1,0,1,1
 "R000580",NA,"N00004719","Peter J.,Peter","Roskam","IL",6,"R","peter j roskam,peter roskam",1,1,1961,"M",0.429,0.018,"MW","6",NA,6,NA,NA,1,0,NA,0,0
 "R000580",NA,"N00004719","Peter J.,Peter","Roskam","IL",6,"R","peter j roskam,peter roskam",1,1,1961,"M",0.429,0.018,"MW","7",NA,6,NA,NA,1,NA,NA,0,0
-"R000585",412393,"N00030949","Tom","Reed","NY",23,"R","reed tom",1,1,1971,"M",0.269,0.12,"NE","3",0,3,857.5,42.5,0,0,NA,1,1
-"R000585",412393,"N00030949","Tom","Reed","NY",23,"R","reed tom",1,1,1971,"M",0.269,0.12,"NE","4",0,4,773.25,180,0,0,0,1,1
-"R000585",412393,"N00030949","Tom","Reed","NY",23,"R","reed tom",1,1,1971,"M",0.269,0.12,"NE","51",0,5,409.25,5,0,0,0,1,1
-"R000585",412393,"N00030949","Tom","Reed","NY",23,"R","reed tom",1,1,1971,"M",0.269,0.12,"NE","52",0,5,324.25,0,0,0,0,1,0
-"R000585",412393,"N00030949","Tom","Reed","NY",23,"R","reed tom",1,1,1971,"M",0.269,0.12,"NE","6",0,6,452.88,0,1,0,0,1,0
-"R000585",412393,"N00030949","Tom","Reed","NY",23,"R","reed tom",1,1,1971,"M",0.269,0.12,"NE","7",1,7,133,0,1,1,0,1,0
-"S000051",NA,"N00002424","Mark,Marshall","Sanford","SC",1,"R","mark sanford,marshall sanford",1,1,1960,"M",0.686,0.728,"SO","3",0,4,126,0,0,0,NA,1,0
-"S000051",NA,"N00002424","Mark,Marshall","Sanford","SC",1,"R","mark sanford,marshall sanford",1,1,1960,"M",0.686,0.728,"SO","4",0,5,20,0,0,0,0,1,0
-"S000051",NA,"N00002424","Mark,Marshall","Sanford","SC",1,"R","mark sanford,marshall sanford",1,1,1960,"M",0.686,0.728,"SO","51",1,6,50,42,0,1,0,1,1
-"S000051",NA,"N00002424","Mark,Marshall","Sanford","SC",1,"R","mark sanford,marshall sanford",1,1,1960,"M",0.686,0.728,"SO","52",1,6,75,42,0,0,0,1,1
+"R000585",412393,"N00030949","Tom","Reed","NY",23,"R","reed tom",1,1,1971,"M",0.269,0.12,"NE","3",0,3,85.75,4.25,0,0,NA,1,1
+"R000585",412393,"N00030949","Tom","Reed","NY",23,"R","reed tom",1,1,1971,"M",0.269,0.12,"NE","4",0,4,77.325,18,0,0,0,1,1
+"R000585",412393,"N00030949","Tom","Reed","NY",23,"R","reed tom",1,1,1971,"M",0.269,0.12,"NE","51",0,5,40.925,0.5,0,0,0,1,1
+"R000585",412393,"N00030949","Tom","Reed","NY",23,"R","reed tom",1,1,1971,"M",0.269,0.12,"NE","52",0,5,32.425,0,0,0,0,1,0
+"R000585",412393,"N00030949","Tom","Reed","NY",23,"R","reed tom",1,1,1971,"M",0.269,0.12,"NE","6",0,6,45.288,0,1,0,0,1,0
+"R000585",412393,"N00030949","Tom","Reed","NY",23,"R","reed tom",1,1,1971,"M",0.269,0.12,"NE","7",1,7,13.3,0,1,1,0,1,0
+"S000051",NA,"N00002424","Mark,Marshall","Sanford","SC",1,"R","mark sanford,marshall sanford",1,1,1960,"M",0.686,0.728,"SO","3",0,4,12.6,0,0,0,NA,1,0
+"S000051",NA,"N00002424","Mark,Marshall","Sanford","SC",1,"R","mark sanford,marshall sanford",1,1,1960,"M",0.686,0.728,"SO","4",0,5,2,0,0,0,0,1,0
+"S000051",NA,"N00002424","Mark,Marshall","Sanford","SC",1,"R","mark sanford,marshall sanford",1,1,1960,"M",0.686,0.728,"SO","51",1,6,5,4.2,0,1,0,1,1
+"S000051",NA,"N00002424","Mark,Marshall","Sanford","SC",1,"R","mark sanford,marshall sanford",1,1,1960,"M",0.686,0.728,"SO","52",1,6,7.5,4.2,0,0,0,1,1
 "S000051",NA,"N00002424","Mark,Marshall","Sanford","SC",1,"R","mark sanford,marshall sanford",1,1,1960,"M",0.686,0.728,"SO","6",NA,6,NA,NA,1,0,NA,0,0
 "S000051",NA,"N00002424","Mark,Marshall","Sanford","SC",1,"R","mark sanford,marshall sanford",1,1,1960,"M",0.686,0.728,"SO","7",NA,6,NA,NA,1,NA,NA,0,0
-"S000522",400380,"N00009816","Christopher H.,Christopher","Smith","NJ",4,"R","smith christopher h,smith christopher",2,1,1953,"M",0.178,0.173,"NE","3",0,14,15,0,0,0,NA,1,0
+"S000522",400380,"N00009816","Christopher H.,Christopher","Smith","NJ",4,"R","smith christopher h,smith christopher",2,1,1953,"M",0.178,0.173,"NE","3",0,14,1.5,0,0,0,NA,1,0
 "S000522",400380,"N00009816","Christopher H.,Christopher","Smith","NJ",4,"R","smith christopher h,smith christopher",2,1,1953,"M",0.178,0.173,"NE","4",0,15,NA,NA,0,0,0,0,0
-"S000522",400380,"N00009816","Christopher H.,Christopher","Smith","NJ",4,"R","smith christopher h,smith christopher",2,1,1953,"M",0.178,0.173,"NE","51",1,16,80.99,0,0,1,0,1,0
-"S000522",400380,"N00009816","Christopher H.,Christopher","Smith","NJ",4,"R","smith christopher h,smith christopher",2,1,1953,"M",0.178,0.173,"NE","52",1,16,80.99,0,0,0,0,1,0
-"S000522",400380,"N00009816","Christopher H.,Christopher","Smith","NJ",4,"R","smith christopher h,smith christopher",2,1,1953,"M",0.178,0.173,"NE","6",1,17,109.88,0,1,0,0,1,0
+"S000522",400380,"N00009816","Christopher H.,Christopher","Smith","NJ",4,"R","smith christopher h,smith christopher",2,1,1953,"M",0.178,0.173,"NE","51",1,16,8.099,0,0,1,0,1,0
+"S000522",400380,"N00009816","Christopher H.,Christopher","Smith","NJ",4,"R","smith christopher h,smith christopher",2,1,1953,"M",0.178,0.173,"NE","52",1,16,8.099,0,0,0,0,1,0
+"S000522",400380,"N00009816","Christopher H.,Christopher","Smith","NJ",4,"R","smith christopher h,smith christopher",2,1,1953,"M",0.178,0.173,"NE","6",1,17,10.988,0,1,0,0,1,0
 "S000522",400380,"N00009816","Christopher H.,Christopher","Smith","NJ",4,"R","smith christopher h,smith christopher",2,1,1953,"M",0.178,0.173,"NE","7",0,18,0,0,1,0,1,0,0
 "S001196",412648,"N00035523","Elise","Stefanik","NY",21,"R","stefanik elise",1,1,1984,"F",0.301,0.125,"NE","3",NA,0,NA,NA,0,NA,NA,0,0
-"S001196",412648,"N00035523","Elise","Stefanik","NY",21,"R","stefanik elise",1,1,1984,"F",0.301,0.125,"NE","4",1,1,262.5,22.5,0,NA,0,1,1
-"S001196",412648,"N00035523","Elise","Stefanik","NY",21,"R","stefanik elise",1,1,1984,"F",0.301,0.125,"NE","51",1,2,347.5,81.93,0,0,0,1,1
-"S001196",412648,"N00035523","Elise","Stefanik","NY",21,"R","stefanik elise",1,1,1984,"F",0.301,0.125,"NE","52",1,2,255.5,149,0,0,0,1,1
-"S001196",412648,"N00035523","Elise","Stefanik","NY",21,"R","stefanik elise",1,1,1984,"F",0.301,0.125,"NE","6",1,3,242.38,25,1,0,0,1,1
-"S001196",412648,"N00035523","Elise","Stefanik","NY",21,"R","stefanik elise",1,1,1984,"F",0.301,0.125,"NE","7",0,4,12.92,87,1,0,1,1,1
-"U000031",400414,"N00004133","Fred","Upton","MI",6,"R","upton fred",1,1,1953,"M",0.32,0.355,"MW","3",0,14,1353.5,10,0,0,NA,1,1
-"U000031",400414,"N00004133","Fred","Upton","MI",6,"R","upton fred",1,1,1953,"M",0.32,0.355,"MW","4",0,15,1426.13,0,0,0,0,1,0
-"U000031",400414,"N00004133","Fred","Upton","MI",6,"R","upton fred",1,1,1953,"M",0.32,0.355,"MW","51",0,16,282,0,0,0,0,1,0
-"U000031",400414,"N00004133","Fred","Upton","MI",6,"R","upton fred",1,1,1953,"M",0.32,0.355,"MW","52",1,16,947.5,0,0,1,0,1,0
-"U000031",400414,"N00004133","Fred","Upton","MI",6,"R","upton fred",1,1,1953,"M",0.32,0.355,"MW","6",1,17,517.88,0,1,0,0,1,0
-"U000031",400414,"N00004133","Fred","Upton","MI",6,"R","upton fred",1,1,1953,"M",0.32,0.355,"MW","7",1,18,332.33,0,1,0,0,1,0
-"V000131",412579,"N00033839","Marc A.,Marc","Veasey","TX",33,"D","veasey marc a,veasey marc",2,1,1971,"M",0.404,0.34,"SO","3",1,1,143,0,0,NA,0,1,0
-"V000131",412579,"N00033839","Marc A.,Marc","Veasey","TX",33,"D","veasey marc a,veasey marc",2,1,1971,"M",0.404,0.34,"SO","4",0,2,213.5,0,0,0,1,1,0
-"V000131",412579,"N00033839","Marc A.,Marc","Veasey","TX",33,"D","veasey marc a,veasey marc",2,1,1971,"M",0.404,0.34,"SO","51",1,3,145,0,0,1,0,1,0
-"V000131",412579,"N00033839","Marc A.,Marc","Veasey","TX",33,"D","veasey marc a,veasey marc",2,1,1971,"M",0.404,0.34,"SO","52",1,3,147,0,0,0,0,1,0
-"V000131",412579,"N00033839","Marc A.,Marc","Veasey","TX",33,"D","veasey marc a,veasey marc",2,1,1971,"M",0.404,0.34,"SO","6",1,4,449,0,1,0,0,1,0
-"V000131",412579,"N00033839","Marc A.,Marc","Veasey","TX",33,"D","veasey marc a,veasey marc",2,1,1971,"M",0.404,0.34,"SO","7",1,5,565,0,1,0,0,1,0
-"V000132",412580,"N00034349","Filemon","Vela","TX",34,"D","vela filemon",1,1,1963,"M",0.311,0.407,"SO","3",0,1,75,10,0,0,NA,1,1
-"V000132",412580,"N00034349","Filemon","Vela","TX",34,"D","vela filemon",1,1,1963,"M",0.311,0.407,"SO","4",1,2,174,5,0,1,0,1,1
-"V000132",412580,"N00034349","Filemon","Vela","TX",34,"D","vela filemon",1,1,1963,"M",0.311,0.407,"SO","51",1,3,200,0,0,0,0,1,0
-"V000132",412580,"N00034349","Filemon","Vela","TX",34,"D","vela filemon",1,1,1963,"M",0.311,0.407,"SO","52",1,3,135,0,0,0,0,1,0
-"V000132",412580,"N00034349","Filemon","Vela","TX",34,"D","vela filemon",1,1,1963,"M",0.311,0.407,"SO","6",1,4,170,0,1,0,0,1,0
-"V000132",412580,"N00034349","Filemon","Vela","TX",34,"D","vela filemon",1,1,1963,"M",0.311,0.407,"SO","7",1,5,25,0,1,0,0,1,0
+"S001196",412648,"N00035523","Elise","Stefanik","NY",21,"R","stefanik elise",1,1,1984,"F",0.301,0.125,"NE","4",1,1,26.25,2.25,0,NA,0,1,1
+"S001196",412648,"N00035523","Elise","Stefanik","NY",21,"R","stefanik elise",1,1,1984,"F",0.301,0.125,"NE","51",1,2,34.75,8.193,0,0,0,1,1
+"S001196",412648,"N00035523","Elise","Stefanik","NY",21,"R","stefanik elise",1,1,1984,"F",0.301,0.125,"NE","52",1,2,25.55,14.9,0,0,0,1,1
+"S001196",412648,"N00035523","Elise","Stefanik","NY",21,"R","stefanik elise",1,1,1984,"F",0.301,0.125,"NE","6",1,3,24.238,2.5,1,0,0,1,1
+"S001196",412648,"N00035523","Elise","Stefanik","NY",21,"R","stefanik elise",1,1,1984,"F",0.301,0.125,"NE","7",0,4,1.292,8.7,1,0,1,1,1
+"U000031",400414,"N00004133","Fred","Upton","MI",6,"R","upton fred",1,1,1953,"M",0.32,0.355,"MW","3",0,14,135.35,1,0,0,NA,1,1
+"U000031",400414,"N00004133","Fred","Upton","MI",6,"R","upton fred",1,1,1953,"M",0.32,0.355,"MW","4",0,15,142.613,0,0,0,0,1,0
+"U000031",400414,"N00004133","Fred","Upton","MI",6,"R","upton fred",1,1,1953,"M",0.32,0.355,"MW","51",0,16,28.2,0,0,0,0,1,0
+"U000031",400414,"N00004133","Fred","Upton","MI",6,"R","upton fred",1,1,1953,"M",0.32,0.355,"MW","52",1,16,94.75,0,0,1,0,1,0
+"U000031",400414,"N00004133","Fred","Upton","MI",6,"R","upton fred",1,1,1953,"M",0.32,0.355,"MW","6",1,17,51.788,0,1,0,0,1,0
+"U000031",400414,"N00004133","Fred","Upton","MI",6,"R","upton fred",1,1,1953,"M",0.32,0.355,"MW","7",1,18,33.233,0,1,0,0,1,0
+"V000131",412579,"N00033839","Marc A.,Marc","Veasey","TX",33,"D","veasey marc a,veasey marc",2,1,1971,"M",0.404,0.34,"SO","3",1,1,14.3,0,0,NA,0,1,0
+"V000131",412579,"N00033839","Marc A.,Marc","Veasey","TX",33,"D","veasey marc a,veasey marc",2,1,1971,"M",0.404,0.34,"SO","4",0,2,21.35,0,0,0,1,1,0
+"V000131",412579,"N00033839","Marc A.,Marc","Veasey","TX",33,"D","veasey marc a,veasey marc",2,1,1971,"M",0.404,0.34,"SO","51",1,3,14.5,0,0,1,0,1,0
+"V000131",412579,"N00033839","Marc A.,Marc","Veasey","TX",33,"D","veasey marc a,veasey marc",2,1,1971,"M",0.404,0.34,"SO","52",1,3,14.7,0,0,0,0,1,0
+"V000131",412579,"N00033839","Marc A.,Marc","Veasey","TX",33,"D","veasey marc a,veasey marc",2,1,1971,"M",0.404,0.34,"SO","6",1,4,44.9,0,1,0,0,1,0
+"V000131",412579,"N00033839","Marc A.,Marc","Veasey","TX",33,"D","veasey marc a,veasey marc",2,1,1971,"M",0.404,0.34,"SO","7",1,5,56.5,0,1,0,0,1,0
+"V000132",412580,"N00034349","Filemon","Vela","TX",34,"D","vela filemon",1,1,1963,"M",0.311,0.407,"SO","3",0,1,7.5,1,0,0,NA,1,1
+"V000132",412580,"N00034349","Filemon","Vela","TX",34,"D","vela filemon",1,1,1963,"M",0.311,0.407,"SO","4",1,2,17.4,0.5,0,1,0,1,1
+"V000132",412580,"N00034349","Filemon","Vela","TX",34,"D","vela filemon",1,1,1963,"M",0.311,0.407,"SO","51",1,3,20,0,0,0,0,1,0
+"V000132",412580,"N00034349","Filemon","Vela","TX",34,"D","vela filemon",1,1,1963,"M",0.311,0.407,"SO","52",1,3,13.5,0,0,0,0,1,0
+"V000132",412580,"N00034349","Filemon","Vela","TX",34,"D","vela filemon",1,1,1963,"M",0.311,0.407,"SO","6",1,4,17,0,1,0,0,1,0
+"V000132",412580,"N00034349","Filemon","Vela","TX",34,"D","vela filemon",1,1,1963,"M",0.311,0.407,"SO","7",1,5,2.5,0,1,0,0,1,0
 "W000823",412764,"N00042403","Michael","Waltz","FL",6,"R","waltz michael",1,1,1974,"M",0.442,0.117,"SO","3",NA,0,NA,NA,0,NA,NA,0,0
 "W000823",412764,"N00042403","Michael","Waltz","FL",6,"R","waltz michael",1,1,1974,"M",0.442,0.117,"SO","4",NA,0,NA,NA,0,NA,NA,0,0
 "W000823",412764,"N00042403","Michael","Waltz","FL",6,"R","waltz michael",1,1,1974,"M",0.442,0.117,"SO","51",NA,0,NA,NA,0,NA,NA,0,0
 "W000823",412764,"N00042403","Michael","Waltz","FL",6,"R","waltz michael",1,1,1974,"M",0.442,0.117,"SO","52",NA,0,NA,NA,0,NA,NA,0,0
-"W000823",412764,"N00042403","Michael","Waltz","FL",6,"R","waltz michael",1,1,1974,"M",0.442,0.117,"SO","6",1,1,70,0,1,NA,0,1,0
-"W000823",412764,"N00042403","Michael","Waltz","FL",6,"R","waltz michael",1,1,1974,"M",0.442,0.117,"SO","7",0,2,87.5,0,1,0,1,1,0
+"W000823",412764,"N00042403","Michael","Waltz","FL",6,"R","waltz michael",1,1,1974,"M",0.442,0.117,"SO","6",1,1,7,0,1,NA,0,1,0
+"W000823",412764,"N00042403","Michael","Waltz","FL",6,"R","waltz michael",1,1,1974,"M",0.442,0.117,"SO","7",0,2,8.75,0,1,0,1,1,0

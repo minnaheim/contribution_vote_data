@@ -531,3 +531,41 @@ stargazer(df_long, type = "html", title = "Descriptive statistics", out = "summa
 # consistent_ols <- stargazer(ols_no_change, ols_party_no_change, ols_no_change_state_fe, ols_no_change_ind_fe, type = "text")
 
 ```
+
+
+# Probit Stratmann:
+Stratmann in his paper uses the probit model to determine how changes in votes are related to the campaign contributions. Where 0/1 of the explained variable determines whether a representative changes their vote from anti to pro environmental, and the explanatory variables are the contribution changes.
+
+```{r}
+# function which groups by representative and then checks the differenes in contribution from one Instance to the next, these values are put into a new vector and then added to the dataframe.
+
+contrib_change <- function(df) {
+    df <- df %>%
+        group_by(BioID) %>%
+        mutate(
+            Contribution_minus_change = Contribution_minus - lag(Contribution_minus, default = 0),
+            Contribution_plus_change = Contribution_plus - lag(Contribution_plus, default = 0)
+        ) %>%
+        ungroup()
+    return(df)
+}
+
+df_vote_change <- contrib_change(df_vote_change)
+df_vote_change <- relocate(df_vote_change, Contribution_minus_change, .after = Contribution_minus)
+df_vote_change <- relocate(df_vote_change, Contribution_plus_change, .after = Contribution_plus)
+view(df_vote_change)
+```
+
+
+```{r}
+probit_vote_change <- glm(vote_change_to_pro ~ Contribution_minus_change + Contribution_plus_change, family = binomial(link = "probit"), data = df_vote_change)
+summary(probit_vote_change)
+
+
+probit_vote_change_2 <- glm(vote_change_to_anti ~ Contribution_minus_change + Contribution_plus_change, family = binomial(link = "probit"), data = df_vote_change)
+summary(probit_vote_change_2)
+
+probit_vote_change_3 <- glm(vote_change_to_pro ~ Contribution_minus + Contribution_plus, family = binomial(link = "probit"), data = df_vote_change)
+summary(probit_vote_change_3)
+
+```

@@ -128,17 +128,17 @@ average contributions to members of congress have increased as well within the
 last 40 years.
 
 #figure(
-  image("figures/avg_contrib_house.jpg", width: 100%),
+  image("figures/avg_contrib_house.jpg", width: 1000%),
   caption: [
     Average Contributions to House Members #footnote(
       " Since the 2024 election cylce is due in November 2024, the contributions
-                                                                                                                                                                                                      there are not comparable to 2022 yet",
+                                                                                                                                                                                                                                          there are not comparable to 2022 yet",
     ), 1990-2022
   ],
 ) <avg-contributions>
 
 #figure(
-  image("figures/total_contrib_congress.jpg", width: 100%),
+  image("figures/total_contrib_congress.jpg", width: 1000%),
   caption: [
     Total Cost of Election#footnote("where * stands for a Presidential Election Cycle, 1990-2022") @OpenSecretscostofelections
   ],
@@ -388,39 +388,99 @@ are some of the biggest contributors to congressional elections
 analysed, since these contributions are not only large in volume but also in
 distribution, as stated in the Introduction.
 
-The six bills chosen for this paper are the following: The 2013, 113th
-congressional session, Rollcall Vote 601 of Bill Number: H. R. 2728. The
-Protecting States' Rights to Promote American Energy Security Act would preserve
-the Department of the Interior's ability to reduce methane emissions from oil
-and gas drilling operations on public lands. @lcv2013 The 2016, 114th
-congressional session, Roll Call 434 of Bill Number: H. R. 5538. The Department
-of the Interior, Environment, and Related Agencies Appropriations Act, 2017,
-would include a rider into the main bill to stop the EPA from enforcing its
-recently determined methane pollution regulations, which are the first-ever caps
-on methane emissions from new and altered sources in the oil and gas industry.
-@lcv2016 The 2017, 115th congressional session, Roll Call 488 of Bill Number: H.
-R. 3354, would hinder the Environmental Protection Agency's efforts to control
-methane emissions from newly created and altered sources inside the oil and gas
-industry. @lcv2017 The 2018, 115th congressional session, Roll Call 346 Bill
-Number H. R. 6147, would hinder the Environmental Protection Agency's (EPA)
-efforts to decrease methane emissions in the oil and gas industry from both new
-and modified sources from the oil and gas industry @lcv2018 The 2019, 116th
-congressional session, Roll Call 385, Bill Number H.R. 3055, would hinder the
-Environmental Protection Agency's (EPA) from implementing standards to reduce
-methane emissions from both new and modified sources from the oil and gas
-industry @lcv2019. The 2021, 117th congressional session, Roll Call 185 Senate
-Joint Resolution 14, (taken up by both the house and senate) would have rolled
-back on the EPA 2016 methane standards for both new and modified sources from
-the oil and gas industry @lcv2021.
+#figure(
+  table(
+    columns: 5,
+    [*Legislation*],
+    [*Roll Call\ Vote*],
+    [*Session*],
+    [*Year*],
+    [*Subject*],
+    table.hline(),
+    [H. R. 2728],
+    [601],
+    [113],
+    [2013],
+    [to preserve the Department of the Interior's ability to reduce methane emissions
+      from oil and gas drilling operations on public lands.],
+    [H. R. 5538],
+    [434],
+    [114],
+    [2016],
+    [include a rider to stop the EPA from enforcing its recently determined methane
+      pollution regulations, which are the first-ever caps on methane emissions from
+      new and altered sources in the oil and gas industry.],
+    [H. R. 3354],
+    [488],
+    [115],
+    [2017],
+    [would hinder the EPA's efforts to control methane emissions from newly created
+      and altered sources inside the oil and gas industry],
+    [H. R. 6147],
+    [346],
+    [115],
+    [2018],
+    [would hinder the EPA efforts to decrease methane emissions in the oil and gas
+      industry from both new and modified sources from the oil and gas industry],
+    [H. R. 3055],
+    [385],
+    [116],
+    [2019],
+    [would hinder the EPA from implementing standards to reduce methane emissions
+      from both new and modified sources from the oil and gas industry],
+    [S.J. Res. 14],
+    [185],
+    [117],
+    [2021],
+    [would have rolled back on the EPA 2016 methane standards for both new and
+      modified sources from the oil and gas industry],
+  ),
+  caption: [the six Roll Call Votes on Methane Pollution Safeguards analysed in this paper],
+) <rollcall-votes>
 
-The reasoning behind choosing these six bills is that they all amend the
-resources allocated to the Environmental Protection Agency (EPA) and the
-Department of Interior. Since the legislation enacted by Congress governs the
-executive wing and the EPA @McAlexander2020 p.43, these rollcall votes are
+The six rollcall votes which will be analysed in this paper can be seen in
+@rollcall-votes. The reasoning behind choosing these six bills is that they all
+amend the resources allocated to the Environmental Protection Agency (EPA) and
+the Department of Interior. Since the legislation enacted by Congress governs
+the executive wing and the EPA @McAlexander2020 p.43, these rollcall votes are
 fundamental in gauging the environmental opinions of representatives. Moreover,
 the bills are quite similar in nature, since they not only all concern the same
 departments, but also precisely the methane pollutions and -emissions, generated
 through the oil and gas industries, and are thus industry specific.
+
+// The 2013, 113th
+// congressional session, Rollcall Vote 601 of Bill Number: H. R. 2728. The
+// Protecting States' Rights to Promote American Energy Security Act would preserve
+// the Department of the Interior's ability to reduce methane emissions from oil
+// and gas drilling operations on public lands. @lcv2013
+
+// The 2016, 114th
+// congressional session, Roll Call 434 of Bill Number: H. R. 5538. The Department
+// of the Interior, Environment, and Related Agencies Appropriations Act, 2017,
+// would include a rider into the main bill to stop the EPA from enforcing its
+// recently determined methane pollution regulations, which are the first-ever caps
+// on methane emissions from new and altered sources in the oil and gas industry.
+// @lcv2016 The 2017, 115th congressional session, Roll Call 488 of Bill Number: H.
+// R. 3354, would hinder the Environmental Protection Agency's efforts to control
+// methane emissions from newly created and altered sources inside the oil and gas
+// industry.
+// @lcv2017 The 2018, 115th congressional session, Roll Call 346 Bill
+// Number H. R. 6147, would hinder the Environmental Protection Agency's (EPA)
+// efforts to decrease methane emissions in the oil and gas industry from both new
+// and modified sources from the oil and gas industry @lcv2018
+// The 2019, 116th congressional session, Roll Call 385, Bill Number H.R. 3055, would hinder the
+// Environmental Protection Agency's (EPA) from implementing standards to reduce
+// methane emissions from both new and modified sources from the oil and gas
+// industry @lcv2019.
+// The 2021, 117th congressional session, Roll Call 185 Senate
+// Joint Resolution 14, (taken up by both the house and senate) would have rolled
+// back on the EPA 2016 methane standards for both new and modified sources from
+// the oil and gas industry @lcv2021.
+
+Although in @stratmann-2002's paper the two rollcall votes all pertained to the
+amendment of the same bill. This paper uses multiple, closely related, rollcall
+votes, and thus ensures that there is more variation in voting behaviour than
+there would be, if only two rollcall votes were available.
 
 #figure(table(
   columns: 3,
@@ -428,26 +488,25 @@ through the oil and gas industries, and are thus industry specific.
   [],
   [*No Change in Voting*],
   [*Change in Voting*],
+  table.hline(),
   [*Pro-Environmental Vote*],
   [259],
   [8],
   [*Anti-Environmental Vote*],
+  table.vline(),
   [278],
   [23],
 ), caption: [Representative's Voting Positions]) <mind-changers>
 
-Although in @stratmann-2002's paper the two rollcall votes all pertained to the
-amendment of the same bill. This paper uses multiple, closely related, rollcall
-votes, and thus ensures that there is more variation in voting behaviour than
-there would be, if only two rollcall votes were available. Out of 568
-representatives who voted on more than one of the six rollcall votes, only 23
-representatives changed their voting behaviour, and of these 23 representatives,
-there were 31 vote changes in total, as seen in @mind-changers. Moreover, the
-fact that these rollcall votes are closely paced, i.e. 2013, 2016, 2017, 2018,
-2019, 2021, means that there is a higher chance that representatives participate
-in more than one vote, unlike in @stratmann-2002's paper, where the two rollcall
-votes were in 1991 and 1998, which are 3 congressional sessions apart. Thus, the
-chance of a representative partaking in multiple votes decreased substantially.
+Out of 568 representatives who voted on more than one of the six rollcall votes,
+only 23 representatives changed their voting behaviour, and of these 23
+representatives, there were 31 vote changes in total, as seen in @mind-changers.
+Moreover, the fact that these rollcall votes are closely paced, i.e. 2013, 2016,
+2017, 2018, 2019, 2021, means that there is a higher chance that representatives
+participate in more than one vote, unlike in @stratmann-2002's paper, where the
+two rollcall votes were in 1991 and 1998, which are 3 congressional sessions
+apart. Thus, the chance of a representative partaking in multiple votes
+decreased substantially.
 
 == Hypotheses <hypothesis>
 
@@ -802,7 +861,7 @@ a Logit Model will be included as a robustness check.
 Both the LPM and the conditional logit and -probit models will be used for the
 analysis. As shown in @models above, both are required to make sound analyses of
 the effect of contribution on voting behaviour. Thus, the LPM model is used as a
-main model, and the Logit and Probit serve as a robustness check, but all models
+main model, and the Logit and Probit#footnote("Throughout my analysis, I replicated Stratmann's (2002) probit model, which includes only those representatives who changed their votes over time, and takes the changes in contribution level as explanatory variables, without control variables or fixed effects. Given my small sample, however, the contribution change coefficients could not be estimated, which is why this model is not included in either the model specification nor the results.") serve as a robustness check, but all models
 have the same specifications and variables.
 
 The model shown in @lpm is the Linear Probability model:
@@ -963,10 +1022,10 @@ non-environmental sources were highly significant.
 
 // LPM all representatives with control variables & log transformed
 For the most LPM shown in @lpm including control variables showed that when
-increasing the pro environmental contribution to representatives by 100 USD, the
+increasing the pro environmental contribution to representatives by 1000 USD, the
 probability of the representative voting pro-environmentally increases by
 0.007214 percent on average, ceteris paribus. In return, when increasing
-anti-environmental contribution by 100 USD, the probability of a representative
+anti-environmental contribution by 1000 USD, the probability of a representative
 voting pro environmentally decreases by an average of 0.0006 percent, holding
 all else constant. Both of these coefficients are significant on a 0 level.
 Given that the contributions from both anti and pro-environment are highly
@@ -986,13 +1045,13 @@ a 0.05 level.
 
 // fixed effects
 When fixing the LPM model by US state and year, the adjusted $R^2$ stays at 0.91
-and the contribution coefficients remain highly significant with a 100 USD
+and the contribution coefficients remain highly significant with a 1000 USD
 increase in pro-environmental contribution increasing the probability of a
-pro-environmental vote by 0.00698 percent and a 100 USD increase in
+pro-environmental vote by 0.00698 percent and a 1000 USD increase in
 anti-environmental contribution decreasing the probability of a
 pro-environmental vote by 0.00048 percent. Only when applying legislator and
 year fixed effects does the significance of the pro-environmental contributions
-decrease to a 0.01 level, with a 100 USD increase in pro-environmental
+decrease to a 0.01 level, with a 1000 USD increase in pro-environmental
 contribution increasing the probability of a pro-environmental vote by 0.00361
 percent on average, ceteris paribus. The anti-environmental contribution
 coefficient however is not significant at all, yet the predictors are very good
@@ -1028,7 +1087,7 @@ stronger effect on environmental voting, reflecting the disparity in average
 contribution amounts.
 
 // Interpretation of these validity of the results
-Althoug these adjusted $R^2$ values are very high and might raise suspicion of
+Although these adjusted $R^2$ values are very high and might raise suspicion of
 multicoloinearity within the predictor variables, the VIF values of all
 variables are below 5, with most of them being between 1 and 1.25, and a
 correlation plot shows similar results, that no variables are suspiciously
@@ -1040,14 +1099,14 @@ such as the representative's party and DW-Nominate dimensions which are already
 very good predictors of the representatives voting decisions on their own.
 Hence, the first hypothesis from this paper can be rejected, since the effect of
 pro and anti environmental contributions on voting behaviour is not minimal,
-considering each effect is measured on a per USD scale and is also rather highly
-significant.
+considering each effect is measured on a per 1000 USD scale and is also rather
+highly significant.
 
 // add logit/probit results
 The results from the conditional logit show similar trends as the linear
 probability models above. When regressing Vote against the contribution and
 control variables, we see that the coefficient for contributions are log-odds.
-In other words, for a 100 USD increase in the anti (pro) environmental , the
+In other words, for a 1000 USD increase in the anti (pro) environmental , the
 expected change in log odds is -2.135e-05 (9.944e-05), ceteris paribus. These
 results are a bit less significant than these of the LPM, since anti
 environmental contributions are significant on a 0.05 and pro environmental on a
@@ -1136,7 +1195,7 @@ Since only birthyear is mostly significant and seniority is not, one can
 conclude that younger representatives are more likely to vote pro
 environmentally in these votes holding all else constant, which compared to the
 results from the first hypothesis, the effect of a one year younger
-representative in voting pro enviornmentally is larger than that of 100 USD in
+representative in voting pro enviornmentally is larger than that of 1000 USD in
 pro environmental contributions. Whereas seniority affects the voting only when
 fixing for state and year, which means that the more experienced the
 representative is, the more prone they are to vote pro environmentally in these
@@ -1171,9 +1230,6 @@ in party lines and ideology would be more significant than fixing for other
 variables.
 
 //  add recency -> vote 4,5,6 with all prior contributions, to see whether more recent contributions have higher effect than less recent ones.. (6mo prior vs. aggregate?)
-
-// COMPARE RESULTS, ADJ R^2 ETC. WITH THE STRATMANN MODEL
-// mention no-change results -> no contribution coefficient is significant...
 
 //  final result: relation between contributions and votes can be confirmed, but not the whether contributions are the actual reason for vote changes.. so no causal conclusion to be drawn from these results.
 

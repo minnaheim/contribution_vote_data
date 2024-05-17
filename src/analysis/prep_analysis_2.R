@@ -12,7 +12,7 @@ df <- analysis_prep(df)
 df <- dummy_vote(df)
 
 # divide all contribution columns by 100
-df <- df %>% mutate_at(vars(starts_with("Contribution")), ~ . / 100)
+df <- df %>% mutate_at(vars(starts_with("Contribution")), ~ . / 1000)
 
 
 # add abs value to nominates - cant be bothered to change the original source (rep_cleaning)
