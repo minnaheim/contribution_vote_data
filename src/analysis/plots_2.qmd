@@ -31,7 +31,7 @@ env_contribs <- ggplot(df_long_1, aes(as.factor(Vote), Contribution_plus)) +
     labs(
         title = "Pro environmental contributions by pro-environmental vote",
         x = "Pro-environmental Vote",
-        y = "Amount of contribution in 100 USD"
+        y = "Amount of contribution in 1000 USD"
     )
 env_contribs
 
@@ -42,7 +42,7 @@ anti_env_contribs <- ggplot(df_long_1, aes(as.factor(Vote), Contribution_minus))
     labs(
         title = "Anti environmental contributions by pro-environmental vote",
         x = "Pro-environmental Vote",
-        y = "Amount of contribution in 100 USD"
+        y = "Amount of contribution in 1000 USD"
     )
 anti_env_contribs
 
@@ -73,10 +73,10 @@ mean_minus <- df_long %>%
 
 pro_plot_contribs <- df_long %>%
     ggplot(aes(x = Contribution_plus)) +
-    geom_histogram(binwidth = 20) +
+    geom_histogram(binwidth = 3) +
     labs(
         title = "Distribution of pro environmental contributions",
-        x = "Amount of contribution in 100 USD",
+        x = "Amount of contribution in 1000 USD",
         y = "Frequency"
     ) +
     geom_hline(yintercept = mean_minus, color = "red")
@@ -85,10 +85,10 @@ pro_plot_contribs
 
 anti_plot_contribs <- df_long %>%
     ggplot(aes(x = Contribution_minus)) +
-    geom_histogram(binwidth = 20) +
+    geom_histogram(binwidth = 3) +
     labs(
         title = "Distribution of anti environmental contributions",
-        x = "Amount of contribution in 100 USD",
+        x = "Amount of contribution in 1000 USD",
         y = "Frequency"
     ) +
     geom_hline(yintercept = mean_plus, color = "red")

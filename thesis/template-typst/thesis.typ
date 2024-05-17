@@ -60,7 +60,7 @@ Charles Koch, fund the electoral campaigns of (Republican) presidential and
 congressional candidates @skocpol2016koch and have spent more than 123 million
 USD on elections. Especially over the past ten years, Koch Industries have
 increased their campaign contributions by at least 10% per election cycle,
-amounting to 28 Millon USD in the 2022 election cycle, with approximately 90-97%
+amounting to 28 illon USD in the 2022 election cycle, with approximately 90-97%
 of these congressional contributions going to Republican candidates
 @OpenSecretsKochIndustries.
 
@@ -128,7 +128,7 @@ average contributions to members of congress have increased as well within the
 last 40 years.
 
 #figure(
-  image("figures/avg_contrib_house.jpg", width: 1000%),
+  image("figures/avg_contrib_house.jpg", width: 100%),
   caption: [
     Average Contributions to House Members #footnote(
       " Since the 2024 election cylce is due in November 2024, the contributions
@@ -138,7 +138,7 @@ last 40 years.
 ) <avg-contributions>
 
 #figure(
-  image("figures/total_contrib_congress.jpg", width: 1000%),
+  image("figures/total_contrib_congress.jpg", width: 100%),
   caption: [
     Total Cost of Election#footnote("where * stands for a Presidential Election Cycle, 1990-2022") @OpenSecretscostofelections
   ],
@@ -321,10 +321,10 @@ in the environmental context.
 #pagebreak()
 
 = Research Design <research-design>
-This section will deal with the reasoning behind the chosen roll call votes and
+This section will deal with the reasoning behind the chosen roll call votes and campaign contributions,
 and the hypothesis which are set up for the analysis.
 
-== Roll Call Vote Specifications <vote_spec>
+== Stratmann's (2002) Specifications <vote_spec>
 // Conditions met: Vote repition, winners & losers defined,
 Thomas Stratmann @stratmann-2002, who in his 2002 paper follows a similar
 methodology to determine the causal relationship between campaign contributions
@@ -347,15 +347,41 @@ where representatives do not typically take clear stance in their election
 campaigns @stratmann-2002 p.4. This is not met here, since environmental
 positions are usually quite polarising, and most legislators have clear
 positions on environment, due to their party line and also their personal
-conviction @McAlexander2020. Stratmann also states that substantial amounts of
+conviction @McAlexander2020.
+
+
+Stratmann also states that substantial amounts of
 representatives should receive campaign contributions from the relevant interest
 group, here pro- and anti environmental and fossil fuel related contributions.
 This is split in this paper, since a substantial amount of legilators receive
 contributions from fossil fuel industry, and the Energy and Natural Resources
 interest groups was the 9th biggest interest group contributor in 2022 with a
-total of 196 Billion USD contributed over the 2022 congressional election. The
+total of 196 million USD contributed over the 2022 congressional election. The
 environmental contributions, on the other hand, are a fraction of this
-@OpenSecretsInterestGroups. Thus, it is more difficult to compare the
+@OpenSecretsInterestGroups. 
+
+//  plot about number of representatives who receive contribution
+// add grid here
+#figure(
+  image("figures/pro_plot_contribs.svg", width: 50%),
+  caption: [Distribution of pro environmental contributions with average anti environmental
+    contribution per representative],
+) <env-contribs>
+
+#figure(
+  image("figures/anti_plot_contribs.svg", width: 50%),
+  caption: [Distribution of anti environmental contributions with average anti environmental
+    contribution per representative vote],
+) <anti-env-contribs>
+
+Examining the figures above reveals distinct differences in the distribution of
+pro and anti-environmental campaign contributions. Pro-environmental
+contributions are generally smaller, while anti-environmental contributions tend
+to be larger and more spread out. This variance is also illustrated by the
+y-intercept line in the plots, which represents the average contribution to
+representatives from both groups. 
+
+Thus, it is more difficult to compare the
 contribution sizes of these interest groups. Lastly, Stratmann determines that
 there need to be changes in voting behaviours of the representatives, yet in
 this case, only 23 representatives out of 529 change their vote over time.// insert mind changers plot here (confirm 23/529?)
@@ -634,6 +660,7 @@ distance from one another, while the variables Party and District need to be
 identical to match.
 
 == Contribution data <contrib-data>
+
 === Time Frame of Contributions <contribs-choice>
 
 // decision 6mo vs. aggregate.
@@ -1058,26 +1085,13 @@ coefficient however is not significant at all, yet the predictors are very good
 in explaining variations in the dependent variable, with an adjusted $R^2$ of
 0.953.
 
-//  plot about number of representatives who receive contribution
-
 #figure(
-  image("figures/pro_plot_contribs.svg", width: 70%),
-  caption: [Distribution of pro environmental contributions with average anti environmental
-    contribution per representative],
-) <env-contribs>
+  image("figures/main_model.png", width: 70%),
+  caption: [Main Models summarised],
+) <main_models>
 
-#figure(
-  image("figures/anti_plot_contribs.svg", width: 70%),
-  caption: [Distribution of anti environmental contributions with average anti environmental
-    contribution per representative vote],
-) <anti-env-contribs>
 
-Examining the figures above reveals distinct differences in the distribution of
-pro and anti-environmental campaign contributions. Pro-environmental
-contributions are generally smaller, while anti-environmental contributions tend
-to be larger and more spread out. This variance is also illustrated by the
-y-intercept line in the plots, which represents the average contribution to
-representatives from both groups. Despite pro-environmental contributions
+As shown in @vote_spec, the average pro environmental contributions for the representatives six months prior to the enviornmental vote was approximately Despite pro-environmental contributions
 increasing environmental voting by 0.00698 percent and anti-environmental
 contributions decreasing it by 0.00048 percent, the impact of anti-environmental
 contributions is likely more effective due to their higher average
@@ -1204,7 +1218,7 @@ votes.
 Still, although these results show the propensity of younger representatives to
 vote pro environmentally in these votes, this does not mean that young people
 aremore prone to vote changes. To determine this, the the LPM model of only the
-representatives who changed their votes is taken into consideraiton, yet here
+representatives who changed their votes is taken into consideration, yet here
 neither birthyear nor seniority are significant, and thus no conclusions can be
 drawn in respect to the second hypothesis.
 
@@ -1228,6 +1242,9 @@ the predicted variable is a pro-environmental vote, which in nature is affected
 by ideology and politics, it is understandable as to why fixing for differences
 in party lines and ideology would be more significant than fixing for other
 variables.
+
+
+// Important: here most significant results: when fixing party and year for vote changing representatives  minus -> -0.0005141 plus -> 0.0069335  -> both highly significant -> add table?
 
 //  add recency -> vote 4,5,6 with all prior contributions, to see whether more recent contributions have higher effect than less recent ones.. (6mo prior vs. aggregate?)
 
