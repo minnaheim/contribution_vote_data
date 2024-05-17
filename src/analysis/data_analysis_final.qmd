@@ -519,8 +519,8 @@ log5 <- logit_ind_fe
 
 # create model summaries
 main_ols <- stargazer(lpm1, lpm2, lpm3, lpm4, lpm5,
-    covariate.labels = c("District", "PartyR", "Birthyear", "GenderM", "1st dimension DW Nominate", "2nd dimension DW Nominate", "GeographicalNE", "GeographicalSO", "GeographicalWE", "Vote Number", "Seniority", "Pro-Env Contributions Amount", "Anti-Env Contributions Amount", "Democratic Majority in House", "Pro-Env Contribution Dummy", "Anti-Env Contribution Dummy", "Constant"),
-    order = c("Pro-Env Contributions Amount", "Anti-Env Contributions Amount"),
+    covariate.labels = c("District", "PartyR", "Birthyear", "GenderM", "1st dimension DW Nominate", "2nd dimension DW Nominate", "GeographicalNE", "GeographicalSO", "GeographicalWE", "Vote Number", "Seniority", "Anti-Env Contributions Amount", "Pro-Env Contributions Amount", "Democratic Majority in House", "Anti-Env Contribution Dummy", "Pro-Env Contribution Dummy", "Constant"),
+    order = c("Anti-Env Contributions Amount", "Pro-Env Contributions Amount"),
     add.lines = list(
         c("Year Fixed effects", "No", "Yes", "Yes", "Yes", "Yes"),
         c("Geographical Fixed Effects", "No", "Yes", "No", "No", "No"),
@@ -542,7 +542,10 @@ state_ols <- stargazer(lpm4, lpm9, type = "html", out = "LPM_state.html")
 main_logit <- stargazer(log1, log5, lpm1, type = "html", out = "LPM_main_2.html")
 
 # summary statistics
-stargazer(df_long, type = "html", title = "Descriptive statistics", out = "summary_stats.html")
+stargazer(df_long,
+    type = "html", title = "Descriptive statistics", out = "summary_stats.html", covariate.labels = c("District", "Vote Change", "Birthyear", "1st dimension DW Nominate", "2nd dimension DW Nominate", "Vote Number", "Seniority", "Pro Env Contributions Amount", "Anti Env Contributions Amount", "Democratic Majority in House", "Pro-Env Contribution Dummy", "Anti-Env Contribution Dummy"),
+    order = c("Anti-Env Contributions Amount", "Pro-Env Contributions Amount")
+)
 
 # state_ols <- stargazer(ols_state_fe, ols_state_fe_log, ols_state_fe_dummy, type = "text")
 # ind_ols <- stargazer(ols_ind_fe, ols_ind_fe_log, ols_ind_fe_dummy, type = "text")

@@ -893,19 +893,19 @@ have the same specifications and variables.
 
 The model shown in @lpm is the Linear Probability model:
 
-$ "Vote"#sub[i,t] = alpha + beta#sub[1t]"Contributions"#super[pro-env] + beta#sub[2t]"Contributions"#super[anti-env] \ + gamma#sub[i] + delta#sub[t] + bold(x) + epsilon $ <lpm>
+$ "Vote"#sub[i,t] = alpha + beta#sub[1]"Contributions"#super[pro-env]#sub[1,t] + beta#sub[2]"Contributions"#super[anti-env]#sub[2,t] \ + gamma#sub[i] + delta#sub[t] + bold(X)'zeta#sub[i,t] + epsilon#sub[i,t] $ <lpm>
 
 The model shown in @logit is both a conditional logit and -probit model by
 changing the underlying $F()$ from a logistic function to a standard normal
 cumulative distribution function.
 
-$ P("Vote"#sub[i,t] = 1|bold(x), beta#sub[1,2], gamma#sub[i] + delta#sub[t]) = F(beta#sub[1,2]'bold(x)#sub[it], gamma#sub[i] + delta#sub[t]) $ <logit>
+$ P("Vote"#sub[i,t] = 1|bold(x), beta#sub[1,2], gamma#sub[i] + delta#sub[t]) = F(beta#sub[1,2]'bold(X)#sub[it], gamma#sub[i] + delta#sub[t]) $ <logit>
 
 In their most basic specification, both @lpm and @logit include the entire
 sample of representatives who voted more than once on the set of the six roll
 call votes, it is non-discriminatory based on voting behaviour, where $beta$ are
-the explanatory variables of interest, Contributions from pro and
-anti-environmental sources, $bold(x)$ is the matrix of control variables, $delta#sub[t]$ are
+the coefficients of the variables of interest: Contributions from pro and
+anti-environmental sources, $bold(x)$ is the vector of control variables, $delta#sub[t]$ are
 the time fixed effects and $gamma#sub[i]$ are the individual fixed effects, all
 of which are detailed in @model-spec.
 
@@ -945,7 +945,7 @@ decided to add both the birthyear and seniority, which is number of terms in
 house the representative served, to control for the difference in age and
 experience which might distort the voting behaviour @stratmann-2002
 @Selling2023. By controlling for differences in geographical residence of the
-representatives, using district, state and geographical #footnote(
+representatives, using district #footnote([As to be seen in @desc-stats, about 300 rows lack the variable district, since this information was only available selectively in the abovementioned data sources. After careful consideration, I decided to include the variable regardless, since it is significant and improves the model, albeit observations with NA-values for district not being included for three of the models shown in @main_models.]), state and geographical #footnote(
   "the variable Geographical has the 50 US states grouped into four categories: Northwest (NW), South (SO), West (WE), Midwest (MW), according to the United States Census Bureau under https://www2.census.gov/geo/pdfs/reference/GARM/Ch6GARM.pdf",
 ) and the district level I remove possible differences in voting behaviour
 attributed to the location of representatives.
@@ -1064,6 +1064,7 @@ pro-environmental contirubiont vairbale is est. to be an average of 0.011,
 ceteris paribus, but the significance level of the estimator decreases.
 
 // contribution dummy
+// extensive and intensive margins !!!
 When including the dummy variables of pro- or anti- environmental contributions
 leading up the each vote, the results show no significance in the most general
 linear regression with control variables. Only when including state and year
@@ -1086,14 +1087,15 @@ in explaining variations in the dependent variable, with an adjusted $R^2$ of
 0.953.
 
 #figure(
-  image("figures/main_model.png", width: 70%),
-  caption: [Main Models summarised],
+  image("figures/main_model.png", width: 100%),
+  caption: [Main Models summarised #footnote(
+    [Although the Individual Fixed Effects model shows an adjusted R-squared of -0.311, estimated with the `plm` function,the linear probability model estimated with the `lm` function with the exact same specifications,coefficients, standard errors and p-values has a much higher adjusted R-squared of 0.95. The reason as to why I still included this model and not the other, is that the fixed effects coefficients for the lm would show up in the model summary, and thus the model would be too long to be included in the stargazer output.])],
 ) <main_models>
 
 
-As shown in @vote_spec, the average pro environmental contributions for the representatives six months prior to the enviornmental vote was approximately Despite pro-environmental contributions
-increasing environmental voting by 0.00698 percent and anti-environmental
-contributions decreasing it by 0.00048 percent, the impact of anti-environmental
+As shown in @vote_spec, the average pro environmental contributions for the representatives within six months prior to the enviornmental vote was approximately 1,000 USD whereas the anti environmental contributions averaged out to 19,800 USD. Putting this into the context of the results shown in @main_models, where a 1000 USD pro-environmental contributions
+increases environmental voting by 0.7 percent and anti-environmental
+contributions decreasing it by 0.06 percent, the impact of anti-environmental
 contributions is likely more effective due to their higher average
 amount—approximately 19,800 USD compared to 1,000 USD for pro-environmental
 contributions. Therefore, anti-environmental contributions appear to have a
@@ -1255,9 +1257,8 @@ variables.
 
 The main goals for the thesis was to explore the relationship of pro
 environmental and anti-environmental, specifically fossil-fuel, campaign
-contributions have on the voting behaviour of US. Representatives on the topic
-of methane pollution safeguard related rollcall votes. This paper finds that
-campaign contributions shape how the representatives votes on this particular
+contributions have on the voting behaviour of US Representatives on the topic
+of methane pollution safeguard related rollcall votes. Moreover, this paper contributes to the extensive academic literature on this topic, by analysing the effect of environemtally related campaign contributions on the representative's voting on methane pollution safeguards, a topic on which there are few studies. By using not only Stratmann's logit and probit models and aggregate election but also a linear probability model with time-related contribution, I am further extending this area of research. This paper finds that campaign contributions shape how the representatives votes on this particular
 matter. Elected officials are more likely to vote in agreement with the
 individual and PAC's contributions, if these interest groups contribute within
 six months of the vote.
@@ -1294,6 +1295,8 @@ the effect which moneyed interest will have on votes will likely increase.
 
 While this paper provides valuable insights, it has several limitations, which
 point to opportunities for future work.
+
+First, more robustness checks should be included. By including more relevant models and relevant variables, such as each state's gdp per capita related to the fossil fuel industry, results could be concluded with more certainty.
 
 Touched upon briefly in this paper, by regressing the pro enviornmental vote of
 representatives with the campaign contributions not only six months prior, but
