@@ -78,5 +78,5 @@
   include("thesis_typ/appendix.typ")
 
   pagebreak()
-  bibliography("thesis.bib")
+  bibliography(style: "apa", "thesis.bib")
 }

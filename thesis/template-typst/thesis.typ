@@ -46,17 +46,17 @@ environment @skocpol2016koch, alongside the bipartisan system becoming more
 polarised @polarisation. The public's perceptions mirror these trends: 84
 percent of US residents think that money influences politics excessively and
 express a desire to see changes made to the campaign finance system to lessen
-the influence of wealthy donors @bonica p.1.
+the influence of wealthy donors @bonica[p.~1].
 
 The brothers David and Charles Koch, are one of the most influential donors who
 have a multifaceted approach when it comes to their involvement in US politics.
 On the one hand, they shape the mindset of the US population through organised
 groups, think-tanks and networks of other mega-donors with similar political and
 social ideologies, such as the Koch Network
-@Hertel-Fernandez_Skocpol_Sclar_2018.
+@Hertel-Fernandez_Skocpol_Sclar_2018. 
 
 On the other hand, the fossil fuel conglomerate Koch Industries, headed by
-Charles Koch, fund the electoral campaigns of (Republican) presidential and
+Charles Koch, fund the electoral campaigns of Republican presidential and
 congressional candidates @skocpol2016koch and have spent more than 123 million
 USD on elections. Especially over the past ten years, Koch Industries have
 increased their campaign contributions by at least 10% per election cycle,
@@ -64,7 +64,7 @@ amounting to 28 illon USD in the 2022 election cycle, with approximately 90-97%
 of these congressional contributions going to Republican candidates
 @OpenSecretsKochIndustries.
 
-Given the participation which wealthy (fossil fuel) donors like the Koch
+Given the participation which wealthy fossil fuel donors like the Koch
 brothers have in US elections, the question is why donors such as these
 contribute immense sums to congressional elections? Surely, profit-maximizing
 firms such as the Koch Industries do not merely contribute millions of USD to
@@ -72,7 +72,7 @@ congressional campaigns without considering their return on investment
 @stratmann-2017. Thus, the question is what campaign contributors are to receive
 in return for their donations. Given Charles Koch's position at the Industry and
 fossil fuel related conglomerate Koch Industries and David Koch's history in
-climate change denial @doreian2022koch pp. 2-8, and their donor and advocacy
+climate change denial @doreian2022koch[pp. 2-8], and their donor and advocacy
 roles in the United States makes one wonder what the consequences of fossil fuel
 related campaign contributions to the US congress could mean for US
 environmental policies.
@@ -80,24 +80,24 @@ environmental policies.
 These questions will be analysed in this paper. The influence of fossil fuel and
 environmentally related contributions on the voting behavior of US House members
 on methane pollution bills will be analysed. The Analysis is based on the Paper
-of Thomas Stratmann @stratmann-2002, who exploits the time series nature of
+of #cite(<stratmann-2002>,form: "prose"), who exploits the time series nature of
 campaign contributions and rollcall votes to approach a causal identification
 strategy to measure the effect of financial contributions on rollcall votes.
-Regarding campaign contribution, however, @stratmann-2002 uses the aggregate
+Regarding campaign contribution, however, #cite(<stratmann-2002>,form: "prose") uses the aggregate
 contributions for each election cycle, whereas in his 1995 paper, only the
 contributions leading up to the vote are included, regardless of election cylce
 @stratmann-1995. Although both contribution types are explored, this paper will
 focus on the latter contribution strategy.// if i use 1995 stratmann's "data", then shouldn't I also include his models ?
 
-The chapter 2 of this paper will give a short literature review on the economics
+The @moneyinpolitics of this paper will give a short literature review on the economics
 and political science perspectives on money in politics, with a focus on the
 causal relationship between campaign contributions and the representatives'
-voting decisions. Chapter 3 presents the research design, details the reasoning
+voting decisions. @research-design presents the research design, details the reasoning
 behind analysing environmental legislation and the methane pollution rollcall
 votes in particular, and presents the hypotheses regarding the effect of
-contribution on voting decisions. Chapter 4 presents the data types and
-processing for the analysis and chapter 5 presents the models used. Chapter 6
-reports the results and chapter 7 provides the discusses the results and
+contribution on voting decisions. @data presents the data types and
+processing for the analysis and @models presents the models used. @results
+reports the results and @disc provides the discusses the results and
 concludes the paper.
 
 #pagebreak()
@@ -107,13 +107,13 @@ concludes the paper.
 // three types of money in politics
 To understand the relationship between campaign contributions and
 representatives' voting decisions, the concept for money in US politics needs to
-be introduced. Political Scientist Simon Weschle defines three types of money in
+be introduced. #cite(<Weschle_2022c>,form: "prose") defines three types of money in
 politics, namely self-enrichment, campaign contribution and golden parachute
 jobs. The first type happens when politicians are in office, and receive
 resources from special interest groups. Politicians receive campaign
 contributions during elections, to fund their campaigns. According to Weschle,
 the last type of money in politics is the golden parachute jobs, which are
-financially lucrative positions offered to ex-politicians @Weschle_2022c.
+financially lucrative positions offered to ex-politicians.
 
 == Campaign Contributions
 // why focus on campaign contributions - largest increase?
@@ -121,8 +121,8 @@ Although each of these types of money in politics has significant and different
 repercussions for democracy @Weschle_2022c and the voting behaviour of
 politicians, campaign contributions in US politics are of particular
 significance for this paper. One reason for this, is that there has been a stark
-increase in contributions to political campaigns over time @stratmann-2017 p.1
-@stratmann-2005 p.141 and understanding the reasons behind contributors donating
+increase in contributions to political campaigns over time @stratmann-2017[p.1]
+@stratmann-2005[p.141] and understanding the reasons behind contributors donating
 this money to fund campaigns could help policy makers deal with this issue. The
 average contributions to members of congress have increased as well within the
 last 40 years.
@@ -159,7 +159,7 @@ in the industry are individual contributions @griers. PACs are comittees
 representing corporation or labor interests @OpenSecretspac. The Citizens United
 v. FEC case declared that natural and legal persons, i.e. persons and
 corporations have the same campaign spending rights when it comes to the US
-congress @foreman p.194. In essence, this case enabled independent expenditures
+congress @foreman[p.194]. In essence, this case enabled independent expenditures
 which are election related to become unlimited @citizen.
 
 // why do candidates need contributions?  -  improve election values
@@ -170,7 +170,7 @@ Representatives, which is the chamber of congress which this analysis focuses
 on, need to become elected through a bi-yearly congressional election. To
 improve chances of election, these candidates get financial contributions, which
 they spend on advertisements, rallies and handouts to attract more votes
-@Weschle_2022c p.24.
+@Weschle_2022c[p.~24].
 
 // Reason for Contribution
 Yet, why would corporations give money to candidates via PACs or individual
@@ -178,16 +178,16 @@ contributions, which these will not return? Stratmann makes the assumption that
 since corporations are inherently for-profit, they do not donate to
 organisations without wanting to profit from doing so. Economists and Political
 Scientists hypothesise, that companies' campaign spending is strategic
-@stratmann-2017 @Denzau-Munger-1986 @Weschle_2022c p.25. What exactly these
+@stratmann-2017 @Denzau-Munger-1986 @Weschle_2022c[p.~25]. What exactly these
 companies receive in return for their contribution, however, is unclear
 @stratmann-2017. Stratmann defines three motives for contributions: the first is
 access to the candidate, the second is to influence election and the third is to
-contribute to the candidate most likely to win @stratmann-2005 p.146
-@stratmann-2017 p.13. Weschle determines that what campaign donors receive in
+contribute to the candidate most likely to win @stratmann-2005[p.~146]
+@stratmann-2017[p.~13]. #cite(<Weschle_2022c>, form: "prose") determines that what campaign donors receive in
 return to contributing to candidates is either influence, meaning they change
 the opinion of the candidate by contributing to their campaign, or the support
 of a candidate that has your interest at heart, with specifically small scale
-contributors following both methods @Weschle_2022c pp.26-28.
+contributors following both methods.
 
 // Überleitung, reason for contribution to correlation between 2 vars
 Besides dicussing the reasons for campaign contributions, the question is also
@@ -210,14 +210,14 @@ Geographical factors play a role in contribution, for example. A contribution
 amount is worth more in some congressional districts than in others, since costs
 like rallying and advertising are priced differently @stratmann-2009. Similarly,
 contribution limits imposed on certain US states cap the contribution amount
-candidates may receive @Weschle_2022c p.25, and candidates from states with
-larger governments receive more contributions on average @stratmann-2005 p.148
+candidates may receive @Weschle_2022c[p.25], and candidates from states with
+larger governments receive more contributions on average @stratmann-2005[p.148]
 @bronars-lott-1997. Factors which depend on the nature of the election also
 influence the level of contributions, since expected competitiveness of the
 election outcome also changes the average contribution amounts, i.e. incumbents#footnote("A current office holder seeking re-election.") who
 expect their position to be threatened will be incentivised to gather more
-donations @Weschle_2022c, @stratmann-2017 p.8. p.25. The partisan lean of a
-state also determines which candidates are up for race @stratmann-2017 p.9. PAC
+donations @Weschle_2022c[p.~8], @stratmann-2017[p.~25]. The partisan lean of a
+state also determines which candidates are up for race @stratmann-2017[p.~9]. PAC
 contributions in particular depend on the incumbency status of the candidate,
 since incumbents receive more contribution on average @Selling2023
 @fouirnaies2014financial. When academic papers such as that of @Weschle_2022c
@@ -232,11 +232,11 @@ researchers see a correlation. Yet, the deduction of what that means for the
 relationship between campaign contributions and votes is difficult to make.Do
 incumbents cater to wishes of special interest groups, because of their
 contribution or do they get contribution because their views coincide with the
-special interests groups @stratmann-2005 p.143 @KauKeenanRubin p.275? Similarly,
+special interests groups @stratmann-2005[p.~143] @KauKeenanRubin[p.~275] Similarly,
 it is difficult to distinguish between two possible explanations for donations
 to politicians: either donors merely sympathise with and support politicians who
 share their views, or donations actually influence the politicians' decisions
-(i.e., donations actually buy votes) @bronars-lott-1997 @chappell p.83.//  Moreover, even if interest groups fund lawmakers who support them regardless, a significant relationship between money and votes does not prove that money influences politics. Situations like these leave room for simultaneous equation bias @stratmann-2002 @burris2001two @chappell.
+(i.e., donations actually buy votes) @bronars-lott-1997 @chappell[p.83].//  Moreover, even if interest groups fund lawmakers who support them regardless, a significant relationship between money and votes does not prove that money influences politics. Situations like these leave room for simultaneous equation bias @stratmann-2002 @burris2001two @chappell.
 
 To overcome these challenges, causality must be established. Yet determining
 causality when there is a positive association between donations and roll call
@@ -257,7 +257,7 @@ analysed how the voting behavior of politicians changed when they did not stand
 for re-election. Ideally, politicians should represent their ideology, even
 without facing threat of re-election, yet if their vote is 'bought' then their
 contributions and voting behaviour changes, since the cost of shirking decreases
-@bronars-lott-1997 p.319. Ansolabehere et al. analysed 40 empirical papers and
+@bronars-lott-1997[p.319]. Ansolabehere et al. analysed 40 empirical papers and
 concluded in a seminal paper that there is limited evidence indicating interest
 group contributions have an impact on roll-call votes @Ansolabehere @griers.
 
@@ -280,11 +280,11 @@ to vote more in favour of the environment when elections come around.
 
 Given that some results find causal relationships between contributions and
 others find no effect, most researchers can conclude that there is no academic
-consensus on this matter @stratmann-2017 p.13. Part of the reason there is no
+consensus on this matter @stratmann-2017[p.13]. Part of the reason there is no
 academic consensus on causal relationships is because of the nature of the
 studies, which are cross-sectional in design, where correlation between
 contributions and votes is given due to the support of similar interests, so we
-have simultaneous equation bias @stratmann-2002 p.1 @burris2001two @chappell.
+have simultaneous equation bias @stratmann-2002[p.1] @burris2001two @chappell.
 
 The studies which found causal links between campaign contributions and voting
 behaviour have a common denominator: research in particular fields or
@@ -293,7 +293,7 @@ agreement related bills, @stratmann-2002 analysed financial bills
 @stratmann-1995 @kang2015 @stratmann-1995 and the timing of financial
 contributions, and found significant effects. Hence, one needs to analyse
 distinct rollcall votes and a rather restricted policy setting" @kang2015
-@stratmann-1991 p.607 @chappell.
+@stratmann-1991[p.607] @chappell.
 
 Moreover, Stratmann critisises that most studies done in the field lack a
 convincing identification strategy to determine the causal relationship between
@@ -301,14 +301,14 @@ legislative voting behavior and campaign contributions. One significant problem
 is from the possibility of reverse causation, which suggests that although
 contributions influence roll call votes in favor of interest groups, it's also
 feasible for legislators to accept contributions from these groups.
-@stratmann-2017 p.14
+@stratmann-2017[p.14].
 
 Common criticism in the field is attributed not only to studies whose analysis
 does not focus on a specific legistlation or account for reverse causality, but
 also those who do not control for individual counties and geographical areas
-@stratmann-2005 p.142 @griers. Moreover, only by looking at repeated votes and
+@stratmann-2005[p.142] @griers. Moreover, only by looking at repeated votes and
 thus changes in voting behaviour, a link can be determined between contribution
-and voting @stratmann-2005 p.143-144 @stratmann-2002. Considering a closer
+and voting @stratmann-2005[pp.143-144] @stratmann-2002. Considering a closer
 time-frame for contribution has also proven to increase plausibility
 @stratmann-1995.
 
@@ -324,13 +324,13 @@ in the environmental context.
 This section will deal with the reasoning behind the chosen roll call votes and campaign contributions,
 and the hypothesis which are set up for the analysis.
 
-== Stratmann's (2002) Specifications <vote_spec>
+== Stratmann's Specifications <vote_spec>
 // Conditions met: Vote repition, winners & losers defined,
-Thomas Stratmann @stratmann-2002, who in his 2002 paper follows a similar
+#cite(<stratmann-2002>, form: "prose") follows a similar
 methodology to determine the causal relationship between campaign contributions
 and the representative's vote shares, defines the following rollcall votes
 preconditions for his research: the votes are not only repeated but also exhibit
-changes in voting behaviour @KauKeenanRubin p.276 @stratmann-2002. Moreover, the
+changes in voting behaviour @KauKeenanRubin[p.276] @stratmann-2002. Moreover, the
 winners and losers of the votes need to be defined, the precise subject voted on
 should not be repeated again. This way patterns in contribution and voting
 behaviour can be deduced more easily. These conditions are met in this analysis.
@@ -344,7 +344,7 @@ clearly defined.
 There are conditions, however, which Stratmann sets up which are not met in this
 paper. On the one hand, he stipulates that the research should treat a topic
 where representatives do not typically take clear stance in their election
-campaigns @stratmann-2002 p.4. This is not met here, since environmental
+campaigns @stratmann-2002[p.4]. This is not met here, since environmental
 positions are usually quite polarising, and most legislators have clear
 positions on environment, due to their party line and also their personal
 conviction @McAlexander2020.
@@ -392,14 +392,14 @@ this case, only 23 representatives out of 529 change their vote over time.// ins
 // methane pollution safeguards is...
 
 Although as shown in the section above, the rollcall bills do not fit all of the
-preconditions stipulated by Stratmann @stratmann-2002, analysing environmental
+preconditions stipulated by #cite(<stratmann-2002>, form: "prose"), analysing environmental
 policy and the propensity for representatives to deviate based on contributions
 is still a relevant topic and has significant reprecussions for democracy if a
 causal relationship does exist.
 
 Although environmental subjects are polarising for the public and for
 representatives, which might indicate that representatives have less incentives
-to change their opinions, McAlexander @McAlexander2020 has found that most
+to change their opinions, #cite(<McAlexander2020>, form: "prose") has found that most
 environmental policies direct the cost of a sound environmental to industries,
 so the public has a generally more favorable environmental opinion than an
 average interest group, which indicates that if campaign contributions could
@@ -503,7 +503,7 @@ through the oil and gas industries, and are thus industry specific.
 // back on the EPA 2016 methane standards for both new and modified sources from
 // the oil and gas industry @lcv2021.
 
-Although in @stratmann-2002's paper the two rollcall votes all pertained to the
+Although in the #cite(<stratmann-2002>, form: "prose") paper the two rollcall votes all pertained to the
 amendment of the same bill. This paper uses multiple, closely related, rollcall
 votes, and thus ensures that there is more variation in voting behaviour than
 there would be, if only two rollcall votes were available.
@@ -529,7 +529,7 @@ only 23 representatives changed their voting behaviour, and of these 23
 representatives, there were 31 vote changes in total, as seen in @mind-changers.
 Moreover, the fact that these rollcall votes are closely paced, i.e. 2013, 2016,
 2017, 2018, 2019, 2021, means that there is a higher chance that representatives
-participate in more than one vote, unlike in @stratmann-2002's paper, where the
+participate in more than one vote, unlike in the #cite(<stratmann-2002>, form: "prose") paper, where the
 two rollcall votes were in 1991 and 1998, which are 3 congressional sessions
 apart. Thus, the chance of a representative partaking in multiple votes
 decreased substantially.
@@ -576,7 +576,7 @@ republican representatives than for democratic representatives.
 // compared to the timing of votes @stratmann-1998.
 
 #pagebreak()
-= Data
+= Data <data>
 
 The empirical framework stipulated in @research-design requires the comparison
 of voting behaviour of the US representatives and the campaign contributions
@@ -792,9 +792,7 @@ To clean the aggregate contribution data, the relevant contribution data was
 imported. The oil&gas-, methane-, natural gas-, coal-, environmental- and
 alternative energy contributions were imported for all incumbents, and then
 these were cleaned and categorized into pro-environmental and anti-environmental
-contributions,and joined with a list of all representatives per session.
-
-Cleaning the bulk data for the timely contributions was more complex due to the
+contributions,and joined with a list of all representatives per session#footnote([Cleaning the bulk data for the timely contributions was more complex due to the
 size of the files and the comparatively small 8 GB RAM I had available. Given
 that the PAC and individual contribution text files had over 2 million rows and
 were over 15 GB large at times, made the importing let alone processing tedious,
@@ -804,7 +802,8 @@ shell scripts which check whether a cleaned file exists, and if not, cleans the
 file anew. This saved time and RAM space in two ways: On the one hand, cleaned
 files would not be re-cleaned uselessly, and on the other hand, shell scripting
 ensures a better utilization of RAM space when working with large files, such as
-these of individual and PAC campaign contributions.
+these of individual and PAC campaign contributions.]).
+
 
 After the pre-cleaning process through the scripts, only Individual and PAC
 contributions were kept which were allocated to incumbents. Using the
@@ -1037,7 +1036,7 @@ in donations within a year and specific member, which allows us to predict the
 impact of donations most accurately @griers.
 
 #pagebreak()
-= Results
+= Results <results>
 
 == Effectiveness of Contributions
 One of the hypothesis stated in @hypothesis is that the effect of pro and anti
@@ -1253,7 +1252,7 @@ variables.
 //  final result: relation between contributions and votes can be confirmed, but not the whether contributions are the actual reason for vote changes.. so no causal conclusion to be drawn from these results.
 
 #pagebreak()
-= Discussion and Conclusion
+= Discussion and Conclusion <disc>
 
 The main goals for the thesis was to explore the relationship of pro
 environmental and anti-environmental, specifically fossil-fuel, campaign
