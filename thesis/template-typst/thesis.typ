@@ -1079,8 +1079,8 @@ in explaining variations in the dependent variable, with an adjusted $R^2$ of
 0.953.
 
 #figure(
-  image("figures/main_model.png", width: 100%),
-  caption: [Main Models summarised #footnote(
+  image("figures/lpm_main.png", width: 100%),
+  caption: [Main Linear Probability Models summarised #footnote(
     [Although the Individual Fixed Effects model shows an adjusted R-squared of -0.311, estimated with the `plm` function,the linear probability model estimated with the `lm` function with the exact same specifications,coefficients, standard errors and p-values has a much higher adjusted R-squared of 0.95. The reason as to why I still included this model and not the other, is that the fixed effects coefficients for the lm would show up in the model summary, and thus the model would be too long to be included in the stargazer output.])],
 ) <main_models>
 
@@ -1110,8 +1110,14 @@ pro and anti environmental contributions on voting behaviour is not minimal,
 considering each effect is measured on a per 1000 USD scale and is also rather
 highly significant.
 
+
+#figure(
+  image("figures/logit_main.png", width: 100%),
+  caption: [Main Conditional Logit Models summarised]
+), <main_logit>
+
 // add logit/probit results
-The results from the conditional logit show similar trends as the linear
+The results from the conditional logit, see @logit-main, used as a robustness check show similar trends as the linear
 probability models above. When regressing Vote against the contribution and
 control variables, we see that the coefficient for contributions are log-odds.
 In other words, for a 1000 USD increase in the anti (pro) environmental , the

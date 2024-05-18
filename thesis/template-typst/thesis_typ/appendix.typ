@@ -7,30 +7,18 @@
 
 
 #figure(
-    image("../figures/lpm_main.png", width: 110%), 
-    caption: [the most important LPM models: c],
-) <lpms>
+    image("../figures/party.png", width: 100%), 
+    caption: [All party FE models, with all representatives, only those who changed their votes and all those who didn't],
+) <logit-main>
 
 
 #figure(
-    image("../figures/logit.png", width: 60%), 
-    caption: [the two Logit models: (1) with only control variables and (2) legislator and year FEs],
-) <logit-table>
-
-
-#figure(
-    image("../figures/lpm_basic.png", width: 90%), 
+    image("../figures/lpm_per_vote.png", width: 100%), 
     caption: [the LPM models with only control variables],
 ) <lpm-control>
 
 
 #figure(
-    image("../figures/lpm_geo.png", width: 65%), 
+    image("../figures/log_transformed.png", width: 65%), 
     caption: [the LPM models with geographical and year fixed effects],
 ) <lpm-geo>
-
-#figure(
-    image("../figures/lpm_party.png", width: 70%), 
-    caption: [the LPM models with party and year FEs],
-) <lpm-party>
-

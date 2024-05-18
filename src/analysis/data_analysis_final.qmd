@@ -18,6 +18,7 @@ library(stargazer)
 library(kableExtra)
 library(bife)
 library(moments)
+library(survival)
 library(corrplot)
 source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_prep_functions.R")
 
@@ -60,12 +61,13 @@ full_ols_dummy <- lm(Vote ~ . - state - BioID - Vote_change - Contribution_plus 
 summary(full_ols_dummy)
 
 ## with control variables and contribs
-full_ols <- lm(Vote ~ . - state - BioID - Vote_change, data = df_long)
+
+full_ols <- lm(Vote ~ Contribution_minus + Contribution_plus + anti_env_dummy + pro_env_dummy + district + party + birthday + gender + nominate_dim1 + nominate_dim2 + Geographical + Instance + seniority + Dmajority, data = df_long)
 summary(full_ols)
 
 # same thing again with log transformed contributions
 df_long_log <- df_long_log %>% select(-c(GovtrackID, opensecrets_id, first_name, last_name, name))
-full_ols_log <- lm(Vote ~ . - state - BioID - Vote_change, data = df_long_log)
+full_ols_log <- lm(Vote ~ Contribution_minus_log + Contribution_plus_log + anti_env_dummy + pro_env_dummy + district + party + birthday + gender + nominate_dim1 + nominate_dim2 + Geographical + Instance + seniority + Dmajority, data = df_long_log)
 summary(full_ols_log)
 
 ```
@@ -146,7 +148,7 @@ ols_party_dummy <- plm(Vote ~ district + birthday + nominate_dim1 + nominate_dim
 summary(ols_party_dummy)
 
 # same thing with plm
-ols_party_plm <- plm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + party + Instance + seniority + gender + pro_env_dummy + anti_env_dummy,
+ols_party_plm <- plm(Vote ~ Contribution_minus + Contribution_plus + pro_env_dummy + anti_env_dummy + district + birthday + nominate_dim1 + nominate_dim2 + Geographical + party + Instance + seniority + gender,
     index = c("Instance", "party"),
     effect = "twoways", data = df_long
 )
@@ -278,24 +280,24 @@ can fix for states here, but not for instances, since this is already just that,
 ```{r}
 # Vote 4_2
 view(df_vote_4_2)
-ols_4_2 <- plm(Vote4_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + seniority_114 + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + anti_env_dummy, data = df_vote_4_2, index = c("state", "party"), model = "within", effect = "twoways")
+ols_4_2 <- plm(Vote4_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + anti_env_dummy + party, data = df_vote_4_2, index = c("state", "party"), model = "within", effect = "twoways")
 summary(ols_4_2)
 
 # Vote 51_2
-ols_51_2 <- plm(Vote51_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + Contribution_51_minus + Contribution_51_plus + seniority_1151 + party + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + anti_env_dummy, data = df_vote_51_2, index = c("state"), model = "within", effect = "twoways")
+ols_51_2 <- plm(Vote51_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + Contribution_51_minus + Contribution_51_plus + party + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + anti_env_dummy, data = df_vote_51_2, index = c("state"), model = "within", effect = "twoways")
 summary(ols_51_2)
 
 # Vote 52_2
-ols_52_2 <- plm(Vote52_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + Contribution_51_minus + Contribution_51_plus + Contribution_52_minus + Contribution_52_plus + seniority_1152 + party + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + anti_env_dummy, data = df_vote_52_2, index = c("state"), model = "within", effect = "twoways")
+ols_52_2 <- plm(Vote52_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + Contribution_51_minus + Contribution_51_plus + Contribution_52_minus + Contribution_52_plus + party + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + anti_env_dummy, data = df_vote_52_2, index = c("state"), model = "within", effect = "twoways")
 summary(ols_52_2)
 
 # Vote 6_2
-ols_6_2 <- plm(Vote6_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + Contribution_51_minus + Contribution_51_plus + Contribution_52_minus + Contribution_52_plus + Contribution_6_minus + Contribution_6_plus + seniority_116 + party + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + anti_env_dummy, data = df_vote_6_2, index = c("state"), model = "within", effect = "twoways")
+ols_6_2 <- plm(Vote6_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + Contribution_51_minus + Contribution_51_plus + Contribution_52_minus + Contribution_52_plus + Contribution_6_minus + Contribution_6_plus + party + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + anti_env_dummy, data = df_vote_6_2, index = c("state"), model = "within", effect = "twoways")
 summary(ols_6_2)
 
 # Vote 7_2
 view(df_vote_7_2)
-ols_7_2 <- plm(Vote7_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + Contribution_51_minus + Contribution_51_plus + Contribution_52_minus + Contribution_52_plus + Contribution_6_minus + Contribution_6_plus + Contribution_7_minus + Contribution_7_plus + seniority_117 + party + gender + pro_env_dummy + anti_env_dummy + nominate_dim1 + nominate_dim2, data = df_vote_7_2, index = c("state"), model = "within", effect = "twoways")
+ols_7_2 <- plm(Vote7_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + Contribution_51_minus + Contribution_51_plus + Contribution_52_minus + Contribution_52_plus + Contribution_6_minus + Contribution_6_plus + Contribution_7_minus + Contribution_7_plus + party + gender + pro_env_dummy + anti_env_dummy + nominate_dim1 + nominate_dim2, data = df_vote_7_2, index = c("state"), model = "within", effect = "twoways")
 summary(ols_7_2)
 ```
 
@@ -314,7 +316,7 @@ summary(ols_no_change)
 
 ## party & year FE
 ```{r}
-ols_party_no_change <- lm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + as.factor(party) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
+ols_party_no_change <- plm(Vote ~ district + Dmajority + birthday + nominate_dim1 + nominate_dim2 + Geographical + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, index = c("Instance", "party"), effect = "twoways", data = df_long_no_change)
 summary(ols_party_no_change)
 ```
 
@@ -379,7 +381,10 @@ Here remove majority because it is a singularity...
 ## with party & year FEs
 
 ```{r}
-ols_party_change <- lm(Vote ~ birthday + nominate_dim1 + nominate_dim2 + Geographical + as.factor(party) + as.factor(Instance) + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, data = df_long)
+ols_party_change <- plm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy,
+    index = c("Instance", "party"),
+    effect = "twoways", data = df_long
+)
 summary(ols_party_change)
 
 # same thing with vote_change_to_anti
@@ -431,17 +436,16 @@ What is interesting to see here, is the fact that instances are highly significa
 ## all representatives
 ### with control variables
 ```{r}
-full_logit <- glm(Vote ~ . - state - BioID, family = binomial(link = "logit"), data = df_long)
+full_logit <- glm(Vote ~ Contribution_minus + Contribution_plus + anti_env_dummy + pro_env_dummy + district + party + gender + nominate_dim1 + nominate_dim2 + Geographical + Instance + seniority + Dmajority + birthday, family = binomial(link = "logit"), data = df_long)
 summary(full_logit)
 ```
 
 ### with log transformed contributions
 ```{r}
-cols <- c("Contribution_plus", "Contribution_minus")
-df_long[cols] <- lapply(df_long[cols], function(x) log(x + 1))
-
-full_logit_log <- glm(Vote ~ . - state - BioID, family = binomial(link = "logit"), data = df_long)
+full_logit_log <- glm(Vote ~ Contribution_minus_log + Contribution_plus_log + anti_env_dummy + pro_env_dummy + district + party + gender + nominate_dim1 + nominate_dim2 + Geographical + Instance + seniority + Dmajority + birthday, family = binomial(link = "logit"), data = df_long_log)
 summary(full_logit_log)
+logit_log_c <- clogit(Vote ~ Contribution_minus + Contribution_plus + pro_env_dummy + anti_env_dummy + seniority + strata(BioID), data = df_long)
+summary(logit_log_c)
 ```
 
 ### with geographical & year FEs
@@ -449,43 +453,42 @@ summary(full_logit_log)
 use the package {bife} to use fixed effects in a logit model, since the glm function does not allow for fixed effects in a logit model, it is only for linear models.
 
 ```{r}
+full_logit_geo_1 <- glm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, family = binomial(link = "logit"), data = df_long)
 full_logit_geo <- bife(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy + as.factor(Instance) | Geographical,
     data = df_long,
     model = "logit"
 )
+logit_geo_c <- clogit(Vote ~ Contribution_minus + Contribution_plus + pro_env_dummy + anti_env_dummy + district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + gender + Instance + strata(Geographical), data = df_long)
 summary(full_logit_geo)
+summary(full_logit_geo_1)
+summary(logit_geo_c)
 ```
 
 ### with state & year fixed effects
 
 ```{r}
+full_logit_state_1 <- glm(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy, family = binomial(link = "logit"), data = df_long)
+
 full_logit_state <- bife(Vote ~ district + party + birthday + nominate_dim1 + nominate_dim2 + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy + factor(Instance) | state,
     data = df_long,
     model = "logit"
 )
+logit_state_c <- clogit(Vote ~ Contribution_minus + Contribution_plus + district + party + birthday + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + anti_env_dummy + seniority + Instance + Dmajority + strata(state), data = df_long)
 summary(full_logit_state)
+summary(full_logit_state_1)
+summary(logit_state_c)
 ```
 
+### with party & year fixed effects
 
-# Logit per Vote 
-**doesnt work yet, why?**
 ```{r}
-# # Vote 4_2
-# view(df_vote_4_2)
-# logit_4_2 <- bife(gender ~ Contribution_3_minus + Contribution_4_minus + Contribution_4_plus | party,
-#     data = df_vote_4_2,
-#     model = "logit"
-# )
-# summary(logit_4_2)
-# # + seniority_114 + gender + pro_env_dummy
-# # Vote4_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + seniority_114 + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + anti_env_dummy
-# # nominate_dim1 + nominate_dim2
-
-# # Vote 51_2
-# logit_51_2 <- bife(Vote51_minus ~ Contribution_3_minus + Contribution_3_plus + Contribution_4_minus + Contribution_4_plus + Contribution_51_minus + Contribution_51_plus + seniority_1151 + party + gender + pro_env_dummy + anti_env_dummy | state,
-#     data = df_vote_51_2,
-#     model = "logit"
-# )
+full_logit_party <- bife(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy + factor(Instance) | party,
+    data = df_long,
+    model = "logit"
+)
+logit_party_c <- clogit(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy + Instance + strata(party), data = df_long)
+summary(full_logit_party)
+summary(logit_party_c)
 ```
 
 need to remove dw-nominate scores, since they create a glm.fit error - too accurate 0 or 1 values.
@@ -494,8 +497,12 @@ need to remove anti_env_dummy and district because of singularities, since all h
 
 ### individual and year fixed effects
 ```{r}
-logit_ind_fe <- bife(Vote ~ nominate_dim1 + nominate_dim2 + Contribution_minus + Contribution_plus | BioID, data = df_long, model = "logit")
+logit_ind_fe_1 <- glm(Vote ~ seniority + Contribution_minus + Contribution_plus, family = binomial(link = "logit"), data = df_long)
+logit_ind_fe_c <- clogit(Vote ~ seniority + Contribution_minus + Contribution_plus + strata(BioID), data = df_long)
+logit_ind_fe <- bife(Vote ~ seniority + Contribution_minus + Contribution_plus | BioID, data = df_long, model = "logit")
 summary(logit_ind_fe)
+summary(logit_ind_fe_1)
+summary(logit_ind_fe_c)
 ```
 
 # create model summaries
@@ -513,14 +520,15 @@ lpm8 <- ols_party_dummy
 lpm9 <- ols_geo_log_plm
 log1 <- full_logit
 log2 <- full_logit_log
-log3 <- full_logit_geo
-log4 <- full_logit_state
+log3 <- logit_geo_c
+log4 <- logit_state_c
+log6 <- logit_party_c
 log5 <- logit_ind_fe
+lpm10 <- ols_party_no_change
 
 # create model summaries
 main_ols <- stargazer(lpm1, lpm2, lpm3, lpm4, lpm5,
-    covariate.labels = c("District", "PartyR", "Birthyear", "GenderM", "1st dimension DW Nominate", "2nd dimension DW Nominate", "GeographicalNE", "GeographicalSO", "GeographicalWE", "Vote Number", "Seniority", "Anti-Env Contributions Amount", "Pro-Env Contributions Amount", "Democratic Majority in House", "Anti-Env Contribution Dummy", "Pro-Env Contribution Dummy", "Constant"),
-    order = c("Anti-Env Contributions Amount", "Pro-Env Contributions Amount"),
+    covariate.labels = c("Anti-Env Contributions Amount ", "Pro-Env Contributions Amount", "Anti-Env Contribution Dummy", "Pro-Env Contribution Dummy", "District", "PartyR", "Birthyear", "GenderM", "1st dimension DW Nominate", "2nd dimension DW Nominate", "GeographicalNE", "GeographicalSO", "GeographicalWE", "Vote Number", "Seniority", "Democratic Majority in House", "Constant"),
     add.lines = list(
         c("Year Fixed effects", "No", "Yes", "Yes", "Yes", "Yes"),
         c("Geographical Fixed Effects", "No", "Yes", "No", "No", "No"),
@@ -531,15 +539,31 @@ main_ols <- stargazer(lpm1, lpm2, lpm3, lpm4, lpm5,
     type = "html",
     out = "LPM_main.html"
 )
+main_clogit <- stargazer(log1, log3, log4, log6,
+    type = "html", out = "Logit_main.html",
+    covariate.labels = c("Anti-Env Contributions Amount", "Pro-Env Contributions Amount", "Anti-Env Contribution Dummy", "Pro-Env Contribution Dummy", "District", "PartyR", "GenderM", "1st dimension DW Nominate", "2nd dimension DW Nominate", "GeographicalNE", "GeographicalSO", "GeographicalWE", "Vote Number", "Seniority", "Democratic Majority in House", "Birthyear", "Constant"),
+    add.lines = list(
+        c("Geographical Fixed Effects", "No", "Yes", "No", "No"),
+        c("State Fixed effects", "No", "No", "Yes", "No"),
+        c("Party Fixed effects", "No", "No", "No", "Yes")
+    )
+)
+log_transformed <- stargazer(lpm7, log2,
+    type = "html",
+    covariate.labels = c("Log. Anti-Env Contributions Amount", "Log. Pro-Env Contributions Amount", "Anti-Env Contribution Dummy", "Pro-Env Contribution Dummy", "District", "PartyR", "Birthyear", "GenderM", "1st dimension DW Nominate", "2nd dimension DW Nominate", "GeographicalNE", "GeographicalSO", "GeographicalWE", "Vote Number", "Seniority", "Democratic Majority in House", "Constant"),
+    out = "Log_trafo.html"
+)
 
-# covariate.labels = c("District" ,"PartyR", "Birthyear", "GenderM", "1st dimension DW Nominate", "2nd dimension DW Nominate", "GeographicalNE","GeographicalSO", "GeographicalWE", "Vote Number", "Seniority", "Pro Env Contributions Amount", "Anti Env Contributions Amount", "Democratic Majority in House", "Pro-Env Contribution Dummy", "Anti-Env Contribution Dummy", "Constant")
+lpm_per_vote <- stargazer(ols_4_2, ols_51_2, ols_52_2, ols_6_2, ols_7_2,
+    covariate.labels = c("Anti-Env Contributions for Vote 3", "Pro-Env Contributions for Vote 3", "Anti-Env Contributions for Vote 4", "Pro-Env Contributions for Vote 4", "Anti-Env Contributions for Vote 51", "Pro-Env Contributions for Vote 51", "Anti-Env Contributions for Vote 52", "Pro-Env Contributions for Vote 52", "Anti-Env Contributions for Vote 6", "Pro-Env Contributions for Vote 6", "Anti-Env Contributions for Vote 7", "Pro-Env Contributions for Vote 7", "PartyR", "1st dimension DW Nominate", "2nd dimension DW Nominate", "GenderM", "Pro-Env Contribution Dummy", "Anti-Env Contribution Dummy"),
+    dep.var.labels = c("Vote in 114th Congress", "1st Vote in 115th congress", "2nd Vote in 115ths congress", "Vote 116th congress", "Vote 117th congress"),
+    type = "html", out = "LPM_per_vote.html"
+)
 
-basic_ols <- stargazer(lpm6, lpm1, lpm7, type = "html", out = "LPM_basic.html")
-party_ols <- stargazer(lpm3, lpm8, type = "html", out = "LPM_party.html")
-geo_ols <- stargazer(lpm2, lpm7, lpm8, type = "html", out = "LPM_geo.html")
-geo_ols <- stargazer(lpm2, lpm9, type = "html", out = "LPM_geo_log.html")
-state_ols <- stargazer(lpm4, lpm9, type = "html", out = "LPM_state.html")
-main_logit <- stargazer(log1, log5, lpm1, type = "html", out = "LPM_main_2.html")
+party <- stargazer(lpm3, log6, ols_party_change, lpm10,
+    covariate.labels = c("Anti-Env Contributions Amount ", "Pro-Env Contributions Amount", "Pro-Env Contribution Dummy", "Anti-Env Contribution Dummy", "Vote Number", "District", "Birthyear", "1st dimension DW Nominate", "2nd dimension DW Nominate", "GeographicalNE", "GeographicalSO", "GeographicalWE", "Seniority", "GenderM"),
+    type = "html", out = "party.html"
+)
 
 # summary statistics
 stargazer(df_long,
@@ -547,10 +571,6 @@ stargazer(df_long,
     order = c("Anti-Env Contributions Amount", "Pro-Env Contributions Amount")
 )
 
-# state_ols <- stargazer(ols_state_fe, ols_state_fe_log, ols_state_fe_dummy, type = "text")
-# ind_ols <- stargazer(ols_ind_fe, ols_ind_fe_log, ols_ind_fe_dummy, type = "text")
-# ols_per_vote <- stargazer(ols_4_2, ols_51_2, ols_52_2, ols_6_2, ols_7_2, type = "text")
-# consistent_ols <- stargazer(ols_no_change, ols_party_no_change, ols_no_change_state_fe, ols_no_change_ind_fe, type = "text")
 
 ```
 
