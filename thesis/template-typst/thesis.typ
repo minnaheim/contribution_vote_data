@@ -61,8 +61,7 @@ congressional candidates @skocpol2016koch and have spent more than 123 million
 USD on elections. Especially over the past ten years, Koch Industries have
 increased their campaign contributions by at least 10% per election cycle,
 amounting to 28 illon USD in the 2022 election cycle, with approximately 90-97%
-of these congressional contributions going to Republican candidates
-@OpenSecretsKochIndustries.
+of these congressional contributions going to Republican candidates#footnote("found at: https://www.opensecrets.org/orgs/koch-industries/summary?id=d000000186}").
 
 Given the participation which wealthy fossil fuel donors like the Koch
 brothers have in US elections, the question is why donors such as these
@@ -140,8 +139,7 @@ last 40 years.
 #figure(
   image("figures/total_contrib_congress.jpg", width: 100%),
   caption: [
-    Total Cost of Election#footnote("where * stands for a Presidential Election Cycle, 1990-2022") @OpenSecretscostofelections
-  ],
+    Total Cost of Election#footnote("where * stands for a Presidential Election Cycle, 1990-2022") ],
 ) <cost-of-election>
 
 // legislative background
@@ -152,15 +150,14 @@ in legislature. In 2010, the US Supreme Court decided the landmark court case
 Citizens United v. Federal Election Commission (FEC), which treated the question
 of whether Congress has the authority to limit independent expenditures by
 corporations. Campaign contributions are usually structured as individual and
-Political Action Comittee (PAC) contributions in the Center for Responsive
-Politics data#footnote("to be found under https://www.opensecrets.org").
+Political Action Comittee (PAC) contributions in the #cite(<opensecretskoch>, form: "prose") data.
 Contributions over 200 USD by natural persons (or their family members) who work
 in the industry are individual contributions @griers. PACs are comittees
-representing corporation or labor interests @OpenSecretspac. The Citizens United
+representing corporation or labor interests @Weschle_2022a. The Citizens United
 v. FEC case declared that natural and legal persons, i.e. persons and
 corporations have the same campaign spending rights when it comes to the US
 congress @foreman[p.194]. In essence, this case enabled independent expenditures
-which are election related to become unlimited @citizen.
+which are election related to become unlimited#footnote("United States Citizens United v. Federal Election Commission, January 21, 2010").
 
 // why do candidates need contributions?  -  improve election values
 Even if campaign contributions have risen over time, the reason as to why
@@ -201,16 +198,16 @@ successful election can be assumed.
 One would assume that receiving more campaign contributions would relate to a
 higher chance of getting elected, yet there is no clear correlation between
 campaign contributions and the vote shares which candidates receive
-@stratmann-2005 @Weschle_2022c p.24. In fact, there are a host of factors that
+@stratmann-2005 @Weschle_2022c[p.~24]. In fact, there are a host of factors that
 influence the amount of campaign contributions politicials receive, which are
-often endogenous to a candidate's vote shares @Weschle_2022c p.24.
+often endogenous to a candidate's vote shares @Weschle_2022c[p.~24].
 
 // factors to include to explain correlation between contribs & votes
 Geographical factors play a role in contribution, for example. A contribution
 amount is worth more in some congressional districts than in others, since costs
 like rallying and advertising are priced differently @stratmann-2009. Similarly,
 contribution limits imposed on certain US states cap the contribution amount
-candidates may receive @Weschle_2022c[p.25], and candidates from states with
+candidates may receive @Weschle_2022c[p.~25], and candidates from states with
 larger governments receive more contributions on average @stratmann-2005[p.148]
 @bronars-lott-1997. Factors which depend on the nature of the election also
 influence the level of contributions, since expected competitiveness of the
@@ -468,7 +465,7 @@ The six rollcall votes which will be analysed in this paper can be seen in
 @rollcall-votes. The reasoning behind choosing these six bills is that they all
 amend the resources allocated to the Environmental Protection Agency (EPA) and
 the Department of Interior. Since the legislation enacted by Congress governs
-the executive wing and the EPA @McAlexander2020 p.43, these rollcall votes are
+the executive wing and the EPA @McAlexander2020[p.43], these rollcall votes are
 fundamental in gauging the environmental opinions of representatives. Moreover,
 the bills are quite similar in nature, since they not only all concern the same
 departments, but also precisely the methane pollutions and -emissions, generated
@@ -962,17 +959,11 @@ Furthermore, according to @roscoe, adding an ideology variable to the equation
 is the only practical approach to account for the influence of friendly
 donating.
 
-In addition, I control for the gender of the legislator, as the gender pay gap
-tends to apply not only to income but also to campaign contributions.
-Furthermore, to account for voting consistency, I introduce another dummy
-variable that indicates whether representatives changed their votes across six
-specific votes. This helps determine whether vote-changing behavior affects the
-volume of campaign contributions they receive. Finally, I categorize
-contributions as either pro- or anti-environmental. By including separate dummy
-variables for each category, I assess whether the amount of contribution
-influences a representative’s likelihood of voting pro-environmentally, or if
-simply receiving any contribution from these sources is enough to determine
-patterns in environmental voting.
+I also control for the gender of the legislator, as the gender pay gap tends to apply not only to income but also to campaign contributions. 
+Furthermore, to account for voting consistency, I introduce another dummy variable indicating whether the legislator changed their vote on six specific votes. 
+This helps to determine whether vote-changing behaviour affects the volume of campaign contributions they receive. 
+Finally, I define dummy variables which indicate whether representatives received pro- or anti-environmental contributions in the time-period before the votes. This allows me to measure the extensive margin of contribution, i.e. how the fact that a representative received a contribution relates to their voting behaviour. 
+By including these dummy variables and the amount of the donation, I also measure the intensive margin. In this way, I can analyse whether the actual amount of the contribution changes the voting behaviour of a representative who has received a contribution (dummy = 1). 
 
 Regarding roll-call votes, the six roll-call votes included do not amend the
 same bills, but I assume that they are all the same bill as they all relate to
@@ -1063,12 +1054,14 @@ pro-environmental contirubiont vairbale is est. to be an average of 0.011,
 ceteris paribus, but the significance level of the estimator decreases.
 
 // contribution dummy
-// extensive and intensive margins !!!
 When including the dummy variables of pro- or anti- environmental contributions
 leading up the each vote, the results show no significance in the most general
-linear regression with control variables. Only when including state and year
+linear regression with control variables. Only when including party and state and year
 fixed effects does the anti-environmental dummy show statistical significance on
-a 0.05 level.
+a 0.05 level. For the state and year fixed effects model, the interpretation is as follows: 
+A representative receiving anti-environmental contributions decreases their probability of 
+voting pro-environmentally by 2.6 percent, and for each additional 1000 USD, the proabability of a pro-environmental vote decreases
+further by 0.05 percent, ceteris paribus.
 
 // fixed effects
 When fixing the LPM model by US state and year, the adjusted $R^2$ stays at 0.91
