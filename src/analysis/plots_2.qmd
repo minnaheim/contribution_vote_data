@@ -75,8 +75,8 @@ pro_plot_contribs <- df_long %>%
     ggplot(aes(x = Contribution_plus)) +
     geom_histogram(binwidth = 3) +
     labs(
-        title = "Distribution of pro environmental contributions",
-        x = "Amount of contribution in 1000 USD",
+        title = "Distribution of Pro Environmental Contributions",
+        x = "Amount of Contributions in 1000 USD",
         y = "Frequency"
     ) +
     geom_hline(yintercept = mean_minus, color = "red")
@@ -87,8 +87,8 @@ anti_plot_contribs <- df_long %>%
     ggplot(aes(x = Contribution_minus)) +
     geom_histogram(binwidth = 3) +
     labs(
-        title = "Distribution of anti environmental contributions",
-        x = "Amount of contribution in 1000 USD",
+        title = "Distribution of Anti Environmental Contributions",
+        x = "Amount of Contribution in 1000 USD",
         y = "Frequency"
     ) +
     geom_hline(yintercept = mean_plus, color = "red")

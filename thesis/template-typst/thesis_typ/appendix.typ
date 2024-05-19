@@ -14,8 +14,8 @@
 
 #figure(
     image("../figures/lpm_per_vote.png", width: 100%), 
-    caption: [the LPM models with only control variables],
-) <lpm-control>
+    caption: [the LPM models of each vote, with all relevant contributions leading up to the vote.],
+) <lpm-per-vote>
 
 
 #figure(

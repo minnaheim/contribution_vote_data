@@ -88,8 +88,8 @@
 <text x='179.46' y='411.50' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='9.79px' lengthAdjust='spacingAndGlyphs'>20</text>
 <text x='290.12' y='411.50' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='9.79px' lengthAdjust='spacingAndGlyphs'>40</text>
 <text x='400.79' y='411.50' text-anchor='middle' style='font-size: 8.80px;fill: #4D4D4D; font-family: "Arial";' textLength='9.79px' lengthAdjust='spacingAndGlyphs'>60</text>
-<text x='234.79' y='424.09' text-anchor='middle' style='font-size: 11.00px; font-family: "Arial";' textLength='175.49px' lengthAdjust='spacingAndGlyphs'>Amount of contribution in 1000 USD</text>
+<text x='234.79' y='424.09' text-anchor='middle' style='font-size: 11.00px; font-family: "Arial";' textLength='183.43px' lengthAdjust='spacingAndGlyphs'>Amount of Contributions in 1000 USD</text>
 <text transform='translate(13.37,211.80) rotate(-90)' text-anchor='middle' style='font-size: 11.00px; font-family: "Arial";' textLength='51.98px' lengthAdjust='spacingAndGlyphs'>Frequency</text>
-<text x='43.06' y='14.94' style='font-size: 13.20px; font-family: "Arial";' textLength='268.36px' lengthAdjust='spacingAndGlyphs'>Distribution of pro environmental contributions</text>
+<text x='43.06' y='14.94' style='font-size: 13.20px; font-family: "Arial";' textLength='274.21px' lengthAdjust='spacingAndGlyphs'>Distribution of Pro Environmental Contributions</text>
 </g>
 </svg>
