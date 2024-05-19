@@ -567,7 +567,8 @@ party <- stargazer(lpm3, log6, ols_party_change, lpm10,
 
 # summary statistics
 stargazer(df_long,
-    type = "html", title = "Descriptive statistics", out = "summary_stats.html", covariate.labels = c("District", "Vote Change", "Birthyear", "1st dimension DW Nominate", "2nd dimension DW Nominate", "Vote Number", "Seniority", "Pro Env Contributions Amount", "Anti Env Contributions Amount", "Democratic Majority in House", "Pro-Env Contribution Dummy", "Anti-Env Contribution Dummy"),
+    type = "html", title = "Descriptive statistics", out = "summary_stats.html",
+    covariate.labels = c("District", "Vote Change", "Birthyear", "1st dimension DW Nominate", "2nd dimension DW Nominate", "Vote Number", "Vote Dummy", "Seniority", "Pro Env Contributions Amount", "Anti Env Contributions Amount", "Democratic Majority in House", "Pro-Env Contribution Dummy", "Anti-Env Contribution Dummy"),
     order = c("Anti-Env Contributions Amount", "Pro-Env Contributions Amount")
 )
 

@@ -1,3 +1,6 @@
+#import "@preview/glossarium:0.4.0": make-glossary, print-glossary, gls, glspl
+#show: make-glossary
+
 #let project(
   title: "",
   titleGerman: "",
@@ -47,20 +50,13 @@
   set cite(style: "american-psychological-association")
 
   // --- Figures ---
-  show figure: set text(size: 0.85em)
+  show figure: set text(font: body-font, size: 0.85em)
 
   // --- Table of Contents ---
   outline(title: {
     text(font: body-font, 1.5em, weight: 700, "Contents")
     v(15mm)
   }, indent: 2em)
-
-  v(2.4fr)
-
-  // Main body.
-  set par(justify: true, first-line-indent: 2em)
-
-  body
 
   // List of figures.
   pagebreak()
@@ -71,6 +67,30 @@
   pagebreak()
   heading(numbering: none)[List of Tables]
   outline(title: "", target: figure.where(kind: table))
+
+  // List of abbreviations.
+  pagebreak()
+  heading(numbering: none)[List of Abbreviations]
+
+  // create abbreviations
+  print-glossary((
+    // minimal term
+    (key: "LPM", short: "LPM", long: "Linear Probability Model"),
+    (key: "FEC", short: "FEC", long: "Federal Election Commission"),
+    (key: "PAC", short: "PAC", long: "Political Action Committee"),
+    (key: "EPA", short: "EPA", long: "Environmental Protection Agency"),
+    (key: "LCV", short: "LCV", long: "League  of  Conservation Votes"),
+    (key: "VIF", short: "VIF", long: "Variance Inflation Factor"),
+    (key: "DW", short: "DW-Nominate", long: "Dynamic Weighted Nominate"),
+    // a term with a long form and a group
+  ), show-all: true)
+
+  v(2.4fr)
+
+  // Main body.
+  set par(justify: true, first-line-indent: 2em)
+
+  body
 
   // Appendix.
   pagebreak()
