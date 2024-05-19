@@ -32,4 +32,59 @@ University of Munich: https://github.com/ls1intum/thesis-template-typst.
   caption: [the LPM models with geographical and year fixed effects],
 ) <lpm-geo>
 
-== A3. Declaration og
+== A3. Declaration of Aids
+
+#table(
+  columns: 2,
+  [*Type of Aid*],
+  [*Use of Aid*],
+  [Github Copilot],
+  [Used for coding repeatitive things in R],
+  [DeepL Write],
+  [Applied over entire thesis to improve spelling and wording],
+  [ChatGPT],
+  [Applied over entire thesis to improve wording],
+  [Quillbot],
+  [Applied over entire thesis to paraphrase text from sources],
+)
+
+== A4. Declaration of Authorship
+
+I hereby declare,
+#list(
+  indent: 2em,
+  [that I have written this thesis independently],
+  [that I have written the thesis using only the aids specified in the index;],
+  [that all parts of the thesis produced with the help of aids have been precisely
+    declared;],
+  [that I have mentioned all sources used and cited them correctly according to
+    established aca- demic citation rules;],
+  [that I have acquired all immaterial rights to any materials I may have used,
+    such as images or graphics, or that these materials were created by me;],
+  [that the topic, the thesis or parts of it have not already been the object of
+    any work or examina- tion of another course, unless this has been expressly
+    agreed with the faculty member in ad- vance and is stated as such in the thesis;],
+  [that I am aware of the legal provisions regarding the publication and
+    dissemination of parts or the entire thesis and that I comply with them
+    accordingly;],
+  [that I am aware that my thesis can be electronically checked for plagiarism and
+    for third-party authorship of human or technical origin and that I hereby grant
+    the University of St.Gallen the copyright according to the Examination
+    Regulations as far as it is necessary for the administra- tive actions;],
+  [that I am aware that the University will prosecute a violation of this
+    Declaration of Authorship and that disciplinary as well as criminal consequences
+    may result, which may lead to expul- sion from the University or to the
+    withdrawal of my title.],
+)
+
+By submitting this thesis, I confirm through my conclusive action that I am
+submitting the Declaration of Authorship, that I have read and understood it,
+and that it is true.
+
+\
+\
+21.05.2024
+
+\
+\
+Minna Emilia Hagen Heim

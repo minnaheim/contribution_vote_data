@@ -73,11 +73,12 @@ sums to congressional elections? Surely, profit-maximizing firms such as the
 Koch Industries do not merely contribute millions of USD to congressional
 campaigns without considering their return on investment @stratmann-2017. Thus,
 the question is what campaign contributors are to receive in return for their
-donations. Given Charles Koch's position at the Industry and fossil fuel related
-conglomerate Koch Industries and David Koch's history in climate change denial
-@doreian2022koch[pp. 2-8], and their donor and advocacy roles in the United
-States makes one wonder what the consequences of fossil fuel related campaign
-contributions to the US congress could mean for US environmental policies.
+donations. Given Charles Koch's position at Koch Industry and fossil fuel
+related conglomerate Koch Industries and David Koch's history in climate change
+denial @doreian2022koch[pp. 2-8], and their donor and advocacy roles in the
+United States makes one wonder what the consequences of fossil fuel related
+campaign contributions to the US congress could mean for US environmental
+policies.
 
 These questions will be analysed in this paper. The influence of fossil fuel and
 environmentally related contributions on the voting behavior of US House members
@@ -133,7 +134,7 @@ congress have increased as well within the last 40 years.
   caption: [
     Average Contributions to House Members#footnote(
       " Since the 2024 election cylce is due in November 2024, the contributions
-                                                                                                                                                                                                                                                                                                                                                                                                                                                      there are not comparable to 2022 yet",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        there are not comparable to 2022 yet",
     ), 1990-2022, Source: @opensecretscontribs
   ],
 ) <avg-contributions>
@@ -147,7 +148,7 @@ congress have increased as well within the last 40 years.
 ) <cost-of-election>
 
 // legislative background
-One of the primary reasons for the notable increase in both the total costs of
+One of the primary reasons for the noted increase in both the total costs of
 presidential and congressional elections over the last 30 years, as well as the
 average campaign contributions per representative, is a significant change in
 legislation. In 2010, the U.S. Supreme Court ruled on the landmark case Citizens
@@ -224,9 +225,9 @@ donations#footnote("Donations and contributions are used synonymously in this pa
 candidates are up for race @stratmann-2017[p.~9]. PAC contributions in
 particular depend on the incumbency status of the candidate, since incumbents
 receive more contribution on average @Selling2023 @fouirnaies2014financial. When
-academic papers like @Weschle_2022a examine factors such as those mentioned
-above, they find that increased campaign spending is associated with higher vote
-shares for representatives.
+academic papers like that of #cite(<Weschle_2022a>, form: "prose") examine
+factors such as those mentioned above, they find that increased campaign
+spending is associated with higher vote shares for representatives.
 
 == Campaign Contributions and Representatives' Voting Decisions.
 
@@ -275,14 +276,14 @@ since short term contributions are more relevant for voting behavior, according
 to him @stratmann-1995. Betrand finds indirect evidence of lobbying companies
 providing special interest groups access to politicians when these groups
 contribute (as opposed to giving only issue specific information to congress
-members)@Bertrand @matter. Baldwin and Magee also find linkages of roll-call
-votes on specific trade agreement related bills and the contributions from
-businesses and labor groups @baldwinmagee. McAlexander, in his paper on the
-electoral gap in evironmental voting determines that since the public's
-inclination for environmental protection is greater than the oil and gas
-sector's, candidates who get large campaign contributions from businesses tend
-to vote more in favour of the environment when elections come around.
-@McAlexander2020.// Also Mian et al. find that campaign contributions alter roll-call votes @mian.
+members)@Bertrand @matter. #cite(<baldwinmagee>, form: "prose") also find
+linkages of roll-call votes on specific trade agreement related bills and the
+contributions from businesses and labor groups. #cite(<McAlexander2020>, form: "prose"),
+in their paper on the electoral gap in evironmental voting determines that since
+the public's inclination for environmental protection is greater than the oil
+and gas sector's, candidates who get large campaign contributions from
+businesses tend to vote more in favour of the environment when elections come
+around.// Also Mian et al. find that campaign contributions alter roll-call votes @mian.
 
 Given that some results find causal relationships between contributions and
 others find no effect, most researchers can conclude that there is no academic
@@ -294,12 +295,12 @@ have simultaneous equation bias @stratmann-2002[p.1] @burris2001two @chappell.
 
 The studies which found causal links between campaign contributions and voting
 behaviour have a common denominator: research in particular fields or
-legislation. Baldwin and Magee, for example, @baldwinmagee analysed trade
-agreement related bills, @stratmann-2002 analysed financial bills
-@stratmann-1995 @kang2015 @stratmann-1995 and the timing of financial
-contributions, and found significant effects. Hence, one needs to analyse
-distinct roll-call votes and a rather restricted policy setting @kang2015
-@stratmann-1991[p.607] @chappell.
+legislation. #cite(<baldwinmagee>, form: "prose"), for example analysed trade
+agreement related bills, #cite(<stratmann-2002>, form: "prose") analysed
+financial bills @stratmann-1995 @kang2015 @stratmann-1995 and the timing of
+financial contributions, and found significant effects. Hence, one needs to
+analyse distinct roll-call votes and a rather restricted policy setting
+@kang2015 @stratmann-1991[p.607] @chappell.
 
 Moreover, Stratmann critisises that most studies done in the field lack a
 convincing identification strategy to determine the causal relationship between
@@ -405,7 +406,7 @@ reprecussions for democracy if a causal relationship does exist.
 
 While environmental issues are polarizing for both the public and
 representatives, suggesting that representatives might have fewer incentives to
-change their positions, #cite(<McAlexander2020>, form: "prose") found that most
+change their positions #cite(<McAlexander2020>, form: "prose") found that most
 environmental policies shift the cost burden to industries. Consequently, the
 general public tends to hold a more favorable view of environmental issues
 compared to the average interest group. This discrepancy suggests that if
@@ -528,7 +529,7 @@ decreased substantially.
 
 Given the topics of the roll-call votes, see @roll-call-subject, which are
 environmental in nature, and the fact that environmental issues are topics which
-are usually of public interest, indicates that most representatives have
+are usually of public interest indicates that most representatives have
 predetermined environmental positions and are less likely to change these
 throughout their time in office @McAlexander2020. This can also be seen in the
 data from the roll-call votes in @mind-changers. Therefore, the first hypothesis
@@ -536,20 +537,22 @@ posits that if the coefficients are statistically significant, the impact of
 pro-environmental or anti-environmental contributions on the environmental
 voting behavior of representatives will be minimal.
 
-Given the differences in contribution sizes from the various interest groups,
-see @vote_spec, i.e. oil and gas (thus anti-environmental) individuals and
-interest groups contribute significantly more to congressional elections than
-pro-environmental individuals and interest groups, the second hypothesis states
-that changes from pro-env. to anti-env. votes will be more positively correlated
-with anti-environmental contributions, and the pro-env. contributions will be
-less significant and less effective, given the low propensity of
-pro-environmental groups and individuals to contribute to representatives.
+Considering the differences in contributions among pro- and anti- environmental
+individuals and groups, as highlighted in @vote_spec, it's evident that
+anti-environmental entities, such as those in the oil and gas sector,
+financially support congressional elections more substantially than
+pro-environmental advocates. Consequently, the second hypothesis posits a
+stronger positive correlation between shifts from pro-environmental to
+anti-environmental voting patterns and anti-environmental contributions. In
+contrast, pro-environmental contributions, though less substantial, are
+hypothesized to have a reduced and less effective influence on voting behaviors,
+given the limited financial input from pro-environmental groups and individuals
 
 In his paper, #cite(<stratmann-2002>, form: "prose") demonstrates that junior
 representatives experience a greater marginal effect from contributions, whereas
-their senior counterparts maintain more steadfast positions. Similarly, I
-believe that legislators in their early congressional terms are more susceptible
-to altering their environmental voting behaviors.
+their senior counterparts maintain more steadfast positions. Similarly, the
+thrid hypothesis states that legislators in their early congressional terms are
+more susceptible to altering their environmental voting behaviors.
 
 Lastly, since partisan affiliation and ideology is rather polarised in the
 United States @polarisation, and that usually, Republicans receive higher
@@ -580,7 +583,7 @@ data processing for the analysis.
 
 In order to conduct the analysis, a comprehensive dataset of all US
 representatives who attended the relevant congressional sessions (113th-117th),
-including biographical information to control for age, gender, etc. was used in
+including biographical information to control for age, gender, etc. was used for
 the analysis#footnote(
   "For reference, the biographical and financial data of US congressional members needs to be disclosed publicly, thus this is not classified information.",
 ). Identification was also required in order to be able to unambiguously
@@ -607,14 +610,14 @@ This also means, that one needs to be able to deduce from the votes which
 candidates voted pro- one special interest group, and anti- the other one.
 
 Due to this specification, the data from the League of Conservation Votes(LCV)#footnote("https://scorecard.lcv.org")
-Scorecard was used throughout this paper. The website predetermines which
-roll-call votes are pro-environmental and which are anti-environmental. One of
-the difficulties of using this data, however, was that the LCV Scorecard does
-not include representatives' IDs prior to 2021. Although approximately 60% of
-representatives present in the last roll-call vote were also present in the
-votes prior and thus were able to be matched by IDs, about 40% of the
-representatives had to be matched by first and lastnames, parties and states,
-only, which caused merging errors, which will be detailed more in @merging.
+Scorecard was used throughout this paper. The website categorizes roll-call
+votes as either pro-environmental or anti-environmental. However, using this
+data presented challenges, primarily because the LCV Scorecard did not include
+representatives' IDs before 2021. About 60% of the representatives in the latest
+roll-call vote were also present in earlier votes and could be matched using
+their IDs. For the remaining 40%, matching had to rely solely on first names,
+last names, party affiliations, and state representations. This approach led to
+several merging errors, which will be detailed more in @merging.
 
 Considering these circumstances, utilizing one of the many other roll-call data
 providing websites, such as Govtrack US, Congress.gov and C-Span would have been
@@ -645,10 +648,10 @@ roll_call_full_<- fuzzy_full_join(
 To overcome this, the R package `fuzzyjoin` @fuzzyjoin was used. Using the
 functions clean_strings to remove special characters and `fuzzy_match` and
 `fuzzy_full_join` to join, a maximum distance between two values can be
-determined, here 5 characters. in the `fuzzy_full_join`, I defined that the
-names between the two dataframes can be matched if they are at most 5 characters
-distance from one another, while the variables Party and District need to be
-identical to match.
+determined. In the `fuzzy_full_join` function, I defined that the names between
+the two dataframes can be matched if they are at most 5 characters distance from
+one another, while the variables Party and District need to be identical to
+match.
 
 == Contribution data <contrib-data>
 
@@ -665,8 +668,8 @@ behaviour than that of the previous election. In the #cite(<stratmann-2002>, for
 Stratmann uses the aggregate campaign contributions allocated to representatives
 in the election post and prior to the congressional session, i.e. contributions
 from the 1989-1990 and 1995-96 vote to explain the 1991 and 1998 vote and the
-contributions from the election happening paralell to the vote i.e. Stratmann
-uses the 1991-92 and 1997-98 contributions to guage whether there are
+contributions from the election happening parallel to the vote i.e. Stratmann
+uses the 1991-92 and 1997-98 contributions to gauge whether there are
 punishments or rewards for the representative's voting behaviors. In both cases
 he finds a positive correlation between contributions from special interest
 groups and a vote in their favor.
@@ -742,11 +745,11 @@ contributions directly preceding the vote.
 //   2016 in between))
 // plot for cutoff date and contributions. with cutoff data vertically and the amount of contributions (in plots_2.qmd)
 
-In determining the Congresses from which contributions are included in the six
-months prior to each vote, the following pattern emerges, seen in
-@congresses-contribs: since most votes are taken quite late in the Congresses,
-the contributions for the six months prior usually include contributions from
-the current Congress, and only sometimes from the previous Congress.
+In analyzing the timing of contributions relative to congressional votes, a
+clear pattern emerges as detailed in @congresses-contribs. Since most votes
+occur late in the session, contributions from the six months preceding each vote
+mostly originate from the current Congress. Occasionally, they also include
+contributions from the previous Congress.
 
 A discussion of these two types of campaign contributions-aggregate
 contributions from the previous election and the use of contributions from the
@@ -763,9 +766,9 @@ to support the special interst groups' causes @stratmann-1998. By including a
 more restricted time frame for contribution, such as six months prior to the
 vote, these trends can be captured @griers, without extending the time frame to
 such an extent that the contributions of the closely paced votes (September 13,
-2017 and July 18, 2018)in the 115th congressional session overlap. Which is why,
-albeit analysing both strategies in this paper, for the main analysis, only the
-contributions within six months prior to the votes will be included. #footnote(
+2017 and July 18, 2018) in the 115th congressional session overlap. Which is
+why, albeit analysing both strategies in this paper, for the main analysis, only
+the contributions within six months prior to the votes will be included. #footnote(
   "A comparison of both the aggregate and the timely contributions included in the models can be found in the appendix.",
 )
 
@@ -787,7 +790,7 @@ joined with a list of all representatives per session#footnote(
   [Cleaning the bulk data for the timely contributions was more complex due to the
     size of the files and the comparatively small 8 GB RAM I had available. Given
     that the PAC and individual contribution text files had over 2 million rows and
-    were over 15 GB large at times, made the importing let alone processing tedious,
+    were over 15 GB large at times made the importing let alone processing tedious,
     even when including the state-of-the-art tidyverse @tidyverse package's tools
     and functions, such as piping and lazyloading. To resolve this, I wrote several
     shell scripts which check whether a cleaned file exists, and if not, cleans the
@@ -928,13 +931,13 @@ only when there are variations in voting behavior @stratmann-2002, see
 
 Using the models shown in @models-precisely, this paper will analyse the
 relationship of votes and campaign contributions ranging from using the most
-generous model specifications, such as using control variables and most strict,
+generous model specifications, such as using control variables, to the strictes,
 using individual fixed effects.
 
 To control for confounding influence factors between a treatment and an outcome
 and approach a consistent causal interpretation @control, the following control
 variables are used: the legislator's party and whether their party had House
-Majority during that term @McAlexander2020 @stratmann-2002, these control
+Majority during that term @McAlexander2020 @stratmann-2002. These control
 variables are used since party is a good determinant for a legislator's
 ideological leaning, and whether their party has the majority in the house
 determines the power which the group has over the house of representatives.
@@ -965,9 +968,9 @@ control variables, I control for differences in ideology that might explain
 voting behaviour. It is easier to prove causality when a variable for legislator
 ideology is included, as this eliminates the variation in roll-call voting that
 might be attributed to the lawmaker's ideological inclination @Selling2023.
-Furthermore, according to @roscoe, adding an ideology variable to the equation
-is the only practical approach to account for the influence of friendly
-donating.
+Furthermore, according to #cite(<roscoe>, form: "prose"), adding an ideology
+variable to the equation is the only practical approach to account for the
+influence of friendly donating.
 
 I also control for the `gender` of the legislator, as the gender pay gap tends
 to apply not only to income but also to campaign contributions. Furthermore, to
@@ -1039,8 +1042,8 @@ effects, such as the representative's eloquence and negotiation skills,
 proximity to the fossil fuel industry and/or environmental industry, etc. but I
 am able to remove previous FEs, such as the state or geographical fixed effects,
 since these usually do not change for a representative over time. Therefore, to
-determine the impact of donations on voting changes, we only use the change in
-donations within a year and specific member, which allows us to predict the
+determine the impact of donations on voting changes, I only use the change in
+donations within a year and specific member, which allows me to predict the
 impact of donations most accurately @griers.
 
 #pagebreak()
@@ -1055,10 +1058,10 @@ LPM with all representatives, the campaign contributions from environmental
 sources and non environmental sources were highly significant.
 
 // LPM all representatives with control variables & log transformed
-For the most LPM shown in @lpm including control variables showed that when
-increasing the pro-environmental contribution to representatives by 1000 USD,
-the probability of the representative voting pro-environmentally increases by
-0.007214 percent on average, ceteris paribus. In return, when increasing
+For the most generous LPM shown in @lpm including control variables showed that
+when increasing the pro-environmental contribution to representatives by 1000
+USD, the probability of the representative voting pro-environmentally increases
+by 0.007214 percent on average, ceteris paribus. In return, when increasing
 anti-environmental contribution by 1000 USD, the probability of a representative
 voting pro-environmentally decreases by an average of 0.0006 percent, holding
 all else constant. Both of these coefficients are significant on a 0 level.
@@ -1067,7 +1070,7 @@ skewed, I applied a logistical transformation on the contribution variables, and
 found that although the adjusted $R^2$ increases from 0.91 to 0.92 and the
 effect of the anti-environmental contribution variable increases to -0.0121
 ceteris paribus and with the same significance level, the sigifnicance of the
-pro-environmental contirubiont vairbale is est. to be an average of 0.011,
+pro-environmental contribution variaable is est. to be an average of 0.011,
 ceteris paribus, but the significance level of the estimator decreases.
 
 // contribution dummy
@@ -1092,7 +1095,7 @@ year fixed effects does the significance of the pro-environmental contributions
 decrease to a 0.01 level, with a 1000 USD increase in pro-environmental
 contribution increasing the probability of a pro-environmental vote by 0.00361
 percent on average, ceteris paribus. The anti-environmental contribution
-coefficient however is not significant at all, yet the predictors are very good
+coefficient, however is not significant at all, yet the predictors are very good
 in explaining variations in the dependent variable, with an adjusted $R^2$ of
 0.953.
 
@@ -1206,12 +1209,13 @@ The third hypothesis stated in @hypothesis is that junior representatives are
 more likely to change their voting behaviour due to campaign contributions than
 senior representatives, given that they are not experienced enough to have
 stable opinions on the matter, as shown by #cite(<stratmann-2002>, form: "prose").
-To analyse this, I added the afore mentioned in @model-spec seniority and
-birthyear control variables into the regressions. Since seniority details the
-number of terms the representative has partaken in and the birthyear represents
-the age of the legislator, I also checked that the correlation between the two
-variables would not be high enough to cause multicolinearity, which it was not,
-with a correlation of -0.57, and a VIF of 1.27 and 1.28 respectively.
+To address this, I incorporated the previously mentioned seniority and birth
+year control variables into the regression models, as outlined in @model-spec.
+Since seniority details the number of terms the representative has partaken in
+and the birthyear represents the age of the legislator, I also checked that the
+correlation between the two variables would not be high enough to cause
+multicolinearity, which it was not, with a correlation of -0.57, and a VIF of
+1.27 and 1.28 respectively.
 
 // general LPM and logit/probit
 When looking at the LPM model with all representatives, the seniority variable
@@ -1236,7 +1240,7 @@ Since only birthyear is mostly significant and seniority is not, one can
 conclude that younger representatives are more likely to vote pro
 environmentally in these votes holding all else constant, which compared to the
 results from the first hypothesis, the effect of a one year younger
-representative in voting pro enviornmentally is larger than that of 1000 USD in
+representative in voting pro-environmentally is larger than that of 1000 USD in
 pro-environmental contributions. Whereas seniority affects the voting only when
 fixing for state and year, which means that the more experienced the
 representative is, the more prone they are to vote pro-environmentally in these
@@ -1244,10 +1248,10 @@ votes.
 
 Still, although these results show the propensity of younger representatives to
 vote pro-environmentally in these votes, this does not mean that young people
-aremore prone to vote changes. To determine this, the the LPM model of only the
+are more prone to vote changes. To determine this, the LPM model of only the
 representatives who changed their votes is taken into consideration, yet here
 neither birthyear nor seniority are significant, and thus no conclusions can be
-drawn in respect to the second hypothesis.
+drawn in respect to the third hypothesis.
 
 == Partisan Contributions
 
@@ -1322,7 +1326,7 @@ representatives take, they have the possibility to earn their campaigns
 incredible amounts of donations, from the fossil fuel industry, for example. In
 a system where legislation should be made with the population in mind, the
 possibility of incumbents receiving campaign contributions has a bad aftertaste
-for the health of the american democracy @Weschle_2022b. Moreover, given the
+for the health of the American democracy @Weschle_2022b. Moreover, given the
 steep rise in expenditures for congressional elections over the past 20 years,
 the effect which moneyed interest will have on votes will likely increase.
 
@@ -1330,15 +1334,15 @@ While this paper provides valuable insights, it has several limitations, which
 point to opportunities for future work.First, more robustness checks should be
 included. By including more relevant models and relevant variables, such as each
 state's gdp per capita related to the fossil fuel industry, results could be
-concluded with more certainty.Touched upon briefly in this paper, by regressing
+concluded with more certainty. Touched upon briefly in this paper, by regressing
 the pro enviornmental vote of representatives with the campaign contributions
 not only six months prior, but also the six months prior to vote contributions
 of all similar votes before might show that representatives take contributions
 of previous similar votes as a baseline to determine their current votes.
 
-As shown in results, methane related voting behaviour can be explained very well
-given the representative's party and DW-Nominate, meaning that the party line
-and ideology is a strong influencer for a legislators vote, and that most
+As shown in @results, methane related voting behaviour can be explained very
+well given the representative's party and DW-Nominate, meaning that the party
+line and ideology is a strong influencer for a legislators vote, and that most
 representatives tend to keep within those party lines. Thus, it would be
 interesting to analyse the campaign contributions not to individuals but parties
 themselves, and how this affects the party's votes on certain issues
