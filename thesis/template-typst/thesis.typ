@@ -90,7 +90,7 @@ roll-call votes. Regarding campaign contribution, however, #cite(<stratmann-2002
 the aggregate contributions for each election cycle, whereas in his 1995 paper,
 only the contributions leading up to the vote are included, regardless of
 election cylce @stratmann-1995. Although both contribution types are explored,
-this paper will focus on the latter contribution strategy.// if i use 1995 stratmann's "data", then shouldn't I also include his models ?
+this paper will focus on the latter contribution type for the final analysis.// if i use 1995 stratmann's "data", then shouldn't I also include his models ?
 
 @moneyinpolitics will give a short literature review on the economics and
 political science perspectives on money in politics, with a focus on the causal
@@ -133,8 +133,7 @@ congress have increased as well within the last 40 years.
   image("figures/avg_contrib_house.jpg", width: 100%),
   caption: [
     Average Contributions to House Members#footnote(
-      " Since the 2024 election cylce is due in November 2024, the contributions
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                there are not comparable to 2022 yet",
+      "Since the 2024 election cylce is due in November 2024, the contributions there are not comparable to 2022 yet",
     ), 1990-2022, Source: @opensecretscontribs
   ],
 ) <avg-contributions>
@@ -609,7 +608,7 @@ votes need to be categorised clearly into winners and losers @stratmann-2002.
 This also means, that one needs to be able to deduce from the votes which
 candidates voted pro- one special interest group, and anti- the other one.
 
-Due to this specification, the data from the League of Conservation Votes(LCV)#footnote("https://scorecard.lcv.org")
+Due to this specification, the data from the League of Conservation Votes (LCV)#footnote("https://scorecard.lcv.org")
 Scorecard was used throughout this paper. The website categorizes roll-call
 votes as either pro-environmental or anti-environmental. However, using this
 data presented challenges, primarily because the LCV Scorecard did not include

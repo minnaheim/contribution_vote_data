@@ -97,6 +97,8 @@
   heading(numbering: none)[Appendix A: Supplementary Material]
   include("thesis_typ/appendix.typ")
 
+  // References
   pagebreak()
+  set par(first-line-indent: 0em)
   bibliography(style: "apa", "thesis.bib")
 }
