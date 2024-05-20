@@ -134,7 +134,7 @@ congress have increased as well within the last 40 years.
   caption: [
     Average Contributions to House Members#footnote(
       " Since the 2024 election cylce is due in November 2024, the contributions
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          there are not comparable to 2022 yet",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                there are not comparable to 2022 yet",
     ), 1990-2022, Source: @opensecretscontribs
   ],
 ) <avg-contributions>
@@ -1059,54 +1059,50 @@ accurately @griers.
 = Results <results>
 
 == Effectiveness of Contributions
-One of the hypothesis stated in @hypothesis is that the effect of pro and
-anti-environmental nebzwcampaign contributions,if statistically significant,
-would be minimal. As visible from the regression outputs in the appendix, this
-was not the case. From using control variables to state and year fixed effects
-in the LPM with all representatives, the campaign contributions from
-environmental sources and non environmental sources were highly significant.
+One of the hypotheses stated in @hypothesis is that the effect of pro and
+anti-environmental campaign contributions, if statistically significant, would
+be minimal. As visible from the regression outputs in the appendix, this was not
+the case. From using control variables to state and year fixed effects in the
+LPM with all representatives, the campaign contributions from environmental
+sources and non environmental sources were highly significant.
 
 // LPM all representatives with control variables & log transformed
-For the most generous LPM shown in @lpm including control variables showed that
-when increasing the pro-environmental contribution to representatives by 1000
-USD, the probability of the representative voting pro-environmentally increases
-by 0.007214 percent on average, ceteris paribus. In return, when increasing
-anti-environmental contribution by 1000 USD, the probability of a representative
-voting pro-environmentally decreases by an average of 0.0006 percent, holding
-all else constant. Both of these coefficients are significant on a 0 level.
-Given that the contributions from both anti and pro-environment are highly
-skewed, I applied a logistical transformation on the contribution variables, and
-found that although the adjusted $R^2$ increases from 0.91 to 0.92 and the
-effect of the anti-environmental contribution variable increases to -0.0121
-ceteris paribus and with the same significance level, the sigifnicance of the
-pro-environmental contribution variaable is est. to be an average of 0.011,
-ceteris paribus, but the significance level of the estimator decreases.
+The most generous LPM shown in as the first model in @main_models, which
+includes only control variables shows that when increasing the pro-environmental
+contribution to representatives by 1000 USD, the probability of the
+representative voting pro-environmentally increases by 0.7214 percent on
+average, ceteris paribus. In return, when increasing anti-environmental
+contribution by 1000 USD, the probability of a representative voting
+pro-environmentally decreases by an average of 0.06 percent, holding all else
+constant. Both of these coefficients are highly significant. Given that the
+contributions from both anti and pro-environment are highly skewed, I applied a
+logistical transformation on the contribution variables, and found that the
+effect of the anti-environmental contribution variable increases to -0.015
+ceteris paribus and the sigifnicance of the pro-environmental contribution
+variable is est. to be an average of 0.027 ceteris paribus, on the same
+significance level. See @lpm-log-trafo for these results.
 
 // contribution dummy
 When including the dummy variables of pro- or anti- environmental contributions
-leading up the each vote, the results show no significance in the most general
-linear regression with control variables. Only when including party and state
-and year fixed effects does the anti-environmental dummy show statistical
-significance on a 0.05 level. For the state and year fixed effects model, the
-interpretation is as follows: A representative receiving anti-environmental
-contributions decreases their probability of voting pro-environmentally by 2.6
-percent, and for each additional 1000 USD, the proabability of a
+leading up to each vote, the results show no significance in the most general
+linear regression with control variables. Only when including state and year
+fixed effects does the anti-environmental dummy show statistical significance on
+a 0.05 level. For the state and year fixed effects model, the interpretation is
+as follows: A representative receiving anti-environmental contributions
+decreases their probability of voting pro-environmentally by 2.6 percent on
+average, and for each additional 1000 USD, the proabability of a
 pro-environmental vote decreases further by 0.05 percent, ceteris paribus.
 
 // fixed effects
-When fixing the LPM model by US state and year, the adjusted $R^2$ stays at 0.91
-and the contribution coefficients remain highly significant with a 1000 USD
-increase in pro-environmental contribution increasing the probability of a
-pro-environmental vote by 0.00698 percent and a 1000 USD increase in
-anti-environmental contribution decreasing the probability of a
-pro-environmental vote by 0.00048 percent. Only when applying legislator and
-year fixed effects does the significance of the pro-environmental contributions
-decrease to a 0.01 level, with a 1000 USD increase in pro-environmental
-contribution increasing the probability of a pro-environmental vote by 0.00361
-percent on average, ceteris paribus. The anti-environmental contribution
-coefficient, however is not significant at all, yet the predictors are very good
-in explaining variations in the dependent variable, with an adjusted $R^2$ of
-0.953.
+As shown in @main_models, when fixing the LPM model by US state and year, the
+contribution coefficients remain highly significant with a 1000 USD increase in
+pro-environmental contribution increasing the probability of a pro-environmental
+vote by 0.7 percent and a 1000 USD increase in anti-environmental contribution
+decreasing the probability of a pro-environmental vote by 0.05 percent. When
+applying individual (legislator) and year fixed effects, a 1000 USD increase in
+pro-environmental contribution increase the probability of a pro-environmental
+vote by 0.4 percent on average, ceteris paribus. The anti-environmental
+contribution coefficient, however is not significant at all.
 
 #figure(
   image("figures/lpm_main.png", width: 100%),

@@ -29,8 +29,8 @@ University of Munich: https://github.com/ls1intum/thesis-template-typst.
 
 #figure(
   image("../figures/log_transformed.png", width: 60%),
-  caption: [the LPM models with geographical and year fixed effects],
-) <lpm-geo>
+  caption: [the logistically transformed LPM models],
+) <lpm-log-trafo>
 
 == A3. Declaration of Aids
 
