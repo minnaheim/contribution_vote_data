@@ -134,7 +134,7 @@ congress have increased as well within the last 40 years.
   caption: [
     Average Contributions to House Members#footnote(
       " Since the 2024 election cylce is due in November 2024, the contributions
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        there are not comparable to 2022 yet",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            there are not comparable to 2022 yet",
     ), 1990-2022, Source: @opensecretscontribs
   ],
 ) <avg-contributions>
@@ -845,39 +845,42 @@ the model setup must allow for a dichotomous dependent variable, i.e.
 pro-environmental vote (1) or anti-enviornmental vote (0) and for the
 non-negativity of contributions @stratmann-1991 @stratmann-2002 @chappell.
 
-Two types of models that come into question for these are the Linear Probability
-Model (LPM) and the Logit, which are both frequently used in economic
-literature, but both come with some and downsides. The LPM is an ordinary least
-squared multiple linear regression with binary dependent variables. The benefits
-of using a LPM to analyse the effect of campaign contributions on voting
-behaviour is the fact that the linear regression can be used to estimate the
-effects on the observed dependent variable, so coefficients are comparable over
-models and groups. One downside of the LPM, however, is the possibility for the
-predicted probability to be out of range, by being either higher than 1 or lower
-than 0 @mood.
+Two types of models are the linear probability model (LPM) and the logit, both
+of which are widely used in the economic literature, but both of which have some
+drawbacks. The LPM is an ordinary least squared multiple linear regression with
+binary dependent variables. The benefits of using a LPM to analyse the effect of
+campaign contributions on voting behaviour is the fact that the linear
+regression can be used to estimate the effects on the observed dependent
+variable, so coefficients are comparable over models and groups. One downside of
+the LPM, however, is the possibility for the predicted probability to be out of
+range, by being either higher than 1 or lower than 0 @mood.
 
-In order to counter this, one can use the logistical regession or logit model,
-which also measures dichotomous dependent variables but the predicted
-probability will always stay within range of #range(2)\. Comparing models with
-various independent variables or significantly interpreting the results is
-challenging when using logistic regression since the distribution of the
-logistic regression is non-linear and thus changes in log-ods are not as
-intuitive to interpret as direct probabilities. Moreover, Mood explains that
-logistic effect measures can capture unobserved heterogeneity even in cases
+In order to counter this, one can use a nonlinear regression model, such as the
+logit regession or logit model, which also measures dichotomous dependent
+variables but the predicted probability will always stay within range of #range(2)\. Comparing
+models with various independent variables or significantly interpreting the
+results is challenging when using logistic regression since the underlying
+cumulative distribution function of this model is a standard logistic
+districution. Thus, changes in log-odds are not as intuitive to interpret as
+direct probabilities in a linear regression. Moreover, #cite(<mood>, form: "prose") explains
+that logistic effect measures can capture unobserved heterogeneity even in cases
 where there is no correlation between the omitted variables and the independent
-variables @mood @Selling2023.
+variables @Selling2023.
 
 Although the linear regression sometimes predicts probabilities outside of
 range, LPMs usually fit about as well as logit models, even in cases of
 nonlinearities @long1997regression @Selling2023, and their results are easier to
 predict than those of logit models @mood, which is why the LPM will be used as a
 main model for this paper. To encompass the major downsides of the LPM, however,
-a Logit Model will be included as a robustness check.
+the Logit Model will be included as a robustness check.
 
 // Why not 2SLS -> @stratmann-2002 p.1
 // say that OBV in logit & LPM? @mood?
 
 == LPM and Logit <models-precisely>
+
+The specific versions of the LPM and logit model discussed above are shown in
+@lpm and @logit.
 
 Both the LPM and the conditional logit model will be used for the analysis. As
 shown in @models above, both are required to make sound analyses of the effect
