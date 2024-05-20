@@ -134,7 +134,7 @@ congress have increased as well within the last 40 years.
   caption: [
     Average Contributions to House Members#footnote(
       " Since the 2024 election cylce is due in November 2024, the contributions
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            there are not comparable to 2022 yet",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          there are not comparable to 2022 yet",
     ), 1990-2022, Source: @opensecretscontribs
   ],
 ) <avg-contributions>
@@ -879,52 +879,47 @@ the Logit Model will be included as a robustness check.
 
 == LPM and Logit <models-precisely>
 
-The specific versions of the LPM and logit model discussed above are shown in
-@lpm and @logit.
-
-Both the LPM and the conditional logit model will be used for the analysis. As
-shown in @models above, both are required to make sound analyses of the effect
-of contribution on voting behaviour. Thus, the LPM model is used as a main
-model, and the Logit#footnote(
-  "Throughout my analysis, I replicated Stratmann's (2002) probit model, which includes only those representatives who changed their votes over time, and takes the changes in contribution level as explanatory variables, without control variables or fixed effects (FE)s. Given my small sample, however, the contribution change coefficients could not be estimated, which is why this model is not included in either the model specification nor the results.",
-) serves as a robustness check.
-
-The model shown in @lpm is the Linear Probability model.
+As discussed above, the LPM and logit models will be used for the analysis #footnote(
+  [Throughout my analysis, I replicated Stratmann's (2002) probit model, which
+    includes only those representatives who changed their votes over time, and takes
+    the changes in contribution level as explanatory variables, without control
+    variables or fixed effects (FE)s. Given my small sample, however, the
+    contribution change coefficients could not be estimated, which is why this model
+    is not included in neither the model specification nor the results],
+). The model shown in @lpm is the multivariate linear regression, whereas the
+model shown in @logit is the conditional logit regression.
 
 $ "Vote"#sub[i,t] = alpha + beta#sub[1]X#sub[1,t] + beta#sub[2]X#sub[2,t] + gamma#sub[i] + delta#sub[t] + bold(x)'zeta#sub[i,t] + epsilon#sub[i,t] $ <lpm>
 
-The model shown in @logit is a conditional logit.
-
-$ P("Vote"#sub[i,t] = 1|bold(X), beta#sub[1,2], gamma#sub[i]) = F(beta#sub[1,2]'bold(x)#sub[it], gamma#sub[i]) $ <logit>
-Let: $X#sub[1]$ be the pro-environmental contributions, and $X#sub[2]$ be the
-anti-environmental contribution, $bold(x)$ be the vector of control variables, $delta#sub[t]$ the
-the time fixed effect (FEs) and $gamma#sub[i]$ are the individual fixed effects,
-all of which are detailed in @model-spec.
+$ P("Vote"#sub[i,t] = 1|bold(x), beta#sub[1,2], gamma#sub[i]) = F(beta#sub[1,2]'bold(x)#sub[it], gamma#sub[i]) $ <logit>
+For both models, let: $X#sub[1]$ be the pro-environmental contributions, and $X#sub[2]$ be
+the anti-environmental contribution, $bold(x)$ be the vector of control
+variables, $delta#sub[t]$ the time fixed effect (FEs) and $gamma#sub[i]$
+the individual fixed effects, all of which are shown in @model-spec.
 
 In their most basic specification, both @lpm and @logit include the entire
 sample of representatives who voted more than once on the set of the six roll
-call votes, it is non-discriminatory based on voting behaviour. When moving from
+call votes, without discriminating based on voting behaviour. When moving from
 most generous to the strictest models, the main difference between the two
 models is that in the LPM model, both legislator and year fixed effects are
 used, whereas in the conditional logit model, specified by #cite(<stratmann-2002>, form: "prose"),
-only legislator fixed effects are used. As shown in @model-spec and @results,
-this is only the strictest specification.
+only legislator fixed effects are used.
 
 Using these models as a base, I explored different ways of measuring the
 relationship between voting behaviour and contributions. One variation is to
-isolate each vote and include all relevant posts from previous votes and those
-from the current vote, see @lpm-per-vote in the appendix for these results. This
-tests the assumptions made in @contribs-choice, and takes into account not only
-the short term contributions when an environmental vote is coming up, but also
-the previous contributions on similar topics, to measure whether voting depends
-on contributions for previous relevant votes.
+isolate each vote and include all time-relevant contributions from previous
+votes and those from the current vote, see @lpm-per-vote in the appendix for
+these results. This tests the assumptions made in @contribs-choice, and takes
+into account not only the short term contributions when an environmental vote is
+coming up, but also the previous contributions on the same topic, to measure
+whether voting is also affected by contributions for previous relevant votes.
 
 In one model specification, only representatives who maintained consistent
 environmental voting behavior across the six roll-call votes were included. This
 approach allows for an analysis of whether the presence or amount of
 contributions influences legislators, even when no changes in voting behavior
-occur—essentially, assessing whether interest groups contribute regardless of
-voting changes. Conversely, all models were applied solely to representatives
+occur. Essentially, this assesses whether interest groups contribute regardless
+of voting changes. Conversely, all models were applied solely to representatives
 who altered their voting throughout the six roll-call votes. This method
 facilitates a causal identification strategy, enabling conclusions to be drawn
 only when there are variations in voting behavior @stratmann-2002, see
@@ -932,22 +927,22 @@ only when there are variations in voting behavior @stratmann-2002, see
 
 == Model specification <model-spec>
 
-Using the models shown in @models-precisely, this paper will analyse the
+Using the models shown in @models-precisely, this paper analyses the
 relationship of votes and campaign contributions ranging from using the most
 generous model specifications, such as using control variables, to the strictes,
-using individual fixed effects.
+using individual (legislator) fixed effects.
 
-To control for confounding influence factors between a treatment and an outcome
-and approach a consistent causal interpretation @control, the following control
+To control for confounding influence between a treatment and an outcome and
+approach a consistent causal interpretation @control, the following control
 variables are used: the legislator's party and whether their party had House
 Majority during that term @McAlexander2020 @stratmann-2002. These control
 variables are used since party is a good determinant for a legislator's
-ideological leaning, and whether their party has the majority in the house
-determines the power which the group has over the house of representatives.
+ideological leaning, and whether their party has the majority in the House
+determines the power which the group has over the House of Representatives.
 
 To control for the junior/senior legislators stipulated in @hypothesis, I
 decided to add both the `birthyear` and `seniority`, which is number of terms in
-house the representative served, to control for the difference in age and
+House the representative served, to control for the difference in age and
 experience which might distort the voting behaviour @stratmann-2002
 @Selling2023. By controlling for differences in geographical residence of the
 representatives, using `district` #footnote(
@@ -963,10 +958,10 @@ representatives, using `district` #footnote(
 attributed to the location of representatives.
 
 Based on roll-call records, the Dynamic Weighted (DW)-Nominates are a widely
-used indicator of a representative's policy opinion in a multidimensional policy
+used indicator of a representative's ideology in a multidimensional policy
 space, which serve as a strong predictor of the voting decisions of
 representatives @rosenthalpoole @matter. By including the absolute value of the
-first and second dimension of the DW-Nominate#footnote("accessible at https://voteview.com") as
+first and second dimension of the `DW-Nominate`#footnote("accessible at https://voteview.com") as
 control variables, I control for differences in ideology that might explain
 voting behaviour. It is easier to prove causality when a variable for legislator
 ideology is included, as this eliminates the variation in roll-call voting that
@@ -978,16 +973,17 @@ influence of friendly donating.
 I also control for the `gender` of the legislator, as the gender pay gap tends
 to apply not only to income but also to campaign contributions. Furthermore, to
 account for voting consistency, I introduce another dummy variable indicating
-whether the legislator changed their vote on six specific votes. This helps to
-determine whether vote-changing behaviour affects the volume of campaign
-contributions they receive. Finally, I define dummy variables which indicate
-whether representatives received pro- or anti-environmental contributions in the
-time-period before the votes. This allows me to measure the extensive margin of
-contribution, i.e. how the fact that a representative received a contribution
-relates to their voting behaviour. By including these dummy variables and the
-amount of the donation, I also measure the intensive margin. In this way, I can
-analyse whether the actual amount of the contribution changes the voting
-behaviour of a representative who has received a contribution (dummy = 1).
+whether the legislator changed their vote on on or more of the six votes. This
+helps to determine whether vote-changing behaviour affects the volume of
+campaign contributions they receive. Finally, I define dummy variables which
+indicate whether representatives received pro- or anti-environmental
+contributions in the time-period before the votes. This allows me to measure the
+extensive margin of contribution, i.e. how the fact that a representative
+received a contribution relates to their voting behaviour. By including these
+dummy variables and the amount of the donation, I also measure the intensive
+margin. In this way, I can analyse whether the actual amount of the contribution
+changes the voting behaviour of a representative who has received a contribution
+in the first place.
 
 Regarding roll-call votes, the six roll-call votes included do not amend the
 same bills, but I assume that they are all the same bill as they all relate to
@@ -997,25 +993,30 @@ control for differences in bills @griers.
 By including the aforementioned control variables, I am able to fix certain
 factors that I can measure and assume have confounding effects on the predicted
 probability. Were I to leave the regressions as is, then there could still be
-potential omitted variable bias in my analysis. Yet, I am bound to miss either
+potential omitted variable bias in my analysis. I am bound to miss either
 variables that I did not know affect my results, or variables that I cannot
 measure. Unobservables, or the inability to include in a model every variable
 that influences a result, are the root cause of the issues. The variance in the
 dependent variable resulting from unobserved or omitted variables is known as
 unobserved heterogeneity @mood.
 
-Using two-way fixed effects @Imai-Kim-2019, one can account for unobservable
-elements that remain constant across time and another unit (such as party or
-state), and thus remove unit and time invariant confounding @griers. In this
-paper, four types of two way FEs are used: In the more generous version, I fix
-for the variables geographical region and year, since this measures only the
-change in contributions within a year and same geographical location. By fixing
-for the geographical region of a state and not the actual state, I am
-controlling for some differences within the US, such as culture and migration,
-but not making the model so strict as to account for all differences in states.
-By controlling for years, on the other hand, time-variant differences such as
-environmental perception or enviornmental disasters are not taken out of context
-and compared with years with little environmental happenings.
+Applying two-way fixed effects to the LPM #footnote(
+  [As stated in @models-precisely, the conditional logit model only includes
+    one-way fixed effects, due to the nature of the mutlinomial model. Thus, I have
+    decided to include only geographical, state, party and legislator fixed effects
+    for each logit regression.],
+) @Imai-Kim-2019, one can account for unobservable elements that remain constant
+across time and another unit (such as party or state), and thus remove unit and
+time invariant confounding @griers. In this paper, four types of two way FEs are
+used: In the more generous version, I fix for the variables geographical region
+and year, since this measures only the change in contributions within a year and
+same geographical location. By fixing for the geographical region of a state and
+not the actual state, I am controlling for some differences within the US, such
+as culture and migration, but not making the model so strict as to account for
+all differences in states. By controlling for years, on the other hand,
+time-variant differences such as environmental perception or enviornmental
+disasters are not taken out of context and compared with years with little
+environmental happenings.
 
 In a stricter version, I fix for year and state. This provides more accurate
 results on the geographical level. As mentioned above in @contributions-success,
@@ -1042,23 +1043,28 @@ and high dimensional and bound to affect the individuals voting behaviour
 @Huntington @stratmann-2002. Not only am I thus able to address the omitted
 variable bias which I was not able to address through my previous two-way fixed
 effects, such as the representative's eloquence and negotiation skills,
-proximity to the fossil fuel industry and/or environmental industry, etc. but I
-am able to remove previous FEs, such as the state or geographical fixed effects,
-since these usually do not change for a representative over time. Therefore, to
-determine the impact of donations on voting changes, I only use the change in
-donations within a year and specific member, which allows me to predict the
-impact of donations most accurately @griers.
+proximity to the fossil fuel industry and environmental industry, but I am able
+to remove previous FEs#footnote(
+  [And almost all control variables used in the previous models, which do not
+  change over time and over the same legislator. Only the `seniority` variable
+  changes within representatives over time, which is why it is included in this
+  model specification.],
+), such as the state or geographical fixed effects, since these usually do not
+change for a representative over time. Therefore, to determine the impact of
+donations on voting changes, I only use the change in donations within a year
+and specific member, which allows me to predict the impact of donations most
+accurately @griers.
 
 #pagebreak()
 = Results <results>
 
 == Effectiveness of Contributions
 One of the hypothesis stated in @hypothesis is that the effect of pro and
-anti-environmentalcampaign contributions,if statistically significant, would be
-minimal. As visible from the regression outputs in the appendix, this was not
-the case. From using control variables to state and year fixed effects in the
-LPM with all representatives, the campaign contributions from environmental
-sources and non environmental sources were highly significant.
+anti-environmental nebzwcampaign contributions,if statistically significant,
+would be minimal. As visible from the regression outputs in the appendix, this
+was not the case. From using control variables to state and year fixed effects
+in the LPM with all representatives, the campaign contributions from
+environmental sources and non environmental sources were highly significant.
 
 // LPM all representatives with control variables & log transformed
 For the most generous LPM shown in @lpm including control variables showed that
