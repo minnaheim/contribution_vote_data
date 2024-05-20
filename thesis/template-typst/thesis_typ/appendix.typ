@@ -16,16 +16,15 @@ University of Munich: https://github.com/ls1intum/thesis-template-typst.
 ) <desc-stats>
 
 #figure(
-  image("../figures/party.png", width: 100%),
-  caption: [All party FE models, with all representatives, only those who changed their
-    votes and all those who didn't],
-) <logit-main>
+  image("../figures/party_models.png", width: 65%),
+  caption: [Column 1: OLS Party, column 2: Conditional Logit Party],
+) <party>
 
 #figure(
-  image("../figures/lpm_per_vote.png", width: 100%),
+  image("../figures/lpmpervote.png", width: 110%),
   caption: [the LPM models of each vote, with all relevant contributions leading up to the
     vote.],
-) <lpm-per-vote>
+)<lpm-per-vote>
 
 #figure(
   image("../figures/log_transformed.png", width: 60%),

@@ -123,6 +123,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#with-party-year-fixed-effects-1" id="toc-with-party-year-fixed-effects-1" class="nav-link" data-scroll-target="#with-party-year-fixed-effects-1">with party &amp; year fixed effects</a></li>
   <li><a href="#individual-and-year-fixed-effects" id="toc-individual-and-year-fixed-effects" class="nav-link" data-scroll-target="#individual-and-year-fixed-effects">individual and year fixed effects</a></li>
   </ul></li>
+  <li><a href="#logit-of-vote-changing-representatives" id="toc-logit-of-vote-changing-representatives" class="nav-link" data-scroll-target="#logit-of-vote-changing-representatives">logit of vote changing representatives</a></li>
   </ul></li>
   <li><a href="#create-model-summaries" id="toc-create-model-summaries" class="nav-link" data-scroll-target="#create-model-summaries">create model summaries</a></li>
   <li><a href="#probit-stratmann" id="toc-probit-stratmann" class="nav-link" data-scroll-target="#probit-stratmann">Probit Stratmann:</a></li>
@@ -1781,14 +1782,47 @@ F-statistic: 3.65687 on 3 and 1679 DF, p-value: 0.012065</code></pre>
 <p>We do this because we want to see how prior contributions in similar votes could affect the voting. ### vote and all contributions leading up to the vote with state FEs</p>
 <p>can fix for states here, but not for instances, since this is already just that, and not for year and individuals, since these are all the same too.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 4_2</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_vote_4_2)</span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>ols_4_2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote4_minus <span class="sc">~</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> Contribution_4_minus <span class="sc">+</span> Contribution_4_plus <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> party, <span class="at">data =</span> df_vote_4_2, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>, <span class="st">"party"</span>), <span class="at">model =</span> <span class="st">"within"</span>, <span class="at">effect =</span> <span class="st">"twoways"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in pdata.frame(data, index): duplicate couples (id-time) in resulting pdata.frame
- to find out which, use, e.g., table(index(your_pdataframe), useNA = "ifany")</code></pre>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 3_2</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>ols_3_2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote3_minus <span class="sc">~</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> party <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> party, <span class="at">data =</span> df_vote_3_2, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>), <span class="at">model =</span> <span class="st">"within"</span>, <span class="at">effect =</span> <span class="st">"twoways"</span>)</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_3_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Twoways effects Within Model
+
+Call:
+plm(formula = Vote3_minus ~ Contribution_3_minus + Contribution_3_plus + 
+    party + nominate_dim1 + nominate_dim2 + gender + pro_env_dummy + 
+    anti_env_dummy + party, data = df_vote_3_2, effect = "twoways", 
+    model = "within", index = c("state"))
+
+Unbalanced Panel: n = 45, T = 1-46, N = 339
+
+Residuals:
+       Min.     1st Qu.      Median     3rd Qu.        Max. 
+-0.23113897 -0.03065789 -0.00024134  0.02416527  0.76364481 
+
+Coefficients:
+                        Estimate  Std. Error t-value  Pr(&gt;|t|)    
+Contribution_3_minus  0.00038895  0.00030575  1.2721  0.204615    
+Contribution_3_plus   0.00125586  0.00399080  0.3147  0.753283    
+partyR                0.95076093  0.01931028 49.2360 &lt; 2.2e-16 ***
+nominate_dim1        -0.18272511  0.06058551 -3.0160  0.002848 ** 
+nominate_dim2         0.20832612  0.04608954  4.5200 9.877e-06 ***
+genderM               0.03205907  0.01841596  1.7408  0.083045 .  
+pro_env_dummy        -0.01727095  0.01867119 -0.9250  0.355928    
+anti_env_dummy        0.03108905  0.03201121  0.9712  0.332468    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Total Sum of Squares:    44.846
+Residual Sum of Squares: 2.6962
+R-Squared:      0.93988
+Adj. R-Squared: 0.91203
+F-statistic: 451.407 on 8 and 231 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_4_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 4_2</span></span>
+<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_vote_4_2)</span>
+<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>ols_4_2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote4_minus <span class="sc">~</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> Contribution_4_minus <span class="sc">+</span> Contribution_4_plus <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> party, <span class="at">data =</span> df_vote_4_2, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>), <span class="at">model =</span> <span class="st">"within"</span>, <span class="at">effect =</span> <span class="st">"twoways"</span>)</span>
+<span id="cb61-4"><a href="#cb61-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_4_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Twoways effects Within Model
 
@@ -1797,33 +1831,34 @@ plm(formula = Vote4_minus ~ Contribution_3_minus + Contribution_3_plus +
     Contribution_4_minus + Contribution_4_plus + nominate_dim1 + 
     nominate_dim2 + gender + pro_env_dummy + anti_env_dummy + 
     party, data = df_vote_4_2, effect = "twoways", model = "within", 
-    index = c("state", "party"))
+    index = c("state"))
 
 Unbalanced Panel: n = 46, T = 1-45, N = 332
 
 Residuals:
-       Min.     1st Qu.      Median     3rd Qu.        Max. 
--9.3013e-01 -3.1665e-02 -3.3194e-16  3.1511e-02  8.6443e-01 
+     Min.   1st Qu.    Median   3rd Qu.      Max. 
+-0.679631 -0.033893  0.000000  0.025457  0.773986 
 
 Coefficients:
-                        Estimate  Std. Error t-value Pr(&gt;|t|)   
-Contribution_3_minus  5.3324e-04  4.6057e-04  1.1578 0.247953   
-Contribution_3_plus  -1.0076e-03  3.8981e-03 -0.2585 0.796218   
-Contribution_4_minus  8.4752e-05  3.9748e-04  0.2132 0.831312   
-Contribution_4_plus   6.6757e-04  4.6514e-03  0.1435 0.885984   
-nominate_dim1        -4.7820e-02  6.8938e-02 -0.6937 0.488472   
-nominate_dim2         1.7035e-01  5.1510e-02  3.3072 0.001067 **
-genderM               3.0931e-02  2.1035e-02  1.4705 0.142572   
-pro_env_dummy        -1.6153e-02  2.2454e-02 -0.7194 0.472513   
-anti_env_dummy        4.8436e-02  2.9562e-02  1.6384 0.102470   
+                        Estimate  Std. Error t-value  Pr(&gt;|t|)    
+Contribution_3_minus  0.00076619  0.00049612  1.5444  0.123930    
+Contribution_3_plus  -0.00267603  0.00436351 -0.6133  0.540326    
+Contribution_4_minus  0.00013396  0.00044531  0.3008  0.763830    
+Contribution_4_plus   0.00035460  0.00505694  0.0701  0.944160    
+nominate_dim1        -0.07912950  0.07655538 -1.0336  0.302442    
+nominate_dim2         0.17775363  0.05655618  3.1430  0.001902 ** 
+genderM               0.03596137  0.02242587  1.6036  0.110238    
+pro_env_dummy        -0.00671771  0.02506125 -0.2681  0.788910    
+anti_env_dummy        0.02487941  0.03622750  0.6868  0.492957    
+partyR                0.92369190  0.02390043 38.6475 &lt; 2.2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Total Sum of Squares:    5.3364
-Residual Sum of Squares: 4.9791
-R-Squared:      0.066956
-Adj. R-Squared: -0.11898
-F-statistic: 2.20068 on 9 and 276 DF, p-value: 0.022239</code></pre>
+Total Sum of Squares:    43.799
+Residual Sum of Squares: 3.9292
+R-Squared:      0.91029
+Adj. R-Squared: 0.86564
+F-statistic: 224.254 on 10 and 221 DF, p-value: &lt; 2.22e-16</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Vote 51_2</span></span>
 <span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>ols_51_2 <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote51_minus <span class="sc">~</span> Contribution_3_minus <span class="sc">+</span> Contribution_3_plus <span class="sc">+</span> Contribution_4_minus <span class="sc">+</span> Contribution_4_plus <span class="sc">+</span> Contribution_51_minus <span class="sc">+</span> Contribution_51_plus <span class="sc">+</span> party <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">data =</span> df_vote_51_2, <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"state"</span>), <span class="at">model =</span> <span class="st">"within"</span>, <span class="at">effect =</span> <span class="st">"twoways"</span>)</span>
@@ -3358,57 +3393,15 @@ F-statistic: 0.7143 on 17 and 60 DF,  p-value: 0.7761</code></pre>
 <section id="with-party-year-fes" class="level2">
 <h2 class="anchored" data-anchor-id="with-party-year-fes">with party &amp; year FEs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>ols_party_change <span class="ot">&lt;-</span> <span class="fu">plm</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> Geographical <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy,</span>
-<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">index =</span> <span class="fu">c</span>(<span class="st">"Instance"</span>, <span class="st">"party"</span>),</span>
-<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">effect =</span> <span class="st">"twoways"</span>, <span class="at">data =</span> df_long</span>
-<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in pdata.frame(data, index): duplicate couples (id-time) in resulting pdata.frame
- to find out which, use, e.g., table(index(your_pdataframe), useNA = "ifany")</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_party_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Twoways effects Within Model
-
-Call:
-plm(formula = Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + 
-    Geographical + seniority + Contribution_minus + Contribution_plus + 
-    gender + pro_env_dummy + anti_env_dummy, data = df_long, 
-    effect = "twoways", index = c("Instance", "party"))
-
-Balanced Panel: n = 6, T = 2, N = 1901
-
-Residuals:
-     Min.   1st Qu.    Median   3rd Qu.      Max. 
--0.986640 -0.040587 -0.011402  0.023011  1.004361 
-
-Coefficients:
-                      Estimate  Std. Error t-value  Pr(&gt;|t|)    
-district            0.00078511  0.00037189  2.1111  0.034894 *  
-birthday            0.00074141  0.00039937  1.8564  0.063547 .  
-nominate_dim1      -0.14116946  0.02852173 -4.9495 8.103e-07 ***
-nominate_dim2      -0.06979310  0.02135227 -3.2686  0.001100 ** 
-GeographicalNE      0.07292027  0.01123494  6.4905 1.091e-10 ***
-GeographicalSO      0.00867642  0.00940666  0.9224  0.356454    
-GeographicalWE      0.01943069  0.01123908  1.7289  0.084000 .  
-seniority           0.00164331  0.00104170  1.5775  0.114841    
-Contribution_minus -0.00061071  0.00014787 -4.1300 3.787e-05 ***
-Contribution_plus   0.00719967  0.00140159  5.1368 3.084e-07 ***
-genderM            -0.02513146  0.00924604 -2.7181  0.006627 ** 
-pro_env_dummy      -0.00674744  0.00917263 -0.7356  0.462063    
-anti_env_dummy     -0.02101148  0.01318493 -1.5936  0.111194    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Total Sum of Squares:    47.076
-Residual Sum of Squares: 43.256
-R-Squared:      0.081148
-Adj. R-Squared: 0.071867
-F-statistic: 12.7785 on 13 and 1881 DF, p-value: &lt; 2.22e-16</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same thing with vote_change_to_anti</span></span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>ols_party_change_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_anti <span class="sc">~</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> Geographical <span class="sc">+</span> <span class="fu">as.factor</span>(party) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy, <span class="at">data =</span> df_vote_change)</span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_party_change_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ols_party_change &lt;- plm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy,</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="co">#     index = c("Instance", "party"),</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a><span class="co">#     effect = "twoways", data = df_vote_change</span></span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(ols_party_change)</span></span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a><span class="co"># same thing with vote_change_to_anti</span></span>
+<span id="cb90-8"><a href="#cb90-8" aria-hidden="true" tabindex="-1"></a>ols_party_change_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_anti <span class="sc">~</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> Geographical <span class="sc">+</span> <span class="fu">as.factor</span>(party) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy, <span class="at">data =</span> df_vote_change)</span>
+<span id="cb90-9"><a href="#cb90-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_party_change_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3452,8 +3445,8 @@ F-statistic: 0.7143 on 17 and 60 DF,  p-value: 0.7761</code></pre>
 <section id="with-state-year-fes" class="level2">
 <h2 class="anchored" data-anchor-id="with-state-year-fes">with state &amp; year FEs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>ols_change_state <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(state) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy, <span class="at">data =</span> df_vote_change)</span>
-<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_state)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a>ols_change_state <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(state) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy, <span class="at">data =</span> df_vote_change)</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_state)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3500,9 +3493,9 @@ Residual standard error: 0.4602 on 72 degrees of freedom
 Multiple R-squared:  0.3696,    Adjusted R-squared:  0.1595 
 F-statistic: 1.759 on 24 and 72 DF,  p-value: 0.03492</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same thing with vote_change_to_anti</span></span>
-<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a>ols_change_state_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_anti <span class="sc">~</span> <span class="fu">as.factor</span>(state) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy, <span class="at">data =</span> df_vote_change)</span>
-<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_state_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same thing with vote_change_to_anti</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>ols_change_state_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_anti <span class="sc">~</span> <span class="fu">as.factor</span>(state) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy, <span class="at">data =</span> df_vote_change)</span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_state_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3554,8 +3547,8 @@ F-statistic: 0.8634 on 24 and 53 DF,  p-value: 0.6449</code></pre>
 <section id="checking-differences-in-party-1" class="level3">
 <h3 class="anchored" data-anchor-id="checking-differences-in-party-1">checking differences in party</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>ols_change_D <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> party <span class="sc">-</span> Geographical <span class="sc">-</span> anti_env_dummy <span class="sc">-</span> BioID, <span class="at">data =</span> df_vote_change)</span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_D)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>ols_change_D <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> party <span class="sc">-</span> Geographical <span class="sc">-</span> anti_env_dummy <span class="sc">-</span> BioID, <span class="at">data =</span> df_vote_change)</span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_D)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3600,8 +3593,8 @@ Residual standard error: 0.2918 on 47 degrees of freedom
 Multiple R-squared:  0.7571,    Adjusted R-squared:  0.6382 
 F-statistic: 6.369 on 23 and 47 DF,  p-value: 4.423e-08</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>ols_change_R <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> party <span class="sc">-</span> Geographical <span class="sc">-</span> anti_env_dummy <span class="sc">-</span> BioID, <span class="at">data =</span> df_vote_change)</span>
-<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>ols_change_R <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> . <span class="sc">-</span> party <span class="sc">-</span> Geographical <span class="sc">-</span> anti_env_dummy <span class="sc">-</span> BioID, <span class="at">data =</span> df_vote_change)</span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_R)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3654,9 +3647,9 @@ F-statistic: 6.369 on 23 and 47 DF,  p-value: 4.423e-08</code></pre>
 <section id="with-individual-year-fes" class="level2">
 <h2 class="anchored" data-anchor-id="with-individual-year-fes">with individual &amp; year FEs</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_vote_change)</span></span>
-<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a>ols_change_ind_fe <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(BioID) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus, <span class="at">data =</span> df_vote_change)</span>
-<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_ind_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co"># view(df_vote_change)</span></span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>ols_change_ind_fe <span class="ot">&lt;-</span> <span class="fu">lm</span>(Vote <span class="sc">~</span> <span class="fu">as.factor</span>(BioID) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus, <span class="at">data =</span> df_vote_change)</span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_ind_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3707,9 +3700,9 @@ Residual standard error: 0.4481 on 67 degrees of freedom
 Multiple R-squared:  0.4438,    Adjusted R-squared:  0.203 
 F-statistic: 1.843 on 29 and 67 DF,  p-value: 0.02055</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same thing with vote_change_to_anti</span></span>
-<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>ols_change_ind_fe_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_anti <span class="sc">~</span> <span class="fu">as.factor</span>(BioID) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus, <span class="at">data =</span> df_vote_change)</span>
-<span id="cb106-3"><a href="#cb106-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_ind_fe_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="co"># same thing with vote_change_to_anti</span></span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>ols_change_ind_fe_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(vote_change_to_anti <span class="sc">~</span> <span class="fu">as.factor</span>(BioID) <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus, <span class="at">data =</span> df_vote_change)</span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(ols_change_ind_fe_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3772,8 +3765,8 @@ F-statistic: 0.8369 on 29 and 48 DF,  p-value: 0.6915</code></pre>
 <section id="with-control-variables-3" class="level3">
 <h3 class="anchored" data-anchor-id="with-control-variables-3">with control variables</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>full_logit <span class="ot">&lt;-</span> <span class="fu">glm</span>(Vote <span class="sc">~</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> district <span class="sc">+</span> party <span class="sc">+</span> gender <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> Geographical <span class="sc">+</span> Instance <span class="sc">+</span> seniority <span class="sc">+</span> Dmajority <span class="sc">+</span> birthday, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_long)</span>
-<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>full_logit <span class="ot">&lt;-</span> <span class="fu">glm</span>(Vote <span class="sc">~</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> district <span class="sc">+</span> party <span class="sc">+</span> gender <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> Geographical <span class="sc">+</span> Instance <span class="sc">+</span> seniority <span class="sc">+</span> Dmajority <span class="sc">+</span> birthday, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_long)</span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3823,8 +3816,8 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <section id="with-log-transformed-contributions" class="level3">
 <h3 class="anchored" data-anchor-id="with-log-transformed-contributions">with log transformed contributions</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>full_logit_log <span class="ot">&lt;-</span> <span class="fu">glm</span>(Vote <span class="sc">~</span> Contribution_minus_log <span class="sc">+</span> Contribution_plus_log <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> district <span class="sc">+</span> party <span class="sc">+</span> gender <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> Geographical <span class="sc">+</span> Instance <span class="sc">+</span> seniority <span class="sc">+</span> Dmajority <span class="sc">+</span> birthday, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_long_log)</span>
-<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a>full_logit_log <span class="ot">&lt;-</span> <span class="fu">glm</span>(Vote <span class="sc">~</span> Contribution_minus_log <span class="sc">+</span> Contribution_plus_log <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> district <span class="sc">+</span> party <span class="sc">+</span> gender <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> Geographical <span class="sc">+</span> Instance <span class="sc">+</span> seniority <span class="sc">+</span> Dmajority <span class="sc">+</span> birthday, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_long_log)</span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3869,8 +3862,8 @@ AIC: 348.53
 
 Number of Fisher Scoring iterations: 8</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>logit_log_c <span class="ot">&lt;-</span> <span class="fu">clogit</span>(Vote <span class="sc">~</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> seniority <span class="sc">+</span> <span class="fu">strata</span>(BioID), <span class="at">data =</span> df_long)</span>
-<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_log_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>logit_log_c <span class="ot">&lt;-</span> <span class="fu">clogit</span>(Vote <span class="sc">~</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> seniority <span class="sc">+</span> <span class="fu">strata</span>(BioID), <span class="at">data =</span> df_long)</span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_log_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call:
 coxph(formula = Surv(rep(1, 2314L), Vote) ~ Contribution_minus + 
@@ -3907,13 +3900,13 @@ Score (logrank) test = 21.68  on 5 df,   p=6e-04</code></pre>
 <h3 class="anchored" data-anchor-id="with-geographical-year-fes">with geographical &amp; year FEs</h3>
 <p>use the package {bife} to use fixed effects in a logit model, since the glm function does not allow for fixed effects in a logit model, it is only for linear models.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>full_logit_geo_1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_long)</span>
-<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a>full_logit_geo <span class="ot">&lt;-</span> <span class="fu">bife</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">|</span> Geographical,</span>
-<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_long,</span>
-<span id="cb114-4"><a href="#cb114-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="st">"logit"</span></span>
-<span id="cb114-5"><a href="#cb114-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb114-6"><a href="#cb114-6" aria-hidden="true" tabindex="-1"></a>logit_geo_c <span class="ot">&lt;-</span> <span class="fu">clogit</span>(Vote <span class="sc">~</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> gender <span class="sc">+</span> Instance <span class="sc">+</span> <span class="fu">strata</span>(Geographical), <span class="at">data =</span> df_long)</span>
-<span id="cb114-7"><a href="#cb114-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_geo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a>full_logit_geo_1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_long)</span>
+<span id="cb110-2"><a href="#cb110-2" aria-hidden="true" tabindex="-1"></a>full_logit_geo <span class="ot">&lt;-</span> <span class="fu">bife</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> <span class="fu">as.factor</span>(Instance) <span class="sc">|</span> Geographical,</span>
+<span id="cb110-3"><a href="#cb110-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_long,</span>
+<span id="cb110-4"><a href="#cb110-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="st">"logit"</span></span>
+<span id="cb110-5"><a href="#cb110-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb110-6"><a href="#cb110-6" aria-hidden="true" tabindex="-1"></a>logit_geo_c <span class="ot">&lt;-</span> <span class="fu">clogit</span>(Vote <span class="sc">~</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> gender <span class="sc">+</span> Instance <span class="sc">+</span> <span class="fu">strata</span>(Geographical), <span class="at">data =</span> df_long)</span>
+<span id="cb110-7"><a href="#cb110-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_geo)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>binomial - logit link
 
@@ -3952,7 +3945,7 @@ Number of Fisher Scoring Iterations: 8
 
 Average individual fixed effect= -40.121</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_geo_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_geo_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -3991,7 +3984,7 @@ AIC: 378.37
 
 Number of Fisher Scoring iterations: 7</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_geo_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_geo_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call:
 coxph(formula = Surv(rep(1, 2314L), Vote) ~ Contribution_minus + 
@@ -4043,18 +4036,18 @@ Score (logrank) test = 1685  on 12 df,   p=&lt;2e-16</code></pre>
 <section id="with-state-year-fixed-effects-1" class="level3">
 <h3 class="anchored" data-anchor-id="with-state-year-fixed-effects-1">with state &amp; year fixed effects</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>full_logit_state_1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_long)</span>
-<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>full_logit_state <span class="ot">&lt;-</span> <span class="fu">bife</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> <span class="fu">factor</span>(Instance) <span class="sc">|</span> state,</span>
-<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_long,</span>
-<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="st">"logit"</span></span>
-<span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a>logit_state_c <span class="ot">&lt;-</span> <span class="fu">clogit</span>(Vote <span class="sc">~</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> seniority <span class="sc">+</span> Instance <span class="sc">+</span> Dmajority <span class="sc">+</span> <span class="fu">strata</span>(state), <span class="at">data =</span> df_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>full_logit_state_1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_long)</span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>full_logit_state <span class="ot">&lt;-</span> <span class="fu">bife</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> <span class="fu">factor</span>(Instance) <span class="sc">|</span> state,</span>
+<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_long,</span>
+<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="st">"logit"</span></span>
+<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a>logit_state_c <span class="ot">&lt;-</span> <span class="fu">clogit</span>(Vote <span class="sc">~</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> district <span class="sc">+</span> party <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> seniority <span class="sc">+</span> Instance <span class="sc">+</span> Dmajority <span class="sc">+</span> <span class="fu">strata</span>(state), <span class="at">data =</span> df_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in coxexact.fit(X, Y, istrat, offset, init, control, weights =
 weights, : Ran out of iterations and did not converge</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_state)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_state)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>binomial - logit link
 
@@ -4094,7 +4087,7 @@ Number of Fisher Scoring Iterations: 21
 
 Average individual fixed effect= -32.111</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_state_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_state_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -4133,7 +4126,7 @@ AIC: 378.37
 
 Number of Fisher Scoring iterations: 7</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_state_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_state_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call:
 coxph(formula = Surv(rep(1, 2314L), Vote) ~ Contribution_minus + 
@@ -4187,12 +4180,12 @@ Score (logrank) test = 1381  on 13 df,   p=&lt;2e-16</code></pre>
 <section id="with-party-year-fixed-effects-1" class="level3">
 <h3 class="anchored" data-anchor-id="with-party-year-fixed-effects-1">with party &amp; year fixed effects</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>full_logit_party <span class="ot">&lt;-</span> <span class="fu">bife</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> Geographical <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> <span class="fu">factor</span>(Instance) <span class="sc">|</span> party,</span>
-<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_long,</span>
-<span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="st">"logit"</span></span>
-<span id="cb128-4"><a href="#cb128-4" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb128-5"><a href="#cb128-5" aria-hidden="true" tabindex="-1"></a>logit_party_c <span class="ot">&lt;-</span> <span class="fu">clogit</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> Geographical <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> Instance <span class="sc">+</span> <span class="fu">strata</span>(party), <span class="at">data =</span> df_long)</span>
-<span id="cb128-6"><a href="#cb128-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_party)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>full_logit_party <span class="ot">&lt;-</span> <span class="fu">bife</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> Geographical <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> <span class="fu">factor</span>(Instance) <span class="sc">|</span> party,</span>
+<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>    <span class="at">data =</span> df_long,</span>
+<span id="cb124-3"><a href="#cb124-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">model =</span> <span class="st">"logit"</span></span>
+<span id="cb124-4"><a href="#cb124-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb124-5"><a href="#cb124-5" aria-hidden="true" tabindex="-1"></a>logit_party_c <span class="ot">&lt;-</span> <span class="fu">clogit</span>(Vote <span class="sc">~</span> district <span class="sc">+</span> birthday <span class="sc">+</span> nominate_dim1 <span class="sc">+</span> nominate_dim2 <span class="sc">+</span> Geographical <span class="sc">+</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> gender <span class="sc">+</span> pro_env_dummy <span class="sc">+</span> anti_env_dummy <span class="sc">+</span> Instance <span class="sc">+</span> <span class="fu">strata</span>(party), <span class="at">data =</span> df_long)</span>
+<span id="cb124-6"><a href="#cb124-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(full_logit_party)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>binomial - logit link
 
@@ -4234,7 +4227,7 @@ Number of Fisher Scoring Iterations: 8
 
 Average individual fixed effect= -45.207</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_party_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_party_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call:
 coxph(formula = Surv(rep(1, 2314L), Vote) ~ district + birthday + 
@@ -4292,10 +4285,10 @@ Score (logrank) test = 158.6  on 14 df,   p=&lt;2e-16</code></pre>
 <section id="individual-and-year-fixed-effects" class="level3">
 <h3 class="anchored" data-anchor-id="individual-and-year-fixed-effects">individual and year fixed effects</h3>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>logit_ind_fe_1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(Vote <span class="sc">~</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_long)</span>
-<span id="cb132-2"><a href="#cb132-2" aria-hidden="true" tabindex="-1"></a>logit_ind_fe_c <span class="ot">&lt;-</span> <span class="fu">clogit</span>(Vote <span class="sc">~</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> <span class="fu">strata</span>(BioID), <span class="at">data =</span> df_long)</span>
-<span id="cb132-3"><a href="#cb132-3" aria-hidden="true" tabindex="-1"></a>logit_ind_fe <span class="ot">&lt;-</span> <span class="fu">bife</span>(Vote <span class="sc">~</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">|</span> BioID, <span class="at">data =</span> df_long, <span class="at">model =</span> <span class="st">"logit"</span>)</span>
-<span id="cb132-4"><a href="#cb132-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_ind_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>logit_ind_fe_1 <span class="ot">&lt;-</span> <span class="fu">glm</span>(Vote <span class="sc">~</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"logit"</span>), <span class="at">data =</span> df_long)</span>
+<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a>logit_ind_fe_c <span class="ot">&lt;-</span> <span class="fu">clogit</span>(Vote <span class="sc">~</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">+</span> <span class="fu">strata</span>(BioID), <span class="at">data =</span> df_long)</span>
+<span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a>logit_ind_fe <span class="ot">&lt;-</span> <span class="fu">bife</span>(Vote <span class="sc">~</span> seniority <span class="sc">+</span> Contribution_minus <span class="sc">+</span> Contribution_plus <span class="sc">|</span> BioID, <span class="at">data =</span> df_long, <span class="at">model =</span> <span class="st">"logit"</span>)</span>
+<span id="cb128-4"><a href="#cb128-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_ind_fe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>binomial - logit link
 
@@ -4320,7 +4313,7 @@ Number of Fisher Scoring Iterations: 6
 
 Average individual fixed effect= -10.432</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_ind_fe_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_ind_fe_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -4349,7 +4342,7 @@ AIC: 2599.7
 
 Number of Fisher Scoring iterations: 5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_ind_fe_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(logit_ind_fe_c)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Call:
 coxph(formula = Surv(rep(1, 2314L), Vote) ~ seniority + Contribution_minus + 
@@ -4378,6 +4371,19 @@ Score (logrank) test = 21.14  on 3 df,   p=1e-04</code></pre>
 </div>
 </section>
 </section>
+<section id="logit-of-vote-changing-representatives" class="level2">
+<h2 class="anchored" data-anchor-id="logit-of-vote-changing-representatives">logit of vote changing representatives</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># vote_change_logit &lt;- clogit(Vote ~ )</span></span>
+<span id="cb134-2"><a href="#cb134-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-3"><a href="#cb134-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb134-4"><a href="#cb134-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ols_party_change &lt;- plm(Vote ~ district + birthday + nominate_dim1 + nominate_dim2 + Geographical + seniority + Contribution_minus + Contribution_plus + gender + pro_env_dummy + anti_env_dummy,</span></span>
+<span id="cb134-5"><a href="#cb134-5" aria-hidden="true" tabindex="-1"></a><span class="co">#     index = c("Instance", "party"),</span></span>
+<span id="cb134-6"><a href="#cb134-6" aria-hidden="true" tabindex="-1"></a><span class="co">#     effect = "twoways", data = df_long</span></span>
+<span id="cb134-7"><a href="#cb134-7" aria-hidden="true" tabindex="-1"></a><span class="co"># )</span></span>
+<span id="cb134-8"><a href="#cb134-8" aria-hidden="true" tabindex="-1"></a><span class="co"># summary(ols_party_change)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
 </section>
 <section id="create-model-summaries" class="level1">
 <h1>create model summaries</h1>
@@ -4386,27 +4392,27 @@ Score (logrank) test = 21.14  on 3 df,   p=1e-04</code></pre>
 <h1>Probit Stratmann:</h1>
 <p>Stratmann in his paper uses the probit model to determine how changes in votes are related to the campaign contributions. Where 0/1 of the explained variable determines whether a representative changes their vote from anti to pro environmental, and the explanatory variables are the contribution changes.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># function which groups by representative and then checks the differenes in contribution from one Instance to the next, these values are put into a new vector and then added to the dataframe.</span></span>
-<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-3"><a href="#cb138-3" aria-hidden="true" tabindex="-1"></a>contrib_change <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
-<span id="cb138-4"><a href="#cb138-4" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
-<span id="cb138-5"><a href="#cb138-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(BioID) <span class="sc">%&gt;%</span></span>
-<span id="cb138-6"><a href="#cb138-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
-<span id="cb138-7"><a href="#cb138-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">Contribution_minus_change =</span> Contribution_minus <span class="sc">-</span> <span class="fu">lag</span>(Contribution_minus, <span class="at">default =</span> <span class="dv">0</span>),</span>
-<span id="cb138-8"><a href="#cb138-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">Contribution_plus_change =</span> Contribution_plus <span class="sc">-</span> <span class="fu">lag</span>(Contribution_plus, <span class="at">default =</span> <span class="dv">0</span>)</span>
-<span id="cb138-9"><a href="#cb138-9" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">%&gt;%</span></span>
-<span id="cb138-10"><a href="#cb138-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ungroup</span>()</span>
-<span id="cb138-11"><a href="#cb138-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(df)</span>
-<span id="cb138-12"><a href="#cb138-12" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb138-13"><a href="#cb138-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-14"><a href="#cb138-14" aria-hidden="true" tabindex="-1"></a>df_vote_change <span class="ot">&lt;-</span> <span class="fu">contrib_change</span>(df_vote_change)</span>
-<span id="cb138-15"><a href="#cb138-15" aria-hidden="true" tabindex="-1"></a>df_vote_change <span class="ot">&lt;-</span> <span class="fu">relocate</span>(df_vote_change, Contribution_minus_change, <span class="at">.after =</span> Contribution_minus)</span>
-<span id="cb138-16"><a href="#cb138-16" aria-hidden="true" tabindex="-1"></a>df_vote_change <span class="ot">&lt;-</span> <span class="fu">relocate</span>(df_vote_change, Contribution_plus_change, <span class="at">.after =</span> Contribution_plus)</span>
-<span id="cb138-17"><a href="#cb138-17" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_vote_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="co"># function which groups by representative and then checks the differenes in contribution from one Instance to the next, these values are put into a new vector and then added to the dataframe.</span></span>
+<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-3"><a href="#cb135-3" aria-hidden="true" tabindex="-1"></a>contrib_change <span class="ot">&lt;-</span> <span class="cf">function</span>(df) {</span>
+<span id="cb135-4"><a href="#cb135-4" aria-hidden="true" tabindex="-1"></a>    df <span class="ot">&lt;-</span> df <span class="sc">%&gt;%</span></span>
+<span id="cb135-5"><a href="#cb135-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">group_by</span>(BioID) <span class="sc">%&gt;%</span></span>
+<span id="cb135-6"><a href="#cb135-6" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mutate</span>(</span>
+<span id="cb135-7"><a href="#cb135-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">Contribution_minus_change =</span> Contribution_minus <span class="sc">-</span> <span class="fu">lag</span>(Contribution_minus, <span class="at">default =</span> <span class="dv">0</span>),</span>
+<span id="cb135-8"><a href="#cb135-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">Contribution_plus_change =</span> Contribution_plus <span class="sc">-</span> <span class="fu">lag</span>(Contribution_plus, <span class="at">default =</span> <span class="dv">0</span>)</span>
+<span id="cb135-9"><a href="#cb135-9" aria-hidden="true" tabindex="-1"></a>        ) <span class="sc">%&gt;%</span></span>
+<span id="cb135-10"><a href="#cb135-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">ungroup</span>()</span>
+<span id="cb135-11"><a href="#cb135-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(df)</span>
+<span id="cb135-12"><a href="#cb135-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb135-13"><a href="#cb135-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-14"><a href="#cb135-14" aria-hidden="true" tabindex="-1"></a>df_vote_change <span class="ot">&lt;-</span> <span class="fu">contrib_change</span>(df_vote_change)</span>
+<span id="cb135-15"><a href="#cb135-15" aria-hidden="true" tabindex="-1"></a>df_vote_change <span class="ot">&lt;-</span> <span class="fu">relocate</span>(df_vote_change, Contribution_minus_change, <span class="at">.after =</span> Contribution_minus)</span>
+<span id="cb135-16"><a href="#cb135-16" aria-hidden="true" tabindex="-1"></a>df_vote_change <span class="ot">&lt;-</span> <span class="fu">relocate</span>(df_vote_change, Contribution_plus_change, <span class="at">.after =</span> Contribution_plus)</span>
+<span id="cb135-17"><a href="#cb135-17" aria-hidden="true" tabindex="-1"></a><span class="fu">view</span>(df_vote_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>probit_vote_change <span class="ot">&lt;-</span> <span class="fu">glm</span>(vote_change_to_pro <span class="sc">~</span> Contribution_minus_change <span class="sc">+</span> Contribution_plus_change, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>), <span class="at">data =</span> df_vote_change)</span>
-<span id="cb139-2"><a href="#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(probit_vote_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb136"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb136-1"><a href="#cb136-1" aria-hidden="true" tabindex="-1"></a>probit_vote_change <span class="ot">&lt;-</span> <span class="fu">glm</span>(vote_change_to_pro <span class="sc">~</span> Contribution_minus_change <span class="sc">+</span> Contribution_plus_change, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>), <span class="at">data =</span> df_vote_change)</span>
+<span id="cb136-2"><a href="#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(probit_vote_change)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -4435,8 +4441,8 @@ AIC: 106.04
 
 Number of Fisher Scoring iterations: 4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a>probit_vote_change_2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(vote_change_to_anti <span class="sc">~</span> Contribution_minus_change <span class="sc">+</span> Contribution_plus_change, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>), <span class="at">data =</span> df_vote_change)</span>
-<span id="cb141-2"><a href="#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(probit_vote_change_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb138"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb138-1"><a href="#cb138-1" aria-hidden="true" tabindex="-1"></a>probit_vote_change_2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(vote_change_to_anti <span class="sc">~</span> Contribution_minus_change <span class="sc">+</span> Contribution_plus_change, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>), <span class="at">data =</span> df_vote_change)</span>
+<span id="cb138-2"><a href="#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(probit_vote_change_2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -4465,8 +4471,8 @@ AIC: 53.586
 
 Number of Fisher Scoring iterations: 4</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a>probit_vote_change_3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(vote_change_to_pro <span class="sc">~</span> Contribution_minus <span class="sc">+</span> Contribution_plus, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>), <span class="at">data =</span> df_vote_change)</span>
-<span id="cb143-2"><a href="#cb143-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(probit_vote_change_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb140"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb140-1"><a href="#cb140-1" aria-hidden="true" tabindex="-1"></a>probit_vote_change_3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(vote_change_to_pro <span class="sc">~</span> Contribution_minus <span class="sc">+</span> Contribution_plus, <span class="at">family =</span> <span class="fu">binomial</span>(<span class="at">link =</span> <span class="st">"probit"</span>), <span class="at">data =</span> df_vote_change)</span>
+<span id="cb140-2"><a href="#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(probit_vote_change_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:

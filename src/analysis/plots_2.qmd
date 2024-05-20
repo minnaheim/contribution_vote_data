@@ -79,7 +79,9 @@ pro_plot_contribs <- df_long %>%
         x = "Amount of Contributions in 1000 USD",
         y = "Frequency"
     ) +
-    geom_hline(yintercept = mean_minus, color = "red")
+    geom_hline(yintercept = mean_minus, color = "red") +
+    scale_y_continuous(limits = c(0, 1000))
+
 pro_plot_contribs
 
 
@@ -122,6 +124,61 @@ skewness(df_long$Contribution_plus_log)
 
 ```
 
+
+```{r}
+# effect of party on contributions
+party_contrib_pro <- df_long %>%
+    ggplot(aes(x = party, y = Contribution_plus)) +
+    geom_boxplot() +
+    labs(
+        title = "Pro environmental contributions by party",
+        x = "Party",
+        y = "Amount of contribution in 1000 USD"
+    ) +
+    scale_y_continuous(limits = c(0, 100))
+
+party_contrib_pro
+
+party_contribs_anti <- df_long %>%
+    ggplot(aes(x = party, y = Contribution_minus)) +
+    geom_boxplot() +
+    labs(
+        title = "Anti environmental contributions by party",
+        x = "Party",
+        y = "Amount of contribution in 1000 USD"
+    ) +
+    scale_y_continuous(limits = c(0, 100))
+
+party_contribs_anti
+
+# average pro environmental contributions by party
+party_contribs_avg <- df_long %>%
+    group_by(party) %>%
+    summarise(mean_plus = mean(Contribution_plus, na.rm = TRUE)) %>%
+    ggplot(aes(x = party, y = mean_plus)) +
+    geom_bar(stat = "identity") +
+    labs(
+        title = "Average pro environmental contributions by party",
+        x = "Party",
+        y = "Amount of contribution in 1000 USD"
+    )
+
+party_contribs_avg
+
+# average anti environmental contributions by party
+party_contribs_avg_anti <- df_long %>%
+    group_by(party) %>%
+    summarise(mean_minus = mean(Contribution_minus, na.rm = TRUE)) %>%
+    ggplot(aes(x = party, y = mean_minus)) +
+    geom_bar(stat = "identity") +
+    labs(
+        title = "Average anti environmental contributions by party",
+        x = "Party",
+        y = "Amount of contribution in 1000 USD"
+    )
+
+party_contribs_avg_anti
+```
 
 ```{r}
 # ADD TO PLOTS FILE

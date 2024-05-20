@@ -134,7 +134,7 @@ congress have increased as well within the last 40 years.
   caption: [
     Average Contributions to House Members#footnote(
       " Since the 2024 election cylce is due in November 2024, the contributions
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                there are not comparable to 2022 yet",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                there are not comparable to 2022 yet",
     ), 1990-2022, Source: @opensecretscontribs
   ],
 ) <avg-contributions>
@@ -922,8 +922,8 @@ occur. Essentially, this assesses whether interest groups contribute regardless
 of voting changes. Conversely, all models were applied solely to representatives
 who altered their voting throughout the six roll-call votes. This method
 facilitates a causal identification strategy, enabling conclusions to be drawn
-only when there are variations in voting behavior @stratmann-2002, see
-@logit-main for these results.
+only when there are variations in voting behavior @stratmann-2002, see @party
+for these results.
 
 == Model specification <model-spec>
 
@@ -1058,7 +1058,7 @@ accurately @griers.
 #pagebreak()
 = Results <results>
 
-== Effectiveness of Contributions
+== Effectiveness of Contributions <hypo-2>
 One of the hypotheses stated in @hypothesis is that the effect of pro and
 anti-environmental campaign contributions, if statistically significant, would
 be minimal. As visible from the regression outputs in the appendix, this was not
@@ -1106,22 +1106,16 @@ contribution coefficient, however is not significant at all.
 
 #figure(
   image("figures/lpm_main.png", width: 100%),
-  caption: [Main Linear Probability Models summarised #footnote(
-    [Although the Individual Fixed Effects model shows an adjusted R-squared of
-    -0.311, estimated with the `plm` function,the linear probability model estimated
-    with the `lm` function with the exact same specifications,coefficients, standard
-    errors and p-values has a much higher adjusted R-squared of 0.95. The reason as
-    to why I still included this model and not the other, is that the fixed effects
-    coefficients for the lm would show up in the model summary, and thus the model
-    would be too long to be included in the stargazer output.],
-  )],
+  caption: [Main Linear Probability Models summarised],
 ) <main_models>
 
-As shown in @vote_spec, the average pro-environmental contributions for the
-representatives within six months prior to the enviornmental vote was
+The results in @main_models show, that there is a highly significant relation
+between a pro-enviornmental vote and pro enviornmental contributions, and vice
+versa. As discussed in @vote_spec, the average pro-environmental contributions
+for the representatives within six months prior to the enviornmental vote was
 approximately 1,000 USD whereas the anti-environmental contributions averaged
 out to 19,800 USD. Putting this into the context of the results shown in
-@main_models, where a 1000 USD pro-environmental contributions increases
+@main_models, where a 1,000 USD pro-environmental contributions increases
 environmental voting by 0.7 percent and anti-environmental contributions
 decreasing it by 0.06 percent, the impact of anti-environmental contributions is
 likely more effective due to their higher average amount—approximately 19,800
@@ -1130,20 +1124,28 @@ anti-environmental contributions appear to have a stronger effect on
 environmental voting, reflecting the disparity in average contribution amounts.
 
 // Interpretation of these validity of the results
-Although these adjusted $R^2$ values are very high and might raise suspicion of
-multicoloinearity within the predictor variables, the Variance Inflation Factor
-(VIF) values of all variables are below 5, with most of them being between 1 and
-1.25, and a correlation plot shows similar results, that no variables are
-suspiciously highly correlated with one another. This means that the high
-adjusted $R^2$ values are not due to multicolinearity, but rather due to the
-high explanatory power of the model, which can be attributed to the fact that
-most of the control variables are highly significant and have a high explanatory
-power on their own, such as the representative's party and DW-Nominate
-dimensions which are already very good predictors of the representatives voting
-decisions on their own. Hence, the first hypothesis from this paper can be
-rejected, since the effect of pro and anti-environmental contributions on voting
-behaviour is not minimal, considering each effect is measured on a per 1000 USD
-scale and is also rather highly significant.
+When looking at @main_models, the adjusted $R^2$ values in the first four models
+are very high and might raise suspicion of multicoloinearity within the
+predictor variables #footnote(
+  [Although the Individual Fixed Effects model shows an adjusted R-squared of
+  -0.311, estimated with the `plm` function,the linear probability model estimated
+  with the `lm` function with the exact same specifications,coefficients, standard
+  errors and p-values has a much higher adjusted R-squared of 0.95. The reason as
+  to why I still included this model and not the other, is that the fixed effects
+  coefficients for the lm would show up in the model summary, and thus the model
+  would be too long to be included in the stargazer output.],
+). Yet, the Variance Inflation Factor (VIF) values of all variables are below 5,
+with most of them being between 1 and 1.25, and a correlation plot shows similar
+results, that no variables are suspiciously highly correlated with one another.
+This means that the high adjusted $R^2$ values are not due to multicolinearity,
+but rather due to the high explanatory power of the model, which can be
+attributed to the fact that most of the control variables are highly significant
+and have a high explanatory power on their own, such as the representative's
+party and DW-Nominate dimensions which are already very good predictors of the
+representatives voting decisions on their own. Hence, the first hypothesis from
+this paper can be rejected, since the effect of pro and anti-environmental
+contributions on voting behaviour is not minimal, considering each effect is
+measured on a per 1000 USD scale and is also rather highly significant.
 
 #figure(
   image("figures/logit_main.png", width: 80%),
@@ -1151,19 +1153,34 @@ scale and is also rather highly significant.
 ) <main_logit>
 
 // add logit/probit results
-The results from the conditional logit, see @logit-main, used as a robustness
-check show similar trends as the linear probability models above. When
-regressing Vote against the contribution and control variables, we see that the
-coefficient for contributions are log-odds. In other words, for a 1000 USD
-increase in the anti (pro) environmental, the expected change in log odds is
--2.135e-05 (9.944e-05), ceteris paribus. These results are a bit less
-significant than these of the LPM, since anti-environmental contributions are
-significant on a 0.05 and pro-environmental on a 0.01 level, when only including
-control variables. When fixing for state and years, the estimate coefficients
-for pro environemtnal contributions are 0.502 and -0.47 for the anti
-enviornmental contributions, ceteris paribus, where both coefficients are
-significant on a 0.1 level. When fixing legislator and year, however, neither
-contribution variable is significant.
+The results from the conditional logit used as a robustness check, see
+@main_logit, show similar trends as the linear probability models above. When
+regressing Vote against the contribution and control variables, see column 1 in
+@main_logit, we see that pro-environmental contributions affect a
+pro-environmental vote positively, and anti-environemtal contributions
+negatively. Given that these coefficients have the same signs and significance
+level, I conclude that these results are robust. When looking at the conditional
+logit from columns 2,3 and 4 in @main_logit, these results are also highly
+significant and show similar results to their corresponding LPM with fixed
+effects, thus these results are also robust.
+
+Finally, as discussed in @model-spec, the individual votes were regressed with
+the corresponding pro- and anti-enviornmental contributs of the rollcall votes
+leading up to the vote in question. See @lpm-per-vote in the appendix.
+Interestingly enough, when looking at the early votes, i.e. vote in the 113th
+and 114th congress, then the campaign contributions six months prior, no matter
+if anti- or pro-environmental, are insignificant, whereas in the votes in the
+116th and 117th congress, the votes from the earlier sessions are more
+significant on average. This could indicate that especially when it comes to
+repeated votes on the same topics, not the actual short-term contribution within
+six months of the vote influences voting behaviour, but the contributions from
+the earlier relevant votes is more effective in determining voting behaviour.
+This could indicate, that representatives do form long term relationships with
+their contributors, but not necessarily within a congressional election#footnote(
+  [as discussed in @contribs-choice, where the effect contribution of an entire
+    congressional prior to the vote had the same effect as the contributions six
+    months prior to vote.],
+), but over multiple, in this case, up to 5 congressional periods.
 
 == Contribution and Vote Changes
 
@@ -1174,23 +1191,7 @@ only 23 representatives changed their votes over the course of the six roll-call
 votes, with only 31 vote changes in total, no conclusions can be drawn from this
 LPM model, and in return, no conclusions can be drawn about the propensity of
 contributions, whether pro or anti-environmental in nature, to change the voting
-behaviour of representatives. Not only are the estimated models, see Appendix,
-estimating insignificant coefficients, but the adjusted $R^2$ is very low with
-0.23, especially given the value of this metric in the previous models.
-
-The only conclusion which can be drawn in respect to this hypothesis, is the
-fact that the effect of contributions was indeed not the same, when comparing
-pro-environmental and anti-environmental sources. The differences in
-pro-environmental and anti-environmental contributions is very large, see
-@contrib-data, in the first place. Moreover, the environmental contributions
-prove to be targeted torwards Democratic representatives, possibly due to the
-fact that the pro-environmental funds are limited in the first place, and thus
-the contributions should be more effective, rather than the anti-environmental
-contributions, which are more widely distributed, less differentiated and
-greater on average. This is also to be seen in the results of the LPM, which
-shows that if, not both contribution coefficients are highly significant, then
-usually only the pro-environmental contributions are significant, see the
-results from the LPM with legislator and year fixed effects, for example.
+behaviour of representatives.
 
 // should i include this?
 // When regressing the pro-environmental contributions with all other variables
@@ -1262,24 +1263,45 @@ drawn in respect to the third hypothesis.
 
 In the fourth hypothesis, the effect of contributions on voting behaviour is
 stated to be more significant for Republican representatives than for Democratic
-representatives.
+representatives. To check whether this might be the case I fixed not only year
+but also party in the two way fixed effects LPM and Logit models. The results in
+@party in the appendix show that the effect of anti- and pro-enviornmental
+contribution does not change from the baseline LPM model without fixed effects,
+and the significance of these coefficients does not decrease either. When
+applying the conditional logit regression, on the other hand, the effects of
+contributions are higher, and show similar trends as the LPM model, on the same
+level of significance, ceteris paribus.
 
-To check whether this might be the case I fixed not only year but also party in
-the two way fixed effects LPM and Logit/Probit models. The results show that
-when fixing for these two effects for the LPM of all representatives the results
-are highly significant, as before. More interestingly, however, even when fixing
-party and year in the two subsamples, where only representatives are included
-who did (not) change their voting, the contribution coefficients are highly
-significant, which can not be said when including other two way fixed effects
-such as state and year, or legislator and year. This could be the case because
-on the one hand, party is a dummy variable, and all other fixed effects have
-more than 2 specifications, and are thus stricter models. Alternatively, since
-the predicted variable is a pro-environmental vote, which in nature is affected
-by ideology and politics, it is understandable as to why fixing for differences
-in party lines and ideology would be more significant than fixing for other
-variables.
+When it comes to the explanation of voting behaviour, it is clear that Party has
+a huge impact on the voting decisions. In general, the `PartyR` coefficient in
+@main_models, which is -0.901. Meaning, that a representative's (hypothetical)
+change from the Democratic to the Republican Party would decrease their
+environmental votes by 90%, ceteris paribus. Additionally, the average fossil
+fuel and environmental contributions which republicans receive is approximately
+30 times higher than that of a Democrat. Republicans in this analysis receive an
+average of 30,000 USD in anti-environmental contirbutions in the cumulative time
+periods of the six roll-call votes, whereas Democrats receive only about 9,500
+USD. Moreover, Republicans receive an average of 1,250 USD from
+pro-environmental sources, whereas Democrats receive only an average of approx.
+750 USD from pro-environmental sources#footnote(
+  "These results were calculated through the analysis, see the link to my github repository for these values.",
+). One conclusion which can be drawn when analysing the effect of contributions
+on votes, and holding party constant, is that since Republicans receive more
+contributions, the effect of contribution on their voting behaviour is higher.
 
-// Important: here most significant results: when fixing party and year for vote changing representatives  minus -> -0.0005141 plus -> 0.0069335  -> both highly significant -> add table?
+// as discussed in @hypo-2, the
+// differences in pro-environmental and anti-environmental contributions is large
+// and thus the perceived effectivity of contributions in securing votes is
+// similarly distroted. More importantly, the environmental contributions prove to
+// be targeted torwards Democratic representatives,
+
+// possibly due to the fact that the pro-environmental funds are limited in the
+// first place, and thus the contributions should be more effective, rather than
+// the anti-environmental contributions, which are more widely distributed, less
+// differentiated and greater on average. This is also to be seen in the results of
+// the LPM, which shows that if only one of the two contribution coefficients is
+// significant, then usually only the pro-environmental contributions are
+// significant, see @main_models column 5, for example.
 
 //  add recency -> vote 4,5,6 with all prior contributions, to see whether more recent contributions have higher effect than less recent ones.. (6mo prior vs. aggregate?)
 
