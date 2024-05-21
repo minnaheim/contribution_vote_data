@@ -17,43 +17,44 @@ University of Munich: https://github.com/ls1intum/thesis-template-typst.
 
 #figure(
   image("../figures/party_models.png", width: 65%),
-  caption: [The LPM with party and year fixed effects and Conditional Logit Model with party
-    fixed effects.],
+  caption: [The LPM with Party and Year Fixed Effects and Conditional Logit Model with Party
+    Fixed Effects.],
 ) <party>
 
 #figure(
   image("../figures/lpmpervote.png", width: 110%),
-  caption: [The LPM analysing each individual vote and the relevant contributions leading up
+  caption: [The LPM analyzing each individual Vote and the relevant Contributions leading up
     to it.],
 )<lpm-per-vote>
 
 #figure(
   image("../figures/log_transformed.png", width: 60%),
-  caption: [The main LPM models with logistically transformed Contributions],
+  caption: [The main Models with logistically transformed Contributions],
 ) <lpm-log-trafo>
 
 == A3. Comparison of Contribution types
 
 #figure(
   image("../figures/ols_6mo_per_vote.png", width: 100%),
-  caption: [LPM results per votes with contributions within six months of vote],
+  caption: [The LPM of each Votes with Contributions within six months of the Vote],
 ) <lpm-6mo-per-vote>
 
 #figure(
   image("../figures/ols_aggregate_per_vote.png", width: 100%),
-  caption: [LPM results per votes with contributions of entire election of vote],
+  caption: [the LPM of each Vote with relevant Contributions of the entire previous
+    Congressional Election before the Vote],
 ) <lpm-agg-per-vote>
 
 #figure(
   image("../figures/ols_aggregate.png", width: 55%),
-  caption: [LPM results with only consistent representatives, with contributions of entire
-    election of vote],
+  caption: [LPM results with only Representatives who Voted Consistently, with Contributions
+    of the entire Congressional Election before the Vote],
 ) <lpm-agg>
 
 #figure(
   image("../figures/ols_6mo.png", width: 60%),
-  caption: [LPM results with only consistent representatives, with contributions within six
-    months of vote],
+  caption: [LPM results with only Representatives who Voted Consistently, with Contributions
+    within six months of Vote],
 ) <lpm-6mo>
 
 #pagebreak()

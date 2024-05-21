@@ -18,17 +18,17 @@
 
   text[Wealthy donors such as the Koch brothers of Koch Industries have contributed
     over 27 million USD to various congressional candidates in the 2022 election.
-    This paper analyses whether such contributions from anti-environmental interest
+    This paper analyses whether contributions from anti-environmental interest
     groups such as Koch Industries influence congressional voting on environmental
     issues. Building on the work of #cite(<stratmann-2002>, form: "prose"), it
     examines repeated roll-call votes on methane pollution and the corresponding
     campaign contributions received by US representatives within six months of these
-    votes. Using a causal identification strategy, the analysis attempts to
+    votes. Applying a causal identification strategy, the analysis attempts to
     determine the impact of pro- and anti-environmental contributions on voting
     behavior. The analysis shows that pro-(anti-)environmental contributions have a
-    positive (negative) effect on voting behavior, although no causal relationship
-    can be definitively established due to the small number of representatives who
-    change their voting behavior.]
+    positive (negative) effect on environmental voting behavior, although no causal
+    relationship can be definitively established due to the small number of
+    representatives who change their voting behavior.]
 
   v(1fr)
 }
