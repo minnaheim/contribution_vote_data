@@ -52,6 +52,18 @@
   // --- Figures ---
   show figure: set text(font: body-font, size: 0.85em)
 
+  // --- Code blocks ---
+
+  show raw.where(block: true): it => block(fill: rgb("#EFEFEF"), width: 100%, inset: 8pt, radius: 2pt, text(it))
+
+  // show code snippets with background color
+  show raw.where(block: false): box.with(
+    fill: rgb("#EFEFEF"),
+    inset: (x: 3pt, y: 0pt),
+    outset: (y: 3pt),
+    radius: 2pt,
+  )
+
   // --- Table of Contents ---
   outline(title: {
     text(font: body-font, 1.5em, weight: 700, "Contents")

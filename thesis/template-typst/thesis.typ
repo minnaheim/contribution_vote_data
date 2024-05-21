@@ -7,14 +7,6 @@
 #import "@preview/glossarium:0.4.0": make-glossary, print-glossary, gls, glspl
 #show: make-glossary
 
-// show code snippets with background color
-#show raw.where(block: false): box.with(
-  fill: rgb("#EFEFEF"),
-  inset: (x: 3pt, y: 0pt),
-  outset: (y: 3pt),
-  radius: 2pt,
-)
-
 #titlepage(
   title: titleEnglish,
   // titleGerman: titleGerman,
@@ -631,9 +623,9 @@ roll_call_full_<- fuzzy_full_join(
     by = c("name", "Party", "District"),
     match_fun = list(fuzzy_match, `==`, `==`)
 )
-```, caption: [Excerpt of Code used]) <fuzzyjoin>
+```, caption: [Fuzzy join used to join Representative Data]) <fuzzyjoin>
 To overcome this, the R package `fuzzyjoin` @fuzzyjoin was used. Using the
-functions clean_strings to remove special characters and `fuzzy_match` and
+functions `clean_strings` to remove special characters and `fuzzy_match` and
 `fuzzy_full_join` to join, a maximum distance between two values can be
 determined. In the `fuzzy_full_join` function, I defined that the names between
 the two data frames can be matched if they are at most 5 characters distance
@@ -801,7 +793,7 @@ merged together based on a set of Unique Identifiers, which was Bioguide ID for
 the roll-call data. Post primary merge, the rest of the data, which was not able
 to be merged was filtered out and merged based on the `fedmatch` @fedmatch
 package's functions `fuzzy_match` and `fuzzy_join` functions as shown in
-@fuzzyjoin in @roll-call. Finally, the two merged data frames were concatenated.
+@fuzzyjoin. Finally, the two merged data frames were concatenated.
 
 Finally, only about 30 representatives were not able to be merged and thus
 removed. The reason for this is because these anomalies either joined or left
@@ -843,22 +835,22 @@ being either higher than 1 or lower than 0 @mood.
 
 In order to counter this, one can use a nonlinear regression model, such as the
 logit regression or logit model, which also measures dichotomous dependent
-variables but the predicted probability will always stay within range of #range(2)\. Comparing
-models with various independent variables or significantly interpreting the
-results is challenging when using logistic regression since the underlying
-cumulative distribution function of this model is a standard logistic
-districution. Thus, changes in log-odds are not as intuitive to interpret as
+variables but the predicted probability will always stay within range of 0 to 1.
+Comparing models with various independent variables or significantly
+interpreting the results is challenging when using logistic regression since the
+underlying cumulative distribution function of this model is a standard logistic
+distribution. Thus, changes in log-odds are not as intuitive to interpret as
 direct probabilities in a linear regression. Moreover, #cite(<mood>, form: "prose") explains
 that logistic effect measures can capture unobserved heterogeneity even in cases
 where there is no correlation between the omitted variables and the independent
 variables @Selling2023.
 
-Although the linear regression sometimes predicts probabilities outside of
+Although the linear regression sometimes predicts probabilities outside of the
 range, LPMs usually fit about as well as logit models, even in cases of
 nonlinearities @long1997regression @Selling2023, and their results are easier to
 predict than those of logit models @mood, which is why the LPM will be used as a
 main model for this paper. To encompass the major downsides of the LPM, however,
-the Logit Model will be included as a robustness check.
+the logit Model will be included as a robustness check.
 
 // Why not 2SLS -> @stratmann-2002 p.1
 // say that OBV in logit & LPM? @mood?
@@ -871,17 +863,17 @@ As discussed above, the LPM and logit models will be used for the analysis #foot
     the changes in contribution level as explanatory variables, without control
     variables or fixed effects (FE)s. Given my small sample, however, the
     contribution change coefficients could not be estimated, which is why this model
-    is not included in neither the model specification nor the results],
+    is not included in neither the model specification nor the results.],
 ). The model shown in @lpm is the multivariate linear regression, whereas the
-model shown in @logit is the conditional logit regression.
+model shown in @logit is the conditional logit regression. For both models, let: $X#sub[1]$ be
+the pro-environmental contributions, and $X#sub[2]$ be the anti-environmental
+contribution, $bold(x)$ be the vector of control variables, $delta#sub[t]$ the
+time fixed effect (FEs) and $gamma#sub[i]$
+the individual fixed effects, all of which are shown in @model-spec.
 
 $ "Vote"#sub[i,t] = alpha + beta#sub[1]X#sub[1,t] + beta#sub[2]X#sub[2,t] + gamma#sub[i] + delta#sub[t] + bold(x)'zeta#sub[i,t] + epsilon#sub[i,t] $ <lpm>
 
 $ P("Vote"#sub[i,t] = 1|bold(x), beta#sub[1,2], gamma#sub[i]) = F(beta#sub[1,2]'bold(x)#sub[it], gamma#sub[i]) $ <logit>
-For both models, let: $X#sub[1]$ be the pro-environmental contributions, and $X#sub[2]$ be
-the anti-environmental contribution, $bold(x)$ be the vector of control
-variables, $delta#sub[t]$ the time fixed effect (FEs) and $gamma#sub[i]$
-the individual fixed effects, all of which are shown in @model-spec.
 
 In their most basic specification, both @lpm and @logit include the entire
 sample of representatives who voted more than once on the set of the six roll
@@ -913,10 +905,10 @@ for these results.
 
 == Model specification <model-spec>
 
-Using the models shown in @models-precisely, this paper analyzes the
+Using the models outlined in @models-precisely, this paper analyzes the
 relationship of votes and campaign contributions ranging from using the most
-generous model specifications, such as using control variables, to the strictes,
-using individual (legislator) fixed effects.
+generous model specifications, such as using control variables, to the
+strictest, using individual (legislator) fixed effects.
 
 To control for confounding influence between a treatment and an outcome and
 approach a consistent causal interpretation @control, the following control
@@ -927,19 +919,22 @@ ideological leaning, and whether their party has the majority in the House
 determines the power which the group has over the House of Representatives.
 
 To control for the junior/senior legislators stipulated in @hypothesis, I
-decided to add both the `birthyear` and `seniority`, which is number of terms in
-House the representative served, to control for the difference in age and
+decided to add both the `birth year` and `seniority`, which is number of terms
+in House the representative served, to control for the difference in age and
 experience which might distort the voting behavior @stratmann-2002 @Selling2023.
 By controlling for differences in geographical residence of the representatives,
 using `district` #footnote(
   [As to be seen in @desc-stats, about 300 rows lack the variable district, since
-    this information was only available selectively in the abovementioned data
+    this information was only available selectively in the above mentioned data
     sources. After careful consideration, I decided to include the variable
     regardless, since it is significant and improves the model, albeit observations
     with NA-values for district not being included for three of the models shown in
     @main_models.],
 ), `state` and `geographical` #footnote(
-  "the variable Geographical has the 50 US states grouped into four categories: Northwest (NW), South (SO), West (WE), Midwest (MW), according to the United States Census Bureau under https://www2.census.gov/geo/pdfs/reference/GARM/Ch6GARM.pdf",
+  [the variable `geographical` has the 50 US states grouped into four categories:
+  Northwest (NW), South (SO), West (WE), Midwest (MW), according to the United
+  States Census Bureau at
+  https://www2.census.gov/geo/pdfs/reference/GARM/Ch6GARM.pdf],
 ) and the district level I remove possible differences in voting behavior
 attributed to the location of representatives.
 
@@ -956,8 +951,8 @@ Furthermore, according to #cite(<roscoe>, form: "prose"), adding an ideology
 variable to the equation is the only practical approach to account for the
 influence of friendly donating.
 
-I also control for the `gender` of the legislator, as the gender pay gap tends
-to apply not only to income but also to campaign contributions. Furthermore, to
+I also control for the gender of the legislator, as the gender pay gap tends to
+apply not only to income but also to campaign contributions. Furthermore, to
 account for voting consistency, I introduce another dummy variable indicating
 whether the legislator changed their vote on on or more of the six votes. This
 helps to determine whether vote-changing behavior affects the volume of campaign
@@ -987,7 +982,7 @@ unobserved heterogeneity @mood.
 
 Applying two-way fixed effects to the LPM #footnote(
   [As stated in @models-precisely, the conditional logit model only includes
-    one-way fixed effects, due to the nature of the mutlinomial model. Thus, I have
+    one-way fixed effects, due to the nature of the multinomial model. Thus, I have
     decided to include only geographical, state, party and legislator fixed effects
     for each logit regression.],
 ) @Imai-Kim-2019, one can account for unobservable elements that remain constant
@@ -999,7 +994,7 @@ same geographical location. By fixing for the geographical region of a state and
 not the actual state, I am controlling for some differences within the US, such
 as culture and migration, but not making the model so strict as to account for
 all differences in states. By controlling for years, on the other hand,
-time-variant differences such as environmental perception or odisasters are not
+time-variant differences such as environmental perception or disasters are not
 taken out of context and compared with years with little environmental
 happenings.
 
@@ -1063,7 +1058,7 @@ constant. Both of these coefficients are highly significant. Given that the
 contributions from both anti and pro-environment are highly skewed, I applied a
 logistical transformation on the contribution variables, and found that the
 effect of the anti-environmental contribution variable increases to -0.015
-ceteris paribus and the sigifnicance of the pro-environmental contribution
+ceteris paribus and the significance of the pro-environmental contribution
 variable is est. to be an average of 0.027 ceteris paribus, on the same
 significance level. See @lpm-log-trafo for these results.
 
@@ -1075,7 +1070,7 @@ fixed effects does the anti-environmental dummy show statistical significance on
 a 0.05 level. For the state and year fixed effects model, the interpretation is
 as follows: A representative receiving anti-environmental contributions
 decreases their probability of voting pro-environmentally by 2.6 percent on
-average, and for each additional 1000 USD, the proabability of a
+average, and for each additional 1000 USD, the probability of a
 pro-environmental vote decreases further by 0.05 percent, ceteris paribus.
 
 // fixed effects
@@ -1091,13 +1086,13 @@ contribution coefficient, however is not significant at all.
 
 #figure(
   image("figures/lpm_main.png", width: 100%),
-  caption: [Main Linear Probability Models summarised],
+  caption: [Main Linear Probability Models summarized],
 ) <main_models>
 
 The results in @main_models show, that there is a highly significant relation
-between a pro- ovote and pro ocontributions, and vice versa. As discussed in
+between a pro-vote and pro-contributions, and vice versa. As discussed in
 @vote_spec, the average pro-environmental contributions for the representatives
-within six months prior to the ovote was approximately 1,000 USD whereas the
+within six months prior to the vote was approximately 1,000 USD whereas the
 anti-environmental contributions averaged out to 19,800 USD. Putting this into
 the context of the results shown in @main_models, where a 1,000 USD
 pro-environmental contributions increases environmental voting by 0.7 percent
@@ -1110,8 +1105,8 @@ disparity in average contribution amounts.
 
 // Interpretation of these validity of the results
 When looking at @main_models, the adjusted $R^2$ values in the first four models
-are very high and might raise suspicion of multicollinearity within the
-predictor variables #footnote(
+are very high and might raise suspicion of multicolinearity within the predictor
+variables #footnote(
   [Although the Individual Fixed Effects model shows an adjusted R-squared of
   -0.311, estimated with the `plm` function,the linear probability model estimated
   with the `lm` function with the exact same specifications,coefficients, standard
@@ -1122,7 +1117,7 @@ predictor variables #footnote(
 ). Yet, the Variance Inflation Factor (VIF) values of all variables are below 5,
 with most of them being between 1 and 1.25, and a correlation plot shows similar
 results, that no variables are suspiciously highly correlated with one another.
-This means that the high adjusted $R^2$ values are not due to multicollinearity,
+This means that the high adjusted $R^2$ values are not due to multicolinearity,
 but rather due to the high explanatory power of the model, which can be
 attributed to the fact that most of the control variables are highly significant
 and have a high explanatory power on their own, such as the representative's
@@ -1134,7 +1129,7 @@ measured on a per 1000 USD scale and is also rather highly significant.
 
 #figure(
   image("figures/logit_main.png", width: 80%),
-  caption: [Main Conditional Logit Models summarised],
+  caption: [Main Conditional Logit Models summarized],
 ) <main_logit>
 
 // add logit/probit results
@@ -1142,7 +1137,7 @@ The results from the conditional logit used as a robustness check, see
 @main_logit, show similar trends as the linear probability models above. When
 regressing Vote against the contribution and control variables, see column 1 in
 @main_logit, we see that pro-environmental contributions affect a
-pro-environmental vote positively, and anti-environemtal contributions
+pro-environmental vote positively, and anti-environmental contributions
 negatively. Given that these coefficients have the same signs and significance
 level, I conclude that these results are robust. When looking at the conditional
 logit from columns 2,3 and 4 in @main_logit, these results are also highly
@@ -1150,11 +1145,11 @@ significant and show similar results to their corresponding LPM with fixed
 effects, thus these results are also robust.
 
 Finally, as discussed in @model-spec, the individual votes were regressed with
-the corresponding pro- and anti- ocontributs of the rollcall votes leading up to
-the vote in question. See @lpm-per-vote in the appendix. Interestingly enough,
-when looking at the early votes, i.e. vote in the 113th and 114th congress, then
-the campaign contributions six months prior, no matter if anti- or
-pro-environmental, are insignificant, whereas in the votes in the 116th and
+the corresponding pro- and anti-contribution of the roll-call votes leading up
+to the vote in question. See @lpm-per-vote in the appendix. Interestingly
+enough, when looking at the early votes, i.e. vote in the 113th and 114th
+congress, then the campaign contributions six months prior, no matter if anti-
+or pro-environmental, are insignificant, whereas in the votes in the 116th and
 117th congress, the votes from the earlier sessions are more significant on
 average. This could indicate that especially when it comes to repeated votes on
 the same topics, not the actual short-term contribution within six months of the
@@ -1170,13 +1165,13 @@ but not necessarily within a congressional election#footnote(
 == Contribution and Vote Changes
 
 In the second hypothesis, changes from pro to anti-environmental votes are
-predicted to be more positively correlated with anti-environmental contribuions,
-and pro-environmental contributions less effective. Considering, however, that
-only 23 representatives changed their votes over the course of the six roll-call
-votes, with only 31 vote changes in total, no conclusions can be drawn from this
-LPM model, and in return, no conclusions can be drawn about the propensity of
-contributions, whether pro or anti-environmental in nature, to change the voting
-behavior of representatives.
+predicted to be more positively correlated with anti-environmental
+contributions, and pro-environmental contributions less effective. Considering,
+however, that only 23 representatives changed their votes over the course of the
+six roll-call votes, with only 31 vote changes in total, no conclusions can be
+drawn from this LPM model, and in return, no conclusions can be drawn about the
+propensity of contributions, whether pro or anti-environmental in nature, to
+change the voting behavior of representatives.
 
 // should i include this?
 // When regressing the pro-environmental contributions with all other variables
@@ -1195,7 +1190,6 @@ behavior of representatives.
 
 == Seniority on Vote Changes
 
-// no multicolinearity
 The third hypothesis stated in @hypothesis is that junior representatives are
 more likely to change their voting behavior due to campaign contributions than
 senior representatives, given that they are not experienced enough to have
@@ -1203,31 +1197,31 @@ stable opinions on the matter, as shown by #cite(<stratmann-2002>, form: "prose"
 To address this, I incorporated the previously mentioned seniority and birth
 year control variables into the regression models, as outlined in @model-spec.
 Since seniority details the number of terms the representative has partaken in
-and the birthyear represents the age of the legislator, I also checked that the
+and the birth year represents the age of the legislator, I also checked that the
 correlation between the two variables would not be high enough to cause
 multicolinearity, which it was not, with a correlation of -0.57, and a VIF of
 1.27 and 1.28 respectively.
 
 // general LPM and logit/probit
 When looking at the LPM model with all representatives, the seniority variable
-was not significant, and the birthyear variable was significant at a 0.01 level,
-with a one year increase in birthyear increasing the probability of a
+was not significant, and the birth year variable was significant at a 0.01
+level, with a one year increase in birth year increasing the probability of a
 pro-environmental vote by 0.007 percent on average, holding all else constant.
 The same trends were found when fixing the model by state and year, with the
-birthyear variable being significant at a 0.001 level and having an effect of
-0.013 percent increase in pro-environemtnal voting for a one year increase in
-birthyear, and the seniority variable being significant only at a 0.05 level
+birth year variable being significant at a 0.001 level and having an effect of
+0.013 percent increase in pro-environmental voting for a one year increase in
+birth year, and the seniority variable being significant only at a 0.05 level
 with a one term increase in seniority increasing the environmental voting
 probability by 0.018 percent. When fixing the model by legislator and year
-(using plm instead of lm), the birthyear variable was not significant at all,
+(using plm instead of lm), the birth year variable was not significant at all,
 and the seniority variable was significant at a 0.01 level, with a one term
 increase in seniority decreasing the probability of a pro-environmental vote by
 0.0001 percent on average, holding all else constant. Similar results and
-significance for the birthyear variable emerge when fixing the legislator,
+significance for the birth year variable emerge when fixing the legislator,
 whereas the seniority variable is not significant at all.
 
 // Interpretation
-Since only birthyear is mostly significant and seniority is not, one can
+Since only birth year is mostly significant and seniority is not, one can
 conclude that younger representatives are more likely to vote pro
 environmentally in these votes holding all else constant, which compared to the
 results from the first hypothesis, the effect of a one year younger
@@ -1241,7 +1235,7 @@ Still, although these results show the propensity of younger representatives to
 vote pro-environmentally in these votes, this does not mean that young people
 are more prone to vote changes. To determine this, the LPM model of only the
 representatives who changed their votes is taken into consideration, yet here
-neither birthyear nor seniority are significant, and thus no conclusions can be
+neither birth year nor seniority are significant, and thus no conclusions can be
 drawn in respect to the third hypothesis.
 
 == Partisan Contributions
@@ -1249,8 +1243,8 @@ drawn in respect to the third hypothesis.
 In the fourth hypothesis, the effect of contributions on voting behavior is
 stated to be more significant for Republican representatives than for Democratic
 representatives. To check whether this might be the case I fixed not only year
-but also party in the two way fixed effects LPM and Logit models. The results in
-@party in the appendix show that the effect of anti- and pro- ocontribution does
+but also party in the two way fixed effects LPM and logit models. The results in
+@party in the appendix show that the effect of anti- and pro- contribution does
 not change from the baseline LPM model without fixed effects, and the
 significance of these coefficients does not decrease either. When applying the
 conditional logit regression, on the other hand, the effects of contributions
@@ -1264,7 +1258,7 @@ change from the Democratic to the Republican Party would decrease their
 environmental votes by 90%, ceteris paribus. Additionally, the average fossil
 fuel and environmental contributions which republicans receive is approximately
 30 times higher than that of a Democrat. Republicans in this analysis receive an
-average of 30,000 USD in anti-environmental contirbutions in the cumulative time
+average of 30,000 USD in anti-environmental contributions in the cumulative time
 periods of the six roll-call votes, whereas Democrats receive only about 9,500
 USD. Moreover, Republicans receive an average of 1,250 USD from
 pro-environmental sources, whereas Democrats receive only an average of approx.
@@ -1277,8 +1271,8 @@ contributions, the effect of contribution on their voting behavior is higher.
 // as discussed in @hypo-2, the
 // differences in pro-environmental and anti-environmental contributions is large
 // and thus the perceived effectivity of contributions in securing votes is
-// similarly distroted. More importantly, the environmental contributions prove to
-// be targeted torwards Democratic representatives,
+// similarly distorted. More importantly, the environmental contributions prove to
+// be targeted towards Democratic representatives,
 
 // possibly due to the fact that the pro-environmental funds are limited in the
 // first place, and thus the contributions should be more effective, rather than
