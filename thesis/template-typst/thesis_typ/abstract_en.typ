@@ -25,10 +25,10 @@
     campaign contributions received by US representatives within six months of these
     votes. Using a causal identification strategy, the analysis attempts to
     determine the impact of pro- and anti-environmental contributions on voting
-    behaviour. The analysis showsthat pro-(anti-)environmental contributions have a
-    positive (negative) effect on voting behaviour, although no causal relationship
+    behavior. The analysis shows that pro-(anti-)environmental contributions have a
+    positive (negative) effect on voting behavior, although no causal relationship
     can be definitively established due to the small number of representatives who
-    change their voting behaviour.]
+    change their voting behavior.]
 
   v(1fr)
 }

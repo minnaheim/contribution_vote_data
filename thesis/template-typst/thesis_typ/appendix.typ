@@ -9,26 +9,27 @@ University of Munich: https://github.com/ls1intum/thesis-template-typst.
 == A2. Additional Models
 #figure(
   image("../figures/desc-stats.png", width: 90%),
-  caption: [the descriptive statistics of the main dataset used for the analysis#footnote(
-      "the variable Instance refers to the Votes. The Instances are 3, 4, 51, 52, 6 and 7, where 3 stands for the vote in the 113th congress, 51 stands for the first vote in the 115th congress, 52 for the second vote in the 115th congress, etc. The district variable refers to the district which the legislators represented. Sadly not all representatives had the district information.",
+  caption: [the Main Dataset used for the Analysis#footnote(
+      "The variable Instance refers to the Votes. The Instances are 3, 4, 51, 52, 6, and 7, where 3 stands for the vote in the 113th Congress, 51 stands for the first vote in the 115th Congress, 52 for the second vote in the 115th congress, etc. The district variable refers to the district that the legislators represented. Sadly not all representatives had the district information.",
     )
   ],
 ) <desc-stats>
 
 #figure(
   image("../figures/party_models.png", width: 65%),
-  caption: [Column 1: OLS Party, column 2: Conditional Logit Party],
+  caption: [The LPM with party and year fixed effects and Conditional Logit Model with party
+    fixed effects.],
 ) <party>
 
 #figure(
   image("../figures/lpmpervote.png", width: 110%),
-  caption: [the LPM models of each vote, with all relevant contributions leading up to the
-    vote.],
+  caption: [The LPM analysing each individual vote and the relevant contributions leading up
+    to it.],
 )<lpm-per-vote>
 
 #figure(
   image("../figures/log_transformed.png", width: 60%),
-  caption: [the logistically transformed LPM models],
+  caption: [The main LPM models with logistically transformed Contributions],
 ) <lpm-log-trafo>
 
 == A3. Declaration of Aids
@@ -38,7 +39,7 @@ University of Munich: https://github.com/ls1intum/thesis-template-typst.
   [*Type of Aid*],
   [*Use of Aid*],
   [Github Copilot],
-  [Used for coding repeatitive things in R],
+  [Used for coding repetitive things in R],
   [DeepL Write],
   [Applied over entire thesis to improve spelling and wording],
   [ChatGPT],
