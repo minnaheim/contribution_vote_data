@@ -79,9 +79,9 @@ United States make one wonder what the consequences of fossil fuel-related
 campaign contributions to the US Congress could mean for US environmental
 policies.
 
-These questions will be analysed in this paper. The influence of fossil fuel and
+These questions will be analyzed in this paper. The influence of fossil fuel and
 environmentally related contributions on the voting behavior of US House members
-on methane pollution bills will be analysed. The analysis is based on the paper
+on methane pollution bills will be analyzed. The analysis is based on the paper
 of #cite(<stratmann-2002>, form: "prose"), who exploits the time series nature
 of campaign contributions and roll-call votes to approach a causal
 identification strategy to measure the effect of financial contributions on
@@ -257,17 +257,17 @@ involves the concept of reverse causality @Selling2023 @stratmann-2017.
 Given the importance of determining causal relationships for money in politics,
 several researchers have tried to identify such a relationship between voting
 and contributions and have not found effects, such as #cite(<bronars-lott-1997>, form: "prose"),
-who analysed how the voting behavior of politicians changed when they did not
+who analyzed how the voting behavior of politicians changed when they did not
 stand for re-election. Ideally, politicians should represent their ideology,
 even without facing the threat of re-election, yet if their vote is 'bought'
 then their contributions and voting behavior change, since the cost of shirking
-decreases @bronars-lott-1997[p.319]. Ansolabehere et al. analysed 40 empirical
-papers and concluded in a seminal paper that there is limited evidence
-indicating interest group contributions have an impact on roll-call votes
-@Ansolabehere @griers.
+decreases @bronars-lott-1997[p.319]. #cite(<Ansolabehere>, form: "prose") analyzed
+40 empirical papers and concluded in a seminal paper that there is limited
+evidence indicating interest group contributions have an impact on roll-call
+votes @griers.
 
 Others, however, have found that contributions do change voting behavior:
-Stratmann analysed the timing of contributions, and instead of analysing how the
+Stratmann analyzed the timing of contributions, and instead of analysing how the
 contributions of the previous cycle relates to the voting behavior of
 politicians, Stratmann took the contributions from current election cycles,
 since short term contributions are more relevant for voting behavior, according
@@ -293,11 +293,11 @@ have simultaneous equation bias @stratmann-2002[p.1] @burris2001two @chappell.
 
 The studies which found causal links between campaign contributions and voting
 behavior have a common denominator: research in particular fields or
-legislation. #cite(<baldwinmagee>, form: "prose"), for example analysed trade
-agreement related bills, #cite(<stratmann-2002>, form: "prose") analysed
+legislation. #cite(<baldwinmagee>, form: "prose"), for example analyzed trade
+agreement related bills, #cite(<stratmann-2002>, form: "prose") analyzed
 financial bills @stratmann-1995 @kang2015 @stratmann-1995 and the timing of
 financial contributions, and found significant effects. Hence, one needs to
-analyse distinct roll-call votes and a rather restricted policy setting
+analyze distinct roll-call votes and a rather restricted policy setting
 @kang2015 @stratmann-1991[p.607] @chappell.
 
 Moreover, Stratmann critisises that most studies done in the field lack a
@@ -317,7 +317,7 @@ contribution has also proven to increase plausibility @stratmann-1995.
 
 Given the extensive research done on money in politics, and the (causal)
 relationship between campaign contributions and roll-call voting behavior, this
-paper will aim to take the above stated specifications to analyse a causal
+paper will aim to take the above stated specifications to analyze a causal
 relationship between campaign contributions and roll-call votes in the
 environmental context.
 
@@ -369,13 +369,11 @@ considerably smaller @OpenSecretsInterestGroups.
   gutter: 5,
   [#figure(
       image("figures/pro_plot_contribs.svg", width: 100%),
-      caption: [Histogram of pro-environmental \ contributions among representatives, Source:
-        Own],
+      caption: [Histogram of pro-environmental \ contributions among representatives],
     ) <env-contribs>],
   [#figure(
       image("figures/anti_plot_contribs.svg", width: 100%),
-      caption: [Histogram of anti-environmental \ contributions among representatives, Source:
-        Own],
+      caption: [Histogram of anti-environmental \ contributions among representatives],
     ) <anti-env-contribs>],
 )
 
@@ -417,7 +415,7 @@ Moreover, the reason to choose these bills for the analysis can be attributed to
 the fact that, as stated above, the Energy and Natural Resources interest groups
 are some of the biggest contributors to congressional elections
 @OpenSecretsInterestGroups and thus also have the biggest potential to be
-analysed, since these contributions are not only large in volume but also in
+analyzed, since these contributions are not only large in volume but also in
 distribution, as stated in @intro.
 
 #figure(
@@ -468,10 +466,10 @@ distribution, as stated in @intro.
     [would have reversed the EPA's 2016 methane rules for sources from the oil and
       gas sector, both new and amended.],
   ),
-  caption: [The Six Roll-Call Votes on Methane Pollution Safeguards analysed in this paper],
+  caption: [The Six Roll-Call Votes on Methane Pollution Safeguards analyzed in this paper],
 ) <roll-call-votes>
 
-The six roll-call votes which will be analysed in this paper, sourced at
+The six roll-call votes which will be analyzed in this paper, sourced at
 (https://scorecard.lcv.org) can be seen in @roll-call-votes. The reasoning
 behind choosing these six bills is that they all amend the resources allocated
 to the EPA and the Department of Interior. Since the legislation enacted by
@@ -593,7 +591,7 @@ seperate congress.
 
 == Roll-call data <roll-call>
 
-As Stratmann stipulated in his paper, to be able to analyse changes in voting
+As Stratmann stipulated in his paper, to be able to analyze changes in voting
 behavior, the cross-sectionality of panel data needs to be exploited, and the
 votes need to be categorised clearly into winners and losers @stratmann-2002.
 This also means, that one needs to be able to deduce from the votes which
@@ -747,7 +745,7 @@ contributions from the previous election and the use of contributions from the
 current election-shows that these papers @stratmann-1995 @stratmann-2002 both
 give the total contributions of an industry to candidates in an election and
 that only the time of relevance is different. Yet what these two papers, and
-many with similar methodology, neglect to analyse is whether more timely
+many with similar methodology, neglect to analyze is whether more timely
 contributions are more effective in affecting the voting behavior of candidates.
 After all, most contributors who are profit-maximizing contribute strategically
 and in close temporal proximity to roll-calls to maximize their influence on
@@ -818,7 +816,7 @@ election.
 For the final dataframe used for analysis, the 731 representatives (over
 113th-117th congresses) were further decreased, to only include representatives
 relevant to the analysis. This includes representatives, who voted on more than
-one relevant bill. Without this specification, one couldn't analyse differences
+one relevant bill. Without this specification, one couldn't analyze differences
 in voting behavior. Moreover, only Republicans and Democrats were included,
 since Independent and Libertarians are too few to be able to compare.
 
@@ -838,7 +836,7 @@ non-negativity of contributions @stratmann-1991 @stratmann-2002 @chappell.
 Two types of models are the linear probability model (LPM) and the logit, both
 of which are widely used in the economic literature, but both of which have some
 drawbacks. The LPM is an ordinary least squared multiple linear regression with
-binary dependent variables. The benefits of using a LPM to analyse the effect of
+binary dependent variables. The benefits of using a LPM to analyze the effect of
 campaign contributions on voting behavior is the fact that the linear regression
 can be used to estimate the effects on the observed dependent variable, so
 coefficients are comparable over models and groups. One downside of the LPM,
@@ -917,7 +915,7 @@ for these results.
 
 == Model specification <model-spec>
 
-Using the models shown in @models-precisely, this paper analyses the
+Using the models shown in @models-precisely, this paper analyzes the
 relationship of votes and campaign contributions ranging from using the most
 generous model specifications, such as using control variables, to the strictes,
 using individual (legislator) fixed effects.
@@ -971,7 +969,7 @@ time-period before the votes. This allows me to measure the extensive margin of
 contribution, i.e. how the fact that a representative received a contribution
 relates to their voting behavior. By including these dummy variables and the
 amount of the donation, I also measure the intensive margin. In this way, I can
-analyse whether the actual amount of the contribution changes the voting
+analyze whether the actual amount of the contribution changes the voting
 behavior of a representative who has received a contribution in the first place.
 
 Regarding roll-call votes, the six roll-call votes included do not amend the
@@ -1360,11 +1358,11 @@ As shown in @results, methane related voting behavior can be explained very well
 given the representative's party and DW-Nominate, meaning that the party line
 and ideology is a strong influencer for a legislators vote, and that most
 representatives tend to keep within those party lines. Thus, it would be
-interesting to analyse the campaign contributions not to individuals but parties
+interesting to analyze the campaign contributions not to individuals but parties
 themselves, and how this affects the party's votes on certain issues
 @Selling2023
 
-Another interesting topic for research would be to analyse changes in voting
+Another interesting topic for research would be to analyze changes in voting
 behavior given by the nature of roll-call votes. Since these happen
 alphabetically, representatives whose names are further along the alphabet might
 be incentivised to deviate from party lines given a vote is already won/lost.
