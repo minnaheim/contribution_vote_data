@@ -654,17 +654,17 @@ he finds a positive correlation between contributions from special interest
 groups and a vote in their favor.
 
 To account for the variability in campaign contribution selection, I employed
-two distinct approaches. Firstly, I calculated the contribution variables using
-data from the previous election cycle, following the methodology outlined in
-several academic studies, including @stratmann-2002 @Selling2023 @KauKeenanRubin
-@chappell @stratmann-1991. This approach evaluates whether aggregate
-contributions from past election cycles may influence representatives' voting
-behavior in environmental matters. Secondly, I focused exclusively on campaign
-contributions from individuals and interest groups that supported either
-pro-environmental or anti-environmental positions, received by representatives
-within the six months leading up to the relevant vote. Unlike the first
-approach, this method does not consider contributions from specific election
-periods, such as those during which the legislator was elected or those
+two distinct approaches, see Appendix A3. Firstly, I calculated the contribution
+variables using data from the previous election cycle, following the methodology
+outlined in several academic studies, including @stratmann-2002 @Selling2023
+@KauKeenanRubin @chappell @stratmann-1991. This approach evaluates whether
+aggregate contributions from past election cycles may influence representatives'
+voting behavior in environmental matters. Secondly, I focused exclusively on
+campaign contributions from individuals and interest groups that supported
+either pro-environmental or anti-environmental positions, received by
+representatives within the six months leading up to the relevant vote. Unlike
+the first approach, this method does not consider contributions from specific
+election periods, such as those during which the legislator was elected or those
 concurrent with the legislative session, but rather concentrates on
 contributions directly preceding the vote.
 
