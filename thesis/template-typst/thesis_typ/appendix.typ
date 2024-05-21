@@ -32,7 +32,32 @@ University of Munich: https://github.com/ls1intum/thesis-template-typst.
   caption: [The main LPM models with logistically transformed Contributions],
 ) <lpm-log-trafo>
 
-== A3. Declaration of Aids
+== A3. Comparison of Contribution types
+
+#figure(
+  image("../figures/ols_6mo_per_vote.png", width: 100%),
+  caption: [LPM results per votes with contributions within six months of vote],
+) <lpm-6mo-per-vote>
+
+#figure(
+  image("../figures/ols_aggregate_per_vote.png", width: 100%),
+  caption: [LPM results per votes with contributions of entire election of vote],
+) <lpm-agg-per-vote>
+
+#figure(
+  image("../figures/ols_aggregate.png", width: 55%),
+  caption: [LPM results with only consistent representatives, with contributions of entire
+    election of vote],
+) <lpm-agg>
+
+#figure(
+  image("../figures/ols_6mo.png", width: 60%),
+  caption: [LPM results with only consistent representatives, with contributions within six
+    months of vote],
+) <lpm-6mo>
+
+#pagebreak()
+== A4. Declaration of Aids
 
 #table(
   columns: 2,
@@ -47,8 +72,8 @@ University of Munich: https://github.com/ls1intum/thesis-template-typst.
   [Quillbot],
   [Applied over entire thesis to paraphrase text from sources],
 )
-
-== A4. Declaration of Authorship
+#pagebreak()
+== A5. Declaration of Authorship
 
 I hereby declare,
 #list(
