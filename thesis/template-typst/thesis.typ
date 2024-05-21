@@ -45,7 +45,7 @@
 The United States has seen a dramatic increase in wealth and income gaps in
 recent decades, with the wealthy and powerful seeking to shape the political
 environment @skocpol2016koch, alongside the Two-Party system becoming more
-polarised @polarisation. The public's perceptions mirror these trends: 84
+polarized @polarisation. The public's perceptions mirror these trends: 84
 percent of US residents think that money influences politics excessively and
 express a desire to see changes made to the campaign finance system to lessen
 the influence of wealthy donors @bonica[p.~1].
@@ -53,7 +53,7 @@ the influence of wealthy donors @bonica[p.~1].
 But how do campaign donors influence politics? The prime example is the brothers
 David and Charles Koch, who are one of the most influential donors who have a
 multifaceted approach when it comes to their involvement in US politics. On the
-one hand, they shape the mindset of the US population through organised groups,
+one hand, they shape the mindset of the US population through organized groups,
 think tanks, and networks of other mega-donors with similar political and social
 ideologies, such as the Koch Network @Hertel-Fernandez_Skocpol_Sclar_2018.
 
@@ -95,7 +95,7 @@ this paper will focus on the latter contribution type for the final analysis.// 
 political science perspectives on money in politics, with a focus on the causal
 relationship between campaign contributions and the representatives' voting
 decisions. @research-design presents the research design, details the reasoning
-behind analysing environmental legislation and the methane pollution roll-call
+behind analyzing environmental legislation and the methane pollution roll-call
 votes in particular, and presents the hypotheses regarding the effect of
 contribution on voting decisions. @data presents the data types and processing
 for the analysis and @models presents the models used. @results reports the
@@ -178,7 +178,7 @@ which they spend on advertisements, rallies, and flyers to attract more votes
 Yet, why would corporations give money to candidates via PACs or individual
 contributions, which these will not return? Stratmann makes the assumption that
 since corporations are inherently for-profit, they do not donate to
-organisations without wanting to profit from doing so. Economists and political
+organizations without wanting to profit from doing so. Economists and political
 scientists hypothesize, that companies' campaign spending is strategic
 @stratmann-2017 @Denzau-Munger-1986 @Weschle_2022c[p.~25]. What exactly these
 companies receive in return for their contribution, however, is unclear
@@ -191,7 +191,6 @@ influence, meaning they change the opinion of the candidate by contributing to
 their campaign, or the support of a candidate that has your interest at heart,
 with specifically small scale contributors following both methods.
 
-// Überleitung, reason for contribution to correlation between 2 vars
 Besides discussing the reasons for campaign contributions, the question is also
 whether there is a positive correlation between candidates receiving
 contributions and receiving increased vote shares. If this were the case, then
@@ -207,7 +206,6 @@ campaign contributions and the vote shares which candidates receive
 influence the amount of campaign contributions politicians receive, which are
 often endogenous to a candidate's vote shares @Weschle_2022c[p.~24].
 
-// factors to include to explain correlation between contribs & votes
 Geographical factors play a role in contribution, for example. A contribution
 amount is worth more in some congressional districts than in others, since costs
 like rallying and advertising are priced differently @stratmann-2009. Similarly,
@@ -217,7 +215,7 @@ larger governments receive more contributions on average @stratmann-2005[p.148]
 @bronars-lott-1997. Factors that depend on the nature of the election also
 influence the level of contributions, since the expected competitiveness of the
 election outcome also changes the average contribution amounts, i.e. incumbents#footnote("A current office holder seeking re-election.") who
-expect their position to be threatened will be incentivised to gather more
+expect their position to be threatened will be incentivized to gather more
 donations#footnote("Donations and contributions are used synonymously in this paper.") @Weschle_2022c[p.~8],
 @stratmann-2017[p.~25]. The partisan lean of a state also determines which
 candidates are up for race @stratmann-2017[p.~9]. PAC contributions in
@@ -237,7 +235,7 @@ incumbents cater to the wishes of special interest groups, because of their
 contribution or do they get contributions because their views coincide with the
 special interest groups @stratmann-2005[p.~143] @KauKeenanRubin[p.~275]?
 Similarly, it is difficult to distinguish between two possible explanations for
-donations to politicians: either donors merely sympathise with and support
+donations to politicians: either donors merely sympathize with and support
 politicians who share their views, or donations actually influence the
 politicians' decisions (i.e., donations actually buy votes) @bronars-lott-1997
 @chappell[p.83].//  Moreover, even if interest groups fund lawmakers who support them regardless, a significant relationship between money and votes does not prove that money influences politics. Situations like these leave room for simultaneous equation bias @stratmann-2002 @burris2001two @chappell.
@@ -246,7 +244,7 @@ To overcome these challenges, causality must be established. Yet determining
 causality when there is a positive association between donations and roll-call
 votes is one of the most challenging issues in the literature on campaign
 finance. The idea that money may be exchanged for votes is contested by two
-competing causal theories. Firstly, donors often provide to organisations and
+competing causal theories. Firstly, donors often provide to organizations and
 individuals that are inclined to support their policy ideas @burris2001two.
 Secondly, it is possible that donations function more as rewards or punishments
 for previous roll-call votes than as catalysts for more voting @stratmann-1991.
@@ -267,7 +265,7 @@ evidence indicating interest group contributions have an impact on roll-call
 votes @griers.
 
 Others, however, have found that contributions do change voting behavior:
-Stratmann analyzed the timing of contributions, and instead of analysing how the
+Stratmann analyzed the timing of contributions, and instead of analyzing how the
 contributions of the previous cycle relates to the voting behavior of
 politicians, Stratmann took the contributions from current election cycles,
 since short term contributions are more relevant for voting behavior, according
@@ -277,11 +275,11 @@ when these groups contribute (as opposed to giving only issue-specific
 information to congress members) @matter. #cite(<baldwinmagee>, form: "prose") also
 find linkages of roll-call votes on specific trade agreement-related bills and
 the contributions from businesses and labor groups. #cite(<McAlexander2020>, form: "prose"),
-in their paper on the electoral gap in evironmental voting determines that since
-the public's inclination for environmental protection is greater than the oil
-and gas sector's, candidates who get large campaign contributions from
+in their paper on the electoral gap in environmental voting determines that
+since the public's inclination for environmental protection is greater than the
+oil and gas sector's, candidates who get large campaign contributions from
 businesses tend to vote more in favour of the environment when elections come
-around.// Also Mian et al. find that campaign contributions alter roll-call votes @mian.
+around.
 
 Given that some results find causal relationships between contributions and
 others find no effect, most researchers can conclude that there is no academic
@@ -300,7 +298,7 @@ financial contributions, and found significant effects. Hence, one needs to
 analyze distinct roll-call votes and a rather restricted policy setting
 @kang2015 @stratmann-1991[p.607] @chappell.
 
-Moreover, Stratmann critisises that most studies done in the field lack a
+Moreover, Stratmann criticizes that most studies done in the field lack a
 convincing identification strategy to determine the causal relationship between
 legislative voting behavior and campaign contributions. One significant problem
 is from the possibility of reverse causation, "meaning that while contributions
@@ -308,7 +306,7 @@ have an impact on roll call votes, it is also possible that legislators who cast
 roll call votes which are favorable to interest groups receive contributions
 from these groups" @stratmann-2017[p.14].Common criticism in the field is
 attributed not only to studies whose analysis does not focus on a specific
-legistlation or account for reverse causality, but also those who do not control
+legislation or account for reverse causality, but also those who do not control
 for individual counties and geographical areas @stratmann-2005[p.142] @griers.
 Moreover, only by looking at repeated votes and thus changes in voting behavior,
 a link can be determined between contribution and voting
@@ -348,7 +346,7 @@ There are conditions, however, which Stratmann sets up which are not met in this
 paper. On the one hand, he stipulates that the research should treat a topic
 where representatives do not typically take clear stance in their election
 campaigns @stratmann-2002[p.4]. This is not met here, since environmental
-positions are usually quite polarising, and most legislators have clear
+positions are usually quite polarizing, and most legislators have clear
 positions on environment, due to their party line and also their personal
 conviction @McAlexander2020.
 
@@ -396,9 +394,9 @@ representatives out of 529 change their vote over time, see @mind-changers.// in
 
 Although as shown in the section above, the roll-call bills do not fit all of
 the preconditions stipulated by #cite(<stratmann-2002>, form: "prose"),
-analysing environmental policy and the propensity for representatives to deviate
+analyzing environmental policy and the propensity for representatives to deviate
 based on contributions is still a relevant topic and has significant
-reprecussions for democracy if a causal relationship does exist.
+repercussions for democracy if a causal relationship does exist.
 
 While environmental issues are polarizing for both the public and
 representatives, suggesting that representatives might have fewer incentives to
@@ -538,10 +536,10 @@ given the limited financial input from pro-environmental groups and individuals
 In his paper, #cite(<stratmann-2002>, form: "prose") demonstrates that junior
 representatives experience a greater marginal effect from contributions, whereas
 their senior counterparts maintain more steadfast positions. Similarly, the
-thrid hypothesis states that legislators in their early congressional terms are
+third hypothesis states that legislators in their early congressional terms are
 more susceptible to altering their environmental voting behaviors.
 
-Lastly, since partisan affiliation and ideology is rather polarised in the
+Lastly, since partisan affiliation and ideology is rather polarized in the
 United States @polarisation, and that usually, Republicans receive higher
 campaign contributions on average, see @avg-contributions, the fourth hypothesis
 states that contributions on voting behavior will be more effective for
@@ -586,14 +584,14 @@ across US legislative data providing platforms. Since the above data is not
 ordered according to congressional sessions which each representative partook
 in, data from the Biographical Directory of the United States Congress
 (https://bioguide.congress.gov) was used to match the data on current and
-historical legilsators with a list of the representatives participating in each
-seperate congress.
+historical legislators with a list of the representatives participating in each
+separate congress.
 
 == Roll-call data <roll-call>
 
 As Stratmann stipulated in his paper, to be able to analyze changes in voting
 behavior, the cross-sectionality of panel data needs to be exploited, and the
-votes need to be categorised clearly into winners and losers @stratmann-2002.
+votes need to be categorized clearly into winners and losers @stratmann-2002.
 This also means, that one needs to be able to deduce from the votes which
 candidates voted pro- one special interest group, and anti- the other one.
 
@@ -621,7 +619,7 @@ incomplete use of IDs for representatives.
 // Data Processing & Cleaning
 Considering the circumstance that the 2021 votes had a different format than the
 2013-2019 votes, the representative's names were often different, and thus could
-not be joined easily to create an aggregate roll-call dataframe.
+not be joined easily to create an aggregate roll-call data frame.
 
 #figure(```r
 fuzzy_match <- function(x, y, max_dist = 5) {
@@ -638,8 +636,8 @@ To overcome this, the R package `fuzzyjoin` @fuzzyjoin was used. Using the
 functions clean_strings to remove special characters and `fuzzy_match` and
 `fuzzy_full_join` to join, a maximum distance between two values can be
 determined. In the `fuzzy_full_join` function, I defined that the names between
-the two dataframes can be matched if they are at most 5 characters distance from
-one another, while the variables Party and District need to be identical to
+the two data frames can be matched if they are at most 5 characters distance
+from one another, while the variables Party and District need to be identical to
 match.
 
 == Contribution data <contrib-data>
@@ -734,7 +732,7 @@ contributions directly preceding the vote.
 //   2016 in between))
 // plot for cutoff date and contributions. with cutoff data vertically and the amount of contributions (in plots_2.qmd)
 
-In analysing the timing of contributions relative to congressional votes, a
+In analyzing the timing of contributions relative to congressional votes, a
 clear pattern emerges as detailed in @congresses-contribs. Since most votes
 occur late in the session, contributions from the six months preceding each vote
 mostly originate from the current Congress. Occasionally, they also include
@@ -751,11 +749,11 @@ After all, most contributors who are profit-maximizing contribute strategically
 and in close temporal proximity to roll-calls to maximize their influence on
 voting behavior @Selling2023 and thus contribute closer to the vote, in order to
 assure that representatives do not back out of their promises to support the
-special interst groups' causes @stratmann-1998. By including a more restricted
+special interest groups' causes @stratmann-1998. By including a more restricted
 time frame for contribution, such as six months prior to the vote, these trends
 can be captured @griers, without extending the time frame to such an extent that
 the contributions of the closely paced votes (September 13, 2017 and July 18,
-2018) in the 115th congressional session overlap. Which is why, albeit analysing
+2018) in the 115th congressional session overlap. Which is why, albeit analyzing
 both strategies in this paper, for the main analysis, only the contributions
 within six months prior to the votes will be included. #footnote(
   "A comparison of both the aggregate and the timely contributions included in the models can be found in the appendix.",
@@ -803,17 +801,17 @@ merged together based on a set of Unique Identifiers, which was Bioguide ID for
 the roll-call data. Post primary merge, the rest of the data, which was not able
 to be merged was filtered out and merged based on the `fedmatch` @fedmatch
 package's functions `fuzzy_match` and `fuzzy_join` functions as shown in
-@fuzzyjoin in @roll-call. Finally, the two merged dataframes were concatinated.
+@fuzzyjoin in @roll-call. Finally, the two merged data frames were concatenated.
 
 Finally, only about 30 representatives were not able to be merged and thus
 removed. The reason for this is because these anomalies either joined or left
 Congress halfway through the session or switched from one congressional chamber
-to the next, and thus these members appeared in some dataframe, but not in the
+to the next, and thus these members appeared in some data frame, but not in the
 others, i.e. incumbents are marked as representatives but were not included in
 the vote and did not receive contribution, since they were not part of a regular
 election.
 
-For the final dataframe used for analysis, the 731 representatives (over
+For the final data frame used for analysis, the 731 representatives (over
 113th-117th congresses) were further decreased, to only include representatives
 relevant to the analysis. This includes representatives, who voted on more than
 one relevant bill. Without this specification, one couldn't analyze differences
@@ -1272,7 +1270,7 @@ USD. Moreover, Republicans receive an average of 1,250 USD from
 pro-environmental sources, whereas Democrats receive only an average of approx.
 750 USD from pro-environmental sources#footnote(
   "These results were calculated through the analysis, see the link to my github repository for these values.",
-). One conclusion which can be drawn when analysing the effect of contributions
+). One conclusion which can be drawn when analyzing the effect of contributions
 on votes, and holding party constant, is that since Republicans receive more
 contributions, the effect of contribution on their voting behavior is higher.
 
@@ -1301,16 +1299,15 @@ The main goals for the thesis was to explore the relationship of
 pro-environmental and anti-environmental, specifically fossil-fuel, campaign
 contributions have on the voting behavior of US Representatives on the topic of
 methane pollution safeguard related roll-call votes. Moreover, this paper
-contributes to the extensive academic literature on this topic, by analysing the
-effect of environemtally related campaign contributions on the representative's
+contributes to the extensive academic literature on this topic, by analyzing the
+effect of environmentally related campaign contributions on the representative's
 voting on methane pollution safeguards, a topic on which there are few studies.
-By using not only Stratmann's logit and probit models and aggregate election but
-also a linear probability model with time-related contribution, I am further
-extending this area of research. This paper finds that campaign contributions
-shape how the representatives votes on this particular matter. Elected officials
-are more likely to vote in agreement with the individual and PAC's
-contributions, if these interest groups contribute within six months of the
-vote.
+By using not only Stratmann's logit models and aggregate election but also a
+linear probability model with time-related contribution, I am further extending
+this area of research. This paper finds that campaign contributions shape how
+the representatives votes on this particular matter. Elected officials are more
+likely to vote in agreement with the individual and PAC's contributions, if
+these interest groups contribute within six months of the vote.
 
 Albeit including variables which track a representative's political ideology
 through roll-call votes (namely the DW-Nominate dimensions), and including
@@ -1349,7 +1346,7 @@ point to opportunities for future work.First, more robustness checks should be
 included. By including more relevant models and relevant variables, such as each
 state's gdp per capita related to the fossil fuel industry, results could be
 concluded with more certainty. Touched upon briefly in this paper, by regressing
-the pro ovote of representatives with the campaign contributions not only six
+the pro vote of representatives with the campaign contributions not only six
 months prior, but also the six months prior to vote contributions of all similar
 votes before might show that representatives take contributions of previous
 similar votes as a baseline to determine their current votes.
@@ -1365,7 +1362,7 @@ themselves, and how this affects the party's votes on certain issues
 Another interesting topic for research would be to analyze changes in voting
 behavior given by the nature of roll-call votes. Since these happen
 alphabetically, representatives whose names are further along the alphabet might
-be incentivised to deviate from party lines given a vote is already won/lost.
+be able to deviate from party lines given a vote is already won/lost.
 
 Using different sources of campaign contributions would also be an interesting
 approach. These include not individual and PAC contributions, but Super PAC
@@ -1376,20 +1373,3 @@ and representative data by using Application Platform Interfaces (API), which
 significantly ease the data collection process. Resources such as the congress
 API (https://github.com/LibraryOfCongress/api.congress.gov/), or the tidycensus
 R package (https://walker-data.com/tidycensus/).
-
-// -------------- CRAP LINE ------------------------
-// == Legislation
-// p.149 in @stratmann-2005
-// - 1994 transparency act
-// - Bipartisan Campaign Reform Act of 2003
-// - State regulations - contribution limits,
-
-// == campaign contributions & elections -> less important for analysis
-// - coate, if special interest contribution, less voters, more contribution (voters suspicious of favor trading) @stratmann-2005
-// - Asymmetry in effectiveness of spending, endogeneity and OVB
-// - difficult to find causal effect between contributions and vote shares @stratmann-2005 p.137-138
-// - also, sometimes more campaign contributions because of tighter race, so negative correlation vote share and contribution (OVB - competition, bipartisan factors) @stratmann-2005 p.138
-// - bias stronger in house, than senate, p.138
-// - spending not accurate representation for campaigning, diff. Montana and LA.
-// #acknowledgement()
-// #abstract_de()
