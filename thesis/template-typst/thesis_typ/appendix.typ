@@ -43,7 +43,7 @@ University of Munich: https://github.com/ls1intum/thesis-template-typst.
   [DeepL Write],
   [Applied over entire thesis to improve spelling and wording],
   [ChatGPT],
-  [Applied over entire thesis to improve wording],
+  [Applied over entire thesis to improve spelling],
   [Quillbot],
   [Applied over entire thesis to paraphrase text from sources],
 )
