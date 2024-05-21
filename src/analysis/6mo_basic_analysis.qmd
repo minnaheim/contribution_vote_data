@@ -11,22 +11,21 @@ library(fastDummies)
 library(Amelia)
 library(lfe)
 library(broom)
+library(stargazer)
 
 source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_prep_functions.R")
 df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
 df_no_change <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_no_change.csv")
-df_vote_3 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_3.csv")
-view(df_vote_3)
-df_vote_4 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4.csv")
-view(df_vote_4)
+df_vote_3 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/make_tables/data/analysis/df_vote_3.csv")
+df_vote_4 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/make_tables/data/analysis/df_vote_4.csv")
+df_vote_51 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/make_tables/data/analysis/df_vote_51.csv")
+df_vote_52 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/make_tables/data/analysis/df_vote_52.csv")
+df_vote_6 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/make_tables/data/analysis/df_vote_6.csv")
+df_vote_7 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/make_tables/data/analysis/df_vote_7.csv")
 df_vote_4_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_4_2.csv")
-df_vote_51 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_51.csv")
 df_vote_51_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_51_2.csv")
-df_vote_52 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_52.csv")
 df_vote_52_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_52_2.csv")
-df_vote_6 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_6.csv")
 df_vote_6_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_6_2.csv")
-df_vote_7 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_7.csv")
 df_vote_7_2 <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_vote_7_2.csv")
 df_subsample <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_sub.csv")
 ```
@@ -36,7 +35,7 @@ df_subsample <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data
 
 ## all votes, without changes
 ```{r}
-df_no_change_1 <- df_no_change %>% select(-c(state, seniority_114, seniority_115, seniority_116, seniority_117, Dmajority_113, Dmajority_114, Dmajority_115, Dmajority_116, Dmajority_117, seniority_113, nominate_dim1, nominate_dim2, birthday, gender))
+df_no_change_1 <- df_no_change %>% select(-c(state, seniority_114, seniority_1151, seniority_1152, seniority_116, seniority_117, Dmajority_3, Dmajority_4, Dmajority_51, Dmajority_52, Dmajority_6, Dmajority_7, seniority_113, nominate_dim1, nominate_dim2, birthday, gender))
 
 no_change_ols_minus <- lm(all_votes_minus ~ . - all_votes_plus, data = df_no_change_1)
 summary(no_change_ols_minus)
@@ -45,35 +44,53 @@ summary(no_change_ols_minus)
 ## each vote separately
 ```{r}
 # Vote 3 comparison
-ols_3_1 <- lm(Vote3_minus ~ . - state - BioID - Vote3_plus - Vote3 - Vote_change_dummy - birthday - seniority_113 - nominate_dim1 - nominate_dim2, data = df_vote_3)
+ols_3_1 <- lm(Vote3_minus ~ . - BioID - Vote3_plus - Vote3 - Vote_change_dummy - seniority_113, data = df_vote_3)
 summary(ols_3_1)
 
 # Vote 4 comparison
-ols_4_1 <- lm(Vote4_minus ~ . - state - BioID - Vote4_plus - Vote4 - Vote_change_dummy - birthday - seniority_114 - nominate_dim1 - nominate_dim2, data = df_vote_4)
+ols_4_1 <- lm(Vote4_minus ~ . - BioID - Vote4_plus - Vote4 - Vote_change_dummy - seniority_114, data = df_vote_4)
 summary(ols_4_1)
 
 # Vote 51 comparison
-ols_51_1 <- lm(Vote51_minus ~ . - state - BioID - Vote51_plus - Vote51 - Vote_change_dummy - birthday - seniority_115 - nominate_dim1 - nominate_dim2, data = df_vote_51)
+ols_51_1 <- lm(Vote51_minus ~ . - BioID - Vote51_plus - Vote51 - Vote_change_dummy - seniority_1151, data = df_vote_51)
 summary(ols_51_1)
 
 # Vote 52 comparison
-ols_52_1 <- lm(Vote52_minus ~ . - state - BioID - Vote52_plus - Vote52 - Vote_change_dummy - birthday - seniority_115 - nominate_dim1 - nominate_dim2, data = df_vote_52)
+ols_52_1 <- lm(Vote52_minus ~ . - BioID - Vote52_plus - Vote52 - Vote_change_dummy - seniority_1152, data = df_vote_52)
 summary(ols_52_1)
 
 # Vote 6 comparison
-ols_6_1 <- lm(Vote6_minus ~ . - state - BioID - Vote6_plus - Vote6 - Vote_change_dummy - birthday - seniority_116 - nominate_dim1 - nominate_dim2, data = df_vote_6)
+ols_6_1 <- lm(Vote6_minus ~ . - BioID - Vote6_plus - Vote6 - Vote_change_dummy - seniority_116, data = df_vote_6)
 summary(ols_6_1)
 
 # Vote 7 comparison
-ols_7_1 <- lm(Vote7_minus ~ . - state - BioID - Vote7_plus - Vote7 - Vote_change_dummy - birthday - seniority_117 - nominate_dim1 - nominate_dim2, data = df_vote_7)
+ols_7_1 <- lm(Vote7_minus ~ . - BioID - Vote7_plus - Vote7 - Vote_change_dummy - seniority_117, data = df_vote_7)
 summary(ols_7_1)
 ```
 
 ## subsample analysis, only those who changed votes
 ```{r}
-df_subsample_1 <- df_subsample %>% select(party, vote_change_to_anti, year, Contribution_3_minus, Contribution_3_plus, Contribution_4_minus, Contribution_4_plus, Contribution_51_minus, Contribution_51_plus, Contribution_52_minus, Contribution_52_plus, Contribution_6_minus, Contribution_6_plus, Contribution_7_minus, Contribution_7_plus, Geographical)
+# df_subsample_1 <- df_subsample %>% select(party, vote_change_to_anti, year, Contribution_3_minus, Contribution_3_plus, Contribution_4_minus, Contribution_4_plus, Contribution_51_minus, Contribution_51_plus, Contribution_52_minus, Contribution_52_plus, Contribution_6_minus, Contribution_6_plus, Contribution_7_minus, Contribution_7_plus, Geographical)
 
-ols_subsample_2 <- lm(vote_change_to_anti ~ . - year, data = df_subsample_1)
-summary(ols_subsample_2)
+# ols_subsample_2 <- lm(vote_change_to_anti ~ . - year, data = df_subsample_1)
+# summary(ols_subsample_2)
 
+```
+
+
+## tables in stargazer
+
+```{r}
+stargazer(no_change_ols_minus,
+    type = "html", out = "ols_no_change_minus.html",
+    covariate.labels = c("District", "Party", "Anti-Env. Contribution (113th congress Vote)", "Pro-Env. Contribution (113th congress Vote)", "Anti-Env. Contribution (114th congress Vote)", "Pro-Env. Contribution (114th congress Vote)", "Anti-Env. Contribution (115th congress 1st Vote)", "Pro-Env. Contribution (115th congress 1st Vote)", "Anti-Env. Contribution (115th congress 2nd Vote)", "Pro-Env. Contribution (115th congress 2nd Vote)", "Anti-Env. Contribution (116th congress)", "Pro-Env. Contribution (116th congress)", "Anti-Env. Contribution (117th congress)", "Pro-Env. Contribution (117th congress)", "GeographicalNE", "GeographicalSO", "GeographicalWE", "Constant"),
+    dep.var.labels = "All Anti-Env. Votes"
+)
+
+stargazer(ols_3_1, ols_4_1, ols_51_1, ols_52_1, ols_6_1, ols_7_1,
+    type = "html",
+    covariate.labels = c("Party", "Anti-Env. Contribution (113th congress Vote)", "Pro-Env. Contribution (113th congress Vote)", "Anti-Env. Contribution (114th congress Vote)", "Pro-Env. Contribution (114th congress Vote)", "Anti-Env. Contribution (115th congress 1st Vote)", "Pro-Env. Contribution (115th congress 1st Vote)", "Anti-Env. Contribution (115th congress 2nd Vote)", "Pro-Env. Contribution (115th congress 2nd Vote)", "Anti-Env. Contribution (116th congress)", "Pro-Env. Contribution (116th congress)", "Anti-Env. Contribution (117th congress)", "Pro-Env. Contribution (117th congress)", "GeographicalNE", "GeographicalSO", "GeographicalWE", "Constant"),
+    dep.var.labels = c("Anti-Env Vote in 113th", "Anti-Env Vote in 114th", "Anti-Env 1st Vote in 115th", "Anti-Env 2nd Vote in 115ths", "Anti-Env Vote 116th", "Anti-Env Vote 117"),
+    out = "ols_per_vote.html"
+)
 ```

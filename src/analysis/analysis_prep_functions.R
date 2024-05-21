@@ -103,6 +103,44 @@ summarise_contributions <- function(df) {
     return(df_sum)
 }
 
+# function that filters the data based on the current session
+filter_current_session_data <- function(df, vote) {
+    # define the specific columns for the current vote
+    contribution_cols <- c(
+        glue("Contribution_{vote}_minus"),
+        glue("Contribution_{vote}_plus")
+    )
+
+    # select relevant columns
+    selected_cols <- c(
+        "party", "Vote_change_dummy",
+        glue("Vote{vote}"),
+        contribution_cols,
+        "BioID", glue("seniority_11{vote}"),
+        "Geographical", "District"
+    )
+
+    # check if the specified columns exist in the dataframe
+    selected_cols <- selected_cols[selected_cols %in% colnames(df)]
+
+    # filter and select relevant columns
+    df <- df[, selected_cols, drop = FALSE]
+    df <- df %>% filter(!is.na(!!sym(glue("Vote{vote}"))))
+
+    # create dummy columns for the vote
+    df <- dummy_cols(df, select_columns = glue("Vote{vote}"))
+
+    # rename the dummy columns
+    df <- df %>%
+        rename(
+            !!glue("Vote{vote}_plus") := !!sym(glue("Vote{vote}_1")),
+            !!glue("Vote{vote}_minus") := !!sym(glue("Vote{vote}_0"))
+        )
+
+    return(df)
+}
+
+
 # function that filters the data based on the session
 filter_all_pre_session_data <- function(df, vote) {
     all_votes <- c(3, 4, 51, 52, 6, 7)
