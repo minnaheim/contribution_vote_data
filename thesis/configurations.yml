@@ -1,6 +1,0 @@
-problems: 
-    data:
-    - differences in Names dep. on Data sources
-    - house members leaving in sessions (i.e. half-way through), not incl. in data
-    model:
-    - instead of 2 bills, i have 6 bills (vote changes not once max, but 4 times max)
