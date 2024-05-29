@@ -8,10 +8,6 @@ library(glue)
 clean_names <- function(dataset) {
     dataset$last_name <- clean_strings(dataset$last_name)
     dataset$first_name <- clean_strings(dataset$first_name)
-    # clean_names <- lapply(dataset[last_name], clean_strings)
-    # dataset[last_name] <- clean_names
-    # clean_names <- lapply(dataset[first_name], clean_strings)
-    # dataset[first_name] <- clean_names
     return(dataset)
 }
 
@@ -41,7 +37,7 @@ fuzzy_match_first <- function(x, y) {
 # join_by must be this: c("last_name", "first_name", "party", "state")
 fuzzy_join_representative_id <- function(dataset) {
     # import id_reps
-    id_reps <- read_csv("data/cleaned/unique_id_reps.csv", show_col_types = FALSE)
+    id_reps <- read_csv("data/original/unique_id_reps.csv", show_col_types = FALSE)
     dataset["name"] <- paste(dataset$first_name, dataset$last_name)
     id_reps["name"] <- paste(id_reps$first_name, id_reps$last_name)
     dataset["name"] <- lapply(dataset["name"], clean_strings)
@@ -71,7 +67,7 @@ fuzzy_join_representative_id <- function(dataset) {
 # dataset needs to have name column
 name_match <- function(dataset) {
     # import id_reps
-    id_reps <- read_csv("data/cleaned/unique_id_reps.csv", show_col_types = FALSE)
+    id_reps <- read_csv("data/original/unique_id_reps.csv", show_col_types = FALSE)
     id_reps["name"] <- paste(id_reps$first_name, id_reps$last_name)
     # for each name in the dataset, find the best match in id_reps
     for (i in 1:nrow(dataset)) {

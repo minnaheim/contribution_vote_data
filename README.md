@@ -1,5 +1,6 @@
 ## Effect of fossil fuel & environmental related campaign contributions on the voting behavior of US House members on methane related bills
 
+You can find the actual thesis [here](https://github.com/minnaheim/contribution_vote_data/blob/main/thesis/template-typst/thesis.pdf)
 
 ### project file layout
 ```

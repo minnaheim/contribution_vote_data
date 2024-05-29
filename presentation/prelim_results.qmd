@@ -17,7 +17,7 @@ source("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/src/analysis/analysis_
 df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df.csv")
 roll_call <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/roll_call.csv")
 contributions <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/contributions.csv")
-unique_id_reps <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/unique_id_reps.csv")
+unique_id_reps <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/original/unique_id_reps.csv")
 final_df <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/cleaned/final_df.csv")
 df_subsample <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_subsample.csv")
 df_sum <- read.csv("/Users/minna/Desktop/HSG/Economics/BA_Thesis/code/data/analysis/df_sum.csv")

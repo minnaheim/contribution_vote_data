@@ -35,9 +35,6 @@ roll_call_full_3 <- merge_roll_calls(c("6", "7"), list(methane_116, methane_117)
 # merge last 3 datasets together
 roll_call_full <- final_merge_roll_call(list(roll_call_full_1, roll_call_full_2, roll_call_full_3))
 
-# view(roll_call_full)
-# cleaned rollcall dataset with all 6 bills
-
 # insert count_votes column
 roll_call_full <- count_votes(roll_call_full)
 # write ? and n/a values to NA
@@ -54,7 +51,7 @@ repeat_voters <- roll_call_full %>% dplyr::filter(Vote_count > 1)
 mind_changers <- roll_call_full %>% dplyr::filter(Vote_change > 0)
 # view(mind_changers)
 
-# replicate Strattmann table
+# replicate Stratmann table
 # find how many voted + on all bills
 repeat_voters_plus <- repeat_voters %>% dplyr::filter(Vote3 == "+" & Vote4 == "+" &
     Vote51 == "+" & Vote52 == "+" & Vote6 == "+" & Vote7 == "+")
@@ -68,10 +65,7 @@ repeat_voters_minus <- repeat_voters %>% dplyr::filter(Vote3 == "-" & Vote4 == "
 
 # use fuzzy_join_rep_id to merge together roll_call data and id_reps, within function
 roll_call_full <- rename(roll_call_full, c("party" = "Party")) %>%
-    # rename(., c("first_name" = "FirstName")) %>%
     rename(., c("state" = "State"))
-# %>%
-# rename(., c("last_name" = "LastName"))
 
 # merge with id_reps
 roll_call_full <- fuzzy_join_representative_id(roll_call_full)

@@ -35,5 +35,3 @@ do
 
   Rscript src/scripts/clean_pac_bulk.R $file
 done
-
-# run this in terminal to run bulk clean process: ./src/scripts/run_build_clean.sh
