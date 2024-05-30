@@ -74,12 +74,6 @@ contribs_wide <- contribs_wide %>% relocate(bioguide_id, opensecrets_id)
 view(contribs_wide)
 
 
-write.csv(contribs12_summarized, "data/cleaned/contribs12_summarized.csv", row.names = FALSE)
-write.csv(contribs14_summarized, "data/cleaned/contribs14_summarized.csv", row.names = FALSE)
-write.csv(contribs16_summarized, "data/cleaned/contribs16_summarized.csv", row.names = FALSE)
-write.csv(contribs16_2_summarized, "data/cleaned/contribs16_2_summarized.csv", row.names = FALSE)
-write.csv(contribs18_summarized, "data/cleaned/contribs18_summarized.csv", row.names = FALSE)
-write.csv(contribs20_summarized, "data/cleaned/contribs20_summarized.csv", row.names = FALSE)
 write.csv(contribs_wide, "data/cleaned/contribs_wide.csv", row.names = FALSE)
 write.csv(contribs_long, "data/cleaned/contribs_long.csv", row.names = FALSE)
 

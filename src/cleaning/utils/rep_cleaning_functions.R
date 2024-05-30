@@ -1,6 +1,5 @@
 # setup
 source("src/cleaning/utils/combine_columns.R")
-# install.packages("fedmatch")
 library(fedmatch)
 library(glue)
 
@@ -10,7 +9,6 @@ clean_names <- function(dataset) {
     dataset$first_name <- clean_strings(dataset$first_name)
     return(dataset)
 }
-
 
 rep_cleaning <- function(dataset) {
     trimws(dataset)
