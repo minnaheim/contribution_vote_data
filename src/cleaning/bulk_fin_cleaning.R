@@ -1,16 +1,24 @@
 library(tidyverse)
 library(conflicted)
+conflict_prefer("filter", "dplyr")
 library(stats)
 source("src/cleaning/utils/combine_columns.R")
 source("src/cleaning/utils/bulk_cleaning_functions.R")
 
 # read in test data (contributions are read in, in the cleaning function file)
-rep_117 <- read_csv("data/cleaned/bioguide_117_rep.csv", show_col_types = FALSE)
-rep_116 <- read_csv("data/cleaned/bioguide_116_rep.csv", show_col_types = FALSE)
-rep_115 <- read_csv("data/cleaned/bioguide_115_rep.csv", show_col_types = FALSE)
-rep_114 <- read_csv("data/cleaned/bioguide_114_rep.csv", show_col_types = FALSE)
-rep_113 <- read_csv("data/cleaned/bioguide_113_rep.csv", show_col_types = FALSE)
-# view(rep_113)
+files <- list.files(path = "data/cleaned/", pattern = "bioguide_11*", full.names = TRUE)
+
+for (file in files) {
+    session <- gsub("\\D", "", file)
+    name <- glue("rep_{session}")
+    assign(name, read_csv(file, show_col_types = FALSE))
+}
+
+# rep_117 <- read_csv("data/cleaned/bioguide_117_rep.csv", show_col_types = FALSE)
+# rep_116 <- read_csv("data/cleaned/bioguide_116_rep.csv", show_col_types = FALSE)
+# rep_115 <- read_csv("data/cleaned/bioguide_115_rep.csv", show_col_types = FALSE)
+# rep_114 <- read_csv("data/cleaned/bioguide_114_rep.csv", show_col_types = FALSE)
+# rep_113 <- read_csv("data/cleaned/bioguide_113_rep.csv", show_col_types = FALSE)
 
 # clean contributions for vote
 contribs20 <- clean_contribs_for_vote(rep_117, "12-25-2020")
@@ -20,33 +28,33 @@ contribs16 <- clean_contribs_for_vote(rep_115, "12-02-2017")
 contribs14 <- clean_contribs_for_vote(rep_114, "01-12-2016")
 contribs12 <- clean_contribs_for_vote(rep_113, "03-19-2013")
 
+# TODO: solve error in contribs loop
+# apply determine industry function to contributions
+contribs <- c(contribs12, contribs14, contribs16, contribs16_2, contribs18, contribs20)
 
-# before determining whether the industry is pro environmental or anti environmental,
-# use k-means to associate contributions without my biases.
-# view(contribs12)
-# contribs12 <- contribs12 %>%
-#     select(c("RealCode", "total")) %>%
-#     mutate_all(as.numeric) %>%
-#     na.omit()
-# df <- df %>%
-#     kmeans(contribs12$total, centers = 2) # 1 = pro, 2 = anti
+for (contrib in contribs) {
+    determine_industry(contrib)
+}
 
-contribs20 <- determine_industry(contribs20)
-contribs18 <- determine_industry(contribs18)
-contribs16_2 <- determine_industry(contribs16_2)
-contribs16 <- determine_industry(contribs16)
-contribs14 <- determine_industry(contribs14)
-contribs12 <- determine_industry(contribs12)
-view(contribs12)
+for (contrib in contribs) {
+    number <- gsub("\\D", "", contrib)
+    name <- glue("contribs{number}_summarized")
+    assign(name, summarise_contribs)
+}
 
+# contribs20 <- determine_industry(contribs20)
+# contribs18 <- determine_industry(contribs18)
+# contribs16_2 <- determine_industry(contribs16_2)
+# contribs16 <- determine_industry(contribs16)
+# contribs14 <- determine_industry(contribs14)
+# contribs12 <- determine_industry(contribs12)
 
-contribs12_summarized <- summarise_contribs(contribs12)
-contribs14_summarized <- summarise_contribs(contribs14)
-contribs16_summarized <- summarise_contribs(contribs16)
-contribs16_2_summarized <- summarise_contribs(contribs16_2)
-contribs18_summarized <- summarise_contribs(contribs18)
-contribs20_summarized <- summarise_contribs(contribs20)
-# view(contribs12_summarized)
+# contribs12_summarized <- summarise_contribs(contribs12)
+# contribs14_summarized <- summarise_contribs(contribs14)
+# contribs16_summarized <- summarise_contribs(contribs16)
+# contribs16_2_summarized <- summarise_contribs(contribs16_2)
+# contribs18_summarized <- summarise_contribs(contribs18)
+# contribs20_summarized <- summarise_contribs(contribs20)
 
 # merge together wide format, to merge with rollcall data
 contribs_long <- bind_rows(list(
